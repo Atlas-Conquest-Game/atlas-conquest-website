@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/tooltips.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
 </head>
 <body>
@@ -15,14 +16,12 @@
   <!-- Navigation -->
   <nav class="nav">
     <div class="nav-inner">
-      <a href="#" class="nav-logo">Atlas Conquest</a>
+      <a href="index.html" class="nav-logo">Atlas Conquest</a>
       <div class="nav-links">
-        <a href="#overview" class="nav-link">Overview</a>
-        <a href="#commanders" class="nav-link">Commanders</a>
-        <a href="#matchups" class="nav-link">Matchups</a>
-        <a href="#cards" class="nav-link">Cards</a>
-        <a href="#decks" class="nav-link">Decks</a>
-        <a href="#meta" class="nav-link">Meta</a>
+        <a href="index.html" class="nav-link">Overview</a>
+        <a href="commanders.html" class="nav-link">Commanders</a>
+        <a href="cards.html" class="nav-link">Cards</a>
+        <a href="meta.html" class="nav-link">Meta</a>
       </div>
     </div>
   </nav>
@@ -41,7 +40,7 @@
     </div>
   </header>
 
-  <!-- Time Filter (sticky below nav) -->
+  <!-- Time Filter -->
   <div class="time-filter-bar" id="time-filter-bar">
     <div class="container time-filter-inner">
       <span class="filter-label">Period</span>
@@ -58,11 +57,11 @@
       <h2 class="section-title">Overview</h2>
       <div class="card-grid">
         <div class="stat-card">
-          <span class="stat-label">Total Matches</span>
+          <span class="stat-label">Total Matches <span class="tooltip-icon" data-tooltip="1v1 games tracked in the selected time period.">?</span></span>
           <span class="stat-value" id="stat-matches">--</span>
         </div>
         <div class="stat-card">
-          <span class="stat-label">Unique Cards Played</span>
+          <span class="stat-label">Unique Cards Played <span class="tooltip-icon" data-tooltip="Distinct cards appearing in at least one game.">?</span></span>
           <span class="stat-value" id="stat-cards">--</span>
         </div>
         <div class="stat-card">
@@ -78,179 +77,33 @@
       <!-- Distribution Charts -->
       <div class="chart-row" id="distribution-charts">
         <div class="chart-sm">
-          <h3 class="chart-sm-title">Game Duration (min)</h3>
+          <h3 class="chart-sm-title">Game Duration (min) <span class="tooltip-icon" data-tooltip="Distribution of game length in minutes.">?</span></h3>
           <canvas id="dist-duration"></canvas>
         </div>
         <div class="chart-sm">
-          <h3 class="chart-sm-title">Turns per Game</h3>
+          <h3 class="chart-sm-title">Turns per Game <span class="tooltip-icon" data-tooltip="Total turns (both players) per game.">?</span></h3>
           <canvas id="dist-turns"></canvas>
         </div>
         <div class="chart-sm">
-          <h3 class="chart-sm-title">Actions per Game</h3>
+          <h3 class="chart-sm-title">Actions per Game <span class="tooltip-icon" data-tooltip="Total actions (plays, attacks, moves) per game.">?</span></h3>
           <canvas id="dist-actions"></canvas>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- Commander Section -->
-  <section id="commanders" class="section section-alt">
-    <div class="container">
-      <h2 class="section-title">Commander Winrates</h2>
-      <p class="section-desc">Win percentage by commander for the selected time period.</p>
-
-      <div class="commander-grid" id="commander-cards"></div>
-
-      <div class="chart-container">
-        <canvas id="commander-chart"></canvas>
-      </div>
-
-      <div class="table-wrapper">
-        <table class="data-table" id="commander-table">
-          <thead>
-            <tr>
-              <th>Commander</th>
-              <th>Faction</th>
-              <th>Matches</th>
-              <th>Wins</th>
-              <th>Winrate</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="placeholder-row"><td colspan="5">Loading...</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- Matchups Section -->
-  <section id="matchups" class="section">
-    <div class="container">
-      <h2 class="section-title">Commander Matchups</h2>
-      <p class="section-desc">Head-to-head winrates. Read rows as "Row commander's winrate vs Column commander."</p>
-      <div class="matchup-wrapper">
-        <table class="matchup-table" id="matchup-table">
-          <thead><tr><th></th></tr></thead>
-          <tbody></tbody>
-        </table>
-      </div>
-      <div class="matchup-legend">
-        <span class="legend-item"><span class="legend-swatch legend-favored"></span> &gt;55%</span>
-        <span class="legend-item"><span class="legend-swatch legend-even"></span> 45-55%</span>
-        <span class="legend-item"><span class="legend-swatch legend-unfavored"></span> &lt;45%</span>
-        <span class="legend-item"><span class="legend-swatch legend-nodata"></span> &lt;5 games</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Matchup Tooltip -->
-  <div class="matchup-tooltip" id="matchup-tooltip">
-    <div class="matchup-tooltip-title" id="tooltip-title"></div>
-    <div class="matchup-tooltip-wr" id="tooltip-wr"></div>
-    <div class="matchup-tooltip-games" id="tooltip-games"></div>
-  </div>
-
-  <!-- Cards Section -->
-  <section id="cards" class="section section-alt">
-    <div class="container">
-      <h2 class="section-title">Card Analytics</h2>
-      <p class="section-desc">Most played cards and their impact on match outcomes.</p>
-
-      <div class="filter-bar">
-        <button class="filter-btn active" data-faction="all">All</button>
-        <button class="filter-btn" data-faction="skaal">Skaal</button>
-        <button class="filter-btn" data-faction="grenalia">Grenalia</button>
-        <button class="filter-btn" data-faction="lucia">Lucia</button>
-        <button class="filter-btn" data-faction="neutral">Neutral</button>
-        <button class="filter-btn" data-faction="shadis">Shadis</button>
-        <button class="filter-btn" data-faction="archaeon">Archaeon</button>
-      </div>
-
-      <div class="table-wrapper">
-        <table class="data-table" id="card-table">
-          <thead>
-            <tr>
-              <th class="sortable" data-sort="name">Card</th>
-              <th class="sortable" data-sort="faction">Faction</th>
-              <th class="sortable" data-sort="type">Type</th>
-              <th class="sortable" data-sort="drawn_rate">Drawn Rate</th>
-              <th class="sortable" data-sort="drawn_winrate">Drawn WR</th>
-              <th class="sortable" data-sort="played_rate">Played Rate</th>
-              <th class="sortable" data-sort="played_winrate">Played WR</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="placeholder-row"><td colspan="7">Loading...</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- Deck Composition Section -->
-  <section id="decks" class="section">
-    <div class="container">
-      <h2 class="section-title">Deck Composition</h2>
-      <p class="section-desc">Average deck construction by commander. Click a bar to explore detailed breakdowns.</p>
-
-      <div class="chart-container">
-        <h3 class="chart-inner-title">Average Deck Cost</h3>
-        <canvas id="avg-cost-chart"></canvas>
-      </div>
-
-      <div class="chart-row chart-row-2">
-        <div class="chart-container">
-          <h3 class="chart-inner-title">Minion / Spell Ratio</h3>
-          <canvas id="minion-spell-chart"></canvas>
-        </div>
-        <div class="chart-container">
-          <h3 class="chart-inner-title">Faction Loyalty (Patron / Neutral / Other)</h3>
-          <canvas id="patron-neutral-chart"></canvas>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Commander Detail Modal -->
-  <div class="modal-overlay" id="commander-modal">
-    <div class="modal-content">
-      <button class="modal-close" id="modal-close">&times;</button>
-      <div class="modal-header" id="modal-header">
-        <img class="modal-art" id="modal-art" src="" alt="">
-        <div class="modal-header-text">
-          <h2 class="modal-name" id="modal-name"></h2>
-          <span class="modal-faction" id="modal-faction"></span>
-          <div class="modal-summary" id="modal-summary"></div>
-        </div>
-      </div>
-      <div class="modal-body">
-        <h3 class="modal-section-title">Mana Curve: All Decks vs Wins vs Losses</h3>
-        <div class="chart-container modal-chart-wide">
-          <canvas id="modal-cost-chart"></canvas>
-        </div>
-        <div class="chart-row chart-row-2">
-          <div class="chart-container">
-            <h3 class="chart-inner-title">Type Breakdown</h3>
-            <canvas id="modal-type-donut"></canvas>
-          </div>
-          <div class="chart-container">
-            <h3 class="chart-inner-title">Faction Loyalty</h3>
-            <canvas id="modal-loyalty-donut"></canvas>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Meta Section -->
-  <section id="meta" class="section">
-    <div class="container">
-      <h2 class="section-title">Meta Trends</h2>
-      <p class="section-desc">How faction popularity shifts over time.</p>
-
-      <div class="chart-container">
-        <canvas id="meta-chart"></canvas>
+      <!-- Quick Links -->
+      <div class="quick-links">
+        <a href="commanders.html" class="quick-link">
+          <div class="quick-link-title">Commanders</div>
+          <div class="quick-link-desc">Winrates, head-to-head matchups, and deck composition breakdowns.</div>
+        </a>
+        <a href="cards.html" class="quick-link">
+          <div class="quick-link-title">Card Analytics</div>
+          <div class="quick-link-desc">Search all 261 cards. Draw rates, play rates, and win correlations.</div>
+        </a>
+        <a href="meta.html" class="quick-link">
+          <div class="quick-link-title">Meta Trends</div>
+          <div class="quick-link-desc">Track how faction popularity shifts week over week.</div>
+        </a>
       </div>
     </div>
   </section>
@@ -263,6 +116,7 @@
     </div>
   </footer>
 
-  <script src="js/app.js"></script>
+  <script src="js/shared.js"></script>
+  <script src="js/home.js"></script>
 </body>
 </html>

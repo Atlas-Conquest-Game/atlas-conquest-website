@@ -1,0 +1,36 @@
+/* === Card Search Bar === */
+
+.card-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.card-search-bar input {
+  flex: 1;
+  max-width: 400px;
+  padding: 0.5rem 0.875rem;
+  background: var(--bg-inset);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.875rem;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.card-search-bar input::placeholder {
+  color: var(--text-muted);
+}
+
+.card-search-bar input:focus {
+  border-color: #388bfd;
+}
+
+.search-count {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}

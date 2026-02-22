@@ -38,9 +38,36 @@
 ### 4. Frontend (`site/`)
 - Vanilla HTML/CSS/JS. No build step, no framework.
 - Dark theme. Chart.js 4 for all visualizations.
-- Global time period filter (sticky bar) re-renders all sections.
-- Interactive features: sortable card table, matchup heatmap with tooltips, clickable deck composition charts, commander detail modal with mana curve and donut breakdowns.
+- Multi-page architecture with shared nav and time filter.
 - Hosted on GitHub Pages.
+
+#### Pages
+
+| Page | File | Content |
+|------|------|---------|
+| Home | `index.html` | Overview stats, distribution charts, quick-link cards |
+| Commanders | `commanders.html` | Commander grid, winrate chart/table, matchup heatmap, deck composition, detail modal |
+| Cards | `cards.html` | Full card table (261 cards), search, faction filter, sortable columns |
+| Meta | `meta.html` | Stacked area chart of faction popularity over time |
+
+#### JavaScript Structure
+
+| File | Role |
+|------|------|
+| `js/shared.js` | Constants, helpers, data loading, time filter, modal, tooltip system |
+| `js/home.js` | Overview stats and distribution chart rendering |
+| `js/commanders.js` | Commander, matchup, and deck composition rendering |
+| `js/cards.js` | Card table with search, sorting, and faction filter |
+| `js/meta.js` | Meta trends chart rendering |
+
+Each page loads `shared.js` first (globals, not ES modules), then its page-specific script. All pages share: nav with active state, sticky time filter bar, footer.
+
+#### Interactive Features
+- Sortable card table with debounced search (filters by name, type, subtype)
+- Matchup heatmap with hover tooltips
+- Clickable deck composition charts opening commander detail modal
+- Info tooltips (`?` icons) explaining stats, columns, and chart meanings
+- Global time period filter (1M / 3M / 6M / All) re-renders all sections
 
 ## Data Update Flow
 

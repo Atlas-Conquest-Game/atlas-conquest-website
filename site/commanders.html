@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Commanders — Atlas Conquest Analytics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/tooltips.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Atlas Conquest</a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Overview</a>
+        <a href="commanders.html" class="nav-link">Commanders</a>
+        <a href="cards.html" class="nav-link">Cards</a>
+        <a href="meta.html" class="nav-link">Meta</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero (compact) -->
+  <header class="hero hero-compact">
+    <div class="container">
+      <h1 class="hero-title">Commanders</h1>
+      <p class="hero-subtitle">Winrates, matchups, and deck construction across every commander.</p>
+      <div class="hero-meta">
+        <span class="hero-stat" id="hero-matches">-- matches</span>
+        <span class="hero-divider"></span>
+        <span class="hero-stat" id="hero-updated">Last updated: --</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Time Filter -->
+  <div class="time-filter-bar" id="time-filter-bar">
+    <div class="container time-filter-inner">
+      <span class="filter-label">Period</span>
+      <button class="time-btn" data-period="1m">1M</button>
+      <button class="time-btn" data-period="3m">3M</button>
+      <button class="time-btn" data-period="6m">6M</button>
+      <button class="time-btn active" data-period="all">All</button>
+    </div>
+  </div>
+
+  <!-- Commander Winrates -->
+  <section id="commanders" class="section">
+    <div class="container">
+      <h2 class="section-title">Commander Winrates</h2>
+      <p class="section-desc">Win percentage by commander for the selected time period.</p>
+
+      <div class="commander-grid" id="commander-cards"></div>
+
+      <div class="chart-container">
+        <canvas id="commander-chart"></canvas>
+      </div>
+
+      <div class="table-wrapper">
+        <table class="data-table" id="commander-table">
+          <thead>
+            <tr>
+              <th>Commander</th>
+              <th>Faction</th>
+              <th>Matches <span class="tooltip-icon" data-tooltip="Games played with this commander in the selected period.">?</span></th>
+              <th>Wins</th>
+              <th>Winrate <span class="tooltip-icon" data-tooltip="Win %. Green if above 52%, red if below 48%.">?</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="placeholder-row"><td colspan="5">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Matchups -->
+  <section id="matchups" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Commander Matchups <span class="tooltip-icon" data-tooltip="Row commander's win rate vs column commander. Green >55%, red <45%. Gray = fewer than 5 games.">?</span></h2>
+      <p class="section-desc">Head-to-head winrates. Read rows as "Row commander's winrate vs Column commander."</p>
+      <div class="matchup-wrapper">
+        <table class="matchup-table" id="matchup-table">
+          <thead><tr><th></th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="matchup-legend">
+        <span class="legend-item"><span class="legend-swatch legend-favored"></span> &gt;55%</span>
+        <span class="legend-item"><span class="legend-swatch legend-even"></span> 45-55%</span>
+        <span class="legend-item"><span class="legend-swatch legend-unfavored"></span> &lt;45%</span>
+        <span class="legend-item"><span class="legend-swatch legend-nodata"></span> &lt;5 games</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Matchup Tooltip -->
+  <div class="matchup-tooltip" id="matchup-tooltip">
+    <div class="matchup-tooltip-title" id="tooltip-title"></div>
+    <div class="matchup-tooltip-wr" id="tooltip-wr"></div>
+    <div class="matchup-tooltip-games" id="tooltip-games"></div>
+  </div>
+
+  <!-- Deck Composition -->
+  <section id="decks" class="section">
+    <div class="container">
+      <h2 class="section-title">Deck Composition</h2>
+      <p class="section-desc">Average deck construction by commander. Click a bar to explore detailed breakdowns.</p>
+
+      <div class="chart-container">
+        <h3 class="chart-inner-title">Average Deck Cost <span class="tooltip-icon" data-tooltip="Mean mana cost of cards in each commander's decks. Click a bar for detailed breakdown.">?</span></h3>
+        <canvas id="avg-cost-chart"></canvas>
+      </div>
+
+      <div class="chart-row chart-row-2">
+        <div class="chart-container">
+          <h3 class="chart-inner-title">Minion / Spell Ratio <span class="tooltip-icon" data-tooltip="Average minion vs spell card counts per deck. Click a bar for details.">?</span></h3>
+          <canvas id="minion-spell-chart"></canvas>
+        </div>
+        <div class="chart-container">
+          <h3 class="chart-inner-title">Faction Loyalty <span class="tooltip-icon" data-tooltip="Patron vs neutral vs off-faction cards per deck. Click a bar for details.">?</span></h3>
+          <canvas id="patron-neutral-chart"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Commander Detail Modal -->
+  <div class="modal-overlay" id="commander-modal">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close">&times;</button>
+      <div class="modal-header" id="modal-header">
+        <img class="modal-art" id="modal-art" src="" alt="">
+        <div class="modal-header-text">
+          <h2 class="modal-name" id="modal-name"></h2>
+          <span class="modal-faction" id="modal-faction"></span>
+          <div class="modal-summary" id="modal-summary"></div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <h3 class="modal-section-title">Mana Curve: All Decks vs Wins vs Losses</h3>
+        <div class="chart-container modal-chart-wide">
+          <canvas id="modal-cost-chart"></canvas>
+        </div>
+        <div class="chart-row chart-row-2">
+          <div class="chart-container">
+            <h3 class="chart-inner-title">Type Breakdown</h3>
+            <canvas id="modal-type-donut"></canvas>
+          </div>
+          <div class="chart-container">
+            <h3 class="chart-inner-title">Faction Loyalty</h3>
+            <canvas id="modal-loyalty-donut"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-text">Atlas Conquest Analytics &mdash; Updated daily from game data.</p>
+      <p class="footer-text footer-muted">Built for the community. Not affiliated with the Atlas Conquest development team.</p>
+    </div>
+  </footer>
+
+  <script src="js/shared.js"></script>
+  <script src="js/commanders.js"></script>
+</body>
+</html>

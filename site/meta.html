@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meta Trends — Atlas Conquest Analytics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/tooltips.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Atlas Conquest</a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Overview</a>
+        <a href="commanders.html" class="nav-link">Commanders</a>
+        <a href="cards.html" class="nav-link">Cards</a>
+        <a href="meta.html" class="nav-link">Meta</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero (compact) -->
+  <header class="hero hero-compact">
+    <div class="container">
+      <h1 class="hero-title">Meta Trends</h1>
+      <p class="hero-subtitle">How faction popularity shifts over time.</p>
+      <div class="hero-meta">
+        <span class="hero-stat" id="hero-matches">-- matches</span>
+        <span class="hero-divider"></span>
+        <span class="hero-stat" id="hero-updated">Last updated: --</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Time Filter -->
+  <div class="time-filter-bar" id="time-filter-bar">
+    <div class="container time-filter-inner">
+      <span class="filter-label">Period</span>
+      <button class="time-btn" data-period="1m">1M</button>
+      <button class="time-btn" data-period="3m">3M</button>
+      <button class="time-btn" data-period="6m">6M</button>
+      <button class="time-btn active" data-period="all">All</button>
+    </div>
+  </div>
+
+  <!-- Meta Trends -->
+  <section id="meta" class="section">
+    <div class="container">
+      <h2 class="section-title">Faction Popularity Over Time <span class="tooltip-icon" data-tooltip="Weekly faction popularity as % of all decks played. Shows how the metagame shifts over time.">?</span></h2>
+      <p class="section-desc">Stacked area chart showing each faction's share of the metagame by week.</p>
+
+      <div class="chart-container">
+        <canvas id="meta-chart"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-text">Atlas Conquest Analytics &mdash; Updated daily from game data.</p>
+      <p class="footer-text footer-muted">Built for the community. Not affiliated with the Atlas Conquest development team.</p>
+    </div>
+  </footer>
+
+  <script src="js/shared.js"></script>
+  <script src="js/meta.js"></script>
+</body>
+</html>
