@@ -34,20 +34,30 @@ ASSETS_DIR = PROJECT_DIR / "site" / "assets" / "commanders"
 CARD_SCREENSHOTS_DIR = PROJECT_DIR / "CardScreenshots"
 RAW_CACHE = DATA_DIR / "raw_games.json"
 
-# Intern's reference CSVs (local only, not in repo)
-INTERN_DIR = PROJECT_DIR / "drive-download-20260222T043305Z-1-001"
-CARDS_CSV = INTERN_DIR / "StandardFormatCards.csv"
-COMMANDERS_CSV = INTERN_DIR / "StandardFormatCommanders.csv"
+# Reference CSVs — updated versions in project root, fallback to intern's
+CARDS_CSV = PROJECT_DIR / "StandardFormatCards.csv"
+COMMANDERS_CSV = PROJECT_DIR / "StandardFormatCommanders.csv"
+if not CARDS_CSV.exists():
+    INTERN_DIR = PROJECT_DIR / "drive-download-20260222T043305Z-1-001"
+    CARDS_CSV = INTERN_DIR / "StandardFormatCards.csv"
+    COMMANDERS_CSV = INTERN_DIR / "StandardFormatCommanders.csv"
 
 # ─── Constants ──────────────────────────────────────────────────
 
 DYNAMO_TABLE = "games"
 DYNAMO_REGION = os.environ.get("AWS_DEFAULT_REGION", "us-east-2")
 
-# Commander name normalization map (typos → canonical)
+# Commander name normalization map (old DB names → canonical)
 COMMANDER_RENAMES = {
     "Elber, Jungle Emmisary": "Elber, Jungle Emissary",
     "Layna, Soulcatcher": "Soultaker Viessa",
+    "Lyre, Tactician of the Order": "Elyse of the Order",
+}
+
+# Card name normalization map (old DB names → canonical)
+CARD_RENAMES = {
+    # Add any card renames here as the game evolves
+    # "Old Card Name": "New Card Name",
 }
 
 # Minimum turns per player to count as a real game
@@ -165,6 +175,13 @@ def normalize_commander(name):
     return COMMANDER_RENAMES.get(name, name)
 
 
+def normalize_card(name):
+    """Apply card name fixes."""
+    if not name:
+        return name
+    return CARD_RENAMES.get(name, name)
+
+
 def clean_game(raw_item):
     """Parse a raw DynamoDB item into a clean game dict. Returns None if invalid."""
     game_id = raw_item.get("gameid", "")
@@ -223,7 +240,7 @@ def clean_game(raw_item):
 
         cards_in_deck = []
         for c in decklist.get("_cards", []):
-            name = c.get("CardName", "")
+            name = normalize_card(c.get("CardName", ""))
             count = c.get("Count", 1)
             if isinstance(count, str):
                 count = int(count) if count.isdigit() else 1
@@ -232,7 +249,7 @@ def clean_game(raw_item):
 
         cards_drawn = []
         for c in p.get("cardsDrawn", []):
-            name = c.get("CardName", "")
+            name = normalize_card(c.get("CardName", ""))
             count = c.get("Count", 1)
             if isinstance(count, str):
                 count = int(count) if count.isdigit() else 1
@@ -241,7 +258,7 @@ def clean_game(raw_item):
 
         cards_played = []
         for c in p.get("cardsPlayed", []):
-            name = c.get("CardName", "")
+            name = normalize_card(c.get("CardName", ""))
             count = c.get("Count", 1)
             if isinstance(count, str):
                 count = int(count) if count.isdigit() else 1
@@ -443,20 +460,6 @@ def aggregate_card_stats(games):
     return card_data, total_player_games
 
 
-def aggregate_player_stats(games):
-    """Compute per-player leaderboard."""
-    stats = defaultdict(lambda: {"games": 0, "wins": 0})
-
-    for game in games:
-        for p in game["players"]:
-            name = p["name"]
-            stats[name]["games"] += 1
-            if p["winner"]:
-                stats[name]["wins"] += 1
-
-    return stats
-
-
 def aggregate_trends(games):
     """Compute weekly faction popularity and commander trends."""
     # Group games by week
@@ -599,20 +602,6 @@ def build_and_write_all(games, cards_csv, commanders_csv):
         })
 
     write_json("card_stats.json", card_stats)
-
-    # ── players.json ──
-    player_raw = aggregate_player_stats(games)
-    player_stats = []
-    for name, data in sorted(player_raw.items(), key=lambda x: x[1]["games"], reverse=True):
-        winrate = data["wins"] / data["games"] if data["games"] > 0 else 0
-        player_stats.append({
-            "name": name,
-            "games": data["games"],
-            "wins": data["wins"],
-            "winrate": round(winrate, 4),
-        })
-
-    write_json("players.json", player_stats)
 
     # ── trends.json ──
     weekly, weekly_total = aggregate_trends(games)

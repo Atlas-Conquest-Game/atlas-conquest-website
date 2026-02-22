@@ -10,7 +10,6 @@
     "Kai, Longcount Shaman",
     "Lazim, Thief of Gods",
     "Lubela, Tender of the Wilds",
-    "Lyre, Tactician of the Order",
     "Macks Speed",
     "Milo Sunstone",
     "Newhaven Township",
@@ -29,10 +28,10 @@
     {
       "commander": "Captain Greenbeard",
       "opponent": "Elyse of the Order",
-      "wins": 7,
-      "losses": 14,
-      "total": 21,
-      "winrate": 0.3333
+      "wins": 12,
+      "losses": 22,
+      "total": 34,
+      "winrate": 0.3529
     },
     {
       "commander": "Captain Greenbeard",
@@ -92,14 +91,6 @@
     },
     {
       "commander": "Captain Greenbeard",
-      "opponent": "Lyre, Tactician of the Order",
-      "wins": 5,
-      "losses": 8,
-      "total": 13,
-      "winrate": 0.3846
-    },
-    {
-      "commander": "Captain Greenbeard",
       "opponent": "Macks Speed",
       "wins": 9,
       "losses": 20,
@@ -149,10 +140,10 @@
     {
       "commander": "Elber, Jungle Emissary",
       "opponent": "Elyse of the Order",
-      "wins": 4,
-      "losses": 4,
-      "total": 8,
-      "winrate": 0.5
+      "wins": 11,
+      "losses": 10,
+      "total": 21,
+      "winrate": 0.5238
     },
     {
       "commander": "Elber, Jungle Emissary",
@@ -212,14 +203,6 @@
     },
     {
       "commander": "Elber, Jungle Emissary",
-      "opponent": "Lyre, Tactician of the Order",
-      "wins": 7,
-      "losses": 6,
-      "total": 13,
-      "winrate": 0.5385
-    },
-    {
-      "commander": "Elber, Jungle Emissary",
       "opponent": "Macks Speed",
       "wins": 15,
       "losses": 15,
@@ -261,26 +244,26 @@
     {
       "commander": "Elyse of the Order",
       "opponent": "Captain Greenbeard",
-      "wins": 14,
-      "losses": 7,
-      "total": 21,
-      "winrate": 0.6667
+      "wins": 22,
+      "losses": 12,
+      "total": 34,
+      "winrate": 0.6471
     },
     {
       "commander": "Elyse of the Order",
       "opponent": "Elber, Jungle Emissary",
-      "wins": 4,
-      "losses": 4,
-      "total": 8,
-      "winrate": 0.5
+      "wins": 10,
+      "losses": 11,
+      "total": 21,
+      "winrate": 0.4762
     },
     {
       "commander": "Elyse of the Order",
       "opponent": "Executor Ginn",
-      "wins": 12,
-      "losses": 5,
-      "total": 17,
-      "winrate": 0.7059
+      "wins": 15,
+      "losses": 7,
+      "total": 22,
+      "winrate": 0.6818
     },
     {
       "commander": "Elyse of the Order",
@@ -301,26 +284,26 @@
     {
       "commander": "Elyse of the Order",
       "opponent": "Jagris, the Huntsman",
-      "wins": 13,
-      "losses": 14,
-      "total": 27,
-      "winrate": 0.4815
+      "wins": 15,
+      "losses": 16,
+      "total": 31,
+      "winrate": 0.4839
     },
     {
       "commander": "Elyse of the Order",
       "opponent": "Kai, Longcount Shaman",
-      "wins": 6,
+      "wins": 8,
       "losses": 6,
-      "total": 12,
-      "winrate": 0.5
+      "total": 14,
+      "winrate": 0.5714
     },
     {
       "commander": "Elyse of the Order",
       "opponent": "Lazim, Thief of Gods",
-      "wins": 3,
-      "losses": 5,
-      "total": 8,
-      "winrate": 0.375
+      "wins": 5,
+      "losses": 9,
+      "total": 14,
+      "winrate": 0.3571
     },
     {
       "commander": "Elyse of the Order",
@@ -333,18 +316,18 @@
     {
       "commander": "Elyse of the Order",
       "opponent": "Macks Speed",
-      "wins": 2,
-      "losses": 0,
-      "total": 2,
-      "winrate": 1.0
+      "wins": 5,
+      "losses": 1,
+      "total": 6,
+      "winrate": 0.8333
     },
     {
       "commander": "Elyse of the Order",
       "opponent": "Milo Sunstone",
-      "wins": 4,
-      "losses": 0,
-      "total": 4,
-      "winrate": 1.0
+      "wins": 5,
+      "losses": 1,
+      "total": 6,
+      "winrate": 0.8333
     },
     {
       "commander": "Elyse of the Order",
@@ -357,10 +340,10 @@
     {
       "commander": "Elyse of the Order",
       "opponent": "Soultaker Viessa",
-      "wins": 5,
-      "losses": 8,
-      "total": 13,
-      "winrate": 0.3846
+      "wins": 7,
+      "losses": 9,
+      "total": 16,
+      "winrate": 0.4375
     },
     {
       "commander": "Elyse of the Order",
@@ -389,10 +372,10 @@
     {
       "commander": "Executor Ginn",
       "opponent": "Elyse of the Order",
-      "wins": 5,
-      "losses": 12,
-      "total": 17,
-      "winrate": 0.2941
+      "wins": 7,
+      "losses": 15,
+      "total": 22,
+      "winrate": 0.3182
     },
     {
       "commander": "Executor Ginn",
@@ -441,14 +424,6 @@
       "losses": 5,
       "total": 9,
       "winrate": 0.4444
-    },
-    {
-      "commander": "Executor Ginn",
-      "opponent": "Lyre, Tactician of the Order",
-      "wins": 2,
-      "losses": 3,
-      "total": 5,
-      "winrate": 0.4
     },
     {
       "commander": "Executor Ginn",
@@ -733,10 +708,10 @@
     {
       "commander": "Jagris, the Huntsman",
       "opponent": "Elyse of the Order",
-      "wins": 14,
-      "losses": 13,
-      "total": 27,
-      "winrate": 0.5185
+      "wins": 16,
+      "losses": 15,
+      "total": 31,
+      "winrate": 0.5161
     },
     {
       "commander": "Jagris, the Huntsman",
@@ -785,14 +760,6 @@
       "losses": 15,
       "total": 46,
       "winrate": 0.6739
-    },
-    {
-      "commander": "Jagris, the Huntsman",
-      "opponent": "Lyre, Tactician of the Order",
-      "wins": 2,
-      "losses": 2,
-      "total": 4,
-      "winrate": 0.5
     },
     {
       "commander": "Jagris, the Huntsman",
@@ -854,9 +821,9 @@
       "commander": "Kai, Longcount Shaman",
       "opponent": "Elyse of the Order",
       "wins": 6,
-      "losses": 6,
-      "total": 12,
-      "winrate": 0.5
+      "losses": 8,
+      "total": 14,
+      "winrate": 0.4286
     },
     {
       "commander": "Kai, Longcount Shaman",
@@ -905,14 +872,6 @@
       "losses": 9,
       "total": 22,
       "winrate": 0.5909
-    },
-    {
-      "commander": "Kai, Longcount Shaman",
-      "opponent": "Lyre, Tactician of the Order",
-      "wins": 0,
-      "losses": 2,
-      "total": 2,
-      "winrate": 0.0
     },
     {
       "commander": "Kai, Longcount Shaman",
@@ -973,10 +932,10 @@
     {
       "commander": "Lazim, Thief of Gods",
       "opponent": "Elyse of the Order",
-      "wins": 5,
-      "losses": 3,
-      "total": 8,
-      "winrate": 0.625
+      "wins": 9,
+      "losses": 5,
+      "total": 14,
+      "winrate": 0.6429
     },
     {
       "commander": "Lazim, Thief of Gods",
@@ -1025,14 +984,6 @@
       "losses": 7,
       "total": 20,
       "winrate": 0.65
-    },
-    {
-      "commander": "Lazim, Thief of Gods",
-      "opponent": "Lyre, Tactician of the Order",
-      "wins": 4,
-      "losses": 2,
-      "total": 6,
-      "winrate": 0.6667
     },
     {
       "commander": "Lazim, Thief of Gods",
@@ -1187,78 +1138,6 @@
       "winrate": 0.4211
     },
     {
-      "commander": "Lyre, Tactician of the Order",
-      "opponent": "Captain Greenbeard",
-      "wins": 8,
-      "losses": 5,
-      "total": 13,
-      "winrate": 0.6154
-    },
-    {
-      "commander": "Lyre, Tactician of the Order",
-      "opponent": "Elber, Jungle Emissary",
-      "wins": 6,
-      "losses": 7,
-      "total": 13,
-      "winrate": 0.4615
-    },
-    {
-      "commander": "Lyre, Tactician of the Order",
-      "opponent": "Executor Ginn",
-      "wins": 3,
-      "losses": 2,
-      "total": 5,
-      "winrate": 0.6
-    },
-    {
-      "commander": "Lyre, Tactician of the Order",
-      "opponent": "Jagris, the Huntsman",
-      "wins": 2,
-      "losses": 2,
-      "total": 4,
-      "winrate": 0.5
-    },
-    {
-      "commander": "Lyre, Tactician of the Order",
-      "opponent": "Kai, Longcount Shaman",
-      "wins": 2,
-      "losses": 0,
-      "total": 2,
-      "winrate": 1.0
-    },
-    {
-      "commander": "Lyre, Tactician of the Order",
-      "opponent": "Lazim, Thief of Gods",
-      "wins": 2,
-      "losses": 4,
-      "total": 6,
-      "winrate": 0.3333
-    },
-    {
-      "commander": "Lyre, Tactician of the Order",
-      "opponent": "Macks Speed",
-      "wins": 3,
-      "losses": 1,
-      "total": 4,
-      "winrate": 0.75
-    },
-    {
-      "commander": "Lyre, Tactician of the Order",
-      "opponent": "Milo Sunstone",
-      "wins": 1,
-      "losses": 1,
-      "total": 2,
-      "winrate": 0.5
-    },
-    {
-      "commander": "Lyre, Tactician of the Order",
-      "opponent": "Soultaker Viessa",
-      "wins": 2,
-      "losses": 1,
-      "total": 3,
-      "winrate": 0.6667
-    },
-    {
       "commander": "Macks Speed",
       "opponent": "Captain Greenbeard",
       "wins": 20,
@@ -1277,10 +1156,10 @@
     {
       "commander": "Macks Speed",
       "opponent": "Elyse of the Order",
-      "wins": 0,
-      "losses": 2,
-      "total": 2,
-      "winrate": 0.0
+      "wins": 1,
+      "losses": 5,
+      "total": 6,
+      "winrate": 0.1667
     },
     {
       "commander": "Macks Speed",
@@ -1340,14 +1219,6 @@
     },
     {
       "commander": "Macks Speed",
-      "opponent": "Lyre, Tactician of the Order",
-      "wins": 1,
-      "losses": 3,
-      "total": 4,
-      "winrate": 0.25
-    },
-    {
-      "commander": "Macks Speed",
       "opponent": "Milo Sunstone",
       "wins": 8,
       "losses": 6,
@@ -1397,10 +1268,10 @@
     {
       "commander": "Milo Sunstone",
       "opponent": "Elyse of the Order",
-      "wins": 0,
-      "losses": 4,
-      "total": 4,
-      "winrate": 0.0
+      "wins": 1,
+      "losses": 5,
+      "total": 6,
+      "winrate": 0.1667
     },
     {
       "commander": "Milo Sunstone",
@@ -1457,14 +1328,6 @@
       "losses": 13,
       "total": 28,
       "winrate": 0.5357
-    },
-    {
-      "commander": "Milo Sunstone",
-      "opponent": "Lyre, Tactician of the Order",
-      "wins": 1,
-      "losses": 1,
-      "total": 2,
-      "winrate": 0.5
     },
     {
       "commander": "Milo Sunstone",
@@ -1629,10 +1492,10 @@
     {
       "commander": "Soultaker Viessa",
       "opponent": "Elyse of the Order",
-      "wins": 8,
-      "losses": 5,
-      "total": 13,
-      "winrate": 0.6154
+      "wins": 9,
+      "losses": 7,
+      "total": 16,
+      "winrate": 0.5625
     },
     {
       "commander": "Soultaker Viessa",
@@ -1689,14 +1552,6 @@
       "losses": 9,
       "total": 17,
       "winrate": 0.4706
-    },
-    {
-      "commander": "Soultaker Viessa",
-      "opponent": "Lyre, Tactician of the Order",
-      "wins": 1,
-      "losses": 2,
-      "total": 3,
-      "winrate": 0.3333
     },
     {
       "commander": "Soultaker Viessa",

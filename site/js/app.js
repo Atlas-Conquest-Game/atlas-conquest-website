@@ -11,7 +11,7 @@ const FACTION_COLORS = {
   grenalia: '#009E73',
   lucia: '#E8B630',
   neutral: '#A89078',
-  shadis: '#4A4A5A',
+  shadis: '#7B7B8E',
   archaeon: '#0072B2',
 };
 
@@ -23,6 +23,20 @@ const FACTION_LABELS = {
   shadis: 'Shadis',
   archaeon: 'Archaeon',
 };
+
+// Chart.js dark theme defaults
+Chart.defaults.color = '#8b949e';
+Chart.defaults.borderColor = '#30363d';
+Chart.defaults.font.family = "'Inter', sans-serif";
+
+// ─── State ────────────────────────────────────────────────────
+
+let appData = {};
+let cardSortKey = 'deck_count';
+let cardSortDir = 'desc';
+let currentFaction = 'all';
+let commanderChart = null;
+let metaChart = null;
 
 // ─── Data Loading ──────────────────────────────────────────────
 
@@ -37,16 +51,15 @@ async function loadJSON(path) {
 }
 
 async function loadAllData() {
-  const [metadata, commanderStats, cardStats, trends, matchups, players, commanders] = await Promise.all([
+  const [metadata, commanderStats, cardStats, trends, matchups, commanders] = await Promise.all([
     loadJSON('data/metadata.json'),
     loadJSON('data/commander_stats.json'),
     loadJSON('data/card_stats.json'),
     loadJSON('data/trends.json'),
     loadJSON('data/matchups.json'),
-    loadJSON('data/players.json'),
     loadJSON('data/commanders.json'),
   ]);
-  return { metadata, commanderStats, cardStats, trends, matchups, players, commanders };
+  return { metadata, commanderStats, cardStats, trends, matchups, commanders };
 }
 
 // ─── Helpers ───────────────────────────────────────────────────
@@ -85,10 +98,8 @@ function commanderSlug(name) {
 function renderMetadata(metadata) {
   if (!metadata) return;
   el('hero-matches', `${metadata.total_matches.toLocaleString()} matches`);
-  el('hero-players', `${metadata.total_players.toLocaleString()} players`);
   el('hero-updated', `Last updated: ${new Date(metadata.last_updated).toLocaleDateString()}`);
   el('stat-matches', metadata.total_matches.toLocaleString());
-  el('stat-players', metadata.total_players.toLocaleString());
 }
 
 // ─── Commander Cards (with artwork) ────────────────────────────
@@ -97,7 +108,6 @@ function renderCommanderCards(stats, commanders) {
   const container = document.getElementById('commander-cards');
   if (!container || !stats || !stats.length) return;
 
-  // Build art lookup from commanders.json
   const artLookup = {};
   if (commanders) {
     commanders.forEach(c => { artLookup[c.name] = c.art; });
@@ -105,7 +115,7 @@ function renderCommanderCards(stats, commanders) {
 
   const sorted = [...stats].sort((a, b) => b.winrate - a.winrate);
 
-  container.innerHTML = sorted.map(c => {
+  container.innerHTML = sorted.map((c, i) => {
     const artPath = artLookup[c.name];
     const artHtml = artPath
       ? `<img class="commander-art" src="${artPath}" alt="${c.name}" loading="lazy">`
@@ -116,8 +126,10 @@ function renderCommanderCards(stats, commanders) {
     if (c.winrate > 0.52) wrClass = 'winrate-positive';
     else if (c.winrate < 0.48) wrClass = 'winrate-negative';
 
+    const delay = Math.min(i * 0.04, 0.5);
+
     return `
-      <div class="commander-card">
+      <div class="commander-card" style="animation-delay: ${delay}s">
         ${artHtml}
         <div class="commander-card-body">
           <div class="commander-card-name">${c.name}</div>
@@ -155,17 +167,27 @@ function renderCommanderChart(stats) {
   const canvas = document.getElementById('commander-chart');
   if (!stats || !stats.length || !canvas) return;
 
+  if (commanderChart) {
+    commanderChart.destroy();
+    commanderChart = null;
+  }
+
   const sorted = [...stats].sort((a, b) => b.winrate - a.winrate);
 
-  new Chart(canvas, {
+  commanderChart = new Chart(canvas, {
     type: 'bar',
     data: {
       labels: sorted.map(c => c.name),
       datasets: [{
         label: 'Winrate',
         data: sorted.map(c => (c.winrate * 100).toFixed(1)),
-        backgroundColor: sorted.map(c => FACTION_COLORS[c.faction] || '#888'),
-        borderRadius: 6,
+        backgroundColor: sorted.map(c => {
+          const base = FACTION_COLORS[c.faction] || '#888';
+          return base + 'CC';
+        }),
+        borderColor: sorted.map(c => FACTION_COLORS[c.faction] || '#888'),
+        borderWidth: 1,
+        borderRadius: 4,
         barPercentage: 0.7,
       }],
     },
@@ -175,6 +197,13 @@ function renderCommanderChart(stats) {
       plugins: {
         legend: { display: false },
         tooltip: {
+          backgroundColor: '#21262d',
+          borderColor: '#30363d',
+          borderWidth: 1,
+          titleColor: '#e6edf3',
+          bodyColor: '#8b949e',
+          padding: 10,
+          cornerRadius: 6,
           callbacks: {
             label: ctx => `${ctx.parsed.y}% winrate (${sorted[ctx.dataIndex].matches} games)`,
           },
@@ -186,15 +215,11 @@ function renderCommanderChart(stats) {
           max: 70,
           ticks: {
             callback: v => v + '%',
-            color: '#6E6E80',
-            font: { family: 'Inter', size: 12 },
           },
-          grid: { color: '#E5E5E5' },
+          grid: { color: '#21262d' },
         },
         x: {
           ticks: {
-            color: '#6E6E80',
-            font: { family: 'Inter', size: 11 },
             maxRotation: 45,
           },
           grid: { display: false },
@@ -213,14 +238,12 @@ function renderMatchups(matchupData) {
   const cmds = matchupData.commanders;
   const matchups = matchupData.matchups;
 
-  // Build lookup: matchupMap[row][col] = { wins, losses, total, winrate }
   const matchupMap = {};
   cmds.forEach(c => { matchupMap[c] = {}; });
   matchups.forEach(m => {
     matchupMap[m.commander][m.opponent] = m;
   });
 
-  // Short names for column headers
   const shortName = name => {
     const parts = name.split(',')[0].split(' ');
     return parts.length > 1 ? parts[0] : name;
@@ -236,35 +259,108 @@ function renderMatchups(matchupData) {
   tbody.innerHTML = cmds.map(row => {
     const cells = cmds.map(col => {
       if (row === col) {
-        return '<td class="matchup-cell matchup-self">-</td>';
+        return '<td class="matchup-cell matchup-self" data-type="self">-</td>';
       }
       const m = matchupMap[row] && matchupMap[row][col];
       if (!m || m.total < 5) {
-        return `<td class="matchup-cell matchup-nodata" title="${row} vs ${col}: insufficient data">--</td>`;
+        return `<td class="matchup-cell matchup-nodata" data-type="nodata" data-row="${row}" data-col="${col}" data-total="${m ? m.total : 0}">--</td>`;
       }
       const wr = (m.winrate * 100).toFixed(0);
       let cls = 'matchup-even';
       if (m.winrate > 0.55) cls = 'matchup-favored';
       else if (m.winrate < 0.45) cls = 'matchup-unfavored';
 
-      return `<td class="matchup-cell ${cls}" title="${row} vs ${col}: ${wr}% (${m.total} games)">${wr}%</td>`;
+      return `<td class="matchup-cell ${cls}" data-type="data" data-row="${row}" data-col="${col}" data-wr="${wr}" data-total="${m.total}" data-wins="${m.wins}" data-losses="${m.losses}">${wr}%</td>`;
     }).join('');
 
     return `<tr><th class="matchup-row-header" title="${row}">${shortName(row)}</th>${cells}</tr>`;
   }).join('');
+
+  // Setup tooltip
+  initMatchupTooltip();
 }
 
-// ─── Card Table ────────────────────────────────────────────────
+function initMatchupTooltip() {
+  const tooltip = document.getElementById('matchup-tooltip');
+  const titleEl = document.getElementById('tooltip-title');
+  const wrEl = document.getElementById('tooltip-wr');
+  const gamesEl = document.getElementById('tooltip-games');
 
-function renderCardTable(stats, faction) {
+  const cells = document.querySelectorAll('.matchup-cell[data-type="data"], .matchup-cell[data-type="nodata"]');
+
+  cells.forEach(cell => {
+    cell.addEventListener('mouseenter', e => {
+      const row = cell.dataset.row;
+      const col = cell.dataset.col;
+      const type = cell.dataset.type;
+
+      titleEl.textContent = `${row} vs ${col}`;
+
+      if (type === 'nodata') {
+        const total = parseInt(cell.dataset.total) || 0;
+        wrEl.textContent = 'Insufficient data';
+        wrEl.style.color = '#8b949e';
+        gamesEl.textContent = `${total} game${total !== 1 ? 's' : ''} played`;
+      } else {
+        const wr = cell.dataset.wr;
+        const total = cell.dataset.total;
+        const wins = cell.dataset.wins;
+        const losses = cell.dataset.losses;
+        const wrNum = parseInt(wr);
+
+        wrEl.textContent = `${wr}% winrate`;
+        if (wrNum > 55) wrEl.style.color = '#3fb950';
+        else if (wrNum < 45) wrEl.style.color = '#f0834a';
+        else wrEl.style.color = '#e6edf3';
+
+        gamesEl.textContent = `${total} games (${wins}W - ${losses}L)`;
+      }
+
+      tooltip.classList.add('visible');
+    });
+
+    cell.addEventListener('mousemove', e => {
+      tooltip.style.left = (e.clientX + 12) + 'px';
+      tooltip.style.top = (e.clientY - 10) + 'px';
+    });
+
+    cell.addEventListener('mouseleave', () => {
+      tooltip.classList.remove('visible');
+    });
+  });
+}
+
+// ─── Card Table (sortable) ────────────────────────────────────
+
+function renderCardTable(stats, faction, sortKey, sortDir) {
   const tbody = document.querySelector('#card-table tbody');
   if (!stats || !stats.length) return;
+
+  sortKey = sortKey || cardSortKey;
+  sortDir = sortDir || cardSortDir;
 
   const filtered = faction === 'all'
     ? stats
     : stats.filter(c => c.faction === faction);
 
-  const sorted = [...filtered].sort((a, b) => b.deck_count - a.deck_count).slice(0, 50);
+  const sorted = [...filtered].sort((a, b) => {
+    let aVal = a[sortKey];
+    let bVal = b[sortKey];
+
+    // String sort for name, faction, type
+    if (typeof aVal === 'string') {
+      aVal = aVal.toLowerCase();
+      bVal = (bVal || '').toLowerCase();
+      return sortDir === 'asc'
+        ? aVal.localeCompare(bVal)
+        : bVal.localeCompare(aVal);
+    }
+
+    // Numeric sort
+    aVal = aVal || 0;
+    bVal = bVal || 0;
+    return sortDir === 'asc' ? aVal - bVal : bVal - aVal;
+  }).slice(0, 60);
 
   tbody.innerHTML = sorted.map(c => `
     <tr>
@@ -277,30 +373,36 @@ function renderCardTable(stats, faction) {
       <td>${winrateCell(c.played_winrate, c.played_count)}</td>
     </tr>
   `).join('');
+
+  // Update sort indicators on headers
+  updateSortHeaders(sortKey, sortDir);
 }
 
-// ─── Player Leaderboard ────────────────────────────────────────
+function updateSortHeaders(sortKey, sortDir) {
+  const headers = document.querySelectorAll('#card-table th.sortable');
+  headers.forEach(th => {
+    th.classList.remove('sorted-asc', 'sorted-desc');
+    if (th.dataset.sort === sortKey) {
+      th.classList.add(sortDir === 'asc' ? 'sorted-asc' : 'sorted-desc');
+    }
+  });
+}
 
-function renderPlayers(players) {
-  const tbody = document.querySelector('#player-table tbody');
-  if (!players || !players.length) return;
-
-  // Filter: minimum 10 games
-  const filtered = players.filter(p => p.games >= 10);
-
-  tbody.innerHTML = filtered.map((p, i) => {
-    const losses = p.games - p.wins;
-    return `
-      <tr>
-        <td>${i + 1}</td>
-        <td><strong>${p.name}</strong></td>
-        <td>${p.games.toLocaleString()}</td>
-        <td>${p.wins.toLocaleString()}</td>
-        <td>${losses.toLocaleString()}</td>
-        <td>${winrateCell(p.winrate, p.games)}</td>
-      </tr>
-    `;
-  }).join('');
+function initCardTableSorting(cardStats) {
+  const headers = document.querySelectorAll('#card-table th.sortable');
+  headers.forEach(th => {
+    th.addEventListener('click', () => {
+      const key = th.dataset.sort;
+      if (cardSortKey === key) {
+        cardSortDir = cardSortDir === 'desc' ? 'asc' : 'desc';
+      } else {
+        cardSortKey = key;
+        // Default direction: desc for numbers, asc for strings
+        cardSortDir = ['name', 'faction', 'type'].includes(key) ? 'asc' : 'desc';
+      }
+      renderCardTable(cardStats, currentFaction, cardSortKey, cardSortDir);
+    });
+  });
 }
 
 // ─── Meta Trends Chart ─────────────────────────────────────────
@@ -309,7 +411,11 @@ function renderMetaChart(trends) {
   const canvas = document.getElementById('meta-chart');
   if (!trends || !canvas) return;
 
-  // Only show factions that have data
+  if (metaChart) {
+    metaChart.destroy();
+    metaChart = null;
+  }
+
   const activeFactions = Object.entries(trends.factions || {})
     .filter(([, data]) => data.some(v => v > 0));
 
@@ -321,10 +427,10 @@ function renderMetaChart(trends) {
     tension: 0.3,
     pointRadius: 2,
     pointHoverRadius: 5,
-    borderWidth: 2.5,
+    borderWidth: 2,
   }));
 
-  new Chart(canvas, {
+  metaChart = new Chart(canvas, {
     type: 'line',
     data: {
       labels: trends.dates || [],
@@ -337,13 +443,19 @@ function renderMetaChart(trends) {
       plugins: {
         legend: {
           labels: {
-            color: '#6E6E80',
-            font: { family: 'Inter', size: 12, weight: '500' },
             usePointStyle: true,
             pointStyle: 'circle',
+            padding: 16,
           },
         },
         tooltip: {
+          backgroundColor: '#21262d',
+          borderColor: '#30363d',
+          borderWidth: 1,
+          titleColor: '#e6edf3',
+          bodyColor: '#8b949e',
+          padding: 10,
+          cornerRadius: 6,
           callbacks: {
             label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y}%`,
           },
@@ -356,15 +468,11 @@ function renderMetaChart(trends) {
           stacked: true,
           ticks: {
             callback: v => v + '%',
-            color: '#6E6E80',
-            font: { family: 'Inter', size: 12 },
           },
-          grid: { color: '#E5E5E5' },
+          grid: { color: '#21262d' },
         },
         x: {
           ticks: {
-            color: '#6E6E80',
-            font: { family: 'Inter', size: 11 },
             maxTicksLimit: 15,
             maxRotation: 45,
           },
@@ -377,31 +485,64 @@ function renderMetaChart(trends) {
 
 // ─── Filters ───────────────────────────────────────────────────
 
-function initFilters(cardStats) {
+function initFactionFilters(cardStats) {
   const buttons = document.querySelectorAll('.filter-btn');
   buttons.forEach(btn => {
     btn.addEventListener('click', () => {
       buttons.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      renderCardTable(cardStats, btn.dataset.faction);
+      currentFaction = btn.dataset.faction;
+      renderCardTable(cardStats, currentFaction, cardSortKey, cardSortDir);
     });
   });
+}
+
+function initTimeFilters() {
+  const buttons = document.querySelectorAll('.time-btn');
+  const dateFrom = document.getElementById('date-from');
+  const dateTo = document.getElementById('date-to');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // Clear custom date inputs when a preset is selected
+      dateFrom.value = '';
+      dateTo.value = '';
+
+      // Time filtering will be wired to pipeline-generated data in a follow-up
+      // For now the UI is functional but all buttons show "All" data
+    });
+  });
+
+  // Custom date range — clear preset buttons when dates are manually entered
+  const onDateChange = () => {
+    if (dateFrom.value || dateTo.value) {
+      buttons.forEach(b => b.classList.remove('active'));
+    }
+  };
+  dateFrom.addEventListener('change', onDateChange);
+  dateTo.addEventListener('change', onDateChange);
 }
 
 // ─── Init ──────────────────────────────────────────────────────
 
 async function init() {
-  const data = await loadAllData();
+  appData = await loadAllData();
+  const data = appData;
 
   renderMetadata(data.metadata);
   renderCommanderCards(data.commanderStats, data.commanders);
   renderCommanderTable(data.commanderStats);
   renderCommanderChart(data.commanderStats);
   renderMatchups(data.matchups);
-  renderCardTable(data.cardStats, 'all');
-  renderPlayers(data.players);
+  renderCardTable(data.cardStats, 'all', cardSortKey, cardSortDir);
   renderMetaChart(data.trends);
-  initFilters(data.cardStats || []);
+
+  initFactionFilters(data.cardStats || []);
+  initCardTableSorting(data.cardStats || []);
+  initTimeFilters();
 
   // Update unique cards stat
   if (data.cardStats) {
@@ -412,6 +553,9 @@ async function init() {
   if (data.commanderStats && data.commanderStats.length) {
     const top = [...data.commanderStats].sort((a, b) => b.matches - a.matches)[0];
     el('stat-top-commander', top.name);
+
+    const best = [...data.commanderStats].sort((a, b) => b.winrate - a.winrate)[0];
+    el('stat-best-wr', `${best.name} (${(best.winrate * 100).toFixed(1)}%)`);
   }
 }
 
