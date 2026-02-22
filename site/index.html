@@ -21,6 +21,7 @@
         <a href="#commanders" class="nav-link">Commanders</a>
         <a href="#matchups" class="nav-link">Matchups</a>
         <a href="#cards" class="nav-link">Cards</a>
+        <a href="#decks" class="nav-link">Decks</a>
         <a href="#meta" class="nav-link">Meta</a>
       </div>
     </div>
@@ -71,6 +72,22 @@
         <div class="stat-card">
           <span class="stat-label">Highest Winrate</span>
           <span class="stat-value stat-value-sm" id="stat-best-wr">--</span>
+        </div>
+      </div>
+
+      <!-- Distribution Charts -->
+      <div class="chart-row" id="distribution-charts">
+        <div class="chart-sm">
+          <h3 class="chart-sm-title">Game Duration (min)</h3>
+          <canvas id="dist-duration"></canvas>
+        </div>
+        <div class="chart-sm">
+          <h3 class="chart-sm-title">Turns per Game</h3>
+          <canvas id="dist-turns"></canvas>
+        </div>
+        <div class="chart-sm">
+          <h3 class="chart-sm-title">Actions per Game</h3>
+          <canvas id="dist-actions"></canvas>
         </div>
       </div>
     </div>
@@ -170,6 +187,61 @@
       </div>
     </div>
   </section>
+
+  <!-- Deck Composition Section -->
+  <section id="decks" class="section">
+    <div class="container">
+      <h2 class="section-title">Deck Composition</h2>
+      <p class="section-desc">Average deck construction by commander. Click a bar to explore detailed breakdowns.</p>
+
+      <div class="chart-container">
+        <h3 class="chart-inner-title">Average Deck Cost</h3>
+        <canvas id="avg-cost-chart"></canvas>
+      </div>
+
+      <div class="chart-row chart-row-2">
+        <div class="chart-container">
+          <h3 class="chart-inner-title">Minion / Spell Ratio</h3>
+          <canvas id="minion-spell-chart"></canvas>
+        </div>
+        <div class="chart-container">
+          <h3 class="chart-inner-title">Faction Loyalty (Patron / Neutral / Other)</h3>
+          <canvas id="patron-neutral-chart"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Commander Detail Modal -->
+  <div class="modal-overlay" id="commander-modal">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close">&times;</button>
+      <div class="modal-header" id="modal-header">
+        <img class="modal-art" id="modal-art" src="" alt="">
+        <div class="modal-header-text">
+          <h2 class="modal-name" id="modal-name"></h2>
+          <span class="modal-faction" id="modal-faction"></span>
+          <div class="modal-summary" id="modal-summary"></div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <h3 class="modal-section-title">Mana Curve: All Decks vs Wins vs Losses</h3>
+        <div class="chart-container modal-chart-wide">
+          <canvas id="modal-cost-chart"></canvas>
+        </div>
+        <div class="chart-row chart-row-2">
+          <div class="chart-container">
+            <h3 class="chart-inner-title">Type Breakdown</h3>
+            <canvas id="modal-type-donut"></canvas>
+          </div>
+          <div class="chart-container">
+            <h3 class="chart-inner-title">Faction Loyalty</h3>
+            <canvas id="modal-loyalty-donut"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Meta Section -->
   <section id="meta" class="section">

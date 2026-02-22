@@ -38,6 +38,11 @@ let currentFaction = 'all';
 let currentPeriod = 'all';
 let commanderChart = null;
 let metaChart = null;
+let distCharts = {};
+let avgCostChart = null;
+let minionSpellChart = null;
+let patronNeutralChart = null;
+let modalCharts = {};
 
 // ─── Data Loading ──────────────────────────────────────────────
 
@@ -52,15 +57,17 @@ async function loadJSON(path) {
 }
 
 async function loadAllData() {
-  const [metadata, commanderStats, cardStats, trends, matchups, commanders] = await Promise.all([
+  const [metadata, commanderStats, cardStats, trends, matchups, commanders, gameDistributions, deckComposition] = await Promise.all([
     loadJSON('data/metadata.json'),
     loadJSON('data/commander_stats.json'),
     loadJSON('data/card_stats.json'),
     loadJSON('data/trends.json'),
     loadJSON('data/matchups.json'),
     loadJSON('data/commanders.json'),
+    loadJSON('data/game_distributions.json'),
+    loadJSON('data/deck_composition.json'),
   ]);
-  return { metadata, commanderStats, cardStats, trends, matchups, commanders };
+  return { metadata, commanderStats, cardStats, trends, matchups, commanders, gameDistributions, deckComposition };
 }
 
 // ─── Helpers ───────────────────────────────────────────────────
@@ -483,6 +490,493 @@ function renderMetaChart(trends) {
   });
 }
 
+// ─── Distribution Charts ──────────────────────────────────────
+
+function renderDistributionChart(canvasId, data, color) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas || !data) return null;
+
+  if (distCharts[canvasId]) {
+    distCharts[canvasId].destroy();
+    distCharts[canvasId] = null;
+  }
+
+  distCharts[canvasId] = new Chart(canvas, {
+    type: 'bar',
+    data: {
+      labels: data.labels,
+      datasets: [{
+        data: data.counts,
+        backgroundColor: color + '99',
+        borderColor: color,
+        borderWidth: 1,
+        borderRadius: 3,
+        barPercentage: 0.9,
+        categoryPercentage: 0.95,
+      }],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#21262d',
+          borderColor: '#30363d',
+          borderWidth: 1,
+          titleColor: '#e6edf3',
+          bodyColor: '#8b949e',
+          padding: 8,
+          cornerRadius: 6,
+          callbacks: {
+            label: ctx => `${ctx.parsed.y} games`,
+          },
+        },
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          grid: { color: '#21262d' },
+          ticks: { font: { size: 10 } },
+        },
+        x: {
+          grid: { display: false },
+          ticks: { font: { size: 9 }, maxRotation: 45 },
+        },
+      },
+    },
+  });
+}
+
+function renderDistributions(distributions) {
+  if (!distributions) return;
+  renderDistributionChart('dist-duration', distributions.duration, '#58a6ff');
+  renderDistributionChart('dist-turns', distributions.turns, '#3fb950');
+  renderDistributionChart('dist-actions', distributions.actions, '#d2a8ff');
+}
+
+// ─── Deck Composition Charts ─────────────────────────────────
+
+function sortedCommanders(deckComp) {
+  return Object.entries(deckComp)
+    .sort((a, b) => b[1].deck_count - a[1].deck_count);
+}
+
+function renderAvgCostChart(deckComp) {
+  const canvas = document.getElementById('avg-cost-chart');
+  if (!canvas || !deckComp) return;
+
+  if (avgCostChart) { avgCostChart.destroy(); avgCostChart = null; }
+
+  const sorted = sortedCommanders(deckComp);
+  const names = sorted.map(([n]) => n);
+  const costs = sorted.map(([, d]) => d.avg_cost);
+  const colors = sorted.map(([, d]) => FACTION_COLORS[d.faction] || '#888');
+
+  avgCostChart = new Chart(canvas, {
+    type: 'bar',
+    data: {
+      labels: names,
+      datasets: [{
+        label: 'Avg Mana Cost',
+        data: costs,
+        backgroundColor: colors.map(c => c + 'CC'),
+        borderColor: colors,
+        borderWidth: 1,
+        borderRadius: 4,
+        barPercentage: 0.7,
+      }],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      onClick: (evt, elements) => {
+        if (elements.length) openCommanderModal(names[elements[0].index]);
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#21262d',
+          borderColor: '#30363d',
+          borderWidth: 1,
+          titleColor: '#e6edf3',
+          bodyColor: '#8b949e',
+          padding: 10,
+          cornerRadius: 6,
+          callbacks: {
+            label: ctx => {
+              const d = sorted[ctx.dataIndex][1];
+              return `Avg cost: ${ctx.parsed.y.toFixed(2)} (${d.deck_count} decks)`;
+            },
+            afterLabel: () => 'Click for details',
+          },
+        },
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          grid: { color: '#21262d' },
+          title: { display: true, text: 'Avg Mana Cost', color: '#8b949e', font: { size: 11 } },
+        },
+        x: {
+          ticks: { maxRotation: 45, font: { size: 10 } },
+          grid: { display: false },
+        },
+      },
+    },
+  });
+  canvas.classList.add('clickable');
+}
+
+function renderMinionSpellChart(deckComp) {
+  const canvas = document.getElementById('minion-spell-chart');
+  if (!canvas || !deckComp) return;
+
+  if (minionSpellChart) { minionSpellChart.destroy(); minionSpellChart = null; }
+
+  const sorted = sortedCommanders(deckComp);
+  const names = sorted.map(([n]) => n);
+
+  minionSpellChart = new Chart(canvas, {
+    type: 'bar',
+    data: {
+      labels: names,
+      datasets: [
+        {
+          label: 'Minions',
+          data: sorted.map(([, d]) => d.avg_minion_count),
+          backgroundColor: '#3fb95099',
+          borderColor: '#3fb950',
+          borderWidth: 1,
+          borderRadius: 3,
+        },
+        {
+          label: 'Spells',
+          data: sorted.map(([, d]) => d.avg_spell_count),
+          backgroundColor: '#d2a8ff99',
+          borderColor: '#d2a8ff',
+          borderWidth: 1,
+          borderRadius: 3,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      onClick: (evt, elements) => {
+        if (elements.length) openCommanderModal(names[elements[0].index]);
+      },
+      plugins: {
+        legend: {
+          labels: { usePointStyle: true, pointStyle: 'circle', padding: 14, font: { size: 11 } },
+        },
+        tooltip: {
+          backgroundColor: '#21262d',
+          borderColor: '#30363d',
+          borderWidth: 1,
+          titleColor: '#e6edf3',
+          bodyColor: '#8b949e',
+          padding: 10,
+          cornerRadius: 6,
+          callbacks: {
+            afterTitle: () => 'Click for details',
+          },
+        },
+      },
+      scales: {
+        x: { stacked: true, ticks: { maxRotation: 45, font: { size: 10 } }, grid: { display: false } },
+        y: { stacked: true, beginAtZero: true, grid: { color: '#21262d' }, title: { display: true, text: 'Avg Cards', color: '#8b949e', font: { size: 11 } } },
+      },
+    },
+  });
+  canvas.classList.add('clickable');
+}
+
+function renderPatronNeutralChart(deckComp) {
+  const canvas = document.getElementById('patron-neutral-chart');
+  if (!canvas || !deckComp) return;
+
+  if (patronNeutralChart) { patronNeutralChart.destroy(); patronNeutralChart = null; }
+
+  const sorted = sortedCommanders(deckComp);
+  const names = sorted.map(([n]) => n);
+
+  patronNeutralChart = new Chart(canvas, {
+    type: 'bar',
+    data: {
+      labels: names,
+      datasets: [
+        {
+          label: 'Patron',
+          data: sorted.map(([, d]) => d.avg_patron_cards),
+          backgroundColor: '#58a6ff99',
+          borderColor: '#58a6ff',
+          borderWidth: 1,
+          borderRadius: 3,
+        },
+        {
+          label: 'Neutral',
+          data: sorted.map(([, d]) => d.avg_neutral_cards),
+          backgroundColor: '#A8907899',
+          borderColor: '#A89078',
+          borderWidth: 1,
+          borderRadius: 3,
+        },
+        {
+          label: 'Other',
+          data: sorted.map(([, d]) => d.avg_other_cards),
+          backgroundColor: '#f8514999',
+          borderColor: '#f85149',
+          borderWidth: 1,
+          borderRadius: 3,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      onClick: (evt, elements) => {
+        if (elements.length) openCommanderModal(names[elements[0].index]);
+      },
+      plugins: {
+        legend: {
+          labels: { usePointStyle: true, pointStyle: 'circle', padding: 14, font: { size: 11 } },
+        },
+        tooltip: {
+          backgroundColor: '#21262d',
+          borderColor: '#30363d',
+          borderWidth: 1,
+          titleColor: '#e6edf3',
+          bodyColor: '#8b949e',
+          padding: 10,
+          cornerRadius: 6,
+          callbacks: {
+            afterTitle: () => 'Click for details',
+          },
+        },
+      },
+      scales: {
+        x: { stacked: true, ticks: { maxRotation: 45, font: { size: 10 } }, grid: { display: false } },
+        y: { stacked: true, beginAtZero: true, grid: { color: '#21262d' }, title: { display: true, text: 'Avg Cards', color: '#8b949e', font: { size: 11 } } },
+      },
+    },
+  });
+  canvas.classList.add('clickable');
+}
+
+// ─── Commander Detail Modal ──────────────────────────────────
+
+function openCommanderModal(cmdName) {
+  const deckComp = getPeriodData(appData.deckComposition, currentPeriod);
+  if (!deckComp || !deckComp[cmdName]) return;
+
+  const d = deckComp[cmdName];
+  const modal = document.getElementById('commander-modal');
+
+  // Header
+  const artLookup = {};
+  if (appData.commanders) {
+    appData.commanders.forEach(c => { artLookup[c.name] = c.art; });
+  }
+
+  const artEl = document.getElementById('modal-art');
+  const artPath = artLookup[cmdName];
+  if (artPath) {
+    artEl.src = artPath;
+    artEl.style.display = '';
+  } else {
+    artEl.style.display = 'none';
+  }
+
+  document.getElementById('modal-name').textContent = cmdName;
+  document.getElementById('modal-faction').innerHTML = factionBadge(d.faction);
+  document.getElementById('modal-summary').innerHTML =
+    `<strong>${d.deck_count}</strong> decks analyzed &middot; ` +
+    `Avg cost <strong>${d.avg_cost.toFixed(2)}</strong> &middot; ` +
+    `Avg <strong>${d.avg_minion_count.toFixed(1)}</strong> minions, <strong>${d.avg_spell_count.toFixed(1)}</strong> spells`;
+
+  // Destroy existing modal charts
+  Object.values(modalCharts).forEach(c => c && c.destroy());
+  modalCharts = {};
+
+  // Cost histogram: all / win / loss
+  const costCanvas = document.getElementById('modal-cost-chart');
+  if (costCanvas && d.cost_histogram) {
+    modalCharts.cost = new Chart(costCanvas, {
+      type: 'bar',
+      data: {
+        labels: d.cost_histogram.labels,
+        datasets: [
+          {
+            label: 'All Decks',
+            data: d.cost_histogram.all_decks,
+            backgroundColor: '#58a6ff88',
+            borderColor: '#58a6ff',
+            borderWidth: 1,
+            borderRadius: 3,
+          },
+          {
+            label: 'Winning',
+            data: d.cost_histogram.winning_decks,
+            backgroundColor: '#3fb95088',
+            borderColor: '#3fb950',
+            borderWidth: 1,
+            borderRadius: 3,
+          },
+          {
+            label: 'Losing',
+            data: d.cost_histogram.losing_decks,
+            backgroundColor: '#f8514988',
+            borderColor: '#f85149',
+            borderWidth: 1,
+            borderRadius: 3,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+          legend: {
+            labels: { usePointStyle: true, pointStyle: 'circle', padding: 14, font: { size: 11 } },
+          },
+          tooltip: {
+            backgroundColor: '#21262d',
+            borderColor: '#30363d',
+            borderWidth: 1,
+            titleColor: '#e6edf3',
+            bodyColor: '#8b949e',
+            padding: 10,
+            cornerRadius: 6,
+            callbacks: {
+              label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)} avg cards`,
+            },
+          },
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            grid: { color: '#21262d' },
+            title: { display: true, text: 'Avg Cards at Cost', color: '#8b949e', font: { size: 11 } },
+          },
+          x: {
+            grid: { display: false },
+            title: { display: true, text: 'Mana Cost', color: '#8b949e', font: { size: 11 } },
+          },
+        },
+      },
+    });
+  }
+
+  // Type donut
+  const typeCanvas = document.getElementById('modal-type-donut');
+  if (typeCanvas) {
+    modalCharts.type = new Chart(typeCanvas, {
+      type: 'doughnut',
+      data: {
+        labels: ['Minions', 'Spells'],
+        datasets: [{
+          data: [d.avg_minion_count, d.avg_spell_count],
+          backgroundColor: ['#3fb95099', '#d2a8ff99'],
+          borderColor: ['#3fb950', '#d2a8ff'],
+          borderWidth: 1,
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: { usePointStyle: true, pointStyle: 'circle', padding: 14, font: { size: 11 } },
+          },
+          tooltip: {
+            backgroundColor: '#21262d',
+            borderColor: '#30363d',
+            borderWidth: 1,
+            titleColor: '#e6edf3',
+            bodyColor: '#8b949e',
+            padding: 10,
+            cornerRadius: 6,
+            callbacks: {
+              label: ctx => `${ctx.label}: ${ctx.parsed.toFixed(1)} avg cards`,
+            },
+          },
+        },
+      },
+    });
+  }
+
+  // Loyalty donut
+  const loyaltyCanvas = document.getElementById('modal-loyalty-donut');
+  if (loyaltyCanvas) {
+    modalCharts.loyalty = new Chart(loyaltyCanvas, {
+      type: 'doughnut',
+      data: {
+        labels: ['Patron', 'Neutral', 'Other Faction'],
+        datasets: [{
+          data: [d.avg_patron_cards, d.avg_neutral_cards, d.avg_other_cards],
+          backgroundColor: ['#58a6ff99', '#A8907899', '#f8514966'],
+          borderColor: ['#58a6ff', '#A89078', '#f85149'],
+          borderWidth: 1,
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: { usePointStyle: true, pointStyle: 'circle', padding: 14, font: { size: 11 } },
+          },
+          tooltip: {
+            backgroundColor: '#21262d',
+            borderColor: '#30363d',
+            borderWidth: 1,
+            titleColor: '#e6edf3',
+            bodyColor: '#8b949e',
+            padding: 10,
+            cornerRadius: 6,
+            callbacks: {
+              label: ctx => `${ctx.label}: ${ctx.parsed.toFixed(1)} avg cards`,
+            },
+          },
+        },
+      },
+    });
+  }
+
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCommanderModal() {
+  const modal = document.getElementById('commander-modal');
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+  Object.values(modalCharts).forEach(c => c && c.destroy());
+  modalCharts = {};
+}
+
+function initModal() {
+  const modal = document.getElementById('commander-modal');
+  const closeBtn = document.getElementById('modal-close');
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeCommanderModal);
+  }
+
+  if (modal) {
+    modal.addEventListener('click', e => {
+      if (e.target === modal) closeCommanderModal();
+    });
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeCommanderModal();
+  });
+}
+
 // ─── Render All (period-aware) ─────────────────────────────────
 
 function renderAll() {
@@ -494,6 +988,8 @@ function renderAll() {
   const cardStats = getPeriodData(data.cardStats, period);
   const trends = getPeriodData(data.trends, period);
   const matchups = getPeriodData(data.matchups, period);
+  const distributions = getPeriodData(data.gameDistributions, period);
+  const deckComp = getPeriodData(data.deckComposition, period);
 
   // Overview
   renderMetadata(metadata);
@@ -517,6 +1013,14 @@ function renderAll() {
 
   // Cards (respect current faction filter)
   renderCardTable(cardStats, currentFaction, cardSortKey, cardSortDir);
+
+  // Distributions
+  renderDistributions(distributions);
+
+  // Deck Composition
+  renderAvgCostChart(deckComp);
+  renderMinionSpellChart(deckComp);
+  renderPatronNeutralChart(deckComp);
 
   // Meta trends
   renderMetaChart(trends);
@@ -557,10 +1061,11 @@ async function init() {
   // Initial render with "all" period
   renderAll();
 
-  // Set up interactive filters
+  // Set up interactive filters and modal
   initFactionFilters();
   initCardTableSorting();
   initTimeFilters();
+  initModal();
 }
 
 document.addEventListener('DOMContentLoaded', init);

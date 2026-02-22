@@ -35,13 +35,9 @@ ASSETS_DIR = PROJECT_DIR / "site" / "assets" / "commanders"
 CARD_SCREENSHOTS_DIR = PROJECT_DIR / "CardScreenshots"
 RAW_CACHE = DATA_DIR / "raw_games.json"
 
-# Reference CSVs — updated versions in project root, fallback to intern's
+# Reference CSVs — project root is the source of truth
 CARDS_CSV = PROJECT_DIR / "StandardFormatCards.csv"
 COMMANDERS_CSV = PROJECT_DIR / "StandardFormatCommanders.csv"
-if not CARDS_CSV.exists():
-    INTERN_DIR = PROJECT_DIR / "drive-download-20260222T043305Z-1-001"
-    CARDS_CSV = INTERN_DIR / "StandardFormatCards.csv"
-    COMMANDERS_CSV = INTERN_DIR / "StandardFormatCommanders.csv"
 
 # ─── Constants ──────────────────────────────────────────────────
 
@@ -567,12 +563,163 @@ def write_json(filename, data):
     print(f"  Wrote {path.name}")
 
 
+def aggregate_game_distributions(games):
+    """Compute pre-bucketed histograms for game duration, turns, and actions."""
+    # Duration: 2-min buckets, 0-50
+    dur_w, dur_max = 2, 50
+    dur_labels = [f"{i}-{i+dur_w}" for i in range(0, dur_max, dur_w)]
+    dur_counts = [0] * len(dur_labels)
+    dur_total = 0
+
+    # Turns: 2-turn buckets, 0-42
+    trn_w, trn_max = 2, 42
+    trn_labels = [f"{i}-{i+trn_w}" for i in range(0, trn_max, trn_w)]
+    trn_counts = [0] * len(trn_labels)
+    trn_total = 0
+
+    # Actions: 20-action buckets, 0-240
+    act_w, act_max = 20, 240
+    act_labels = [f"{i}-{i+act_w}" for i in range(0, act_max, act_w)]
+    act_counts = [0] * len(act_labels)
+    act_total = 0
+
+    for game in games:
+        dur = game.get("duration_minutes")
+        if dur is not None and dur >= 0:
+            bucket = min(int(dur // dur_w), len(dur_labels) - 1)
+            dur_counts[bucket] += 1
+            dur_total += 1
+
+        total_turns = sum(p.get("turns", 0) for p in game["players"])
+        bucket = min(int(total_turns // trn_w), len(trn_labels) - 1)
+        trn_counts[bucket] += 1
+        trn_total += 1
+
+        total_actions = sum(p.get("actions", 0) for p in game["players"])
+        bucket = min(int(total_actions // act_w), len(act_labels) - 1)
+        act_counts[bucket] += 1
+        act_total += 1
+
+    return {
+        "duration": {"labels": dur_labels, "counts": dur_counts, "total": dur_total},
+        "turns": {"labels": trn_labels, "counts": trn_counts, "total": trn_total},
+        "actions": {"labels": act_labels, "counts": act_counts, "total": act_total},
+    }
+
+
+def aggregate_deck_composition(games, card_info, cmd_faction):
+    """Compute per-commander deck composition: avg cost, cost histogram,
+    minion/spell ratio, patron/neutral/other ratio. Includes win/loss splits."""
+    COST_LABELS = [str(i) for i in range(12)] + ["12+"]
+    NUM_BUCKETS = len(COST_LABELS)
+
+    cmd_data = defaultdict(lambda: {"faction": "", "all": [], "win": [], "loss": []})
+
+    for game in games:
+        for p in game["players"]:
+            cmd = p.get("commander")
+            if not cmd:
+                continue
+            commander_faction = cmd_faction.get(cmd, "neutral")
+            cmd_data[cmd]["faction"] = commander_faction
+
+            total_cost_weighted = 0
+            total_card_count = 0
+            cost_curve = [0] * NUM_BUCKETS
+            minion_count = 0
+            spell_count = 0
+            patron_count = 0
+            neutral_count = 0
+            other_count = 0
+
+            for card in p.get("cards_in_deck", []):
+                name = card["name"]
+                count = card.get("count", 1)
+                info = card_info.get(name, {})
+
+                card_cost = info.get("cost")
+                card_type = info.get("type", "")
+                card_faction = info.get("faction", "neutral")
+
+                if card_cost is not None:
+                    total_cost_weighted += card_cost * count
+                    bucket = min(card_cost, 12)
+                    cost_curve[bucket] += count
+                total_card_count += count
+
+                if card_type == "Minion":
+                    minion_count += count
+                elif card_type == "Spell":
+                    spell_count += count
+
+                if card_faction == commander_faction:
+                    patron_count += count
+                elif card_faction == "neutral":
+                    neutral_count += count
+                else:
+                    other_count += count
+
+            avg_cost = total_cost_weighted / total_card_count if total_card_count > 0 else 0
+            deck_stats = {
+                "avg_cost": avg_cost,
+                "cost_curve": cost_curve,
+                "minion_count": minion_count,
+                "spell_count": spell_count,
+                "patron_count": patron_count,
+                "neutral_count": neutral_count,
+                "other_count": other_count,
+            }
+
+            cmd_data[cmd]["all"].append(deck_stats)
+            if p.get("winner"):
+                cmd_data[cmd]["win"].append(deck_stats)
+            else:
+                cmd_data[cmd]["loss"].append(deck_stats)
+
+    def avg_field(decks, field):
+        if not decks:
+            return 0
+        return round(sum(d[field] for d in decks) / len(decks), 2)
+
+    def avg_curve(decks):
+        if not decks:
+            return [0] * NUM_BUCKETS
+        n = len(decks)
+        return [round(sum(d["cost_curve"][i] for d in decks) / n, 2) for i in range(NUM_BUCKETS)]
+
+    result = {}
+    for cmd, data in cmd_data.items():
+        a, w, l = data["all"], data["win"], data["loss"]
+        result[cmd] = {
+            "faction": data["faction"],
+            "deck_count": len(a),
+            "avg_cost": avg_field(a, "avg_cost"),
+            "cost_histogram": {
+                "labels": COST_LABELS,
+                "all_decks": avg_curve(a),
+                "winning_decks": avg_curve(w),
+                "losing_decks": avg_curve(l),
+            },
+            "avg_minion_count": avg_field(a, "minion_count"),
+            "avg_spell_count": avg_field(a, "spell_count"),
+            "avg_patron_cards": avg_field(a, "patron_count"),
+            "avg_neutral_cards": avg_field(a, "neutral_count"),
+            "avg_other_cards": avg_field(a, "other_count"),
+            "win_avg_minion_count": avg_field(w, "minion_count"),
+            "win_avg_spell_count": avg_field(w, "spell_count"),
+            "loss_avg_minion_count": avg_field(l, "minion_count"),
+            "loss_avg_spell_count": avg_field(l, "spell_count"),
+        }
+
+    return result
+
+
 def build_and_write_all(games, cards_csv, commanders_csv):
     """Run all aggregations for each time period and write JSON files."""
 
     # Build lookups (period-independent)
     faction_lookup = {c["name"]: c["faction"] for c in commanders_csv}
-    card_info = {c["name"]: {"faction": c["faction"], "type": c["type"]} for c in cards_csv}
+    card_info = {c["name"]: {"faction": c["faction"], "type": c["type"], "cost": c.get("cost")} for c in cards_csv}
     cmd_faction = {c["name"]: c["faction"] for c in commanders_csv}
 
     # Reference data (no time filtering)
@@ -585,6 +732,8 @@ def build_and_write_all(games, cards_csv, commanders_csv):
     matchups_by_period = {}
     card_stats_by_period = {}
     trends_by_period = {}
+    distributions_by_period = {}
+    deck_comp_by_period = {}
 
     for period_key, days in PERIODS.items():
         period_games = filter_games_by_period(games, days)
@@ -693,12 +842,20 @@ def build_and_write_all(games, cards_csv, commanders_csv):
             "factions": dict(faction_weekly),
         }
 
+        # ── game distributions ──
+        distributions_by_period[period_key] = aggregate_game_distributions(period_games)
+
+        # ── deck composition ──
+        deck_comp_by_period[period_key] = aggregate_deck_composition(period_games, card_info, cmd_faction)
+
     # Write all period-nested files
     write_json("metadata.json", metadata_by_period)
     write_json("commander_stats.json", cmd_stats_by_period)
     write_json("matchups.json", matchups_by_period)
     write_json("card_stats.json", card_stats_by_period)
     write_json("trends.json", trends_by_period)
+    write_json("game_distributions.json", distributions_by_period)
+    write_json("deck_composition.json", deck_comp_by_period)
 
 
 # ─── Cache Management ────────────────────────────────────────────
