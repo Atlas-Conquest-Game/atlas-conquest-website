@@ -19,10 +19,11 @@ Environment variables (set via GitHub Secrets in CI):
 import csv
 import json
 import os
+import subprocess
 import sys
 import time
 from collections import defaultdict
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 # ─── Paths ──────────────────────────────────────────────────────
@@ -63,6 +64,9 @@ CARD_RENAMES = {
 # Minimum turns per player to count as a real game
 MIN_TURNS = 2
 
+# Time periods for aggregation: key → days (None = all time)
+PERIODS = {"all": None, "6m": 180, "3m": 90, "1m": 30}
+
 # Patron (faction) color mapping
 PATRON_MAP = {
     "Skaal": "skaal",
@@ -72,6 +76,71 @@ PATRON_MAP = {
     "Shadis": "shadis",
     "Archaeon": "archaeon",
 }
+
+
+# ─── Commander Art Fallback ─────────────────────────────────────
+
+# Map of commander art slug → CardScreenshot filename for missing art
+FALLBACK_ART = {
+    "it-that-weaves": "It-That-Weaves.png",
+}
+
+
+def ensure_commander_art():
+    """Generate missing commander art from CardScreenshots as fallback."""
+    ASSETS_DIR.mkdir(parents=True, exist_ok=True)
+
+    for slug, screenshot_name in FALLBACK_ART.items():
+        target = ASSETS_DIR / f"{slug}.jpg"
+        if target.exists():
+            continue
+        source = CARD_SCREENSHOTS_DIR / screenshot_name
+        if not source.exists():
+            print(f"  Warning: No source art for {slug}")
+            continue
+
+        try:
+            from PIL import Image
+            img = Image.open(source)
+            ratio = 400 / img.width
+            new_size = (400, int(img.height * ratio))
+            img = img.resize(new_size, Image.LANCZOS)
+            img = img.convert("RGB")
+            img.save(target, "JPEG", quality=85)
+            print(f"  Generated {target.name} from {screenshot_name}")
+        except ImportError:
+            try:
+                subprocess.run([
+                    "sips", "-s", "format", "jpeg",
+                    "-Z", "400", str(source),
+                    "--out", str(target),
+                ], check=True, capture_output=True)
+                print(f"  Generated {target.name} via sips")
+            except (FileNotFoundError, subprocess.CalledProcessError):
+                print(f"  Warning: Could not convert {screenshot_name} (install Pillow or use macOS)")
+
+
+# ─── Time Period Filtering ─────────────────────────────────────
+
+def filter_games_by_period(games, days):
+    """Filter games to those within the last N days. None = all games."""
+    if days is None:
+        return games
+    cutoff = datetime.now(timezone.utc) - timedelta(days=days)
+    result = []
+    for g in games:
+        dt_str = g.get("datetime")
+        if not dt_str:
+            continue
+        try:
+            dt = datetime.fromisoformat(dt_str)
+            if dt.tzinfo is None:
+                dt = dt.replace(tzinfo=timezone.utc)
+            if dt >= cutoff:
+                result.append(g)
+        except ValueError:
+            continue
+    return result
 
 
 # ─── AWS / DynamoDB ─────────────────────────────────────────────
@@ -499,142 +568,137 @@ def write_json(filename, data):
 
 
 def build_and_write_all(games, cards_csv, commanders_csv):
-    """Run all aggregations and write JSON files."""
+    """Run all aggregations for each time period and write JSON files."""
 
-    # ── metadata.json ──
-    unique_players = set()
-    for g in games:
-        for p in g["players"]:
-            unique_players.add(p["name"])
+    # Build lookups (period-independent)
+    faction_lookup = {c["name"]: c["faction"] for c in commanders_csv}
+    card_info = {c["name"]: {"faction": c["faction"], "type": c["type"]} for c in cards_csv}
+    cmd_faction = {c["name"]: c["faction"] for c in commanders_csv}
 
-    write_json("metadata.json", {
-        "last_updated": datetime.now(timezone.utc).isoformat(),
-        "total_matches": len(games),
-        "total_players": len(unique_players),
-        "data_version": "1.0.0",
-    })
-
-    # ── cards.json (from CSV) ──
+    # Reference data (no time filtering)
     write_json("cards.json", cards_csv)
-
-    # ── commanders.json (from CSV) ──
     write_json("commanders.json", commanders_csv)
 
-    # ── commander_stats.json ──
-    cmd_stats_raw = aggregate_commander_stats(games)
+    # Per-period aggregation
+    metadata_by_period = {}
+    cmd_stats_by_period = {}
+    matchups_by_period = {}
+    card_stats_by_period = {}
+    trends_by_period = {}
 
-    # Build faction lookup from CSV
-    faction_lookup = {}
-    for c in commanders_csv:
-        faction_lookup[c["name"]] = c["faction"]
+    for period_key, days in PERIODS.items():
+        period_games = filter_games_by_period(games, days)
+        print(f"  Period '{period_key}': {len(period_games)} games")
 
-    cmd_stats = []
-    for name, data in sorted(cmd_stats_raw.items(), key=lambda x: x[1]["matches"], reverse=True):
-        winrate = data["wins"] / data["matches"] if data["matches"] > 0 else 0
-        cmd_stats.append({
-            "name": name,
-            "faction": faction_lookup.get(name, "neutral"),
-            "matches": data["matches"],
-            "wins": data["wins"],
-            "winrate": round(winrate, 4),
-        })
+        # ── metadata ──
+        unique_players = set()
+        for g in period_games:
+            for p in g["players"]:
+                unique_players.add(p["name"])
 
-    write_json("commander_stats.json", cmd_stats)
+        metadata_by_period[period_key] = {
+            "last_updated": datetime.now(timezone.utc).isoformat(),
+            "total_matches": len(period_games),
+            "total_players": len(unique_players),
+            "data_version": "2.0.0",
+        }
 
-    # ── matchups.json ──
-    matchup_raw = aggregate_matchups(games)
-    # Convert to serializable format
-    matchup_list = []
-    all_commanders = sorted(set(
-        cmd for cmd in matchup_raw.keys()
-    ))
-    for c1 in all_commanders:
-        for c2 in all_commanders:
-            if c1 == c2:
-                continue
-            data = matchup_raw[c1][c2]
-            total = data["wins"] + data["losses"]
-            if total == 0:
-                continue
-            matchup_list.append({
-                "commander": c1,
-                "opponent": c2,
+        # ── commander_stats ──
+        cmd_stats_raw = aggregate_commander_stats(period_games)
+        cmd_stats = []
+        for name, data in sorted(cmd_stats_raw.items(), key=lambda x: x[1]["matches"], reverse=True):
+            winrate = data["wins"] / data["matches"] if data["matches"] > 0 else 0
+            cmd_stats.append({
+                "name": name,
+                "faction": faction_lookup.get(name, "neutral"),
+                "matches": data["matches"],
                 "wins": data["wins"],
-                "losses": data["losses"],
-                "total": total,
-                "winrate": round(data["wins"] / total, 4) if total > 0 else 0,
+                "winrate": round(winrate, 4),
             })
+        cmd_stats_by_period[period_key] = cmd_stats
 
-    write_json("matchups.json", {
-        "commanders": all_commanders,
-        "matchups": matchup_list,
-    })
+        # ── matchups ──
+        matchup_raw = aggregate_matchups(period_games)
+        all_commanders = sorted(set(cmd for cmd in matchup_raw.keys()))
+        matchup_list = []
+        for c1 in all_commanders:
+            for c2 in all_commanders:
+                if c1 == c2:
+                    continue
+                data = matchup_raw[c1][c2]
+                total = data["wins"] + data["losses"]
+                if total == 0:
+                    continue
+                matchup_list.append({
+                    "commander": c1,
+                    "opponent": c2,
+                    "wins": data["wins"],
+                    "losses": data["losses"],
+                    "total": total,
+                    "winrate": round(data["wins"] / total, 4) if total > 0 else 0,
+                })
+        matchups_by_period[period_key] = {
+            "commanders": all_commanders,
+            "matchups": matchup_list,
+        }
 
-    # ── card_stats.json ──
-    card_data, total_player_games = aggregate_card_stats(games)
+        # ── card_stats ──
+        result = aggregate_card_stats(period_games)
+        if isinstance(result, tuple):
+            card_data, total_player_games = result
+        else:
+            card_data, total_player_games = {}, 0
 
-    # Build card info lookup from CSV
-    card_info = {}
-    for c in cards_csv:
-        card_info[c["name"]] = {"faction": c["faction"], "type": c["type"]}
+        card_stats = []
+        for name, data in sorted(card_data.items(), key=lambda x: x[1]["deck_count"], reverse=True):
+            deck_wr = data["deck_wins"] / data["deck_count"] if data["deck_count"] > 0 else 0
+            drawn_wr = data["drawn_wins"] / data["drawn_count"] if data["drawn_count"] > 0 else 0
+            played_wr = data["played_wins"] / data["played_count"] if data["played_count"] > 0 else 0
+            info = card_info.get(name, {"faction": "neutral", "type": ""})
+            card_stats.append({
+                "name": name,
+                "faction": info["faction"],
+                "type": info["type"],
+                "deck_count": data["deck_count"],
+                "deck_rate": round(data["deck_count"] / total_player_games, 4) if total_player_games > 0 else 0,
+                "deck_winrate": round(deck_wr, 4),
+                "drawn_count": data["drawn_count"],
+                "drawn_rate": round(data["drawn_count"] / total_player_games, 4) if total_player_games > 0 else 0,
+                "drawn_winrate": round(drawn_wr, 4),
+                "played_count": data["played_count"],
+                "played_rate": round(data["played_count"] / total_player_games, 4) if total_player_games > 0 else 0,
+                "played_winrate": round(played_wr, 4),
+            })
+        card_stats_by_period[period_key] = card_stats
 
-    card_stats = []
-    for name, data in sorted(card_data.items(), key=lambda x: x[1]["deck_count"], reverse=True):
-        deck_wr = data["deck_wins"] / data["deck_count"] if data["deck_count"] > 0 else 0
-        drawn_wr = data["drawn_wins"] / data["drawn_count"] if data["drawn_count"] > 0 else 0
-        played_wr = data["played_wins"] / data["played_count"] if data["played_count"] > 0 else 0
+        # ── trends ──
+        weekly, weekly_total = aggregate_trends(period_games)
+        sorted_weeks = sorted(weekly.keys())
+        faction_weekly = defaultdict(list)
+        dates = []
+        for week in sorted_weeks:
+            total = weekly_total[week]
+            if total < 4:
+                continue
+            dates.append(week)
+            faction_counts = defaultdict(int)
+            for cmd, count in weekly[week].items():
+                faction = cmd_faction.get(cmd, "neutral")
+                faction_counts[faction] += count
+            for faction in ["skaal", "grenalia", "lucia", "neutral", "shadis", "archaeon"]:
+                pct = round((faction_counts[faction] / total) * 100, 1) if total > 0 else 0
+                faction_weekly[faction].append(pct)
+        trends_by_period[period_key] = {
+            "dates": dates,
+            "factions": dict(faction_weekly),
+        }
 
-        info = card_info.get(name, {"faction": "neutral", "type": ""})
-
-        card_stats.append({
-            "name": name,
-            "faction": info["faction"],
-            "type": info["type"],
-            "deck_count": data["deck_count"],
-            "deck_rate": round(data["deck_count"] / total_player_games, 4),
-            "deck_winrate": round(deck_wr, 4),
-            "drawn_count": data["drawn_count"],
-            "drawn_rate": round(data["drawn_count"] / total_player_games, 4),
-            "drawn_winrate": round(drawn_wr, 4),
-            "played_count": data["played_count"],
-            "played_rate": round(data["played_count"] / total_player_games, 4),
-            "played_winrate": round(played_wr, 4),
-        })
-
-    write_json("card_stats.json", card_stats)
-
-    # ── trends.json ──
-    weekly, weekly_total = aggregate_trends(games)
-
-    # Get all factions from commanders in the data
-    cmd_faction = {}
-    for c in commanders_csv:
-        cmd_faction[c["name"]] = c["faction"]
-
-    # Aggregate by faction per week
-    sorted_weeks = sorted(weekly.keys())
-    faction_weekly = defaultdict(list)
-    dates = []
-
-    for week in sorted_weeks:
-        total = weekly_total[week]
-        if total < 4:  # Skip weeks with very few games
-            continue
-        dates.append(week)
-
-        faction_counts = defaultdict(int)
-        for cmd, count in weekly[week].items():
-            faction = cmd_faction.get(cmd, "neutral")
-            faction_counts[faction] += count
-
-        for faction in ["skaal", "grenalia", "lucia", "neutral", "shadis", "archaeon"]:
-            pct = round((faction_counts[faction] / total) * 100, 1) if total > 0 else 0
-            faction_weekly[faction].append(pct)
-
-    write_json("trends.json", {
-        "dates": dates,
-        "factions": dict(faction_weekly),
-    })
+    # Write all period-nested files
+    write_json("metadata.json", metadata_by_period)
+    write_json("commander_stats.json", cmd_stats_by_period)
+    write_json("matchups.json", matchups_by_period)
+    write_json("card_stats.json", card_stats_by_period)
+    write_json("trends.json", trends_by_period)
 
 
 # ─── Cache Management ────────────────────────────────────────────
@@ -698,13 +762,16 @@ def main():
     print("\n[4/6] Saving cache...")
     save_cache(all_games)
 
-    # Step 5: Load reference data
-    print("\n[5/6] Loading reference data...")
+    # Step 5: Load reference data & ensure art
+    print("\n[5/7] Ensuring commander art...")
+    ensure_commander_art()
+
+    print("\n[6/7] Loading reference data...")
     cards_csv = load_cards_csv()
     commanders_csv = load_commanders_csv()
 
-    # Step 6: Aggregate and write JSONs
-    print("\n[6/6] Aggregating and writing data files...")
+    # Step 7: Aggregate and write JSONs (per time period)
+    print("\n[7/7] Aggregating and writing data files...")
     build_and_write_all(all_games, cards_csv, commanders_csv)
 
     print(f"\nDone! {len(all_games)} games processed → site/data/")

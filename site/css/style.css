@@ -1,7 +1,7 @@
 /* === Atlas Conquest Analytics — Dark Theme === */
 
 :root {
-  /* Dark backgrounds — inspired by deep ocean/night sky */
+  /* Dark backgrounds */
   --bg: #0e1117;
   --bg-subtle: #161b22;
   --bg-inset: #1c2128;
@@ -28,10 +28,6 @@
   /* Semantic */
   --positive: #3fb950;
   --negative: #f85149;
-
-  /* Glow accents */
-  --glow-primary: rgba(56, 139, 253, 0.15);
-  --glow-warm: rgba(213, 94, 0, 0.12);
 
   /* Layout */
   --max-width: 1200px;
@@ -178,32 +174,42 @@ body {
   background: var(--text-muted);
 }
 
-/* === Time Filter Bar === */
+/* === Time Filter Bar (sticky) === */
 .time-filter-bar {
+  position: sticky;
+  top: var(--nav-height);
+  z-index: 90;
+  background: rgba(14, 17, 23, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.time-filter-inner {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 1.25rem 0;
-  flex-wrap: wrap;
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
 }
 
 .time-filter-bar .filter-label {
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 600;
-  color: var(--text-secondary);
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   margin-right: 0.25rem;
 }
 
 .time-btn {
-  padding: 0.375rem 0.875rem;
+  padding: 0.3125rem 0.75rem;
   border: 1px solid var(--border);
   border-radius: 6px;
   background: transparent;
   font-family: inherit;
-  font-size: 0.8125rem;
-  font-weight: 500;
+  font-size: 0.75rem;
+  font-weight: 600;
   color: var(--text-secondary);
   cursor: pointer;
   transition: all 0.15s ease;
@@ -218,33 +224,6 @@ body {
   background: var(--bg-elevated);
   border-color: #388bfd;
   color: #58a6ff;
-}
-
-.time-filter-bar .date-separator {
-  color: var(--text-muted);
-  font-size: 0.75rem;
-  margin: 0 0.125rem;
-}
-
-.time-filter-bar input[type="date"] {
-  padding: 0.375rem 0.5rem;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  background: var(--bg-subtle);
-  color: var(--text-secondary);
-  font-family: inherit;
-  font-size: 0.8125rem;
-  outline: none;
-  transition: border-color 0.15s ease;
-}
-
-.time-filter-bar input[type="date"]:focus {
-  border-color: #388bfd;
-  color: var(--text);
-}
-
-.time-filter-bar input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(0.6);
 }
 
 /* === Sections === */
@@ -469,7 +448,7 @@ body {
   font-weight: 400;
 }
 
-/* Matchup tooltip (custom) */
+/* Matchup tooltip */
 .matchup-tooltip {
   position: fixed;
   z-index: 1000;
@@ -643,7 +622,7 @@ body {
 }
 
 .data-table th.sortable::after {
-  content: '⇅';
+  content: '\21C5';
   position: absolute;
   right: 0.5rem;
   top: 50%;
@@ -653,13 +632,13 @@ body {
 }
 
 .data-table th.sorted-asc::after {
-  content: '↑';
+  content: '\2191';
   opacity: 1;
   color: #58a6ff;
 }
 
 .data-table th.sorted-desc::after {
-  content: '↓';
+  content: '\2193';
   opacity: 1;
   color: #58a6ff;
 }
@@ -781,10 +760,6 @@ body {
   }
 }
 
-.section {
-  animation: fadeUp 0.4s ease both;
-}
-
 .stat-card {
   animation: fadeUp 0.35s ease both;
 }
@@ -838,10 +813,6 @@ body {
   .commander-grid {
     grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
   }
-
-  .time-filter-bar {
-    gap: 0.375rem;
-  }
 }
 
 @media (max-width: 480px) {
@@ -855,9 +826,5 @@ body {
 
   .nav-links {
     display: none;
-  }
-
-  .time-filter-bar input[type="date"] {
-    width: 100%;
   }
 }

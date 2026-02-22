@@ -1,6 +1,26 @@
 {
-  "last_updated": "2026-02-22T05:27:20.072743+00:00",
-  "total_matches": 3104,
-  "total_players": 202,
-  "data_version": "1.0.0"
+  "all": {
+    "last_updated": "2026-02-22T05:53:16.850208+00:00",
+    "total_matches": 3104,
+    "total_players": 202,
+    "data_version": "2.0.0"
+  },
+  "6m": {
+    "last_updated": "2026-02-22T05:53:16.904848+00:00",
+    "total_matches": 1303,
+    "total_players": 99,
+    "data_version": "2.0.0"
+  },
+  "3m": {
+    "last_updated": "2026-02-22T05:53:16.929076+00:00",
+    "total_matches": 668,
+    "total_players": 82,
+    "data_version": "2.0.0"
+  },
+  "1m": {
+    "last_updated": "2026-02-22T05:53:16.941295+00:00",
+    "total_matches": 192,
+    "total_players": 47,
+    "data_version": "2.0.0"
+  }
 }

@@ -32,9 +32,10 @@ Chart.defaults.font.family = "'Inter', sans-serif";
 // ─── State ────────────────────────────────────────────────────
 
 let appData = {};
-let cardSortKey = 'deck_count';
+let cardSortKey = 'drawn_winrate';
 let cardSortDir = 'desc';
 let currentFaction = 'all';
+let currentPeriod = 'all';
 let commanderChart = null;
 let metaChart = null;
 
@@ -67,6 +68,14 @@ async function loadAllData() {
 function el(id, text) {
   const node = document.getElementById(id);
   if (node) node.textContent = text;
+}
+
+function getPeriodData(dataObj, period) {
+  // Handle both nested (new) and flat (legacy) formats
+  if (dataObj && typeof dataObj === 'object' && !Array.isArray(dataObj) && dataObj[period] !== undefined) {
+    return dataObj[period];
+  }
+  return dataObj;
 }
 
 function factionBadge(faction) {
@@ -213,15 +222,11 @@ function renderCommanderChart(stats) {
         y: {
           min: 30,
           max: 70,
-          ticks: {
-            callback: v => v + '%',
-          },
+          ticks: { callback: v => v + '%' },
           grid: { color: '#21262d' },
         },
         x: {
-          ticks: {
-            maxRotation: 45,
-          },
+          ticks: { maxRotation: 45 },
           grid: { display: false },
         },
       },
@@ -238,6 +243,8 @@ function renderMatchups(matchupData) {
   const cmds = matchupData.commanders;
   const matchups = matchupData.matchups;
 
+  if (!cmds || !cmds.length) return;
+
   const matchupMap = {};
   cmds.forEach(c => { matchupMap[c] = {}; });
   matchups.forEach(m => {
@@ -249,12 +256,10 @@ function renderMatchups(matchupData) {
     return parts.length > 1 ? parts[0] : name;
   };
 
-  // Header row
   const thead = table.querySelector('thead tr');
   thead.innerHTML = '<th class="matchup-corner"></th>' +
     cmds.map(c => `<th class="matchup-col-header" title="${c}">${shortName(c)}</th>`).join('');
 
-  // Body rows
   const tbody = table.querySelector('tbody');
   tbody.innerHTML = cmds.map(row => {
     const cells = cmds.map(col => {
@@ -276,7 +281,6 @@ function renderMatchups(matchupData) {
     return `<tr><th class="matchup-row-header" title="${row}">${shortName(row)}</th>${cells}</tr>`;
   }).join('');
 
-  // Setup tooltip
   initMatchupTooltip();
 }
 
@@ -289,7 +293,7 @@ function initMatchupTooltip() {
   const cells = document.querySelectorAll('.matchup-cell[data-type="data"], .matchup-cell[data-type="nodata"]');
 
   cells.forEach(cell => {
-    cell.addEventListener('mouseenter', e => {
+    cell.addEventListener('mouseenter', () => {
       const row = cell.dataset.row;
       const col = cell.dataset.col;
       const type = cell.dataset.type;
@@ -347,7 +351,6 @@ function renderCardTable(stats, faction, sortKey, sortDir) {
     let aVal = a[sortKey];
     let bVal = b[sortKey];
 
-    // String sort for name, faction, type
     if (typeof aVal === 'string') {
       aVal = aVal.toLowerCase();
       bVal = (bVal || '').toLowerCase();
@@ -356,7 +359,6 @@ function renderCardTable(stats, faction, sortKey, sortDir) {
         : bVal.localeCompare(aVal);
     }
 
-    // Numeric sort
     aVal = aVal || 0;
     bVal = bVal || 0;
     return sortDir === 'asc' ? aVal - bVal : bVal - aVal;
@@ -367,14 +369,13 @@ function renderCardTable(stats, faction, sortKey, sortDir) {
       <td><strong>${c.name}</strong></td>
       <td>${factionBadge(c.faction)}</td>
       <td>${c.type || '--'}</td>
-      <td>${pctCell(c.deck_rate)}</td>
-      <td>${winrateCell(c.deck_winrate, c.deck_count)}</td>
+      <td>${pctCell(c.drawn_rate)}</td>
+      <td>${winrateCell(c.drawn_winrate, c.drawn_count)}</td>
       <td>${pctCell(c.played_rate)}</td>
       <td>${winrateCell(c.played_winrate, c.played_count)}</td>
     </tr>
   `).join('');
 
-  // Update sort indicators on headers
   updateSortHeaders(sortKey, sortDir);
 }
 
@@ -388,7 +389,7 @@ function updateSortHeaders(sortKey, sortDir) {
   });
 }
 
-function initCardTableSorting(cardStats) {
+function initCardTableSorting() {
   const headers = document.querySelectorAll('#card-table th.sortable');
   headers.forEach(th => {
     th.addEventListener('click', () => {
@@ -397,15 +398,15 @@ function initCardTableSorting(cardStats) {
         cardSortDir = cardSortDir === 'desc' ? 'asc' : 'desc';
       } else {
         cardSortKey = key;
-        // Default direction: desc for numbers, asc for strings
         cardSortDir = ['name', 'faction', 'type'].includes(key) ? 'asc' : 'desc';
       }
+      const cardStats = getPeriodData(appData.cardStats, currentPeriod);
       renderCardTable(cardStats, currentFaction, cardSortKey, cardSortDir);
     });
   });
 }
 
-// ─── Meta Trends Chart ─────────────────────────────────────────
+// ─── Meta Trends Chart (stacked area) ─────────────────────────
 
 function renderMetaChart(trends) {
   const canvas = document.getElementById('meta-chart');
@@ -423,11 +424,12 @@ function renderMetaChart(trends) {
     label: FACTION_LABELS[faction] || faction,
     data: data,
     borderColor: FACTION_COLORS[faction] || '#888',
-    backgroundColor: 'transparent',
+    backgroundColor: (FACTION_COLORS[faction] || '#888') + '40',
+    fill: true,
     tension: 0.3,
-    pointRadius: 2,
-    pointHoverRadius: 5,
-    borderWidth: 2,
+    pointRadius: 0,
+    pointHoverRadius: 4,
+    borderWidth: 1.5,
   }));
 
   metaChart = new Chart(canvas, {
@@ -463,12 +465,10 @@ function renderMetaChart(trends) {
       },
       scales: {
         y: {
+          stacked: true,
           min: 0,
           max: 100,
-          stacked: true,
-          ticks: {
-            callback: v => v + '%',
-          },
+          ticks: { callback: v => v + '%' },
           grid: { color: '#21262d' },
         },
         x: {
@@ -483,15 +483,55 @@ function renderMetaChart(trends) {
   });
 }
 
+// ─── Render All (period-aware) ─────────────────────────────────
+
+function renderAll() {
+  const data = appData;
+  const period = currentPeriod;
+
+  const metadata = getPeriodData(data.metadata, period);
+  const commanderStats = getPeriodData(data.commanderStats, period);
+  const cardStats = getPeriodData(data.cardStats, period);
+  const trends = getPeriodData(data.trends, period);
+  const matchups = getPeriodData(data.matchups, period);
+
+  // Overview
+  renderMetadata(metadata);
+  if (commanderStats && commanderStats.length) {
+    const top = [...commanderStats].sort((a, b) => b.matches - a.matches)[0];
+    el('stat-top-commander', top.name);
+    const best = [...commanderStats].sort((a, b) => b.winrate - a.winrate)[0];
+    el('stat-best-wr', `${best.name} (${(best.winrate * 100).toFixed(1)}%)`);
+  }
+  if (cardStats) {
+    el('stat-cards', cardStats.length.toLocaleString());
+  }
+
+  // Commanders
+  renderCommanderCards(commanderStats, data.commanders);
+  renderCommanderTable(commanderStats);
+  renderCommanderChart(commanderStats);
+
+  // Matchups
+  renderMatchups(matchups);
+
+  // Cards (respect current faction filter)
+  renderCardTable(cardStats, currentFaction, cardSortKey, cardSortDir);
+
+  // Meta trends
+  renderMetaChart(trends);
+}
+
 // ─── Filters ───────────────────────────────────────────────────
 
-function initFactionFilters(cardStats) {
+function initFactionFilters() {
   const buttons = document.querySelectorAll('.filter-btn');
   buttons.forEach(btn => {
     btn.addEventListener('click', () => {
       buttons.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       currentFaction = btn.dataset.faction;
+      const cardStats = getPeriodData(appData.cardStats, currentPeriod);
       renderCardTable(cardStats, currentFaction, cardSortKey, cardSortDir);
     });
   });
@@ -499,64 +539,28 @@ function initFactionFilters(cardStats) {
 
 function initTimeFilters() {
   const buttons = document.querySelectorAll('.time-btn');
-  const dateFrom = document.getElementById('date-from');
-  const dateTo = document.getElementById('date-to');
-
   buttons.forEach(btn => {
     btn.addEventListener('click', () => {
       buttons.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-
-      // Clear custom date inputs when a preset is selected
-      dateFrom.value = '';
-      dateTo.value = '';
-
-      // Time filtering will be wired to pipeline-generated data in a follow-up
-      // For now the UI is functional but all buttons show "All" data
+      currentPeriod = btn.dataset.period;
+      renderAll();
     });
   });
-
-  // Custom date range — clear preset buttons when dates are manually entered
-  const onDateChange = () => {
-    if (dateFrom.value || dateTo.value) {
-      buttons.forEach(b => b.classList.remove('active'));
-    }
-  };
-  dateFrom.addEventListener('change', onDateChange);
-  dateTo.addEventListener('change', onDateChange);
 }
 
 // ─── Init ──────────────────────────────────────────────────────
 
 async function init() {
   appData = await loadAllData();
-  const data = appData;
 
-  renderMetadata(data.metadata);
-  renderCommanderCards(data.commanderStats, data.commanders);
-  renderCommanderTable(data.commanderStats);
-  renderCommanderChart(data.commanderStats);
-  renderMatchups(data.matchups);
-  renderCardTable(data.cardStats, 'all', cardSortKey, cardSortDir);
-  renderMetaChart(data.trends);
+  // Initial render with "all" period
+  renderAll();
 
-  initFactionFilters(data.cardStats || []);
-  initCardTableSorting(data.cardStats || []);
+  // Set up interactive filters
+  initFactionFilters();
+  initCardTableSorting();
   initTimeFilters();
-
-  // Update unique cards stat
-  if (data.cardStats) {
-    el('stat-cards', data.cardStats.length.toLocaleString());
-  }
-
-  // Update top commander stat
-  if (data.commanderStats && data.commanderStats.length) {
-    const top = [...data.commanderStats].sort((a, b) => b.matches - a.matches)[0];
-    el('stat-top-commander', top.name);
-
-    const best = [...data.commanderStats].sort((a, b) => b.winrate - a.winrate)[0];
-    el('stat-best-wr', `${best.name} (${(best.winrate * 100).toFixed(1)}%)`);
-  }
 }
 
 document.addEventListener('DOMContentLoaded', init);
