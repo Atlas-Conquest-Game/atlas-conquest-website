@@ -1,0 +1,1846 @@
+{
+  "commanders": [
+    "Captain Greenbeard",
+    "Elber, Jungle Emissary",
+    "Elyse of the Order",
+    "Executor Ginn",
+    "Fael Spiritwalker",
+    "It That Weaves",
+    "Jagris, the Huntsman",
+    "Kai, Longcount Shaman",
+    "Lazim, Thief of Gods",
+    "Lubela, Tender of the Wilds",
+    "Lyre, Tactician of the Order",
+    "Macks Speed",
+    "Milo Sunstone",
+    "Newhaven Township",
+    "Soultaker Viessa",
+    "Starwise Luna"
+  ],
+  "matchups": [
+    {
+      "commander": "Captain Greenbeard",
+      "opponent": "Elber, Jungle Emissary",
+      "wins": 40,
+      "losses": 42,
+      "total": 82,
+      "winrate": 0.4878
+    },
+    {
+      "commander": "Captain Greenbeard",
+      "opponent": "Elyse of the Order",
+      "wins": 7,
+      "losses": 14,
+      "total": 21,
+      "winrate": 0.3333
+    },
+    {
+      "commander": "Captain Greenbeard",
+      "opponent": "Executor Ginn",
+      "wins": 24,
+      "losses": 11,
+      "total": 35,
+      "winrate": 0.6857
+    },
+    {
+      "commander": "Captain Greenbeard",
+      "opponent": "Fael Spiritwalker",
+      "wins": 3,
+      "losses": 4,
+      "total": 7,
+      "winrate": 0.4286
+    },
+    {
+      "commander": "Captain Greenbeard",
+      "opponent": "It That Weaves",
+      "wins": 3,
+      "losses": 2,
+      "total": 5,
+      "winrate": 0.6
+    },
+    {
+      "commander": "Captain Greenbeard",
+      "opponent": "Jagris, the Huntsman",
+      "wins": 41,
+      "losses": 38,
+      "total": 79,
+      "winrate": 0.519
+    },
+    {
+      "commander": "Captain Greenbeard",
+      "opponent": "Kai, Longcount Shaman",
+      "wins": 25,
+      "losses": 20,
+      "total": 45,
+      "winrate": 0.5556
+    },
+    {
+      "commander": "Captain Greenbeard",
+      "opponent": "Lazim, Thief of Gods",
+      "wins": 19,
+      "losses": 14,
+      "total": 33,
+      "winrate": 0.5758
+    },
+    {
+      "commander": "Captain Greenbeard",
+      "opponent": "Lubela, Tender of the Wilds",
+      "wins": 38,
+      "losses": 21,
+      "total": 59,
+      "winrate": 0.6441
+    },
+    {
+      "commander": "Captain Greenbeard",
+      "opponent": "Lyre, Tactician of the Order",
+      "wins": 5,
+      "losses": 8,
+      "total": 13,
+      "winrate": 0.3846
+    },
+    {
+      "commander": "Captain Greenbeard",
+      "opponent": "Macks Speed",
+      "wins": 9,
+      "losses": 20,
+      "total": 29,
+      "winrate": 0.3103
+    },
+    {
+      "commander": "Captain Greenbeard",
+      "opponent": "Milo Sunstone",
+      "wins": 32,
+      "losses": 39,
+      "total": 71,
+      "winrate": 0.4507
+    },
+    {
+      "commander": "Captain Greenbeard",
+      "opponent": "Newhaven Township",
+      "wins": 9,
+      "losses": 6,
+      "total": 15,
+      "winrate": 0.6
+    },
+    {
+      "commander": "Captain Greenbeard",
+      "opponent": "Soultaker Viessa",
+      "wins": 4,
+      "losses": 21,
+      "total": 25,
+      "winrate": 0.16
+    },
+    {
+      "commander": "Captain Greenbeard",
+      "opponent": "Starwise Luna",
+      "wins": 17,
+      "losses": 20,
+      "total": 37,
+      "winrate": 0.4595
+    },
+    {
+      "commander": "Elber, Jungle Emissary",
+      "opponent": "Captain Greenbeard",
+      "wins": 42,
+      "losses": 40,
+      "total": 82,
+      "winrate": 0.5122
+    },
+    {
+      "commander": "Elber, Jungle Emissary",
+      "opponent": "Elyse of the Order",
+      "wins": 4,
+      "losses": 4,
+      "total": 8,
+      "winrate": 0.5
+    },
+    {
+      "commander": "Elber, Jungle Emissary",
+      "opponent": "Executor Ginn",
+      "wins": 21,
+      "losses": 13,
+      "total": 34,
+      "winrate": 0.6176
+    },
+    {
+      "commander": "Elber, Jungle Emissary",
+      "opponent": "Fael Spiritwalker",
+      "wins": 2,
+      "losses": 0,
+      "total": 2,
+      "winrate": 1.0
+    },
+    {
+      "commander": "Elber, Jungle Emissary",
+      "opponent": "It That Weaves",
+      "wins": 1,
+      "losses": 4,
+      "total": 5,
+      "winrate": 0.2
+    },
+    {
+      "commander": "Elber, Jungle Emissary",
+      "opponent": "Jagris, the Huntsman",
+      "wins": 15,
+      "losses": 12,
+      "total": 27,
+      "winrate": 0.5556
+    },
+    {
+      "commander": "Elber, Jungle Emissary",
+      "opponent": "Kai, Longcount Shaman",
+      "wins": 21,
+      "losses": 13,
+      "total": 34,
+      "winrate": 0.6176
+    },
+    {
+      "commander": "Elber, Jungle Emissary",
+      "opponent": "Lazim, Thief of Gods",
+      "wins": 18,
+      "losses": 9,
+      "total": 27,
+      "winrate": 0.6667
+    },
+    {
+      "commander": "Elber, Jungle Emissary",
+      "opponent": "Lubela, Tender of the Wilds",
+      "wins": 11,
+      "losses": 9,
+      "total": 20,
+      "winrate": 0.55
+    },
+    {
+      "commander": "Elber, Jungle Emissary",
+      "opponent": "Lyre, Tactician of the Order",
+      "wins": 7,
+      "losses": 6,
+      "total": 13,
+      "winrate": 0.5385
+    },
+    {
+      "commander": "Elber, Jungle Emissary",
+      "opponent": "Macks Speed",
+      "wins": 15,
+      "losses": 15,
+      "total": 30,
+      "winrate": 0.5
+    },
+    {
+      "commander": "Elber, Jungle Emissary",
+      "opponent": "Milo Sunstone",
+      "wins": 11,
+      "losses": 13,
+      "total": 24,
+      "winrate": 0.4583
+    },
+    {
+      "commander": "Elber, Jungle Emissary",
+      "opponent": "Newhaven Township",
+      "wins": 5,
+      "losses": 4,
+      "total": 9,
+      "winrate": 0.5556
+    },
+    {
+      "commander": "Elber, Jungle Emissary",
+      "opponent": "Soultaker Viessa",
+      "wins": 7,
+      "losses": 10,
+      "total": 17,
+      "winrate": 0.4118
+    },
+    {
+      "commander": "Elber, Jungle Emissary",
+      "opponent": "Starwise Luna",
+      "wins": 7,
+      "losses": 10,
+      "total": 17,
+      "winrate": 0.4118
+    },
+    {
+      "commander": "Elyse of the Order",
+      "opponent": "Captain Greenbeard",
+      "wins": 14,
+      "losses": 7,
+      "total": 21,
+      "winrate": 0.6667
+    },
+    {
+      "commander": "Elyse of the Order",
+      "opponent": "Elber, Jungle Emissary",
+      "wins": 4,
+      "losses": 4,
+      "total": 8,
+      "winrate": 0.5
+    },
+    {
+      "commander": "Elyse of the Order",
+      "opponent": "Executor Ginn",
+      "wins": 12,
+      "losses": 5,
+      "total": 17,
+      "winrate": 0.7059
+    },
+    {
+      "commander": "Elyse of the Order",
+      "opponent": "Fael Spiritwalker",
+      "wins": 11,
+      "losses": 5,
+      "total": 16,
+      "winrate": 0.6875
+    },
+    {
+      "commander": "Elyse of the Order",
+      "opponent": "It That Weaves",
+      "wins": 0,
+      "losses": 3,
+      "total": 3,
+      "winrate": 0.0
+    },
+    {
+      "commander": "Elyse of the Order",
+      "opponent": "Jagris, the Huntsman",
+      "wins": 13,
+      "losses": 14,
+      "total": 27,
+      "winrate": 0.4815
+    },
+    {
+      "commander": "Elyse of the Order",
+      "opponent": "Kai, Longcount Shaman",
+      "wins": 6,
+      "losses": 6,
+      "total": 12,
+      "winrate": 0.5
+    },
+    {
+      "commander": "Elyse of the Order",
+      "opponent": "Lazim, Thief of Gods",
+      "wins": 3,
+      "losses": 5,
+      "total": 8,
+      "winrate": 0.375
+    },
+    {
+      "commander": "Elyse of the Order",
+      "opponent": "Lubela, Tender of the Wilds",
+      "wins": 2,
+      "losses": 3,
+      "total": 5,
+      "winrate": 0.4
+    },
+    {
+      "commander": "Elyse of the Order",
+      "opponent": "Macks Speed",
+      "wins": 2,
+      "losses": 0,
+      "total": 2,
+      "winrate": 1.0
+    },
+    {
+      "commander": "Elyse of the Order",
+      "opponent": "Milo Sunstone",
+      "wins": 4,
+      "losses": 0,
+      "total": 4,
+      "winrate": 1.0
+    },
+    {
+      "commander": "Elyse of the Order",
+      "opponent": "Newhaven Township",
+      "wins": 5,
+      "losses": 2,
+      "total": 7,
+      "winrate": 0.7143
+    },
+    {
+      "commander": "Elyse of the Order",
+      "opponent": "Soultaker Viessa",
+      "wins": 5,
+      "losses": 8,
+      "total": 13,
+      "winrate": 0.3846
+    },
+    {
+      "commander": "Elyse of the Order",
+      "opponent": "Starwise Luna",
+      "wins": 14,
+      "losses": 8,
+      "total": 22,
+      "winrate": 0.6364
+    },
+    {
+      "commander": "Executor Ginn",
+      "opponent": "Captain Greenbeard",
+      "wins": 11,
+      "losses": 24,
+      "total": 35,
+      "winrate": 0.3143
+    },
+    {
+      "commander": "Executor Ginn",
+      "opponent": "Elber, Jungle Emissary",
+      "wins": 13,
+      "losses": 21,
+      "total": 34,
+      "winrate": 0.3824
+    },
+    {
+      "commander": "Executor Ginn",
+      "opponent": "Elyse of the Order",
+      "wins": 5,
+      "losses": 12,
+      "total": 17,
+      "winrate": 0.2941
+    },
+    {
+      "commander": "Executor Ginn",
+      "opponent": "Fael Spiritwalker",
+      "wins": 1,
+      "losses": 5,
+      "total": 6,
+      "winrate": 0.1667
+    },
+    {
+      "commander": "Executor Ginn",
+      "opponent": "It That Weaves",
+      "wins": 2,
+      "losses": 1,
+      "total": 3,
+      "winrate": 0.6667
+    },
+    {
+      "commander": "Executor Ginn",
+      "opponent": "Jagris, the Huntsman",
+      "wins": 9,
+      "losses": 28,
+      "total": 37,
+      "winrate": 0.2432
+    },
+    {
+      "commander": "Executor Ginn",
+      "opponent": "Kai, Longcount Shaman",
+      "wins": 20,
+      "losses": 13,
+      "total": 33,
+      "winrate": 0.6061
+    },
+    {
+      "commander": "Executor Ginn",
+      "opponent": "Lazim, Thief of Gods",
+      "wins": 15,
+      "losses": 13,
+      "total": 28,
+      "winrate": 0.5357
+    },
+    {
+      "commander": "Executor Ginn",
+      "opponent": "Lubela, Tender of the Wilds",
+      "wins": 4,
+      "losses": 5,
+      "total": 9,
+      "winrate": 0.4444
+    },
+    {
+      "commander": "Executor Ginn",
+      "opponent": "Lyre, Tactician of the Order",
+      "wins": 2,
+      "losses": 3,
+      "total": 5,
+      "winrate": 0.4
+    },
+    {
+      "commander": "Executor Ginn",
+      "opponent": "Macks Speed",
+      "wins": 3,
+      "losses": 12,
+      "total": 15,
+      "winrate": 0.2
+    },
+    {
+      "commander": "Executor Ginn",
+      "opponent": "Milo Sunstone",
+      "wins": 3,
+      "losses": 6,
+      "total": 9,
+      "winrate": 0.3333
+    },
+    {
+      "commander": "Executor Ginn",
+      "opponent": "Newhaven Township",
+      "wins": 12,
+      "losses": 22,
+      "total": 34,
+      "winrate": 0.3529
+    },
+    {
+      "commander": "Executor Ginn",
+      "opponent": "Soultaker Viessa",
+      "wins": 6,
+      "losses": 12,
+      "total": 18,
+      "winrate": 0.3333
+    },
+    {
+      "commander": "Executor Ginn",
+      "opponent": "Starwise Luna",
+      "wins": 14,
+      "losses": 30,
+      "total": 44,
+      "winrate": 0.3182
+    },
+    {
+      "commander": "Fael Spiritwalker",
+      "opponent": "Captain Greenbeard",
+      "wins": 4,
+      "losses": 3,
+      "total": 7,
+      "winrate": 0.5714
+    },
+    {
+      "commander": "Fael Spiritwalker",
+      "opponent": "Elber, Jungle Emissary",
+      "wins": 0,
+      "losses": 2,
+      "total": 2,
+      "winrate": 0.0
+    },
+    {
+      "commander": "Fael Spiritwalker",
+      "opponent": "Elyse of the Order",
+      "wins": 5,
+      "losses": 11,
+      "total": 16,
+      "winrate": 0.3125
+    },
+    {
+      "commander": "Fael Spiritwalker",
+      "opponent": "Executor Ginn",
+      "wins": 5,
+      "losses": 1,
+      "total": 6,
+      "winrate": 0.8333
+    },
+    {
+      "commander": "Fael Spiritwalker",
+      "opponent": "It That Weaves",
+      "wins": 2,
+      "losses": 7,
+      "total": 9,
+      "winrate": 0.2222
+    },
+    {
+      "commander": "Fael Spiritwalker",
+      "opponent": "Jagris, the Huntsman",
+      "wins": 69,
+      "losses": 94,
+      "total": 163,
+      "winrate": 0.4233
+    },
+    {
+      "commander": "Fael Spiritwalker",
+      "opponent": "Kai, Longcount Shaman",
+      "wins": 5,
+      "losses": 4,
+      "total": 9,
+      "winrate": 0.5556
+    },
+    {
+      "commander": "Fael Spiritwalker",
+      "opponent": "Lazim, Thief of Gods",
+      "wins": 14,
+      "losses": 12,
+      "total": 26,
+      "winrate": 0.5385
+    },
+    {
+      "commander": "Fael Spiritwalker",
+      "opponent": "Lubela, Tender of the Wilds",
+      "wins": 5,
+      "losses": 8,
+      "total": 13,
+      "winrate": 0.3846
+    },
+    {
+      "commander": "Fael Spiritwalker",
+      "opponent": "Macks Speed",
+      "wins": 10,
+      "losses": 6,
+      "total": 16,
+      "winrate": 0.625
+    },
+    {
+      "commander": "Fael Spiritwalker",
+      "opponent": "Milo Sunstone",
+      "wins": 3,
+      "losses": 5,
+      "total": 8,
+      "winrate": 0.375
+    },
+    {
+      "commander": "Fael Spiritwalker",
+      "opponent": "Newhaven Township",
+      "wins": 12,
+      "losses": 4,
+      "total": 16,
+      "winrate": 0.75
+    },
+    {
+      "commander": "Fael Spiritwalker",
+      "opponent": "Soultaker Viessa",
+      "wins": 8,
+      "losses": 7,
+      "total": 15,
+      "winrate": 0.5333
+    },
+    {
+      "commander": "Fael Spiritwalker",
+      "opponent": "Starwise Luna",
+      "wins": 18,
+      "losses": 12,
+      "total": 30,
+      "winrate": 0.6
+    },
+    {
+      "commander": "It That Weaves",
+      "opponent": "Captain Greenbeard",
+      "wins": 2,
+      "losses": 3,
+      "total": 5,
+      "winrate": 0.4
+    },
+    {
+      "commander": "It That Weaves",
+      "opponent": "Elber, Jungle Emissary",
+      "wins": 4,
+      "losses": 1,
+      "total": 5,
+      "winrate": 0.8
+    },
+    {
+      "commander": "It That Weaves",
+      "opponent": "Elyse of the Order",
+      "wins": 3,
+      "losses": 0,
+      "total": 3,
+      "winrate": 1.0
+    },
+    {
+      "commander": "It That Weaves",
+      "opponent": "Executor Ginn",
+      "wins": 1,
+      "losses": 2,
+      "total": 3,
+      "winrate": 0.3333
+    },
+    {
+      "commander": "It That Weaves",
+      "opponent": "Fael Spiritwalker",
+      "wins": 7,
+      "losses": 2,
+      "total": 9,
+      "winrate": 0.7778
+    },
+    {
+      "commander": "It That Weaves",
+      "opponent": "Jagris, the Huntsman",
+      "wins": 11,
+      "losses": 48,
+      "total": 59,
+      "winrate": 0.1864
+    },
+    {
+      "commander": "It That Weaves",
+      "opponent": "Kai, Longcount Shaman",
+      "wins": 6,
+      "losses": 4,
+      "total": 10,
+      "winrate": 0.6
+    },
+    {
+      "commander": "It That Weaves",
+      "opponent": "Lazim, Thief of Gods",
+      "wins": 7,
+      "losses": 3,
+      "total": 10,
+      "winrate": 0.7
+    },
+    {
+      "commander": "It That Weaves",
+      "opponent": "Lubela, Tender of the Wilds",
+      "wins": 2,
+      "losses": 2,
+      "total": 4,
+      "winrate": 0.5
+    },
+    {
+      "commander": "It That Weaves",
+      "opponent": "Macks Speed",
+      "wins": 3,
+      "losses": 1,
+      "total": 4,
+      "winrate": 0.75
+    },
+    {
+      "commander": "It That Weaves",
+      "opponent": "Milo Sunstone",
+      "wins": 6,
+      "losses": 7,
+      "total": 13,
+      "winrate": 0.4615
+    },
+    {
+      "commander": "It That Weaves",
+      "opponent": "Newhaven Township",
+      "wins": 6,
+      "losses": 0,
+      "total": 6,
+      "winrate": 1.0
+    },
+    {
+      "commander": "It That Weaves",
+      "opponent": "Soultaker Viessa",
+      "wins": 0,
+      "losses": 2,
+      "total": 2,
+      "winrate": 0.0
+    },
+    {
+      "commander": "It That Weaves",
+      "opponent": "Starwise Luna",
+      "wins": 9,
+      "losses": 18,
+      "total": 27,
+      "winrate": 0.3333
+    },
+    {
+      "commander": "Jagris, the Huntsman",
+      "opponent": "Captain Greenbeard",
+      "wins": 38,
+      "losses": 41,
+      "total": 79,
+      "winrate": 0.481
+    },
+    {
+      "commander": "Jagris, the Huntsman",
+      "opponent": "Elber, Jungle Emissary",
+      "wins": 12,
+      "losses": 15,
+      "total": 27,
+      "winrate": 0.4444
+    },
+    {
+      "commander": "Jagris, the Huntsman",
+      "opponent": "Elyse of the Order",
+      "wins": 14,
+      "losses": 13,
+      "total": 27,
+      "winrate": 0.5185
+    },
+    {
+      "commander": "Jagris, the Huntsman",
+      "opponent": "Executor Ginn",
+      "wins": 28,
+      "losses": 9,
+      "total": 37,
+      "winrate": 0.7568
+    },
+    {
+      "commander": "Jagris, the Huntsman",
+      "opponent": "Fael Spiritwalker",
+      "wins": 94,
+      "losses": 69,
+      "total": 163,
+      "winrate": 0.5767
+    },
+    {
+      "commander": "Jagris, the Huntsman",
+      "opponent": "It That Weaves",
+      "wins": 48,
+      "losses": 11,
+      "total": 59,
+      "winrate": 0.8136
+    },
+    {
+      "commander": "Jagris, the Huntsman",
+      "opponent": "Kai, Longcount Shaman",
+      "wins": 52,
+      "losses": 28,
+      "total": 80,
+      "winrate": 0.65
+    },
+    {
+      "commander": "Jagris, the Huntsman",
+      "opponent": "Lazim, Thief of Gods",
+      "wins": 31,
+      "losses": 10,
+      "total": 41,
+      "winrate": 0.7561
+    },
+    {
+      "commander": "Jagris, the Huntsman",
+      "opponent": "Lubela, Tender of the Wilds",
+      "wins": 31,
+      "losses": 15,
+      "total": 46,
+      "winrate": 0.6739
+    },
+    {
+      "commander": "Jagris, the Huntsman",
+      "opponent": "Lyre, Tactician of the Order",
+      "wins": 2,
+      "losses": 2,
+      "total": 4,
+      "winrate": 0.5
+    },
+    {
+      "commander": "Jagris, the Huntsman",
+      "opponent": "Macks Speed",
+      "wins": 26,
+      "losses": 18,
+      "total": 44,
+      "winrate": 0.5909
+    },
+    {
+      "commander": "Jagris, the Huntsman",
+      "opponent": "Milo Sunstone",
+      "wins": 19,
+      "losses": 16,
+      "total": 35,
+      "winrate": 0.5429
+    },
+    {
+      "commander": "Jagris, the Huntsman",
+      "opponent": "Newhaven Township",
+      "wins": 52,
+      "losses": 21,
+      "total": 73,
+      "winrate": 0.7123
+    },
+    {
+      "commander": "Jagris, the Huntsman",
+      "opponent": "Soultaker Viessa",
+      "wins": 74,
+      "losses": 60,
+      "total": 134,
+      "winrate": 0.5522
+    },
+    {
+      "commander": "Jagris, the Huntsman",
+      "opponent": "Starwise Luna",
+      "wins": 45,
+      "losses": 41,
+      "total": 86,
+      "winrate": 0.5233
+    },
+    {
+      "commander": "Kai, Longcount Shaman",
+      "opponent": "Captain Greenbeard",
+      "wins": 20,
+      "losses": 25,
+      "total": 45,
+      "winrate": 0.4444
+    },
+    {
+      "commander": "Kai, Longcount Shaman",
+      "opponent": "Elber, Jungle Emissary",
+      "wins": 13,
+      "losses": 21,
+      "total": 34,
+      "winrate": 0.3824
+    },
+    {
+      "commander": "Kai, Longcount Shaman",
+      "opponent": "Elyse of the Order",
+      "wins": 6,
+      "losses": 6,
+      "total": 12,
+      "winrate": 0.5
+    },
+    {
+      "commander": "Kai, Longcount Shaman",
+      "opponent": "Executor Ginn",
+      "wins": 13,
+      "losses": 20,
+      "total": 33,
+      "winrate": 0.3939
+    },
+    {
+      "commander": "Kai, Longcount Shaman",
+      "opponent": "Fael Spiritwalker",
+      "wins": 4,
+      "losses": 5,
+      "total": 9,
+      "winrate": 0.4444
+    },
+    {
+      "commander": "Kai, Longcount Shaman",
+      "opponent": "It That Weaves",
+      "wins": 4,
+      "losses": 6,
+      "total": 10,
+      "winrate": 0.4
+    },
+    {
+      "commander": "Kai, Longcount Shaman",
+      "opponent": "Jagris, the Huntsman",
+      "wins": 28,
+      "losses": 52,
+      "total": 80,
+      "winrate": 0.35
+    },
+    {
+      "commander": "Kai, Longcount Shaman",
+      "opponent": "Lazim, Thief of Gods",
+      "wins": 32,
+      "losses": 18,
+      "total": 50,
+      "winrate": 0.64
+    },
+    {
+      "commander": "Kai, Longcount Shaman",
+      "opponent": "Lubela, Tender of the Wilds",
+      "wins": 13,
+      "losses": 9,
+      "total": 22,
+      "winrate": 0.5909
+    },
+    {
+      "commander": "Kai, Longcount Shaman",
+      "opponent": "Lyre, Tactician of the Order",
+      "wins": 0,
+      "losses": 2,
+      "total": 2,
+      "winrate": 0.0
+    },
+    {
+      "commander": "Kai, Longcount Shaman",
+      "opponent": "Macks Speed",
+      "wins": 9,
+      "losses": 16,
+      "total": 25,
+      "winrate": 0.36
+    },
+    {
+      "commander": "Kai, Longcount Shaman",
+      "opponent": "Milo Sunstone",
+      "wins": 14,
+      "losses": 8,
+      "total": 22,
+      "winrate": 0.6364
+    },
+    {
+      "commander": "Kai, Longcount Shaman",
+      "opponent": "Newhaven Township",
+      "wins": 5,
+      "losses": 7,
+      "total": 12,
+      "winrate": 0.4167
+    },
+    {
+      "commander": "Kai, Longcount Shaman",
+      "opponent": "Soultaker Viessa",
+      "wins": 13,
+      "losses": 10,
+      "total": 23,
+      "winrate": 0.5652
+    },
+    {
+      "commander": "Kai, Longcount Shaman",
+      "opponent": "Starwise Luna",
+      "wins": 19,
+      "losses": 20,
+      "total": 39,
+      "winrate": 0.4872
+    },
+    {
+      "commander": "Lazim, Thief of Gods",
+      "opponent": "Captain Greenbeard",
+      "wins": 14,
+      "losses": 19,
+      "total": 33,
+      "winrate": 0.4242
+    },
+    {
+      "commander": "Lazim, Thief of Gods",
+      "opponent": "Elber, Jungle Emissary",
+      "wins": 9,
+      "losses": 18,
+      "total": 27,
+      "winrate": 0.3333
+    },
+    {
+      "commander": "Lazim, Thief of Gods",
+      "opponent": "Elyse of the Order",
+      "wins": 5,
+      "losses": 3,
+      "total": 8,
+      "winrate": 0.625
+    },
+    {
+      "commander": "Lazim, Thief of Gods",
+      "opponent": "Executor Ginn",
+      "wins": 13,
+      "losses": 15,
+      "total": 28,
+      "winrate": 0.4643
+    },
+    {
+      "commander": "Lazim, Thief of Gods",
+      "opponent": "Fael Spiritwalker",
+      "wins": 12,
+      "losses": 14,
+      "total": 26,
+      "winrate": 0.4615
+    },
+    {
+      "commander": "Lazim, Thief of Gods",
+      "opponent": "It That Weaves",
+      "wins": 3,
+      "losses": 7,
+      "total": 10,
+      "winrate": 0.3
+    },
+    {
+      "commander": "Lazim, Thief of Gods",
+      "opponent": "Jagris, the Huntsman",
+      "wins": 10,
+      "losses": 31,
+      "total": 41,
+      "winrate": 0.2439
+    },
+    {
+      "commander": "Lazim, Thief of Gods",
+      "opponent": "Kai, Longcount Shaman",
+      "wins": 18,
+      "losses": 32,
+      "total": 50,
+      "winrate": 0.36
+    },
+    {
+      "commander": "Lazim, Thief of Gods",
+      "opponent": "Lubela, Tender of the Wilds",
+      "wins": 13,
+      "losses": 7,
+      "total": 20,
+      "winrate": 0.65
+    },
+    {
+      "commander": "Lazim, Thief of Gods",
+      "opponent": "Lyre, Tactician of the Order",
+      "wins": 4,
+      "losses": 2,
+      "total": 6,
+      "winrate": 0.6667
+    },
+    {
+      "commander": "Lazim, Thief of Gods",
+      "opponent": "Macks Speed",
+      "wins": 4,
+      "losses": 18,
+      "total": 22,
+      "winrate": 0.1818
+    },
+    {
+      "commander": "Lazim, Thief of Gods",
+      "opponent": "Milo Sunstone",
+      "wins": 9,
+      "losses": 12,
+      "total": 21,
+      "winrate": 0.4286
+    },
+    {
+      "commander": "Lazim, Thief of Gods",
+      "opponent": "Newhaven Township",
+      "wins": 14,
+      "losses": 7,
+      "total": 21,
+      "winrate": 0.6667
+    },
+    {
+      "commander": "Lazim, Thief of Gods",
+      "opponent": "Soultaker Viessa",
+      "wins": 12,
+      "losses": 31,
+      "total": 43,
+      "winrate": 0.2791
+    },
+    {
+      "commander": "Lazim, Thief of Gods",
+      "opponent": "Starwise Luna",
+      "wins": 16,
+      "losses": 29,
+      "total": 45,
+      "winrate": 0.3556
+    },
+    {
+      "commander": "Lubela, Tender of the Wilds",
+      "opponent": "Captain Greenbeard",
+      "wins": 21,
+      "losses": 38,
+      "total": 59,
+      "winrate": 0.3559
+    },
+    {
+      "commander": "Lubela, Tender of the Wilds",
+      "opponent": "Elber, Jungle Emissary",
+      "wins": 9,
+      "losses": 11,
+      "total": 20,
+      "winrate": 0.45
+    },
+    {
+      "commander": "Lubela, Tender of the Wilds",
+      "opponent": "Elyse of the Order",
+      "wins": 3,
+      "losses": 2,
+      "total": 5,
+      "winrate": 0.6
+    },
+    {
+      "commander": "Lubela, Tender of the Wilds",
+      "opponent": "Executor Ginn",
+      "wins": 5,
+      "losses": 4,
+      "total": 9,
+      "winrate": 0.5556
+    },
+    {
+      "commander": "Lubela, Tender of the Wilds",
+      "opponent": "Fael Spiritwalker",
+      "wins": 8,
+      "losses": 5,
+      "total": 13,
+      "winrate": 0.6154
+    },
+    {
+      "commander": "Lubela, Tender of the Wilds",
+      "opponent": "It That Weaves",
+      "wins": 2,
+      "losses": 2,
+      "total": 4,
+      "winrate": 0.5
+    },
+    {
+      "commander": "Lubela, Tender of the Wilds",
+      "opponent": "Jagris, the Huntsman",
+      "wins": 15,
+      "losses": 31,
+      "total": 46,
+      "winrate": 0.3261
+    },
+    {
+      "commander": "Lubela, Tender of the Wilds",
+      "opponent": "Kai, Longcount Shaman",
+      "wins": 9,
+      "losses": 13,
+      "total": 22,
+      "winrate": 0.4091
+    },
+    {
+      "commander": "Lubela, Tender of the Wilds",
+      "opponent": "Lazim, Thief of Gods",
+      "wins": 7,
+      "losses": 13,
+      "total": 20,
+      "winrate": 0.35
+    },
+    {
+      "commander": "Lubela, Tender of the Wilds",
+      "opponent": "Macks Speed",
+      "wins": 6,
+      "losses": 9,
+      "total": 15,
+      "winrate": 0.4
+    },
+    {
+      "commander": "Lubela, Tender of the Wilds",
+      "opponent": "Milo Sunstone",
+      "wins": 13,
+      "losses": 15,
+      "total": 28,
+      "winrate": 0.4643
+    },
+    {
+      "commander": "Lubela, Tender of the Wilds",
+      "opponent": "Newhaven Township",
+      "wins": 7,
+      "losses": 3,
+      "total": 10,
+      "winrate": 0.7
+    },
+    {
+      "commander": "Lubela, Tender of the Wilds",
+      "opponent": "Soultaker Viessa",
+      "wins": 9,
+      "losses": 8,
+      "total": 17,
+      "winrate": 0.5294
+    },
+    {
+      "commander": "Lubela, Tender of the Wilds",
+      "opponent": "Starwise Luna",
+      "wins": 8,
+      "losses": 11,
+      "total": 19,
+      "winrate": 0.4211
+    },
+    {
+      "commander": "Lyre, Tactician of the Order",
+      "opponent": "Captain Greenbeard",
+      "wins": 8,
+      "losses": 5,
+      "total": 13,
+      "winrate": 0.6154
+    },
+    {
+      "commander": "Lyre, Tactician of the Order",
+      "opponent": "Elber, Jungle Emissary",
+      "wins": 6,
+      "losses": 7,
+      "total": 13,
+      "winrate": 0.4615
+    },
+    {
+      "commander": "Lyre, Tactician of the Order",
+      "opponent": "Executor Ginn",
+      "wins": 3,
+      "losses": 2,
+      "total": 5,
+      "winrate": 0.6
+    },
+    {
+      "commander": "Lyre, Tactician of the Order",
+      "opponent": "Jagris, the Huntsman",
+      "wins": 2,
+      "losses": 2,
+      "total": 4,
+      "winrate": 0.5
+    },
+    {
+      "commander": "Lyre, Tactician of the Order",
+      "opponent": "Kai, Longcount Shaman",
+      "wins": 2,
+      "losses": 0,
+      "total": 2,
+      "winrate": 1.0
+    },
+    {
+      "commander": "Lyre, Tactician of the Order",
+      "opponent": "Lazim, Thief of Gods",
+      "wins": 2,
+      "losses": 4,
+      "total": 6,
+      "winrate": 0.3333
+    },
+    {
+      "commander": "Lyre, Tactician of the Order",
+      "opponent": "Macks Speed",
+      "wins": 3,
+      "losses": 1,
+      "total": 4,
+      "winrate": 0.75
+    },
+    {
+      "commander": "Lyre, Tactician of the Order",
+      "opponent": "Milo Sunstone",
+      "wins": 1,
+      "losses": 1,
+      "total": 2,
+      "winrate": 0.5
+    },
+    {
+      "commander": "Lyre, Tactician of the Order",
+      "opponent": "Soultaker Viessa",
+      "wins": 2,
+      "losses": 1,
+      "total": 3,
+      "winrate": 0.6667
+    },
+    {
+      "commander": "Macks Speed",
+      "opponent": "Captain Greenbeard",
+      "wins": 20,
+      "losses": 9,
+      "total": 29,
+      "winrate": 0.6897
+    },
+    {
+      "commander": "Macks Speed",
+      "opponent": "Elber, Jungle Emissary",
+      "wins": 15,
+      "losses": 15,
+      "total": 30,
+      "winrate": 0.5
+    },
+    {
+      "commander": "Macks Speed",
+      "opponent": "Elyse of the Order",
+      "wins": 0,
+      "losses": 2,
+      "total": 2,
+      "winrate": 0.0
+    },
+    {
+      "commander": "Macks Speed",
+      "opponent": "Executor Ginn",
+      "wins": 12,
+      "losses": 3,
+      "total": 15,
+      "winrate": 0.8
+    },
+    {
+      "commander": "Macks Speed",
+      "opponent": "Fael Spiritwalker",
+      "wins": 6,
+      "losses": 10,
+      "total": 16,
+      "winrate": 0.375
+    },
+    {
+      "commander": "Macks Speed",
+      "opponent": "It That Weaves",
+      "wins": 1,
+      "losses": 3,
+      "total": 4,
+      "winrate": 0.25
+    },
+    {
+      "commander": "Macks Speed",
+      "opponent": "Jagris, the Huntsman",
+      "wins": 18,
+      "losses": 26,
+      "total": 44,
+      "winrate": 0.4091
+    },
+    {
+      "commander": "Macks Speed",
+      "opponent": "Kai, Longcount Shaman",
+      "wins": 16,
+      "losses": 9,
+      "total": 25,
+      "winrate": 0.64
+    },
+    {
+      "commander": "Macks Speed",
+      "opponent": "Lazim, Thief of Gods",
+      "wins": 18,
+      "losses": 4,
+      "total": 22,
+      "winrate": 0.8182
+    },
+    {
+      "commander": "Macks Speed",
+      "opponent": "Lubela, Tender of the Wilds",
+      "wins": 9,
+      "losses": 6,
+      "total": 15,
+      "winrate": 0.6
+    },
+    {
+      "commander": "Macks Speed",
+      "opponent": "Lyre, Tactician of the Order",
+      "wins": 1,
+      "losses": 3,
+      "total": 4,
+      "winrate": 0.25
+    },
+    {
+      "commander": "Macks Speed",
+      "opponent": "Milo Sunstone",
+      "wins": 8,
+      "losses": 6,
+      "total": 14,
+      "winrate": 0.5714
+    },
+    {
+      "commander": "Macks Speed",
+      "opponent": "Newhaven Township",
+      "wins": 8,
+      "losses": 7,
+      "total": 15,
+      "winrate": 0.5333
+    },
+    {
+      "commander": "Macks Speed",
+      "opponent": "Soultaker Viessa",
+      "wins": 9,
+      "losses": 11,
+      "total": 20,
+      "winrate": 0.45
+    },
+    {
+      "commander": "Macks Speed",
+      "opponent": "Starwise Luna",
+      "wins": 10,
+      "losses": 9,
+      "total": 19,
+      "winrate": 0.5263
+    },
+    {
+      "commander": "Milo Sunstone",
+      "opponent": "Captain Greenbeard",
+      "wins": 39,
+      "losses": 32,
+      "total": 71,
+      "winrate": 0.5493
+    },
+    {
+      "commander": "Milo Sunstone",
+      "opponent": "Elber, Jungle Emissary",
+      "wins": 13,
+      "losses": 11,
+      "total": 24,
+      "winrate": 0.5417
+    },
+    {
+      "commander": "Milo Sunstone",
+      "opponent": "Elyse of the Order",
+      "wins": 0,
+      "losses": 4,
+      "total": 4,
+      "winrate": 0.0
+    },
+    {
+      "commander": "Milo Sunstone",
+      "opponent": "Executor Ginn",
+      "wins": 6,
+      "losses": 3,
+      "total": 9,
+      "winrate": 0.6667
+    },
+    {
+      "commander": "Milo Sunstone",
+      "opponent": "Fael Spiritwalker",
+      "wins": 5,
+      "losses": 3,
+      "total": 8,
+      "winrate": 0.625
+    },
+    {
+      "commander": "Milo Sunstone",
+      "opponent": "It That Weaves",
+      "wins": 7,
+      "losses": 6,
+      "total": 13,
+      "winrate": 0.5385
+    },
+    {
+      "commander": "Milo Sunstone",
+      "opponent": "Jagris, the Huntsman",
+      "wins": 16,
+      "losses": 19,
+      "total": 35,
+      "winrate": 0.4571
+    },
+    {
+      "commander": "Milo Sunstone",
+      "opponent": "Kai, Longcount Shaman",
+      "wins": 8,
+      "losses": 14,
+      "total": 22,
+      "winrate": 0.3636
+    },
+    {
+      "commander": "Milo Sunstone",
+      "opponent": "Lazim, Thief of Gods",
+      "wins": 12,
+      "losses": 9,
+      "total": 21,
+      "winrate": 0.5714
+    },
+    {
+      "commander": "Milo Sunstone",
+      "opponent": "Lubela, Tender of the Wilds",
+      "wins": 15,
+      "losses": 13,
+      "total": 28,
+      "winrate": 0.5357
+    },
+    {
+      "commander": "Milo Sunstone",
+      "opponent": "Lyre, Tactician of the Order",
+      "wins": 1,
+      "losses": 1,
+      "total": 2,
+      "winrate": 0.5
+    },
+    {
+      "commander": "Milo Sunstone",
+      "opponent": "Macks Speed",
+      "wins": 6,
+      "losses": 8,
+      "total": 14,
+      "winrate": 0.4286
+    },
+    {
+      "commander": "Milo Sunstone",
+      "opponent": "Newhaven Township",
+      "wins": 3,
+      "losses": 3,
+      "total": 6,
+      "winrate": 0.5
+    },
+    {
+      "commander": "Milo Sunstone",
+      "opponent": "Soultaker Viessa",
+      "wins": 12,
+      "losses": 10,
+      "total": 22,
+      "winrate": 0.5455
+    },
+    {
+      "commander": "Milo Sunstone",
+      "opponent": "Starwise Luna",
+      "wins": 7,
+      "losses": 9,
+      "total": 16,
+      "winrate": 0.4375
+    },
+    {
+      "commander": "Newhaven Township",
+      "opponent": "Captain Greenbeard",
+      "wins": 6,
+      "losses": 9,
+      "total": 15,
+      "winrate": 0.4
+    },
+    {
+      "commander": "Newhaven Township",
+      "opponent": "Elber, Jungle Emissary",
+      "wins": 4,
+      "losses": 5,
+      "total": 9,
+      "winrate": 0.4444
+    },
+    {
+      "commander": "Newhaven Township",
+      "opponent": "Elyse of the Order",
+      "wins": 2,
+      "losses": 5,
+      "total": 7,
+      "winrate": 0.2857
+    },
+    {
+      "commander": "Newhaven Township",
+      "opponent": "Executor Ginn",
+      "wins": 22,
+      "losses": 12,
+      "total": 34,
+      "winrate": 0.6471
+    },
+    {
+      "commander": "Newhaven Township",
+      "opponent": "Fael Spiritwalker",
+      "wins": 4,
+      "losses": 12,
+      "total": 16,
+      "winrate": 0.25
+    },
+    {
+      "commander": "Newhaven Township",
+      "opponent": "It That Weaves",
+      "wins": 0,
+      "losses": 6,
+      "total": 6,
+      "winrate": 0.0
+    },
+    {
+      "commander": "Newhaven Township",
+      "opponent": "Jagris, the Huntsman",
+      "wins": 21,
+      "losses": 52,
+      "total": 73,
+      "winrate": 0.2877
+    },
+    {
+      "commander": "Newhaven Township",
+      "opponent": "Kai, Longcount Shaman",
+      "wins": 7,
+      "losses": 5,
+      "total": 12,
+      "winrate": 0.5833
+    },
+    {
+      "commander": "Newhaven Township",
+      "opponent": "Lazim, Thief of Gods",
+      "wins": 7,
+      "losses": 14,
+      "total": 21,
+      "winrate": 0.3333
+    },
+    {
+      "commander": "Newhaven Township",
+      "opponent": "Lubela, Tender of the Wilds",
+      "wins": 3,
+      "losses": 7,
+      "total": 10,
+      "winrate": 0.3
+    },
+    {
+      "commander": "Newhaven Township",
+      "opponent": "Macks Speed",
+      "wins": 7,
+      "losses": 8,
+      "total": 15,
+      "winrate": 0.4667
+    },
+    {
+      "commander": "Newhaven Township",
+      "opponent": "Milo Sunstone",
+      "wins": 3,
+      "losses": 3,
+      "total": 6,
+      "winrate": 0.5
+    },
+    {
+      "commander": "Newhaven Township",
+      "opponent": "Soultaker Viessa",
+      "wins": 8,
+      "losses": 22,
+      "total": 30,
+      "winrate": 0.2667
+    },
+    {
+      "commander": "Newhaven Township",
+      "opponent": "Starwise Luna",
+      "wins": 10,
+      "losses": 20,
+      "total": 30,
+      "winrate": 0.3333
+    },
+    {
+      "commander": "Soultaker Viessa",
+      "opponent": "Captain Greenbeard",
+      "wins": 21,
+      "losses": 4,
+      "total": 25,
+      "winrate": 0.84
+    },
+    {
+      "commander": "Soultaker Viessa",
+      "opponent": "Elber, Jungle Emissary",
+      "wins": 10,
+      "losses": 7,
+      "total": 17,
+      "winrate": 0.5882
+    },
+    {
+      "commander": "Soultaker Viessa",
+      "opponent": "Elyse of the Order",
+      "wins": 8,
+      "losses": 5,
+      "total": 13,
+      "winrate": 0.6154
+    },
+    {
+      "commander": "Soultaker Viessa",
+      "opponent": "Executor Ginn",
+      "wins": 12,
+      "losses": 6,
+      "total": 18,
+      "winrate": 0.6667
+    },
+    {
+      "commander": "Soultaker Viessa",
+      "opponent": "Fael Spiritwalker",
+      "wins": 7,
+      "losses": 8,
+      "total": 15,
+      "winrate": 0.4667
+    },
+    {
+      "commander": "Soultaker Viessa",
+      "opponent": "It That Weaves",
+      "wins": 2,
+      "losses": 0,
+      "total": 2,
+      "winrate": 1.0
+    },
+    {
+      "commander": "Soultaker Viessa",
+      "opponent": "Jagris, the Huntsman",
+      "wins": 60,
+      "losses": 74,
+      "total": 134,
+      "winrate": 0.4478
+    },
+    {
+      "commander": "Soultaker Viessa",
+      "opponent": "Kai, Longcount Shaman",
+      "wins": 10,
+      "losses": 13,
+      "total": 23,
+      "winrate": 0.4348
+    },
+    {
+      "commander": "Soultaker Viessa",
+      "opponent": "Lazim, Thief of Gods",
+      "wins": 31,
+      "losses": 12,
+      "total": 43,
+      "winrate": 0.7209
+    },
+    {
+      "commander": "Soultaker Viessa",
+      "opponent": "Lubela, Tender of the Wilds",
+      "wins": 8,
+      "losses": 9,
+      "total": 17,
+      "winrate": 0.4706
+    },
+    {
+      "commander": "Soultaker Viessa",
+      "opponent": "Lyre, Tactician of the Order",
+      "wins": 1,
+      "losses": 2,
+      "total": 3,
+      "winrate": 0.3333
+    },
+    {
+      "commander": "Soultaker Viessa",
+      "opponent": "Macks Speed",
+      "wins": 11,
+      "losses": 9,
+      "total": 20,
+      "winrate": 0.55
+    },
+    {
+      "commander": "Soultaker Viessa",
+      "opponent": "Milo Sunstone",
+      "wins": 10,
+      "losses": 12,
+      "total": 22,
+      "winrate": 0.4545
+    },
+    {
+      "commander": "Soultaker Viessa",
+      "opponent": "Newhaven Township",
+      "wins": 22,
+      "losses": 8,
+      "total": 30,
+      "winrate": 0.7333
+    },
+    {
+      "commander": "Soultaker Viessa",
+      "opponent": "Starwise Luna",
+      "wins": 18,
+      "losses": 23,
+      "total": 41,
+      "winrate": 0.439
+    },
+    {
+      "commander": "Starwise Luna",
+      "opponent": "Captain Greenbeard",
+      "wins": 20,
+      "losses": 17,
+      "total": 37,
+      "winrate": 0.5405
+    },
+    {
+      "commander": "Starwise Luna",
+      "opponent": "Elber, Jungle Emissary",
+      "wins": 10,
+      "losses": 7,
+      "total": 17,
+      "winrate": 0.5882
+    },
+    {
+      "commander": "Starwise Luna",
+      "opponent": "Elyse of the Order",
+      "wins": 8,
+      "losses": 14,
+      "total": 22,
+      "winrate": 0.3636
+    },
+    {
+      "commander": "Starwise Luna",
+      "opponent": "Executor Ginn",
+      "wins": 30,
+      "losses": 14,
+      "total": 44,
+      "winrate": 0.6818
+    },
+    {
+      "commander": "Starwise Luna",
+      "opponent": "Fael Spiritwalker",
+      "wins": 12,
+      "losses": 18,
+      "total": 30,
+      "winrate": 0.4
+    },
+    {
+      "commander": "Starwise Luna",
+      "opponent": "It That Weaves",
+      "wins": 18,
+      "losses": 9,
+      "total": 27,
+      "winrate": 0.6667
+    },
+    {
+      "commander": "Starwise Luna",
+      "opponent": "Jagris, the Huntsman",
+      "wins": 41,
+      "losses": 45,
+      "total": 86,
+      "winrate": 0.4767
+    },
+    {
+      "commander": "Starwise Luna",
+      "opponent": "Kai, Longcount Shaman",
+      "wins": 20,
+      "losses": 19,
+      "total": 39,
+      "winrate": 0.5128
+    },
+    {
+      "commander": "Starwise Luna",
+      "opponent": "Lazim, Thief of Gods",
+      "wins": 29,
+      "losses": 16,
+      "total": 45,
+      "winrate": 0.6444
+    },
+    {
+      "commander": "Starwise Luna",
+      "opponent": "Lubela, Tender of the Wilds",
+      "wins": 11,
+      "losses": 8,
+      "total": 19,
+      "winrate": 0.5789
+    },
+    {
+      "commander": "Starwise Luna",
+      "opponent": "Macks Speed",
+      "wins": 9,
+      "losses": 10,
+      "total": 19,
+      "winrate": 0.4737
+    },
+    {
+      "commander": "Starwise Luna",
+      "opponent": "Milo Sunstone",
+      "wins": 9,
+      "losses": 7,
+      "total": 16,
+      "winrate": 0.5625
+    },
+    {
+      "commander": "Starwise Luna",
+      "opponent": "Newhaven Township",
+      "wins": 20,
+      "losses": 10,
+      "total": 30,
+      "winrate": 0.6667
+    },
+    {
+      "commander": "Starwise Luna",
+      "opponent": "Soultaker Viessa",
+      "wins": 23,
+      "losses": 18,
+      "total": 41,
+      "winrate": 0.561
+    }
+  ]
+}

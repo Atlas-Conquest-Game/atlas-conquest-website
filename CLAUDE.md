@@ -32,7 +32,7 @@ See [ARCHITECTURE.md](docs/ARCHITECTURE.md) for the full system design.
 
 - **No build step** for the frontend. Plain HTML/CSS/JS. Keep it simple.
 - **Data flows one direction**: AWS → JSON → Site. The site never writes to AWS.
-- **Faction colors**: Skaal = `#C44536` (red), Grenalia = `#3A7D44` (green), Lucia = `#D4A843` (gold).
+- **Faction colors** (colorblind-safe Okabe-Ito palette): Skaal = `#D55E00`, Grenalia = `#009E73`, Lucia = `#E8B630`.
 - **Static JSON files** in `site/data/` are the contract between pipeline and frontend.
 - **Python 3.10+** for scripts. Use `boto3` for AWS access.
 

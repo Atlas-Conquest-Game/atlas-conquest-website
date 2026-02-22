@@ -12,3 +12,12 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+
+# Claude
+.claude/
+
+# Intern data (not for public repo)
+drive-download-*/
+
+# Pipeline cache (too large for repo, regenerated on each run)
+site/data/raw_games.json

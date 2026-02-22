@@ -9,15 +9,23 @@
   --text-secondary: #6E6E80;
   --border: #E5E5E5;
 
-  /* Faction accents */
-  --skaal: #C44536;
-  --grenalia: #3A7D44;
-  --lucia: #D4A843;
+  /* Faction accents — colorblind-safe palette
+     Skaal: warm red-orange (distinct from green even in deuteranopia)
+     Grenalia: teal-green (blue-shifted, separates from red)
+     Lucia: gold (luminance-distinct)
+     Neutral: warm gray
+     Shadis: cool slate
+     Archaeon: blue */
+  --skaal: #D55E00;
+  --grenalia: #009E73;
+  --lucia: #E8B630;
   --neutral: #A89078;
+  --shadis: #4A4A5A;
+  --archaeon: #0072B2;
 
-  /* Semantic */
-  --positive: #3A7D44;
-  --negative: #C44536;
+  /* Semantic — also colorblind-safe */
+  --positive: #009E73;
+  --negative: #D55E00;
 
   /* Layout */
   --max-width: 1200px;
@@ -208,6 +216,185 @@ body {
   color: var(--text);
 }
 
+.stat-value-sm {
+  font-size: 1.25rem;
+}
+
+/* === Commander Cards (with artwork) === */
+.commander-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.commander-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.commander-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.commander-art {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+  background: var(--bg-inset);
+}
+
+.commander-art-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  background: var(--bg-inset);
+}
+
+.commander-card-body {
+  padding: 1rem;
+}
+
+.commander-card-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.375rem;
+  line-height: 1.2;
+}
+
+.commander-card-stats {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.commander-card-games {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 0.125rem;
+}
+
+/* === Matchup Heatmap === */
+.matchup-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.matchup-table {
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+  width: auto;
+  min-width: 100%;
+}
+
+.matchup-corner {
+  background: var(--bg-subtle);
+  position: sticky;
+  left: 0;
+  z-index: 2;
+}
+
+.matchup-col-header {
+  padding: 0.625rem 0.5rem;
+  text-align: center;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  background: var(--bg-subtle);
+  border-bottom: 1px solid var(--border);
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  white-space: nowrap;
+  height: 100px;
+}
+
+.matchup-row-header {
+  padding: 0.5rem 0.75rem;
+  text-align: right;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  background: var(--bg-subtle);
+  border-right: 1px solid var(--border);
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+
+.matchup-cell {
+  padding: 0.375rem 0.5rem;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid var(--bg);
+  min-width: 52px;
+  cursor: default;
+}
+
+.matchup-favored {
+  background: #009E7333;
+  color: #007A59;
+}
+
+.matchup-unfavored {
+  background: #D55E0033;
+  color: #B04E00;
+}
+
+.matchup-even {
+  background: var(--bg-inset);
+  color: var(--text-secondary);
+}
+
+.matchup-self {
+  background: var(--bg-subtle);
+  color: var(--border);
+}
+
+.matchup-nodata {
+  background: var(--bg);
+  color: var(--border);
+  font-weight: 400;
+}
+
+.matchup-legend {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.legend-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+}
+
+.legend-favored { background: #009E7333; }
+.legend-even { background: var(--bg-inset); }
+.legend-unfavored { background: #D55E0033; }
+.legend-nodata { background: var(--bg); border: 1px solid var(--border); }
+
 /* === Filter Bar === */
 .filter-bar {
   display: flex;
@@ -286,6 +473,7 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   border-bottom: 1px solid var(--border);
+  white-space: nowrap;
 }
 
 .data-table td {
@@ -320,23 +508,33 @@ body {
 }
 
 .faction-badge.skaal {
-  background: #C445361A;
+  background: #D55E001A;
   color: var(--skaal);
 }
 
 .faction-badge.grenalia {
-  background: #3A7D441A;
+  background: #009E731A;
   color: var(--grenalia);
 }
 
 .faction-badge.lucia {
-  background: #D4A8431A;
+  background: #E8B6301A;
   color: var(--lucia);
 }
 
 .faction-badge.neutral {
   background: #A890781A;
   color: var(--neutral);
+}
+
+.faction-badge.shadis {
+  background: #4A4A5A1A;
+  color: var(--shadis);
+}
+
+.faction-badge.archaeon {
+  background: #0072B21A;
+  color: var(--archaeon);
 }
 
 /* Winrate coloring */
@@ -417,11 +615,19 @@ body {
   .card-grid {
     grid-template-columns: 1fr 1fr;
   }
+
+  .commander-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
 }
 
 @media (max-width: 480px) {
   .card-grid {
     grid-template-columns: 1fr;
+  }
+
+  .commander-grid {
+    grid-template-columns: 1fr 1fr;
   }
 
   .nav-links {

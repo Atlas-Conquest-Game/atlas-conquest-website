@@ -19,7 +19,9 @@
       <div class="nav-links">
         <a href="#overview" class="nav-link">Overview</a>
         <a href="#commanders" class="nav-link">Commanders</a>
+        <a href="#matchups" class="nav-link">Matchups</a>
         <a href="#cards" class="nav-link">Cards</a>
+        <a href="#players" class="nav-link">Players</a>
         <a href="#meta" class="nav-link">Meta</a>
       </div>
     </div>
@@ -46,27 +48,22 @@
     <div class="container">
       <h2 class="section-title">Overview</h2>
       <div class="card-grid">
-
         <div class="stat-card">
           <span class="stat-label">Total Matches</span>
           <span class="stat-value" id="stat-matches">--</span>
         </div>
-
         <div class="stat-card">
           <span class="stat-label">Unique Players</span>
           <span class="stat-value" id="stat-players">--</span>
         </div>
-
         <div class="stat-card">
           <span class="stat-label">Unique Cards Played</span>
           <span class="stat-value" id="stat-cards">--</span>
         </div>
-
         <div class="stat-card">
           <span class="stat-label">Most Popular Commander</span>
-          <span class="stat-value" id="stat-top-commander">--</span>
+          <span class="stat-value stat-value-sm" id="stat-top-commander">--</span>
         </div>
-
       </div>
     </div>
   </section>
@@ -76,6 +73,8 @@
     <div class="container">
       <h2 class="section-title">Commander Winrates</h2>
       <p class="section-desc">Win percentage by commander across all recorded matches.</p>
+
+      <div class="commander-grid" id="commander-cards"></div>
 
       <div class="chart-container">
         <canvas id="commander-chart"></canvas>
@@ -93,17 +92,35 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="placeholder-row">
-              <td colspan="5">Awaiting data...</td>
-            </tr>
+            <tr class="placeholder-row"><td colspan="5">Loading...</td></tr>
           </tbody>
         </table>
       </div>
     </div>
   </section>
 
+  <!-- Matchups Section -->
+  <section id="matchups" class="section">
+    <div class="container">
+      <h2 class="section-title">Commander Matchups</h2>
+      <p class="section-desc">Head-to-head winrates. Read rows as "Row commander's winrate vs Column commander."</p>
+      <div class="table-wrapper matchup-wrapper">
+        <table class="matchup-table" id="matchup-table">
+          <thead><tr><th></th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="matchup-legend">
+        <span class="legend-item"><span class="legend-swatch legend-favored"></span> &gt;55%</span>
+        <span class="legend-item"><span class="legend-swatch legend-even"></span> 45-55%</span>
+        <span class="legend-item"><span class="legend-swatch legend-unfavored"></span> &lt;45%</span>
+        <span class="legend-item"><span class="legend-swatch legend-nodata"></span> &lt;5 games</span>
+      </div>
+    </div>
+  </section>
+
   <!-- Cards Section -->
-  <section id="cards" class="section">
+  <section id="cards" class="section section-alt">
     <div class="container">
       <h2 class="section-title">Card Analytics</h2>
       <p class="section-desc">Most played cards and their impact on match outcomes.</p>
@@ -123,14 +140,40 @@
               <th>Card</th>
               <th>Faction</th>
               <th>Type</th>
-              <th>Play Rate</th>
+              <th>Deck Rate</th>
+              <th>Deck WR</th>
+              <th>Played Rate</th>
+              <th>Played WR</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="placeholder-row"><td colspan="7">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Players Section -->
+  <section id="players" class="section">
+    <div class="container">
+      <h2 class="section-title">Player Leaderboard</h2>
+      <p class="section-desc">Top players ranked by games played. Minimum 10 games.</p>
+
+      <div class="table-wrapper">
+        <table class="data-table" id="player-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Player</th>
+              <th>Games</th>
+              <th>Wins</th>
+              <th>Losses</th>
               <th>Winrate</th>
             </tr>
           </thead>
           <tbody>
-            <tr class="placeholder-row">
-              <td colspan="5">Awaiting data...</td>
-            </tr>
+            <tr class="placeholder-row"><td colspan="6">Loading...</td></tr>
           </tbody>
         </table>
       </div>
@@ -141,7 +184,7 @@
   <section id="meta" class="section section-alt">
     <div class="container">
       <h2 class="section-title">Meta Trends</h2>
-      <p class="section-desc">How the metagame evolves over time.</p>
+      <p class="section-desc">How faction popularity shifts over time.</p>
 
       <div class="chart-container">
         <canvas id="meta-chart"></canvas>
@@ -153,7 +196,7 @@
   <footer class="footer">
     <div class="container">
       <p class="footer-text">Atlas Conquest Analytics &mdash; Updated daily from game data.</p>
-      <p class="footer-text footer-muted">Not affiliated with the Atlas Conquest development team. Built for the community.</p>
+      <p class="footer-text footer-muted">Built for the community. Not affiliated with the Atlas Conquest development team.</p>
     </div>
   </footer>
 

@@ -6,8 +6,9 @@
 1. **Content-first**: Data and insights are the hero. UI gets out of the way.
 2. **Generous whitespace**: Let elements breathe. Dense data, spacious layout.
 3. **Typographic hierarchy**: Size, weight, and color do the heavy lifting — not decoration.
-4. **Faction identity**: Skaal red, Grenalia green, Lucia gold as accent colors. Used sparingly.
-5. **Progressive disclosure**: Show summary first, let users drill into detail.
+4. **Faction identity**: Skaal orange-red, Grenalia teal, Lucia gold as accent colors. Used sparingly.
+5. **Colorblind-safe**: All colors chosen from Okabe-Ito / Wong palette to be distinguishable under all forms of color blindness.
+6. **Progressive disclosure**: Show summary first, let users drill into detail.
 
 ## Color Palette
 
@@ -24,10 +25,12 @@
 ### Faction Accents
 | Token | Value | Faction |
 |-------|-------|---------|
-| `--skaal` | `#C44536` | Skaal (Red) |
-| `--grenalia` | `#3A7D44` | Grenalia (Green) |
-| `--lucia` | `#D4A843` | Lucia (Gold) |
+| `--skaal` | `#D55E00` | Skaal (Orange-Red) |
+| `--grenalia` | `#009E73` | Grenalia (Teal) |
+| `--lucia` | `#E8B630` | Lucia (Gold) |
 | `--neutral` | `#A89078` | Neutral (Beige) |
+| `--shadis` | `#4A4A5A` | Shadis (Slate) |
+| `--archaeon` | `#0072B2` | Archaeon (Blue) |
 
 ### Semantic
 | Token | Value | Usage |

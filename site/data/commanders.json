@@ -1,0 +1,123 @@
+[
+  {
+    "name": "Captain Greenbeard",
+    "text": "Whenever you summon a minion within enemy territory, it gains Haste.",
+    "subtype": "Goblin",
+    "dominion": 5,
+    "intellect": 3,
+    "speed": 1,
+    "health": 26,
+    "faction": "skaal",
+    "art": "assets/commanders/captain-greenbeard.jpg"
+  },
+  {
+    "name": "Elber, Jungle Emissary",
+    "text": "When you play a card that costs 8 or more, heal for 4.",
+    "subtype": "Beast",
+    "dominion": 7,
+    "intellect": 4,
+    "speed": 1,
+    "health": 28,
+    "faction": "grenalia",
+    "art": "assets/commanders/elber-jungle-emissary.jpg"
+  },
+  {
+    "name": "Executor Ginn",
+    "text": "(2 Mana, Action) Destroy an ally minion and convert the tile it occupied to a village.",
+    "subtype": "",
+    "dominion": 5,
+    "intellect": 3,
+    "speed": 1,
+    "health": 30,
+    "faction": "lucia",
+    "art": "assets/commanders/executor-ginn.jpg"
+  },
+  {
+    "name": "Jagris, the Huntsman",
+    "text": "(1 Mana, Range 2, Cooldown 2) A minion gains +1/+1/+1.",
+    "subtype": "",
+    "dominion": 5,
+    "intellect": 3,
+    "speed": 1,
+    "health": 30,
+    "faction": "grenalia",
+    "art": "assets/commanders/jagris-the-huntsman.jpg"
+  },
+  {
+    "name": "Kai, Longcount Shaman",
+    "text": "(Cooldown 25, Starts on Cooldown) An enemy commander gains \"At the start of turn, take 5 Damage\". When you cast a Spell, reduce cooldown by 1.",
+    "subtype": "",
+    "dominion": 6,
+    "intellect": 3,
+    "speed": 1,
+    "health": 30,
+    "faction": "skaal",
+    "art": "assets/commanders/kai-longcount-shaman.jpg"
+  },
+  {
+    "name": "Soultaker Viessa",
+    "text": "(2 Mana, Cooldown 3, Range 2) Deal 2 damage, gain 2 health.",
+    "subtype": "",
+    "dominion": 6,
+    "intellect": 4,
+    "speed": 1,
+    "health": 30,
+    "faction": "shadis",
+    "art": "assets/commanders/soultaker-viessa.jpg"
+  },
+  {
+    "name": "Lazim, Thief of Gods",
+    "text": "Your deck may contain cards from any god, but not neutral cards.",
+    "subtype": "",
+    "dominion": 6,
+    "intellect": 3,
+    "speed": 1,
+    "health": 25,
+    "faction": "neutral",
+    "art": "assets/commanders/lazim-thief-of-gods.jpg"
+  },
+  {
+    "name": "Lubela, Tender of the Wilds",
+    "text": "(2 mana, cooldown 2): Increase Lubela's Dominion by 1.",
+    "subtype": "",
+    "dominion": 6,
+    "intellect": 3,
+    "speed": 1,
+    "health": 31,
+    "faction": "grenalia",
+    "art": "assets/commanders/lubela-tender-of-the-wilds.jpg"
+  },
+  {
+    "name": "Lyre, Tactician of the Order",
+    "text": "(Cooldown 6) Summon a Lucian Soldier. Starts on cooldown. Whenever you summon a Minion, reduce the cooldown by 1.",
+    "subtype": "",
+    "dominion": 6,
+    "intellect": 3,
+    "speed": 1,
+    "health": 26,
+    "faction": "lucia",
+    "art": null
+  },
+  {
+    "name": "Macks Speed",
+    "text": "(1 Mana, Action, Self) Claim an unclaimed tile. <i>(Can claim tiles not adjacent to your territory.)</i>",
+    "subtype": "",
+    "dominion": 5,
+    "intellect": 3,
+    "speed": 2,
+    "health": 25,
+    "faction": "skaal",
+    "art": "assets/commanders/macks-speed.jpg"
+  },
+  {
+    "name": "Milo Sunstone",
+    "text": "(Cooldown 2, Range 3) Heal a character for 3.",
+    "subtype": "",
+    "dominion": 6,
+    "intellect": 4,
+    "speed": 1,
+    "health": 32,
+    "faction": "lucia",
+    "art": "assets/commanders/milo-sunstone.jpg"
+  }
+]
