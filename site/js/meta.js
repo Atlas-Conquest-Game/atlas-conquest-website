@@ -8,6 +8,7 @@
 // ─── Page State ─────────────────────────────────────────────
 
 let metaChart = null;
+let cmdTrendsChart = null;
 let firstTurnChart = null;
 
 // ─── Meta Trends Chart ──────────────────────────────────────
@@ -207,6 +208,96 @@ function initMatchupTooltip() {
   });
 }
 
+// ─── Commander Popularity Trends ─────────────────────────────
+
+function renderCommanderTrends(cmdTrends) {
+  const canvas = document.getElementById('commander-trends-chart');
+  if (!canvas) return;
+
+  if (cmdTrendsChart) { cmdTrendsChart.destroy(); cmdTrendsChart = null; }
+
+  if (!cmdTrends || !cmdTrends.dates || !cmdTrends.dates.length) {
+    canvas.style.display = 'none';
+    return;
+  }
+  canvas.style.display = '';
+
+  // Build faction lookup from commander stats
+  const factionLookup = {};
+  const cmdStats = getPeriodData(appData.commanderStats, currentPeriod);
+  if (cmdStats) {
+    cmdStats.forEach(c => { factionLookup[c.name] = c.faction; });
+  }
+
+  // Sort commanders by average popularity (descending)
+  const cmdEntries = Object.entries(cmdTrends.commanders)
+    .map(([name, data]) => ({
+      name,
+      data,
+      avg: data.reduce((s, v) => s + v, 0) / data.length,
+    }))
+    .sort((a, b) => b.avg - a.avg);
+
+  // Use a set of distinguishable colors for lines
+  const LINE_COLORS = [
+    '#58a6ff', '#3fb950', '#f0834a', '#d2a8ff', '#E8B630',
+    '#D55E00', '#009E73', '#f85149', '#A89078', '#79c0ff',
+    '#56d364', '#ffa657', '#bc8cff', '#7ee787', '#ff7b72',
+  ];
+
+  const datasets = cmdEntries.map((cmd, i) => {
+    const faction = factionLookup[cmd.name];
+    const color = FACTION_COLORS[faction] || LINE_COLORS[i % LINE_COLORS.length];
+    return {
+      label: cmd.name,
+      data: cmd.data,
+      borderColor: color,
+      backgroundColor: color + '20',
+      fill: false,
+      tension: 0.3,
+      pointRadius: 0,
+      pointHoverRadius: 4,
+      borderWidth: 1.5,
+    };
+  });
+
+  cmdTrendsChart = new Chart(canvas, {
+    type: 'line',
+    data: {
+      labels: cmdTrends.dates,
+      datasets,
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: {
+          labels: { usePointStyle: true, pointStyle: 'circle', padding: 14, font: { size: 10 } },
+        },
+        tooltip: {
+          ...CHART_TOOLTIP,
+          callbacks: {
+            label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y}%`,
+          },
+        },
+      },
+      scales: {
+        y: {
+          min: 0,
+          ticks: { callback: v => v + '%' },
+          grid: { color: '#21262d' },
+          title: { display: true, text: 'Pick Rate', color: '#8b949e', font: { size: 11 } },
+        },
+        x: {
+          ticks: { maxTicksLimit: 15, maxRotation: 45 },
+          grid: { display: false },
+        },
+      },
+    },
+  });
+}
+
 // ─── First-Turn Commander Chart ─────────────────────────────
 
 function renderFirstTurnChart(ftData) {
@@ -303,11 +394,13 @@ function renderAll() {
   const period = currentPeriod;
   const metadata = getPeriodData(appData.metadata, period);
   const trends = getPeriodData(appData.trends, period);
+  const cmdTrends = getPeriodData(appData.commanderTrends, period);
   const matchups = getPeriodData(appData.matchups, period);
   const firstTurn = getPeriodData(appData.firstTurn, period);
 
   renderMetadata(metadata);
   renderMetaChart(trends);
+  renderCommanderTrends(cmdTrends);
   renderMatchups(matchups);
   renderFirstTurnChart(firstTurn);
 }

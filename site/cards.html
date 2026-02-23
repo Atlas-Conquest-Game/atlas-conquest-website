@@ -68,6 +68,10 @@
         <button class="filter-btn" data-faction="neutral">Neutral</button>
         <button class="filter-btn" data-faction="shadis">Shadis</button>
         <button class="filter-btn" data-faction="archaeon">Archaeon</button>
+        <span class="filter-divider"></span>
+        <select id="commander-filter" class="commander-select">
+          <option value="all">All Commanders</option>
+        </select>
       </div>
 
       <div class="card-search-bar">
@@ -82,6 +86,7 @@
               <th class="sortable" data-sort="name">Card</th>
               <th class="sortable" data-sort="faction">Faction</th>
               <th class="sortable" data-sort="type">Type</th>
+              <th class="sortable col-inclusion" data-sort="inclusion_rate" style="display:none;">Inclusion <span class="tooltip-icon" data-tooltip="% of this commander's decks that include this card.">?</span></th>
               <th class="sortable" data-sort="drawn_rate">Drawn Rate <span class="tooltip-icon" data-tooltip="% of matches where this card was drawn at least once.">?</span></th>
               <th class="sortable" data-sort="drawn_winrate">Drawn WR <span class="tooltip-icon" data-tooltip="Win rate when this card is drawn. Above 50% suggests drawing it correlates with winning.">?</span></th>
               <th class="sortable" data-sort="played_rate">Played Rate <span class="tooltip-icon" data-tooltip="% of matches where this card was played from hand.">?</span></th>
@@ -89,7 +94,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="placeholder-row"><td colspan="7">Loading...</td></tr>
+            <tr class="placeholder-row"><td colspan="8">Loading...</td></tr>
           </tbody>
         </table>
       </div>

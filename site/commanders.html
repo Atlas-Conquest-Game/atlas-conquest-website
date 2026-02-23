@@ -64,25 +64,9 @@
 
       <div class="commander-grid" id="commander-cards"></div>
 
-      <div class="chart-container">
-        <canvas id="commander-chart"></canvas>
-      </div>
-
-      <div class="table-wrapper">
-        <table class="data-table" id="commander-table">
-          <thead>
-            <tr>
-              <th>Commander</th>
-              <th>Faction</th>
-              <th>Matches <span class="tooltip-icon" data-tooltip="Games played with this commander in the selected period.">?</span></th>
-              <th>Wins</th>
-              <th>Winrate <span class="tooltip-icon" data-tooltip="Win %. Green if above 52%, red if below 48%.">?</span></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="placeholder-row"><td colspan="5">Loading...</td></tr>
-          </tbody>
-        </table>
+      <div class="chart-container" style="margin-top: 2rem;">
+        <h3 class="chart-inner-title">Winrate by Game Duration <span class="tooltip-icon" data-tooltip="Do certain commanders perform better in short or long games? Grouped by game length in minutes.">?</span></h3>
+        <canvas id="duration-chart"></canvas>
       </div>
     </div>
   </section>

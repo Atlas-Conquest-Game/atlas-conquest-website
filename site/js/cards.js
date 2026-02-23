@@ -10,6 +10,7 @@
 let cardSortKey = 'drawn_winrate';
 let cardSortDir = 'desc';
 let currentFaction = 'all';
+let currentCommander = 'all';
 let searchQuery = '';
 
 // ─── Card Table ─────────────────────────────────────────────
@@ -18,9 +19,42 @@ function renderCardTable(stats) {
   const tbody = document.querySelector('#card-table tbody');
   if (!stats || !stats.length) return;
 
+  const isCmd = currentCommander !== 'all';
+  const inclusionCol = document.querySelector('.col-inclusion');
+  if (inclusionCol) inclusionCol.style.display = isCmd ? '' : 'none';
+
+  // When a commander is selected, merge per-commander card stats into global card data
+  let merged = stats;
+  if (isCmd) {
+    const cmdCardData = getPeriodData(appData.commanderCardStats, currentPeriod);
+    const cmdCards = cmdCardData && cmdCardData[currentCommander];
+    if (cmdCards) {
+      const cmdLookup = {};
+      cmdCards.forEach(c => { cmdLookup[c.name] = c; });
+      merged = stats
+        .map(c => {
+          const cc = cmdLookup[c.name];
+          if (!cc) return null;
+          return {
+            ...c,
+            inclusion_rate: cc.inclusion_rate,
+            drawn_rate: cc.drawn_rate,
+            drawn_winrate: cc.drawn_winrate,
+            played_rate: cc.played_rate,
+            played_winrate: cc.played_winrate,
+            drawn_count: cc.games,
+            played_count: cc.games,
+          };
+        })
+        .filter(Boolean);
+    } else {
+      merged = [];
+    }
+  }
+
   let filtered = currentFaction === 'all'
-    ? stats
-    : stats.filter(c => c.faction === currentFaction);
+    ? merged
+    : merged.filter(c => c.faction === currentFaction);
 
   // Apply search filter
   if (searchQuery) {
@@ -50,22 +84,27 @@ function renderCardTable(stats) {
   });
 
   const totalForFaction = currentFaction === 'all'
-    ? stats.length
-    : stats.filter(c => c.faction === currentFaction).length;
+    ? merged.length
+    : merged.filter(c => c.faction === currentFaction).length;
 
   // Update search count
   const countEl = document.getElementById('search-count');
   if (countEl) {
-    countEl.textContent = `Showing ${sorted.length} of ${totalForFaction} cards`;
+    const label = isCmd ? `Showing ${sorted.length} of ${totalForFaction} cards for ${currentCommander}` : `Showing ${sorted.length} of ${totalForFaction} cards`;
+    countEl.textContent = label;
   }
+
+  const colSpan = isCmd ? 8 : 7;
 
   tbody.innerHTML = sorted.map(c => {
     const slug = commanderSlug(c.name);
+    const inclusionTd = isCmd ? `<td>${pctCell(c.inclusion_rate || 0)}</td>` : '';
     return `
     <tr data-card-slug="${slug}">
       <td><strong>${c.name}</strong></td>
       <td>${factionBadge(c.faction)}</td>
       <td>${c.type || '--'}</td>
+      ${inclusionTd}
       <td>${pctCell(c.drawn_rate)}</td>
       <td>${winrateCell(c.drawn_winrate, c.drawn_count)}</td>
       <td>${pctCell(c.played_rate)}</td>
@@ -74,7 +113,7 @@ function renderCardTable(stats) {
   }).join('');
 
   if (sorted.length === 0) {
-    tbody.innerHTML = '<tr class="placeholder-row"><td colspan="7">No cards match your filters.</td></tr>';
+    tbody.innerHTML = `<tr class="placeholder-row"><td colspan="${colSpan}">No cards match your filters.</td></tr>`;
   }
 
   updateSortHeaders();
@@ -183,6 +222,41 @@ function initCardPreview() {
   });
 }
 
+// ─── Commander Filter ───────────────────────────────────────
+
+function populateCommanderDropdown() {
+  const select = document.getElementById('commander-filter');
+  if (!select) return;
+
+  const cmdStats = getPeriodData(appData.commanderStats, currentPeriod);
+  if (!cmdStats || !cmdStats.length) return;
+
+  const sorted = [...cmdStats].sort((a, b) => a.name.localeCompare(b.name));
+
+  // Keep the "All Commanders" option, replace the rest
+  select.innerHTML = '<option value="all">All Commanders</option>' +
+    sorted.map(c => `<option value="${c.name}"${c.name === currentCommander ? ' selected' : ''}>${c.name}</option>`).join('');
+}
+
+function initCommanderFilter() {
+  const select = document.getElementById('commander-filter');
+  if (!select) return;
+
+  select.addEventListener('change', () => {
+    currentCommander = select.value;
+    // When switching to a commander, default sort to inclusion_rate
+    if (currentCommander !== 'all' && cardSortKey === 'drawn_winrate') {
+      cardSortKey = 'inclusion_rate';
+      cardSortDir = 'desc';
+    } else if (currentCommander === 'all' && cardSortKey === 'inclusion_rate') {
+      cardSortKey = 'drawn_winrate';
+      cardSortDir = 'desc';
+    }
+    const cardStats = getPeriodData(appData.cardStats, currentPeriod);
+    renderCardTable(cardStats);
+  });
+}
+
 // ─── Render All ─────────────────────────────────────────────
 
 function renderAll() {
@@ -191,6 +265,7 @@ function renderAll() {
   const cardStats = getPeriodData(appData.cardStats, period);
 
   renderMetadata(metadata);
+  populateCommanderDropdown();
   renderCardTable(cardStats);
 }
 
@@ -200,6 +275,7 @@ async function init() {
   appData = await loadAllData();
   renderAll();
   initFactionFilters();
+  initCommanderFilter();
   initCardTableSorting();
   initSearch();
   initCardPreview();

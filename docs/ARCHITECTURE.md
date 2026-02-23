@@ -33,7 +33,7 @@
 - Static JSON files are the interface between the pipeline and the frontend.
 - Each file has a defined schema documented in [DATA_MODEL.md](DATA_MODEL.md).
 - Stats files are doubly nested (`data[period][map]`); reference files (`cards.json`, `commanders.json`) are flat arrays.
-- Files: `metadata.json`, `commander_stats.json`, `matchups.json`, `card_stats.json`, `trends.json`, `game_distributions.json`, `deck_composition.json`, `first_turn.json`, `cards.json`, `commanders.json`.
+- Files: `metadata.json`, `commander_stats.json`, `matchups.json`, `card_stats.json`, `trends.json`, `game_distributions.json`, `deck_composition.json`, `first_turn.json`, `commander_trends.json`, `duration_winrates.json`, `commander_card_stats.json`, `cards.json`, `commanders.json`.
 - The site reads only from these files — no runtime API calls.
 
 ### 4. Frontend (`site/`)
@@ -47,9 +47,9 @@
 | Page | File | Content |
 |------|------|---------|
 | Home | `index.html` | Overview stats, distribution charts, first-turn summary, quick-link cards |
-| Commanders | `commanders.html` | Commander grid, winrate chart/table, deck composition charts, detail modal |
-| Cards | `cards.html` | Full card table (261 cards), search, faction filter, card hover preview |
-| Meta | `meta.html` | Faction popularity trends, commander matchup heatmap (with game counts), first-turn advantage by commander |
+| Commanders | `commanders.html` | Commander grid, winrate-by-duration chart, deck composition charts, detail modal |
+| Cards | `cards.html` | Full card table (261 cards), search, faction filter, commander dropdown for per-commander card stats, card hover preview |
+| Meta | `meta.html` | Faction popularity trends, commander popularity trends, commander matchup heatmap (with game counts), first-turn advantage by commander, patron trends placeholder |
 
 #### JavaScript Structure
 
@@ -57,15 +57,15 @@
 |------|------|
 | `js/shared.js` | Constants, helpers, data loading, time/map filters, modal, tooltip system |
 | `js/home.js` | Overview stats, distribution charts, first-turn summary |
-| `js/commanders.js` | Commander grid/table/chart, deck composition rendering |
-| `js/cards.js` | Card table with search, sorting, and faction filter |
-| `js/meta.js` | Meta trends chart, matchup heatmap, first-turn commander chart |
+| `js/commanders.js` | Commander grid, winrate-by-duration chart, deck composition rendering |
+| `js/cards.js` | Card table with search, sorting, faction filter, and commander dropdown |
+| `js/meta.js` | Faction + commander trends charts, matchup heatmap, first-turn commander chart |
 
 Each page loads `shared.js` first (globals, not ES modules), then its page-specific script. All pages share: nav with active state, sticky time/map filter bar, footer.
 
 #### Interactive Features
-- Sortable card table with debounced search (filters by name, type, subtype)
-- Matchup heatmap with hover tooltips
+- Sortable card table with debounced search (filters by name, type, subtype) and commander dropdown for per-commander card usage stats
+- Matchup heatmap with hover tooltips (including mirror matches on diagonal)
 - Clickable deck composition charts opening commander detail modal
 - Info tooltips (`?` icons) explaining stats, columns, and chart meanings
 - Global time period filter (1M / 3M / 6M / All) re-renders all sections
@@ -80,6 +80,10 @@ Each page loads `shared.js` first (globals, not ES modules), then its page-speci
   - **Card previews**: `CardScreenshots/<name>.png` → `site/assets/cards/<slug>.jpg` (600px wide).
 - Thumbnails are only regenerated when the source image is newer than the target (or target is missing).
 - New art added to `Artwork/` or `CardScreenshots/` is automatically picked up on the next pipeline run.
+
+### 6. Statistics Documentation (`docs/statistics/`)
+- [METHODOLOGY.md](statistics/METHODOLOGY.md) — Statistical significance guide: sample size thresholds, confidence intervals, z-tests, multiple testing corrections, practical significance.
+- [tracked-stats.md](statistics/tracked-stats.md) — Catalog of every stat computed and displayed, organized by page, with source files, calculations, minimum sample sizes, and caveats.
 
 ## Data Update Flow
 

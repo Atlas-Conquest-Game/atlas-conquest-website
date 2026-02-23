@@ -61,7 +61,7 @@ async function loadJSON(path) {
 }
 
 async function loadAllData() {
-  const [metadata, commanderStats, cardStats, trends, matchups, commanders, gameDistributions, deckComposition, firstTurn] = await Promise.all([
+  const [metadata, commanderStats, cardStats, trends, matchups, commanders, gameDistributions, deckComposition, firstTurn, commanderTrends, durationWinrates, commanderCardStats] = await Promise.all([
     loadJSON('data/metadata.json'),
     loadJSON('data/commander_stats.json'),
     loadJSON('data/card_stats.json'),
@@ -71,8 +71,11 @@ async function loadAllData() {
     loadJSON('data/game_distributions.json'),
     loadJSON('data/deck_composition.json'),
     loadJSON('data/first_turn.json'),
+    loadJSON('data/commander_trends.json'),
+    loadJSON('data/duration_winrates.json'),
+    loadJSON('data/commander_card_stats.json'),
   ]);
-  return { metadata, commanderStats, cardStats, trends, matchups, commanders, gameDistributions, deckComposition, firstTurn };
+  return { metadata, commanderStats, cardStats, trends, matchups, commanders, gameDistributions, deckComposition, firstTurn, commanderTrends, durationWinrates, commanderCardStats };
 }
 
 // ─── Helpers ────────────────────────────────────────────────

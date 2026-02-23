@@ -1098,3 +1098,28 @@ body.modal-open .time-filter-bar {
     display: none;
   }
 }
+
+/* === Placeholder / Coming Soon Card === */
+
+.placeholder-card {
+  background: var(--bg-inset);
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  padding: 2rem 2.5rem;
+  text-align: center;
+}
+
+.placeholder-card .section-title {
+  color: var(--text-secondary);
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.placeholder-text {
+  color: var(--text-muted);
+  font-style: italic;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  max-width: 500px;
+  margin: 0 auto;
+}

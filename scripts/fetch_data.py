@@ -679,6 +679,148 @@ def aggregate_first_turn(games):
     }
 
 
+def aggregate_commander_trends(games):
+    """Compute weekly per-commander popularity (usage %)."""
+    weekly = defaultdict(lambda: defaultdict(int))
+    weekly_total = defaultdict(int)
+
+    for game in games:
+        dt_str = game.get("datetime")
+        if not dt_str:
+            continue
+        try:
+            dt = datetime.fromisoformat(dt_str)
+            week = dt.strftime("%Y-W%W")
+        except ValueError:
+            continue
+
+        for p in game["players"]:
+            cmd = p["commander"]
+            if not cmd:
+                continue
+            weekly[week][cmd] += 1
+            weekly_total[week] += 1
+
+    sorted_weeks = sorted(weekly.keys())
+    dates = []
+    commanders = defaultdict(list)
+
+    for week in sorted_weeks:
+        total = weekly_total[week]
+        if total < 4:
+            continue
+        dates.append(week)
+        for cmd in set(c for w in weekly.values() for c in w):
+            pct = round((weekly[week].get(cmd, 0) / total) * 100, 1) if total > 0 else 0
+            commanders[cmd].append(pct)
+
+    return {"dates": dates, "commanders": dict(commanders)}
+
+
+def aggregate_duration_winrates(games):
+    """Compute per-commander winrate bucketed by game duration."""
+    BUCKETS = ["0-10", "10-20", "20-30", "30+"]
+
+    def get_bucket(mins):
+        if mins < 10:
+            return 0
+        elif mins < 20:
+            return 1
+        elif mins < 30:
+            return 2
+        return 3
+
+    # cmd -> bucket_idx -> {wins, total}
+    stats = defaultdict(lambda: [{"wins": 0, "total": 0} for _ in BUCKETS])
+
+    for game in games:
+        dur = game.get("duration_minutes")
+        if dur is None:
+            continue
+        bucket = get_bucket(dur)
+        for p in game["players"]:
+            cmd = p["commander"]
+            if not cmd:
+                continue
+            stats[cmd][bucket]["total"] += 1
+            if p["winner"]:
+                stats[cmd][bucket]["wins"] += 1
+
+    commanders = {}
+    for cmd, buckets in stats.items():
+        commanders[cmd] = [
+            {
+                "winrate": round(b["wins"] / b["total"], 4) if b["total"] > 0 else None,
+                "games": b["total"],
+            }
+            for b in buckets
+        ]
+
+    return {"buckets": BUCKETS, "commanders": commanders}
+
+
+def aggregate_commander_card_stats(games):
+    """Compute per-commander card usage rates and winrates.
+
+    Returns dict: commander -> list of top 30 cards by inclusion rate.
+    """
+    if not games:
+        return {}
+
+    # cmd -> card_name -> {deck, deck_wins, drawn, drawn_wins, played, played_wins}
+    stats = defaultdict(lambda: defaultdict(lambda: {
+        "deck": 0, "deck_wins": 0,
+        "drawn": 0, "drawn_wins": 0,
+        "played": 0, "played_wins": 0,
+    }))
+    cmd_games = defaultdict(int)
+
+    for game in games:
+        for p in game["players"]:
+            cmd = p["commander"]
+            if not cmd:
+                continue
+            won = p["winner"]
+            cmd_games[cmd] += 1
+
+            for c in p["cards_in_deck"]:
+                stats[cmd][c["name"]]["deck"] += 1
+                if won:
+                    stats[cmd][c["name"]]["deck_wins"] += 1
+
+            for c in p["cards_drawn"]:
+                stats[cmd][c["name"]]["drawn"] += 1
+                if won:
+                    stats[cmd][c["name"]]["drawn_wins"] += 1
+
+            for c in p["cards_played"]:
+                stats[cmd][c["name"]]["played"] += 1
+                if won:
+                    stats[cmd][c["name"]]["played_wins"] += 1
+
+    result = {}
+    for cmd, cards in stats.items():
+        total = cmd_games[cmd]
+        if total == 0:
+            continue
+        card_list = []
+        for name, d in cards.items():
+            card_list.append({
+                "name": name,
+                "inclusion_rate": round(d["deck"] / total, 4),
+                "drawn_rate": round(d["drawn"] / total, 4),
+                "drawn_winrate": round(d["drawn_wins"] / d["drawn"], 4) if d["drawn"] > 0 else None,
+                "played_rate": round(d["played"] / total, 4),
+                "played_winrate": round(d["played_wins"] / d["played"], 4) if d["played"] > 0 else None,
+                "games": total,
+            })
+        # Top 30 by inclusion rate
+        card_list.sort(key=lambda x: x["inclusion_rate"], reverse=True)
+        result[cmd] = card_list[:30]
+
+    return result
+
+
 # ─── JSON Writers ────────────────────────────────────────────────
 
 def write_json(filename, data):
@@ -866,6 +1008,9 @@ def build_and_write_all(games, cards_csv, commanders_csv):
         "distributions": {},
         "deck_comp": {},
         "first_turn": {},
+        "cmd_trends": {},
+        "duration_wr": {},
+        "cmd_card_stats": {},
     }
 
     for period_key, days in PERIODS.items():
@@ -990,6 +1135,15 @@ def build_and_write_all(games, cards_csv, commanders_csv):
             # ── first-turn advantage ──
             out["first_turn"][period_key][map_name] = aggregate_first_turn(map_games)
 
+            # ── commander popularity trends ──
+            out["cmd_trends"][period_key][map_name] = aggregate_commander_trends(map_games)
+
+            # ── winrate by duration ──
+            out["duration_wr"][period_key][map_name] = aggregate_duration_winrates(map_games)
+
+            # ── per-commander card stats ──
+            out["cmd_card_stats"][period_key][map_name] = aggregate_commander_card_stats(map_games)
+
     # Write all period×map-nested files
     write_json("metadata.json", out["metadata"])
     write_json("commander_stats.json", out["commander_stats"])
@@ -999,6 +1153,9 @@ def build_and_write_all(games, cards_csv, commanders_csv):
     write_json("game_distributions.json", out["distributions"])
     write_json("deck_composition.json", out["deck_comp"])
     write_json("first_turn.json", out["first_turn"])
+    write_json("commander_trends.json", out["cmd_trends"])
+    write_json("duration_winrates.json", out["duration_wr"])
+    write_json("commander_card_stats.json", out["cmd_card_stats"])
 
 
 # ─── Cache Management ────────────────────────────────────────────

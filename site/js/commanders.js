@@ -1,13 +1,13 @@
 /**
  * Atlas Conquest Analytics — Commanders Page
  *
- * Commander grid, winrate chart/table, matchup heatmap,
+ * Commander grid, winrate-by-duration chart,
  * deck composition charts, and commander detail modal.
  */
 
 // ─── Page State ─────────────────────────────────────────────
 
-let commanderChart = null;
+let durationChart = null;
 let avgCostChart = null;
 let minionSpellChart = null;
 let patronNeutralChart = null;
@@ -54,72 +54,91 @@ function renderCommanderCards(stats, commanders) {
   }).join('');
 }
 
-// ─── Commander Table & Chart ────────────────────────────────
+// ─── Winrate by Game Duration ────────────────────────────────
 
-function renderCommanderTable(stats) {
-  const tbody = document.querySelector('#commander-table tbody');
-  if (!stats || !stats.length) return;
+function renderDurationChart(durData) {
+  const canvas = document.getElementById('duration-chart');
+  if (!canvas) return;
 
-  tbody.innerHTML = [...stats]
-    .sort((a, b) => b.winrate - a.winrate)
-    .map(c => `
-      <tr>
-        <td><strong>${c.name}</strong></td>
-        <td>${factionBadge(c.faction)}</td>
-        <td>${c.matches.toLocaleString()}</td>
-        <td>${c.wins.toLocaleString()}</td>
-        <td>${winrateCell(c.winrate)}</td>
-      </tr>
-    `).join('');
-}
+  if (durationChart) { durationChart.destroy(); durationChart = null; }
 
-function renderCommanderChart(stats) {
-  const canvas = document.getElementById('commander-chart');
-  if (!stats || !stats.length || !canvas) return;
+  if (!durData || !durData.buckets || !durData.commanders) {
+    canvas.style.display = 'none';
+    return;
+  }
+  canvas.style.display = '';
 
-  if (commanderChart) {
-    commanderChart.destroy();
-    commanderChart = null;
+  const buckets = durData.buckets;
+
+  // Pick top commanders by total games across all buckets
+  const cmdEntries = Object.entries(durData.commanders)
+    .map(([name, data]) => ({
+      name,
+      data,
+      totalGames: data.reduce((sum, b) => sum + b.games, 0),
+    }))
+    .filter(c => c.totalGames >= 20)
+    .sort((a, b) => b.totalGames - a.totalGames)
+    .slice(0, 10);
+
+  if (!cmdEntries.length) {
+    canvas.style.display = 'none';
+    return;
   }
 
-  const sorted = [...stats].sort((a, b) => b.winrate - a.winrate);
+  // Assign colors from commander stats if available
+  const factionLookup = {};
+  const cmdStats = getPeriodData(appData.commanderStats, currentPeriod);
+  if (cmdStats) {
+    cmdStats.forEach(c => { factionLookup[c.name] = c.faction; });
+  }
 
-  commanderChart = new Chart(canvas, {
+  const datasets = cmdEntries.map(cmd => {
+    const faction = factionLookup[cmd.name];
+    const color = FACTION_COLORS[faction] || '#888';
+    return {
+      label: cmd.name,
+      data: cmd.data.map(b => b.winrate !== null ? (b.winrate * 100) : null),
+      backgroundColor: color + '99',
+      borderColor: color,
+      borderWidth: 1,
+      borderRadius: 3,
+      _cmdData: cmd.data,
+    };
+  });
+
+  durationChart = new Chart(canvas, {
     type: 'bar',
-    data: {
-      labels: sorted.map(c => c.name),
-      datasets: [{
-        label: 'Winrate',
-        data: sorted.map(c => (c.winrate * 100).toFixed(1)),
-        backgroundColor: sorted.map(c => (FACTION_COLORS[c.faction] || '#888') + 'CC'),
-        borderColor: sorted.map(c => FACTION_COLORS[c.faction] || '#888'),
-        borderWidth: 1,
-        borderRadius: 4,
-        barPercentage: 0.7,
-      }],
-    },
+    data: { labels: buckets.map(b => b + ' min'), datasets },
     options: {
       responsive: true,
       maintainAspectRatio: true,
       plugins: {
-        legend: { display: false },
+        legend: {
+          labels: { usePointStyle: true, pointStyle: 'circle', padding: 14, font: { size: 11 } },
+        },
         tooltip: {
           ...CHART_TOOLTIP,
           callbacks: {
-            label: ctx => `${ctx.parsed.y}% winrate (${sorted[ctx.dataIndex].matches} games)`,
+            label: ctx => {
+              const bucketData = ctx.dataset._cmdData[ctx.dataIndex];
+              const wr = ctx.parsed.y !== null ? ctx.parsed.y.toFixed(1) + '%' : 'N/A';
+              return `${ctx.dataset.label}: ${wr} (${bucketData.games} games)`;
+            },
           },
         },
       },
       scales: {
         y: {
-          min: 30,
-          max: 70,
+          min: 20,
+          max: 80,
           ticks: { callback: v => v + '%' },
           grid: { color: '#21262d' },
+          title: { display: true, text: 'Winrate', color: '#8b949e', font: { size: 11 } },
         },
         x: {
-          ticks: { maxRotation: 45 },
           grid: { display: false },
+          title: { display: true, text: 'Game Duration', color: '#8b949e', font: { size: 11 } },
         },
       },
     },
@@ -325,8 +344,10 @@ function renderAll() {
 
   // Commander stats
   renderCommanderCards(commanderStats, appData.commanders);
-  renderCommanderTable(commanderStats);
-  renderCommanderChart(commanderStats);
+
+  // Winrate by game duration
+  const durationData = getPeriodData(appData.durationWinrates, period);
+  renderDurationChart(durationData);
 
   // Deck composition
   renderAvgCostChart(deckComp);

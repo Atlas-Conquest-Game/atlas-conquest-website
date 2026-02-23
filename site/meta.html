@@ -68,8 +68,19 @@
     </div>
   </section>
 
+  <!-- Commander Popularity Over Time -->
+  <section id="commander-trends" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Commander Popularity Over Time <span class="tooltip-icon" data-tooltip="Weekly commander pick rate as % of all games played. Shows which commanders are trending up or down.">?</span></h2>
+      <p class="section-desc">Per-commander usage share by week. Track rising and falling commanders in the meta.</p>
+      <div class="chart-container">
+        <canvas id="commander-trends-chart"></canvas>
+      </div>
+    </div>
+  </section>
+
   <!-- Commander Matchups -->
-  <section id="matchups" class="section section-alt">
+  <section id="matchups" class="section">
     <div class="container">
       <h2 class="section-title">Commander Matchups <span class="tooltip-icon" data-tooltip="Row commander's win rate vs column commander. Green >55%, red <45%. Gray = fewer than 5 games.">?</span></h2>
       <p class="section-desc">Head-to-head winrates. Read rows as "Row commander's winrate vs Column commander."</p>
@@ -106,6 +117,16 @@
       </p>
       <div class="chart-container">
         <canvas id="first-turn-chart"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- Faction Loyalty Trends (placeholder) -->
+  <section id="patron-trends" class="section section-alt">
+    <div class="container">
+      <div class="placeholder-card">
+        <h2 class="section-title">Faction Loyalty Trends</h2>
+        <p class="placeholder-text">Coming soon — tracking how deck faction loyalty (patron vs neutral vs off-faction card ratios) shifts over time across the meta.</p>
       </div>
     </div>
   </section>
