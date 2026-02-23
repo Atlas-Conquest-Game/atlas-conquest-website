@@ -913,8 +913,6 @@ def build_and_write_all(games, cards_csv, commanders_csv):
             matchup_list = []
             for c1 in all_commanders:
                 for c2 in all_commanders:
-                    if c1 == c2:
-                        continue
                     data = matchup_raw[c1][c2]
                     total = data["wins"] + data["losses"]
                     if total == 0:
@@ -961,30 +959,27 @@ def build_and_write_all(games, cards_csv, commanders_csv):
                 })
             out["card_stats"][period_key][map_name] = card_stats
 
-            # ── trends (skip for individual maps with < 200 games) ──
-            if map_name == "all" or n >= 200:
-                weekly, weekly_total = aggregate_trends(map_games)
-                sorted_weeks = sorted(weekly.keys())
-                faction_weekly = defaultdict(list)
-                dates = []
-                for week in sorted_weeks:
-                    total = weekly_total[week]
-                    if total < 4:
-                        continue
-                    dates.append(week)
-                    faction_counts = defaultdict(int)
-                    for cmd, count in weekly[week].items():
-                        faction = cmd_faction.get(cmd, "neutral")
-                        faction_counts[faction] += count
-                    for faction in ["skaal", "grenalia", "lucia", "neutral", "shadis", "archaeon"]:
-                        pct = round((faction_counts[faction] / total) * 100, 1) if total > 0 else 0
-                        faction_weekly[faction].append(pct)
-                out["trends"][period_key][map_name] = {
-                    "dates": dates,
-                    "factions": dict(faction_weekly),
-                }
-            else:
-                out["trends"][period_key][map_name] = {"dates": [], "factions": {}}
+            # ── trends ──
+            weekly, weekly_total = aggregate_trends(map_games)
+            sorted_weeks = sorted(weekly.keys())
+            faction_weekly = defaultdict(list)
+            dates = []
+            for week in sorted_weeks:
+                total = weekly_total[week]
+                if total < 4:
+                    continue
+                dates.append(week)
+                faction_counts = defaultdict(int)
+                for cmd, count in weekly[week].items():
+                    faction = cmd_faction.get(cmd, "neutral")
+                    faction_counts[faction] += count
+                for faction in ["skaal", "grenalia", "lucia", "neutral", "shadis", "archaeon"]:
+                    pct = round((faction_counts[faction] / total) * 100, 1) if total > 0 else 0
+                    faction_weekly[faction].append(pct)
+            out["trends"][period_key][map_name] = {
+                "dates": dates,
+                "factions": dict(faction_weekly),
+            }
 
             # ── game distributions ──
             out["distributions"][period_key][map_name] = aggregate_game_distributions(map_games)
@@ -1034,6 +1029,12 @@ def save_cache(games):
 # ─── Main ────────────────────────────────────────────────────────
 
 def main():
+    import argparse
+    parser = argparse.ArgumentParser(description="Atlas Conquest Data Pipeline")
+    parser.add_argument("--skip-fetch", action="store_true",
+                        help="Skip DynamoDB fetch, re-aggregate from cache only")
+    args = parser.parse_args()
+
     print("Atlas Conquest Data Pipeline")
     print("=" * 50)
 
@@ -1041,31 +1042,36 @@ def main():
     print("\n[1/6] Loading cache...")
     cached_games, cached_ids = load_cache()
 
-    # Step 2: Scan DynamoDB for new games
-    print("\n[2/6] Scanning DynamoDB...")
-    table = get_dynamo_table()
-    raw_items = scan_all_games(table, cached_ids)
-    print(f"  Found {len(raw_items)} new items from DynamoDB")
+    if args.skip_fetch:
+        print("\n[2/6] Skipping DynamoDB fetch (--skip-fetch)")
+        all_games = cached_games
+        print(f"  Using {len(all_games)} cached games")
+    else:
+        # Step 2: Scan DynamoDB for new games
+        print("\n[2/6] Scanning DynamoDB...")
+        table = get_dynamo_table()
+        raw_items = scan_all_games(table, cached_ids)
+        print(f"  Found {len(raw_items)} new items from DynamoDB")
 
-    # Step 3: Clean new games
-    print("\n[3/6] Cleaning data...")
-    new_games = []
-    skipped = 0
-    for item in raw_items:
-        cleaned = clean_game(item)
-        if cleaned:
-            new_games.append(cleaned)
-        else:
-            skipped += 1
-    print(f"  Cleaned {len(new_games)} new games, skipped {skipped}")
+        # Step 3: Clean new games
+        print("\n[3/6] Cleaning data...")
+        new_games = []
+        skipped = 0
+        for item in raw_items:
+            cleaned = clean_game(item)
+            if cleaned:
+                new_games.append(cleaned)
+            else:
+                skipped += 1
+        print(f"  Cleaned {len(new_games)} new games, skipped {skipped}")
 
-    # Merge with cache
-    all_games = cached_games + new_games
-    print(f"  Total games: {len(all_games)}")
+        # Merge with cache
+        all_games = cached_games + new_games
+        print(f"  Total games: {len(all_games)}")
 
-    # Step 4: Save updated cache
-    print("\n[4/6] Saving cache...")
-    save_cache(all_games)
+        # Step 4: Save updated cache
+        print("\n[4/6] Saving cache...")
+        save_cache(all_games)
 
     # Step 5: Generate optimized thumbnails from Artwork/ and CardScreenshots/
     print("\n[5/7] Generating thumbnails...")

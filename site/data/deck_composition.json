@@ -9523,7 +9523,7 @@
       },
       "Jagris, the Huntsman": {
         "faction": "grenalia",
-        "deck_count": 197,
+        "deck_count": 196,
         "avg_cost": 3.35,
         "cost_histogram": {
           "labels": [
@@ -9545,11 +9545,11 @@
             0.43,
             5.46,
             10.45,
-            8.47,
-            5.59,
-            6.41,
-            4.25,
-            0.73,
+            8.46,
+            5.58,
+            6.42,
+            4.24,
+            0.72,
             0.16,
             0.14,
             0.18,
@@ -9557,18 +9557,18 @@
             0.0
           ],
           "winning_decks": [
-            0.46,
+            0.47,
             5.56,
             10.39,
-            8.41,
-            5.37,
-            6.7,
-            4.22,
-            0.57,
-            0.09,
+            8.4,
+            5.36,
+            6.72,
+            4.21,
+            0.56,
+            0.08,
             0.14,
             0.11,
-            0.24,
+            0.25,
             0.0
           ],
           "losing_decks": [
@@ -9587,12 +9587,12 @@
             0.0
           ]
         },
-        "avg_minion_count": 31.62,
+        "avg_minion_count": 31.61,
         "avg_spell_count": 10.83,
         "avg_patron_cards": 20.43,
-        "avg_neutral_cards": 22.02,
+        "avg_neutral_cards": 22.01,
         "avg_other_cards": 0.0,
-        "win_avg_minion_count": 31.56,
+        "win_avg_minion_count": 31.53,
         "win_avg_spell_count": 10.71,
         "loss_avg_minion_count": 31.73,
         "loss_avg_spell_count": 11.03
@@ -10055,7 +10055,7 @@
       },
       "Soultaker Viessa": {
         "faction": "shadis",
-        "deck_count": 121,
+        "deck_count": 120,
         "avg_cost": 4.16,
         "cost_histogram": {
           "labels": [
@@ -10075,18 +10075,18 @@
           ],
           "all_decks": [
             0.0,
-            3.08,
-            7.49,
-            8.11,
-            7.69,
-            4.79,
-            2.33,
-            3.64,
+            3.11,
+            7.5,
+            8.09,
+            7.66,
+            4.78,
+            2.32,
+            3.66,
             1.06,
-            0.64,
+            0.65,
             0.0,
             0.0,
-            1.17
+            1.18
           ],
           "winning_decks": [
             0.0,
@@ -10105,29 +10105,29 @@
           ],
           "losing_decks": [
             0.0,
-            2.87,
-            7.44,
-            8.07,
-            7.89,
-            4.93,
-            2.31,
-            3.62,
+            2.93,
+            7.48,
+            8.02,
+            7.82,
+            4.91,
+            2.27,
+            3.66,
             1.09,
-            0.62,
+            0.64,
             0.0,
             0.0,
-            1.16
+            1.18
           ]
         },
-        "avg_minion_count": 24.55,
-        "avg_spell_count": 15.45,
-        "avg_patron_cards": 15.93,
-        "avg_neutral_cards": 24.07,
+        "avg_minion_count": 24.52,
+        "avg_spell_count": 15.47,
+        "avg_patron_cards": 16.04,
+        "avg_neutral_cards": 23.96,
         "avg_other_cards": 0.0,
         "win_avg_minion_count": 24.38,
         "win_avg_spell_count": 15.62,
-        "loss_avg_minion_count": 24.84,
-        "loss_avg_spell_count": 15.16
+        "loss_avg_minion_count": 24.77,
+        "loss_avg_spell_count": 15.23
       },
       "Elber, Jungle Emissary": {
         "faction": "grenalia",
@@ -10589,7 +10589,7 @@
       },
       "Jagris, the Huntsman": {
         "faction": "grenalia",
-        "deck_count": 171,
+        "deck_count": 170,
         "avg_cost": 3.37,
         "cost_histogram": {
           "labels": [
@@ -10608,29 +10608,29 @@
             "12+"
           ],
           "all_decks": [
-            0.47,
+            0.48,
             5.3,
             10.34,
             8.52,
-            5.64,
-            6.68,
-            4.27,
-            0.78,
-            0.17,
+            5.63,
+            6.69,
+            4.26,
+            0.77,
             0.16,
-            0.19,
+            0.16,
+            0.18,
             0.11,
             0.0
           ],
           "winning_decks": [
-            0.54,
+            0.55,
             5.34,
-            10.32,
+            10.33,
             8.52,
-            5.41,
-            6.98,
-            4.18,
-            0.65,
+            5.39,
+            7.01,
+            4.17,
+            0.63,
             0.1,
             0.16,
             0.12,
@@ -10653,13 +10653,13 @@
             0.0
           ]
         },
-        "avg_minion_count": 31.78,
-        "avg_spell_count": 10.84,
-        "avg_patron_cards": 20.36,
-        "avg_neutral_cards": 22.27,
+        "avg_minion_count": 31.76,
+        "avg_spell_count": 10.85,
+        "avg_patron_cards": 20.35,
+        "avg_neutral_cards": 22.26,
         "avg_other_cards": 0.0,
-        "win_avg_minion_count": 31.54,
-        "win_avg_spell_count": 10.94,
+        "win_avg_minion_count": 31.51,
+        "win_avg_spell_count": 10.95,
         "loss_avg_minion_count": 32.17,
         "loss_avg_spell_count": 10.68
       },
@@ -11121,7 +11121,7 @@
       },
       "Soultaker Viessa": {
         "faction": "shadis",
-        "deck_count": 103,
+        "deck_count": 102,
         "avg_cost": 4.22,
         "cost_histogram": {
           "labels": [
@@ -11141,18 +11141,18 @@
           ],
           "all_decks": [
             0.0,
-            2.86,
-            7.29,
-            8.15,
-            7.73,
-            4.83,
-            2.37,
-            3.75,
-            1.17,
-            0.66,
+            2.89,
+            7.3,
+            8.13,
+            7.7,
+            4.81,
+            2.35,
+            3.76,
+            1.18,
+            0.67,
             0.0,
             0.0,
-            1.19
+            1.21
           ],
           "winning_decks": [
             0.0,
@@ -11171,29 +11171,29 @@
           ],
           "losing_decks": [
             0.0,
-            2.69,
-            7.31,
-            8.13,
-            7.97,
-            5.05,
-            2.36,
-            3.56,
+            2.76,
+            7.34,
+            8.08,
+            7.89,
+            5.03,
+            2.32,
+            3.61,
             1.18,
-            0.62,
+            0.63,
             0.0,
             0.0,
-            1.13
+            1.16
           ]
         },
-        "avg_minion_count": 24.27,
-        "avg_spell_count": 15.73,
-        "avg_patron_cards": 15.93,
-        "avg_neutral_cards": 24.07,
+        "avg_minion_count": 24.24,
+        "avg_spell_count": 15.76,
+        "avg_patron_cards": 16.06,
+        "avg_neutral_cards": 23.94,
         "avg_other_cards": 0.0,
         "win_avg_minion_count": 24.0,
         "win_avg_spell_count": 16.0,
-        "loss_avg_minion_count": 24.72,
-        "loss_avg_spell_count": 15.28
+        "loss_avg_minion_count": 24.63,
+        "loss_avg_spell_count": 15.37
       },
       "Elber, Jungle Emissary": {
         "faction": "grenalia",

@@ -21,6 +21,14 @@
       "matchups": [
         {
           "commander": "Captain Greenbeard",
+          "opponent": "Captain Greenbeard",
+          "wins": 48,
+          "losses": 48,
+          "total": 96,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Captain Greenbeard",
           "opponent": "Elber, Jungle Emissary",
           "wins": 40,
           "losses": 42,
@@ -138,6 +146,14 @@
           "losses": 40,
           "total": 82,
           "winrate": 0.5122
+        },
+        {
+          "commander": "Elber, Jungle Emissary",
+          "opponent": "Elber, Jungle Emissary",
+          "wins": 23,
+          "losses": 23,
+          "total": 46,
+          "winrate": 0.5
         },
         {
           "commander": "Elber, Jungle Emissary",
@@ -261,6 +277,14 @@
         },
         {
           "commander": "Elyse of the Order",
+          "opponent": "Elyse of the Order",
+          "wins": 3,
+          "losses": 3,
+          "total": 6,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Elyse of the Order",
           "opponent": "Executor Ginn",
           "wins": 15,
           "losses": 7,
@@ -378,6 +402,14 @@
           "losses": 15,
           "total": 22,
           "winrate": 0.3182
+        },
+        {
+          "commander": "Executor Ginn",
+          "opponent": "Executor Ginn",
+          "wins": 9,
+          "losses": 9,
+          "total": 18,
+          "winrate": 0.5
         },
         {
           "commander": "Executor Ginn",
@@ -501,6 +533,14 @@
         },
         {
           "commander": "Fael Spiritwalker",
+          "opponent": "Fael Spiritwalker",
+          "wins": 3,
+          "losses": 3,
+          "total": 6,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Fael Spiritwalker",
           "opponent": "It That Weaves",
           "wins": 2,
           "losses": 7,
@@ -618,6 +658,14 @@
           "losses": 2,
           "total": 9,
           "winrate": 0.7778
+        },
+        {
+          "commander": "It That Weaves",
+          "opponent": "It That Weaves",
+          "wins": 2,
+          "losses": 2,
+          "total": 4,
+          "winrate": 0.5
         },
         {
           "commander": "It That Weaves",
@@ -741,6 +789,14 @@
         },
         {
           "commander": "Jagris, the Huntsman",
+          "opponent": "Jagris, the Huntsman",
+          "wins": 24,
+          "losses": 24,
+          "total": 48,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Jagris, the Huntsman",
           "opponent": "Kai, Longcount Shaman",
           "wins": 52,
           "losses": 28,
@@ -858,6 +914,14 @@
           "losses": 52,
           "total": 80,
           "winrate": 0.35
+        },
+        {
+          "commander": "Kai, Longcount Shaman",
+          "opponent": "Kai, Longcount Shaman",
+          "wins": 18,
+          "losses": 18,
+          "total": 36,
+          "winrate": 0.5
         },
         {
           "commander": "Kai, Longcount Shaman",
@@ -981,6 +1045,14 @@
         },
         {
           "commander": "Lazim, Thief of Gods",
+          "opponent": "Lazim, Thief of Gods",
+          "wins": 15,
+          "losses": 15,
+          "total": 30,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Lazim, Thief of Gods",
           "opponent": "Lubela, Tender of the Wilds",
           "wins": 13,
           "losses": 7,
@@ -1098,6 +1170,14 @@
           "losses": 13,
           "total": 20,
           "winrate": 0.35
+        },
+        {
+          "commander": "Lubela, Tender of the Wilds",
+          "opponent": "Lubela, Tender of the Wilds",
+          "wins": 13,
+          "losses": 13,
+          "total": 26,
+          "winrate": 0.5
         },
         {
           "commander": "Lubela, Tender of the Wilds",
@@ -1221,6 +1301,14 @@
         },
         {
           "commander": "Macks Speed",
+          "opponent": "Macks Speed",
+          "wins": 6,
+          "losses": 6,
+          "total": 12,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Macks Speed",
           "opponent": "Milo Sunstone",
           "wins": 8,
           "losses": 6,
@@ -1341,6 +1429,14 @@
         },
         {
           "commander": "Milo Sunstone",
+          "opponent": "Milo Sunstone",
+          "wins": 24,
+          "losses": 24,
+          "total": 48,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Milo Sunstone",
           "opponent": "Newhaven Township",
           "wins": 3,
           "losses": 3,
@@ -1457,6 +1553,14 @@
           "wins": 3,
           "losses": 3,
           "total": 6,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Newhaven Township",
+          "opponent": "Newhaven Township",
+          "wins": 7,
+          "losses": 7,
+          "total": 14,
           "winrate": 0.5
         },
         {
@@ -1581,6 +1685,14 @@
         },
         {
           "commander": "Soultaker Viessa",
+          "opponent": "Soultaker Viessa",
+          "wins": 19,
+          "losses": 19,
+          "total": 38,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Soultaker Viessa",
           "opponent": "Starwise Luna",
           "wins": 18,
           "losses": 23,
@@ -1698,6 +1810,14 @@
           "losses": 18,
           "total": 41,
           "winrate": 0.561
+        },
+        {
+          "commander": "Starwise Luna",
+          "opponent": "Starwise Luna",
+          "wins": 23,
+          "losses": 23,
+          "total": 46,
+          "winrate": 0.5
         }
       ]
     },
@@ -1720,6 +1840,14 @@
         "Starwise Luna"
       ],
       "matchups": [
+        {
+          "commander": "Captain Greenbeard",
+          "opponent": "Captain Greenbeard",
+          "wins": 47,
+          "losses": 47,
+          "total": 94,
+          "winrate": 0.5
+        },
         {
           "commander": "Captain Greenbeard",
           "opponent": "Elber, Jungle Emissary",
@@ -1842,6 +1970,14 @@
         },
         {
           "commander": "Elber, Jungle Emissary",
+          "opponent": "Elber, Jungle Emissary",
+          "wins": 23,
+          "losses": 23,
+          "total": 46,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Elber, Jungle Emissary",
           "opponent": "Elyse of the Order",
           "wins": 10,
           "losses": 10,
@@ -1958,6 +2094,14 @@
           "wins": 10,
           "losses": 10,
           "total": 20,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Elyse of the Order",
+          "opponent": "Elyse of the Order",
+          "wins": 3,
+          "losses": 3,
+          "total": 6,
           "winrate": 0.5
         },
         {
@@ -2082,6 +2226,14 @@
         },
         {
           "commander": "Executor Ginn",
+          "opponent": "Executor Ginn",
+          "wins": 9,
+          "losses": 9,
+          "total": 18,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Executor Ginn",
           "opponent": "Fael Spiritwalker",
           "wins": 1,
           "losses": 4,
@@ -2199,6 +2351,14 @@
           "losses": 1,
           "total": 5,
           "winrate": 0.8
+        },
+        {
+          "commander": "Fael Spiritwalker",
+          "opponent": "Fael Spiritwalker",
+          "wins": 3,
+          "losses": 3,
+          "total": 6,
+          "winrate": 0.5
         },
         {
           "commander": "Fael Spiritwalker",
@@ -2322,6 +2482,14 @@
         },
         {
           "commander": "It That Weaves",
+          "opponent": "It That Weaves",
+          "wins": 2,
+          "losses": 2,
+          "total": 4,
+          "winrate": 0.5
+        },
+        {
+          "commander": "It That Weaves",
           "opponent": "Jagris, the Huntsman",
           "wins": 11,
           "losses": 47,
@@ -2439,6 +2607,14 @@
           "losses": 11,
           "total": 58,
           "winrate": 0.8103
+        },
+        {
+          "commander": "Jagris, the Huntsman",
+          "opponent": "Jagris, the Huntsman",
+          "wins": 23,
+          "losses": 23,
+          "total": 46,
+          "winrate": 0.5
         },
         {
           "commander": "Jagris, the Huntsman",
@@ -2562,6 +2738,14 @@
         },
         {
           "commander": "Kai, Longcount Shaman",
+          "opponent": "Kai, Longcount Shaman",
+          "wins": 18,
+          "losses": 18,
+          "total": 36,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Kai, Longcount Shaman",
           "opponent": "Lazim, Thief of Gods",
           "wins": 31,
           "losses": 18,
@@ -2679,6 +2863,14 @@
           "losses": 31,
           "total": 49,
           "winrate": 0.3673
+        },
+        {
+          "commander": "Lazim, Thief of Gods",
+          "opponent": "Lazim, Thief of Gods",
+          "wins": 14,
+          "losses": 14,
+          "total": 28,
+          "winrate": 0.5
         },
         {
           "commander": "Lazim, Thief of Gods",
@@ -2802,6 +2994,14 @@
         },
         {
           "commander": "Lubela, Tender of the Wilds",
+          "opponent": "Lubela, Tender of the Wilds",
+          "wins": 13,
+          "losses": 13,
+          "total": 26,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Lubela, Tender of the Wilds",
           "opponent": "Macks Speed",
           "wins": 6,
           "losses": 9,
@@ -2919,6 +3119,14 @@
           "losses": 6,
           "total": 15,
           "winrate": 0.6
+        },
+        {
+          "commander": "Macks Speed",
+          "opponent": "Macks Speed",
+          "wins": 6,
+          "losses": 6,
+          "total": 12,
+          "winrate": 0.5
         },
         {
           "commander": "Macks Speed",
@@ -3042,6 +3250,14 @@
         },
         {
           "commander": "Milo Sunstone",
+          "opponent": "Milo Sunstone",
+          "wins": 24,
+          "losses": 24,
+          "total": 48,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Milo Sunstone",
           "opponent": "Newhaven Township",
           "wins": 3,
           "losses": 2,
@@ -3159,6 +3375,14 @@
           "losses": 3,
           "total": 5,
           "winrate": 0.4
+        },
+        {
+          "commander": "Newhaven Township",
+          "opponent": "Newhaven Township",
+          "wins": 7,
+          "losses": 7,
+          "total": 14,
+          "winrate": 0.5
         },
         {
           "commander": "Newhaven Township",
@@ -3282,6 +3506,14 @@
         },
         {
           "commander": "Soultaker Viessa",
+          "opponent": "Soultaker Viessa",
+          "wins": 17,
+          "losses": 17,
+          "total": 34,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Soultaker Viessa",
           "opponent": "Starwise Luna",
           "wins": 18,
           "losses": 23,
@@ -3399,6 +3631,14 @@
           "losses": 18,
           "total": 41,
           "winrate": 0.561
+        },
+        {
+          "commander": "Starwise Luna",
+          "opponent": "Starwise Luna",
+          "wins": 22,
+          "losses": 22,
+          "total": 44,
+          "winrate": 0.5
         }
       ]
     },
@@ -3623,6 +3863,14 @@
         },
         {
           "commander": "Jagris, the Huntsman",
+          "opponent": "Jagris, the Huntsman",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Jagris, the Huntsman",
           "opponent": "Lazim, Thief of Gods",
           "wins": 4,
           "losses": 2,
@@ -3934,6 +4182,14 @@
           "winrate": 1.0
         },
         {
+          "commander": "Soultaker Viessa",
+          "opponent": "Soultaker Viessa",
+          "wins": 2,
+          "losses": 2,
+          "total": 4,
+          "winrate": 0.5
+        },
+        {
           "commander": "Starwise Luna",
           "opponent": "Fael Spiritwalker",
           "wins": 0,
@@ -4018,6 +4274,14 @@
         "Starwise Luna"
       ],
       "matchups": [
+        {
+          "commander": "Captain Greenbeard",
+          "opponent": "Captain Greenbeard",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
+        },
         {
           "commander": "Captain Greenbeard",
           "opponent": "Executor Ginn",
@@ -4420,6 +4684,14 @@
         },
         {
           "commander": "Lazim, Thief of Gods",
+          "opponent": "Lazim, Thief of Gods",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Lazim, Thief of Gods",
           "opponent": "Macks Speed",
           "wins": 0,
           "losses": 1,
@@ -4673,6 +4945,14 @@
           "losses": 0,
           "total": 1,
           "winrate": 1.0
+        },
+        {
+          "commander": "Starwise Luna",
+          "opponent": "Starwise Luna",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
         }
       ]
     }
@@ -4697,6 +4977,14 @@
         "Starwise Luna"
       ],
       "matchups": [
+        {
+          "commander": "Captain Greenbeard",
+          "opponent": "Captain Greenbeard",
+          "wins": 5,
+          "losses": 5,
+          "total": 10,
+          "winrate": 0.5
+        },
         {
           "commander": "Captain Greenbeard",
           "opponent": "Elber, Jungle Emissary",
@@ -4931,6 +5219,14 @@
         },
         {
           "commander": "Elyse of the Order",
+          "opponent": "Elyse of the Order",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Elyse of the Order",
           "opponent": "Executor Ginn",
           "wins": 2,
           "losses": 2,
@@ -5039,6 +5335,14 @@
           "wins": 2,
           "losses": 2,
           "total": 4,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Executor Ginn",
+          "opponent": "Executor Ginn",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
           "winrate": 0.5
         },
         {
@@ -5163,6 +5467,14 @@
         },
         {
           "commander": "Fael Spiritwalker",
+          "opponent": "Fael Spiritwalker",
+          "wins": 3,
+          "losses": 3,
+          "total": 6,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Fael Spiritwalker",
           "opponent": "It That Weaves",
           "wins": 2,
           "losses": 7,
@@ -5280,6 +5592,14 @@
           "losses": 2,
           "total": 9,
           "winrate": 0.7778
+        },
+        {
+          "commander": "It That Weaves",
+          "opponent": "It That Weaves",
+          "wins": 2,
+          "losses": 2,
+          "total": 4,
+          "winrate": 0.5
         },
         {
           "commander": "It That Weaves",
@@ -5403,6 +5723,14 @@
         },
         {
           "commander": "Jagris, the Huntsman",
+          "opponent": "Jagris, the Huntsman",
+          "wins": 11,
+          "losses": 11,
+          "total": 22,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Jagris, the Huntsman",
           "opponent": "Kai, Longcount Shaman",
           "wins": 40,
           "losses": 13,
@@ -5523,6 +5851,14 @@
         },
         {
           "commander": "Kai, Longcount Shaman",
+          "opponent": "Kai, Longcount Shaman",
+          "wins": 2,
+          "losses": 2,
+          "total": 4,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Kai, Longcount Shaman",
           "opponent": "Lazim, Thief of Gods",
           "wins": 8,
           "losses": 8,
@@ -5623,6 +5959,14 @@
           "wins": 8,
           "losses": 8,
           "total": 16,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Lazim, Thief of Gods",
+          "opponent": "Lazim, Thief of Gods",
+          "wins": 3,
+          "losses": 3,
+          "total": 6,
           "winrate": 0.5
         },
         {
@@ -5735,6 +6079,14 @@
           "wins": 3,
           "losses": 3,
           "total": 6,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Lubela, Tender of the Wilds",
+          "opponent": "Lubela, Tender of the Wilds",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
           "winrate": 0.5
         },
         {
@@ -5971,6 +6323,14 @@
         },
         {
           "commander": "Milo Sunstone",
+          "opponent": "Milo Sunstone",
+          "wins": 2,
+          "losses": 2,
+          "total": 4,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Milo Sunstone",
           "opponent": "Newhaven Township",
           "wins": 1,
           "losses": 2,
@@ -6088,6 +6448,14 @@
           "losses": 1,
           "total": 3,
           "winrate": 0.6667
+        },
+        {
+          "commander": "Newhaven Township",
+          "opponent": "Newhaven Township",
+          "wins": 5,
+          "losses": 5,
+          "total": 10,
+          "winrate": 0.5
         },
         {
           "commander": "Newhaven Township",
@@ -6211,6 +6579,14 @@
         },
         {
           "commander": "Soultaker Viessa",
+          "opponent": "Soultaker Viessa",
+          "wins": 12,
+          "losses": 12,
+          "total": 24,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Soultaker Viessa",
           "opponent": "Starwise Luna",
           "wins": 5,
           "losses": 10,
@@ -6328,6 +6704,14 @@
           "losses": 5,
           "total": 15,
           "winrate": 0.6667
+        },
+        {
+          "commander": "Starwise Luna",
+          "opponent": "Starwise Luna",
+          "wins": 4,
+          "losses": 4,
+          "total": 8,
+          "winrate": 0.5
         }
       ]
     },
@@ -6350,6 +6734,14 @@
         "Starwise Luna"
       ],
       "matchups": [
+        {
+          "commander": "Captain Greenbeard",
+          "opponent": "Captain Greenbeard",
+          "wins": 4,
+          "losses": 4,
+          "total": 8,
+          "winrate": 0.5
+        },
         {
           "commander": "Captain Greenbeard",
           "opponent": "Elber, Jungle Emissary",
@@ -6560,6 +6952,14 @@
         },
         {
           "commander": "Elyse of the Order",
+          "opponent": "Elyse of the Order",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Elyse of the Order",
           "opponent": "Executor Ginn",
           "wins": 1,
           "losses": 2,
@@ -6669,6 +7069,14 @@
           "losses": 1,
           "total": 3,
           "winrate": 0.6667
+        },
+        {
+          "commander": "Executor Ginn",
+          "opponent": "Executor Ginn",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Executor Ginn",
@@ -6788,6 +7196,14 @@
           "wins": 1,
           "losses": 1,
           "total": 2,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Fael Spiritwalker",
+          "opponent": "Fael Spiritwalker",
+          "wins": 3,
+          "losses": 3,
+          "total": 6,
           "winrate": 0.5
         },
         {
@@ -6912,6 +7328,14 @@
         },
         {
           "commander": "It That Weaves",
+          "opponent": "It That Weaves",
+          "wins": 2,
+          "losses": 2,
+          "total": 4,
+          "winrate": 0.5
+        },
+        {
+          "commander": "It That Weaves",
           "opponent": "Jagris, the Huntsman",
           "wins": 11,
           "losses": 47,
@@ -7029,6 +7453,14 @@
           "losses": 11,
           "total": 58,
           "winrate": 0.8103
+        },
+        {
+          "commander": "Jagris, the Huntsman",
+          "opponent": "Jagris, the Huntsman",
+          "wins": 10,
+          "losses": 10,
+          "total": 20,
+          "winrate": 0.5
         },
         {
           "commander": "Jagris, the Huntsman",
@@ -7152,6 +7584,14 @@
         },
         {
           "commander": "Kai, Longcount Shaman",
+          "opponent": "Kai, Longcount Shaman",
+          "wins": 2,
+          "losses": 2,
+          "total": 4,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Kai, Longcount Shaman",
           "opponent": "Lazim, Thief of Gods",
           "wins": 7,
           "losses": 8,
@@ -7256,6 +7696,14 @@
         },
         {
           "commander": "Lazim, Thief of Gods",
+          "opponent": "Lazim, Thief of Gods",
+          "wins": 2,
+          "losses": 2,
+          "total": 4,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Lazim, Thief of Gods",
           "opponent": "Lubela, Tender of the Wilds",
           "wins": 3,
           "losses": 2,
@@ -7357,6 +7805,14 @@
           "losses": 3,
           "total": 5,
           "winrate": 0.4
+        },
+        {
+          "commander": "Lubela, Tender of the Wilds",
+          "opponent": "Lubela, Tender of the Wilds",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Lubela, Tender of the Wilds",
@@ -7592,6 +8048,14 @@
         },
         {
           "commander": "Milo Sunstone",
+          "opponent": "Milo Sunstone",
+          "wins": 2,
+          "losses": 2,
+          "total": 4,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Milo Sunstone",
           "opponent": "Newhaven Township",
           "wins": 1,
           "losses": 1,
@@ -7708,6 +8172,14 @@
           "wins": 1,
           "losses": 1,
           "total": 2,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Newhaven Township",
+          "opponent": "Newhaven Township",
+          "wins": 5,
+          "losses": 5,
+          "total": 10,
           "winrate": 0.5
         },
         {
@@ -7832,6 +8304,14 @@
         },
         {
           "commander": "Soultaker Viessa",
+          "opponent": "Soultaker Viessa",
+          "wins": 10,
+          "losses": 10,
+          "total": 20,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Soultaker Viessa",
           "opponent": "Starwise Luna",
           "wins": 5,
           "losses": 10,
@@ -7949,6 +8429,14 @@
           "losses": 5,
           "total": 15,
           "winrate": 0.6667
+        },
+        {
+          "commander": "Starwise Luna",
+          "opponent": "Starwise Luna",
+          "wins": 3,
+          "losses": 3,
+          "total": 6,
+          "winrate": 0.5
         }
       ]
     },
@@ -8173,6 +8661,14 @@
         },
         {
           "commander": "Jagris, the Huntsman",
+          "opponent": "Jagris, the Huntsman",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Jagris, the Huntsman",
           "opponent": "Lazim, Thief of Gods",
           "wins": 4,
           "losses": 2,
@@ -8484,6 +8980,14 @@
           "winrate": 1.0
         },
         {
+          "commander": "Soultaker Viessa",
+          "opponent": "Soultaker Viessa",
+          "wins": 2,
+          "losses": 2,
+          "total": 4,
+          "winrate": 0.5
+        },
+        {
           "commander": "Starwise Luna",
           "opponent": "Fael Spiritwalker",
           "wins": 0,
@@ -8568,6 +9072,14 @@
         "Starwise Luna"
       ],
       "matchups": [
+        {
+          "commander": "Captain Greenbeard",
+          "opponent": "Captain Greenbeard",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
+        },
         {
           "commander": "Captain Greenbeard",
           "opponent": "Executor Ginn",
@@ -8970,6 +9482,14 @@
         },
         {
           "commander": "Lazim, Thief of Gods",
+          "opponent": "Lazim, Thief of Gods",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Lazim, Thief of Gods",
           "opponent": "Macks Speed",
           "wins": 0,
           "losses": 1,
@@ -9223,6 +9743,14 @@
           "losses": 0,
           "total": 1,
           "winrate": 1.0
+        },
+        {
+          "commander": "Starwise Luna",
+          "opponent": "Starwise Luna",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
         }
       ]
     }
@@ -9247,6 +9775,14 @@
         "Starwise Luna"
       ],
       "matchups": [
+        {
+          "commander": "Captain Greenbeard",
+          "opponent": "Captain Greenbeard",
+          "wins": 5,
+          "losses": 5,
+          "total": 10,
+          "winrate": 0.5
+        },
         {
           "commander": "Captain Greenbeard",
           "opponent": "Elber, Jungle Emissary",
@@ -9577,6 +10113,14 @@
         },
         {
           "commander": "Executor Ginn",
+          "opponent": "Executor Ginn",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Executor Ginn",
           "opponent": "Fael Spiritwalker",
           "wins": 1,
           "losses": 2,
@@ -9678,6 +10222,14 @@
           "losses": 1,
           "total": 3,
           "winrate": 0.6667
+        },
+        {
+          "commander": "Fael Spiritwalker",
+          "opponent": "Fael Spiritwalker",
+          "wins": 2,
+          "losses": 2,
+          "total": 4,
+          "winrate": 0.5
         },
         {
           "commander": "Fael Spiritwalker",
@@ -9801,6 +10353,14 @@
         },
         {
           "commander": "It That Weaves",
+          "opponent": "It That Weaves",
+          "wins": 2,
+          "losses": 2,
+          "total": 4,
+          "winrate": 0.5
+        },
+        {
+          "commander": "It That Weaves",
           "opponent": "Jagris, the Huntsman",
           "wins": 0,
           "losses": 6,
@@ -9921,6 +10481,14 @@
         },
         {
           "commander": "Jagris, the Huntsman",
+          "opponent": "Jagris, the Huntsman",
+          "wins": 8,
+          "losses": 8,
+          "total": 16,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Jagris, the Huntsman",
           "opponent": "Kai, Longcount Shaman",
           "wins": 6,
           "losses": 2,
@@ -9970,10 +10538,10 @@
         {
           "commander": "Jagris, the Huntsman",
           "opponent": "Soultaker Viessa",
-          "wins": 10,
+          "wins": 9,
           "losses": 21,
-          "total": 31,
-          "winrate": 0.3226
+          "total": 30,
+          "winrate": 0.3
         },
         {
           "commander": "Jagris, the Huntsman",
@@ -10038,6 +10606,14 @@
           "losses": 6,
           "total": 8,
           "winrate": 0.25
+        },
+        {
+          "commander": "Kai, Longcount Shaman",
+          "opponent": "Kai, Longcount Shaman",
+          "wins": 2,
+          "losses": 2,
+          "total": 4,
+          "winrate": 0.5
         },
         {
           "commander": "Kai, Longcount Shaman",
@@ -10134,6 +10710,14 @@
           "losses": 5,
           "total": 7,
           "winrate": 0.2857
+        },
+        {
+          "commander": "Lazim, Thief of Gods",
+          "opponent": "Lazim, Thief of Gods",
+          "wins": 2,
+          "losses": 2,
+          "total": 4,
+          "winrate": 0.5
         },
         {
           "commander": "Lazim, Thief of Gods",
@@ -10433,6 +11017,14 @@
         },
         {
           "commander": "Milo Sunstone",
+          "opponent": "Milo Sunstone",
+          "wins": 2,
+          "losses": 2,
+          "total": 4,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Milo Sunstone",
           "opponent": "Newhaven Township",
           "wins": 0,
           "losses": 1,
@@ -10619,9 +11211,9 @@
           "commander": "Soultaker Viessa",
           "opponent": "Jagris, the Huntsman",
           "wins": 21,
-          "losses": 10,
-          "total": 31,
-          "winrate": 0.6774
+          "losses": 9,
+          "total": 30,
+          "winrate": 0.7
         },
         {
           "commander": "Soultaker Viessa",
@@ -10670,6 +11262,14 @@
           "losses": 1,
           "total": 6,
           "winrate": 0.8333
+        },
+        {
+          "commander": "Soultaker Viessa",
+          "opponent": "Soultaker Viessa",
+          "wins": 4,
+          "losses": 4,
+          "total": 8,
+          "winrate": 0.5
         },
         {
           "commander": "Soultaker Viessa",
@@ -10782,6 +11382,14 @@
           "losses": 3,
           "total": 7,
           "winrate": 0.5714
+        },
+        {
+          "commander": "Starwise Luna",
+          "opponent": "Starwise Luna",
+          "wins": 3,
+          "losses": 3,
+          "total": 6,
+          "winrate": 0.5
         }
       ]
     },
@@ -10804,6 +11412,14 @@
         "Starwise Luna"
       ],
       "matchups": [
+        {
+          "commander": "Captain Greenbeard",
+          "opponent": "Captain Greenbeard",
+          "wins": 4,
+          "losses": 4,
+          "total": 8,
+          "winrate": 0.5
+        },
         {
           "commander": "Captain Greenbeard",
           "opponent": "Elber, Jungle Emissary",
@@ -11094,6 +11710,14 @@
         },
         {
           "commander": "Executor Ginn",
+          "opponent": "Executor Ginn",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Executor Ginn",
           "opponent": "Fael Spiritwalker",
           "wins": 1,
           "losses": 1,
@@ -11194,6 +11818,14 @@
           "wins": 1,
           "losses": 1,
           "total": 2,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Fael Spiritwalker",
+          "opponent": "Fael Spiritwalker",
+          "wins": 2,
+          "losses": 2,
+          "total": 4,
           "winrate": 0.5
         },
         {
@@ -11307,6 +11939,14 @@
           "losses": 1,
           "total": 3,
           "winrate": 0.6667
+        },
+        {
+          "commander": "It That Weaves",
+          "opponent": "It That Weaves",
+          "wins": 2,
+          "losses": 2,
+          "total": 4,
+          "winrate": 0.5
         },
         {
           "commander": "It That Weaves",
@@ -11430,6 +12070,14 @@
         },
         {
           "commander": "Jagris, the Huntsman",
+          "opponent": "Jagris, the Huntsman",
+          "wins": 7,
+          "losses": 7,
+          "total": 14,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Jagris, the Huntsman",
           "opponent": "Kai, Longcount Shaman",
           "wins": 5,
           "losses": 1,
@@ -11479,10 +12127,10 @@
         {
           "commander": "Jagris, the Huntsman",
           "opponent": "Soultaker Viessa",
-          "wins": 9,
+          "wins": 8,
           "losses": 18,
-          "total": 27,
-          "winrate": 0.3333
+          "total": 26,
+          "winrate": 0.3077
         },
         {
           "commander": "Jagris, the Huntsman",
@@ -11547,6 +12195,14 @@
           "losses": 5,
           "total": 6,
           "winrate": 0.1667
+        },
+        {
+          "commander": "Kai, Longcount Shaman",
+          "opponent": "Kai, Longcount Shaman",
+          "wins": 2,
+          "losses": 2,
+          "total": 4,
+          "winrate": 0.5
         },
         {
           "commander": "Kai, Longcount Shaman",
@@ -11643,6 +12299,14 @@
           "losses": 4,
           "total": 6,
           "winrate": 0.3333
+        },
+        {
+          "commander": "Lazim, Thief of Gods",
+          "opponent": "Lazim, Thief of Gods",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Lazim, Thief of Gods",
@@ -11918,6 +12582,14 @@
         },
         {
           "commander": "Milo Sunstone",
+          "opponent": "Milo Sunstone",
+          "wins": 2,
+          "losses": 2,
+          "total": 4,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Milo Sunstone",
           "opponent": "Soultaker Viessa",
           "wins": 1,
           "losses": 1,
@@ -12064,9 +12736,9 @@
           "commander": "Soultaker Viessa",
           "opponent": "Jagris, the Huntsman",
           "wins": 18,
-          "losses": 9,
-          "total": 27,
-          "winrate": 0.6667
+          "losses": 8,
+          "total": 26,
+          "winrate": 0.6923
         },
         {
           "commander": "Soultaker Viessa",
@@ -12115,6 +12787,14 @@
           "losses": 1,
           "total": 4,
           "winrate": 0.75
+        },
+        {
+          "commander": "Soultaker Viessa",
+          "opponent": "Soultaker Viessa",
+          "wins": 2,
+          "losses": 2,
+          "total": 4,
+          "winrate": 0.5
         },
         {
           "commander": "Soultaker Viessa",
@@ -12227,6 +12907,14 @@
           "losses": 3,
           "total": 7,
           "winrate": 0.5714
+        },
+        {
+          "commander": "Starwise Luna",
+          "opponent": "Starwise Luna",
+          "wins": 2,
+          "losses": 2,
+          "total": 4,
+          "winrate": 0.5
         }
       ]
     },
@@ -12451,6 +13139,14 @@
         },
         {
           "commander": "Jagris, the Huntsman",
+          "opponent": "Jagris, the Huntsman",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Jagris, the Huntsman",
           "opponent": "Lazim, Thief of Gods",
           "wins": 4,
           "losses": 2,
@@ -12762,6 +13458,14 @@
           "winrate": 1.0
         },
         {
+          "commander": "Soultaker Viessa",
+          "opponent": "Soultaker Viessa",
+          "wins": 2,
+          "losses": 2,
+          "total": 4,
+          "winrate": 0.5
+        },
+        {
           "commander": "Starwise Luna",
           "opponent": "Fael Spiritwalker",
           "wins": 0,
@@ -12846,6 +13550,14 @@
         "Starwise Luna"
       ],
       "matchups": [
+        {
+          "commander": "Captain Greenbeard",
+          "opponent": "Captain Greenbeard",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
+        },
         {
           "commander": "Captain Greenbeard",
           "opponent": "Executor Ginn",
@@ -13248,6 +13960,14 @@
         },
         {
           "commander": "Lazim, Thief of Gods",
+          "opponent": "Lazim, Thief of Gods",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Lazim, Thief of Gods",
           "opponent": "Macks Speed",
           "wins": 0,
           "losses": 1,
@@ -13501,6 +14221,14 @@
           "losses": 0,
           "total": 1,
           "winrate": 1.0
+        },
+        {
+          "commander": "Starwise Luna",
+          "opponent": "Starwise Luna",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
         }
       ]
     }
@@ -13525,6 +14253,14 @@
         "Starwise Luna"
       ],
       "matchups": [
+        {
+          "commander": "Captain Greenbeard",
+          "opponent": "Captain Greenbeard",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
+        },
         {
           "commander": "Captain Greenbeard",
           "opponent": "Elyse of the Order",
@@ -13911,6 +14647,14 @@
         },
         {
           "commander": "It That Weaves",
+          "opponent": "It That Weaves",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
+        },
+        {
+          "commander": "It That Weaves",
           "opponent": "Jagris, the Huntsman",
           "wins": 0,
           "losses": 3,
@@ -14004,6 +14748,14 @@
           "losses": 0,
           "total": 3,
           "winrate": 1.0
+        },
+        {
+          "commander": "Jagris, the Huntsman",
+          "opponent": "Jagris, the Huntsman",
+          "wins": 2,
+          "losses": 2,
+          "total": 4,
+          "winrate": 0.5
         },
         {
           "commander": "Jagris, the Huntsman",
@@ -14204,6 +14956,14 @@
           "losses": 2,
           "total": 3,
           "winrate": 0.3333
+        },
+        {
+          "commander": "Lazim, Thief of Gods",
+          "opponent": "Lazim, Thief of Gods",
+          "wins": 2,
+          "losses": 2,
+          "total": 4,
+          "winrate": 0.5
         },
         {
           "commander": "Lazim, Thief of Gods",
@@ -14567,6 +15327,14 @@
         },
         {
           "commander": "Soultaker Viessa",
+          "opponent": "Soultaker Viessa",
+          "wins": 3,
+          "losses": 3,
+          "total": 6,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Soultaker Viessa",
           "opponent": "Starwise Luna",
           "wins": 0,
           "losses": 1,
@@ -14660,6 +15428,14 @@
           "losses": 0,
           "total": 1,
           "winrate": 1.0
+        },
+        {
+          "commander": "Starwise Luna",
+          "opponent": "Starwise Luna",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
         }
       ]
     },
@@ -14900,6 +15676,14 @@
         },
         {
           "commander": "It That Weaves",
+          "opponent": "It That Weaves",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
+        },
+        {
+          "commander": "It That Weaves",
           "opponent": "Jagris, the Huntsman",
           "wins": 0,
           "losses": 2,
@@ -14969,6 +15753,14 @@
           "losses": 0,
           "total": 2,
           "winrate": 1.0
+        },
+        {
+          "commander": "Jagris, the Huntsman",
+          "opponent": "Jagris, the Huntsman",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Jagris, the Huntsman",
@@ -15093,6 +15885,14 @@
         {
           "commander": "Lazim, Thief of Gods",
           "opponent": "Kai, Longcount Shaman",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Lazim, Thief of Gods",
+          "opponent": "Lazim, Thief of Gods",
           "wins": 1,
           "losses": 1,
           "total": 2,
@@ -15297,6 +16097,14 @@
           "losses": 0,
           "total": 1,
           "winrate": 1.0
+        },
+        {
+          "commander": "Soultaker Viessa",
+          "opponent": "Soultaker Viessa",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Soultaker Viessa",
@@ -15593,6 +16401,14 @@
         },
         {
           "commander": "Jagris, the Huntsman",
+          "opponent": "Jagris, the Huntsman",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Jagris, the Huntsman",
           "opponent": "Lazim, Thief of Gods",
           "wins": 4,
           "losses": 2,
@@ -15872,6 +16688,14 @@
           "winrate": 1.0
         },
         {
+          "commander": "Soultaker Viessa",
+          "opponent": "Soultaker Viessa",
+          "wins": 2,
+          "losses": 2,
+          "total": 4,
+          "winrate": 0.5
+        },
+        {
           "commander": "Starwise Luna",
           "opponent": "Fael Spiritwalker",
           "wins": 0,
@@ -15956,6 +16780,14 @@
         "Starwise Luna"
       ],
       "matchups": [
+        {
+          "commander": "Captain Greenbeard",
+          "opponent": "Captain Greenbeard",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
+        },
         {
           "commander": "Captain Greenbeard",
           "opponent": "Executor Ginn",
@@ -16342,6 +17174,14 @@
         },
         {
           "commander": "Lazim, Thief of Gods",
+          "opponent": "Lazim, Thief of Gods",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Lazim, Thief of Gods",
           "opponent": "Macks Speed",
           "wins": 0,
           "losses": 1,
@@ -16563,6 +17403,14 @@
           "losses": 0,
           "total": 1,
           "winrate": 1.0
+        },
+        {
+          "commander": "Starwise Luna",
+          "opponent": "Starwise Luna",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
         }
       ]
     }

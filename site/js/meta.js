@@ -118,8 +118,7 @@ function renderMatchups(matchupData) {
   });
 
   const shortName = name => {
-    const parts = name.split(',')[0].split(' ');
-    return parts.length > 1 ? parts[0] : name;
+    return name.split(',')[0].split(' ')[0];
   };
 
   const thead = table.querySelector('thead tr');
@@ -130,7 +129,9 @@ function renderMatchups(matchupData) {
   tbody.innerHTML = cmds.map(row => {
     const cells = cmds.map(col => {
       if (row === col) {
-        return '<td class="matchup-cell matchup-self" data-type="self">-</td>';
+        const selfM = matchupMap[row] && matchupMap[row][col];
+        const selfTotal = selfM ? selfM.total : 0;
+        return `<td class="matchup-cell matchup-self" data-type="self" data-row="${row}" data-total="${selfTotal}">${selfTotal ? selfTotal : '-'}<span class="matchup-count">${selfTotal ? 'mirror' : ''}</span></td>`;
       }
       const m = matchupMap[row] && matchupMap[row][col];
       if (!m || m.total < 5) {
@@ -156,7 +157,7 @@ function initMatchupTooltip() {
   const wrEl = document.getElementById('tooltip-wr');
   const gamesEl = document.getElementById('tooltip-games');
 
-  const cells = document.querySelectorAll('.matchup-cell[data-type="data"], .matchup-cell[data-type="nodata"]');
+  const cells = document.querySelectorAll('.matchup-cell[data-type="data"], .matchup-cell[data-type="nodata"], .matchup-cell[data-type="self"]');
 
   cells.forEach(cell => {
     cell.addEventListener('mouseenter', () => {
@@ -164,14 +165,20 @@ function initMatchupTooltip() {
       const col = cell.dataset.col;
       const type = cell.dataset.type;
 
-      titleEl.textContent = `${row} vs ${col}`;
-
-      if (type === 'nodata') {
+      if (type === 'self') {
+        const total = parseInt(cell.dataset.total) || 0;
+        titleEl.textContent = `${row} mirror match`;
+        wrEl.textContent = 'Mirror';
+        wrEl.style.color = '#8b949e';
+        gamesEl.textContent = `${total} game${total !== 1 ? 's' : ''} played`;
+      } else if (type === 'nodata') {
+        titleEl.textContent = `${row} vs ${col}`;
         const total = parseInt(cell.dataset.total) || 0;
         wrEl.textContent = 'Insufficient data';
         wrEl.style.color = '#8b949e';
         gamesEl.textContent = `${total} game${total !== 1 ? 's' : ''} played`;
       } else {
+        titleEl.textContent = `${row} vs ${col}`;
         const wr = cell.dataset.wr;
         const total = cell.dataset.total;
         const wins = cell.dataset.wins;
