@@ -68,6 +68,27 @@ function renderDistributions(distributions) {
   renderDistributionChart('dist-actions', distributions.actions, '#d2a8ff');
 }
 
+// ─── First-Turn Summary ─────────────────────────────────────
+
+function renderFirstTurn(ftData) {
+  const section = document.getElementById('first-turn-section');
+  if (!section) return;
+
+  if (!ftData || !ftData.total_games) {
+    section.style.display = 'none';
+    return;
+  }
+
+  section.style.display = '';
+  el('ft-winrate', (ftData.first_player_winrate * 100).toFixed(1) + '%');
+  el('ft-total-games', ftData.total_games.toLocaleString());
+
+  const noteEl = document.getElementById('ft-note');
+  if (noteEl) {
+    noteEl.textContent = `Based on ${ftData.total_games} games where first player was explicitly recorded.`;
+  }
+}
+
 // ─── Render All ─────────────────────────────────────────────
 
 function renderAll() {
@@ -77,6 +98,7 @@ function renderAll() {
   const commanderStats = getPeriodData(appData.commanderStats, period);
   const cardStats = getPeriodData(appData.cardStats, period);
   const distributions = getPeriodData(appData.gameDistributions, period);
+  const firstTurn = getPeriodData(appData.firstTurn, period);
 
   // Overview stats
   renderMetadata(metadata);
@@ -92,6 +114,9 @@ function renderAll() {
 
   // Distributions
   renderDistributions(distributions);
+
+  // First-turn advantage
+  renderFirstTurn(firstTurn);
 }
 
 // ─── Init ───────────────────────────────────────────────────
@@ -100,6 +125,7 @@ async function init() {
   appData = await loadAllData();
   renderAll();
   initTimeFilters(renderAll);
+  initMapFilters(renderAll);
   initNavActiveState();
   initTooltips();
 }

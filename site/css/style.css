@@ -227,6 +227,37 @@ body {
   color: #58a6ff;
 }
 
+.filter-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--border);
+  margin: 0 0.5rem;
+}
+
+.map-btn {
+  padding: 0.3125rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: transparent;
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.map-btn:hover {
+  border-color: var(--text-secondary);
+  color: var(--text);
+}
+
+.map-btn.active {
+  background: var(--bg-elevated);
+  border-color: #388bfd;
+  color: #58a6ff;
+}
+
 /* === Sections === */
 .section {
   padding: 4rem 0;
@@ -447,6 +478,15 @@ body {
   background: var(--bg);
   color: var(--text-muted);
   font-weight: 400;
+}
+
+.matchup-count {
+  display: block;
+  font-size: 0.5625rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  line-height: 1;
+  margin-top: 1px;
 }
 
 /* Matchup tooltip */

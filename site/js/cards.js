@@ -149,17 +149,17 @@ function initCardPreview() {
   const tbody = document.querySelector('#card-table tbody');
 
   tbody.addEventListener('mouseover', e => {
-    const row = e.target.closest('tr[data-card-slug]');
-    if (!row) return;
-    const slug = row.dataset.cardSlug;
-    const src = `assets/cards/${slug}.jpg`;
+    const cell = e.target.closest('td');
+    if (!cell) return;
+    const row = cell.closest('tr[data-card-slug]');
+    if (!row || cell !== row.cells[0]) return;
 
-    previewImg.src = src;
+    const slug = row.dataset.cardSlug;
+    previewImg.src = `assets/cards/${slug}.jpg`;
     preview.classList.add('visible');
   });
 
   tbody.addEventListener('mousemove', e => {
-    // Position preview to the right of cursor, flip left if near edge
     const x = e.clientX + 20;
     const y = e.clientY - 100;
     const flipX = x + 260 > window.innerWidth;
@@ -168,11 +168,12 @@ function initCardPreview() {
   });
 
   tbody.addEventListener('mouseout', e => {
-    const row = e.target.closest('tr[data-card-slug]');
-    if (!row) return;
-    // Only hide if we're actually leaving the row
+    const cell = e.target.closest('td');
+    if (!cell) return;
+    const row = cell.closest('tr[data-card-slug]');
+    if (!row || cell !== row.cells[0]) return;
     const related = e.relatedTarget;
-    if (related && row.contains(related)) return;
+    if (related && cell.contains(related)) return;
     preview.classList.remove('visible');
   });
 
@@ -203,6 +204,7 @@ async function init() {
   initSearch();
   initCardPreview();
   initTimeFilters(renderAll);
+  initMapFilters(renderAll);
   initNavActiveState();
   initTooltips();
 }

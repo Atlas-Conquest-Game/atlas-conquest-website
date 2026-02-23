@@ -46,6 +46,7 @@ const CHART_TOOLTIP = {
 
 let appData = {};
 let currentPeriod = 'all';
+let currentMap = 'all';
 
 // ─── Data Loading ───────────────────────────────────────────
 
@@ -60,7 +61,7 @@ async function loadJSON(path) {
 }
 
 async function loadAllData() {
-  const [metadata, commanderStats, cardStats, trends, matchups, commanders, gameDistributions, deckComposition] = await Promise.all([
+  const [metadata, commanderStats, cardStats, trends, matchups, commanders, gameDistributions, deckComposition, firstTurn] = await Promise.all([
     loadJSON('data/metadata.json'),
     loadJSON('data/commander_stats.json'),
     loadJSON('data/card_stats.json'),
@@ -69,8 +70,9 @@ async function loadAllData() {
     loadJSON('data/commanders.json'),
     loadJSON('data/game_distributions.json'),
     loadJSON('data/deck_composition.json'),
+    loadJSON('data/first_turn.json'),
   ]);
-  return { metadata, commanderStats, cardStats, trends, matchups, commanders, gameDistributions, deckComposition };
+  return { metadata, commanderStats, cardStats, trends, matchups, commanders, gameDistributions, deckComposition, firstTurn };
 }
 
 // ─── Helpers ────────────────────────────────────────────────
@@ -81,10 +83,13 @@ function el(id, text) {
 }
 
 function getPeriodData(dataObj, period) {
-  if (dataObj && typeof dataObj === 'object' && !Array.isArray(dataObj) && dataObj[period] !== undefined) {
-    return dataObj[period];
+  if (!dataObj || typeof dataObj !== 'object' || Array.isArray(dataObj)) return dataObj;
+  let result = dataObj[period] !== undefined ? dataObj[period] : dataObj;
+  // Handle map dimension: data[period][map]
+  if (result && typeof result === 'object' && !Array.isArray(result) && result[currentMap] !== undefined) {
+    result = result[currentMap];
   }
-  return dataObj;
+  return result;
 }
 
 function factionBadge(faction) {
@@ -134,6 +139,20 @@ function initTimeFilters(renderCallback) {
       buttons.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       currentPeriod = btn.dataset.period;
+      if (renderCallback) renderCallback();
+    });
+  });
+}
+
+// ─── Map Filter ────────────────────────────────────────────
+
+function initMapFilters(renderCallback) {
+  const buttons = document.querySelectorAll('.map-btn');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentMap = btn.dataset.map;
       if (renderCallback) renderCallback();
     });
   });

@@ -340,6 +340,7 @@ async function init() {
   appData = await loadAllData();
   renderAll();
   initTimeFilters(renderAll);
+  initMapFilters(renderAll);
   initModal();
   initNavActiveState();
   initTooltips();

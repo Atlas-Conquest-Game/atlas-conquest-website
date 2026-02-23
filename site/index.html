@@ -48,6 +48,12 @@
       <button class="time-btn" data-period="3m">3M</button>
       <button class="time-btn" data-period="6m">6M</button>
       <button class="time-btn active" data-period="all">All</button>
+      <span class="filter-divider"></span>
+      <span class="filter-label">Map</span>
+      <button class="map-btn active" data-map="all">All Maps</button>
+      <button class="map-btn" data-map="Dunes">Dunes</button>
+      <button class="map-btn" data-map="Snowmelt">Snowmelt</button>
+      <button class="map-btn" data-map="Tropics">Tropics</button>
     </div>
   </div>
 
@@ -88,6 +94,22 @@
           <h3 class="chart-sm-title">Actions per Game <span class="tooltip-icon" data-tooltip="Total actions (plays, attacks, moves) per game.">?</span></h3>
           <canvas id="dist-actions"></canvas>
         </div>
+      </div>
+
+      <!-- First-Turn Advantage -->
+      <div id="first-turn-section" class="first-turn-section">
+        <h3 class="chart-sm-title" style="margin-bottom: 0.75rem;">First-Turn Advantage <span class="tooltip-icon" data-tooltip="Win rate of the player who goes first. Only includes games where first player is explicitly recorded (excludes random/unknown).">?</span></h3>
+        <div class="card-grid" style="max-width: 500px;">
+          <div class="stat-card">
+            <span class="stat-label">First-Player Win Rate</span>
+            <span class="stat-value" id="ft-winrate">--</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Games Tracked</span>
+            <span class="stat-value" id="ft-total-games">--</span>
+          </div>
+        </div>
+        <p class="first-turn-note" id="ft-note" style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;"></p>
       </div>
 
       <!-- Quick Links -->

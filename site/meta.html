@@ -47,6 +47,12 @@
       <button class="time-btn" data-period="3m">3M</button>
       <button class="time-btn" data-period="6m">6M</button>
       <button class="time-btn active" data-period="all">All</button>
+      <span class="filter-divider"></span>
+      <span class="filter-label">Map</span>
+      <button class="map-btn active" data-map="all">All Maps</button>
+      <button class="map-btn" data-map="Dunes">Dunes</button>
+      <button class="map-btn" data-map="Snowmelt">Snowmelt</button>
+      <button class="map-btn" data-map="Tropics">Tropics</button>
     </div>
   </div>
 
@@ -88,6 +94,21 @@
     <div class="matchup-tooltip-wr" id="tooltip-wr"></div>
     <div class="matchup-tooltip-games" id="tooltip-games"></div>
   </div>
+
+  <!-- First-Turn Advantage -->
+  <section id="first-turn-section" class="section">
+    <div class="container">
+      <h2 class="section-title">First-Turn Advantage <span class="tooltip-icon" data-tooltip="How much each commander benefits from going first. Only includes games where first player is explicitly recorded.">?</span></h2>
+      <p class="section-desc">
+        Overall first-player win rate: <strong id="ft-overall-wr">--</strong>
+        <span style="color: var(--text-muted); margin: 0 0.5rem;">&middot;</span>
+        <span id="ft-overall-games">--</span>
+      </p>
+      <div class="chart-container">
+        <canvas id="first-turn-chart"></canvas>
+      </div>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer class="footer">

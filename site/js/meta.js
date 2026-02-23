@@ -8,17 +8,38 @@
 // ─── Page State ─────────────────────────────────────────────
 
 let metaChart = null;
+let firstTurnChart = null;
 
 // ─── Meta Trends Chart ──────────────────────────────────────
 
 function renderMetaChart(trends) {
   const canvas = document.getElementById('meta-chart');
-  if (!trends || !canvas) return;
+  if (!canvas) return;
 
   if (metaChart) {
     metaChart.destroy();
     metaChart = null;
   }
+
+  const chartSection = canvas.closest('.section');
+  const emptyMsg = document.getElementById('trends-empty');
+
+  if (!trends || !trends.dates || !trends.dates.length) {
+    canvas.style.display = 'none';
+    if (emptyMsg) emptyMsg.style.display = '';
+    else if (chartSection) {
+      const msg = document.createElement('p');
+      msg.id = 'trends-empty';
+      msg.className = 'section-desc';
+      msg.style.cssText = 'color: var(--text-muted); font-style: italic;';
+      msg.textContent = 'Not enough data for trend analysis with the current filters.';
+      canvas.parentNode.insertBefore(msg, canvas.nextSibling);
+    }
+    return;
+  }
+
+  canvas.style.display = '';
+  if (emptyMsg) emptyMsg.style.display = 'none';
 
   const activeFactions = Object.entries(trends.factions || {})
     .filter(([, data]) => data.some(v => v > 0));
@@ -120,7 +141,7 @@ function renderMatchups(matchupData) {
       if (m.winrate > 0.55) cls = 'matchup-favored';
       else if (m.winrate < 0.45) cls = 'matchup-unfavored';
 
-      return `<td class="matchup-cell ${cls}" data-type="data" data-row="${row}" data-col="${col}" data-wr="${wr}" data-total="${m.total}" data-wins="${m.wins}" data-losses="${m.losses}">${wr}%</td>`;
+      return `<td class="matchup-cell ${cls}" data-type="data" data-row="${row}" data-col="${col}" data-wr="${wr}" data-total="${m.total}" data-wins="${m.wins}" data-losses="${m.losses}">${wr}%<span class="matchup-count">${m.total}</span></td>`;
     }).join('');
 
     return `<tr><th class="matchup-row-header" title="${row}">${shortName(row)}</th>${cells}</tr>`;
@@ -179,6 +200,96 @@ function initMatchupTooltip() {
   });
 }
 
+// ─── First-Turn Commander Chart ─────────────────────────────
+
+function renderFirstTurnChart(ftData) {
+  const canvas = document.getElementById('first-turn-chart');
+  const section = document.getElementById('first-turn-section');
+  if (!canvas || !section) return;
+
+  if (firstTurnChart) {
+    firstTurnChart.destroy();
+    firstTurnChart = null;
+  }
+
+  if (!ftData || !ftData.total_games || !ftData.per_commander) {
+    section.style.display = 'none';
+    return;
+  }
+
+  const MIN_GAMES = 10;
+  const cmds = Object.entries(ftData.per_commander)
+    .filter(([, d]) => d.first_games >= MIN_GAMES && d.second_games >= MIN_GAMES)
+    .sort((a, b) => (b[1].first_winrate - b[1].second_winrate) - (a[1].first_winrate - a[1].second_winrate));
+
+  if (!cmds.length) {
+    section.style.display = 'none';
+    return;
+  }
+
+  section.style.display = '';
+
+  el('ft-overall-wr', (ftData.first_player_winrate * 100).toFixed(1) + '%');
+  el('ft-overall-games', ftData.total_games.toLocaleString() + ' games');
+
+  firstTurnChart = new Chart(canvas, {
+    type: 'bar',
+    data: {
+      labels: cmds.map(([name]) => name),
+      datasets: [
+        {
+          label: 'Going First',
+          data: cmds.map(([, d]) => (d.first_winrate * 100).toFixed(1)),
+          backgroundColor: '#58a6ff99',
+          borderColor: '#58a6ff',
+          borderWidth: 1,
+          borderRadius: 3,
+        },
+        {
+          label: 'Going Second',
+          data: cmds.map(([, d]) => (d.second_winrate * 100).toFixed(1)),
+          backgroundColor: '#f0834a99',
+          borderColor: '#f0834a',
+          borderWidth: 1,
+          borderRadius: 3,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: {
+        legend: {
+          labels: { usePointStyle: true, pointStyle: 'circle', padding: 14, font: { size: 11 } },
+        },
+        tooltip: {
+          ...CHART_TOOLTIP,
+          callbacks: {
+            label: ctx => {
+              const d = cmds[ctx.dataIndex][1];
+              const isFirst = ctx.datasetIndex === 0;
+              const games = isFirst ? d.first_games : d.second_games;
+              return `${ctx.dataset.label}: ${ctx.parsed.y}% (${games} games)`;
+            },
+          },
+        },
+      },
+      scales: {
+        y: {
+          min: 20,
+          max: 80,
+          ticks: { callback: v => v + '%' },
+          grid: { color: '#21262d' },
+        },
+        x: {
+          ticks: { maxRotation: 45, font: { size: 10 } },
+          grid: { display: false },
+        },
+      },
+    },
+  });
+}
+
 // ─── Render All ─────────────────────────────────────────────
 
 function renderAll() {
@@ -186,10 +297,12 @@ function renderAll() {
   const metadata = getPeriodData(appData.metadata, period);
   const trends = getPeriodData(appData.trends, period);
   const matchups = getPeriodData(appData.matchups, period);
+  const firstTurn = getPeriodData(appData.firstTurn, period);
 
   renderMetadata(metadata);
   renderMetaChart(trends);
   renderMatchups(matchups);
+  renderFirstTurnChart(firstTurn);
 }
 
 // ─── Init ───────────────────────────────────────────────────
@@ -198,6 +311,7 @@ async function init() {
   appData = await loadAllData();
   renderAll();
   initTimeFilters(renderAll);
+  initMapFilters(renderAll);
   initNavActiveState();
   initTooltips();
 }

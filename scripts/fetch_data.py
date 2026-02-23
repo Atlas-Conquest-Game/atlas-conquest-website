@@ -65,6 +65,9 @@ MIN_TURNS = 2
 # Time periods for aggregation: key → days (None = all time)
 PERIODS = {"all": None, "6m": 180, "3m": 90, "1m": 30}
 
+# Maps for aggregation: "all" includes every game
+MAPS = ["all", "Dunes", "Snowmelt", "Tropics"]
+
 # Patron (faction) color mapping
 PATRON_MAP = {
     "Skaal": "skaal",
@@ -184,6 +187,13 @@ def filter_games_by_period(games, days):
         except ValueError:
             continue
     return result
+
+
+def filter_games_by_map(games, map_name):
+    """Filter games to those on a specific map. 'all' returns all games."""
+    if map_name == "all":
+        return games
+    return [g for g in games if g.get("map", "") == map_name]
 
 
 # ─── AWS / DynamoDB ─────────────────────────────────────────────
@@ -599,6 +609,76 @@ def aggregate_trends(games):
     return weekly, weekly_total
 
 
+def aggregate_first_turn(games):
+    """Compute first-player advantage stats.
+
+    Only includes games where first_player is "1" or "2" (explicit).
+    Games with first_player="99" (random/unknown) are excluded.
+    """
+    fp_games = [g for g in games if g.get("first_player") in ("1", "2")]
+    total = len(fp_games)
+
+    if total == 0:
+        return {
+            "total_games": 0,
+            "first_player_wins": 0,
+            "first_player_winrate": None,
+            "per_commander": {},
+        }
+
+    first_wins = 0
+    cmd_stats = defaultdict(lambda: {
+        "first_games": 0, "first_wins": 0,
+        "second_games": 0, "second_wins": 0,
+    })
+
+    for game in fp_games:
+        fp = game["first_player"]
+        players = game["players"]
+        if len(players) != 2:
+            continue
+
+        first_idx = int(fp) - 1
+        if first_idx not in (0, 1):
+            continue
+
+        first_p = players[first_idx]
+        second_p = players[1 - first_idx]
+
+        if first_p["winner"]:
+            first_wins += 1
+
+        c1 = first_p["commander"]
+        c2 = second_p["commander"]
+        if c1:
+            cmd_stats[c1]["first_games"] += 1
+            if first_p["winner"]:
+                cmd_stats[c1]["first_wins"] += 1
+        if c2:
+            cmd_stats[c2]["second_games"] += 1
+            if second_p["winner"]:
+                cmd_stats[c2]["second_wins"] += 1
+
+    per_commander = {}
+    for cmd, s in cmd_stats.items():
+        fg, sg = s["first_games"], s["second_games"]
+        per_commander[cmd] = {
+            "first_games": fg,
+            "first_wins": s["first_wins"],
+            "first_winrate": round(s["first_wins"] / fg, 4) if fg > 0 else None,
+            "second_games": sg,
+            "second_wins": s["second_wins"],
+            "second_winrate": round(s["second_wins"] / sg, 4) if sg > 0 else None,
+        }
+
+    return {
+        "total_games": total,
+        "first_player_wins": first_wins,
+        "first_player_winrate": round(first_wins / total, 4) if total > 0 else None,
+        "per_commander": per_commander,
+    }
+
+
 # ─── JSON Writers ────────────────────────────────────────────────
 
 def write_json(filename, data):
@@ -762,147 +842,168 @@ def aggregate_deck_composition(games, card_info, cmd_faction):
 
 
 def build_and_write_all(games, cards_csv, commanders_csv):
-    """Run all aggregations for each time period and write JSON files."""
+    """Run all aggregations for each time period × map and write JSON files.
+
+    Output nesting: data[period][map] for all stats files.
+    """
 
     # Build lookups (period-independent)
     faction_lookup = {c["name"]: c["faction"] for c in commanders_csv}
     card_info = {c["name"]: {"faction": c["faction"], "type": c["type"], "cost": c.get("cost")} for c in cards_csv}
     cmd_faction = {c["name"]: c["faction"] for c in commanders_csv}
 
-    # Reference data (no time filtering)
+    # Reference data (no time/map filtering)
     write_json("cards.json", cards_csv)
     write_json("commanders.json", commanders_csv)
 
-    # Per-period aggregation
-    metadata_by_period = {}
-    cmd_stats_by_period = {}
-    matchups_by_period = {}
-    card_stats_by_period = {}
-    trends_by_period = {}
-    distributions_by_period = {}
-    deck_comp_by_period = {}
+    # Per-period × map aggregation
+    out = {
+        "metadata": {},
+        "commander_stats": {},
+        "matchups": {},
+        "card_stats": {},
+        "trends": {},
+        "distributions": {},
+        "deck_comp": {},
+        "first_turn": {},
+    }
 
     for period_key, days in PERIODS.items():
         period_games = filter_games_by_period(games, days)
         print(f"  Period '{period_key}': {len(period_games)} games")
 
-        # ── metadata ──
-        unique_players = set()
-        for g in period_games:
-            for p in g["players"]:
-                unique_players.add(p["name"])
+        for key in out:
+            out[key][period_key] = {}
 
-        metadata_by_period[period_key] = {
-            "last_updated": datetime.now(timezone.utc).isoformat(),
-            "total_matches": len(period_games),
-            "total_players": len(unique_players),
-            "data_version": "2.0.0",
-        }
+        for map_name in MAPS:
+            map_games = filter_games_by_map(period_games, map_name)
+            n = len(map_games)
+            print(f"    Map '{map_name}': {n} games")
 
-        # ── commander_stats ──
-        cmd_stats_raw = aggregate_commander_stats(period_games)
-        cmd_stats = []
-        for name, data in sorted(cmd_stats_raw.items(), key=lambda x: x[1]["matches"], reverse=True):
-            winrate = data["wins"] / data["matches"] if data["matches"] > 0 else 0
-            cmd_stats.append({
-                "name": name,
-                "faction": faction_lookup.get(name, "neutral"),
-                "matches": data["matches"],
-                "wins": data["wins"],
-                "winrate": round(winrate, 4),
-            })
-        cmd_stats_by_period[period_key] = cmd_stats
+            # ── metadata ──
+            unique_players = set()
+            for g in map_games:
+                for p in g["players"]:
+                    unique_players.add(p["name"])
 
-        # ── matchups ──
-        matchup_raw = aggregate_matchups(period_games)
-        all_commanders = sorted(set(cmd for cmd in matchup_raw.keys()))
-        matchup_list = []
-        for c1 in all_commanders:
-            for c2 in all_commanders:
-                if c1 == c2:
-                    continue
-                data = matchup_raw[c1][c2]
-                total = data["wins"] + data["losses"]
-                if total == 0:
-                    continue
-                matchup_list.append({
-                    "commander": c1,
-                    "opponent": c2,
+            out["metadata"][period_key][map_name] = {
+                "last_updated": datetime.now(timezone.utc).isoformat(),
+                "total_matches": n,
+                "total_players": len(unique_players),
+                "data_version": "3.0.0",
+            }
+
+            # ── commander_stats ──
+            cmd_stats_raw = aggregate_commander_stats(map_games)
+            cmd_stats = []
+            for name, data in sorted(cmd_stats_raw.items(), key=lambda x: x[1]["matches"], reverse=True):
+                winrate = data["wins"] / data["matches"] if data["matches"] > 0 else 0
+                cmd_stats.append({
+                    "name": name,
+                    "faction": faction_lookup.get(name, "neutral"),
+                    "matches": data["matches"],
                     "wins": data["wins"],
-                    "losses": data["losses"],
-                    "total": total,
-                    "winrate": round(data["wins"] / total, 4) if total > 0 else 0,
+                    "winrate": round(winrate, 4),
                 })
-        matchups_by_period[period_key] = {
-            "commanders": all_commanders,
-            "matchups": matchup_list,
-        }
+            out["commander_stats"][period_key][map_name] = cmd_stats
 
-        # ── card_stats ──
-        result = aggregate_card_stats(period_games)
-        if isinstance(result, tuple):
-            card_data, total_player_games = result
-        else:
-            card_data, total_player_games = {}, 0
+            # ── matchups ──
+            matchup_raw = aggregate_matchups(map_games)
+            all_commanders = sorted(set(cmd for cmd in matchup_raw.keys()))
+            matchup_list = []
+            for c1 in all_commanders:
+                for c2 in all_commanders:
+                    if c1 == c2:
+                        continue
+                    data = matchup_raw[c1][c2]
+                    total = data["wins"] + data["losses"]
+                    if total == 0:
+                        continue
+                    matchup_list.append({
+                        "commander": c1,
+                        "opponent": c2,
+                        "wins": data["wins"],
+                        "losses": data["losses"],
+                        "total": total,
+                        "winrate": round(data["wins"] / total, 4) if total > 0 else 0,
+                    })
+            out["matchups"][period_key][map_name] = {
+                "commanders": all_commanders,
+                "matchups": matchup_list,
+            }
 
-        card_stats = []
-        for name, data in sorted(card_data.items(), key=lambda x: x[1]["deck_count"], reverse=True):
-            deck_wr = data["deck_wins"] / data["deck_count"] if data["deck_count"] > 0 else 0
-            drawn_wr = data["drawn_wins"] / data["drawn_count"] if data["drawn_count"] > 0 else 0
-            played_wr = data["played_wins"] / data["played_count"] if data["played_count"] > 0 else 0
-            info = card_info.get(name, {"faction": "neutral", "type": ""})
-            card_stats.append({
-                "name": name,
-                "faction": info["faction"],
-                "type": info["type"],
-                "deck_count": data["deck_count"],
-                "deck_rate": round(data["deck_count"] / total_player_games, 4) if total_player_games > 0 else 0,
-                "deck_winrate": round(deck_wr, 4),
-                "drawn_count": data["drawn_count"],
-                "drawn_rate": round(data["drawn_count"] / total_player_games, 4) if total_player_games > 0 else 0,
-                "drawn_winrate": round(drawn_wr, 4),
-                "played_count": data["played_count"],
-                "played_rate": round(data["played_count"] / total_player_games, 4) if total_player_games > 0 else 0,
-                "played_winrate": round(played_wr, 4),
-            })
-        card_stats_by_period[period_key] = card_stats
+            # ── card_stats ──
+            result = aggregate_card_stats(map_games)
+            if isinstance(result, tuple):
+                card_data, total_player_games = result
+            else:
+                card_data, total_player_games = {}, 0
 
-        # ── trends ──
-        weekly, weekly_total = aggregate_trends(period_games)
-        sorted_weeks = sorted(weekly.keys())
-        faction_weekly = defaultdict(list)
-        dates = []
-        for week in sorted_weeks:
-            total = weekly_total[week]
-            if total < 4:
-                continue
-            dates.append(week)
-            faction_counts = defaultdict(int)
-            for cmd, count in weekly[week].items():
-                faction = cmd_faction.get(cmd, "neutral")
-                faction_counts[faction] += count
-            for faction in ["skaal", "grenalia", "lucia", "neutral", "shadis", "archaeon"]:
-                pct = round((faction_counts[faction] / total) * 100, 1) if total > 0 else 0
-                faction_weekly[faction].append(pct)
-        trends_by_period[period_key] = {
-            "dates": dates,
-            "factions": dict(faction_weekly),
-        }
+            card_stats = []
+            for name, data in sorted(card_data.items(), key=lambda x: x[1]["deck_count"], reverse=True):
+                deck_wr = data["deck_wins"] / data["deck_count"] if data["deck_count"] > 0 else 0
+                drawn_wr = data["drawn_wins"] / data["drawn_count"] if data["drawn_count"] > 0 else 0
+                played_wr = data["played_wins"] / data["played_count"] if data["played_count"] > 0 else 0
+                info = card_info.get(name, {"faction": "neutral", "type": ""})
+                card_stats.append({
+                    "name": name,
+                    "faction": info["faction"],
+                    "type": info["type"],
+                    "deck_count": data["deck_count"],
+                    "deck_rate": round(data["deck_count"] / total_player_games, 4) if total_player_games > 0 else 0,
+                    "deck_winrate": round(deck_wr, 4),
+                    "drawn_count": data["drawn_count"],
+                    "drawn_rate": round(data["drawn_count"] / total_player_games, 4) if total_player_games > 0 else 0,
+                    "drawn_winrate": round(drawn_wr, 4),
+                    "played_count": data["played_count"],
+                    "played_rate": round(data["played_count"] / total_player_games, 4) if total_player_games > 0 else 0,
+                    "played_winrate": round(played_wr, 4),
+                })
+            out["card_stats"][period_key][map_name] = card_stats
 
-        # ── game distributions ──
-        distributions_by_period[period_key] = aggregate_game_distributions(period_games)
+            # ── trends (skip for individual maps with < 200 games) ──
+            if map_name == "all" or n >= 200:
+                weekly, weekly_total = aggregate_trends(map_games)
+                sorted_weeks = sorted(weekly.keys())
+                faction_weekly = defaultdict(list)
+                dates = []
+                for week in sorted_weeks:
+                    total = weekly_total[week]
+                    if total < 4:
+                        continue
+                    dates.append(week)
+                    faction_counts = defaultdict(int)
+                    for cmd, count in weekly[week].items():
+                        faction = cmd_faction.get(cmd, "neutral")
+                        faction_counts[faction] += count
+                    for faction in ["skaal", "grenalia", "lucia", "neutral", "shadis", "archaeon"]:
+                        pct = round((faction_counts[faction] / total) * 100, 1) if total > 0 else 0
+                        faction_weekly[faction].append(pct)
+                out["trends"][period_key][map_name] = {
+                    "dates": dates,
+                    "factions": dict(faction_weekly),
+                }
+            else:
+                out["trends"][period_key][map_name] = {"dates": [], "factions": {}}
 
-        # ── deck composition ──
-        deck_comp_by_period[period_key] = aggregate_deck_composition(period_games, card_info, cmd_faction)
+            # ── game distributions ──
+            out["distributions"][period_key][map_name] = aggregate_game_distributions(map_games)
 
-    # Write all period-nested files
-    write_json("metadata.json", metadata_by_period)
-    write_json("commander_stats.json", cmd_stats_by_period)
-    write_json("matchups.json", matchups_by_period)
-    write_json("card_stats.json", card_stats_by_period)
-    write_json("trends.json", trends_by_period)
-    write_json("game_distributions.json", distributions_by_period)
-    write_json("deck_composition.json", deck_comp_by_period)
+            # ── deck composition ──
+            out["deck_comp"][period_key][map_name] = aggregate_deck_composition(map_games, card_info, cmd_faction)
+
+            # ── first-turn advantage ──
+            out["first_turn"][period_key][map_name] = aggregate_first_turn(map_games)
+
+    # Write all period×map-nested files
+    write_json("metadata.json", out["metadata"])
+    write_json("commander_stats.json", out["commander_stats"])
+    write_json("matchups.json", out["matchups"])
+    write_json("card_stats.json", out["card_stats"])
+    write_json("trends.json", out["trends"])
+    write_json("game_distributions.json", out["distributions"])
+    write_json("deck_composition.json", out["deck_comp"])
+    write_json("first_turn.json", out["first_turn"])
 
 
 # ─── Cache Management ────────────────────────────────────────────

@@ -25,14 +25,15 @@
 - Python scripts that query AWS and transform raw data into aggregated JSON.
 - Runs in GitHub Actions on a schedule (daily) or manual trigger.
 - Incremental fetching: caches raw games in `raw_games.json`, only pulls new games from DynamoDB.
-- Computes per-period aggregations (all / 6m / 3m / 1m): commander stats, matchups, card stats, meta trends, game distribution histograms, and per-commander deck composition breakdowns.
+- Computes per-period aggregations (all / 6m / 3m / 1m) crossed with per-map breakdowns (All Maps / Dunes / Snowmelt / Tropics): commander stats, matchups, card stats, meta trends, game distribution histograms, per-commander deck composition breakdowns, and first-turn advantage stats.
+- Output nesting: `data[period][map]` for all stat files; flat arrays for reference files (`cards.json`, `commanders.json`).
 - Output: static JSON files committed to `site/data/`.
 
 ### 3. Data Contract (`site/data/`)
 - Static JSON files are the interface between the pipeline and the frontend.
 - Each file has a defined schema documented in [DATA_MODEL.md](DATA_MODEL.md).
-- Stats files are period-nested (`{all, 6m, 3m, 1m}`); reference files are flat arrays.
-- Files: `metadata.json`, `commander_stats.json`, `matchups.json`, `card_stats.json`, `trends.json`, `game_distributions.json`, `deck_composition.json`, `cards.json`, `commanders.json`.
+- Stats files are doubly nested (`data[period][map]`); reference files (`cards.json`, `commanders.json`) are flat arrays.
+- Files: `metadata.json`, `commander_stats.json`, `matchups.json`, `card_stats.json`, `trends.json`, `game_distributions.json`, `deck_composition.json`, `first_turn.json`, `cards.json`, `commanders.json`.
 - The site reads only from these files — no runtime API calls.
 
 ### 4. Frontend (`site/`)
@@ -45,22 +46,22 @@
 
 | Page | File | Content |
 |------|------|---------|
-| Home | `index.html` | Overview stats, distribution charts, quick-link cards |
+| Home | `index.html` | Overview stats, distribution charts, first-turn summary, quick-link cards |
 | Commanders | `commanders.html` | Commander grid, winrate chart/table, deck composition charts, detail modal |
 | Cards | `cards.html` | Full card table (261 cards), search, faction filter, card hover preview |
-| Meta | `meta.html` | Faction popularity trends, commander matchup heatmap |
+| Meta | `meta.html` | Faction popularity trends, commander matchup heatmap (with game counts), first-turn advantage by commander |
 
 #### JavaScript Structure
 
 | File | Role |
 |------|------|
-| `js/shared.js` | Constants, helpers, data loading, time filter, modal, tooltip system |
-| `js/home.js` | Overview stats and distribution chart rendering |
+| `js/shared.js` | Constants, helpers, data loading, time/map filters, modal, tooltip system |
+| `js/home.js` | Overview stats, distribution charts, first-turn summary |
 | `js/commanders.js` | Commander grid/table/chart, deck composition rendering |
 | `js/cards.js` | Card table with search, sorting, and faction filter |
-| `js/meta.js` | Meta trends chart and matchup heatmap rendering |
+| `js/meta.js` | Meta trends chart, matchup heatmap, first-turn commander chart |
 
-Each page loads `shared.js` first (globals, not ES modules), then its page-specific script. All pages share: nav with active state, sticky time filter bar, footer.
+Each page loads `shared.js` first (globals, not ES modules), then its page-specific script. All pages share: nav with active state, sticky time/map filter bar, footer.
 
 #### Interactive Features
 - Sortable card table with debounced search (filters by name, type, subtype)
@@ -68,6 +69,9 @@ Each page loads `shared.js` first (globals, not ES modules), then its page-speci
 - Clickable deck composition charts opening commander detail modal
 - Info tooltips (`?` icons) explaining stats, columns, and chart meanings
 - Global time period filter (1M / 3M / 6M / All) re-renders all sections
+- Global map filter (All Maps / Dunes / Snowmelt / Tropics) re-renders all sections
+- First-turn advantage summary (Overview) and per-commander chart (Meta)
+- Graceful empty-state handling when map/period combos have insufficient data
 
 ### 5. Asset Pipeline (Thumbnails)
 - Source artwork lives in `Artwork/` (commanders + cards) and `CardScreenshots/` (card previews).
