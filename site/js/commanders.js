@@ -1,7 +1,7 @@
 /**
  * Atlas Conquest Analytics — Commanders Page
  *
- * Commander grid, winrate-by-duration/actions tables,
+ * Commander grid, winrate-by-duration/actions/turns tables,
  * deck composition charts, and commander detail modal.
  */
 
@@ -53,7 +53,7 @@ function renderCommanderCards(stats, commanders) {
   }).join('');
 }
 
-// ─── Winrate Bucket Tables (Duration & Actions) ─────────────
+// ─── Winrate Bucket Tables (Duration, Actions & Turns) ──────
 
 // Per-table sort state
 const bucketTableSort = {};
@@ -139,8 +139,10 @@ function renderBucketTable(tableId, data, unitSuffix) {
       // Re-render just this table
       if (tid === 'duration-table') {
         renderBucketTable('duration-table', getPeriodData(appData.durationWinrates, currentPeriod), ' min');
-      } else {
+      } else if (tid === 'actions-table') {
         renderBucketTable('actions-table', getPeriodData(appData.actionWinrates, currentPeriod), '');
+      } else if (tid === 'turns-table') {
+        renderBucketTable('turns-table', getPeriodData(appData.turnWinrates, currentPeriod), '');
       }
     });
   });
@@ -346,9 +348,10 @@ function renderAll() {
   // Commander stats
   renderCommanderCards(commanderStats, appData.commanders);
 
-  // Winrate by duration & actions tables
+  // Winrate by duration, actions & turns tables
   renderBucketTable('duration-table', getPeriodData(appData.durationWinrates, period), ' min');
   renderBucketTable('actions-table', getPeriodData(appData.actionWinrates, period), '');
+  renderBucketTable('turns-table', getPeriodData(appData.turnWinrates, period), '');
 
   // Deck composition
   renderAvgCostChart(deckComp);

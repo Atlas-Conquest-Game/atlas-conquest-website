@@ -28,6 +28,7 @@ SHARED_FILES = [
     "commander_trends.json",
     "duration_winrates.json",
     "action_winrates.json",
+    "turn_winrates.json",
 ]
 
 # commander_card_stats.json is lazy-loaded only on Cards page when selecting a commander

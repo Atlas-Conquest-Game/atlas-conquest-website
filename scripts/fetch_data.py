@@ -803,6 +803,50 @@ def aggregate_action_winrates(games):
     return {"buckets": BUCKETS, "commanders": commanders}
 
 
+def aggregate_turn_winrates(games):
+    """Compute per-commander winrate bucketed by player turn count."""
+    BUCKETS = ["1-5", "5-8", "8-11", "11-14", "14+"]
+
+    def get_bucket(turns):
+        if turns < 5:
+            return 0
+        elif turns < 8:
+            return 1
+        elif turns < 11:
+            return 2
+        elif turns < 14:
+            return 3
+        return 4
+
+    # cmd -> bucket_idx -> {wins, total}
+    stats = defaultdict(lambda: [{"wins": 0, "total": 0} for _ in BUCKETS])
+
+    for game in games:
+        for p in game["players"]:
+            cmd = p["commander"]
+            if not cmd:
+                continue
+            turns = p.get("turns", 0)
+            if not turns:
+                continue
+            bucket = get_bucket(turns)
+            stats[cmd][bucket]["total"] += 1
+            if p["winner"]:
+                stats[cmd][bucket]["wins"] += 1
+
+    commanders = {}
+    for cmd, buckets in stats.items():
+        commanders[cmd] = [
+            {
+                "winrate": round(b["wins"] / b["total"], 4) if b["total"] > 0 else None,
+                "games": b["total"],
+            }
+            for b in buckets
+        ]
+
+    return {"buckets": BUCKETS, "commanders": commanders}
+
+
 def aggregate_commander_card_stats(games):
     """Compute per-commander card usage rates and winrates.
 
@@ -1055,6 +1099,7 @@ def build_and_write_all(games, cards_csv, commanders_csv):
         "cmd_trends": {},
         "duration_wr": {},
         "action_wr": {},
+        "turn_wr": {},
         "cmd_card_stats": {},
     }
 
@@ -1189,6 +1234,9 @@ def build_and_write_all(games, cards_csv, commanders_csv):
             # ── winrate by actions ──
             out["action_wr"][period_key][map_name] = aggregate_action_winrates(map_games)
 
+            # ── winrate by turns ──
+            out["turn_wr"][period_key][map_name] = aggregate_turn_winrates(map_games)
+
             # ── per-commander card stats ──
             out["cmd_card_stats"][period_key][map_name] = aggregate_commander_card_stats(map_games)
 
@@ -1204,6 +1252,7 @@ def build_and_write_all(games, cards_csv, commanders_csv):
     write_json("commander_trends.json", out["cmd_trends"])
     write_json("duration_winrates.json", out["duration_wr"])
     write_json("action_winrates.json", out["action_wr"])
+    write_json("turn_winrates.json", out["turn_wr"])
     write_json("commander_card_stats.json", out["cmd_card_stats"])
 
 
