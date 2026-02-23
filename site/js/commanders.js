@@ -1,13 +1,12 @@
 /**
  * Atlas Conquest Analytics — Commanders Page
  *
- * Commander grid, winrate-by-duration chart,
+ * Commander grid, winrate-by-duration/actions tables,
  * deck composition charts, and commander detail modal.
  */
 
 // ─── Page State ─────────────────────────────────────────────
 
-let durationChart = null;
 let avgCostChart = null;
 let minionSpellChart = null;
 let patronNeutralChart = null;
@@ -54,94 +53,96 @@ function renderCommanderCards(stats, commanders) {
   }).join('');
 }
 
-// ─── Winrate by Game Duration ────────────────────────────────
+// ─── Winrate Bucket Tables (Duration & Actions) ─────────────
 
-function renderDurationChart(durData) {
-  const canvas = document.getElementById('duration-chart');
-  if (!canvas) return;
+// Per-table sort state
+const bucketTableSort = {};
 
-  if (durationChart) { durationChart.destroy(); durationChart = null; }
+function renderBucketTable(tableId, data, unitSuffix) {
+  const table = document.getElementById(tableId);
+  if (!table) return;
 
-  if (!durData || !durData.buckets || !durData.commanders) {
-    canvas.style.display = 'none';
-    return;
-  }
-  canvas.style.display = '';
+  const thead = table.querySelector('thead tr');
+  const tbody = table.querySelector('tbody');
 
-  const buckets = durData.buckets;
-
-  // Pick top commanders by total games across all buckets
-  const cmdEntries = Object.entries(durData.commanders)
-    .map(([name, data]) => ({
-      name,
-      data,
-      totalGames: data.reduce((sum, b) => sum + b.games, 0),
-    }))
-    .filter(c => c.totalGames >= 20)
-    .sort((a, b) => b.totalGames - a.totalGames)
-    .slice(0, 10);
-
-  if (!cmdEntries.length) {
-    canvas.style.display = 'none';
+  if (!data || !data.buckets || !data.commanders) {
+    thead.innerHTML = '';
+    tbody.innerHTML = '<tr class="placeholder-row"><td colspan="1">No data for current filters.</td></tr>';
     return;
   }
 
-  // Assign colors from commander stats if available
-  const factionLookup = {};
-  const cmdStats = getPeriodData(appData.commanderStats, currentPeriod);
-  if (cmdStats) {
-    cmdStats.forEach(c => { factionLookup[c.name] = c.faction; });
-  }
+  const buckets = data.buckets;
+  const sortState = bucketTableSort[tableId] || { key: 'total', dir: 'desc' };
 
-  const datasets = cmdEntries.map(cmd => {
-    const faction = factionLookup[cmd.name];
-    const color = FACTION_COLORS[faction] || '#888';
-    return {
-      label: cmd.name,
-      data: cmd.data.map(b => b.winrate !== null ? (b.winrate * 100) : null),
-      backgroundColor: color + '99',
-      borderColor: color,
-      borderWidth: 1,
-      borderRadius: 3,
-      _cmdData: cmd.data,
-    };
+  // Build row data for all commanders
+  const rows = Object.entries(data.commanders).map(([name, bucketData]) => {
+    const totalGames = bucketData.reduce((s, b) => s + b.games, 0);
+    return { name, bucketData, totalGames };
   });
 
-  durationChart = new Chart(canvas, {
-    type: 'bar',
-    data: { labels: buckets.map(b => b + ' min'), datasets },
-    options: {
-      responsive: true,
-      maintainAspectRatio: true,
-      plugins: {
-        legend: {
-          labels: { usePointStyle: true, pointStyle: 'circle', padding: 14, font: { size: 11 } },
-        },
-        tooltip: {
-          ...CHART_TOOLTIP,
-          callbacks: {
-            label: ctx => {
-              const bucketData = ctx.dataset._cmdData[ctx.dataIndex];
-              const wr = ctx.parsed.y !== null ? ctx.parsed.y.toFixed(1) + '%' : 'N/A';
-              return `${ctx.dataset.label}: ${wr} (${bucketData.games} games)`;
-            },
-          },
-        },
-      },
-      scales: {
-        y: {
-          min: 20,
-          max: 80,
-          ticks: { callback: v => v + '%' },
-          grid: { color: '#21262d' },
-          title: { display: true, text: 'Winrate', color: '#8b949e', font: { size: 11 } },
-        },
-        x: {
-          grid: { display: false },
-          title: { display: true, text: 'Game Duration', color: '#8b949e', font: { size: 11 } },
-        },
-      },
-    },
+  // Sort
+  if (sortState.key === 'name') {
+    rows.sort((a, b) => sortState.dir === 'asc' ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name));
+  } else if (sortState.key === 'total') {
+    rows.sort((a, b) => sortState.dir === 'asc' ? a.totalGames - b.totalGames : b.totalGames - a.totalGames);
+  } else {
+    // Sort by a bucket index winrate
+    const idx = parseInt(sortState.key);
+    rows.sort((a, b) => {
+      const aWr = a.bucketData[idx] && a.bucketData[idx].winrate !== null ? a.bucketData[idx].winrate : -1;
+      const bWr = b.bucketData[idx] && b.bucketData[idx].winrate !== null ? b.bucketData[idx].winrate : -1;
+      return sortState.dir === 'asc' ? aWr - bWr : bWr - aWr;
+    });
+  }
+
+  // Build faction lookup
+  const factionLookup = {};
+  const cmdStats = getPeriodData(appData.commanderStats, currentPeriod);
+  if (cmdStats) cmdStats.forEach(c => { factionLookup[c.name] = c.faction; });
+
+  // Header
+  const sortIcon = (key) => {
+    if (sortState.key !== key) return '';
+    return sortState.dir === 'asc' ? ' ▲' : ' ▼';
+  };
+
+  thead.innerHTML =
+    `<th class="sortable" data-table="${tableId}" data-bsort="name">Commander${sortIcon('name')}</th>` +
+    buckets.map((b, i) => `<th class="sortable" data-table="${tableId}" data-bsort="${i}">${b}${unitSuffix}${sortIcon(String(i))}</th>`).join('') +
+    `<th class="sortable" data-table="${tableId}" data-bsort="total">Games${sortIcon('total')}</th>`;
+
+  // Body
+  tbody.innerHTML = rows.map(row => {
+    const cells = row.bucketData.map(b => {
+      if (b.games < 5) return `<td class="wr-cell wr-nodata">--<span class="wr-cell-count">${b.games}</span></td>`;
+      const wr = b.winrate !== null ? (b.winrate * 100).toFixed(1) : null;
+      let cls = 'wr-even';
+      if (b.winrate > 0.55) cls = 'wr-high';
+      else if (b.winrate < 0.45) cls = 'wr-low';
+      return `<td class="wr-cell ${cls}">${wr}%<span class="wr-cell-count">${b.games}</span></td>`;
+    }).join('');
+    return `<tr><td><strong>${row.name}</strong> ${factionBadge(factionLookup[row.name] || '')}</td>${cells}<td>${row.totalGames}</td></tr>`;
+  }).join('');
+
+  // Attach sort handlers
+  thead.querySelectorAll('.sortable').forEach(th => {
+    th.style.cursor = 'pointer';
+    th.addEventListener('click', () => {
+      const key = th.dataset.bsort;
+      const tid = th.dataset.table;
+      const prev = bucketTableSort[tid] || { key: 'total', dir: 'desc' };
+      if (prev.key === key) {
+        prev.dir = prev.dir === 'desc' ? 'asc' : 'desc';
+      } else {
+        bucketTableSort[tid] = { key, dir: key === 'name' ? 'asc' : 'desc' };
+      }
+      // Re-render just this table
+      if (tid === 'duration-table') {
+        renderBucketTable('duration-table', getPeriodData(appData.durationWinrates, currentPeriod), ' min');
+      } else {
+        renderBucketTable('actions-table', getPeriodData(appData.actionWinrates, currentPeriod), '');
+      }
+    });
   });
 }
 
@@ -345,9 +346,9 @@ function renderAll() {
   // Commander stats
   renderCommanderCards(commanderStats, appData.commanders);
 
-  // Winrate by game duration
-  const durationData = getPeriodData(appData.durationWinrates, period);
-  renderDurationChart(durationData);
+  // Winrate by duration & actions tables
+  renderBucketTable('duration-table', getPeriodData(appData.durationWinrates, period), ' min');
+  renderBucketTable('actions-table', getPeriodData(appData.actionWinrates, period), '');
 
   // Deck composition
   renderAvgCostChart(deckComp);

@@ -61,7 +61,7 @@ async function loadJSON(path) {
 }
 
 async function loadAllData() {
-  const [metadata, commanderStats, cardStats, trends, matchups, commanders, gameDistributions, deckComposition, firstTurn, commanderTrends, durationWinrates, commanderCardStats] = await Promise.all([
+  const [metadata, commanderStats, cardStats, trends, matchups, commanders, gameDistributions, deckComposition, firstTurn, commanderTrends, durationWinrates, actionWinrates] = await Promise.all([
     loadJSON('data/metadata.json'),
     loadJSON('data/commander_stats.json'),
     loadJSON('data/card_stats.json'),
@@ -73,9 +73,15 @@ async function loadAllData() {
     loadJSON('data/first_turn.json'),
     loadJSON('data/commander_trends.json'),
     loadJSON('data/duration_winrates.json'),
-    loadJSON('data/commander_card_stats.json'),
+    loadJSON('data/action_winrates.json'),
   ]);
-  return { metadata, commanderStats, cardStats, trends, matchups, commanders, gameDistributions, deckComposition, firstTurn, commanderTrends, durationWinrates, commanderCardStats };
+  return { metadata, commanderStats, cardStats, trends, matchups, commanders, gameDistributions, deckComposition, firstTurn, commanderTrends, durationWinrates, actionWinrates, commanderCardStats: null };
+}
+
+async function loadCommanderCardStats() {
+  if (appData.commanderCardStats) return appData.commanderCardStats;
+  appData.commanderCardStats = await loadJSON('data/commander_card_stats.json');
+  return appData.commanderCardStats;
 }
 
 // ─── Helpers ────────────────────────────────────────────────

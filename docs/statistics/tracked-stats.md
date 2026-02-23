@@ -40,8 +40,15 @@ Every stat computed by the pipeline and displayed on the dashboard, organized by
 
 | Stat | Source | Calculation | Min Sample | Caveats |
 |------|--------|-------------|-----------|---------|
-| Per-bucket winrate | `duration_winrates.json` | `wins / total` per commander per duration bucket | 20 total games | Buckets: 0-10, 10-20, 20-30, 30+ minutes |
-| Games per bucket | `duration_winrates.json` | Count of games in each duration range | 1 | Some buckets may have very few games |
+| Per-bucket winrate | `duration_winrates.json` | `wins / total` per commander per duration bucket | 5 games/cell | Buckets: 0-10, 10-20, 20-30, 30+ minutes. Shown as "--" below 5 games. |
+| Games per bucket | `duration_winrates.json` | Count of games in each duration range | 1 | Shown below each winrate cell |
+
+### Winrate by Player Actions
+
+| Stat | Source | Calculation | Min Sample | Caveats |
+|------|--------|-------------|-----------|---------|
+| Per-bucket winrate | `action_winrates.json` | `wins / total` per commander per action-count bucket | 5 games/cell | Buckets: 0-30, 30-60, 60-90, 90-120, 120+ actions. Actions = total moves a player makes. |
+| Games per bucket | `action_winrates.json` | Count of games in each action range | 1 | Shown below each winrate cell |
 
 ### Deck Composition
 

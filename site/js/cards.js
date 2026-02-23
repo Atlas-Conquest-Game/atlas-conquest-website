@@ -242,7 +242,7 @@ function initCommanderFilter() {
   const select = document.getElementById('commander-filter');
   if (!select) return;
 
-  select.addEventListener('change', () => {
+  select.addEventListener('change', async () => {
     currentCommander = select.value;
     // When switching to a commander, default sort to inclusion_rate
     if (currentCommander !== 'all' && cardSortKey === 'drawn_winrate') {
@@ -251,6 +251,10 @@ function initCommanderFilter() {
     } else if (currentCommander === 'all' && cardSortKey === 'inclusion_rate') {
       cardSortKey = 'drawn_winrate';
       cardSortDir = 'desc';
+    }
+    // Lazy-load commander card stats on first commander selection
+    if (currentCommander !== 'all' && !appData.commanderCardStats) {
+      await loadCommanderCardStats();
     }
     const cardStats = getPeriodData(appData.cardStats, currentPeriod);
     renderCardTable(cardStats);

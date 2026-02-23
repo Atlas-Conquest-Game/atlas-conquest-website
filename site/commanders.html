@@ -64,9 +64,24 @@
 
       <div class="commander-grid" id="commander-cards"></div>
 
-      <div class="chart-container" style="margin-top: 2rem;">
-        <h3 class="chart-inner-title">Winrate by Game Duration <span class="tooltip-icon" data-tooltip="Do certain commanders perform better in short or long games? Grouped by game length in minutes.">?</span></h3>
-        <canvas id="duration-chart"></canvas>
+      <div class="wr-tables-section" style="margin-top: 2rem;">
+        <h3 class="chart-inner-title">Winrate by Game Duration <span class="tooltip-icon" data-tooltip="Do certain commanders perform better in short or long games? Click a column header to sort. Cells show winrate % and game count.">?</span></h3>
+        <div class="table-wrapper">
+          <table class="data-table wr-bucket-table" id="duration-table">
+            <thead><tr></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="wr-tables-section" style="margin-top: 2rem;">
+        <h3 class="chart-inner-title">Winrate by Player Actions <span class="tooltip-icon" data-tooltip="Do certain commanders perform better with more or fewer actions? Actions = total moves a player makes in a game. Click a column header to sort.">?</span></h3>
+        <div class="table-wrapper">
+          <table class="data-table wr-bucket-table" id="actions-table">
+            <thead><tr></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
       </div>
     </div>
   </section>
