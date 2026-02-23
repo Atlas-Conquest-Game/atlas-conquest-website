@@ -110,7 +110,8 @@ def _art_slug(name):
 def generate_thumbnails():
     """Generate optimized thumbnails for commanders (from Artwork/) and cards (from CardScreenshots/).
 
-    Commander art:  Artwork/*.png → site/assets/commanders/*.jpg  (400px wide)
+    Commander art:  Artwork/<slug>.png → site/assets/commanders/<slug>.jpg  (400px wide)
+                    Only processes files whose slug matches a commander in the CSV.
     Card previews:  CardScreenshots/*.png → site/assets/cards/*.jpg  (600px wide)
 
     Only regenerates if source is newer than target or target is missing.
@@ -121,14 +122,25 @@ def generate_thumbnails():
     cmd_count = 0
     card_count = 0
 
-    # Commander thumbnails from Artwork/
-    if ARTWORK_DIR.exists():
+    # Build set of valid commander slugs from CSV
+    commander_slugs = set()
+    if COMMANDERS_CSV.exists():
+        with open(COMMANDERS_CSV, "r", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                name = normalize_commander(row.get("Name", "").strip())
+                if name:
+                    commander_slugs.add(_art_slug(name))
+
+    # Commander thumbnails from Artwork/ (only files matching commander names)
+    if ARTWORK_DIR.exists() and commander_slugs:
         for source in ARTWORK_DIR.iterdir():
             if source.suffix.lower() not in (".png", ".jpg", ".jpeg"):
                 continue
-            if source.stem.lower() in ("default", "default-loading", "desktop"):
+            slug = source.stem.lower()
+            if slug not in commander_slugs:
                 continue
-            target = ASSETS_DIR / f"{source.stem.lower()}.jpg"
+            target = ASSETS_DIR / f"{slug}.jpg"
             if target.exists() and target.stat().st_mtime >= source.stat().st_mtime:
                 continue
             if _resize_image(source, target, 400):

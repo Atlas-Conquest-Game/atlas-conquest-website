@@ -46,9 +46,9 @@
 | Page | File | Content |
 |------|------|---------|
 | Home | `index.html` | Overview stats, distribution charts, quick-link cards |
-| Commanders | `commanders.html` | Commander grid, winrate chart/table, matchup heatmap, deck composition, detail modal |
-| Cards | `cards.html` | Full card table (261 cards), search, faction filter, sortable columns |
-| Meta | `meta.html` | Stacked area chart of faction popularity over time |
+| Commanders | `commanders.html` | Commander grid, winrate chart/table, deck composition charts, detail modal |
+| Cards | `cards.html` | Full card table (261 cards), search, faction filter, card hover preview |
+| Meta | `meta.html` | Faction popularity trends, commander matchup heatmap |
 
 #### JavaScript Structure
 
@@ -56,9 +56,9 @@
 |------|------|
 | `js/shared.js` | Constants, helpers, data loading, time filter, modal, tooltip system |
 | `js/home.js` | Overview stats and distribution chart rendering |
-| `js/commanders.js` | Commander, matchup, and deck composition rendering |
+| `js/commanders.js` | Commander grid/table/chart, deck composition rendering |
 | `js/cards.js` | Card table with search, sorting, and faction filter |
-| `js/meta.js` | Meta trends chart rendering |
+| `js/meta.js` | Meta trends chart and matchup heatmap rendering |
 
 Each page loads `shared.js` first (globals, not ES modules), then its page-specific script. All pages share: nav with active state, sticky time filter bar, footer.
 
@@ -68,6 +68,14 @@ Each page loads `shared.js` first (globals, not ES modules), then its page-speci
 - Clickable deck composition charts opening commander detail modal
 - Info tooltips (`?` icons) explaining stats, columns, and chart meanings
 - Global time period filter (1M / 3M / 6M / All) re-renders all sections
+
+### 5. Asset Pipeline (Thumbnails)
+- Source artwork lives in `Artwork/` (commanders + cards) and `CardScreenshots/` (card previews).
+- The data pipeline (`scripts/fetch_data.py`) generates optimized JPEG thumbnails:
+  - **Commander art**: `Artwork/<name>.png` → `site/assets/commanders/<slug>.jpg` (400px wide). Only files matching commander names in `StandardFormatCommanders.csv` are processed.
+  - **Card previews**: `CardScreenshots/<name>.png` → `site/assets/cards/<slug>.jpg` (600px wide).
+- Thumbnails are only regenerated when the source image is newer than the target (or target is missing).
+- New art added to `Artwork/` or `CardScreenshots/` is automatically picked up on the next pipeline run.
 
 ## Data Update Flow
 
