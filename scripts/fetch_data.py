@@ -32,6 +32,8 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 PROJECT_DIR = SCRIPT_DIR.parent
 DATA_DIR = PROJECT_DIR / "site" / "data"
 ASSETS_DIR = PROJECT_DIR / "site" / "assets" / "commanders"
+CARD_ASSETS_DIR = PROJECT_DIR / "site" / "assets" / "cards"
+ARTWORK_DIR = PROJECT_DIR / "Artwork"
 CARD_SCREENSHOTS_DIR = PROJECT_DIR / "CardScreenshots"
 RAW_CACHE = DATA_DIR / "raw_games.json"
 
@@ -74,46 +76,79 @@ PATRON_MAP = {
 }
 
 
-# ─── Commander Art Fallback ─────────────────────────────────────
+# ─── Thumbnail Generation ──────────────────────────────────────
 
-# Map of commander art slug → CardScreenshot filename for missing art
-FALLBACK_ART = {
-    "it-that-weaves": "It-That-Weaves.png",
-}
-
-
-def ensure_commander_art():
-    """Generate missing commander art from CardScreenshots as fallback."""
-    ASSETS_DIR.mkdir(parents=True, exist_ok=True)
-
-    for slug, screenshot_name in FALLBACK_ART.items():
-        target = ASSETS_DIR / f"{slug}.jpg"
-        if target.exists():
-            continue
-        source = CARD_SCREENSHOTS_DIR / screenshot_name
-        if not source.exists():
-            print(f"  Warning: No source art for {slug}")
-            continue
-
-        try:
-            from PIL import Image
-            img = Image.open(source)
-            ratio = 400 / img.width
-            new_size = (400, int(img.height * ratio))
+def _resize_image(source, target, max_width, quality=85):
+    """Resize a source image to max_width, save as JPEG. Returns True on success."""
+    try:
+        from PIL import Image
+        img = Image.open(source)
+        if img.width > max_width:
+            ratio = max_width / img.width
+            new_size = (max_width, int(img.height * ratio))
             img = img.resize(new_size, Image.LANCZOS)
-            img = img.convert("RGB")
-            img.save(target, "JPEG", quality=85)
-            print(f"  Generated {target.name} from {screenshot_name}")
-        except ImportError:
-            try:
-                subprocess.run([
-                    "sips", "-s", "format", "jpeg",
-                    "-Z", "400", str(source),
-                    "--out", str(target),
-                ], check=True, capture_output=True)
-                print(f"  Generated {target.name} via sips")
-            except (FileNotFoundError, subprocess.CalledProcessError):
-                print(f"  Warning: Could not convert {screenshot_name} (install Pillow or use macOS)")
+        img = img.convert("RGB")
+        img.save(target, "JPEG", quality=quality)
+        return True
+    except ImportError:
+        try:
+            subprocess.run([
+                "sips", "-s", "format", "jpeg",
+                "-Z", str(max_width), str(source),
+                "--out", str(target),
+            ], check=True, capture_output=True)
+            return True
+        except (FileNotFoundError, subprocess.CalledProcessError):
+            return False
+
+
+def _art_slug(name):
+    """Convert a name like 'Elber, Jungle Emissary' to 'elber-jungle-emissary'."""
+    return name.lower().replace(" ", "-").replace(",", "").replace("'", "")
+
+
+def generate_thumbnails():
+    """Generate optimized thumbnails for commanders (from Artwork/) and cards (from CardScreenshots/).
+
+    Commander art:  Artwork/*.png → site/assets/commanders/*.jpg  (400px wide)
+    Card previews:  CardScreenshots/*.png → site/assets/cards/*.jpg  (600px wide)
+
+    Only regenerates if source is newer than target or target is missing.
+    """
+    ASSETS_DIR.mkdir(parents=True, exist_ok=True)
+    CARD_ASSETS_DIR.mkdir(parents=True, exist_ok=True)
+
+    cmd_count = 0
+    card_count = 0
+
+    # Commander thumbnails from Artwork/
+    if ARTWORK_DIR.exists():
+        for source in ARTWORK_DIR.iterdir():
+            if source.suffix.lower() not in (".png", ".jpg", ".jpeg"):
+                continue
+            if source.stem.lower() in ("default", "default-loading", "desktop"):
+                continue
+            target = ASSETS_DIR / f"{source.stem.lower()}.jpg"
+            if target.exists() and target.stat().st_mtime >= source.stat().st_mtime:
+                continue
+            if _resize_image(source, target, 400):
+                cmd_count += 1
+
+    # Card thumbnails from CardScreenshots/
+    if CARD_SCREENSHOTS_DIR.exists():
+        for source in CARD_SCREENSHOTS_DIR.iterdir():
+            if source.suffix.lower() not in (".png", ".jpg", ".jpeg"):
+                continue
+            slug = source.stem.lower()
+            target = CARD_ASSETS_DIR / f"{slug}.jpg"
+            if target.exists() and target.stat().st_mtime >= source.stat().st_mtime:
+                continue
+            if _resize_image(source, target, 600):
+                card_count += 1
+
+    print(f"  Thumbnails: {cmd_count} commander + {card_count} card images generated")
+    if cmd_count == 0 and card_count == 0:
+        print("  (all thumbnails up to date)")
 
 
 # ─── Time Period Filtering ─────────────────────────────────────
@@ -919,9 +954,9 @@ def main():
     print("\n[4/6] Saving cache...")
     save_cache(all_games)
 
-    # Step 5: Load reference data & ensure art
-    print("\n[5/7] Ensuring commander art...")
-    ensure_commander_art()
+    # Step 5: Generate optimized thumbnails from Artwork/ and CardScreenshots/
+    print("\n[5/7] Generating thumbnails...")
+    generate_thumbnails()
 
     print("\n[6/7] Loading reference data...")
     cards_csv = load_cards_csv()

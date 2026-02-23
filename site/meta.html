@@ -30,7 +30,7 @@
   <header class="hero hero-compact">
     <div class="container">
       <h1 class="hero-title">Meta Trends</h1>
-      <p class="hero-subtitle">How faction popularity shifts over time.</p>
+      <p class="hero-subtitle">Faction popularity, head-to-head matchups, and metagame shifts.</p>
       <div class="hero-meta">
         <span class="hero-stat" id="hero-matches">-- matches</span>
         <span class="hero-divider"></span>
@@ -61,6 +61,33 @@
       </div>
     </div>
   </section>
+
+  <!-- Commander Matchups -->
+  <section id="matchups" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Commander Matchups <span class="tooltip-icon" data-tooltip="Row commander's win rate vs column commander. Green >55%, red <45%. Gray = fewer than 5 games.">?</span></h2>
+      <p class="section-desc">Head-to-head winrates. Read rows as "Row commander's winrate vs Column commander."</p>
+      <div class="matchup-wrapper">
+        <table class="matchup-table" id="matchup-table">
+          <thead><tr><th></th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="matchup-legend">
+        <span class="legend-item"><span class="legend-swatch legend-favored"></span> &gt;55%</span>
+        <span class="legend-item"><span class="legend-swatch legend-even"></span> 45-55%</span>
+        <span class="legend-item"><span class="legend-swatch legend-unfavored"></span> &lt;45%</span>
+        <span class="legend-item"><span class="legend-swatch legend-nodata"></span> &lt;5 games</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Matchup Tooltip -->
+  <div class="matchup-tooltip" id="matchup-tooltip">
+    <div class="matchup-tooltip-title" id="tooltip-title"></div>
+    <div class="matchup-tooltip-wr" id="tooltip-wr"></div>
+    <div class="matchup-tooltip-games" id="tooltip-games"></div>
+  </div>
 
   <!-- Footer -->
   <footer class="footer">

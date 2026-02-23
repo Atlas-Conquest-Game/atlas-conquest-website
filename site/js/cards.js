@@ -59,8 +59,10 @@ function renderCardTable(stats) {
     countEl.textContent = `Showing ${sorted.length} of ${totalForFaction} cards`;
   }
 
-  tbody.innerHTML = sorted.map(c => `
-    <tr>
+  tbody.innerHTML = sorted.map(c => {
+    const slug = commanderSlug(c.name);
+    return `
+    <tr data-card-slug="${slug}">
       <td><strong>${c.name}</strong></td>
       <td>${factionBadge(c.faction)}</td>
       <td>${c.type || '--'}</td>
@@ -68,8 +70,8 @@ function renderCardTable(stats) {
       <td>${winrateCell(c.drawn_winrate, c.drawn_count)}</td>
       <td>${pctCell(c.played_rate)}</td>
       <td>${winrateCell(c.played_winrate, c.played_count)}</td>
-    </tr>
-  `).join('');
+    </tr>`;
+  }).join('');
 
   if (sorted.length === 0) {
     tbody.innerHTML = '<tr class="placeholder-row"><td colspan="7">No cards match your filters.</td></tr>';
@@ -137,6 +139,49 @@ function initSearch() {
   });
 }
 
+// ─── Card Preview on Hover ──────────────────────────────────
+
+function initCardPreview() {
+  const preview = document.getElementById('card-preview');
+  const previewImg = document.getElementById('card-preview-img');
+  if (!preview || !previewImg) return;
+
+  const tbody = document.querySelector('#card-table tbody');
+
+  tbody.addEventListener('mouseover', e => {
+    const row = e.target.closest('tr[data-card-slug]');
+    if (!row) return;
+    const slug = row.dataset.cardSlug;
+    const src = `assets/cards/${slug}.jpg`;
+
+    previewImg.src = src;
+    preview.classList.add('visible');
+  });
+
+  tbody.addEventListener('mousemove', e => {
+    // Position preview to the right of cursor, flip left if near edge
+    const x = e.clientX + 20;
+    const y = e.clientY - 100;
+    const flipX = x + 260 > window.innerWidth;
+    preview.style.left = flipX ? (e.clientX - 270) + 'px' : x + 'px';
+    preview.style.top = Math.max(8, y) + 'px';
+  });
+
+  tbody.addEventListener('mouseout', e => {
+    const row = e.target.closest('tr[data-card-slug]');
+    if (!row) return;
+    // Only hide if we're actually leaving the row
+    const related = e.relatedTarget;
+    if (related && row.contains(related)) return;
+    preview.classList.remove('visible');
+  });
+
+  // Handle image load errors (card art missing)
+  previewImg.addEventListener('error', () => {
+    preview.classList.remove('visible');
+  });
+}
+
 // ─── Render All ─────────────────────────────────────────────
 
 function renderAll() {
@@ -156,6 +201,7 @@ async function init() {
   initFactionFilters();
   initCardTableSorting();
   initSearch();
+  initCardPreview();
   initTimeFilters(renderAll);
   initNavActiveState();
   initTooltips();
