@@ -85,9 +85,9 @@ function renderCardTable(stats) {
         : bVal.localeCompare(aVal);
     }
 
-    // Push null/zero values to the bottom regardless of sort direction
-    const aEmpty = aVal == null || aVal === 0;
-    const bEmpty = bVal == null || bVal === 0;
+    // Push null values to the bottom regardless of sort direction
+    const aEmpty = aVal == null;
+    const bEmpty = bVal == null;
     if (aEmpty && bEmpty) return 0;
     if (aEmpty) return 1;
     if (bEmpty) return -1;
