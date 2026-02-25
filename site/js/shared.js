@@ -76,13 +76,19 @@ async function loadAllData() {
     loadJSON('data/action_winrates.json'),
     loadJSON('data/turn_winrates.json'),
   ]);
-  return { metadata, commanderStats, cardStats, trends, matchups, commanders, gameDistributions, deckComposition, firstTurn, commanderTrends, durationWinrates, actionWinrates, turnWinrates, commanderCardStats: null };
+  return { metadata, commanderStats, cardStats, trends, matchups, commanders, gameDistributions, deckComposition, firstTurn, commanderTrends, durationWinrates, actionWinrates, turnWinrates, commanderCardStats: null, matchupDetails: null };
 }
 
 async function loadCommanderCardStats() {
   if (appData.commanderCardStats) return appData.commanderCardStats;
   appData.commanderCardStats = await loadJSON('data/commander_card_stats.json');
   return appData.commanderCardStats;
+}
+
+async function loadMatchupDetails() {
+  if (appData.matchupDetails) return appData.matchupDetails;
+  appData.matchupDetails = await loadJSON('data/matchup_details.json');
+  return appData.matchupDetails;
 }
 
 // ─── Helpers ────────────────────────────────────────────────

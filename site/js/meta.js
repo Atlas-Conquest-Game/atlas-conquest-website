@@ -10,6 +10,9 @@
 let metaChart = null;
 let cmdTrendsChart = null;
 let firstTurnChart = null;
+let matchupModalOpen = false;
+let matchupModalCmd1 = null;
+let matchupModalCmd2 = null;
 
 // ─── Meta Trends Chart ──────────────────────────────────────
 
@@ -205,6 +208,15 @@ function initMatchupTooltip() {
     cell.addEventListener('mouseleave', () => {
       tooltip.classList.remove('visible');
     });
+
+    // Click to open detail modal (only for cells with enough data)
+    if (cell.dataset.type === 'data') {
+      cell.style.cursor = 'pointer';
+      cell.addEventListener('click', () => {
+        tooltip.classList.remove('visible');
+        openMatchupModal(cell.dataset.row, cell.dataset.col);
+      });
+    }
   });
 }
 
@@ -388,6 +400,210 @@ function renderFirstTurnChart(ftData) {
   });
 }
 
+// ─── Matchup Detail Modal ────────────────────────────────────
+
+function buildArtLookup() {
+  const lookup = {};
+  if (appData.commanders) {
+    appData.commanders.forEach(c => { lookup[c.name] = c.art; });
+  }
+  return lookup;
+}
+
+function buildFactionLookup() {
+  const lookup = {};
+  if (appData.commanders) {
+    appData.commanders.forEach(c => { lookup[c.name] = c.faction; });
+  }
+  return lookup;
+}
+
+async function openMatchupModal(cmd1, cmd2) {
+  const details = await loadMatchupDetails();
+  if (!details) return;
+
+  const periodData = getPeriodData(details, currentPeriod);
+  if (!periodData) return;
+
+  const matchup = periodData.find(m => m.commander === cmd1 && m.opponent === cmd2);
+  if (!matchup) return;
+
+  matchupModalOpen = true;
+  matchupModalCmd1 = cmd1;
+  matchupModalCmd2 = cmd2;
+
+  renderMatchupModalContent(matchup, cmd1, cmd2);
+
+  const modal = document.getElementById('matchup-modal');
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function renderMatchupModalContent(matchup, cmd1, cmd2) {
+  const artLookup = buildArtLookup();
+  const factionLookup = buildFactionLookup();
+
+  // Commander 1 header
+  const art1 = document.getElementById('matchup-cmd1-art');
+  const artPath1 = artLookup[cmd1];
+  if (artPath1) { art1.src = artPath1; art1.style.display = ''; }
+  else { art1.style.display = 'none'; }
+  document.getElementById('matchup-cmd1-name').textContent = cmd1;
+  document.getElementById('matchup-cmd1-faction').innerHTML = factionBadge(factionLookup[cmd1] || '');
+
+  // Commander 2 header
+  const art2 = document.getElementById('matchup-cmd2-art');
+  const artPath2 = artLookup[cmd2];
+  if (artPath2) { art2.src = artPath2; art2.style.display = ''; }
+  else { art2.style.display = 'none'; }
+  document.getElementById('matchup-cmd2-name').textContent = cmd2;
+  document.getElementById('matchup-cmd2-faction').innerHTML = factionBadge(factionLookup[cmd2] || '');
+
+  // Unified stats table
+  const statsEl = document.getElementById('matchup-modal-stats');
+  const shortCmd1 = cmd1.split(',')[0].split(' ')[0];
+  const shortCmd2 = cmd2.split(',')[0].split(' ')[0];
+
+  const wrPct = (matchup.winrate * 100).toFixed(1);
+  const wrNum = matchup.winrate * 100;
+  const oppWrPct = ((1 - matchup.winrate) * 100).toFixed(1);
+  let cmd1WrCls = 'ft-wr-even';
+  let cmd2WrCls = 'ft-wr-even';
+  if (wrNum > 55) { cmd1WrCls = 'ft-wr-high'; cmd2WrCls = 'ft-wr-low'; }
+  else if (wrNum < 45) { cmd1WrCls = 'ft-wr-low'; cmd2WrCls = 'ft-wr-high'; }
+
+  const ft = matchup.first_turn;
+  let turnRows = '';
+  if (ft && (ft.cmd_first_games > 0 || ft.opp_first_games > 0)) {
+    const cmd1FirstWR = ft.cmd_first_games > 0 ? ((ft.cmd_first_wins / ft.cmd_first_games) * 100).toFixed(0) : '--';
+    const cmd1SecondWR = ft.opp_first_games > 0 ? ((ft.opp_first_wins / ft.opp_first_games) * 100).toFixed(0) : '--';
+    const cmd2FirstWR = ft.opp_first_games > 0 ? (((ft.opp_first_games - ft.opp_first_wins) / ft.opp_first_games) * 100).toFixed(0) : '--';
+    const cmd2SecondWR = ft.cmd_first_games > 0 ? (((ft.cmd_first_games - ft.cmd_first_wins) / ft.cmd_first_games) * 100).toFixed(0) : '--';
+
+    turnRows = `
+      <tr>
+        <td class="ft-label">Going First</td>
+        <td><strong>${cmd1FirstWR}%</strong> <span class="ft-games">(${ft.cmd_first_games} gm)</span></td>
+        <td><strong>${cmd2FirstWR}%</strong> <span class="ft-games">(${ft.opp_first_games} gm)</span></td>
+      </tr>
+      <tr>
+        <td class="ft-label">Going Second</td>
+        <td><strong>${cmd1SecondWR}%</strong> <span class="ft-games">(${ft.opp_first_games} gm)</span></td>
+        <td><strong>${cmd2SecondWR}%</strong> <span class="ft-games">(${ft.cmd_first_games} gm)</span></td>
+      </tr>`;
+  }
+
+  statsEl.innerHTML =
+    `<table class="ft-table">
+      <thead><tr>
+        <th></th>
+        <th>${shortCmd1}</th>
+        <th>${shortCmd2}</th>
+      </tr></thead>
+      <tbody>
+        <tr class="ft-headline-row">
+          <td class="ft-label">Win Rate</td>
+          <td><span class="ft-headline ${cmd1WrCls}">${wrPct}%</span><br><span class="ft-games">${matchup.wins}W - ${matchup.losses}L</span></td>
+          <td><span class="ft-headline ${cmd2WrCls}">${oppWrPct}%</span><br><span class="ft-games">${matchup.losses}W - ${matchup.wins}L</span></td>
+        </tr>
+        ${turnRows}
+      </tbody>
+    </table>
+    <div class="ft-total">${matchup.total} games played</div>`;
+
+  // Card lists
+  document.getElementById('matchup-cards-title-1').textContent = `Top Cards — ${cmd1.split(',')[0]}`;
+  document.getElementById('matchup-cards-title-2').textContent = `Top Cards — ${cmd2.split(',')[0]}`;
+  renderCardList(matchup.cmd_cards, 'matchup-cards-list-1');
+  renderCardList(matchup.opp_cards, 'matchup-cards-list-2');
+}
+
+function renderCardList(cards, containerId) {
+  const container = document.getElementById(containerId);
+  if (!cards || !cards.length) {
+    container.innerHTML = '<p class="matchup-cards-empty">No card data available</p>';
+    return;
+  }
+
+  const header = `<div class="matchup-card-row matchup-card-header">
+    <span class="matchup-card-name"></span>
+    <span class="matchup-card-stats">
+      <span class="matchup-col-label">Played WR</span>
+      <span class="matchup-col-label">Drawn WR</span>
+      <span class="matchup-card-games">Games</span>
+    </span>
+  </div>`;
+
+  const rows = cards.map(card => {
+    const playedPct = (card.played_winrate * 100).toFixed(0);
+    const drawnPct = (card.drawn_winrate * 100).toFixed(0);
+    const playedNum = card.played_winrate * 100;
+    const drawnNum = card.drawn_winrate * 100;
+
+    let playedCls = 'matchup-wr-even';
+    if (playedNum > 55) playedCls = 'matchup-wr-high';
+    else if (playedNum < 45) playedCls = 'matchup-wr-low';
+
+    let drawnCls = 'matchup-wr-even';
+    if (drawnNum > 55) drawnCls = 'matchup-wr-high';
+    else if (drawnNum < 45) drawnCls = 'matchup-wr-low';
+
+    return `<div class="matchup-card-row">
+      <span class="matchup-card-name">${card.name}</span>
+      <span class="matchup-card-stats">
+        <span class="${playedCls}">${playedPct}%</span>
+        <span class="${drawnCls}">${drawnPct}%</span>
+        <span class="matchup-card-games">${card.played}</span>
+      </span>
+    </div>`;
+  }).join('');
+
+  container.innerHTML = header + rows;
+}
+
+function closeMatchupModal() {
+  const modal = document.getElementById('matchup-modal');
+  if (!modal) return;
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+  matchupModalOpen = false;
+  matchupModalCmd1 = null;
+  matchupModalCmd2 = null;
+}
+
+async function rerenderMatchupModal() {
+  if (!matchupModalCmd1 || !matchupModalCmd2) return;
+  const details = await loadMatchupDetails();
+  if (!details) return;
+  const periodData = getPeriodData(details, currentPeriod);
+  if (!periodData) return;
+  const matchup = periodData.find(m => m.commander === matchupModalCmd1 && m.opponent === matchupModalCmd2);
+  if (!matchup) {
+    closeMatchupModal();
+    return;
+  }
+  renderMatchupModalContent(matchup, matchupModalCmd1, matchupModalCmd2);
+}
+
+function initMatchupModal() {
+  const modal = document.getElementById('matchup-modal');
+  const closeBtn = document.getElementById('matchup-modal-close');
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeMatchupModal);
+  }
+
+  if (modal) {
+    modal.addEventListener('click', e => {
+      if (e.target === modal) closeMatchupModal();
+    });
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && matchupModalOpen) closeMatchupModal();
+  });
+}
+
 // ─── Render All ─────────────────────────────────────────────
 
 function renderAll() {
@@ -403,6 +619,8 @@ function renderAll() {
   renderCommanderTrends(cmdTrends);
   renderMatchups(matchups);
   renderFirstTurnChart(firstTurn);
+
+  if (matchupModalOpen) rerenderMatchupModal();
 }
 
 // ─── Init ───────────────────────────────────────────────────
@@ -412,6 +630,7 @@ async function init() {
   renderAll();
   initTimeFilters(renderAll);
   initMapFilters(renderAll);
+  initMatchupModal();
   initNavActiveState();
   initTooltips();
 }

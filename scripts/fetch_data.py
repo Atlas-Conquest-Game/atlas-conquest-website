@@ -543,6 +543,140 @@ def aggregate_matchups(games):
     return matchups
 
 
+def aggregate_matchup_details(games):
+    """Compute per-matchup first-turn stats and top card winrates.
+
+    For each ordered pair (commander, opponent), tracks:
+    - Win/loss counts
+    - First-turn advantage (games where cmd went first vs second, wins for each)
+    - Per-card played and drawn winrates for each commander in the matchup
+
+    Returns list of matchup detail records.
+    """
+    if not games:
+        return []
+
+    # (cmd, opp) -> tracking dict
+    matchup_data = defaultdict(lambda: {
+        "wins": 0, "losses": 0,
+        "cmd_first_games": 0, "cmd_first_wins": 0,
+        "opp_first_games": 0, "opp_first_wins": 0,
+        "cmd_cards": defaultdict(lambda: {"played": 0, "played_wins": 0, "drawn": 0, "drawn_wins": 0}),
+        "opp_cards": defaultdict(lambda: {"played": 0, "played_wins": 0, "drawn": 0, "drawn_wins": 0}),
+    })
+
+    for game in games:
+        if len(game["players"]) != 2:
+            continue
+        p1, p2 = game["players"][0], game["players"][1]
+        c1, c2 = p1["commander"], p2["commander"]
+        if not c1 or not c2:
+            continue
+
+        p1_won = p1["winner"]
+        p2_won = p2["winner"]
+
+        # Track from c1's perspective (c1 vs c2)
+        key1 = (c1, c2)
+        if p1_won:
+            matchup_data[key1]["wins"] += 1
+        elif p2_won:
+            matchup_data[key1]["losses"] += 1
+
+        # Track from c2's perspective (c2 vs c1)
+        key2 = (c2, c1)
+        if p2_won:
+            matchup_data[key2]["wins"] += 1
+        elif p1_won:
+            matchup_data[key2]["losses"] += 1
+
+        # First-turn tracking
+        fp = game.get("first_player")
+        if fp in ("1", "2"):
+            first_idx = int(fp) - 1
+            # From c1's perspective
+            if first_idx == 0:  # p1 (c1) went first
+                matchup_data[key1]["cmd_first_games"] += 1
+                matchup_data[key2]["opp_first_games"] += 1
+                if p1_won:
+                    matchup_data[key1]["cmd_first_wins"] += 1
+                    matchup_data[key2]["opp_first_wins"] += 1
+            else:  # p2 (c2) went first
+                matchup_data[key1]["opp_first_games"] += 1
+                matchup_data[key2]["cmd_first_games"] += 1
+                if p2_won:
+                    matchup_data[key1]["opp_first_wins"] += 1
+                    matchup_data[key2]["cmd_first_wins"] += 1
+
+        # Card tracking — p1's cards (cmd perspective for key1, opp perspective for key2)
+        for c in p1["cards_played"]:
+            matchup_data[key1]["cmd_cards"][c["name"]]["played"] += 1
+            matchup_data[key2]["opp_cards"][c["name"]]["played"] += 1
+            if p1_won:
+                matchup_data[key1]["cmd_cards"][c["name"]]["played_wins"] += 1
+                matchup_data[key2]["opp_cards"][c["name"]]["played_wins"] += 1
+        for c in p1["cards_drawn"]:
+            matchup_data[key1]["cmd_cards"][c["name"]]["drawn"] += 1
+            matchup_data[key2]["opp_cards"][c["name"]]["drawn"] += 1
+            if p1_won:
+                matchup_data[key1]["cmd_cards"][c["name"]]["drawn_wins"] += 1
+                matchup_data[key2]["opp_cards"][c["name"]]["drawn_wins"] += 1
+
+        # Card tracking — p2's cards
+        for c in p2["cards_played"]:
+            matchup_data[key2]["cmd_cards"][c["name"]]["played"] += 1
+            matchup_data[key1]["opp_cards"][c["name"]]["played"] += 1
+            if p2_won:
+                matchup_data[key2]["cmd_cards"][c["name"]]["played_wins"] += 1
+                matchup_data[key1]["opp_cards"][c["name"]]["played_wins"] += 1
+        for c in p2["cards_drawn"]:
+            matchup_data[key2]["cmd_cards"][c["name"]]["drawn"] += 1
+            matchup_data[key1]["opp_cards"][c["name"]]["drawn"] += 1
+            if p2_won:
+                matchup_data[key2]["cmd_cards"][c["name"]]["drawn_wins"] += 1
+                matchup_data[key1]["opp_cards"][c["name"]]["drawn_wins"] += 1
+
+    # Build output
+    def top_cards(card_dict, limit=10, min_games=3):
+        cards = []
+        for name, d in card_dict.items():
+            if d["played"] < min_games:
+                continue
+            cards.append({
+                "name": name,
+                "played": d["played"],
+                "played_winrate": round(d["played_wins"] / d["played"], 4),
+                "drawn": d["drawn"],
+                "drawn_winrate": round(d["drawn_wins"] / d["drawn"], 4) if d["drawn"] > 0 else None,
+            })
+        cards.sort(key=lambda x: (-x["played_winrate"], -x["played"]))
+        return cards[:limit]
+
+    result = []
+    for (cmd, opp), data in matchup_data.items():
+        total = data["wins"] + data["losses"]
+        if total < 1:
+            continue
+        result.append({
+            "commander": cmd,
+            "opponent": opp,
+            "wins": data["wins"],
+            "losses": data["losses"],
+            "total": total,
+            "winrate": round(data["wins"] / total, 4),
+            "first_turn": {
+                "cmd_first_games": data["cmd_first_games"],
+                "cmd_first_wins": data["cmd_first_wins"],
+                "opp_first_games": data["opp_first_games"],
+                "opp_first_wins": data["opp_first_wins"],
+            },
+            "cmd_cards": top_cards(data["cmd_cards"]),
+            "opp_cards": top_cards(data["opp_cards"]),
+        })
+
+    return result
+
+
 def aggregate_card_stats(games):
     """Compute per-card play rate, drawn rate, deck inclusion rate, and winrates."""
     total_games = len(games)
@@ -927,13 +1061,17 @@ def aggregate_commander_card_stats(games):
 
 # ─── JSON Writers ────────────────────────────────────────────────
 
-def write_json(filename, data):
+def write_json(filename, data, compact=False):
     """Write data to a JSON file in the data directory."""
     path = DATA_DIR / filename
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w") as f:
-        json.dump(data, f, indent=2, default=str)
-    print(f"  Wrote {path.name}")
+        if compact:
+            json.dump(data, f, separators=(",", ":"), default=str)
+        else:
+            json.dump(data, f, indent=2, default=str)
+    size_kb = path.stat().st_size / 1024
+    print(f"  Wrote {path.name} ({size_kb:.0f} KB)")
 
 
 def aggregate_game_distributions(games):
@@ -1107,6 +1245,7 @@ def build_and_write_all(games, cards_csv, commanders_csv):
         "metadata": {},
         "commander_stats": {},
         "matchups": {},
+        "matchup_details": {},
         "card_stats": {},
         "trends": {},
         "distributions": {},
@@ -1180,6 +1319,9 @@ def build_and_write_all(games, cards_csv, commanders_csv):
                 "commanders": all_commanders,
                 "matchups": matchup_list,
             }
+
+            # ── matchup details ──
+            out["matchup_details"][period_key][map_name] = aggregate_matchup_details(map_games)
 
             # ── card_stats ──
             result = aggregate_card_stats(map_games)
@@ -1263,6 +1405,7 @@ def build_and_write_all(games, cards_csv, commanders_csv):
     write_json("metadata.json", out["metadata"])
     write_json("commander_stats.json", out["commander_stats"])
     write_json("matchups.json", out["matchups"])
+    write_json("matchup_details.json", out["matchup_details"], compact=True)
     write_json("card_stats.json", out["card_stats"])
     write_json("trends.json", out["trends"])
     write_json("game_distributions.json", out["distributions"])

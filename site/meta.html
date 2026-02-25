@@ -56,34 +56,11 @@
     </div>
   </div>
 
-  <!-- Meta Trends -->
-  <section id="meta" class="section">
-    <div class="container">
-      <h2 class="section-title">Faction Popularity Over Time <span class="tooltip-icon" data-tooltip="Weekly faction popularity as % of all decks played. Shows how the metagame shifts over time.">?</span></h2>
-      <p class="section-desc">Stacked area chart showing each faction's share of the metagame by week.</p>
-
-      <div class="chart-container">
-        <canvas id="meta-chart"></canvas>
-      </div>
-    </div>
-  </section>
-
-  <!-- Commander Popularity Over Time -->
-  <section id="commander-trends" class="section section-alt">
-    <div class="container">
-      <h2 class="section-title">Commander Popularity Over Time <span class="tooltip-icon" data-tooltip="Weekly commander pick rate as % of all games played. Shows which commanders are trending up or down.">?</span></h2>
-      <p class="section-desc">Per-commander usage share by week. Track rising and falling commanders in the meta.</p>
-      <div class="chart-container">
-        <canvas id="commander-trends-chart"></canvas>
-      </div>
-    </div>
-  </section>
-
   <!-- Commander Matchups -->
   <section id="matchups" class="section">
     <div class="container">
-      <h2 class="section-title">Commander Matchups <span class="tooltip-icon" data-tooltip="Row commander's win rate vs column commander. Green >55%, red <45%. Gray = fewer than 5 games.">?</span></h2>
-      <p class="section-desc">Head-to-head winrates. Read rows as "Row commander's winrate vs Column commander."</p>
+      <h2 class="section-title">Commander Matchups <span class="tooltip-icon" data-tooltip="Row commander's win rate vs column commander. Green >55%, red <45%. Gray = fewer than 5 games. Click a cell for details.">?</span></h2>
+      <p class="section-desc">Head-to-head winrates. Read rows as "Row commander's winrate vs Column commander." Click any cell for detailed breakdown.</p>
       <div class="matchup-wrapper">
         <table class="matchup-table" id="matchup-table">
           <thead><tr><th></th></tr></thead>
@@ -106,8 +83,30 @@
     <div class="matchup-tooltip-games" id="tooltip-games"></div>
   </div>
 
+  <!-- Faction Popularity Over Time -->
+  <section id="meta" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Faction Popularity Over Time <span class="tooltip-icon" data-tooltip="Weekly faction popularity as % of all decks played. Shows how the metagame shifts over time.">?</span></h2>
+      <p class="section-desc">Stacked area chart showing each faction's share of the metagame by week.</p>
+      <div class="chart-container">
+        <canvas id="meta-chart"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- Commander Popularity Over Time -->
+  <section id="commander-trends" class="section">
+    <div class="container">
+      <h2 class="section-title">Commander Popularity Over Time <span class="tooltip-icon" data-tooltip="Weekly commander pick rate as % of all games played. Shows which commanders are trending up or down.">?</span></h2>
+      <p class="section-desc">Per-commander usage share by week. Track rising and falling commanders in the meta.</p>
+      <div class="chart-container">
+        <canvas id="commander-trends-chart"></canvas>
+      </div>
+    </div>
+  </section>
+
   <!-- First-Turn Advantage -->
-  <section id="first-turn-section" class="section">
+  <section id="first-turn-section" class="section section-alt">
     <div class="container">
       <h2 class="section-title">First-Turn Advantage <span class="tooltip-icon" data-tooltip="How much each commander benefits from going first. Only includes games where first player is explicitly recorded.">?</span></h2>
       <p class="section-desc">
@@ -122,7 +121,7 @@
   </section>
 
   <!-- Faction Loyalty Trends (placeholder) -->
-  <section id="patron-trends" class="section section-alt">
+  <section id="patron-trends" class="section">
     <div class="container">
       <div class="placeholder-card">
         <h2 class="section-title">Faction Loyalty Trends</h2>
@@ -130,6 +129,44 @@
       </div>
     </div>
   </section>
+
+  <!-- Matchup Detail Modal -->
+  <div class="modal-overlay" id="matchup-modal">
+    <div class="modal-content matchup-modal-content">
+      <button class="modal-close" id="matchup-modal-close">&times;</button>
+
+      <div class="matchup-modal-header">
+        <div class="matchup-modal-commander">
+          <img class="matchup-modal-art" id="matchup-cmd1-art" src="" alt="">
+          <div class="matchup-modal-cmd-name" id="matchup-cmd1-name"></div>
+          <span id="matchup-cmd1-faction"></span>
+        </div>
+        <div class="matchup-modal-vs">
+          <span class="matchup-modal-vs-label">VS</span>
+        </div>
+        <div class="matchup-modal-commander">
+          <img class="matchup-modal-art" id="matchup-cmd2-art" src="" alt="">
+          <div class="matchup-modal-cmd-name" id="matchup-cmd2-name"></div>
+          <span id="matchup-cmd2-faction"></span>
+        </div>
+      </div>
+
+      <div class="matchup-modal-stats" id="matchup-modal-stats"></div>
+
+      <div class="matchup-modal-body">
+        <div class="matchup-modal-cards-row">
+          <div class="matchup-modal-cards-col">
+            <h3 class="matchup-cards-title" id="matchup-cards-title-1">Top Cards</h3>
+            <div class="matchup-cards-list" id="matchup-cards-list-1"></div>
+          </div>
+          <div class="matchup-modal-cards-col">
+            <h3 class="matchup-cards-title" id="matchup-cards-title-2">Top Cards</h3>
+            <div class="matchup-cards-list" id="matchup-cards-list-2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer class="footer">
