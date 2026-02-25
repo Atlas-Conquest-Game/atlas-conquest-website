@@ -363,6 +363,63 @@ def aggregate_commander_trends(games):
     return {"dates": dates, "commanders": dict(commanders)}
 
 
+def aggregate_commander_winrate_trends(games):
+    """Compute weekly per-commander winrate, with and without mirror matches."""
+    # Per-week per-commander: {cmd: {wins, total, wins_no_mirror, total_no_mirror}}
+    weekly = defaultdict(lambda: defaultdict(lambda: {"w": 0, "t": 0, "w_nm": 0, "t_nm": 0}))
+    weekly_total = defaultdict(int)
+
+    for game in games:
+        dt_str = game.get("datetime")
+        if not dt_str:
+            continue
+        try:
+            dt = datetime.fromisoformat(dt_str)
+            week = dt.strftime("%Y-W%W")
+        except ValueError:
+            continue
+
+        players = game["players"]
+        if len(players) != 2:
+            continue
+
+        is_mirror = players[0]["commander"] == players[1]["commander"]
+        weekly_total[week] += 1
+
+        for p in players:
+            cmd = p["commander"]
+            if not cmd:
+                continue
+            bucket = weekly[week][cmd]
+            bucket["t"] += 1
+            if p.get("winner"):
+                bucket["w"] += 1
+            if not is_mirror:
+                bucket["t_nm"] += 1
+                if p.get("winner"):
+                    bucket["w_nm"] += 1
+
+    sorted_weeks = sorted(weekly.keys())
+    all_cmds = set(c for w in weekly.values() for c in w)
+    dates = []
+    commanders = {cmd: {"winrate": [], "games": [], "winrate_no_mirror": [], "games_no_mirror": []} for cmd in all_cmds}
+
+    for week in sorted_weeks:
+        if weekly_total[week] < 4:
+            continue
+        dates.append(week)
+        for cmd in all_cmds:
+            b = weekly[week][cmd]
+            wr = round((b["w"] / b["t"]) * 100, 1) if b["t"] > 0 else None
+            wr_nm = round((b["w_nm"] / b["t_nm"]) * 100, 1) if b["t_nm"] > 0 else None
+            commanders[cmd]["winrate"].append(wr)
+            commanders[cmd]["games"].append(b["t"])
+            commanders[cmd]["winrate_no_mirror"].append(wr_nm)
+            commanders[cmd]["games_no_mirror"].append(b["t_nm"])
+
+    return {"dates": dates, "commanders": commanders}
+
+
 def aggregate_duration_winrates(games):
     """Compute per-commander winrate bucketed by game duration."""
     BUCKETS = ["0-10", "10-20", "20-30", "30+"]

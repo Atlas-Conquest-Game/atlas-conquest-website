@@ -119,15 +119,26 @@ When a commander is selected via the dropdown, all stats are scoped to that comm
 
 | Stat | Source | Calculation | Min Sample | Caveats |
 |------|--------|-------------|-----------|---------|
-| Weekly faction % | `trends.json` | `faction_games_this_week / total_games_this_week * 100` | 4 games/week | Weeks with <4 games dropped |
+| Weekly/monthly faction % | `trends.json` | `faction_games_this_week / total_games_this_week * 100` | 4 games/week | Weeks with <4 games dropped |
+
+**UI behavior**: Week/month binning toggle. Monthly view averages weekly data points into calendar months.
 
 ### Commander Popularity Over Time
 
 | Stat | Source | Calculation | Min Sample | Caveats |
 |------|--------|-------------|-----------|---------|
-| Weekly commander % | `commander_trends.json` | `commander_games_this_week / total_games_this_week * 100` | 4 games/week | Noisy for less-played commanders |
+| Weekly/monthly commander % | `commander_trends.json` | `commander_games_this_week / total_games_this_week * 100` | 4 games/week | Noisy for less-played commanders |
 
-**UI behavior**: Defaults to the single most popular commander selected. Users toggle commanders on/off via clickable pills above the chart. Each commander renders as a separate line (not stacked area).
+**UI behavior**: Defaults to the single most popular commander selected. Users toggle commanders on/off via clickable pills above the chart. Stacked area chart. Week/month binning toggle.
+
+### Commander Winrate Over Time
+
+| Stat | Source | Calculation | Min Sample | Caveats |
+|------|--------|-------------|-----------|---------|
+| Weekly/monthly commander WR | `commander_winrate_trends.json` | `wins_this_week / games_this_week * 100` | 4 games/week | Weeks with <4 total games dropped. Null for weeks where commander had 0 games. |
+| Winrate excluding mirrors | `commander_winrate_trends.json` | Same but excluding games where both players use same commander | 4 games/week | Toggle via "Exclude mirrors" checkbox |
+
+**UI behavior**: Same toggle pill + week/month binning as Commander Popularity. Additional "Exclude mirrors" checkbox removes mirror matchups from winrate calculation. Lines (not stacked) since winrates are independent per commander.
 
 ### Commander Matchups (Heatmap)
 
@@ -153,8 +164,11 @@ Opened by clicking a cell in the heatmap. Shows the head-to-head breakdown for a
 
 | Stat | Source | Calculation | Min Sample | Caveats |
 |------|--------|-------------|-----------|---------|
-| Overall FP winrate | `first_turn.json` | `first_player_wins / total_fp_tracked_games` | 10 | Only games with explicit fp=1 or fp=2 |
-| Per-commander FP WR | `first_turn.json` | First/second winrate split per commander | 10 per position | Commanders with <10 first OR second games hidden |
+| Overall going-first WR | `first_turn.json` | `first_player_wins / total_fp_tracked_games` | 10 | Only games with explicit fp=1 or fp=2 |
+| Overall going-second WR | computed client-side | `1 - first_player_winrate` | 10 | Displayed alongside going-first |
+| Per-commander FP WR | `first_turn.json` | First/second winrate split per commander | 5 per position | Commanders with <5 first OR second games hidden |
+
+**Tooltip**: Hovering a bar shows winrate, game count, and first-turn advantage in percentage points (pp).
 
 ---
 

@@ -64,19 +64,21 @@
   <!-- Commander Matchups -->
   <section id="matchups" class="section">
     <div class="container">
-      <h2 class="section-title">Commander Matchups <span class="tooltip-icon" data-tooltip="Row commander's win rate vs column commander. Green >55%, red <45%. Gray = fewer than 5 games. Click a cell for details.">?</span></h2>
-      <p class="section-desc">Head-to-head winrates. Read rows as "Row commander's winrate vs Column commander." Click any cell for detailed breakdown.</p>
-      <div class="matchup-wrapper">
-        <table class="matchup-table" id="matchup-table">
-          <thead><tr><th></th></tr></thead>
-          <tbody></tbody>
-        </table>
-      </div>
-      <div class="matchup-legend">
-        <span class="legend-item"><span class="legend-swatch legend-favored"></span> &gt;55%</span>
-        <span class="legend-item"><span class="legend-swatch legend-even"></span> 45-55%</span>
-        <span class="legend-item"><span class="legend-swatch legend-unfavored"></span> &lt;45%</span>
-        <span class="legend-item"><span class="legend-swatch legend-nodata"></span> &lt;5 games</span>
+      <h2 class="section-title collapsible">Commander Matchups <span class="tooltip-icon" data-tooltip="Row commander's win rate vs column commander. Green >55%, red <45%. Gray = fewer than 5 games. Click a cell for details.">?</span> <span class="chevron">&#9662;</span></h2>
+      <div class="section-body">
+        <p class="section-desc">Head-to-head winrates. Read rows as "Row commander's winrate vs Column commander." Click any cell for detailed breakdown.</p>
+        <div class="matchup-wrapper">
+          <table class="matchup-table" id="matchup-table">
+            <thead><tr><th></th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="matchup-legend">
+          <span class="legend-item"><span class="legend-swatch legend-favored"></span> &gt;55%</span>
+          <span class="legend-item"><span class="legend-swatch legend-even"></span> 45-55%</span>
+          <span class="legend-item"><span class="legend-swatch legend-unfavored"></span> &lt;45%</span>
+          <span class="legend-item"><span class="legend-swatch legend-nodata"></span> &lt;5 games</span>
+        </div>
       </div>
     </div>
   </section>
@@ -88,50 +90,93 @@
     <div class="matchup-tooltip-games" id="tooltip-games"></div>
   </div>
 
-  <!-- Faction Popularity Over Time -->
-  <section id="meta" class="section section-alt">
+  <!-- Commander Winrate Over Time -->
+  <section id="commander-winrate-trends" class="section section-alt">
     <div class="container">
-      <h2 class="section-title">Faction Popularity Over Time <span class="tooltip-icon" data-tooltip="Weekly faction popularity as % of all decks played. Shows how the metagame shifts over time.">?</span></h2>
-      <p class="section-desc">Stacked area chart showing each faction's share of the metagame by week.</p>
-      <div class="chart-container">
-        <canvas id="meta-chart"></canvas>
+      <h2 class="section-title collapsible">Commander Winrate Over Time <span class="tooltip-icon" data-tooltip="Per-commander win rate over time. Toggle commanders and switch between weekly/monthly views.">?</span> <span class="chevron">&#9662;</span></h2>
+      <div class="section-body collapsed">
+        <p class="section-desc">Per-commander win rate by week. Click commanders to toggle visibility.</p>
+        <div class="chart-controls">
+          <div id="cmd-wr-toggles" class="filter-bar"></div>
+          <div class="bin-toggle">
+            <button class="bin-btn active" data-bin="week" data-target="cmd-wr">Week</button>
+            <button class="bin-btn" data-bin="month" data-target="cmd-wr">Month</button>
+          </div>
+          <label class="mirror-toggle"><input type="checkbox" id="cmd-wr-no-mirror"> Exclude mirrors</label>
+        </div>
+        <div class="chart-container">
+          <canvas id="commander-winrate-chart"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Faction Popularity Over Time -->
+  <section id="meta" class="section">
+    <div class="container">
+      <h2 class="section-title collapsible">Faction Popularity Over Time <span class="tooltip-icon" data-tooltip="Faction popularity as % of all decks played. Shows how the metagame shifts over time.">?</span> <span class="chevron">&#9662;</span></h2>
+      <div class="section-body collapsed">
+        <p class="section-desc">Stacked area chart showing each faction's share of the metagame.</p>
+        <div class="chart-controls">
+          <div class="bin-toggle">
+            <button class="bin-btn active" data-bin="week" data-target="faction">Week</button>
+            <button class="bin-btn" data-bin="month" data-target="faction">Month</button>
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas id="meta-chart"></canvas>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Commander Popularity Over Time -->
-  <section id="commander-trends" class="section">
+  <section id="commander-trends" class="section section-alt">
     <div class="container">
-      <h2 class="section-title">Commander Popularity Over Time <span class="tooltip-icon" data-tooltip="Weekly commander pick rate as % of all games played. Shows which commanders are trending up or down.">?</span></h2>
-      <p class="section-desc">Per-commander usage share by week. Click commanders to toggle visibility.</p>
-      <div id="cmd-trend-toggles" class="filter-bar"></div>
-      <div class="chart-container">
-        <canvas id="commander-trends-chart"></canvas>
+      <h2 class="section-title collapsible">Commander Popularity Over Time <span class="tooltip-icon" data-tooltip="Commander pick rate as % of all games played. Shows which commanders are trending up or down.">?</span> <span class="chevron">&#9662;</span></h2>
+      <div class="section-body collapsed">
+        <p class="section-desc">Per-commander usage share. Click commanders to toggle visibility.</p>
+        <div class="chart-controls">
+          <div id="cmd-trend-toggles" class="filter-bar"></div>
+          <div class="bin-toggle">
+            <button class="bin-btn active" data-bin="week" data-target="cmd-trend">Week</button>
+            <button class="bin-btn" data-bin="month" data-target="cmd-trend">Month</button>
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas id="commander-trends-chart"></canvas>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- First-Turn Advantage -->
-  <section id="first-turn-section" class="section section-alt">
+  <section id="first-turn-section" class="section">
     <div class="container">
-      <h2 class="section-title">First-Turn Advantage <span class="tooltip-icon" data-tooltip="How much each commander benefits from going first. Only includes games where first player is explicitly recorded.">?</span></h2>
-      <p class="section-desc">
-        Overall first-player win rate: <strong id="ft-overall-wr">--</strong>
-        <span style="color: var(--text-muted); margin: 0 0.5rem;">&middot;</span>
-        <span id="ft-overall-games">--</span>
-      </p>
-      <div class="chart-container">
-        <canvas id="first-turn-chart"></canvas>
+      <h2 class="section-title collapsible">First-Turn Advantage <span class="tooltip-icon" data-tooltip="How much each commander benefits from going first. Only includes games where first player is explicitly recorded.">?</span> <span class="chevron">&#9662;</span></h2>
+      <div class="section-body collapsed">
+        <p class="section-desc">
+          Going first: <strong id="ft-going-first">--</strong>
+          <span style="color: var(--text-muted); margin: 0 0.5rem;">&middot;</span>
+          Going second: <strong id="ft-going-second">--</strong>
+          <span style="color: var(--text-muted); margin: 0 0.5rem;">&middot;</span>
+          <span id="ft-overall-games">--</span>
+        </p>
+        <div class="chart-container">
+          <canvas id="first-turn-chart"></canvas>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Faction Loyalty Trends (placeholder) -->
-  <section id="patron-trends" class="section">
+  <section id="patron-trends" class="section section-alt">
     <div class="container">
-      <div class="placeholder-card">
-        <h2 class="section-title">Faction Loyalty Trends</h2>
-        <p class="placeholder-text">Coming soon — tracking how deck faction loyalty (patron vs neutral vs off-faction card ratios) shifts over time across the meta.</p>
+      <h2 class="section-title collapsible">Faction Loyalty Trends <span class="chevron">&#9662;</span></h2>
+      <div class="section-body collapsed">
+        <div class="placeholder-card">
+          <p class="placeholder-text">Coming soon — tracking how deck faction loyalty (patron vs neutral vs off-faction card ratios) shifts over time across the meta.</p>
+        </div>
       </div>
     </div>
   </section>

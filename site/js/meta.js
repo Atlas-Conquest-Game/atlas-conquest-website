@@ -9,11 +9,61 @@
 
 let metaChart = null;
 let cmdTrendsChart = null;
+let cmdWrTrendsChart = null;
 let firstTurnChart = null;
 let matchupModalOpen = false;
 let matchupModalCmd1 = null;
 let matchupModalCmd2 = null;
 let selectedCommanders = new Set();
+let selectedWrCommanders = new Set();
+let currentBin = { faction: 'week', 'cmd-trend': 'week', 'cmd-wr': 'week' };
+
+// ─── Binning Helper ─────────────────────────────────────────
+
+const MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+function weekToMonth(weekKey) {
+  // "YYYY-WNN" → approximate month label "YYYY-Mon"
+  const [yearStr, wStr] = weekKey.split('-W');
+  const year = parseInt(yearStr);
+  const week = parseInt(wStr);
+  const d = new Date(year, 0, 1 + week * 7);
+  return `${d.getFullYear()}-${MONTH_NAMES[d.getMonth()]}`;
+}
+
+function groupByMonth(dates, arrays) {
+  // Group parallel arrays by month, averaging values (nulls skipped)
+  const months = [];
+  const buckets = arrays.map(() => []);
+  let currentMonth = null;
+  let pending = arrays.map(() => []);
+
+  for (let i = 0; i < dates.length; i++) {
+    const m = weekToMonth(dates[i]);
+    if (m !== currentMonth) {
+      if (currentMonth !== null) {
+        months.push(currentMonth);
+        for (let a = 0; a < arrays.length; a++) {
+          const vals = pending[a].filter(v => v !== null && v !== undefined);
+          buckets[a].push(vals.length ? Math.round(vals.reduce((s, v) => s + v, 0) / vals.length * 10) / 10 : null);
+        }
+      }
+      currentMonth = m;
+      pending = arrays.map(() => []);
+    }
+    for (let a = 0; a < arrays.length; a++) {
+      pending[a].push(arrays[a][i]);
+    }
+  }
+  if (currentMonth !== null) {
+    months.push(currentMonth);
+    for (let a = 0; a < arrays.length; a++) {
+      const vals = pending[a].filter(v => v !== null && v !== undefined);
+      buckets[a].push(vals.length ? Math.round(vals.reduce((s, v) => s + v, 0) / vals.length * 10) / 10 : null);
+    }
+  }
+  return { dates: months, values: buckets };
+}
 
 // ─── Meta Trends Chart ──────────────────────────────────────
 
@@ -26,32 +76,28 @@ function renderMetaChart(trends) {
     metaChart = null;
   }
 
-  const chartSection = canvas.closest('.section');
-  const emptyMsg = document.getElementById('trends-empty');
-
   if (!trends || !trends.dates || !trends.dates.length) {
     canvas.style.display = 'none';
-    if (emptyMsg) emptyMsg.style.display = '';
-    else if (chartSection) {
-      const msg = document.createElement('p');
-      msg.id = 'trends-empty';
-      msg.className = 'section-desc';
-      msg.style.cssText = 'color: var(--text-muted); font-style: italic;';
-      msg.textContent = 'Not enough data for trend analysis with the current filters.';
-      canvas.parentNode.insertBefore(msg, canvas.nextSibling);
-    }
     return;
   }
 
   canvas.style.display = '';
-  if (emptyMsg) emptyMsg.style.display = 'none';
 
   const activeFactions = Object.entries(trends.factions || {})
     .filter(([, data]) => data.some(v => v > 0));
 
-  const datasets = activeFactions.map(([faction, data]) => ({
+  let labels = trends.dates;
+  let factionData = activeFactions.map(([, data]) => data);
+
+  if (currentBin.faction === 'month') {
+    const grouped = groupByMonth(trends.dates, factionData);
+    labels = grouped.dates;
+    factionData = grouped.values;
+  }
+
+  const datasets = activeFactions.map(([faction], i) => ({
     label: FACTION_LABELS[faction] || faction,
-    data: data,
+    data: factionData[i],
     borderColor: FACTION_COLORS[faction] || '#888',
     backgroundColor: (FACTION_COLORS[faction] || '#888') + '40',
     fill: true,
@@ -63,21 +109,14 @@ function renderMetaChart(trends) {
 
   metaChart = new Chart(canvas, {
     type: 'line',
-    data: {
-      labels: trends.dates || [],
-      datasets,
-    },
+    data: { labels, datasets },
     options: {
       responsive: true,
       maintainAspectRatio: true,
       interaction: { mode: 'index', intersect: false },
       plugins: {
         legend: {
-          labels: {
-            usePointStyle: true,
-            pointStyle: 'circle',
-            padding: 16,
-          },
+          labels: { usePointStyle: true, pointStyle: 'circle', padding: 16 },
         },
         tooltip: {
           ...CHART_TOOLTIP,
@@ -95,10 +134,7 @@ function renderMetaChart(trends) {
           grid: { color: '#21262d' },
         },
         x: {
-          ticks: {
-            maxTicksLimit: 15,
-            maxRotation: 45,
-          },
+          ticks: { maxTicksLimit: 15, maxRotation: 45 },
           grid: { display: false },
         },
       },
@@ -219,6 +255,54 @@ function initMatchupTooltip() {
 
 // ─── Commander Popularity Trends ─────────────────────────────
 
+function buildFactionLookup() {
+  const lookup = {};
+  const cmdStats = getPeriodData(appData.commanderStats, currentPeriod);
+  if (cmdStats) cmdStats.forEach(c => { lookup[c.name] = c.faction; });
+  return lookup;
+}
+
+function buildTogglePills(container, entries, selectedSet, factionLookup, rerender) {
+  if (!container) return;
+  container.innerHTML = entries.map(cmd => {
+    const faction = factionLookup[cmd.name] || '';
+    const active = selectedSet.has(cmd.name) ? ' active' : '';
+    return `<button class="filter-btn${active}" data-faction="${faction}" data-commander="${cmd.name}">${cmd.name}</button>`;
+  }).join('');
+  container.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const name = btn.dataset.commander;
+      if (selectedSet.has(name)) selectedSet.delete(name);
+      else selectedSet.add(name);
+      rerender();
+    });
+  });
+}
+
+function buildColoredDatasets(entries, selectedSet, factionLookup, opts = {}) {
+  const visible = entries.filter(e => selectedSet.has(e.name));
+  const factionCounter = {};
+  return visible.map(cmd => {
+    const faction = factionLookup[cmd.name] || 'neutral';
+    const baseColor = FACTION_COLORS[faction] || '#58a6ff';
+    const idx = factionCounter[faction] || 0;
+    factionCounter[faction] = idx + 1;
+    const color = idx === 0 ? baseColor : shiftColor(baseColor, idx * 15);
+    return {
+      label: cmd.name,
+      data: cmd.chartData,
+      borderColor: color,
+      backgroundColor: opts.fill ? color + '88' : 'transparent',
+      fill: !!opts.fill,
+      tension: 0.3,
+      pointRadius: 0,
+      pointHoverRadius: 4,
+      borderWidth: 1.5,
+      spanGaps: true,
+    };
+  });
+}
+
 function renderCommanderTrends(cmdTrends) {
   const canvas = document.getElementById('commander-trends-chart');
   const toggleContainer = document.getElementById('cmd-trend-toggles');
@@ -233,80 +317,35 @@ function renderCommanderTrends(cmdTrends) {
   }
   canvas.style.display = '';
 
-  // Build faction lookup from commander stats
-  const factionLookup = {};
-  const cmdStats = getPeriodData(appData.commanderStats, currentPeriod);
-  if (cmdStats) {
-    cmdStats.forEach(c => { factionLookup[c.name] = c.faction; });
-  }
+  const factionLookup = buildFactionLookup();
 
-  // Sort commanders by average popularity (descending)
   const cmdEntries = Object.entries(cmdTrends.commanders)
-    .map(([name, data]) => ({
-      name,
-      data,
-      avg: data.reduce((s, v) => s + v, 0) / data.length,
-    }))
+    .map(([name, data]) => ({ name, data, avg: data.reduce((s, v) => s + v, 0) / data.length }))
     .sort((a, b) => b.avg - a.avg);
 
-  // Default: select only the most popular commander on first render
   if (selectedCommanders.size === 0 && cmdEntries.length > 0) {
     selectedCommanders.add(cmdEntries[0].name);
   }
 
-  // Render toggle pills
-  if (toggleContainer) {
-    toggleContainer.innerHTML = cmdEntries.map(cmd => {
-      const faction = factionLookup[cmd.name] || '';
-      const active = selectedCommanders.has(cmd.name) ? ' active' : '';
-      return `<button class="filter-btn${active}" data-faction="${faction}" data-commander="${cmd.name}">${cmd.name}</button>`;
-    }).join('');
+  const rerender = () => renderCommanderTrends(cmdTrends);
+  buildTogglePills(toggleContainer, cmdEntries, selectedCommanders, factionLookup, rerender);
 
-    toggleContainer.querySelectorAll('.filter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const name = btn.dataset.commander;
-        if (selectedCommanders.has(name)) {
-          selectedCommanders.delete(name);
-        } else {
-          selectedCommanders.add(name);
-        }
-        renderCommanderTrends(cmdTrends);
-      });
-    });
+  // Apply binning
+  let labels = cmdTrends.dates;
+  const visible = cmdEntries.filter(e => selectedCommanders.has(e.name));
+  let chartEntries = visible.map(e => ({ ...e, chartData: e.data }));
+
+  if (currentBin['cmd-trend'] === 'month') {
+    const grouped = groupByMonth(cmdTrends.dates, visible.map(e => e.data));
+    labels = grouped.dates;
+    chartEntries = visible.map((e, i) => ({ ...e, chartData: grouped.values[i] }));
   }
 
-  // Build datasets only for selected commanders
-  const visibleEntries = cmdEntries.filter(cmd => selectedCommanders.has(cmd.name));
-
-  // Track per-faction index so same-faction commanders get different shades
-  const factionCounter = {};
-
-  const datasets = visibleEntries.map(cmd => {
-    const faction = factionLookup[cmd.name] || 'neutral';
-    const baseColor = FACTION_COLORS[faction] || '#58a6ff';
-    // Shift lightness for same-faction commanders: 0%, +15%, +30%, ...
-    const idx = factionCounter[faction] || 0;
-    factionCounter[faction] = idx + 1;
-    const color = idx === 0 ? baseColor : shiftColor(baseColor, idx * 15);
-    return {
-      label: cmd.name,
-      data: cmd.data,
-      borderColor: color,
-      backgroundColor: color + '88',
-      fill: true,
-      tension: 0.3,
-      pointRadius: 0,
-      pointHoverRadius: 4,
-      borderWidth: 1.5,
-    };
-  });
+  const datasets = buildColoredDatasets(chartEntries, selectedCommanders, factionLookup, { fill: true });
 
   cmdTrendsChart = new Chart(canvas, {
     type: 'line',
-    data: {
-      labels: cmdTrends.dates,
-      datasets,
-    },
+    data: { labels, datasets },
     options: {
       responsive: true,
       maintainAspectRatio: true,
@@ -318,9 +357,7 @@ function renderCommanderTrends(cmdTrends) {
         },
         tooltip: {
           ...CHART_TOOLTIP,
-          callbacks: {
-            label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)}%`,
-          },
+          callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)}%` },
         },
       },
       scales: {
@@ -330,6 +367,100 @@ function renderCommanderTrends(cmdTrends) {
           ticks: { callback: v => v + '%' },
           grid: { color: '#21262d' },
           title: { display: true, text: 'Pick Rate', color: '#8b949e', font: { size: 11 } },
+        },
+        x: {
+          ticks: { maxTicksLimit: 15, maxRotation: 45 },
+          grid: { display: false },
+        },
+      },
+    },
+  });
+}
+
+// ─── Commander Winrate Trends ───────────────────────────────
+
+function renderCommanderWinrateTrends(wrTrends) {
+  const canvas = document.getElementById('commander-winrate-chart');
+  const toggleContainer = document.getElementById('cmd-wr-toggles');
+  if (!canvas) return;
+
+  if (cmdWrTrendsChart) { cmdWrTrendsChart.destroy(); cmdWrTrendsChart = null; }
+
+  if (!wrTrends || !wrTrends.dates || !wrTrends.dates.length) {
+    canvas.style.display = 'none';
+    if (toggleContainer) toggleContainer.innerHTML = '';
+    return;
+  }
+  canvas.style.display = '';
+
+  const factionLookup = buildFactionLookup();
+  const excludeMirrors = document.getElementById('cmd-wr-no-mirror')?.checked || false;
+  const wrKey = excludeMirrors ? 'winrate_no_mirror' : 'winrate';
+  const gamesKey = excludeMirrors ? 'games_no_mirror' : 'games';
+
+  // Sort by total games (descending)
+  const cmdEntries = Object.entries(wrTrends.commanders)
+    .map(([name, d]) => ({
+      name,
+      data: d[wrKey],
+      games: d[gamesKey],
+      totalGames: d[gamesKey].reduce((s, v) => s + v, 0),
+    }))
+    .sort((a, b) => b.totalGames - a.totalGames);
+
+  if (selectedWrCommanders.size === 0 && cmdEntries.length > 0) {
+    selectedWrCommanders.add(cmdEntries[0].name);
+  }
+
+  const rerender = () => renderCommanderWinrateTrends(wrTrends);
+  buildTogglePills(toggleContainer, cmdEntries, selectedWrCommanders, factionLookup, rerender);
+
+  // Wire mirror checkbox
+  const mirrorCb = document.getElementById('cmd-wr-no-mirror');
+  if (mirrorCb && !mirrorCb._wired) {
+    mirrorCb.addEventListener('change', rerender);
+    mirrorCb._wired = true;
+  }
+
+  // Apply binning
+  let labels = wrTrends.dates;
+  const visible = cmdEntries.filter(e => selectedWrCommanders.has(e.name));
+  let chartEntries = visible.map(e => ({ ...e, chartData: e.data }));
+
+  if (currentBin['cmd-wr'] === 'month') {
+    const grouped = groupByMonth(wrTrends.dates, visible.map(e => e.data));
+    labels = grouped.dates;
+    chartEntries = visible.map((e, i) => ({ ...e, chartData: grouped.values[i] }));
+  }
+
+  const datasets = buildColoredDatasets(chartEntries, selectedWrCommanders, factionLookup, { fill: false });
+
+  cmdWrTrendsChart = new Chart(canvas, {
+    type: 'line',
+    data: { labels, datasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: {
+          display: datasets.length > 1,
+          labels: { usePointStyle: true, pointStyle: 'circle', padding: 14, font: { size: 10 } },
+        },
+        tooltip: {
+          ...CHART_TOOLTIP,
+          callbacks: { label: ctx => {
+            const v = ctx.parsed.y;
+            return v !== null ? `${ctx.dataset.label}: ${v.toFixed(1)}%` : `${ctx.dataset.label}: --`;
+          }},
+        },
+      },
+      scales: {
+        y: {
+          min: 20, max: 80,
+          ticks: { callback: v => v + '%' },
+          grid: { color: '#21262d' },
+          title: { display: true, text: 'Win Rate', color: '#8b949e', font: { size: 11 } },
         },
         x: {
           ticks: { maxTicksLimit: 15, maxRotation: 45 },
@@ -357,7 +488,7 @@ function renderFirstTurnChart(ftData) {
     return;
   }
 
-  const MIN_GAMES = 10;
+  const MIN_GAMES = 5;
   const cmds = Object.entries(ftData.per_commander)
     .filter(([, d]) => d.first_games >= MIN_GAMES && d.second_games >= MIN_GAMES)
     .sort((a, b) => (b[1].first_winrate - b[1].second_winrate) - (a[1].first_winrate - a[1].second_winrate));
@@ -369,7 +500,8 @@ function renderFirstTurnChart(ftData) {
 
   section.style.display = '';
 
-  el('ft-overall-wr', (ftData.first_player_winrate * 100).toFixed(1) + '%');
+  el('ft-going-first', (ftData.first_player_winrate * 100).toFixed(1) + '%');
+  el('ft-going-second', ((1 - ftData.first_player_winrate) * 100).toFixed(1) + '%');
   el('ft-overall-games', ftData.total_games.toLocaleString() + ' games');
 
   firstTurnChart = new Chart(canvas, {
@@ -409,7 +541,9 @@ function renderFirstTurnChart(ftData) {
               const d = cmds[ctx.dataIndex][1];
               const isFirst = ctx.datasetIndex === 0;
               const games = isFirst ? d.first_games : d.second_games;
-              return `${ctx.dataset.label}: ${ctx.parsed.y}% (${games} games)`;
+              const adv = ((d.first_winrate - d.second_winrate) * 100).toFixed(1);
+              const advStr = adv >= 0 ? `+${adv}pp` : `${adv}pp`;
+              return `${ctx.dataset.label}: ${ctx.parsed.y}% (${games} games) · ${advStr}`;
             },
           },
         },
@@ -676,27 +810,96 @@ function renderAll() {
   const metadata = getPeriodData(appData.metadata, period);
   const trends = getPeriodData(appData.trends, period);
   const cmdTrends = getPeriodData(appData.commanderTrends, period);
+  const wrTrends = getPeriodData(appData.commanderWinrateTrends, period);
   const matchups = getPeriodData(appData.matchups, period);
   const firstTurn = getPeriodData(appData.firstTurn, period);
 
   renderMetadata(metadata);
+  renderMatchups(matchups);
+  renderCommanderWinrateTrends(wrTrends);
   renderMetaChart(trends);
   renderCommanderTrends(cmdTrends);
-  renderMatchups(matchups);
   renderFirstTurnChart(firstTurn);
 
   if (matchupModalOpen) rerenderMatchupModal();
+}
+
+// ─── Collapsible Sections ───────────────────────────────────
+
+function initCollapsible() {
+  document.querySelectorAll('.section-title.collapsible').forEach((title) => {
+    const body = title.parentElement.querySelector('.section-body');
+    if (!body) return;
+
+    // First section expanded, rest collapsed (set in HTML via .collapsed class)
+    if (body.classList.contains('collapsed')) {
+      title.classList.add('collapsed');
+      body.style.maxHeight = '0';
+      body.style.opacity = '0';
+      body.style.overflow = 'hidden';
+    } else {
+      body.style.maxHeight = body.scrollHeight + 'px';
+      body.style.opacity = '1';
+      body.style.overflow = 'visible';
+    }
+
+    title.addEventListener('click', (e) => {
+      // Don't collapse when clicking tooltip icon
+      if (e.target.closest('.tooltip-icon')) return;
+
+      const isCollapsed = body.classList.contains('collapsed');
+      if (isCollapsed) {
+        body.classList.remove('collapsed');
+        title.classList.remove('collapsed');
+        body.style.overflow = 'hidden';
+        body.style.maxHeight = body.scrollHeight + 'px';
+        body.style.opacity = '1';
+        setTimeout(() => { body.style.overflow = 'visible'; }, 300);
+      } else {
+        body.style.maxHeight = body.scrollHeight + 'px';
+        body.style.overflow = 'hidden';
+        requestAnimationFrame(() => {
+          body.classList.add('collapsed');
+          title.classList.add('collapsed');
+          body.style.maxHeight = '0';
+          body.style.opacity = '0';
+        });
+      }
+    });
+  });
+}
+
+// ─── Bin Toggles ────────────────────────────────────────────
+
+function initBinToggles() {
+  document.querySelectorAll('.bin-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.target;
+      const bin = btn.dataset.bin;
+      currentBin[target] = bin;
+
+      // Update active state for this toggle group
+      btn.closest('.bin-toggle').querySelectorAll('.bin-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.bin === bin);
+      });
+
+      renderAll();
+    });
+  });
 }
 
 // ─── Init ───────────────────────────────────────────────────
 
 async function init() {
   appData = await loadData(['metadata', 'trends', 'matchups', 'commanderStats',
-                            'commanderTrends', 'firstTurn', 'commanders']);
+                            'commanderTrends', 'firstTurn', 'commanders',
+                            'commanderWinrateTrends']);
   renderAll();
   initTimeFilters(renderAll);
   initMapFilters(renderAll);
   initMatchupModal();
+  initCollapsible();
+  initBinToggles();
   initNavActiveState();
   initTooltips();
 }

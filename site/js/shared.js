@@ -74,6 +74,7 @@ const DATA_FILES = {
   durationWinrates: 'data/duration_winrates.json',
   actionWinrates: 'data/action_winrates.json',
   turnWinrates: 'data/turn_winrates.json',
+  commanderWinrateTrends: 'data/commander_winrate_trends.json',
 };
 
 async function loadData(keys) {

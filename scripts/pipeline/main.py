@@ -20,6 +20,7 @@ from pipeline.aggregation import (
     aggregate_commander_card_stats,
     aggregate_game_distributions,
     aggregate_deck_composition,
+    aggregate_commander_winrate_trends,
 )
 from pipeline.io_helpers import (
     load_cache, save_cache, write_json,
@@ -60,6 +61,7 @@ def build_and_write_all(games, cards_csv, commanders_csv):
         "action_wr": {},
         "turn_wr": {},
         "cmd_card_stats": {},
+        "cmd_wr_trends": {},
     }
 
     for period_key, days in PERIODS.items():
@@ -193,6 +195,9 @@ def build_and_write_all(games, cards_csv, commanders_csv):
             # ── commander popularity trends ──
             out["cmd_trends"][period_key][map_name] = aggregate_commander_trends(map_games)
 
+            # ── commander winrate trends ──
+            out["cmd_wr_trends"][period_key][map_name] = aggregate_commander_winrate_trends(map_games)
+
             # ── winrate by duration ──
             out["duration_wr"][period_key][map_name] = aggregate_duration_winrates(map_games)
 
@@ -220,6 +225,7 @@ def build_and_write_all(games, cards_csv, commanders_csv):
     write_json("action_winrates.json", out["action_wr"])
     write_json("turn_winrates.json", out["turn_wr"])
     write_json("commander_card_stats.json", out["cmd_card_stats"])
+    write_json("commander_winrate_trends.json", out["cmd_wr_trends"])
 
 
 def main():

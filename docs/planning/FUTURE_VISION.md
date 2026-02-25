@@ -4,29 +4,13 @@
 
 ---
 
-## Completed
-
-### Per-Commander Card Usage Rates
-Full per-commander card stats with inclusion rate, drawn/played winrates, avg copies, and raw counts. All cards shown (no limit). Lazy-loaded via `commander_card_stats.json`. Commander dropdown on Cards page.
-
-### Commander Popularity Trends Over Time
-Per-commander weekly stacked area chart on Meta page via `commander_trends.json`.
-
-### Win Rate by Game Duration / Actions / Turns
-Three sortable bucket tables on Commanders page (displayed in order: Turns → Actions → Duration) via `turn_winrates.json`, `action_winrates.json`, `duration_winrates.json`.
-
-### Card Hover Preview
-Card artwork popup on hovering card name in the card table. Shows 250px card image with flip logic near viewport edges.
-
-### Matchup Detail Modal
-Clickable heatmap cells open a detail popup showing commander portraits, overall win rate, W-L record, first-turn advantage per commander (going first/second), and top 10 cards by played and drawn winrate for each commander in the matchup. Filters update the modal in real-time. Data from `matchup_details.json`.
-
-### Cards Page Condensed Layout
-9-column table with stacked sub-line counts showing raw numbers beneath percentages for verifiability. Low-sample winrates (< 5 games) sink to bottom of sort.
-
----
-
 ## Quick Wins (existing data, minimal pipeline work)
+
+### Meta Health Indicator
+A single summary metric on the Meta page showing how balanced the current meta is. Options: matchup polarization score (std dev of winrates in the heatmap), commander diversity index (Shannon entropy of pick rates), or a composite. Post-clustering: compare archetype diversity too.
+
+### Recent Shifts Callout
+A "What changed this month" summary at the top of the Meta page. Auto-generated from trends data: which commanders gained/lost the most pick rate, which had the biggest winrate swings. Would make the trends data more immediately actionable.
 
 ### Most Common Decklists / Archetype Clustering
 Group decks by similarity (e.g., Jaccard index on card lists) to identify archetypes. Show "Aggro Elber" vs "Midrange Elber" style breakdowns. Raw deck data is already captured.
