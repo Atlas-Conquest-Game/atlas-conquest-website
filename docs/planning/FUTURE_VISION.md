@@ -4,22 +4,29 @@
 
 ---
 
-## Quick Wins (existing data, minimal pipeline work)
+## Completed
 
 ### Per-Commander Card Usage Rates
-Which cards does each commander run most? Surface the top 10-15 cards per commander with inclusion rates and win-when-included rates. Data already exists in deck logs — just needs a new aggregation pass.
+Full per-commander card stats with inclusion rate, drawn/played winrates, avg copies, and raw counts. All cards shown (no limit). Lazy-loaded via `commander_card_stats.json`. Commander dropdown on Cards page.
+
+### Commander Popularity Trends Over Time
+Per-commander weekly popularity chart on Meta page via `commander_trends.json`.
+
+### Win Rate by Game Duration / Actions / Turns
+Three sortable bucket tables on Commanders page (displayed in order: Turns → Actions → Duration) via `turn_winrates.json`, `action_winrates.json`, `duration_winrates.json`.
+
+### Card Hover Preview
+Card artwork popup on hovering card name in the card table. Shows 250px card image with flip logic near viewport edges.
+
+---
+
+## Quick Wins (existing data, minimal pipeline work)
 
 ### Most Common Decklists / Archetype Clustering
 Group decks by similarity (e.g., Jaccard index on card lists) to identify archetypes. Show "Aggro Elber" vs "Midrange Elber" style breakdowns. Raw deck data is already captured.
 
 ### Card Synergy Pairs
 Cards that appear together in winning decks more often than chance. A co-occurrence matrix filtered by winrate delta would surface natural synergy pairs (e.g., "Card A + Card B together = +8% WR").
-
-### Commander Popularity Trends Over Time
-Currently we show faction-level trends. Extending this to per-commander popularity would show which commanders are rising/falling in the meta week over week.
-
-### Win Rate by Game Duration
-Do certain commanders or archetypes perform better in short games vs long games? Cross-reference game duration with commander winrates.
 
 ---
 
@@ -44,8 +51,8 @@ As more games are played on Snowmelt and Tropics, compare per-map commander winr
 ## Player-Facing Features (Scryfall-style)
 
 ### Individual Card Detail Pages
-Full-page view per card with:
-- Card artwork
+Card rows are already clickable (prep work done) and hover preview shows artwork. Next step: full detail popup/page per card with:
+- Card artwork (larger)
 - Drawn/played rates and winrates over time
 - Which commanders use it most
 - Synergy pairs

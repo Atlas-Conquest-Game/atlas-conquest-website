@@ -36,12 +36,12 @@ Every stat computed by the pipeline and displayed on the dashboard, organized by
 | Matches | `commander_stats.json` | Count of games where commander was played | 1 | |
 | Faction | `commander_stats.json` | Commander's faction affiliation | n/a | Static property |
 
-### Winrate by Game Duration
+### Winrate by Player Turns
 
 | Stat | Source | Calculation | Min Sample | Caveats |
 |------|--------|-------------|-----------|---------|
-| Per-bucket winrate | `duration_winrates.json` | `wins / total` per commander per duration bucket | 5 games/cell | Buckets: 0-10, 10-20, 20-30, 30+ minutes. Shown as "--" below 5 games. |
-| Games per bucket | `duration_winrates.json` | Count of games in each duration range | 1 | Shown below each winrate cell |
+| Per-bucket winrate | `turn_winrates.json` | `wins / total` per commander per turn-count bucket | 5 games/cell | Buckets: 1-5, 5-8, 8-11, 11-14, 14+ turns. Turns = number of turns that specific player took. |
+| Games per bucket | `turn_winrates.json` | Count of games in each turn range | 1 | Shown below each winrate cell |
 
 ### Winrate by Player Actions
 
@@ -50,12 +50,12 @@ Every stat computed by the pipeline and displayed on the dashboard, organized by
 | Per-bucket winrate | `action_winrates.json` | `wins / total` per commander per action-count bucket | 5 games/cell | Buckets: 0-30, 30-60, 60-90, 90-120, 120+ actions. Actions = total moves a player makes. |
 | Games per bucket | `action_winrates.json` | Count of games in each action range | 1 | Shown below each winrate cell |
 
-### Winrate by Player Turns
+### Winrate by Game Duration
 
 | Stat | Source | Calculation | Min Sample | Caveats |
 |------|--------|-------------|-----------|---------|
-| Per-bucket winrate | `turn_winrates.json` | `wins / total` per commander per turn-count bucket | 5 games/cell | Buckets: 1-5, 5-8, 8-11, 11-14, 14+ turns. Turns = number of turns that specific player took. |
-| Games per bucket | `turn_winrates.json` | Count of games in each turn range | 1 | Shown below each winrate cell |
+| Per-bucket winrate | `duration_winrates.json` | `wins / total` per commander per duration bucket | 5 games/cell | Buckets: 0-10, 10-20, 20-30, 30+ minutes. Shown as "--" below 5 games. |
+| Games per bucket | `duration_winrates.json` | Count of games in each duration range | 1 | Shown below each winrate cell |
 
 ### Deck Composition
 
@@ -80,31 +80,36 @@ Every stat computed by the pipeline and displayed on the dashboard, organized by
 
 ## Cards Page (`cards.html`)
 
-### Global Card Stats
+9-column table with stacked sub-line counts. Each percentage cell shows the raw count beneath it in small muted text so all numbers are verifiable by multiplication. Card rows are clickable (prep for future detail popup). Cards with insufficient data (< 5 games for winrates) show "--" and sort to the bottom regardless of sort direction.
 
-| Stat | Source | Calculation | Min Sample | Caveats |
-|------|--------|-------------|-----------|---------|
-| Inclusion % | `card_stats.json` | `deck_count / total_player_games` | 1 | Always visible. Rate across all decks. |
-| Drawn Winrate | `card_stats.json` | `wins_when_drawn / games_where_drawn` | 5 (shown as "--" below) | Correlation, not causation |
-| Played Winrate | `card_stats.json` | `wins_when_played / games_where_played` | 5 (shown as "--" below) | Stronger signal than drawn WR for card impact |
-| Drawn Rate | `card_stats.json` | `games_where_drawn / total_games` | 1 | De-emphasized. Rate across all games. |
-| Played Rate | `card_stats.json` | `games_where_played / total_games` | 1 | De-emphasized. A card can be drawn but not played. |
-| # Drawn | `card_stats.json` | Raw count of times drawn | 1 | De-emphasized. |
-| # Played | `card_stats.json` | Raw count of times played | 1 | De-emphasized. |
-| Avg Copies | `card_stats.json` | `total_copies / deck_count` | 1 | Average copies per deck that includes this card. Max 3. |
+### Table Columns
 
-### Per-Commander Card Stats (Commander Dropdown)
+| Column | Sort Key | Source | Sub-line | Style |
+|--------|----------|--------|----------|-------|
+| Card | `name` | `card_stats.json` | — | Normal |
+| Faction | `faction` | `card_stats.json` | — | Normal |
+| Type | `type` | `card_stats.json` | — | Normal |
+| Included | `deck_rate` | `card_stats.json` | "X of Y" (deck_count of total_games) | Normal |
+| Drawn WR | `drawn_winrate` | `card_stats.json` | "N games" (sample size) | Colored (green >52%, red <48%) |
+| Played WR | `played_winrate` | `card_stats.json` | "N games" (sample size) | Colored |
+| Drawn Rate | `drawn_rate` | `card_stats.json` | "N of Y" (drawn_count of total_games) | De-emphasized |
+| Played Rate | `played_rate` | `card_stats.json` | "N of Y" (played_count of total_games) | De-emphasized |
+| Avg Copies | `avg_copies` | `card_stats.json` | — | Normal |
 
-| Stat | Source | Calculation | Min Sample | Caveats |
-|------|--------|-------------|-----------|---------|
-| Inclusion % | `commander_card_stats.json` | `decks_with_card / total_decks` for that commander | 10 decks | All cards shown (no limit). |
-| Drawn Winrate | `commander_card_stats.json` | `drawn_wins / games_drawn` | 5 | Small samples per commander-card pair |
-| Played Winrate | `commander_card_stats.json` | `played_wins / games_played` | 5 | Most commander-card combos have <30 games |
-| Drawn Rate | `commander_card_stats.json` | `games_drawn / commander_games` | 10 games | De-emphasized. Scoped to this commander. |
-| Played Rate | `commander_card_stats.json` | `games_played / commander_games` | 10 games | De-emphasized. |
-| # Drawn | `commander_card_stats.json` | Raw count of times drawn for this commander | 1 | De-emphasized. |
-| # Played | `commander_card_stats.json` | Raw count of times played for this commander | 1 | De-emphasized. |
-| Avg Copies | `commander_card_stats.json` | `total_copies / deck_count` per commander | 1 | Avg copies in this commander's decks. |
+### Stat Definitions
+
+| Stat | Calculation | Min Sample | Caveats |
+|------|-------------|-----------|---------|
+| Included | `deck_count / total_player_games` | 1 | Global: total_player_games = total_matches × 2. Commander: total = commander's games. |
+| Drawn WR | `wins_when_drawn / games_where_drawn` | 5 (shown as "--" below) | Correlation, not causation |
+| Played WR | `wins_when_played / games_where_played` | 5 (shown as "--" below) | Stronger signal than drawn WR for card impact |
+| Drawn Rate | `games_where_drawn / total_games` | 1 | De-emphasized. |
+| Played Rate | `games_where_played / total_games` | 1 | De-emphasized. A card can be drawn but not played. |
+| Avg Copies | `total_copies / deck_count` | 1 | Average copies per deck that includes this card. Max 3. |
+
+### Per-Commander View
+
+When a commander is selected via the dropdown, all stats are scoped to that commander's games. Data comes from `commander_card_stats.json` (lazy-loaded on first selection). All cards for the commander are shown (no limit). The `total_games` denominator in sub-lines becomes the commander's total games instead of all player-games.
 
 ---
 

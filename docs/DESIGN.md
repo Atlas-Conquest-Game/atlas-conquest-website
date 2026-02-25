@@ -82,6 +82,16 @@
 - Clean, minimal borders. Header row: `--bg-card` background, `--text-secondary` text, uppercase.
 - Sortable columns: click to toggle asc/desc. Arrow indicator via `::after` pseudo-element.
 - Row hover: `--bg-elevated` background.
+- **Stacked sub-line pattern** (cards table): Each percentage cell shows a small muted sub-line beneath it with raw counts (e.g., "134 of 342", "61 games"). Class `cell-sub`: `font-size: 0.625rem`, `color: --text-muted`, `margin-top: 2px`.
+- **De-emphasized columns**: `cell-muted` class for secondary data cells (muted color + `0.75rem`). `col-deemph` class for column headers (muted + `0.6875rem`).
+- **Null sort behavior**: Cards with insufficient data ("--") always sort to the bottom regardless of direction.
+
+### Card Preview (Hover Popup)
+- Fixed position popup showing card artwork when hovering over card name column.
+- Width: `250px`. Border-radius: `8px`. Drop shadow: `drop-shadow(0 8px 24px rgba(0,0,0,0.6))`.
+- Positioned 20px right of cursor, flips left when near viewport edge.
+- Opacity transition: `0.12s ease`. Hidden with `pointer-events: none` when inactive.
+- Z-index: `1100` (above modals). Gracefully hides on image load error.
 
 ### Charts
 - Chart.js 4 (loaded via CDN). Dark theme defaults set globally (`Chart.defaults.color`, `borderColor`, `font.family`).
