@@ -109,12 +109,14 @@ function renderCardTable(stats) {
       <td class="cell-muted">${pctCell(c.drawn_rate)}</td>
       <td class="cell-muted">${pctCell(c.played_rate)}</td>
       <td class="cell-muted">${(c.deck_count || 0).toLocaleString()}</td>
+      <td class="cell-muted">${(c.drawn_instances || 0).toLocaleString()}</td>
+      <td class="cell-muted">${(c.played_instances || 0).toLocaleString()}</td>
       <td>${(c.avg_copies || 0).toFixed(1)}</td>
     </tr>`;
   }).join('');
 
   if (sorted.length === 0) {
-    tbody.innerHTML = '<tr class="placeholder-row"><td colspan="10">No cards match your filters.</td></tr>';
+    tbody.innerHTML = '<tr class="placeholder-row"><td colspan="12">No cards match your filters.</td></tr>';
   }
 
   updateSortHeaders();
