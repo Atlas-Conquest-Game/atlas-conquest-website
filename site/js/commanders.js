@@ -348,10 +348,10 @@ function renderAll() {
   // Commander stats
   renderCommanderCards(commanderStats, appData.commanders);
 
-  // Winrate by duration, actions & turns tables
-  renderBucketTable('duration-table', getPeriodData(appData.durationWinrates, period), ' min');
-  renderBucketTable('actions-table', getPeriodData(appData.actionWinrates, period), '');
+  // Winrate by turns, actions & duration tables
   renderBucketTable('turns-table', getPeriodData(appData.turnWinrates, period), '');
+  renderBucketTable('actions-table', getPeriodData(appData.actionWinrates, period), '');
+  renderBucketTable('duration-table', getPeriodData(appData.durationWinrates, period), ' min');
 
   // Deck composition
   renderAvgCostChart(deckComp);

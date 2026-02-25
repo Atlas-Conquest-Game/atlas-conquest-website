@@ -554,6 +554,7 @@ def aggregate_card_stats(games):
         "deck_count": 0, "deck_wins": 0,
         "drawn_count": 0, "drawn_wins": 0,
         "played_count": 0, "played_wins": 0,
+        "total_copies": 0,
     })
 
     for game in games:
@@ -563,6 +564,7 @@ def aggregate_card_stats(games):
             # Cards in deck
             for c in p["cards_in_deck"]:
                 card_data[c["name"]]["deck_count"] += 1
+                card_data[c["name"]]["total_copies"] += c.get("count", 1)
                 if won:
                     card_data[c["name"]]["deck_wins"] += 1
 
@@ -850,16 +852,17 @@ def aggregate_turn_winrates(games):
 def aggregate_commander_card_stats(games):
     """Compute per-commander card usage rates and winrates.
 
-    Returns dict: commander -> list of top 30 cards by inclusion rate.
+    Returns dict: commander -> list of all cards sorted by inclusion rate.
     """
     if not games:
         return {}
 
-    # cmd -> card_name -> {deck, deck_wins, drawn, drawn_wins, played, played_wins}
+    # cmd -> card_name -> {deck, deck_wins, drawn, drawn_wins, played, played_wins, total_copies}
     stats = defaultdict(lambda: defaultdict(lambda: {
         "deck": 0, "deck_wins": 0,
         "drawn": 0, "drawn_wins": 0,
         "played": 0, "played_wins": 0,
+        "total_copies": 0,
     }))
     cmd_games = defaultdict(int)
 
@@ -873,6 +876,7 @@ def aggregate_commander_card_stats(games):
 
             for c in p["cards_in_deck"]:
                 stats[cmd][c["name"]]["deck"] += 1
+                stats[cmd][c["name"]]["total_copies"] += c.get("count", 1)
                 if won:
                     stats[cmd][c["name"]]["deck_wins"] += 1
 
@@ -900,11 +904,13 @@ def aggregate_commander_card_stats(games):
                 "drawn_winrate": round(d["drawn_wins"] / d["drawn"], 4) if d["drawn"] > 0 else None,
                 "played_rate": round(d["played"] / total, 4),
                 "played_winrate": round(d["played_wins"] / d["played"], 4) if d["played"] > 0 else None,
+                "drawn_count": d["drawn"],
+                "played_count": d["played"],
+                "avg_copies": round(d["total_copies"] / d["deck"], 2) if d["deck"] > 0 else 0,
                 "games": total,
             })
-        # Top 30 by inclusion rate
         card_list.sort(key=lambda x: x["inclusion_rate"], reverse=True)
-        result[cmd] = card_list[:30]
+        result[cmd] = card_list
 
     return result
 
@@ -1191,6 +1197,7 @@ def build_and_write_all(games, cards_csv, commanders_csv):
                     "played_count": data["played_count"],
                     "played_rate": round(data["played_count"] / total_player_games, 4) if total_player_games > 0 else 0,
                     "played_winrate": round(played_wr, 4),
+                    "avg_copies": round(data["total_copies"] / data["deck_count"], 2) if data["deck_count"] > 0 else 0,
                 })
             out["card_stats"][period_key][map_name] = card_stats
 

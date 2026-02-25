@@ -20,8 +20,6 @@ function renderCardTable(stats) {
   if (!stats || !stats.length) return;
 
   const isCmd = currentCommander !== 'all';
-  const inclusionCol = document.querySelector('.col-inclusion');
-  if (inclusionCol) inclusionCol.style.display = isCmd ? '' : 'none';
 
   // When a commander is selected, merge per-commander card stats into global card data
   let merged = stats;
@@ -37,13 +35,14 @@ function renderCardTable(stats) {
           if (!cc) return null;
           return {
             ...c,
-            inclusion_rate: cc.inclusion_rate,
+            deck_rate: cc.inclusion_rate,
             drawn_rate: cc.drawn_rate,
             drawn_winrate: cc.drawn_winrate,
             played_rate: cc.played_rate,
             played_winrate: cc.played_winrate,
-            drawn_count: cc.games,
-            played_count: cc.games,
+            drawn_count: cc.drawn_count,
+            played_count: cc.played_count,
+            avg_copies: cc.avg_copies,
           };
         })
         .filter(Boolean);
@@ -94,26 +93,26 @@ function renderCardTable(stats) {
     countEl.textContent = label;
   }
 
-  const colSpan = isCmd ? 8 : 7;
-
   tbody.innerHTML = sorted.map(c => {
     const slug = commanderSlug(c.name);
-    const inclusionTd = isCmd ? `<td>${pctCell(c.inclusion_rate || 0)}</td>` : '';
     return `
-    <tr data-card-slug="${slug}">
+    <tr data-card-slug="${slug}" class="card-row">
       <td><strong>${c.name}</strong></td>
       <td>${factionBadge(c.faction)}</td>
       <td>${c.type || '--'}</td>
-      ${inclusionTd}
-      <td>${pctCell(c.drawn_rate)}</td>
+      <td>${pctCell(c.deck_rate || 0)}</td>
       <td>${winrateCell(c.drawn_winrate, c.drawn_count)}</td>
-      <td>${pctCell(c.played_rate)}</td>
       <td>${winrateCell(c.played_winrate, c.played_count)}</td>
+      <td class="cell-muted">${pctCell(c.drawn_rate)}</td>
+      <td class="cell-muted">${pctCell(c.played_rate)}</td>
+      <td class="cell-muted">${(c.drawn_count || 0).toLocaleString()}</td>
+      <td class="cell-muted">${(c.played_count || 0).toLocaleString()}</td>
+      <td>${(c.avg_copies || 0).toFixed(1)}</td>
     </tr>`;
   }).join('');
 
   if (sorted.length === 0) {
-    tbody.innerHTML = `<tr class="placeholder-row"><td colspan="${colSpan}">No cards match your filters.</td></tr>`;
+    tbody.innerHTML = '<tr class="placeholder-row"><td colspan="11">No cards match your filters.</td></tr>';
   }
 
   updateSortHeaders();
@@ -244,11 +243,11 @@ function initCommanderFilter() {
 
   select.addEventListener('change', async () => {
     currentCommander = select.value;
-    // When switching to a commander, default sort to inclusion_rate
+    // When switching to a commander, default sort to inclusion %
     if (currentCommander !== 'all' && cardSortKey === 'drawn_winrate') {
-      cardSortKey = 'inclusion_rate';
+      cardSortKey = 'deck_rate';
       cardSortDir = 'desc';
-    } else if (currentCommander === 'all' && cardSortKey === 'inclusion_rate') {
+    } else if (currentCommander === 'all' && cardSortKey === 'deck_rate') {
       cardSortKey = 'drawn_winrate';
       cardSortDir = 'desc';
     }

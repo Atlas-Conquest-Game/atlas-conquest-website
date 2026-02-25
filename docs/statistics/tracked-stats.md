@@ -84,20 +84,27 @@ Every stat computed by the pipeline and displayed on the dashboard, organized by
 
 | Stat | Source | Calculation | Min Sample | Caveats |
 |------|--------|-------------|-----------|---------|
-| Drawn Rate | `card_stats.json` | `games_where_drawn / total_games` | 1 | Rate across all games, not per-commander |
+| Inclusion % | `card_stats.json` | `deck_count / total_player_games` | 1 | Always visible. Rate across all decks. |
 | Drawn Winrate | `card_stats.json` | `wins_when_drawn / games_where_drawn` | 5 (shown as "--" below) | Correlation, not causation |
-| Played Rate | `card_stats.json` | `games_where_played / total_games` | 1 | A card can be drawn but not played |
 | Played Winrate | `card_stats.json` | `wins_when_played / games_where_played` | 5 (shown as "--" below) | Stronger signal than drawn WR for card impact |
+| Drawn Rate | `card_stats.json` | `games_where_drawn / total_games` | 1 | De-emphasized. Rate across all games. |
+| Played Rate | `card_stats.json` | `games_where_played / total_games` | 1 | De-emphasized. A card can be drawn but not played. |
+| # Drawn | `card_stats.json` | Raw count of times drawn | 1 | De-emphasized. |
+| # Played | `card_stats.json` | Raw count of times played | 1 | De-emphasized. |
+| Avg Copies | `card_stats.json` | `total_copies / deck_count` | 1 | Average copies per deck that includes this card. Max 3. |
 
 ### Per-Commander Card Stats (Commander Dropdown)
 
 | Stat | Source | Calculation | Min Sample | Caveats |
 |------|--------|-------------|-----------|---------|
-| Inclusion Rate | `commander_card_stats.json` | `decks_with_card / total_decks` for that commander | 10 decks | Top 30 cards per commander kept |
-| Drawn Rate | `commander_card_stats.json` | `games_drawn / commander_games` | 10 games | Scoped to games with this commander |
+| Inclusion % | `commander_card_stats.json` | `decks_with_card / total_decks` for that commander | 10 decks | All cards shown (no limit). |
 | Drawn Winrate | `commander_card_stats.json` | `drawn_wins / games_drawn` | 5 | Small samples per commander-card pair |
-| Played Rate | `commander_card_stats.json` | `games_played / commander_games` | 10 games | |
 | Played Winrate | `commander_card_stats.json` | `played_wins / games_played` | 5 | Most commander-card combos have <30 games |
+| Drawn Rate | `commander_card_stats.json` | `games_drawn / commander_games` | 10 games | De-emphasized. Scoped to this commander. |
+| Played Rate | `commander_card_stats.json` | `games_played / commander_games` | 10 games | De-emphasized. |
+| # Drawn | `commander_card_stats.json` | Raw count of times drawn for this commander | 1 | De-emphasized. |
+| # Played | `commander_card_stats.json` | Raw count of times played for this commander | 1 | De-emphasized. |
+| Avg Copies | `commander_card_stats.json` | `total_copies / deck_count` per commander | 1 | Avg copies in this commander's decks. |
 
 ---
 

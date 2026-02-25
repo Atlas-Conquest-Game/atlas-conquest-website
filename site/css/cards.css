@@ -59,6 +59,28 @@
   border-color: #388bfd;
 }
 
+/* === De-emphasized table cells and headers === */
+
+.cell-muted {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.col-deemph {
+  color: var(--text-muted) !important;
+  font-size: 0.6875rem !important;
+}
+
+/* === Clickable card rows (future: card detail popup) === */
+
+.card-row {
+  cursor: pointer;
+}
+
+.card-row:hover td {
+  background: var(--bg-elevated);
+}
+
 /* === Card Preview (hover popup) === */
 
 .card-preview {
