@@ -916,6 +916,7 @@ def aggregate_commander_card_stats(games):
                 "drawn_instances": d["drawn_instances"],
                 "played_instances": d["played_instances"],
                 "avg_copies": round(d["total_copies"] / d["deck"], 2) if d["deck"] > 0 else 0,
+                "deck_count": d["deck"],
                 "games": total,
             })
         card_list.sort(key=lambda x: x["inclusion_rate"], reverse=True)

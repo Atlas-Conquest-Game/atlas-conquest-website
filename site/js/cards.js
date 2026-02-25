@@ -36,7 +36,7 @@ function renderCardTable(stats) {
           return {
             ...c,
             deck_rate: cc.inclusion_rate,
-            deck_count: cc.games,
+            deck_count: cc.deck_count,
             drawn_rate: cc.drawn_rate,
             drawn_winrate: cc.drawn_winrate,
             played_rate: cc.played_rate,
