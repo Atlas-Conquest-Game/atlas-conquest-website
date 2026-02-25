@@ -59,15 +59,13 @@
   border-color: #388bfd;
 }
 
-/* === Compact card table — tighter padding for 12 columns === */
+/* === Stacked sub-line in table cells === */
 
-#card-table th {
-  padding: 0.625rem 0.5rem;
-  padding-right: 1.5rem;
-}
-
-#card-table td {
-  padding: 0.5rem 0.5rem;
+.cell-sub {
+  font-size: 0.625rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+  line-height: 1;
 }
 
 /* === De-emphasized table cells and headers === */
@@ -75,6 +73,10 @@
 .cell-muted {
   color: var(--text-muted);
   font-size: 0.75rem;
+}
+
+.cell-muted .cell-sub {
+  font-size: 0.5625rem;
 }
 
 .col-deemph {

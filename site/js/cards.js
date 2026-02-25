@@ -21,12 +21,16 @@ function renderCardTable(stats) {
 
   const isCmd = currentCommander !== 'all';
 
+  // Compute total games denominator for sub-line counts
+  let totalGames = 0;
+
   // When a commander is selected, merge per-commander card stats into global card data
   let merged = stats;
   if (isCmd) {
     const cmdCardData = getPeriodData(appData.commanderCardStats, currentPeriod);
     const cmdCards = cmdCardData && cmdCardData[currentCommander];
     if (cmdCards) {
+      totalGames = cmdCards.length > 0 ? cmdCards[0].games : 0;
       const cmdLookup = {};
       cmdCards.forEach(c => { cmdLookup[c.name] = c; });
       merged = stats
@@ -43,8 +47,6 @@ function renderCardTable(stats) {
             played_winrate: cc.played_winrate,
             drawn_count: cc.drawn_count,
             played_count: cc.played_count,
-            drawn_instances: cc.drawn_instances,
-            played_instances: cc.played_instances,
             avg_copies: cc.avg_copies,
           };
         })
@@ -52,6 +54,9 @@ function renderCardTable(stats) {
     } else {
       merged = [];
     }
+  } else {
+    const metadata = getPeriodData(appData.metadata, currentPeriod);
+    totalGames = metadata ? metadata.total_matches * 2 : 0;
   }
 
   let filtered = currentFaction === 'all'
@@ -98,25 +103,25 @@ function renderCardTable(stats) {
 
   tbody.innerHTML = sorted.map(c => {
     const slug = commanderSlug(c.name);
+    const deckCount = c.deck_count || 0;
+    const drawnCount = c.drawn_count || 0;
+    const playedCount = c.played_count || 0;
     return `
     <tr data-card-slug="${slug}" class="card-row">
       <td><strong>${c.name}</strong></td>
       <td>${factionBadge(c.faction)}</td>
       <td>${c.type || '--'}</td>
-      <td>${pctCell(c.deck_rate || 0)}</td>
-      <td>${winrateCell(c.drawn_winrate, c.drawn_count)}</td>
-      <td>${winrateCell(c.played_winrate, c.played_count)}</td>
-      <td class="cell-muted">${pctCell(c.drawn_rate)}</td>
-      <td class="cell-muted">${pctCell(c.played_rate)}</td>
-      <td class="cell-muted">${(c.deck_count || 0).toLocaleString()}</td>
-      <td class="cell-muted">${(c.drawn_instances || 0).toLocaleString()}</td>
-      <td class="cell-muted">${(c.played_instances || 0).toLocaleString()}</td>
+      <td>${pctCell(c.deck_rate || 0)}<div class="cell-sub">${deckCount} of ${totalGames}</div></td>
+      <td>${winrateCell(c.drawn_winrate, drawnCount)}<div class="cell-sub">${drawnCount} games</div></td>
+      <td>${winrateCell(c.played_winrate, playedCount)}<div class="cell-sub">${playedCount} games</div></td>
+      <td class="cell-muted">${pctCell(c.drawn_rate)}<div class="cell-sub">${drawnCount} of ${totalGames}</div></td>
+      <td class="cell-muted">${pctCell(c.played_rate)}<div class="cell-sub">${playedCount} of ${totalGames}</div></td>
       <td>${(c.avg_copies || 0).toFixed(1)}</td>
     </tr>`;
   }).join('');
 
   if (sorted.length === 0) {
-    tbody.innerHTML = '<tr class="placeholder-row"><td colspan="12">No cards match your filters.</td></tr>';
+    tbody.innerHTML = '<tr class="placeholder-row"><td colspan="9">No cards match your filters.</td></tr>';
   }
 
   updateSortHeaders();
