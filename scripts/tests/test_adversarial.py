@@ -4,7 +4,7 @@ These tests INJECT known bugs and verify that our test suite catches them.
 They exist to "keep ourselves honest" — if a D-test passes when it shouldn't,
 our A/B/C tests have a gap.
 
-See docs/planning/TEST_DESIGN.md for the mapping.
+See docs/TEST_DESIGN.md for the mapping.
 """
 
 import json

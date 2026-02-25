@@ -81,3 +81,24 @@ These exist to **verify the test suite itself works**. Each one injects a known 
 | D8 | `clean_game()` accepts a game with `turnsTaken=0` | A4 (min turns filter) |
 | D9 | Matchup wins asymmetry: A beat B counted, but B's loss not recorded | B3/B4 (symmetric matchups) |
 | D10 | All faction trend percentages sum to 80% (missing a faction) | B9 (trends sum ~100%) |
+
+---
+
+## Category E: Filtering & Data Flow (added post-review)
+
+Gaps identified after initial test suite shipped. These cover the untested glue between cleaning and aggregation.
+
+| # | Question the test answers | Risk it prevents |
+|---|---------------------------|------------------|
+| E1 | Does `filter_games_by_period()` correctly include/exclude games at the boundary date? | 1M/3M/6M views showing wrong data if date math is off |
+| E2 | Does `filter_games_by_period(games, None)` return all games unchanged? | "All time" view accidentally filtering |
+| E3 | Does `filter_games_by_map()` correctly filter by map name, and return all for "all"? | Map-specific stats including games from other maps |
+| E4 | Do bucket boundaries assign edge values correctly? (exactly 10 min, exactly 30 actions, etc.) | Off-by-one putting games in wrong bucket |
+| E5 | Does cache survive a round-trip? `save_cache(games)` then `load_cache()` returns the same data? | Corrupted cache losing all historical game data |
+
+### Known gaps intentionally NOT tested (would need mocking for low ROI)
+
+- **AWS/DynamoDB**: `get_dynamo_table()`, `scan_all_games()` — requires mocking boto3
+- **Thumbnail generation**: `generate_thumbnails()`, `_resize_image()` — filesystem + PIL dependent
+- **`main()` orchestration**: Integration-level, covered by CI running end-to-end daily
+- **`build_and_write_all()`**: Already validated indirectly by Category C tests checking real JSON output

@@ -2,7 +2,7 @@
 
 Tests run against the REAL JSON files in site/data/ to validate the
 contract between the pipeline and the frontend.
-See docs/planning/TEST_DESIGN.md.
+See docs/TEST_DESIGN.md.
 
 These tests are skipped if the JSON files don't exist (e.g., fresh clone
 without running the pipeline).

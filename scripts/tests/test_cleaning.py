@@ -1,7 +1,7 @@
 """Category A: Data Cleaning Tests
 
 Tests for clean_game() — the gatekeeper that decides which raw DynamoDB
-items become valid games. See docs/planning/TEST_DESIGN.md for the
+items become valid games. See docs/TEST_DESIGN.md for the
 question each test answers.
 """
 

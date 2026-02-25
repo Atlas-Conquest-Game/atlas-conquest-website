@@ -50,7 +50,7 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
           curl -H "Content-Type: application/json" \
-            -d "{\"content\": \"All 145 tests passed. Data updated.\"}" \
+            -d "{\"content\": \"All tests passed. Data updated.\"}" \
             "$DISCORD_WEBHOOK"
 
       - name: Notify Discord on failure

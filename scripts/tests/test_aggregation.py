@@ -1,7 +1,7 @@
 """Category B: Aggregation Math Tests
 
 Tests for the aggregation functions that turn clean games into stats.
-Core question: is the math right? See docs/planning/TEST_DESIGN.md.
+Core question: is the math right? See docs/TEST_DESIGN.md.
 """
 
 import pytest
