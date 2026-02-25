@@ -28,6 +28,9 @@ Group decks by similarity (e.g., Jaccard index on card lists) to identify archet
 ### Card Synergy Pairs
 Cards that appear together in winning decks more often than chance. A co-occurrence matrix filtered by winrate delta would surface natural synergy pairs (e.g., "Card A + Card B together = +8% WR").
 
+### Mulligan Data Analysis
+Leverage mulligan data to surface which cards players keep vs throw back, and how mulligan decisions correlate with winrate. Potential stats: mulligan rate per card, winrate when kept vs mulliganed, average cards mulliganed per commander, and whether aggressive mulliganing correlates with higher winrates for specific commanders or archetypes.
+
 ---
 
 ## Internal Team Tools (balance & design insights)
