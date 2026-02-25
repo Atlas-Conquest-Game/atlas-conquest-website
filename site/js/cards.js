@@ -85,9 +85,12 @@ function renderCardTable(stats) {
         : bVal.localeCompare(aVal);
     }
 
-    // Push null values to the bottom regardless of sort direction
-    const aEmpty = aVal == null;
-    const bEmpty = bVal == null;
+    // Push null/insufficient-sample values to the bottom regardless of sort direction
+    // For winrate columns, match the display logic: < 5 games = no data
+    const isWinrate = cardSortKey === 'drawn_winrate' || cardSortKey === 'played_winrate';
+    const countKey = cardSortKey === 'drawn_winrate' ? 'drawn_count' : cardSortKey === 'played_winrate' ? 'played_count' : null;
+    const aEmpty = aVal == null || (isWinrate && (a[countKey] || 0) < 5);
+    const bEmpty = bVal == null || (isWinrate && (b[countKey] || 0) < 5);
     if (aEmpty && bEmpty) return 0;
     if (aEmpty) return 1;
     if (bEmpty) return -1;
