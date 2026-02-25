@@ -457,7 +457,7 @@ function renderCommanderWinrateTrends(wrTrends) {
       },
       scales: {
         y: {
-          min: 20, max: 80,
+          min: 0, max: 100,
           ticks: { callback: v => v + '%' },
           grid: { color: '#21262d' },
           title: { display: true, text: 'Win Rate', color: '#8b949e', font: { size: 11 } },
