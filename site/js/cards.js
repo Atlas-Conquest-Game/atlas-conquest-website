@@ -85,8 +85,12 @@ function renderCardTable(stats) {
         : bVal.localeCompare(aVal);
     }
 
-    aVal = aVal || 0;
-    bVal = bVal || 0;
+    // Push null/zero values to the bottom regardless of sort direction
+    const aEmpty = aVal == null || aVal === 0;
+    const bEmpty = bVal == null || bVal === 0;
+    if (aEmpty && bEmpty) return 0;
+    if (aEmpty) return 1;
+    if (bEmpty) return -1;
     return cardSortDir === 'asc' ? aVal - bVal : bVal - aVal;
   });
 
