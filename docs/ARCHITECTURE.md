@@ -40,12 +40,13 @@
 | `pipeline/aggregation.py` | All 13 `aggregate_*` functions — stats computation |
 | `pipeline/io_helpers.py` | AWS, CSV loading, cache, thumbnails, `write_json()` |
 | `pipeline/main.py` | `build_and_write_all()`, `main()` — orchestration |
+| `daily_summary.py` | Generates yesterday's game summary for Discord notifications |
 
 ### 3. Data Contract (`site/data/`)
 - Static JSON files are the interface between the pipeline and the frontend.
 - Each file has a defined schema documented in [DATA_MODEL.md](DATA_MODEL.md).
 - Stats files are doubly nested (`data[period][map]`); reference files (`cards.json`, `commanders.json`) are flat arrays.
-- Files: `metadata.json`, `commander_stats.json`, `matchups.json`, `card_stats.json`, `commander_card_stats.json`, `trends.json`, `commander_trends.json`, `game_distributions.json`, `deck_composition.json`, `duration_winrates.json`, `action_winrates.json`, `turn_winrates.json`, `first_turn.json`, `cards.json`, `commanders.json`.
+- Files: `metadata.json`, `commander_stats.json`, `matchups.json`, `card_stats.json`, `commander_card_stats.json`, `trends.json`, `commander_trends.json`, `commander_winrate_trends.json`, `game_distributions.json`, `deck_composition.json`, `duration_winrates.json`, `action_winrates.json`, `turn_winrates.json`, `first_turn.json`, `cards.json`, `commanders.json`.
 - The site reads only from these files — no runtime API calls.
 
 ### 4. Frontend (`site/`)
@@ -61,7 +62,7 @@
 | Home | `index.html` | Overview stats, distribution charts, first-turn summary, quick-link cards |
 | Commanders | `commanders.html` | Commander grid, winrate-by-turns/actions/duration tables (Turns → Actions → Duration), deck composition charts, detail modal |
 | Cards | `cards.html` | 9-column card table with stacked sub-line counts, search, faction filter, commander dropdown, card hover preview, clickable rows |
-| Meta | `meta.html` | Faction popularity trends, commander popularity trends, commander matchup heatmap (with game counts), first-turn advantage by commander, patron trends placeholder |
+| Meta | `meta.html` | Faction popularity trends, commander popularity/winrate trends (with mirror exclusion toggle), matchup heatmap (with game counts), first-turn advantage by commander |
 
 #### JavaScript Structure
 
@@ -71,7 +72,7 @@
 | `js/home.js` | Overview stats, distribution charts, first-turn summary |
 | `js/commanders.js` | Commander grid, winrate bucket tables (turns/actions/duration), deck composition rendering |
 | `js/cards.js` | Card table with stacked sub-line counts, search, sorting, faction filter, commander dropdown, card hover preview |
-| `js/meta.js` | Faction + commander trends charts, matchup heatmap, first-turn commander chart |
+| `js/meta.js` | Faction + commander trends/winrate charts, matchup heatmap, first-turn commander chart |
 
 Each page loads `shared.js` first (globals, not ES modules), then its page-specific script. All pages share: nav with active state, sticky time/map filter bar, footer. Each page loads only the JSON files it needs via `loadData(keys)` rather than fetching all 13 files.
 
@@ -105,6 +106,7 @@ Each page loads `shared.js` first (globals, not ES modules), then its page-speci
 3. Queries are run, data is aggregated and transformed.
 4. JSON files are written to `site/data/`.
 5. Changes are committed and pushed, triggering a GitHub Pages deploy.
+6. `scripts/daily_summary.py` computes yesterday's game stats (games played, unique players, avg duration, top 3 commanders) and posts a summary to Discord via webhook.
 
 ## Boundaries
 

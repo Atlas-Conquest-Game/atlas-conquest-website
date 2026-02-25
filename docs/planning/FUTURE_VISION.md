@@ -77,4 +77,4 @@ Both can share the same data pipeline and JSON output format. The split is purel
 Currently daily batch via GitHub Actions. Future option: stream game results via webhook for near-real-time updates. Would require a lightweight backend (Lambda + API Gateway) but the static JSON contract stays the same.
 
 ### API Layer
-Expose the aggregated data via a simple REST API so community tools (Discord bots, third-party sites) can consume it programmatically.
+Expose the aggregated data via a simple REST API so community tools (Discord bots, third-party sites) can consume it programmatically. The Discord daily summary bot (`scripts/daily_summary.py`) is a reference implementation — it reads from `raw_games.json` and posts stats to a Discord webhook as part of the existing GitHub Actions pipeline.

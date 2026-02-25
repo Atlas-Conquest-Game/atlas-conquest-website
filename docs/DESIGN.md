@@ -128,10 +128,16 @@
 ### Faction Filter
 - Pill buttons for card table. Active state uses faction accent color for border and text.
 
+### Mirror Match Toggle
+- Label: "Exclude mirror matches" with `?` info tooltip icon.
+- Positioned left side of chart controls, next to Week/Month binning toggle (`margin-left: 0.75rem`).
+- Checkbox uses `accent-color: var(--text-secondary)`. Text: `0.75rem`, `--text-muted`.
+- Info tooltip explains: removes games where both players picked the same commander.
+
 ### Matchup Heatmap
 - Scrollable table. Sticky row headers. Vertical column headers.
 - Color coding: green (>55%), neutral (45-55%), orange-red (<45%), gray (<5 games).
-- Tooltip on hover: commander names, winrate, W-L record.
+- Tooltip on hover: commander names, winrate, W-L record, game count.
 
 ## Motion
 - Keep it subtle. `transition: 0.15s ease` on interactive elements.
