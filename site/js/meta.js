@@ -121,12 +121,9 @@ function renderMatchups(matchupData) {
     matchupMap[m.commander][m.opponent] = m;
   });
 
-  // Use name before comma for display (e.g. "Captain Greenbeard", "Lubela")
-  const displayName = name => name.split(',')[0];
-
   const thead = table.querySelector('thead tr');
   thead.innerHTML = '<th class="matchup-corner"></th>' +
-    cmds.map(c => `<th class="matchup-col-header" title="${c}">${displayName(c)}</th>`).join('');
+    cmds.map(c => `<th class="matchup-col-header" title="${c}">${c}</th>`).join('');
 
   const tbody = table.querySelector('tbody');
   tbody.innerHTML = cmds.map(row => {
@@ -148,7 +145,7 @@ function renderMatchups(matchupData) {
       return `<td class="matchup-cell ${cls}" data-type="data" data-row="${row}" data-col="${col}" data-wr="${wr}" data-total="${m.total}" data-wins="${m.wins}" data-losses="${m.losses}">${wr}%<span class="matchup-count">${m.total}</span></td>`;
     }).join('');
 
-    return `<tr><th class="matchup-row-header" title="${row}">${displayName(row)}</th>${cells}</tr>`;
+    return `<tr><th class="matchup-row-header" title="${row}">${row}</th>${cells}</tr>`;
   }).join('');
 
   initMatchupTooltip();
@@ -462,8 +459,8 @@ function renderMatchupModalContent(matchup, cmd1, cmd2) {
 
   // Unified stats table
   const statsEl = document.getElementById('matchup-modal-stats');
-  const shortCmd1 = cmd1.split(',')[0];
-  const shortCmd2 = cmd2.split(',')[0];
+  const shortCmd1 = cmd1;
+  const shortCmd2 = cmd2;
 
   const wrPct = (matchup.winrate * 100).toFixed(1);
   const wrNum = matchup.winrate * 100;
@@ -513,8 +510,8 @@ function renderMatchupModalContent(matchup, cmd1, cmd2) {
     <div class="ft-total">${matchup.total} games played</div>`;
 
   // Card lists
-  document.getElementById('matchup-cards-title-1').textContent = `Top Cards — ${cmd1.split(',')[0]}`;
-  document.getElementById('matchup-cards-title-2').textContent = `Top Cards — ${cmd2.split(',')[0]}`;
+  document.getElementById('matchup-cards-title-1').textContent = `Top Cards — ${cmd1}`;
+  document.getElementById('matchup-cards-title-2').textContent = `Top Cards — ${cmd2}`;
   renderCardList(matchup.cmd_cards, 'matchup-cards-list-1');
   renderCardList(matchup.opp_cards, 'matchup-cards-list-2');
 }
