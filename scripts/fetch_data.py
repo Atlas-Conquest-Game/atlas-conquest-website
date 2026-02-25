@@ -304,13 +304,18 @@ def normalize_card(name):
     return CARD_RENAMES.get(name, name)
 
 
-def clean_game(raw_item):
-    """Parse a raw DynamoDB item into a clean game dict. Returns None if invalid."""
+def clean_game(raw_item, skip_log=None):
+    """Parse a raw DynamoDB item into a clean game dict. Returns None if invalid.
+
+    If skip_log is provided (a list), appends the skip reason when returning None.
+    """
     game_id = raw_item.get("gameid", "")
     first_player = str(raw_item.get("firstPlayer", "0"))
 
     # Filter: games that never started
     if first_player == "0":
+        if skip_log is not None:
+            skip_log.append("first_player=0")
         return None
 
     # Parse datetimes
@@ -320,6 +325,8 @@ def clean_game(raw_item):
     # Parse players
     players_data = parse_players_json(raw_item.get("players", ""))
     if not players_data:
+        if skip_log is not None:
+            skip_log.append("no_players_data")
         return None
 
     num_players = players_data.get("numPlayers", 0)
@@ -328,10 +335,14 @@ def clean_game(raw_item):
 
     # Filter: need at least 2 players
     if num_players < 2:
+        if skip_log is not None:
+            skip_log.append("num_players_below_2")
         return None
 
     players = players_data.get("players", [])
     if len(players) < 2:
+        if skip_log is not None:
+            skip_log.append("player_list_below_2")
         return None
 
     # Filter: both players must have taken at least MIN_TURNS turns
@@ -340,6 +351,8 @@ def clean_game(raw_item):
         if isinstance(turns, str):
             turns = int(turns) if turns.isdigit() else 0
         if turns < MIN_TURNS:
+            if skip_log is not None:
+                skip_log.append("low_turns")
             return None
 
     # Build clean player records
@@ -1473,14 +1486,18 @@ def main():
         # Step 3: Clean new games
         print("\n[3/6] Cleaning data...")
         new_games = []
-        skipped = 0
+        skip_log = []
         for item in raw_items:
-            cleaned = clean_game(item)
+            cleaned = clean_game(item, skip_log=skip_log)
             if cleaned:
                 new_games.append(cleaned)
-            else:
-                skipped += 1
-        print(f"  Cleaned {len(new_games)} new games, skipped {skipped}")
+        print(f"  Cleaned {len(new_games)} new games, skipped {len(skip_log)}")
+        if skip_log:
+            skip_counts = defaultdict(int)
+            for reason in skip_log:
+                skip_counts[reason] += 1
+            for reason, count in sorted(skip_counts.items(), key=lambda x: -x[1]):
+                print(f"    {reason}: {count}")
 
         # Merge with cache
         all_games = cached_games + new_games

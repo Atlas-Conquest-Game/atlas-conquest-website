@@ -33,6 +33,9 @@ jobs:
           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
         run: python scripts/fetch_data.py
 
+      - name: Run pipeline tests
+        run: pytest scripts/tests/ -v --tb=short
+
       - name: Commit and push updated data
         run: |
           git config user.name "github-actions[bot]"
@@ -40,3 +43,23 @@ jobs:
           git add site/data/
           git diff --staged --quiet || git commit -m "chore: update game data $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           git push
+
+      - name: Notify Discord on success
+        if: success()
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          curl -H "Content-Type: application/json" \
+            -d "{\"content\": \"All 145 tests passed. Data updated.\"}" \
+            "$DISCORD_WEBHOOK"
+
+      - name: Notify Discord on failure
+        if: failure()
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          ROSS_ID: ${{ secrets.DISCORD_ROSS_ID }}
+          MALATAK_ID: ${{ secrets.DISCORD_MALATAK_ID }}
+        run: |
+          curl -H "Content-Type: application/json" \
+            -d "{\"content\": \"<@${ROSS_ID}> <@${MALATAK_ID}> **Pipeline failed!** Check: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}" \
+            "$DISCORD_WEBHOOK"
