@@ -362,7 +362,9 @@ function renderAll() {
 // ─── Init ───────────────────────────────────────────────────
 
 async function init() {
-  appData = await loadAllData();
+  appData = await loadData(['metadata', 'commanderStats', 'deckComposition',
+                            'turnWinrates', 'actionWinrates', 'durationWinrates',
+                            'commanders']);
   renderAll();
   initTimeFilters(renderAll);
   initMapFilters(renderAll);

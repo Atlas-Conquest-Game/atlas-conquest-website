@@ -291,7 +291,7 @@ function renderAll() {
 // ─── Init ───────────────────────────────────────────────────
 
 async function init() {
-  appData = await loadAllData();
+  appData = await loadData(['metadata', 'cardStats', 'commanderStats']);
   renderAll();
   initFactionFilters();
   initCommanderFilter();

@@ -1,0 +1,42 @@
+/* === Design Tokens === */
+
+:root {
+  /* Dark backgrounds */
+  --bg: #0e1117;
+  --bg-subtle: #161b22;
+  --bg-inset: #1c2128;
+  --bg-card: #1c2128;
+  --bg-elevated: #21262d;
+
+  /* Text */
+  --text: #e6edf3;
+  --text-secondary: #8b949e;
+  --text-muted: #484f58;
+
+  /* Borders */
+  --border: #30363d;
+  --border-subtle: #21262d;
+
+  /* Faction accents — colorblind-safe Okabe-Ito palette */
+  --skaal: #D55E00;
+  --grenalia: #009E73;
+  --lucia: #E8B630;
+  --neutral: #A89078;
+  --shadis: #7B7B8E;
+  --archaeon: #0072B2;
+
+  /* Semantic */
+  --positive: #3fb950;
+  --negative: #f85149;
+
+  /* Layout */
+  --max-width: 1200px;
+  --nav-height: 56px;
+  --radius: 8px;
+  --radius-lg: 12px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+}

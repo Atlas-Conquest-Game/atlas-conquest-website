@@ -98,7 +98,7 @@ Gaps identified after initial test suite shipped. These cover the untested glue 
 
 ### Known gaps intentionally NOT tested (would need mocking for low ROI)
 
-- **AWS/DynamoDB**: `get_dynamo_table()`, `scan_all_games()` — requires mocking boto3
-- **Thumbnail generation**: `generate_thumbnails()`, `_resize_image()` — filesystem + PIL dependent
-- **`main()` orchestration**: Integration-level, covered by CI running end-to-end daily
-- **`build_and_write_all()`**: Already validated indirectly by Category C tests checking real JSON output
+- **AWS/DynamoDB**: `get_dynamo_table()`, `scan_all_games()` in `pipeline/io_helpers.py` — requires mocking boto3
+- **Thumbnail generation**: `generate_thumbnails()`, `_resize_image()` in `pipeline/io_helpers.py` — filesystem + PIL dependent
+- **`main()` orchestration** in `pipeline/main.py`: Integration-level, covered by CI running end-to-end daily
+- **`build_and_write_all()`** in `pipeline/main.py`: Already validated indirectly by Category C tests checking real JSON output

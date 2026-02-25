@@ -60,23 +60,27 @@ async function loadJSON(path) {
   }
 }
 
-async function loadAllData() {
-  const [metadata, commanderStats, cardStats, trends, matchups, commanders, gameDistributions, deckComposition, firstTurn, commanderTrends, durationWinrates, actionWinrates, turnWinrates] = await Promise.all([
-    loadJSON('data/metadata.json'),
-    loadJSON('data/commander_stats.json'),
-    loadJSON('data/card_stats.json'),
-    loadJSON('data/trends.json'),
-    loadJSON('data/matchups.json'),
-    loadJSON('data/commanders.json'),
-    loadJSON('data/game_distributions.json'),
-    loadJSON('data/deck_composition.json'),
-    loadJSON('data/first_turn.json'),
-    loadJSON('data/commander_trends.json'),
-    loadJSON('data/duration_winrates.json'),
-    loadJSON('data/action_winrates.json'),
-    loadJSON('data/turn_winrates.json'),
-  ]);
-  return { metadata, commanderStats, cardStats, trends, matchups, commanders, gameDistributions, deckComposition, firstTurn, commanderTrends, durationWinrates, actionWinrates, turnWinrates, commanderCardStats: null, matchupDetails: null };
+const DATA_FILES = {
+  metadata: 'data/metadata.json',
+  commanderStats: 'data/commander_stats.json',
+  cardStats: 'data/card_stats.json',
+  trends: 'data/trends.json',
+  matchups: 'data/matchups.json',
+  commanders: 'data/commanders.json',
+  gameDistributions: 'data/game_distributions.json',
+  deckComposition: 'data/deck_composition.json',
+  firstTurn: 'data/first_turn.json',
+  commanderTrends: 'data/commander_trends.json',
+  durationWinrates: 'data/duration_winrates.json',
+  actionWinrates: 'data/action_winrates.json',
+  turnWinrates: 'data/turn_winrates.json',
+};
+
+async function loadData(keys) {
+  const results = await Promise.all(keys.map(k => loadJSON(DATA_FILES[k])));
+  const data = {};
+  keys.forEach((k, i) => { data[k] = results[i]; });
+  return data;
 }
 
 async function loadCommanderCardStats() {

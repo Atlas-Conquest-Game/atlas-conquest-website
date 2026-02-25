@@ -624,7 +624,8 @@ function renderAll() {
 // ─── Init ───────────────────────────────────────────────────
 
 async function init() {
-  appData = await loadAllData();
+  appData = await loadData(['metadata', 'trends', 'matchups', 'commanderStats',
+                            'commanderTrends', 'firstTurn', 'commanders']);
   renderAll();
   initTimeFilters(renderAll);
   initMapFilters(renderAll);

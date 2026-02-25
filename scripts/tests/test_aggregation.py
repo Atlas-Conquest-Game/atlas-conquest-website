@@ -7,7 +7,7 @@ Core question: is the math right? See docs/TEST_DESIGN.md.
 import pytest
 from helpers import make_clean_game, make_games
 
-from fetch_data import (
+from pipeline.aggregation import (
     aggregate_commander_stats,
     aggregate_matchups,
     aggregate_matchup_details,

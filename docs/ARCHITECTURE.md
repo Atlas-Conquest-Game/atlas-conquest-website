@@ -21,13 +21,25 @@
 - Contains match results, deck lists, card definitions, player data.
 - We never write to this database.
 
-### 2. Data Pipeline (`scripts/`)
-- Python scripts that query AWS and transform raw data into aggregated JSON.
+### 2. Data Pipeline (`scripts/pipeline/`)
+- Python package (`scripts/pipeline/`) that queries AWS and transforms raw data into aggregated JSON.
+- Entry point: `python scripts/fetch_data.py` (thin wrapper that calls `pipeline.main.main()`).
 - Runs in GitHub Actions on a schedule (daily) or manual trigger.
 - Incremental fetching: caches raw games in `raw_games.json`, only pulls new games from DynamoDB.
 - Computes per-period aggregations (all / 6m / 3m / 1m) crossed with per-map breakdowns (All Maps / Dunes / Snowmelt / Tropics): commander stats, matchups, card stats, meta trends, game distribution histograms, per-commander deck composition breakdowns, and first-turn advantage stats.
 - Output nesting: `data[period][map]` for all stat files; flat arrays for reference files (`cards.json`, `commanders.json`).
 - Output: static JSON files committed to `site/data/`.
+
+#### Pipeline Modules
+
+| Module | Role |
+|--------|------|
+| `pipeline/constants.py` | Paths, AWS config, renames, thresholds, PERIODS, MAPS |
+| `pipeline/cleaning.py` | `parse_*`, `normalize_*`, `clean_game()` — data validation & transformation |
+| `pipeline/filtering.py` | `filter_games_by_period()`, `filter_games_by_map()` |
+| `pipeline/aggregation.py` | All 13 `aggregate_*` functions — stats computation |
+| `pipeline/io_helpers.py` | AWS, CSV loading, cache, thumbnails, `write_json()` |
+| `pipeline/main.py` | `build_and_write_all()`, `main()` — orchestration |
 
 ### 3. Data Contract (`site/data/`)
 - Static JSON files are the interface between the pipeline and the frontend.
@@ -61,7 +73,7 @@
 | `js/cards.js` | Card table with stacked sub-line counts, search, sorting, faction filter, commander dropdown, card hover preview |
 | `js/meta.js` | Faction + commander trends charts, matchup heatmap, first-turn commander chart |
 
-Each page loads `shared.js` first (globals, not ES modules), then its page-specific script. All pages share: nav with active state, sticky time/map filter bar, footer.
+Each page loads `shared.js` first (globals, not ES modules), then its page-specific script. All pages share: nav with active state, sticky time/map filter bar, footer. Each page loads only the JSON files it needs via `loadData(keys)` rather than fetching all 13 files.
 
 #### Interactive Features
 - Sortable card table with stacked sub-line counts (raw counts beneath each %), debounced search, commander dropdown, and card hover preview (artwork popup)
@@ -76,7 +88,7 @@ Each page loads `shared.js` first (globals, not ES modules), then its page-speci
 
 ### 5. Asset Pipeline (Thumbnails)
 - Source artwork lives in `Artwork/` (commanders + cards) and `CardScreenshots/` (card previews).
-- The data pipeline (`scripts/fetch_data.py`) generates optimized JPEG thumbnails:
+- The data pipeline (`scripts/pipeline/io_helpers.py`) generates optimized JPEG thumbnails:
   - **Commander art**: `Artwork/<name>.png` → `site/assets/commanders/<slug>.jpg` (400px wide). Only files matching commander names in `StandardFormatCommanders.csv` are processed.
   - **Card previews**: `CardScreenshots/<name>.png` → `site/assets/cards/<slug>.jpg` (600px wide).
 - Thumbnails are only regenerated when the source image is newer than the target (or target is missing).

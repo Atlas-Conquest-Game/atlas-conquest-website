@@ -12,17 +12,14 @@ from pathlib import Path
 import pytest
 from helpers import make_clean_game, make_games
 
-from fetch_data import (
-    filter_games_by_period,
-    filter_games_by_map,
+from pipeline.filtering import filter_games_by_period, filter_games_by_map
+from pipeline.aggregation import (
     aggregate_duration_winrates,
     aggregate_action_winrates,
     aggregate_turn_winrates,
-    load_cache,
-    save_cache,
-    DATA_DIR,
-    RAW_CACHE,
 )
+from pipeline.io_helpers import load_cache, save_cache
+from pipeline.constants import DATA_DIR, RAW_CACHE
 
 
 # ─── E1: Period filtering boundary ───────────────────────────────
@@ -171,8 +168,8 @@ class TestE5_CacheRoundTrip:
     def test_round_trip(self, tmp_path, monkeypatch):
         """Save games to a temp cache, load them back, verify equality."""
         temp_cache = tmp_path / "test_cache.json"
-        monkeypatch.setattr("fetch_data.RAW_CACHE", temp_cache)
-        monkeypatch.setattr("fetch_data.DATA_DIR", tmp_path)
+        monkeypatch.setattr("pipeline.io_helpers.RAW_CACHE", temp_cache)
+        monkeypatch.setattr("pipeline.io_helpers.DATA_DIR", tmp_path)
 
         original_games = make_games(5)
         save_cache(original_games)
@@ -187,7 +184,7 @@ class TestE5_CacheRoundTrip:
 
     def test_empty_cache_returns_empty(self, tmp_path, monkeypatch):
         temp_cache = tmp_path / "nonexistent.json"
-        monkeypatch.setattr("fetch_data.RAW_CACHE", temp_cache)
+        monkeypatch.setattr("pipeline.io_helpers.RAW_CACHE", temp_cache)
 
         games, ids = load_cache()
         assert games == []
@@ -196,7 +193,7 @@ class TestE5_CacheRoundTrip:
     def test_corrupted_cache_returns_empty(self, tmp_path, monkeypatch):
         temp_cache = tmp_path / "bad_cache.json"
         temp_cache.write_text("{corrupted json[[[[")
-        monkeypatch.setattr("fetch_data.RAW_CACHE", temp_cache)
+        monkeypatch.setattr("pipeline.io_helpers.RAW_CACHE", temp_cache)
 
         games, ids = load_cache()
         assert games == []

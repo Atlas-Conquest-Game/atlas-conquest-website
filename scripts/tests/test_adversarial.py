@@ -11,8 +11,8 @@ import json
 import pytest
 from helpers import make_raw_item, make_clean_game, make_games
 
-from fetch_data import (
-    clean_game,
+from pipeline.cleaning import clean_game
+from pipeline.aggregation import (
     aggregate_commander_stats,
     aggregate_matchups,
     aggregate_card_stats,
@@ -169,12 +169,12 @@ class TestD6_MissingPeriod:
     """
 
     def test_all_periods_defined(self):
-        from fetch_data import PERIODS
+        from pipeline.constants import PERIODS
         expected = {"all", "6m", "3m", "1m"}
         assert set(PERIODS.keys()) == expected
 
     def test_all_maps_defined(self):
-        from fetch_data import MAPS
+        from pipeline.constants import MAPS
         expected = ["all", "Dunes", "Snowmelt", "Tropics"]
         assert MAPS == expected
 
@@ -190,7 +190,7 @@ class TestD7_CommanderCasing:
 
     def test_exact_match_required(self):
         """normalize_commander does exact matching — 'captain greenbeard' != 'Captain Greenbeard'."""
-        from fetch_data import normalize_commander
+        from pipeline.cleaning import normalize_commander
         # If someone typed a lowercase commander name, it would NOT be normalized
         result = normalize_commander("captain greenbeard")
         # It's not in COMMANDER_RENAMES, so it passes through unchanged

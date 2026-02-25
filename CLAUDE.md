@@ -12,7 +12,7 @@ A static analytics dashboard for **Atlas Conquest**, a competitive hex-grid deck
 AWS Database → GitHub Actions (daily/manual) → Static JSON → GitHub Pages
 ```
 
-- **Data pipeline**: `scripts/` — Python scripts that connect to AWS, pull match/card/deck data, and write static JSON to `site/data/`.
+- **Data pipeline**: `scripts/pipeline/` — Python package that connects to AWS, pulls match/card/deck data, and writes static JSON to `site/data/`. Entry point: `scripts/fetch_data.py`.
 - **Static site**: `site/` — Vanilla HTML/CSS/JS. Loads JSON data files. No build step.
 - **CI/CD**: `.github/workflows/update-data.yml` — Runs daily via cron and on-demand via workflow_dispatch.
 - **Docs**: `docs/` — System of record for architecture, game rules, design, and data model.

@@ -1,0 +1,564 @@
+/* === Stat Cards === */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  border-color: var(--text-muted);
+  box-shadow: var(--shadow-sm);
+}
+
+.stat-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.stat-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.stat-value-sm {
+  font-size: 1.125rem;
+}
+
+/* === Commander Cards (artwork) === */
+.commander-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.commander-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.commander-card:hover {
+  border-color: var(--text-muted);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.commander-art {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+  background: var(--bg-elevated);
+}
+
+.commander-art-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: var(--bg-elevated);
+}
+
+.commander-card-body {
+  padding: 0.875rem;
+}
+
+.commander-card-name {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  line-height: 1.2;
+  color: var(--text);
+}
+
+.commander-card-stats {
+  margin-top: 0.375rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.commander-card-games {
+  display: block;
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+  margin-top: 0.125rem;
+}
+
+/* === Matchup Heatmap === */
+.matchup-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.matchup-table {
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+  width: auto;
+  min-width: 100%;
+}
+
+.matchup-corner {
+  background: var(--bg-card);
+  position: sticky;
+  left: 0;
+  z-index: 2;
+}
+
+.matchup-col-header {
+  padding: 0.5rem 0.375rem;
+  text-align: center;
+  font-size: 0.625rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.03em;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  white-space: nowrap;
+  height: 180px;
+}
+
+.matchup-row-header {
+  padding: 0.5rem 0.625rem;
+  text-align: right;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  background: var(--bg-card);
+  border-right: 1px solid var(--border);
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+
+.matchup-cell {
+  padding: 0.375rem 0.5rem;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid var(--bg);
+  min-width: 50px;
+  cursor: default;
+  position: relative;
+}
+
+.matchup-favored {
+  background: rgba(0, 158, 115, 0.2);
+  color: #3fb950;
+}
+
+.matchup-unfavored {
+  background: rgba(213, 94, 0, 0.2);
+  color: #f0834a;
+}
+
+.matchup-even {
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+}
+
+.matchup-self {
+  background: var(--bg-subtle);
+  color: var(--text-muted);
+}
+
+.matchup-nodata {
+  background: var(--bg);
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.matchup-count {
+  display: block;
+  font-size: 0.5625rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  line-height: 1;
+  margin-top: 1px;
+}
+
+/* Matchup tooltip */
+.matchup-tooltip {
+  position: fixed;
+  z-index: 1000;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.625rem 0.875rem;
+  box-shadow: var(--shadow-lg);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+  max-width: 260px;
+}
+
+.matchup-tooltip.visible {
+  opacity: 1;
+}
+
+.matchup-tooltip-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+}
+
+.matchup-tooltip-wr {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 0.125rem;
+}
+
+.matchup-tooltip-games {
+  font-size: 0.6875rem;
+  color: var(--text-secondary);
+}
+
+.matchup-legend {
+  display: flex;
+  gap: 1.25rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.6875rem;
+  color: var(--text-secondary);
+}
+
+.legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.legend-favored { background: rgba(0, 158, 115, 0.3); }
+.legend-even { background: var(--bg-elevated); }
+.legend-unfavored { background: rgba(213, 94, 0, 0.3); }
+.legend-nodata { background: var(--bg); border: 1px solid var(--border); }
+
+/* === Filter Bar (faction) === */
+.filter-bar {
+  display: flex;
+  gap: 0.375rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 0.375rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: transparent;
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.filter-btn:hover {
+  border-color: var(--text-secondary);
+  color: var(--text);
+}
+
+.filter-btn.active {
+  background: var(--bg-elevated);
+  border-color: var(--text-secondary);
+  color: var(--text);
+}
+
+.filter-btn[data-faction="skaal"].active {
+  border-color: var(--skaal);
+  color: var(--skaal);
+  background: rgba(213, 94, 0, 0.1);
+}
+
+.filter-btn[data-faction="grenalia"].active {
+  border-color: var(--grenalia);
+  color: var(--grenalia);
+  background: rgba(0, 158, 115, 0.1);
+}
+
+.filter-btn[data-faction="lucia"].active {
+  border-color: var(--lucia);
+  color: var(--lucia);
+  background: rgba(232, 182, 48, 0.1);
+}
+
+.filter-btn[data-faction="neutral"].active {
+  border-color: var(--neutral);
+  color: var(--neutral);
+  background: rgba(168, 144, 120, 0.1);
+}
+
+.filter-btn[data-faction="shadis"].active {
+  border-color: var(--shadis);
+  color: var(--shadis);
+  background: rgba(123, 123, 142, 0.1);
+}
+
+.filter-btn[data-faction="archaeon"].active {
+  border-color: var(--archaeon);
+  color: var(--archaeon);
+  background: rgba(0, 114, 178, 0.1);
+}
+
+/* === Data Table === */
+.table-wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.data-table thead {
+  background: var(--bg-card);
+}
+
+.data-table th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* Sortable headers */
+.data-table th.sortable {
+  cursor: pointer;
+  transition: color 0.15s ease;
+  position: relative;
+  padding-right: 1.75rem;
+}
+
+.data-table th.sortable:hover {
+  color: var(--text);
+}
+
+.data-table th.sortable::after {
+  content: '\21C5';
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.625rem;
+  opacity: 0.3;
+}
+
+.data-table th.sorted-asc::after {
+  content: '\2191';
+  opacity: 1;
+  color: #58a6ff;
+}
+
+.data-table th.sorted-desc::after {
+  content: '\2193';
+  opacity: 1;
+  color: #58a6ff;
+}
+
+.data-table td {
+  padding: 0.625rem 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text);
+}
+
+.data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.data-table tbody tr:hover {
+  background: var(--bg-elevated);
+}
+
+.placeholder-row td {
+  text-align: center;
+  color: var(--text-muted);
+  font-style: italic;
+  padding: 2.5rem 1rem;
+}
+
+/* Faction badge */
+.faction-badge {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.faction-badge.skaal {
+  background: rgba(213, 94, 0, 0.15);
+  color: #f0834a;
+}
+
+.faction-badge.grenalia {
+  background: rgba(0, 158, 115, 0.15);
+  color: #3fb980;
+}
+
+.faction-badge.lucia {
+  background: rgba(232, 182, 48, 0.15);
+  color: #E8B630;
+}
+
+.faction-badge.neutral {
+  background: rgba(168, 144, 120, 0.15);
+  color: #c0a890;
+}
+
+.faction-badge.shadis {
+  background: rgba(123, 123, 142, 0.15);
+  color: #9898aa;
+}
+
+.faction-badge.archaeon {
+  background: rgba(0, 114, 178, 0.15);
+  color: #58a6ff;
+}
+
+/* Winrate coloring */
+.winrate-positive {
+  color: var(--positive);
+  font-weight: 600;
+}
+
+.winrate-negative {
+  color: var(--negative);
+  font-weight: 600;
+}
+
+.winrate-neutral {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* === Charts === */
+.chart-container {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.chart-inner-title {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+/* Small chart grid (3-column for distributions) */
+.chart-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.chart-row-2 {
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 0;
+}
+
+.chart-sm {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+}
+
+.chart-sm-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.75rem;
+}
+
+/* === Winrate Bucket Tables === */
+
+.wr-bucket-table {
+  font-size: 0.8125rem;
+}
+
+.wr-bucket-table th {
+  white-space: nowrap;
+  font-size: 0.75rem;
+}
+
+.wr-cell {
+  text-align: center;
+  font-weight: 500;
+  position: relative;
+  white-space: nowrap;
+}
+
+.wr-cell-count {
+  display: block;
+  font-size: 0.625rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+.wr-high {
+  color: var(--positive);
+}
+
+.wr-low {
+  color: #f0834a;
+}
+
+.wr-even {
+  color: var(--text);
+}
+
+.wr-nodata {
+  color: var(--text-muted);
+}

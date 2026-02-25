@@ -9,7 +9,7 @@ import json
 import pytest
 from helpers import make_raw_item
 
-from fetch_data import clean_game, parse_datetime, parse_players_json, normalize_commander
+from pipeline.cleaning import clean_game, parse_datetime, parse_players_json, normalize_commander
 
 
 # ─── A1: firstPlayer="0" rejected ────────────────────────────────
