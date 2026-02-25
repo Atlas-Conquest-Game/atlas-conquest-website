@@ -59,6 +59,17 @@
   border-color: #388bfd;
 }
 
+/* === Compact card table — tighter padding for 12 columns === */
+
+#card-table th {
+  padding: 0.625rem 0.5rem;
+  padding-right: 1.5rem;
+}
+
+#card-table td {
+  padding: 0.5rem 0.5rem;
+}
+
 /* === De-emphasized table cells and headers === */
 
 .cell-muted {
