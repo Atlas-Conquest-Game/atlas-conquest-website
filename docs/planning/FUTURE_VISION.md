@@ -76,5 +76,16 @@ Both can share the same data pipeline and JSON output format. The split is purel
 ### Real-Time Data Pipeline
 Currently daily batch via GitHub Actions. Future option: stream game results via webhook for near-real-time updates. Would require a lightweight backend (Lambda + API Gateway) but the static JSON contract stays the same.
 
+### Player Pipeline Monitoring & Game Usage Tracking
+Track the health and growth of the player base over time:
+- **Daily/weekly active players**: Unique players per day/week, trended over time. Detect growth, churn, or seasonal patterns.
+- **New vs returning players**: If player IDs are stable, track first-seen dates to distinguish new players from regulars.
+- **Games per day/week**: Volume trends — is the game growing? Are there spikes around events or patches?
+- **Session depth**: How many games does a typical player play per session? Are players playing one game and leaving, or binging?
+- **Peak hours**: When are games being played? Useful for scheduling events or server capacity.
+- **Pipeline health monitoring**: Track data freshness (time since last game), pipeline run success/failure rates, and data completeness (% of games passing `clean_game()` filters). Alert via Discord if the pipeline hasn't seen new data in X days.
+
+This data is already available in `raw_games.json` (datetime + player names). Implementation would add a `player_activity.json` output from the pipeline and a new dashboard section or page.
+
 ### API Layer
 Expose the aggregated data via a simple REST API so community tools (Discord bots, third-party sites) can consume it programmatically. The Discord daily summary bot (`scripts/daily_summary.py`) is a reference implementation — it reads from `raw_games.json` and posts stats to a Discord webhook as part of the existing GitHub Actions pipeline.
