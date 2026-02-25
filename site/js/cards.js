@@ -36,12 +36,15 @@ function renderCardTable(stats) {
           return {
             ...c,
             deck_rate: cc.inclusion_rate,
+            deck_count: cc.games,
             drawn_rate: cc.drawn_rate,
             drawn_winrate: cc.drawn_winrate,
             played_rate: cc.played_rate,
             played_winrate: cc.played_winrate,
             drawn_count: cc.drawn_count,
             played_count: cc.played_count,
+            drawn_instances: cc.drawn_instances,
+            played_instances: cc.played_instances,
             avg_copies: cc.avg_copies,
           };
         })
@@ -105,14 +108,13 @@ function renderCardTable(stats) {
       <td>${winrateCell(c.played_winrate, c.played_count)}</td>
       <td class="cell-muted">${pctCell(c.drawn_rate)}</td>
       <td class="cell-muted">${pctCell(c.played_rate)}</td>
-      <td class="cell-muted">${(c.drawn_count || 0).toLocaleString()}</td>
-      <td class="cell-muted">${(c.played_count || 0).toLocaleString()}</td>
+      <td class="cell-muted">${(c.deck_count || 0).toLocaleString()}</td>
       <td>${(c.avg_copies || 0).toFixed(1)}</td>
     </tr>`;
   }).join('');
 
   if (sorted.length === 0) {
-    tbody.innerHTML = '<tr class="placeholder-row"><td colspan="11">No cards match your filters.</td></tr>';
+    tbody.innerHTML = '<tr class="placeholder-row"><td colspan="10">No cards match your filters.</td></tr>';
   }
 
   updateSortHeaders();

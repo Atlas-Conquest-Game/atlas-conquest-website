@@ -555,6 +555,8 @@ def aggregate_card_stats(games):
         "drawn_count": 0, "drawn_wins": 0,
         "played_count": 0, "played_wins": 0,
         "total_copies": 0,
+        "drawn_instances": 0,
+        "played_instances": 0,
     })
 
     for game in games:
@@ -571,12 +573,14 @@ def aggregate_card_stats(games):
             # Cards drawn
             for c in p["cards_drawn"]:
                 card_data[c["name"]]["drawn_count"] += 1
+                card_data[c["name"]]["drawn_instances"] += c.get("count", 1)
                 if won:
                     card_data[c["name"]]["drawn_wins"] += 1
 
             # Cards played
             for c in p["cards_played"]:
                 card_data[c["name"]]["played_count"] += 1
+                card_data[c["name"]]["played_instances"] += c.get("count", 1)
                 if won:
                     card_data[c["name"]]["played_wins"] += 1
 
@@ -863,6 +867,7 @@ def aggregate_commander_card_stats(games):
         "drawn": 0, "drawn_wins": 0,
         "played": 0, "played_wins": 0,
         "total_copies": 0,
+        "drawn_instances": 0, "played_instances": 0,
     }))
     cmd_games = defaultdict(int)
 
@@ -882,11 +887,13 @@ def aggregate_commander_card_stats(games):
 
             for c in p["cards_drawn"]:
                 stats[cmd][c["name"]]["drawn"] += 1
+                stats[cmd][c["name"]]["drawn_instances"] += c.get("count", 1)
                 if won:
                     stats[cmd][c["name"]]["drawn_wins"] += 1
 
             for c in p["cards_played"]:
                 stats[cmd][c["name"]]["played"] += 1
+                stats[cmd][c["name"]]["played_instances"] += c.get("count", 1)
                 if won:
                     stats[cmd][c["name"]]["played_wins"] += 1
 
@@ -906,6 +913,8 @@ def aggregate_commander_card_stats(games):
                 "played_winrate": round(d["played_wins"] / d["played"], 4) if d["played"] > 0 else None,
                 "drawn_count": d["drawn"],
                 "played_count": d["played"],
+                "drawn_instances": d["drawn_instances"],
+                "played_instances": d["played_instances"],
                 "avg_copies": round(d["total_copies"] / d["deck"], 2) if d["deck"] > 0 else 0,
                 "games": total,
             })
@@ -1198,6 +1207,8 @@ def build_and_write_all(games, cards_csv, commanders_csv):
                     "played_rate": round(data["played_count"] / total_player_games, 4) if total_player_games > 0 else 0,
                     "played_winrate": round(played_wr, 4),
                     "avg_copies": round(data["total_copies"] / data["deck_count"], 2) if data["deck_count"] > 0 else 0,
+                    "drawn_instances": data["drawn_instances"],
+                    "played_instances": data["played_instances"],
                 })
             out["card_stats"][period_key][map_name] = card_stats
 
