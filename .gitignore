@@ -24,3 +24,6 @@ botc/
 
 # Pipeline cache (too large for repo, regenerated on each run)
 site/data/raw_games.json
+
+# Generated artifacts
+scripts/daily_summary.txt

@@ -628,7 +628,7 @@
   font-size: 0.75rem;
   color: var(--text-muted);
   cursor: pointer;
-  margin-left: auto;
+  margin-left: 0.75rem;
 }
 
 .mirror-toggle input {

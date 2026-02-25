@@ -65,6 +65,33 @@ function groupByMonth(dates, arrays) {
   return { dates: months, values: buckets };
 }
 
+function groupByMonthSum(dates, arrays) {
+  // Group parallel arrays by month, summing values (for game counts)
+  const buckets = arrays.map(() => []);
+  let currentMonth = null;
+  let pending = arrays.map(() => []);
+
+  function flush() {
+    for (let a = 0; a < arrays.length; a++) {
+      buckets[a].push(pending[a].reduce((s, v) => s + (v || 0), 0));
+    }
+  }
+
+  for (let i = 0; i < dates.length; i++) {
+    const m = weekToMonth(dates[i]);
+    if (m !== currentMonth) {
+      if (currentMonth !== null) flush();
+      currentMonth = m;
+      pending = arrays.map(() => []);
+    }
+    for (let a = 0; a < arrays.length; a++) {
+      pending[a].push(arrays[a][i]);
+    }
+  }
+  if (currentMonth !== null) flush();
+  return buckets;
+}
+
 // ─── Meta Trends Chart ──────────────────────────────────────
 
 function renderMetaChart(trends) {
@@ -428,15 +455,19 @@ function renderCommanderWinrateTrends(wrTrends) {
   // Apply binning
   let labels = wrTrends.dates;
   const visible = cmdEntries.filter(e => selectedWrCommanders.has(e.name));
-  let chartEntries = visible.map(e => ({ ...e, chartData: e.data }));
+  let chartEntries = visible.map(e => ({ ...e, chartData: e.data, chartGames: e.games }));
 
   if (currentBin['cmd-wr'] === 'month') {
     const grouped = groupByMonth(wrTrends.dates, visible.map(e => e.data));
+    const groupedGames = groupByMonthSum(wrTrends.dates, visible.map(e => e.games));
     labels = grouped.dates;
-    chartEntries = visible.map((e, i) => ({ ...e, chartData: grouped.values[i] }));
+    chartEntries = visible.map((e, i) => ({ ...e, chartData: grouped.values[i], chartGames: groupedGames[i] }));
   }
 
   const datasets = buildColoredDatasets(chartEntries, selectedWrCommanders, factionLookup, { fill: false });
+  // Attach game counts for tooltip access
+  const visibleFiltered = chartEntries.filter(e => selectedWrCommanders.has(e.name));
+  datasets.forEach((ds, i) => { ds.gameData = visibleFiltered[i].chartGames; });
 
   cmdWrTrendsChart = new Chart(canvas, {
     type: 'line',
@@ -454,7 +485,9 @@ function renderCommanderWinrateTrends(wrTrends) {
           ...CHART_TOOLTIP,
           callbacks: { label: ctx => {
             const v = ctx.parsed.y;
-            return v !== null ? `${ctx.dataset.label}: ${v.toFixed(1)}%` : `${ctx.dataset.label}: --`;
+            const games = ctx.dataset.gameData ? ctx.dataset.gameData[ctx.dataIndex] : null;
+            const gameStr = games != null ? ` (${Math.round(games)} games)` : '';
+            return v !== null ? `${ctx.dataset.label}: ${v.toFixed(1)}%${gameStr}` : `${ctx.dataset.label}: --`;
           }},
         },
       },
