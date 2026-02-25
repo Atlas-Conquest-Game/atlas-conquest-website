@@ -212,8 +212,13 @@ class TestD8_ZeroTurns:
         assert clean_game(item) is None
 
     def test_one_turn_rejected(self):
-        """MIN_TURNS is 2, so 1 turn should also be rejected."""
+        """MIN_TURNS is 3, so 1 turn should also be rejected."""
         item = make_raw_item(player2_overrides={"turnsTaken": 1})
+        assert clean_game(item) is None
+
+    def test_two_turns_rejected(self):
+        """MIN_TURNS is 3, so 2 turns should also be rejected."""
+        item = make_raw_item(player2_overrides={"turnsTaken": 2})
         assert clean_game(item) is None
 
 

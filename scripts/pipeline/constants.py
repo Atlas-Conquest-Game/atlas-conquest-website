@@ -41,7 +41,7 @@ CARD_RENAMES = {
 # ─── Thresholds & Configuration ─────────────────────────────────
 
 # Minimum turns per player to count as a real game
-MIN_TURNS = 2
+MIN_TURNS = 3
 
 # Time periods for aggregation: key → days (None = all time)
 PERIODS = {"all": None, "6m": 180, "3m": 90, "1m": 30}

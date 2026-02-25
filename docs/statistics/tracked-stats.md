@@ -127,6 +127,8 @@ When a commander is selected via the dropdown, all stats are scoped to that comm
 |------|--------|-------------|-----------|---------|
 | Weekly commander % | `commander_trends.json` | `commander_games_this_week / total_games_this_week * 100` | 4 games/week | Noisy for less-played commanders |
 
+**UI behavior**: Defaults to the single most popular commander selected. Users toggle commanders on/off via clickable pills above the chart. Each commander renders as a separate line (not stacked area).
+
 ### Commander Matchups (Heatmap)
 
 | Stat | Source | Calculation | Min Sample | Caveats |
@@ -134,6 +136,18 @@ When a commander is selected via the dropdown, all stats are scoped to that comm
 | Matchup winrate | `matchups.json` | `row_wins_vs_col / total_games_between` | 5 (shown as "--" below) | Most matchup pairs have 10-50 games |
 | Game count | `matchups.json` | Total games between the two commanders | 1 | Shown in cell and tooltip |
 | Mirror matches | `matchups.json` | Count of games where both players use same commander | 1 | Diagonal cells; winrate meaningless (always ~50%) |
+
+### Matchup Detail Modal
+
+Opened by clicking a cell in the heatmap. Shows the head-to-head breakdown for a specific commander pair. The modal includes its own time period and map filter bar so users can drill into specific slices without closing the modal.
+
+| Stat | Source | Calculation | Min Sample | Caveats |
+|------|--------|-------------|-----------|---------|
+| Total games | `matchup_details.json` | Count of games between the pair | 1 | |
+| Win/Loss record | `matchup_details.json` | Wins and losses for the row commander | 1 | |
+| Going First WR | `matchup_details.json` | WR when row commander goes first | 5 | Only games with explicit `first_player` (see Data Anomalies below) |
+| Going Second WR | `matchup_details.json` | WR when row commander goes second | 5 | |
+| Top cards (win/loss) | `matchup_details.json` | Most common cards in winning vs losing decks | 3 | Raw counts, not rates |
 
 ### First-Turn Advantage
 
@@ -163,3 +177,38 @@ Data is nested as `data[period][map]`. Smaller slices (e.g., 1M + Tropics) will 
 |------|----------|-------|
 | `cards.json` | Full card catalog (name, faction, type, subtype, cost, art path) | Flat array, not period/map nested |
 | `commanders.json` | Commander list (name, faction, art path) | Flat array |
+
+---
+
+## Pre-Aggregation Filters (Data Cleaning)
+
+Every game from the database passes through `clean_game()` before entering any stat. Games that fail these checks are silently dropped — they never appear in any stat on any page.
+
+| Filter | Condition to **reject** | Why |
+|--------|------------------------|-----|
+| Never started | `firstPlayer = "0"` or `firstPlayer = 0` | Game was created but never began |
+| No players | `players` field is missing, empty, or unparseable JSON | Corrupted database entry |
+| Solo game | `numPlayers < 2` | Practice/tutorial games; not competitive 1v1 |
+| Too short | Either player has `turnsTaken < 3` (MIN_TURNS = 3) | Abandoned or instant-quit games that would pollute winrates. A game where each player takes only 2 turns is too short to be meaningful. |
+
+### Data Anomalies
+
+These are valid games that pass cleaning but behave differently in specific stats:
+
+| Anomaly | Affected field | How it's handled |
+|---------|---------------|-----------------|
+| `firstPlayer = "99"` | First-turn stats | Means "random" or "unknown" — the game client didn't record who went first. The game is **included** in overall win/loss counts but **excluded** from Going First / Going Second breakdowns and first-turn advantage stats. This is why total wins + losses in a matchup may not equal going-first-games + going-second-games. |
+| `firstPlayer = "abc"` or other non-numeric | First-turn stats | Same handling as "99" — game is valid but excluded from first-turn analysis. |
+| Missing `datetime` or `datetimeStarted` | Duration, time filters | Game is still counted in stats but `duration_minutes` is `None`. If `datetimeStarted` is missing, the game won't appear in time-filtered views (1M, 3M, 6M) but will appear in "All". |
+| `winner` field missing | Win/loss attribution | Defaults to `false` — the player is counted as a loser. |
+
+### Commander & Card Name Normalization
+
+Old or misspelled names from earlier versions of the game client are silently renamed during cleaning:
+
+| Raw name in database | Normalized to | Why |
+|---------------------|---------------|-----|
+| `Elber, Jungle Emmisary` | `Elber, Jungle Emissary` | Typo fix in game client |
+| `Layna, Soulcatcher` | `Soultaker Viessa` | Commander was renamed |
+
+The full rename maps are in `scripts/pipeline/constants.py` (`COMMANDER_RENAMES` and `CARD_RENAMES`). Any name not in the map passes through unchanged.

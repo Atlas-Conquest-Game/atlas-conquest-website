@@ -327,6 +327,17 @@
   outline-offset: -2px;
 }
 
+/* === Modal Filter Bar === */
+.modal-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  flex-wrap: wrap;
+  padding: 0.625rem 0;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
 /* === Modal-open state === */
 body.modal-open .time-filter-bar {
   pointer-events: none;

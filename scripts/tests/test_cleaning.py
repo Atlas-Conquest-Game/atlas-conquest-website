@@ -83,7 +83,7 @@ class TestA3_TooFewPlayers:
 # ─── A4: Low turns rejected ──────────────────────────────────────
 
 class TestA4_LowTurns:
-    """Games where either player has fewer than MIN_TURNS (2) turns must be rejected."""
+    """Games where either player has fewer than MIN_TURNS (3) turns must be rejected."""
 
     def test_player1_zero_turns(self):
         item = make_raw_item(player1_overrides={"turnsTaken": 0})
@@ -93,18 +93,26 @@ class TestA4_LowTurns:
         item = make_raw_item(player2_overrides={"turnsTaken": 1})
         assert clean_game(item) is None
 
-    def test_both_at_minimum_accepted(self):
-        """Exactly MIN_TURNS=2 should be accepted."""
+    def test_two_turns_rejected(self):
+        """2 turns per player is too short — should be rejected."""
         item = make_raw_item(
             player1_overrides={"turnsTaken": 2},
             player2_overrides={"turnsTaken": 2},
+        )
+        assert clean_game(item) is None
+
+    def test_both_at_minimum_accepted(self):
+        """Exactly MIN_TURNS=3 should be accepted."""
+        item = make_raw_item(
+            player1_overrides={"turnsTaken": 3},
+            player2_overrides={"turnsTaken": 3},
         )
         result = clean_game(item)
         assert result is not None
 
     def test_string_turns_below_minimum(self):
-        """turnsTaken as string "1" should still be rejected."""
-        item = make_raw_item(player1_overrides={"turnsTaken": "1"})
+        """turnsTaken as string "2" should be rejected with MIN_TURNS=3."""
+        item = make_raw_item(player1_overrides={"turnsTaken": "2"})
         assert clean_game(item) is None
 
 

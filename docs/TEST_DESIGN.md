@@ -13,7 +13,7 @@ The gatekeeper function. Every game passes through here. Returns `None` if inval
 | A1 | Does a game with `firstPlayer="0"` get rejected? | Games that never started leaking into stats |
 | A2 | Does a game with no/empty players data get rejected? | Crash or phantom games from malformed DB entries |
 | A3 | Does a game with `numPlayers < 2` get rejected? | Solo practice games inflating commander stats |
-| A4 | Does a game where either player has `turnsTaken < 2` get rejected? | Instant-quit games polluting winrates |
+| A4 | Does a game where either player has `turnsTaken < 3` get rejected? | Short/abandoned games polluting winrates |
 | A5 | Does `firstPlayer` work as int (1), string ("1"), and unexpected values ("99", "abc")? | **The exact bug we had** — type changes silently broke first-turn data |
 | A6 | Does `winner` work as bool (`True`), string (`"true"`/`"false"`), and missing? | DB type drift silently flipping win/loss attribution |
 | A7 | Do `turnsTaken`, `actionsTaken`, card `Count` coerce from string to int correctly? | String numbers like `"7"` from DynamoDB causing crashes or zero-defaults |

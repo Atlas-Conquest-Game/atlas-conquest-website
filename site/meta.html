@@ -103,7 +103,8 @@
   <section id="commander-trends" class="section">
     <div class="container">
       <h2 class="section-title">Commander Popularity Over Time <span class="tooltip-icon" data-tooltip="Weekly commander pick rate as % of all games played. Shows which commanders are trending up or down.">?</span></h2>
-      <p class="section-desc">Per-commander usage share by week. Track rising and falling commanders in the meta.</p>
+      <p class="section-desc">Per-commander usage share by week. Click commanders to toggle visibility.</p>
+      <div id="cmd-trend-toggles" class="filter-bar"></div>
       <div class="chart-container">
         <canvas id="commander-trends-chart"></canvas>
       </div>
@@ -154,6 +155,21 @@
           <div class="matchup-modal-cmd-name" id="matchup-cmd2-name"></div>
           <span id="matchup-cmd2-faction"></span>
         </div>
+      </div>
+
+      <!-- Modal filter bar -->
+      <div class="modal-filter-bar" id="modal-filter-bar">
+        <span class="filter-label">Period</span>
+        <button class="time-btn modal-time-btn" data-period="1m">1M</button>
+        <button class="time-btn modal-time-btn" data-period="3m">3M</button>
+        <button class="time-btn modal-time-btn" data-period="6m">6M</button>
+        <button class="time-btn modal-time-btn active" data-period="all">All</button>
+        <span class="filter-divider"></span>
+        <span class="filter-label">Map</span>
+        <button class="map-btn modal-map-btn active" data-map="all">All</button>
+        <button class="map-btn modal-map-btn" data-map="Dunes">Dunes</button>
+        <button class="map-btn modal-map-btn" data-map="Snowmelt">Snowmelt</button>
+        <button class="map-btn modal-map-btn" data-map="Tropics">Tropics</button>
       </div>
 
       <div class="matchup-modal-stats" id="matchup-modal-stats"></div>

@@ -13,6 +13,7 @@ let firstTurnChart = null;
 let matchupModalOpen = false;
 let matchupModalCmd1 = null;
 let matchupModalCmd2 = null;
+let selectedCommanders = new Set();
 
 // ─── Meta Trends Chart ──────────────────────────────────────
 
@@ -220,12 +221,14 @@ function initMatchupTooltip() {
 
 function renderCommanderTrends(cmdTrends) {
   const canvas = document.getElementById('commander-trends-chart');
+  const toggleContainer = document.getElementById('cmd-trend-toggles');
   if (!canvas) return;
 
   if (cmdTrendsChart) { cmdTrendsChart.destroy(); cmdTrendsChart = null; }
 
   if (!cmdTrends || !cmdTrends.dates || !cmdTrends.dates.length) {
     canvas.style.display = 'none';
+    if (toggleContainer) toggleContainer.innerHTML = '';
     return;
   }
   canvas.style.display = '';
@@ -246,26 +249,48 @@ function renderCommanderTrends(cmdTrends) {
     }))
     .sort((a, b) => b.avg - a.avg);
 
-  // Use a set of distinguishable colors for lines
-  const LINE_COLORS = [
-    '#58a6ff', '#3fb950', '#f0834a', '#d2a8ff', '#E8B630',
-    '#D55E00', '#009E73', '#f85149', '#A89078', '#79c0ff',
-    '#56d364', '#ffa657', '#bc8cff', '#7ee787', '#ff7b72',
-  ];
+  // Default: select only the most popular commander on first render
+  if (selectedCommanders.size === 0 && cmdEntries.length > 0) {
+    selectedCommanders.add(cmdEntries[0].name);
+  }
 
-  const datasets = cmdEntries.map((cmd, i) => {
+  // Render toggle pills
+  if (toggleContainer) {
+    toggleContainer.innerHTML = cmdEntries.map(cmd => {
+      const faction = factionLookup[cmd.name] || '';
+      const active = selectedCommanders.has(cmd.name) ? ' active' : '';
+      return `<button class="filter-btn${active}" data-faction="${faction}" data-commander="${cmd.name}">${cmd.name}</button>`;
+    }).join('');
+
+    toggleContainer.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const name = btn.dataset.commander;
+        if (selectedCommanders.has(name)) {
+          selectedCommanders.delete(name);
+        } else {
+          selectedCommanders.add(name);
+        }
+        renderCommanderTrends(cmdTrends);
+      });
+    });
+  }
+
+  // Build datasets only for selected commanders
+  const visibleEntries = cmdEntries.filter(cmd => selectedCommanders.has(cmd.name));
+
+  const datasets = visibleEntries.map(cmd => {
     const faction = factionLookup[cmd.name];
-    const color = FACTION_COLORS[faction] || LINE_COLORS[i % LINE_COLORS.length];
+    const color = FACTION_COLORS[faction] || '#58a6ff';
     return {
       label: cmd.name,
       data: cmd.data,
       borderColor: color,
-      backgroundColor: color + '40',
+      backgroundColor: color + '30',
       fill: true,
       tension: 0.3,
-      pointRadius: 0,
-      pointHoverRadius: 4,
-      borderWidth: 1.5,
+      pointRadius: 2,
+      pointHoverRadius: 5,
+      borderWidth: 2,
     };
   });
 
@@ -281,20 +306,19 @@ function renderCommanderTrends(cmdTrends) {
       interaction: { mode: 'index', intersect: false },
       plugins: {
         legend: {
+          display: datasets.length > 1,
           labels: { usePointStyle: true, pointStyle: 'circle', padding: 14, font: { size: 10 } },
         },
         tooltip: {
           ...CHART_TOOLTIP,
           callbacks: {
-            label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y}%`,
+            label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)}%`,
           },
         },
       },
       scales: {
         y: {
-          stacked: true,
-          min: 0,
-          max: 100,
+          beginAtZero: true,
           ticks: { callback: v => v + '%' },
           grid: { color: '#21262d' },
           title: { display: true, text: 'Pick Rate', color: '#8b949e', font: { size: 11 } },
@@ -416,6 +440,16 @@ function buildFactionLookup() {
   return lookup;
 }
 
+function syncModalFilterBar() {
+  // Sync modal filter buttons with global state
+  document.querySelectorAll('.modal-time-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.period === currentPeriod);
+  });
+  document.querySelectorAll('.modal-map-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.map === currentMap);
+  });
+}
+
 async function openMatchupModal(cmd1, cmd2) {
   const details = await loadMatchupDetails();
   if (!details) return;
@@ -430,11 +464,13 @@ async function openMatchupModal(cmd1, cmd2) {
   matchupModalCmd1 = cmd1;
   matchupModalCmd2 = cmd2;
 
+  syncModalFilterBar();
   renderMatchupModalContent(matchup, cmd1, cmd2);
 
   const modal = document.getElementById('matchup-modal');
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
+  document.body.classList.add('modal-open');
 }
 
 function renderMatchupModalContent(matchup, cmd1, cmd2) {
@@ -564,6 +600,7 @@ function closeMatchupModal() {
   if (!modal) return;
   modal.classList.remove('open');
   document.body.style.overflow = '';
+  document.body.classList.remove('modal-open');
   matchupModalOpen = false;
   matchupModalCmd1 = null;
   matchupModalCmd2 = null;
@@ -599,6 +636,28 @@ function initMatchupModal() {
 
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && matchupModalOpen) closeMatchupModal();
+  });
+
+  // Modal filter bar: period buttons
+  document.querySelectorAll('.modal-time-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentPeriod = btn.dataset.period;
+      // Sync global filter bar too
+      document.querySelectorAll('.time-btn').forEach(b => b.classList.toggle('active', b.dataset.period === currentPeriod));
+      syncModalFilterBar();
+      renderAll();
+    });
+  });
+
+  // Modal filter bar: map buttons
+  document.querySelectorAll('.modal-map-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentMap = btn.dataset.map;
+      // Sync global filter bar too
+      document.querySelectorAll('.map-btn:not(.modal-map-btn)').forEach(b => b.classList.toggle('active', b.dataset.map === currentMap));
+      syncModalFilterBar();
+      renderAll();
+    });
   });
 }
 
