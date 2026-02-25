@@ -278,19 +278,26 @@ function renderCommanderTrends(cmdTrends) {
   // Build datasets only for selected commanders
   const visibleEntries = cmdEntries.filter(cmd => selectedCommanders.has(cmd.name));
 
+  // Track per-faction index so same-faction commanders get different shades
+  const factionCounter = {};
+
   const datasets = visibleEntries.map(cmd => {
-    const faction = factionLookup[cmd.name];
-    const color = FACTION_COLORS[faction] || '#58a6ff';
+    const faction = factionLookup[cmd.name] || 'neutral';
+    const baseColor = FACTION_COLORS[faction] || '#58a6ff';
+    // Shift lightness for same-faction commanders: 0%, +15%, +30%, ...
+    const idx = factionCounter[faction] || 0;
+    factionCounter[faction] = idx + 1;
+    const color = idx === 0 ? baseColor : shiftColor(baseColor, idx * 15);
     return {
       label: cmd.name,
       data: cmd.data,
       borderColor: color,
-      backgroundColor: color + '30',
+      backgroundColor: color + '88',
       fill: true,
       tension: 0.3,
-      pointRadius: 2,
-      pointHoverRadius: 5,
-      borderWidth: 2,
+      pointRadius: 0,
+      pointHoverRadius: 4,
+      borderWidth: 1.5,
     };
   });
 
@@ -318,6 +325,7 @@ function renderCommanderTrends(cmdTrends) {
       },
       scales: {
         y: {
+          stacked: true,
           beginAtZero: true,
           ticks: { callback: v => v + '%' },
           grid: { color: '#21262d' },

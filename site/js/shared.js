@@ -132,6 +132,15 @@ function pctCell(rate) {
   return `${(rate * 100).toFixed(1)}%`;
 }
 
+function shiftColor(hex, pct) {
+  // Lighten a hex color by pct% (e.g. 15 = 15% lighter)
+  const num = parseInt(hex.slice(1), 16);
+  const r = Math.min(255, ((num >> 16) & 0xff) + Math.round(255 * pct / 100));
+  const g = Math.min(255, ((num >> 8) & 0xff) + Math.round(255 * pct / 100));
+  const b = Math.min(255, (num & 0xff) + Math.round(255 * pct / 100));
+  return '#' + ((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1);
+}
+
 function commanderSlug(name) {
   return name.toLowerCase().replace(/\s+/g, '-').replace(/[,']/g, '');
 }
