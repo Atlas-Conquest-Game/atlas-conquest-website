@@ -121,13 +121,12 @@ function renderMatchups(matchupData) {
     matchupMap[m.commander][m.opponent] = m;
   });
 
-  const shortName = name => {
-    return name.split(',')[0].split(' ')[0];
-  };
+  // Use name before comma for display (e.g. "Captain Greenbeard", "Lubela")
+  const displayName = name => name.split(',')[0];
 
   const thead = table.querySelector('thead tr');
   thead.innerHTML = '<th class="matchup-corner"></th>' +
-    cmds.map(c => `<th class="matchup-col-header" title="${c}">${shortName(c)}</th>`).join('');
+    cmds.map(c => `<th class="matchup-col-header" title="${c}">${displayName(c)}</th>`).join('');
 
   const tbody = table.querySelector('tbody');
   tbody.innerHTML = cmds.map(row => {
@@ -149,7 +148,7 @@ function renderMatchups(matchupData) {
       return `<td class="matchup-cell ${cls}" data-type="data" data-row="${row}" data-col="${col}" data-wr="${wr}" data-total="${m.total}" data-wins="${m.wins}" data-losses="${m.losses}">${wr}%<span class="matchup-count">${m.total}</span></td>`;
     }).join('');
 
-    return `<tr><th class="matchup-row-header" title="${row}">${shortName(row)}</th>${cells}</tr>`;
+    return `<tr><th class="matchup-row-header" title="${row}">${displayName(row)}</th>${cells}</tr>`;
   }).join('');
 
   initMatchupTooltip();
@@ -264,8 +263,8 @@ function renderCommanderTrends(cmdTrends) {
       label: cmd.name,
       data: cmd.data,
       borderColor: color,
-      backgroundColor: color + '20',
-      fill: false,
+      backgroundColor: color + '40',
+      fill: true,
       tension: 0.3,
       pointRadius: 0,
       pointHoverRadius: 4,
@@ -296,7 +295,9 @@ function renderCommanderTrends(cmdTrends) {
       },
       scales: {
         y: {
+          stacked: true,
           min: 0,
+          max: 100,
           ticks: { callback: v => v + '%' },
           grid: { color: '#21262d' },
           title: { display: true, text: 'Pick Rate', color: '#8b949e', font: { size: 11 } },
@@ -461,8 +462,8 @@ function renderMatchupModalContent(matchup, cmd1, cmd2) {
 
   // Unified stats table
   const statsEl = document.getElementById('matchup-modal-stats');
-  const shortCmd1 = cmd1.split(',')[0].split(' ')[0];
-  const shortCmd2 = cmd2.split(',')[0].split(' ')[0];
+  const shortCmd1 = cmd1.split(',')[0];
+  const shortCmd2 = cmd2.split(',')[0];
 
   const wrPct = (matchup.winrate * 100).toFixed(1);
   const wrNum = matchup.winrate * 100;

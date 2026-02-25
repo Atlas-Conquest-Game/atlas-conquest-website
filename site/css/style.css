@@ -419,14 +419,13 @@ body {
   font-size: 0.625rem;
   font-weight: 600;
   color: var(--text-secondary);
-  text-transform: uppercase;
   letter-spacing: 0.03em;
   background: var(--bg-card);
   border-bottom: 1px solid var(--border);
   writing-mode: vertical-lr;
   transform: rotate(180deg);
   white-space: nowrap;
-  height: 90px;
+  height: 140px;
 }
 
 .matchup-row-header {
