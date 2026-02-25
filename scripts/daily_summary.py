@@ -85,7 +85,7 @@ def build_summary(games):
 def format_discord_message(summary):
     """Format the summary as a Discord embed-style message."""
     if summary["total_games"] == 0:
-        return f"**Daily Update** ({summary['date']})\nNo games recorded yesterday. Data refreshed.\nhttps://rossfw.github.io/atlas-conquest-analytics/"
+        return f"**Daily Update** ({summary['date']})\nNo games recorded yesterday. Data refreshed."
 
     lines = [
         f"**Daily Update** — {summary['date']}",
@@ -101,9 +101,6 @@ def format_discord_message(summary):
         lines.append("**Top Commanders**")
         for i, cmd in enumerate(summary["top_commanders"], 1):
             lines.append(f"{i}. {cmd['name']} — {cmd['picks']} picks ({cmd['winrate']}% WR)")
-
-    lines.append("")
-    lines.append("https://rossfw.github.io/atlas-conquest-analytics/meta.html")
 
     return "\n".join(lines)
 
