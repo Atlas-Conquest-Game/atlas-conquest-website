@@ -10,13 +10,19 @@
 Full per-commander card stats with inclusion rate, drawn/played winrates, avg copies, and raw counts. All cards shown (no limit). Lazy-loaded via `commander_card_stats.json`. Commander dropdown on Cards page.
 
 ### Commander Popularity Trends Over Time
-Per-commander weekly popularity chart on Meta page via `commander_trends.json`.
+Per-commander weekly stacked area chart on Meta page via `commander_trends.json`.
 
 ### Win Rate by Game Duration / Actions / Turns
 Three sortable bucket tables on Commanders page (displayed in order: Turns → Actions → Duration) via `turn_winrates.json`, `action_winrates.json`, `duration_winrates.json`.
 
 ### Card Hover Preview
 Card artwork popup on hovering card name in the card table. Shows 250px card image with flip logic near viewport edges.
+
+### Matchup Detail Modal
+Clickable heatmap cells open a detail popup showing commander portraits, overall win rate, W-L record, first-turn advantage per commander (going first/second), and top 10 cards by played and drawn winrate for each commander in the matchup. Filters update the modal in real-time. Data from `matchup_details.json`.
+
+### Cards Page Condensed Layout
+9-column table with stacked sub-line counts showing raw numbers beneath percentages for verifiability. Low-sample winrates (< 5 games) sink to bottom of sort.
 
 ---
 
@@ -30,6 +36,8 @@ Cards that appear together in winning decks more often than chance. A co-occurre
 
 ### Mulligan Data Analysis
 Leverage mulligan data to surface which cards players keep vs throw back, and how mulligan decisions correlate with winrate. Potential stats: mulligan rate per card, winrate when kept vs mulliganed, average cards mulliganed per commander, and whether aggressive mulliganing correlates with higher winrates for specific commanders or archetypes.
+
+**Blocker**: Mulligan data does not currently exist in the raw game data. `clean_game()` only extracts `cardsDrawn`, `cardsPlayed`, and `cards_in_deck`. Would need game client changes to track cards kept/mulliganed in opening hand.
 
 ---
 
