@@ -412,7 +412,10 @@ function renderCommanderWinrateTrends(wrTrends) {
     selectedWrCommanders.add(cmdEntries[0].name);
   }
 
-  const rerender = () => renderCommanderWinrateTrends(wrTrends);
+  const rerender = () => {
+    const fresh = getPeriodData(appData.commanderWinrateTrends, currentPeriod);
+    renderCommanderWinrateTrends(fresh);
+  };
   buildTogglePills(toggleContainer, cmdEntries, selectedWrCommanders, factionLookup, rerender);
 
   // Wire mirror checkbox
