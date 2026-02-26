@@ -117,6 +117,10 @@
     padding: 1.5rem;
   }
 
+  .modal-kpi-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
   .modal-header {
     flex-direction: column;
     text-align: center;
@@ -152,6 +156,10 @@
 
   .commander-grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .modal-kpi-grid {
+    grid-template-columns: 1fr;
   }
 
   .nav-links {

@@ -206,11 +206,50 @@ function initNavActiveState() {
 
 let modalCharts = {};
 
-function openCommanderModal(cmdName) {
+function modalWinrateClass(rate) {
+  if (rate === null || rate === undefined) return 'winrate-neutral';
+  if (rate > 0.52) return 'winrate-positive';
+  if (rate < 0.48) return 'winrate-negative';
+  return 'winrate-neutral';
+}
+
+function renderModalTopCards(cmdName) {
+  const tbody = document.getElementById('modal-top-cards-body');
+  if (!tbody) return;
+
+  const cardStats = getPeriodData(appData.commanderCardStats, currentPeriod);
+  const cards = cardStats && cardStats[cmdName] ? [...cardStats[cmdName]] : [];
+  const topCards = cards.sort((a, b) => b.inclusion_rate - a.inclusion_rate).slice(0, 15);
+
+  if (!topCards.length) {
+    tbody.innerHTML = '<tr class="placeholder-row"><td colspan="4">No card inclusion data for this commander.</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = topCards.map(card => {
+    const drawnClass = modalWinrateClass(card.drawn_winrate);
+    const playedClass = modalWinrateClass(card.played_winrate);
+    const drawnWr = card.drawn_winrate !== null ? `${(card.drawn_winrate * 100).toFixed(1)}%` : '--';
+    const playedWr = card.played_winrate !== null ? `${(card.played_winrate * 100).toFixed(1)}%` : '--';
+    return `
+      <tr>
+        <td>${card.name}</td>
+        <td>${(card.inclusion_rate * 100).toFixed(1)}%</td>
+        <td><span class="${drawnClass}">${drawnWr}</span></td>
+        <td><span class="${playedClass}">${playedWr}</span></td>
+      </tr>
+    `;
+  }).join('');
+}
+
+async function openCommanderModal(cmdName) {
   const deckComp = getPeriodData(appData.deckComposition, currentPeriod);
   if (!deckComp || !deckComp[cmdName]) return;
 
+  const commanderStats = getPeriodData(appData.commanderStats, currentPeriod) || [];
+  const matchupData = getPeriodData(appData.matchups, currentPeriod);
   const d = deckComp[cmdName];
+  const statRow = commanderStats.find(c => c.name === cmdName);
   const modal = document.getElementById('commander-modal');
   if (!modal) return;
 
@@ -232,13 +271,87 @@ function openCommanderModal(cmdName) {
   document.getElementById('modal-name').textContent = cmdName;
   document.getElementById('modal-faction').innerHTML = factionBadge(d.faction);
   document.getElementById('modal-summary').innerHTML =
-    `<strong>${d.deck_count}</strong> decks analyzed &middot; ` +
+    `<strong>${statRow ? statRow.matches.toLocaleString() : d.deck_count.toLocaleString()}</strong> games &middot; ` +
+    `Overall WR <strong>${statRow ? (statRow.winrate * 100).toFixed(1) : '--'}%</strong> &middot; ` +
     `Avg cost <strong>${d.avg_cost.toFixed(2)}</strong> &middot; ` +
     `Avg <strong>${d.avg_minion_count.toFixed(1)}</strong> minions, <strong>${d.avg_spell_count.toFixed(1)}</strong> spells`;
+
+  el('modal-overall-wr', statRow ? `${(statRow.winrate * 100).toFixed(1)}%` : '--');
+  el('modal-games', statRow ? statRow.matches.toLocaleString() : '--');
+  el('modal-decks', d.deck_count.toLocaleString());
+  el('modal-avg-cost', d.avg_cost.toFixed(2));
+
+  const cardsBody = document.getElementById('modal-top-cards-body');
+  if (cardsBody) {
+    cardsBody.innerHTML = '<tr class="placeholder-row"><td colspan="4">Loading card data...</td></tr>';
+  }
 
   // Destroy existing modal charts
   Object.values(modalCharts).forEach(c => c && c.destroy());
   modalCharts = {};
+
+  // Matchup chart
+  const matchupCanvas = document.getElementById('modal-matchup-chart');
+  if (matchupCanvas && matchupData && matchupData.matchups) {
+    const cmdMatchups = matchupData.matchups
+      .filter(m => m.commander === cmdName && m.opponent !== cmdName && m.total >= 5)
+      .sort((a, b) => b.total - a.total);
+
+    if (cmdMatchups.length) {
+      const labels = cmdMatchups.map(m => m.opponent);
+      const winrates = cmdMatchups.map(m => m.winrate * 100);
+      const colors = cmdMatchups.map(m => (
+        m.winrate > 0.52 ? '#3fb95099' : m.winrate < 0.48 ? '#f8514999' : '#8b949e99'
+      ));
+      const borders = cmdMatchups.map(m => (
+        m.winrate > 0.52 ? '#3fb950' : m.winrate < 0.48 ? '#f85149' : '#8b949e'
+      ));
+
+      modalCharts.matchup = new Chart(matchupCanvas, {
+        type: 'bar',
+        data: {
+          labels,
+          datasets: [{
+            label: 'Winrate',
+            data: winrates,
+            backgroundColor: colors,
+            borderColor: borders,
+            borderWidth: 1,
+            borderRadius: 3,
+          }],
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: true,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              ...CHART_TOOLTIP,
+              callbacks: {
+                label: (ctx) => {
+                  const m = cmdMatchups[ctx.dataIndex];
+                  return `${ctx.parsed.x.toFixed(1)}% (${m.wins}-${m.losses}, ${m.total} games)`;
+                },
+              },
+            },
+          },
+          scales: {
+            x: {
+              beginAtZero: true,
+              max: 100,
+              grid: { color: '#21262d' },
+              title: { display: true, text: 'Winrate %', color: '#8b949e', font: { size: 11 } },
+            },
+            y: {
+              grid: { display: false },
+              ticks: { font: { size: 10 } },
+            },
+          },
+        },
+      });
+    }
+  }
 
   // Cost histogram: all / win / loss
   const costCanvas = document.getElementById('modal-cost-chart');
@@ -372,6 +485,11 @@ function openCommanderModal(cmdName) {
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
   document.body.classList.add('modal-open');
+
+  await loadCommanderCardStats();
+  if (document.getElementById('modal-name') && document.getElementById('modal-name').textContent === cmdName) {
+    renderModalTopCards(cmdName);
+  }
 }
 
 function closeCommanderModal() {

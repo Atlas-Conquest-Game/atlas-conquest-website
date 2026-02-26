@@ -38,7 +38,7 @@ function renderCommanderCards(stats, commanders) {
     const delay = Math.min(i * 0.04, 0.5);
 
     return `
-      <div class="commander-card" style="animation-delay: ${delay}s">
+      <div class="commander-card" data-commander="${c.name}" role="button" tabindex="0" aria-label="Open ${c.name} details" style="animation-delay: ${delay}s">
         ${artHtml}
         <div class="commander-card-body">
           <div class="commander-card-name">${c.name}</div>
@@ -51,6 +51,17 @@ function renderCommanderCards(stats, commanders) {
       </div>
     `;
   }).join('');
+
+  container.querySelectorAll('.commander-card').forEach(card => {
+    const commanderName = card.dataset.commander;
+    card.addEventListener('click', () => openCommanderModal(commanderName));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openCommanderModal(commanderName);
+      }
+    });
+  });
 }
 
 // ─── Winrate Bucket Tables (Duration, Actions & Turns) ──────
@@ -364,7 +375,7 @@ function renderAll() {
 async function init() {
   appData = await loadData(['metadata', 'commanderStats', 'deckComposition',
                             'turnWinrates', 'actionWinrates', 'durationWinrates',
-                            'commanders']);
+                            'matchups', 'commanders']);
   renderAll();
   initTimeFilters(renderAll);
   initMapFilters(renderAll);

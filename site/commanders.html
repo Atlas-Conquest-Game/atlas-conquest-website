@@ -138,6 +138,30 @@
         </div>
       </div>
       <div class="modal-body">
+        <div class="modal-kpi-grid">
+          <div class="modal-kpi-card">
+            <span class="modal-kpi-label">Overall Winrate</span>
+            <span class="modal-kpi-value" id="modal-overall-wr">--</span>
+          </div>
+          <div class="modal-kpi-card">
+            <span class="modal-kpi-label">Games</span>
+            <span class="modal-kpi-value" id="modal-games">--</span>
+          </div>
+          <div class="modal-kpi-card">
+            <span class="modal-kpi-label">Decks Analyzed</span>
+            <span class="modal-kpi-value" id="modal-decks">--</span>
+          </div>
+          <div class="modal-kpi-card">
+            <span class="modal-kpi-label">Average Deck Cost</span>
+            <span class="modal-kpi-value" id="modal-avg-cost">--</span>
+          </div>
+        </div>
+
+        <h3 class="modal-section-title">Winrate vs Other Commanders</h3>
+        <div class="chart-container modal-chart-wide">
+          <canvas id="modal-matchup-chart"></canvas>
+        </div>
+
         <h3 class="modal-section-title">Mana Curve: All Decks vs Wins vs Losses</h3>
         <div class="chart-container modal-chart-wide">
           <canvas id="modal-cost-chart"></canvas>
@@ -151,6 +175,25 @@
             <h3 class="chart-inner-title">Faction Loyalty</h3>
             <canvas id="modal-loyalty-donut"></canvas>
           </div>
+        </div>
+
+        <h3 class="modal-section-title">Top 15 Cards by Inclusion Rate</h3>
+        <div class="table-wrapper modal-top-cards-wrapper">
+          <table class="data-table modal-top-cards-table" id="modal-top-cards-table">
+            <thead>
+              <tr>
+                <th>Card</th>
+                <th>Inclusion</th>
+                <th>Drawn WR</th>
+                <th>Played WR</th>
+              </tr>
+            </thead>
+            <tbody id="modal-top-cards-body">
+              <tr class="placeholder-row">
+                <td colspan="4">Loading card data...</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

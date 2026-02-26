@@ -103,6 +103,50 @@
   margin-bottom: 1.5rem;
 }
 
+.modal-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.modal-kpi-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.625rem 0.75rem;
+}
+
+.modal-kpi-label {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.modal-kpi-value {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-top: 0.25rem;
+}
+
+.modal-top-cards-wrapper {
+  margin-top: 0.25rem;
+}
+
+.modal-top-cards-table td:nth-child(2),
+.modal-top-cards-table td:nth-child(3),
+.modal-top-cards-table td:nth-child(4),
+.modal-top-cards-table th:nth-child(2),
+.modal-top-cards-table th:nth-child(3),
+.modal-top-cards-table th:nth-child(4) {
+  text-align: right;
+}
+
 /* Clickable chart bars */
 .chart-container canvas.clickable {
   cursor: pointer;

@@ -53,6 +53,7 @@
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   overflow: hidden;
+  cursor: pointer;
   transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -60,6 +61,11 @@
   border-color: var(--text-muted);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
+}
+
+.commander-card:focus-visible {
+  outline: 2px solid #58a6ff;
+  outline-offset: 2px;
 }
 
 .commander-art {
