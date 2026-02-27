@@ -29,8 +29,9 @@ See [ARCHITECTURE.md](docs/ARCHITECTURE.md) for the full system design.
 | Cards | `site/cards.html` | `cards.js` | Card stats (deck/draw/play rates and winrates), per-commander breakdown |
 | Meta | `site/meta.html` | `meta.js` | Matchup heatmap, faction/commander popularity and winrate trends, first-turn advantage |
 | Mulligan | `site/mulligan.html` | `mulligan.js` | Opening hand keep rates, normalized keep preference, per-commander mulligan stats |
+| Decks | `site/decks.html` | `decks.js` + `deckcode.js` | Import (decode) and build (encode) deck codes, shareable via URL |
 
-All pages share `site/js/shared.js` (data loading, filters, helper functions).
+Analytics pages share `site/js/shared.js` (data loading, filters, helper functions). The Decks page is standalone (uses `deckcode.js` for the codec and `decks.js` for page logic).
 
 ## Pipeline Modules
 
@@ -51,7 +52,9 @@ All pages share `site/js/shared.js` (data loading, filters, helper functions).
 | [docs/GAME_RULES.md](docs/GAME_RULES.md) | Atlas Conquest game mechanics reference |
 | [docs/DESIGN.md](docs/DESIGN.md) | Frontend design system (colors, typography, components) |
 | [docs/DATA_MODEL.md](docs/DATA_MODEL.md) | JSON data contracts between pipeline and frontend |
-| [docs/planning/FUTURE_VISION.md](docs/planning/FUTURE_VISION.md) | Roadmap and feature ideas |
+| [docs/planning/ANALYTICS_VISION.md](docs/planning/ANALYTICS_VISION.md) | Analytics roadmap and feature ideas |
+| [docs/planning/SITE_VISION.md](docs/planning/SITE_VISION.md) | Unified site roadmap (deck tools, landing page, community) |
+| [docs/planning/DOMAIN_GUIDE.md](docs/planning/DOMAIN_GUIDE.md) | Domain strategy, DNS setup, URL hierarchy guide |
 
 ## Conventions
 

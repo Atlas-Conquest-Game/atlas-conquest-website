@@ -1,6 +1,7 @@
-# Future Vision — Atlas Conquest Analytics
+# Analytics Vision — Atlas Conquest
 
-> Ideas and roadmap for expanding the analytics platform. Organized by effort level and data availability.
+> Roadmap for expanding the analytics platform. Organized by effort level and data availability.
+> For site-wide features (deck tools, landing page, community), see [SITE_VISION.md](SITE_VISION.md).
 
 ---
 

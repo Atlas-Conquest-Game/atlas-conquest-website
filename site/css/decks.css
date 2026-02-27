@@ -1,0 +1,420 @@
+/* === Deck Tools Page === */
+
+/* Mode Tabs */
+.deck-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0;
+}
+
+.deck-tab {
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.deck-tab:hover {
+  color: var(--text);
+}
+
+.deck-tab.active {
+  color: var(--text);
+  border-bottom-color: var(--lucia);
+}
+
+/* Panels */
+.deck-panel {
+  margin-bottom: 24px;
+}
+
+/* Import Area */
+.import-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.import-row {
+  display: flex;
+  gap: 8px;
+}
+
+.import-input {
+  flex: 1;
+  padding: 10px 14px;
+  background: var(--bg-inset);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: monospace;
+  font-size: 0.9rem;
+}
+
+.import-input::placeholder {
+  color: var(--text-muted);
+}
+
+.import-input:focus {
+  outline: none;
+  border-color: var(--lucia);
+}
+
+.import-hint {
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* Buttons */
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, opacity 0.15s;
+}
+
+.btn:active {
+  opacity: 0.85;
+}
+
+.btn-primary {
+  background: var(--lucia);
+  color: #111;
+}
+
+.btn-primary:hover {
+  background: #d4a52a;
+}
+
+.btn-secondary {
+  background: var(--bg-elevated);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  background: var(--border);
+}
+
+/* Build Controls */
+.build-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.build-row {
+  display: flex;
+  gap: 16px;
+}
+
+.build-field {
+  flex: 1;
+}
+
+.build-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.build-select,
+.build-input {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--bg-inset);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.build-select:focus,
+.build-input:focus {
+  outline: none;
+  border-color: var(--lucia);
+}
+
+.build-search-row {
+  position: relative;
+}
+
+.build-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 240px;
+  overflow-y: auto;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 var(--radius) var(--radius);
+  z-index: 100;
+}
+
+.build-suggestion {
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--text);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.build-suggestion:hover {
+  background: var(--bg-inset);
+}
+
+.build-suggestion-faction {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Deck Display */
+.deck-display {
+  margin-top: 8px;
+}
+
+.deck-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.deck-commander-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.deck-commander-art {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius);
+  object-fit: cover;
+  border: 2px solid var(--border);
+}
+
+.deck-name {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+}
+
+.deck-commander {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 2px 0 0 0;
+}
+
+.deck-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Deck Stats */
+.deck-stats {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.deck-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  min-width: 80px;
+}
+
+.deck-stat-value {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.deck-stat-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+}
+
+/* Card List */
+.deck-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.deck-card-row {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  gap: 12px;
+  transition: background 0.1s;
+}
+
+.deck-card-row:hover {
+  background: var(--bg-elevated);
+}
+
+.deck-card-cost {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--lucia);
+  flex-shrink: 0;
+}
+
+.deck-card-name {
+  flex: 1;
+  font-size: 0.9rem;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.deck-card-faction {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.deck-card-count {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+  width: 24px;
+  text-align: center;
+}
+
+.deck-card-remove {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0 4px;
+  line-height: 1;
+}
+
+.deck-card-remove:hover {
+  color: var(--negative);
+}
+
+/* Cost group headers */
+.deck-cost-group {
+  margin-top: 12px;
+}
+
+.deck-cost-group:first-child {
+  margin-top: 0;
+}
+
+.deck-cost-group-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 0;
+  margin-bottom: 2px;
+  font-weight: 600;
+}
+
+/* Error / Message States */
+.deck-message {
+  padding: 16px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--negative);
+  border-radius: var(--radius);
+  color: var(--negative);
+  font-size: 0.9rem;
+}
+
+.deck-message.success {
+  border-color: var(--positive);
+  color: var(--positive);
+}
+
+/* Build Note */
+.build-card-list-note {
+  margin-top: 12px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* Copy feedback */
+.btn.copied {
+  background: var(--positive);
+  color: #111;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .build-row {
+    flex-direction: column;
+  }
+
+  .deck-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .deck-actions {
+    width: 100%;
+  }
+
+  .deck-actions .btn {
+    flex: 1;
+  }
+
+  .import-row {
+    flex-direction: column;
+  }
+}
