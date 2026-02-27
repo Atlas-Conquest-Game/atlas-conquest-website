@@ -1315,9 +1315,9 @@
       {
         "name": "Fael Spiritwalker",
         "faction": "shadis",
-        "matches": 33,
+        "matches": 32,
         "wins": 19,
-        "winrate": 0.5758
+        "winrate": 0.5938
       },
       {
         "name": "Kai, Longcount Shaman",
@@ -1357,9 +1357,9 @@
       {
         "name": "Newhaven Township",
         "faction": "neutral",
-        "matches": 17,
-        "wins": 8,
-        "winrate": 0.4706
+        "matches": 15,
+        "wins": 6,
+        "winrate": 0.4
       },
       {
         "name": "Elyse of the Order",
@@ -1385,9 +1385,9 @@
       {
         "name": "Executor Ginn",
         "faction": "lucia",
-        "matches": 10,
+        "matches": 9,
         "wins": 6,
-        "winrate": 0.6
+        "winrate": 0.6667
       },
       {
         "name": "Elber, Jungle Emissary",
@@ -1534,13 +1534,6 @@
         "winrate": 0.6667
       },
       {
-        "name": "Fael Spiritwalker",
-        "faction": "shadis",
-        "matches": 10,
-        "wins": 7,
-        "winrate": 0.7
-      },
-      {
         "name": "It That Weaves",
         "faction": "archaeon",
         "matches": 9,
@@ -1548,11 +1541,11 @@
         "winrate": 0.3333
       },
       {
-        "name": "Newhaven Township",
-        "faction": "neutral",
-        "matches": 8,
-        "wins": 3,
-        "winrate": 0.375
+        "name": "Fael Spiritwalker",
+        "faction": "shadis",
+        "matches": 9,
+        "wins": 7,
+        "winrate": 0.7778
       },
       {
         "name": "Lubela, Tender of the Wilds",
@@ -1560,6 +1553,13 @@
         "matches": 6,
         "wins": 4,
         "winrate": 0.6667
+      },
+      {
+        "name": "Newhaven Township",
+        "faction": "neutral",
+        "matches": 6,
+        "wins": 1,
+        "winrate": 0.1667
       },
       {
         "name": "Kai, Longcount Shaman",
@@ -1574,13 +1574,6 @@
         "matches": 4,
         "wins": 3,
         "winrate": 0.75
-      },
-      {
-        "name": "Executor Ginn",
-        "faction": "lucia",
-        "matches": 3,
-        "wins": 1,
-        "winrate": 0.3333
       },
       {
         "name": "Macks Speed",
@@ -1599,6 +1592,13 @@
       {
         "name": "Captain Greenbeard",
         "faction": "skaal",
+        "matches": 2,
+        "wins": 1,
+        "winrate": 0.5
+      },
+      {
+        "name": "Executor Ginn",
+        "faction": "lucia",
         "matches": 2,
         "wins": 1,
         "winrate": 0.5
