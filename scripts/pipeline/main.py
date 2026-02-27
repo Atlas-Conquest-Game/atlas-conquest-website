@@ -21,6 +21,8 @@ from pipeline.aggregation import (
     aggregate_game_distributions,
     aggregate_deck_composition,
     aggregate_commander_winrate_trends,
+    aggregate_mulligan_stats,
+    aggregate_commander_mulligan_stats,
 )
 from pipeline.io_helpers import (
     load_cache, save_cache, write_json,
@@ -40,6 +42,7 @@ def build_and_write_all(games, cards_csv, commanders_csv):
     faction_lookup = {c["name"]: c["faction"] for c in commanders_csv}
     card_info = {c["name"]: {"faction": c["faction"], "type": c["type"], "cost": c.get("cost")} for c in cards_csv}
     cmd_faction = {c["name"]: c["faction"] for c in commanders_csv}
+    intellect_lookup = {c["name"]: c["intellect"] for c in commanders_csv}
 
     # Reference data (no time/map filtering)
     write_json("cards.json", cards_csv)
@@ -62,6 +65,8 @@ def build_and_write_all(games, cards_csv, commanders_csv):
         "turn_wr": {},
         "cmd_card_stats": {},
         "cmd_wr_trends": {},
+        "mulligan_stats": {},
+        "cmd_mulligan_stats": {},
     }
 
     for period_key, days in PERIODS.items():
@@ -210,6 +215,42 @@ def build_and_write_all(games, cards_csv, commanders_csv):
             # ── per-commander card stats ──
             out["cmd_card_stats"][period_key][map_name] = aggregate_commander_card_stats(map_games)
 
+            # ── mulligan stats ──
+            mull_data, mull_player_games = aggregate_mulligan_stats(map_games, intellect_lookup)
+            mulligan_list = []
+            for name, data in sorted(mull_data.items(),
+                                     key=lambda x: x[1]["kept_count"] + x[1]["returned_count"],
+                                     reverse=True):
+                total_seen = data["kept_count"] + data["returned_count"]
+                if total_seen == 0:
+                    continue
+                keep_wr = round(data["kept_wins"] / data["kept_count"], 4) if data["kept_count"] > 0 else None
+                return_wr = round(data["returned_wins"] / data["returned_count"], 4) if data["returned_count"] > 0 else None
+                wr_delta = None
+                if keep_wr is not None and return_wr is not None:
+                    wr_delta = round(keep_wr - return_wr, 4)
+                keep_rate = round(data["kept_count"] / total_seen, 4)
+                norm_delta = None
+                if data["appearances"] > 0:
+                    expected_rate = data["expected_sum"] / data["appearances"]
+                    norm_delta = round(keep_rate - expected_rate, 4)
+                mulligan_list.append({
+                    "name": name,
+                    "kept_count": data["kept_count"],
+                    "returned_count": data["returned_count"],
+                    "total_seen": total_seen,
+                    "keep_rate": keep_rate,
+                    "norm_keep_delta": norm_delta,
+                    "keep_winrate": keep_wr,
+                    "return_winrate": return_wr,
+                    "winrate_delta": wr_delta,
+                    "mulligan_games": mull_player_games,
+                })
+            out["mulligan_stats"][period_key][map_name] = mulligan_list
+
+            # ── per-commander mulligan stats ──
+            out["cmd_mulligan_stats"][period_key][map_name] = aggregate_commander_mulligan_stats(map_games, intellect_lookup)
+
     # Write all period×map-nested files
     write_json("metadata.json", out["metadata"])
     write_json("commander_stats.json", out["commander_stats"])
@@ -226,6 +267,8 @@ def build_and_write_all(games, cards_csv, commanders_csv):
     write_json("turn_winrates.json", out["turn_wr"])
     write_json("commander_card_stats.json", out["cmd_card_stats"])
     write_json("commander_winrate_trends.json", out["cmd_wr_trends"])
+    write_json("mulligan_stats.json", out["mulligan_stats"])
+    write_json("commander_mulligan_stats.json", out["cmd_mulligan_stats"])
 
 
 def main():

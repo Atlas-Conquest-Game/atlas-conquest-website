@@ -148,6 +148,24 @@ def clean_game(raw_item, skip_log=None):
             if name:
                 cards_played.append({"name": name, "count": count})
 
+        mulligan_kept = []
+        for c in p.get("mulliganKept", []):
+            name = normalize_card(c.get("CardName", ""))
+            count = c.get("Count", 1)
+            if isinstance(count, str):
+                count = int(count) if count.isdigit() else 1
+            if name:
+                mulligan_kept.append({"name": name, "count": count})
+
+        mulligan_returned = []
+        for c in p.get("mulliganReturned", []):
+            name = normalize_card(c.get("CardName", ""))
+            count = c.get("Count", 1)
+            if isinstance(count, str):
+                count = int(count) if count.isdigit() else 1
+            if name:
+                mulligan_returned.append({"name": name, "count": count})
+
         clean_players.append({
             "name": p.get("name", "Unknown"),
             "winner": winner,
@@ -158,6 +176,8 @@ def clean_game(raw_item, skip_log=None):
             "cards_in_deck": cards_in_deck,
             "cards_drawn": cards_drawn,
             "cards_played": cards_played,
+            "mulligan_kept": mulligan_kept,
+            "mulligan_returned": mulligan_returned,
         })
 
     # Compute duration in minutes

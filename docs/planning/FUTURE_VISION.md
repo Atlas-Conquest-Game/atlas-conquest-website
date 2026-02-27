@@ -19,9 +19,15 @@ Group decks by similarity (e.g., Jaccard index on card lists) to identify archet
 Cards that appear together in winning decks more often than chance. A co-occurrence matrix filtered by winrate delta would surface natural synergy pairs (e.g., "Card A + Card B together = +8% WR").
 
 ### Mulligan Data Analysis
-Leverage mulligan data to surface which cards players keep vs throw back, and how mulligan decisions correlate with winrate. Potential stats: mulligan rate per card, winrate when kept vs mulliganed, average cards mulliganed per commander, and whether aggressive mulliganing correlates with higher winrates for specific commanders or archetypes.
+Mulligan data (`mulliganKept` and `mulliganReturned`) is now captured in game data and surfaced on a dedicated Mulligan page. Phase 1 tracks keep rate, keep winrate, return winrate, and winrate delta per card — globally and per-commander. Count-weighted for duplicate copies in opening hands.
 
-**Blocker**: Mulligan data does not currently exist in the raw game data. `clean_game()` only extracts `cardsDrawn`, `cardsPlayed`, and `cards_in_deck`. Would need game client changes to track cards kept/mulliganed in opening hand.
+**Phase 2 ideas:**
+- Bayesian shrinkage (Beta-Binomial with weak prior) for small-sample keep-rate estimates
+- Wilson score confidence intervals displayed as error bars
+- Average cards mulliganed per commander (mulligan aggressiveness metric)
+- Mulligan-specific trends over time (are players learning which cards to keep?)
+- Card synergy analysis: which pairs of cards are kept together most often?
+- Auto-mulligan recommender based on aggregate keep-rate data
 
 ---
 

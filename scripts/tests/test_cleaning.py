@@ -320,7 +320,8 @@ class TestA10_OutputShape:
         result = clean_game(item)
 
         player_keys = {"name", "winner", "commander", "deck_name", "turns", "actions",
-                       "cards_in_deck", "cards_drawn", "cards_played"}
+                       "cards_in_deck", "cards_drawn", "cards_played",
+                       "mulligan_kept", "mulligan_returned"}
         for p in result["players"]:
             assert set(p.keys()) == player_keys
 

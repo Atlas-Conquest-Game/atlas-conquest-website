@@ -771,3 +771,150 @@ def aggregate_deck_composition(games, card_info, cmd_faction):
         }
 
     return result
+
+
+def aggregate_mulligan_stats(games, intellect_lookup=None):
+    """Compute per-card mulligan keep rate and winrate impact.
+
+    Count-weighted: if a player keeps 2 copies of a card, that's 2 kept instances.
+    Only counts games where mulligan data exists.
+
+    When intellect_lookup is provided (commander name -> intellect int),
+    computes a normalized keep delta that removes commander/turn-order bias.
+    Turn order is inferred from kept count: 3 = first player, 4 = second.
+    Expected keep rate per card = cards_to_keep / intellect.
+
+    Returns (card_data dict, total_player_games_with_mulligan).
+    """
+    if not games:
+        return {}, 0
+
+    card_data = defaultdict(lambda: {
+        "kept_count": 0, "kept_wins": 0,
+        "returned_count": 0, "returned_wins": 0,
+        "expected_sum": 0.0, "appearances": 0,
+    })
+    total_mulligan_games = 0
+
+    for game in games:
+        for p in game["players"]:
+            kept = p.get("mulligan_kept", [])
+            returned = p.get("mulligan_returned", [])
+            if not kept and not returned:
+                continue
+            total_mulligan_games += 1
+            won = p["winner"]
+            cmd = p.get("commander", "")
+
+            # Compute expected keep rate for this hand
+            cards_to_keep = sum(c.get("count", 1) for c in kept)
+            intellect = intellect_lookup.get(cmd) if intellect_lookup else None
+            expected_rate = cards_to_keep / intellect if intellect else None
+
+            for c in kept:
+                count = c.get("count", 1)
+                card_data[c["name"]]["kept_count"] += count
+                if won:
+                    card_data[c["name"]]["kept_wins"] += count
+                if expected_rate is not None:
+                    card_data[c["name"]]["expected_sum"] += expected_rate * count
+                    card_data[c["name"]]["appearances"] += count
+
+            for c in returned:
+                count = c.get("count", 1)
+                card_data[c["name"]]["returned_count"] += count
+                if won:
+                    card_data[c["name"]]["returned_wins"] += count
+                if expected_rate is not None:
+                    card_data[c["name"]]["expected_sum"] += expected_rate * count
+                    card_data[c["name"]]["appearances"] += count
+
+    return card_data, total_mulligan_games
+
+
+def aggregate_commander_mulligan_stats(games, intellect_lookup=None):
+    """Compute per-commander per-card mulligan stats.
+
+    When intellect_lookup is provided, computes normalized keep delta.
+    Returns dict: commander -> list of card mulligan stats sorted by total_seen.
+    """
+    if not games:
+        return {}
+
+    stats = defaultdict(lambda: defaultdict(lambda: {
+        "kept": 0, "kept_wins": 0,
+        "returned": 0, "returned_wins": 0,
+        "expected_sum": 0.0, "appearances": 0,
+    }))
+    cmd_mulligan_games = defaultdict(int)
+
+    for game in games:
+        for p in game["players"]:
+            cmd = p["commander"]
+            if not cmd:
+                continue
+            kept = p.get("mulligan_kept", [])
+            returned = p.get("mulligan_returned", [])
+            if not kept and not returned:
+                continue
+            cmd_mulligan_games[cmd] += 1
+            won = p["winner"]
+
+            cards_to_keep = sum(c.get("count", 1) for c in kept)
+            intellect = intellect_lookup.get(cmd) if intellect_lookup else None
+            expected_rate = cards_to_keep / intellect if intellect else None
+
+            for c in kept:
+                count = c.get("count", 1)
+                stats[cmd][c["name"]]["kept"] += count
+                if won:
+                    stats[cmd][c["name"]]["kept_wins"] += count
+                if expected_rate is not None:
+                    stats[cmd][c["name"]]["expected_sum"] += expected_rate * count
+                    stats[cmd][c["name"]]["appearances"] += count
+
+            for c in returned:
+                count = c.get("count", 1)
+                stats[cmd][c["name"]]["returned"] += count
+                if won:
+                    stats[cmd][c["name"]]["returned_wins"] += count
+                if expected_rate is not None:
+                    stats[cmd][c["name"]]["expected_sum"] += expected_rate * count
+                    stats[cmd][c["name"]]["appearances"] += count
+
+    result = {}
+    for cmd, cards in stats.items():
+        total = cmd_mulligan_games[cmd]
+        if total == 0:
+            continue
+        card_list = []
+        for name, d in cards.items():
+            total_seen = d["kept"] + d["returned"]
+            if total_seen == 0:
+                continue
+            keep_rate = round(d["kept"] / total_seen, 4)
+            keep_wr = round(d["kept_wins"] / d["kept"], 4) if d["kept"] > 0 else None
+            return_wr = round(d["returned_wins"] / d["returned"], 4) if d["returned"] > 0 else None
+            wr_delta = None
+            if keep_wr is not None and return_wr is not None:
+                wr_delta = round(keep_wr - return_wr, 4)
+            norm_delta = None
+            if d["appearances"] > 0:
+                expected_rate = d["expected_sum"] / d["appearances"]
+                norm_delta = round(keep_rate - expected_rate, 4)
+            card_list.append({
+                "name": name,
+                "kept_count": d["kept"],
+                "returned_count": d["returned"],
+                "total_seen": total_seen,
+                "keep_rate": keep_rate,
+                "norm_keep_delta": norm_delta,
+                "keep_winrate": keep_wr,
+                "return_winrate": return_wr,
+                "winrate_delta": wr_delta,
+                "games": total,
+            })
+        card_list.sort(key=lambda x: x["total_seen"], reverse=True)
+        result[cmd] = card_list
+
+    return result

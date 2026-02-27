@@ -75,6 +75,7 @@ const DATA_FILES = {
   actionWinrates: 'data/action_winrates.json',
   turnWinrates: 'data/turn_winrates.json',
   commanderWinrateTrends: 'data/commander_winrate_trends.json',
+  mulliganStats: 'data/mulligan_stats.json',
 };
 
 async function loadData(keys) {
@@ -94,6 +95,12 @@ async function loadMatchupDetails() {
   if (appData.matchupDetails) return appData.matchupDetails;
   appData.matchupDetails = await loadJSON('data/matchup_details.json');
   return appData.matchupDetails;
+}
+
+async function loadCommanderMulliganStats() {
+  if (appData.commanderMulliganStats) return appData.commanderMulliganStats;
+  appData.commanderMulliganStats = await loadJSON('data/commander_mulligan_stats.json');
+  return appData.commanderMulliganStats;
 }
 
 // ─── Helpers ────────────────────────────────────────────────
@@ -131,6 +138,36 @@ function winrateCell(rate, count) {
 
 function pctCell(rate) {
   return `${(rate * 100).toFixed(1)}%`;
+}
+
+function winrateDeltaCell(delta, totalSeen) {
+  if (totalSeen !== undefined && totalSeen < 30) {
+    return `<span class="winrate-neutral">--</span>`;
+  }
+  if (delta == null) {
+    return `<span class="winrate-neutral">--</span>`;
+  }
+  const pct = (delta * 100).toFixed(1);
+  const sign = delta > 0 ? '+' : '';
+  let cls = 'winrate-neutral';
+  if (delta > 0.02) cls = 'winrate-positive';
+  else if (delta < -0.02) cls = 'winrate-negative';
+  return `<span class="${cls}">${sign}${pct}%</span>`;
+}
+
+function normKeepDeltaCell(delta, totalSeen) {
+  if (totalSeen !== undefined && totalSeen < 30) {
+    return `<span class="winrate-neutral">--</span><div class="cell-sub">low sample</div>`;
+  }
+  if (delta == null) {
+    return `<span class="winrate-neutral">--</span>`;
+  }
+  const pct = (delta * 100).toFixed(1);
+  const sign = delta > 0 ? '+' : '';
+  let cls = 'winrate-neutral';
+  if (delta > 0.03) cls = 'winrate-positive';
+  else if (delta < -0.03) cls = 'winrate-negative';
+  return `<span class="${cls}">${sign}${pct}%</span>`;
 }
 
 function shiftColor(hex, pct) {
