@@ -36,6 +36,8 @@ Mulligan data (`mulliganKept` and `mulliganReturned`) is now captured in game da
 ### Patch Impact Reports
 Before/after winrate comparisons around patch dates. Automatically flag commanders or cards with statistically significant winrate shifts post-patch.
 
+**Upcoming**: The game client will soon include a **version attribute** in game logs. Once available, the pipeline can use this to split data by game version instead of relying on date-based heuristics for patch boundaries. This will enable precise before/after comparisons and version-tagged stats.
+
 ### Balance Health Metrics
 - **Matchup Skew Score**: How polarized is the matchup table? A healthy meta has most matchups near 50%.
 - **Card Inclusion Outliers**: Cards that appear in >80% of a faction's decks may be auto-includes worth examining.
