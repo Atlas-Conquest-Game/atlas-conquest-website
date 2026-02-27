@@ -16,22 +16,30 @@
   <link rel="stylesheet" href="css/tooltips.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
 </head>
-<body>
+<body class="has-sub-nav">
 
   <!-- Navigation -->
   <nav class="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">Atlas Conquest</a>
       <div class="nav-links">
-        <a href="index.html" class="nav-link">Overview</a>
-        <a href="commanders.html" class="nav-link">Commanders</a>
-        <a href="cards.html" class="nav-link">Cards</a>
-        <a href="meta.html" class="nav-link">Meta</a>
-        <a href="mulligan.html" class="nav-link">Mulligan</a>
-        <a href="decks.html" class="nav-link">Decks</a>
+        <a href="index.html" class="nav-link" data-nav="home">Home</a>
+        <a href="analytics.html" class="nav-link" data-nav="analytics">Analytics</a>
+        <a href="decks.html" class="nav-link" data-nav="decks">Decks</a>
       </div>
     </div>
   </nav>
+
+  <!-- Analytics Sub-Navigation -->
+  <div class="sub-nav">
+    <div class="container sub-nav-inner">
+      <a href="analytics.html" class="sub-nav-link">Overview</a>
+      <a href="commanders.html" class="sub-nav-link">Commanders</a>
+      <a href="cards.html" class="sub-nav-link">Cards</a>
+      <a href="meta.html" class="sub-nav-link">Meta</a>
+      <a href="mulligan.html" class="sub-nav-link">Mulligan</a>
+    </div>
+  </div>
 
   <!-- Hero (compact) -->
   <header class="hero hero-compact">

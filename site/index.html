@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Atlas Conquest Analytics</title>
+  <title>Atlas Conquest</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -11,10 +11,8 @@
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/modals.css">
   <link rel="stylesheet" href="css/responsive.css">
-  <link rel="stylesheet" href="css/tooltips.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+  <link rel="stylesheet" href="css/landing.css">
 </head>
 <body>
 
@@ -23,115 +21,163 @@
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">Atlas Conquest</a>
       <div class="nav-links">
-        <a href="index.html" class="nav-link">Overview</a>
-        <a href="commanders.html" class="nav-link">Commanders</a>
-        <a href="cards.html" class="nav-link">Cards</a>
-        <a href="meta.html" class="nav-link">Meta</a>
-        <a href="mulligan.html" class="nav-link">Mulligan</a>
-        <a href="decks.html" class="nav-link">Decks</a>
+        <a href="index.html" class="nav-link" data-nav="home">Home</a>
+        <a href="analytics.html" class="nav-link" data-nav="analytics">Analytics</a>
+        <a href="decks.html" class="nav-link" data-nav="decks">Decks</a>
       </div>
     </div>
   </nav>
 
   <!-- Hero -->
-  <header class="hero">
+  <header class="landing-hero">
     <div class="container">
-      <p class="hero-label">Game Analytics</p>
-      <h1 class="hero-title">Atlas Conquest</h1>
-      <p class="hero-subtitle">Tracking the metagame across every match, deck, and commander.</p>
-      <div class="hero-meta">
-        <span class="hero-stat" id="hero-matches">-- matches</span>
-        <span class="hero-divider"></span>
-        <span class="hero-stat" id="hero-updated">Last updated: --</span>
+      <h1 class="landing-hero-title">Atlas Conquest</h1>
+      <p class="landing-hero-tagline">A competitive hex-grid deck builder. Build your army, claim the board, defeat the enemy commander.</p>
+      <div class="landing-hero-actions">
+        <a href="https://discord.gg/7QaEY4yJH5" class="btn btn-primary" target="_blank" rel="noopener">Join Discord</a>
+        <a href="analytics.html" class="btn btn-secondary">View Analytics</a>
+        <a href="decks.html" class="btn btn-secondary">Deck Tools</a>
+      </div>
+      <div class="landing-stats">
+        <div class="landing-stat">
+          <div class="landing-stat-value">17</div>
+          <div class="landing-stat-label">Commanders</div>
+        </div>
+        <div class="landing-stat">
+          <div class="landing-stat-value">287+</div>
+          <div class="landing-stat-label">Cards</div>
+        </div>
+        <div class="landing-stat">
+          <div class="landing-stat-value">3</div>
+          <div class="landing-stat-label">Maps</div>
+        </div>
+        <div class="landing-stat">
+          <div class="landing-stat-value">3,000+</div>
+          <div class="landing-stat-label">Matches Tracked</div>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- Time Filter -->
-  <div class="time-filter-bar" id="time-filter-bar">
-    <div class="container time-filter-inner">
-      <span class="filter-label">Period</span>
-      <button class="time-btn" data-period="1m">1M</button>
-      <button class="time-btn" data-period="3m">3M</button>
-      <button class="time-btn" data-period="6m">6M</button>
-      <button class="time-btn active" data-period="all">All</button>
-      <span class="filter-divider"></span>
-      <span class="filter-label">Map</span>
-      <button class="map-btn active" data-map="all">All Maps</button>
-      <button class="map-btn" data-map="Dunes">Dunes</button>
-      <button class="map-btn" data-map="Snowmelt">Snowmelt</button>
-      <button class="map-btn" data-map="Tropics">Tropics</button>
-    </div>
-  </div>
-
-  <!-- Overview Section -->
-  <section id="overview" class="section">
+  <!-- How It Works -->
+  <section class="section">
     <div class="container">
-      <h2 class="section-title">Overview</h2>
-      <div class="card-grid">
-        <div class="stat-card">
-          <span class="stat-label">Total Matches <span class="tooltip-icon" data-tooltip="1v1 games tracked in the selected time period.">?</span></span>
-          <span class="stat-value" id="stat-matches">--</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-label">Unique Cards Played <span class="tooltip-icon" data-tooltip="Distinct cards appearing in at least one game.">?</span></span>
-          <span class="stat-value" id="stat-cards">--</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-label">Most Popular Commander</span>
-          <span class="stat-value stat-value-sm" id="stat-top-commander">--</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-label">Highest Winrate</span>
-          <span class="stat-value stat-value-sm" id="stat-best-wr">--</span>
-        </div>
+      <div class="landing-about">
+        <h2 class="section-title">How It Works</h2>
+        <p>Build a 40-card deck led by a commander. Play minions on a hex-grid board, cast spells, claim tiles for mana, and defeat the enemy commander to win. Every commander has unique abilities, stats, and a patron faction that determines which cards you can play.</p>
       </div>
+    </div>
+  </section>
 
-      <!-- Distribution Charts -->
-      <div class="chart-row" id="distribution-charts">
-        <div class="chart-sm">
-          <h3 class="chart-sm-title">Game Duration (min) <span class="tooltip-icon" data-tooltip="Distribution of game length in minutes.">?</span></h3>
-          <canvas id="dist-duration"></canvas>
-        </div>
-        <div class="chart-sm">
-          <h3 class="chart-sm-title">Turns per Game <span class="tooltip-icon" data-tooltip="Total turns (both players) per game.">?</span></h3>
-          <canvas id="dist-turns"></canvas>
-        </div>
-        <div class="chart-sm">
-          <h3 class="chart-sm-title">Actions per Game <span class="tooltip-icon" data-tooltip="Total actions (plays, attacks, moves) per game.">?</span></h3>
-          <canvas id="dist-actions"></canvas>
-        </div>
-      </div>
-
-      <!-- First-Turn Advantage -->
-      <div id="first-turn-section" class="first-turn-section">
-        <h3 class="chart-sm-title" style="margin-bottom: 0.75rem;">First-Turn Advantage <span class="tooltip-icon" data-tooltip="Win rate of the player who goes first. Only includes games where first player is explicitly recorded (excludes random/unknown).">?</span></h3>
-        <div class="card-grid" style="max-width: 500px;">
-          <div class="stat-card">
-            <span class="stat-label">First-Player Win Rate</span>
-            <span class="stat-value" id="ft-winrate">--</span>
+  <!-- Factions -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Factions</h2>
+      <p class="section-desc">Six patron gods, each with their own playstyle and card pool.</p>
+      <div class="faction-grid">
+        <div class="faction-card" style="border-top: 3px solid var(--skaal);">
+          <div class="faction-card-header">
+            <div class="faction-color-dot" style="background: var(--skaal);"></div>
+            <span class="faction-card-name">Skaal</span>
           </div>
-          <div class="stat-card">
-            <span class="stat-label">Games Tracked</span>
-            <span class="stat-value" id="ft-total-games">--</span>
+          <div class="faction-card-title">Goddess of War</div>
+          <p class="faction-card-desc">Strong, aggressive minions and destructive magic. Overwhelm your opponent before they can stabilize.</p>
+        </div>
+        <div class="faction-card" style="border-top: 3px solid var(--grenalia);">
+          <div class="faction-card-header">
+            <div class="faction-color-dot" style="background: var(--grenalia);"></div>
+            <span class="faction-card-name">Grenalia</span>
+          </div>
+          <div class="faction-card-title">Goddess of Nature</div>
+          <p class="faction-card-desc">Mana growth, poisons, and massive creatures. Ramp up your resources and crush with overwhelming force.</p>
+        </div>
+        <div class="faction-card" style="border-top: 3px solid var(--lucia);">
+          <div class="faction-card-header">
+            <div class="faction-color-dot" style="background: var(--lucia);"></div>
+            <span class="faction-card-name">Lucia</span>
+          </div>
+          <div class="faction-card-title">Goddess of Light</div>
+          <p class="faction-card-desc">Unified armies, healing, and village control. Build a resilient force that outlasts the competition.</p>
+        </div>
+        <div class="faction-card" style="border-top: 3px solid var(--shadis);">
+          <div class="faction-card-header">
+            <div class="faction-color-dot" style="background: var(--shadis);"></div>
+            <span class="faction-card-name">Shadis</span>
+          </div>
+          <div class="faction-card-title">God of Shadows</div>
+          <p class="faction-card-desc">Stealth, deception, and dark magic. Strike from the shadows and control the battlefield through cunning.</p>
+        </div>
+        <div class="faction-card" style="border-top: 3px solid var(--archaeon);">
+          <div class="faction-card-header">
+            <div class="faction-color-dot" style="background: var(--archaeon);"></div>
+            <span class="faction-card-name">Archaeon</span>
+          </div>
+          <div class="faction-card-title">God of Knowledge</div>
+          <p class="faction-card-desc">Ancient power, artifacts, and strategic depth. Outthink your opponent with superior knowledge and planning.</p>
+        </div>
+        <div class="faction-card" style="border-top: 3px solid var(--neutral);">
+          <div class="faction-card-header">
+            <div class="faction-color-dot" style="background: var(--neutral);"></div>
+            <span class="faction-card-name">Neutral</span>
+          </div>
+          <div class="faction-card-title">Unaligned</div>
+          <p class="faction-card-desc">Mercenaries and creatures available to all commanders. Versatile tools that fit into any strategy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Starter Decks -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Starter Decks</h2>
+      <p class="section-desc">Three pre-built decks to get you into the action right away.</p>
+      <div class="starter-grid">
+        <div class="starter-card">
+          <img src="assets/commanders/captain-greenbeard.jpg" alt="Captain Greenbeard" class="starter-card-art" onerror="this.style.display='none'">
+          <div class="starter-card-body">
+            <span class="starter-card-faction" style="background: rgba(213, 94, 0, 0.15); color: #f0834a;">Skaal</span>
+            <div class="starter-card-name">Starter Goblins</div>
+            <p class="starter-card-desc">A fast-paced, aggressive deck built around goblin minions. Captain Greenbeard gives Haste to minions played in enemy territory. Overwhelm and evaporate.</p>
           </div>
         </div>
-        <p class="first-turn-note" id="ft-note" style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;"></p>
+        <div class="starter-card">
+          <img src="assets/commanders/lubela-tender-of-the-wilds.jpg" alt="Lubela, Tender of the Wilds" class="starter-card-art" onerror="this.style.display='none'">
+          <div class="starter-card-body">
+            <span class="starter-card-faction" style="background: rgba(0, 158, 115, 0.15); color: #3fb980;">Grenalia</span>
+            <div class="starter-card-name">Starter Growth</div>
+            <p class="starter-card-desc">A defensive, mana-focused deck. Lubela shields your minions on arrival. Ramp up your territory, then drop massive threats to close out the game.</p>
+          </div>
+        </div>
+        <div class="starter-card">
+          <img src="assets/commanders/milo-sunstone.jpg" alt="Milo Sunstone" class="starter-card-art" onerror="this.style.display='none'">
+          <div class="starter-card-body">
+            <span class="starter-card-faction" style="background: rgba(232, 182, 48, 0.15); color: #E8B630;">Lucia</span>
+            <div class="starter-card-name">Starter Healing</div>
+            <p class="starter-card-desc">A synergy-based deck revolving around healing. Milo heals a character every other turn. Play threats that grow stronger from your healing to become unstoppable.</p>
+          </div>
+        </div>
       </div>
+    </div>
+  </section>
 
-      <!-- Quick Links -->
+  <!-- Explore -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Explore</h2>
+      <p class="section-desc">Tools and data for the Atlas Conquest community.</p>
       <div class="quick-links">
-        <a href="commanders.html" class="quick-link">
-          <div class="quick-link-title">Commanders</div>
-          <div class="quick-link-desc">Winrates, head-to-head matchups, and deck composition breakdowns.</div>
+        <a href="analytics.html" class="quick-link">
+          <div class="quick-link-title">Analytics Dashboard</div>
+          <div class="quick-link-desc">Commander winrates, card stats, matchup heatmaps, and meta trends across 3,000+ tracked matches.</div>
         </a>
-        <a href="cards.html" class="quick-link">
-          <div class="quick-link-title">Card Analytics</div>
-          <div class="quick-link-desc">Search all 261 cards. Draw rates, play rates, and win correlations.</div>
+        <a href="decks.html" class="quick-link">
+          <div class="quick-link-title">Deck Tools</div>
+          <div class="quick-link-desc">Import and export deck codes. Build decks with an interactive card search and share them via URL.</div>
         </a>
-        <a href="meta.html" class="quick-link">
-          <div class="quick-link-title">Meta Trends</div>
-          <div class="quick-link-desc">Track how faction popularity shifts week over week.</div>
+        <a href="https://discord.gg/7QaEY4yJH5" class="quick-link" target="_blank" rel="noopener">
+          <div class="quick-link-title">Discord Community</div>
+          <div class="quick-link-desc">Find opponents, share decklists, report bugs, and discuss strategy with the Atlas Conquest community.</div>
         </a>
       </div>
     </div>
@@ -140,12 +186,15 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <p class="footer-text">Atlas Conquest Analytics &mdash; Updated daily from game data.</p>
-      <p class="footer-text footer-muted">Built for the community. Not affiliated with the Atlas Conquest development team.</p>
+      <p class="footer-text">Atlas Conquest &mdash; A competitive hex-grid deck builder.</p>
+      <p class="footer-text footer-muted">Join the community on <a href="https://discord.gg/7QaEY4yJH5" style="color: var(--text-secondary);" target="_blank" rel="noopener">Discord</a>.</p>
     </div>
   </footer>
 
-  <script src="js/shared.js"></script>
-  <script src="js/home.js"></script>
+  <script>
+    // Highlight active nav link
+    const homeLink = document.querySelector('.nav-link[data-nav="home"]');
+    if (homeLink) homeLink.classList.add('active');
+  </script>
 </body>
 </html>

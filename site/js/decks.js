@@ -353,6 +353,10 @@ function showError(msg) {
 async function init() {
   await loadCardlist();
 
+  // Highlight active nav link
+  const decksLink = document.querySelector('.nav-link[data-nav="decks"]');
+  if (decksLink) decksLink.classList.add('active');
+
   initTabs();
   initBuildMode();
 

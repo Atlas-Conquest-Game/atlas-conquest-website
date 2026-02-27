@@ -85,6 +85,11 @@
     padding: 0.25rem 0.5rem;
   }
 
+  .sub-nav-inner {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
   .section {
     padding: 2.5rem 0;
   }
@@ -160,10 +165,6 @@
 
   .modal-kpi-grid {
     grid-template-columns: 1fr;
-  }
-
-  .nav-links {
-    display: none;
   }
 }
 

@@ -230,12 +230,21 @@ function initMapFilters(renderCallback) {
 function initNavActiveState() {
   const pageName = window.location.pathname.split('/').pop() || 'index.html';
   const currentPage = pageName === '' ? 'index.html' : pageName;
-  const links = document.querySelectorAll('.nav-link');
-  links.forEach(link => {
-    const href = link.getAttribute('href');
-    if (href === currentPage) {
-      link.classList.add('active');
-    }
+
+  // Primary nav: highlight based on data-nav attribute
+  const analyticsPages = ['analytics.html', 'commanders.html', 'cards.html', 'meta.html', 'mulligan.html'];
+  const primaryLinks = document.querySelectorAll('.nav-link[data-nav]');
+  primaryLinks.forEach(link => {
+    const nav = link.dataset.nav;
+    if (nav === 'home' && currentPage === 'index.html') link.classList.add('active');
+    else if (nav === 'analytics' && analyticsPages.includes(currentPage)) link.classList.add('active');
+    else if (nav === 'decks' && currentPage === 'decks.html') link.classList.add('active');
+  });
+
+  // Sub-nav: highlight matching page
+  const subLinks = document.querySelectorAll('.sub-nav-link');
+  subLinks.forEach(link => {
+    if (link.getAttribute('href') === currentPage) link.classList.add('active');
   });
 }
 

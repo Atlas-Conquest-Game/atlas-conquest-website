@@ -51,6 +51,46 @@
   background: var(--bg-elevated);
 }
 
+/* === Sub Navigation (analytics pages) === */
+.sub-nav {
+  position: sticky;
+  top: var(--nav-height);
+  z-index: 290;
+  background: rgba(14, 17, 23, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.sub-nav-inner {
+  display: flex;
+  gap: 0.25rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.sub-nav-link {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 0.25rem 0.625rem;
+  border-radius: 6px;
+  transition: color 0.15s ease, background 0.15s ease;
+  white-space: nowrap;
+}
+
+.sub-nav-link:hover,
+.sub-nav-link.active {
+  color: var(--text);
+  background: var(--bg-elevated);
+}
+
+/* Offset time-filter-bar when sub-nav is present */
+.has-sub-nav .time-filter-bar {
+  top: calc(var(--nav-height) + 37px);
+}
+
 /* === Hero === */
 .hero {
   padding: 4rem 0 3rem;

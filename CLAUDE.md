@@ -24,14 +24,15 @@ See [ARCHITECTURE.md](docs/ARCHITECTURE.md) for the full system design.
 
 | Page | File | JS | Description |
 |------|------|----|-------------|
-| Overview | `site/index.html` | `home.js` | Dashboard with KPIs, game distributions, commander overview |
+| Home | `site/index.html` | (inline) | Game landing page — hero, factions, starter decks, explore links |
+| Overview | `site/analytics.html` | `home.js` | Analytics dashboard with KPIs, game distributions, commander overview |
 | Commanders | `site/commanders.html` | `commanders.js` | Winrates, deck composition, winrate by turns/actions/duration, detail modal |
 | Cards | `site/cards.html` | `cards.js` | Card stats (deck/draw/play rates and winrates), per-commander breakdown |
 | Meta | `site/meta.html` | `meta.js` | Matchup heatmap, faction/commander popularity and winrate trends, first-turn advantage |
 | Mulligan | `site/mulligan.html` | `mulligan.js` | Opening hand keep rates, normalized keep preference, per-commander mulligan stats |
 | Decks | `site/decks.html` | `decks.js` + `deckcode.js` | Import (decode) and build (encode) deck codes, shareable via URL |
 
-Analytics pages share `site/js/shared.js` (data loading, filters, helper functions). The Decks page is standalone (uses `deckcode.js` for the codec and `decks.js` for page logic).
+**Navigation**: Primary nav (Home, Analytics, Decks) on all pages. Analytics pages also have a sub-nav (Overview, Commanders, Cards, Meta, Mulligan). Analytics pages share `site/js/shared.js` (data loading, filters, helper functions). The Home and Decks pages are standalone.
 
 ## Pipeline Modules
 
