@@ -172,6 +172,75 @@ Opened by clicking a cell in the heatmap. Shows the head-to-head breakdown for a
 
 ---
 
+## Mulligan Page (`mulligan.html`)
+
+Dedicated page for opening hand mulligan analysis. Each game, players see a number of cards equal to their commander's **intellect** stat (6-10), then keep exactly **3** (going first) or **4** (going second), returning the rest to their deck. Only games with mulligan data are counted (tracking began ~Feb 15 2026).
+
+### Overview Stats
+
+| Stat | Source | Calculation | Min Sample | Caveats |
+|------|--------|-------------|-----------|---------|
+| Mulligan Data | `mulligan_stats.json` | `mulligan_games / 2` for games, `mulligan_games` for hands | 1 | `mulligan_games` counts player-hands (2 per game) |
+| Cards Tracked | `mulligan_stats.json` | Count of distinct cards seen in any mulligan hand | 1 | |
+| Avg Keep Rate | `mulligan_stats.json` | `sum(kept_count) / sum(total_seen)` weighted across all cards | 1 | Global average across all commanders and turn orders |
+| Best Keep WR Delta | `mulligan_stats.json` | Highest `winrate_delta` among cards with >= 5 observations | 5 | |
+
+### Table Columns
+
+| Column | Sort Key | Source | Sub-line | Style |
+|--------|----------|--------|----------|-------|
+| Card | `name` | `mulligan_stats.json` | — | Bold |
+| Faction | `faction` | Enriched from `card_stats.json` | — | Badge |
+| Keep Rate | `keep_rate` | `mulligan_stats.json` | "N seen" (total_seen) | Colored (green >52%, red <48%). "--" if < 5 seen. |
+| Keep Pref | `norm_keep_delta` | `mulligan_stats.json` | — | Colored (green >+3%, red <-3%). "--" if < 5 seen. |
+| Keep WR | `keep_winrate` | `mulligan_stats.json` | "N kept" (kept_count) | Colored |
+| Return WR | `return_winrate` | `mulligan_stats.json` | "N returned" (returned_count) | Colored |
+| WR Delta | `winrate_delta` | `mulligan_stats.json` | "N seen" or "low sample" | Colored (green positive, red negative). "--" if < 5 seen. |
+| Kept | `kept_count` | `mulligan_stats.json` | — | Normal |
+| Returned | `returned_count` | `mulligan_stats.json` | — | Normal |
+| Times Seen | `total_seen` | `mulligan_stats.json` | — | Normal |
+
+### Stat Definitions
+
+| Stat | Calculation | Min Sample | Caveats |
+|------|-------------|-----------|---------|
+| Keep Rate | `kept_count / total_seen` where `total_seen = kept_count + returned_count` | 5 (shown as "--" below) | Count-weighted: if 2 copies of a card are in opening hand and both kept, that's `kept_count += 2`. Raw rate — not normalized for commander or turn order. |
+| Normalized Keep Pref | `keep_rate - expected_keep_rate`. Expected rate is the average of `cards_to_keep / intellect` across all hands where the card appeared. `cards_to_keep` = 3 (first player) or 4 (second player), inferred from kept count. | 5 (shown as "--" below) | Removes bias from different commander intellects (6-10) and turn order. Positive = players actively prefer keeping this card over random chance. |
+| Keep WR | `kept_wins / kept_count` — winrate in games where the card was kept | 5 kept instances | Correlation, not causation. Cards in strong decks will naturally have higher keep WR. |
+| Return WR | `returned_wins / returned_count` — winrate in games where the card was returned | 5 returned instances | |
+| WR Delta | `keep_winrate - return_winrate` | 5 total seen | Positive = keeping this card correlates with winning. Can be null if card was always kept or always returned. |
+
+### Per-Commander View
+
+When a commander is selected via the dropdown, data switches to `commander_mulligan_stats.json` (lazy-loaded on first selection). All stats are scoped to that commander's mulligan games. The `games` field replaces `mulligan_games` as the denominator context.
+
+### Duplicate Card Handling
+
+Cards are tracked at the **instance level** (count-weighted). Example: opening hand has 2x Drain Energy. If the player keeps 1 and returns 1 → `kept_count += 1`, `returned_count += 1` for that game. If both kept → `kept_count += 2`. This naturally weights multi-copy decisions.
+
+### Normalization Details
+
+The raw keep rate is biased because:
+- **Commander intellect**: Kai (int=10) sees 10 cards but keeps 3-4, so expected keep rate per card is 30-40%. Jagris (int=6) sees 6, expected rate is 50-67%.
+- **Turn order**: Going first keeps 3 cards, going second keeps 4.
+
+The normalized keep preference (`norm_keep_delta`) removes both biases by computing the expected keep rate for each hand:
+
+```
+expected_rate_per_hand = cards_to_keep / intellect
+norm_keep_delta = actual_keep_rate - avg(expected_rate across all hands where card appeared)
+```
+
+| Commander | Intellect | Expected (1st, keep 3) | Expected (2nd, keep 4) |
+|-----------|-----------|------------------------|------------------------|
+| Jagris | 6 | 50.0% | 66.7% |
+| Captain Greenbeard | 7 | 42.9% | 57.1% |
+| Elyse | 8 | 37.5% | 50.0% |
+| Milo | 9 | 33.3% | 44.4% |
+| Kai | 10 | 30.0% | 40.0% |
+
+---
+
 ## Data Dimensions
 
 All stats (except reference files) support two filter dimensions:
@@ -190,7 +259,7 @@ Data is nested as `data[period][map]`. Smaller slices (e.g., 1M + Tropics) will 
 | File | Contents | Notes |
 |------|----------|-------|
 | `cards.json` | Full card catalog (name, faction, type, subtype, cost, art path) | Flat array, not period/map nested |
-| `commanders.json` | Commander list (name, faction, art path) | Flat array |
+| `commanders.json` | Commander list (name, faction, intellect, health, art path) | Flat array. Intellect used for mulligan normalization. |
 
 ---
 
