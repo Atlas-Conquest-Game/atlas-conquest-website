@@ -31,6 +31,8 @@
   <!-- Hero -->
   <header class="landing-hero">
     <div class="hero-bg">
+      <img src="assets/commanders/elyse-of-the-order.jpg" alt="" class="hero-art" aria-hidden="true">
+      <div class="hero-art-overlay"></div>
       <div class="hero-hex-grid"></div>
       <div class="hero-glow hero-glow-1"></div>
       <div class="hero-glow hero-glow-2"></div>
@@ -71,30 +73,6 @@
     </div>
     <div class="hero-fade"></div>
   </header>
-
-  <!-- How It Works -->
-  <section class="section landing-section" data-reveal>
-    <div class="container">
-      <h2 class="landing-section-title">Conquer the Hex Grid</h2>
-      <div class="how-it-works">
-        <div class="how-step">
-          <div class="how-step-number">1</div>
-          <h3 class="how-step-title">Build Your Deck</h3>
-          <p class="how-step-desc">Choose a commander and assemble 40 cards from their faction. Each commander has unique abilities that shape your strategy.</p>
-        </div>
-        <div class="how-step">
-          <div class="how-step-number">2</div>
-          <h3 class="how-step-title">Claim Territory</h3>
-          <p class="how-step-desc">Move your commander across the hex grid to claim tiles. Each tile generates mana to fuel your army.</p>
-        </div>
-        <div class="how-step">
-          <div class="how-step-number">3</div>
-          <h3 class="how-step-title">Defeat the Enemy</h3>
-          <p class="how-step-desc">Play minions, cast spells, and battle your way to the enemy commander. Reduce their health to zero to win.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- Commanders Showcase -->
   <section class="section landing-section commander-showcase-section" data-reveal>
@@ -229,6 +207,30 @@
     </div>
   </section>
 
+  <!-- How It Works -->
+  <section class="section landing-section" data-reveal>
+    <div class="container">
+      <h2 class="landing-section-title">Conquer the Hex Grid</h2>
+      <div class="how-it-works">
+        <div class="how-step">
+          <div class="how-step-number">1</div>
+          <h3 class="how-step-title">Build Your Deck</h3>
+          <p class="how-step-desc">Choose a commander and assemble 40 cards from their faction. Each commander has unique abilities that shape your strategy.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-step-number">2</div>
+          <h3 class="how-step-title">Claim Territory</h3>
+          <p class="how-step-desc">Move your commander across the hex grid to claim tiles. Each tile generates mana to fuel your army.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-step-number">3</div>
+          <h3 class="how-step-title">Defeat the Enemy</h3>
+          <p class="how-step-desc">Play minions, cast spells, and battle your way to the enemy commander. Reduce their health to zero to win.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Factions -->
   <section class="section landing-section" data-reveal>
     <div class="container">
@@ -293,7 +295,7 @@
       <h2 class="landing-section-title">Pick Up &amp; Play</h2>
       <p class="landing-section-subtitle">Three starter decks to get you into the action immediately.</p>
       <div class="starter-grid">
-        <div class="starter-card" data-faction="skaal">
+        <a href="decks.html" class="starter-card" data-faction="skaal">
           <div class="starter-card-art-wrap">
             <img src="assets/commanders/captain-greenbeard.jpg" alt="Captain Greenbeard" class="starter-card-art" loading="lazy">
             <div class="starter-card-overlay"></div>
@@ -304,8 +306,8 @@
             <p class="starter-card-commander">Captain Greenbeard</p>
             <p class="starter-card-desc">Fast-paced aggression. Deploy goblins into enemy territory with Haste and overwhelm before they can react.</p>
           </div>
-        </div>
-        <div class="starter-card" data-faction="grenalia">
+        </a>
+        <a href="decks.html" class="starter-card" data-faction="grenalia">
           <div class="starter-card-art-wrap">
             <img src="assets/commanders/lubela-tender-of-the-wilds.jpg" alt="Lubela" class="starter-card-art" loading="lazy">
             <div class="starter-card-overlay"></div>
@@ -316,8 +318,8 @@
             <p class="starter-card-commander">Lubela, Tender of the Wilds</p>
             <p class="starter-card-desc">Defensive ramp. Shield your minions, expand your territory, then drop game-ending threats.</p>
           </div>
-        </div>
-        <div class="starter-card" data-faction="lucia">
+        </a>
+        <a href="decks.html" class="starter-card" data-faction="lucia">
           <div class="starter-card-art-wrap">
             <img src="assets/commanders/milo-sunstone.jpg" alt="Milo Sunstone" class="starter-card-art" loading="lazy">
             <div class="starter-card-overlay"></div>
@@ -328,7 +330,7 @@
             <p class="starter-card-commander">Milo Sunstone</p>
             <p class="starter-card-desc">Healing synergies. Milo heals every other turn, powering up threats that grow stronger from restoration.</p>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </section>

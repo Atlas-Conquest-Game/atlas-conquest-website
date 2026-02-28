@@ -41,6 +41,24 @@
   z-index: 0;
 }
 
+/* Hero background art */
+.hero-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+.hero-art-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(14, 17, 23, 0.55) 0%, rgba(14, 17, 23, 0.7) 40%, rgba(14, 17, 23, 0.92) 75%, var(--bg) 100%),
+    linear-gradient(to right, rgba(14, 17, 23, 0.6) 0%, transparent 30%, transparent 70%, rgba(14, 17, 23, 0.6) 100%);
+}
+
 /* Hex grid pattern via CSS */
 .hero-hex-grid {
   position: absolute;
@@ -62,7 +80,7 @@
   position: absolute;
   border-radius: 50%;
   filter: blur(100px);
-  opacity: 0.15;
+  opacity: 0.35;
   animation: glowPulse 8s ease-in-out infinite alternate;
 }
 
@@ -92,12 +110,12 @@
   left: 50%;
   transform: translateX(-50%);
   animation-delay: -5s;
-  opacity: 0.08;
+  opacity: 0.2;
 }
 
 @keyframes glowPulse {
-  from { opacity: 0.08; transform: scale(1); }
-  to { opacity: 0.18; transform: scale(1.15); }
+  from { opacity: 0.2; transform: scale(1); }
+  to { opacity: 0.4; transform: scale(1.15); }
 }
 
 .hero-glow-3 {
@@ -105,8 +123,8 @@
 }
 
 @keyframes glowPulse3 {
-  from { opacity: 0.05; transform: translateX(-50%) scale(1); }
-  to { opacity: 0.12; transform: translateX(-50%) scale(1.1); }
+  from { opacity: 0.15; transform: translateX(-50%) scale(1); }
+  to { opacity: 0.3; transform: translateX(-50%) scale(1.1); }
 }
 
 .hero-fade {
@@ -226,7 +244,7 @@
   justify-content: center;
   align-items: center;
   gap: 2.5rem;
-  margin-top: 4rem;
+  margin-top: 2.5rem;
   animation: fadeUp 0.7s ease 0.6s both;
 }
 
@@ -255,6 +273,11 @@
   width: 1px;
   height: 32px;
   background: var(--border);
+}
+
+/* Tighter section spacing for landing page */
+.landing-section.section {
+  padding: 3rem 0;
 }
 
 /* ─── Section Titles ───────────────────────────────────── */
@@ -328,7 +351,7 @@
 /* ─── Commander Showcase ───────────────────────────────── */
 
 .commander-showcase-section {
-  padding-bottom: 5rem;
+  padding-bottom: 2rem;
 }
 
 .commander-scroll-track {
@@ -491,6 +514,9 @@
 }
 
 .starter-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
@@ -571,7 +597,7 @@
 /* ─── CTA Section ──────────────────────────────────────── */
 
 .landing-cta-section {
-  padding-bottom: 6rem;
+  padding-bottom: 3rem;
 }
 
 .cta-grid {
