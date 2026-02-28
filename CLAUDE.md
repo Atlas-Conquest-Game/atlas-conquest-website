@@ -53,9 +53,9 @@ See [ARCHITECTURE.md](docs/ARCHITECTURE.md) for the full system design.
 | [docs/GAME_RULES.md](docs/GAME_RULES.md) | Atlas Conquest game mechanics reference |
 | [docs/DESIGN.md](docs/DESIGN.md) | Frontend design system (colors, typography, components) |
 | [docs/DATA_MODEL.md](docs/DATA_MODEL.md) | JSON data contracts between pipeline and frontend |
-| [docs/planning/ANALYTICS_VISION.md](docs/planning/ANALYTICS_VISION.md) | Analytics roadmap and feature ideas |
-| [docs/planning/SITE_VISION.md](docs/planning/SITE_VISION.md) | Unified site roadmap (deck tools, landing page, community) |
-| [docs/planning/DOMAIN_GUIDE.md](docs/planning/DOMAIN_GUIDE.md) | Domain strategy, DNS setup, URL hierarchy guide |
+| [docs/future-plans/ANALYTICS_VISION.md](docs/future-plans/ANALYTICS_VISION.md) | Analytics roadmap and feature ideas |
+| [docs/future-plans/SITE_VISION.md](docs/future-plans/SITE_VISION.md) | Unified site roadmap (deck tools, landing page, community) |
+| [docs/future-plans/DOMAIN_GUIDE.md](docs/future-plans/DOMAIN_GUIDE.md) | Domain strategy, DNS setup, URL hierarchy guide |
 
 ## Conventions
 

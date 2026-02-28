@@ -98,3 +98,27 @@ This data is already available in `raw_games.json` (datetime + player names). Im
 
 ### API Layer
 Expose the aggregated data via a simple REST API so community tools (Discord bots, third-party sites) can consume it programmatically. The Discord daily summary bot (`scripts/daily_summary.py`) is a reference implementation — it reads from `raw_games.json` and posts stats to a Discord webhook as part of the existing GitHub Actions pipeline.
+
+---
+
+## Dashboard UX Improvements
+
+### Unified Filter State
+Persist the selected time period and map filter across page navigations using `sessionStorage`. Currently each analytics page resets to defaults when navigated to.
+
+### Commander Deep Links from Landing Page
+Commander cards in the landing page carousel could link to `commanders.html#<commander-name>` for direct access to that commander's analytics. Requires adding anchor-based scrolling to `commanders.js`.
+
+### Mobile-First Analytics
+The analytics pages work on mobile but aren't optimized for touch interaction:
+- **Matchup heatmap**: Add horizontal scroll indicator, consider pinch-to-zoom
+- **Chart touch targets**: Larger tap areas on chart elements and filter buttons
+- **Collapsible sections**: Already implemented with `collapsed` class — verify all sections default to collapsed on mobile to reduce scroll fatigue
+
+---
+
+## Related Vision Docs
+
+- [LANDING_PAGE_VISION.md](LANDING_PAGE_VISION.md) — Landing page design goals and roadmap
+- [DECKS_VISION.md](DECKS_VISION.md) — Deck tools and community deck features
+- [SITE_VISION.md](SITE_VISION.md) — Unified site structure and navigation

@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Atlas Conquest — Competitive Hex-Grid Deck Builder</title>
+  <link rel="icon" type="image/png" href="assets/logo/atlas-conquest-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -19,7 +20,10 @@
   <!-- Navigation -->
   <nav class="nav">
     <div class="nav-inner">
-      <a href="index.html" class="nav-logo">Atlas Conquest</a>
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo/atlas-conquest-icon.png" alt="" width="24" height="24" class="nav-logo-icon" aria-hidden="true">
+        Atlas Conquest
+      </a>
       <div class="nav-links">
         <a href="index.html" class="nav-link" data-nav="home">Home</a>
         <a href="analytics.html" class="nav-link" data-nav="analytics">Analytics</a>
@@ -31,9 +35,19 @@
   <!-- Hero -->
   <header class="landing-hero">
     <div class="hero-bg">
-      <img src="assets/commanders/elyse-of-the-order.jpg" alt="" class="hero-art" aria-hidden="true">
+      <img src="assets/hero/euron.jpg" alt="" class="hero-art" aria-hidden="true">
       <div class="hero-art-overlay"></div>
-      <div class="hero-hex-grid"></div>
+      <div class="hero-hex-grid">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <pattern id="hex-pattern" width="56" height="97" patternUnits="userSpaceOnUse" patternTransform="scale(1.2)">
+              <polygon points="28,2 52,16 52,44 28,58 4,44 4,16" fill="none" stroke="currentColor" stroke-width="0.8"/>
+              <polygon points="56,50.5 80,64.5 80,92.5 56,106.5 32,92.5 32,64.5" fill="none" stroke="currentColor" stroke-width="0.8"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#hex-pattern)"/>
+        </svg>
+      </div>
       <div class="hero-glow hero-glow-1"></div>
       <div class="hero-glow hero-glow-2"></div>
       <div class="hero-glow hero-glow-3"></div>
@@ -82,124 +96,124 @@
     </div>
     <div class="commander-scroll-track">
       <div class="commander-scroll">
-        <div class="commander-showcase-card">
+        <div class="commander-showcase-card" data-faction="skaal">
           <img src="assets/commanders/captain-greenbeard.jpg" alt="Captain Greenbeard" loading="lazy">
           <div class="commander-showcase-name">Captain Greenbeard</div>
         </div>
-        <div class="commander-showcase-card">
+        <div class="commander-showcase-card" data-faction="shadis">
           <img src="assets/commanders/soultaker-viessa.jpg" alt="Soultaker Viessa" loading="lazy">
           <div class="commander-showcase-name">Soultaker Viessa</div>
         </div>
-        <div class="commander-showcase-card">
+        <div class="commander-showcase-card" data-faction="grenalia">
           <img src="assets/commanders/elber-jungle-emissary.jpg" alt="Elber, Jungle Emissary" loading="lazy">
           <div class="commander-showcase-name">Elber</div>
         </div>
-        <div class="commander-showcase-card">
+        <div class="commander-showcase-card" data-faction="lucia">
           <img src="assets/commanders/elyse-of-the-order.jpg" alt="Elyse of the Order" loading="lazy">
           <div class="commander-showcase-name">Elyse of the Order</div>
         </div>
-        <div class="commander-showcase-card">
+        <div class="commander-showcase-card" data-faction="lucia">
           <img src="assets/commanders/executor-ginn.jpg" alt="Executor Ginn" loading="lazy">
           <div class="commander-showcase-name">Executor Ginn</div>
         </div>
-        <div class="commander-showcase-card">
+        <div class="commander-showcase-card" data-faction="shadis">
           <img src="assets/commanders/fael-spiritwalker.jpg" alt="Fael, Spiritwalker" loading="lazy">
           <div class="commander-showcase-name">Fael</div>
         </div>
-        <div class="commander-showcase-card">
+        <div class="commander-showcase-card" data-faction="grenalia">
           <img src="assets/commanders/jagris-the-huntsman.jpg" alt="Jagris the Huntsman" loading="lazy">
           <div class="commander-showcase-name">Jagris</div>
         </div>
-        <div class="commander-showcase-card">
+        <div class="commander-showcase-card" data-faction="skaal">
           <img src="assets/commanders/kai-longcount-shaman.jpg" alt="Kai, Longcount Shaman" loading="lazy">
           <div class="commander-showcase-name">Kai</div>
         </div>
-        <div class="commander-showcase-card">
+        <div class="commander-showcase-card" data-faction="neutral">
           <img src="assets/commanders/lazim-thief-of-gods.jpg" alt="Lazim, Thief of Gods" loading="lazy">
           <div class="commander-showcase-name">Lazim</div>
         </div>
-        <div class="commander-showcase-card">
+        <div class="commander-showcase-card" data-faction="grenalia">
           <img src="assets/commanders/lubela-tender-of-the-wilds.jpg" alt="Lubela, Tender of the Wilds" loading="lazy">
           <div class="commander-showcase-name">Lubela</div>
         </div>
-        <div class="commander-showcase-card">
+        <div class="commander-showcase-card" data-faction="lucia">
           <img src="assets/commanders/milo-sunstone.jpg" alt="Milo Sunstone" loading="lazy">
           <div class="commander-showcase-name">Milo Sunstone</div>
         </div>
-        <div class="commander-showcase-card">
+        <div class="commander-showcase-card" data-faction="skaal">
           <img src="assets/commanders/macks-speed.jpg" alt="Mack's Speed" loading="lazy">
           <div class="commander-showcase-name">Mack</div>
         </div>
-        <div class="commander-showcase-card">
+        <div class="commander-showcase-card" data-faction="archaeon">
           <img src="assets/commanders/starwise-luna.jpg" alt="Starwise Luna" loading="lazy">
           <div class="commander-showcase-name">Starwise Luna</div>
         </div>
-        <div class="commander-showcase-card">
+        <div class="commander-showcase-card" data-faction="archaeon">
           <img src="assets/commanders/it-that-weaves.jpg" alt="It That Weaves" loading="lazy">
           <div class="commander-showcase-name">It That Weaves</div>
         </div>
-        <div class="commander-showcase-card">
+        <div class="commander-showcase-card" data-faction="neutral">
           <img src="assets/commanders/newhaven-township.jpg" alt="Newhaven Township" loading="lazy">
           <div class="commander-showcase-name">Newhaven Township</div>
         </div>
         <!-- Duplicated for seamless infinite scroll -->
-        <div class="commander-showcase-card">
+        <div class="commander-showcase-card" data-faction="skaal">
           <img src="assets/commanders/captain-greenbeard.jpg" alt="Captain Greenbeard" loading="lazy">
           <div class="commander-showcase-name">Captain Greenbeard</div>
         </div>
-        <div class="commander-showcase-card">
+        <div class="commander-showcase-card" data-faction="shadis">
           <img src="assets/commanders/soultaker-viessa.jpg" alt="Soultaker Viessa" loading="lazy">
           <div class="commander-showcase-name">Soultaker Viessa</div>
         </div>
-        <div class="commander-showcase-card">
+        <div class="commander-showcase-card" data-faction="grenalia">
           <img src="assets/commanders/elber-jungle-emissary.jpg" alt="Elber, Jungle Emissary" loading="lazy">
           <div class="commander-showcase-name">Elber</div>
         </div>
-        <div class="commander-showcase-card">
+        <div class="commander-showcase-card" data-faction="lucia">
           <img src="assets/commanders/elyse-of-the-order.jpg" alt="Elyse of the Order" loading="lazy">
           <div class="commander-showcase-name">Elyse of the Order</div>
         </div>
-        <div class="commander-showcase-card">
+        <div class="commander-showcase-card" data-faction="lucia">
           <img src="assets/commanders/executor-ginn.jpg" alt="Executor Ginn" loading="lazy">
           <div class="commander-showcase-name">Executor Ginn</div>
         </div>
-        <div class="commander-showcase-card">
+        <div class="commander-showcase-card" data-faction="shadis">
           <img src="assets/commanders/fael-spiritwalker.jpg" alt="Fael, Spiritwalker" loading="lazy">
           <div class="commander-showcase-name">Fael</div>
         </div>
-        <div class="commander-showcase-card">
+        <div class="commander-showcase-card" data-faction="grenalia">
           <img src="assets/commanders/jagris-the-huntsman.jpg" alt="Jagris the Huntsman" loading="lazy">
           <div class="commander-showcase-name">Jagris</div>
         </div>
-        <div class="commander-showcase-card">
+        <div class="commander-showcase-card" data-faction="skaal">
           <img src="assets/commanders/kai-longcount-shaman.jpg" alt="Kai, Longcount Shaman" loading="lazy">
           <div class="commander-showcase-name">Kai</div>
         </div>
-        <div class="commander-showcase-card">
+        <div class="commander-showcase-card" data-faction="neutral">
           <img src="assets/commanders/lazim-thief-of-gods.jpg" alt="Lazim, Thief of Gods" loading="lazy">
           <div class="commander-showcase-name">Lazim</div>
         </div>
-        <div class="commander-showcase-card">
+        <div class="commander-showcase-card" data-faction="grenalia">
           <img src="assets/commanders/lubela-tender-of-the-wilds.jpg" alt="Lubela, Tender of the Wilds" loading="lazy">
           <div class="commander-showcase-name">Lubela</div>
         </div>
-        <div class="commander-showcase-card">
+        <div class="commander-showcase-card" data-faction="lucia">
           <img src="assets/commanders/milo-sunstone.jpg" alt="Milo Sunstone" loading="lazy">
           <div class="commander-showcase-name">Milo Sunstone</div>
         </div>
-        <div class="commander-showcase-card">
+        <div class="commander-showcase-card" data-faction="skaal">
           <img src="assets/commanders/macks-speed.jpg" alt="Mack's Speed" loading="lazy">
           <div class="commander-showcase-name">Mack</div>
         </div>
-        <div class="commander-showcase-card">
+        <div class="commander-showcase-card" data-faction="archaeon">
           <img src="assets/commanders/starwise-luna.jpg" alt="Starwise Luna" loading="lazy">
           <div class="commander-showcase-name">Starwise Luna</div>
         </div>
-        <div class="commander-showcase-card">
+        <div class="commander-showcase-card" data-faction="archaeon">
           <img src="assets/commanders/it-that-weaves.jpg" alt="It That Weaves" loading="lazy">
           <div class="commander-showcase-name">It That Weaves</div>
         </div>
-        <div class="commander-showcase-card">
+        <div class="commander-showcase-card" data-faction="neutral">
           <img src="assets/commanders/newhaven-township.jpg" alt="Newhaven Township" loading="lazy">
           <div class="commander-showcase-name">Newhaven Township</div>
         </div>
@@ -211,19 +225,35 @@
   <section class="section landing-section" data-reveal>
     <div class="container">
       <h2 class="landing-section-title">Conquer the Hex Grid</h2>
+      <!-- Decorative hex cluster -->
+      <div class="hex-cluster" aria-hidden="true">
+        <div class="hex hex-center"></div>
+        <div class="hex hex-1"></div>
+        <div class="hex hex-2"></div>
+        <div class="hex hex-3"></div>
+        <div class="hex hex-4"></div>
+        <div class="hex hex-5"></div>
+        <div class="hex hex-6"></div>
+      </div>
       <div class="how-it-works">
         <div class="how-step">
-          <div class="how-step-number">1</div>
+          <div class="how-step-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8"/><path d="M8 10h8"/><path d="M8 14h4"/></svg>
+          </div>
           <h3 class="how-step-title">Build Your Deck</h3>
           <p class="how-step-desc">Choose a commander and assemble 40 cards from their faction. Each commander has unique abilities that shape your strategy.</p>
         </div>
         <div class="how-step">
-          <div class="how-step-number">2</div>
+          <div class="how-step-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12,2 22,8.5 22,15.5 12,22 2,15.5 2,8.5"/><path d="M12 8v5"/><path d="M9.5 14h5l-2.5-4-2.5 4z" fill="currentColor" stroke="none"/></svg>
+          </div>
           <h3 class="how-step-title">Claim Territory</h3>
           <p class="how-step-desc">Move your commander across the hex grid to claim tiles. Each tile generates mana to fuel your army.</p>
         </div>
         <div class="how-step">
-          <div class="how-step-number">3</div>
+          <div class="how-step-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3L2 8l10 13L22 8l-4.5-5z"/><path d="M2 8h20"/><path d="M12 21L8.5 8 12 3l3.5 5L12 21z"/></svg>
+          </div>
           <h3 class="how-step-title">Defeat the Enemy</h3>
           <p class="how-step-desc">Play minions, cast spells, and battle your way to the enemy commander. Reduce their health to zero to win.</p>
         </div>
@@ -238,48 +268,48 @@
       <p class="landing-section-subtitle">Each faction commands a unique playstyle. Your commander's patron determines which cards you can wield.</p>
       <div class="faction-grid">
         <div class="faction-card" data-faction="skaal">
-          <div class="faction-card-icon" style="--fc: var(--skaal);">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          <div class="faction-card-icon">
+            <img src="assets/factions/skaal.png" alt="Skaal emblem" width="56" height="56" loading="lazy">
           </div>
           <div class="faction-card-name" style="color: var(--skaal);">Skaal</div>
           <div class="faction-card-title">Goddess of War</div>
           <p class="faction-card-desc">Aggressive minions and destructive magic. Overwhelm before they stabilize.</p>
         </div>
         <div class="faction-card" data-faction="grenalia">
-          <div class="faction-card-icon" style="--fc: var(--grenalia);">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22c4-4 8-7.5 8-12a8 8 0 1 0-16 0c0 4.5 4 8 8 12z"/><path d="M12 13V7"/><path d="M9 10h6"/></svg>
+          <div class="faction-card-icon">
+            <img src="assets/factions/grenalia.png" alt="Grenalia emblem" width="56" height="56" loading="lazy">
           </div>
           <div class="faction-card-name" style="color: var(--grenalia);">Grenalia</div>
           <div class="faction-card-title">Goddess of Nature</div>
           <p class="faction-card-desc">Mana growth, poisons, and massive creatures. Ramp into overwhelming force.</p>
         </div>
         <div class="faction-card" data-faction="lucia">
-          <div class="faction-card-icon" style="--fc: var(--lucia);">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <div class="faction-card-icon">
+            <img src="assets/factions/lucia.png" alt="Lucia emblem" width="56" height="56" loading="lazy">
           </div>
           <div class="faction-card-name" style="color: var(--lucia);">Lucia</div>
           <div class="faction-card-title">Goddess of Light</div>
           <p class="faction-card-desc">Unified armies, healing, and village control. Outlast the competition.</p>
         </div>
         <div class="faction-card" data-faction="shadis">
-          <div class="faction-card-icon" style="--fc: var(--shadis);">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></svg>
+          <div class="faction-card-icon">
+            <img src="assets/factions/shadis.png" alt="Shadis emblem" width="56" height="56" loading="lazy">
           </div>
           <div class="faction-card-name" style="color: var(--shadis);">Shadis</div>
           <div class="faction-card-title">God of Shadows</div>
           <p class="faction-card-desc">Stealth, deception, and dark magic. Control through cunning.</p>
         </div>
         <div class="faction-card" data-faction="archaeon">
-          <div class="faction-card-icon" style="--fc: var(--archaeon);">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          <div class="faction-card-icon">
+            <img src="assets/factions/archaeon.png" alt="Archaeon emblem" width="56" height="56" loading="lazy">
           </div>
           <div class="faction-card-name" style="color: var(--archaeon);">Archaeon</div>
           <div class="faction-card-title">God of Knowledge</div>
           <p class="faction-card-desc">Ancient power, artifacts, and strategy. Outthink your opponent.</p>
         </div>
         <div class="faction-card" data-faction="neutral">
-          <div class="faction-card-icon" style="--fc: var(--neutral);">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/></svg>
+          <div class="faction-card-icon">
+            <img src="assets/factions/neutral.png" alt="Neutral emblem" width="56" height="56" loading="lazy">
           </div>
           <div class="faction-card-name" style="color: var(--neutral);">Neutral</div>
           <div class="faction-card-title">Unaligned</div>
@@ -293,7 +323,7 @@
   <section class="section landing-section" data-reveal>
     <div class="container">
       <h2 class="landing-section-title">Pick Up &amp; Play</h2>
-      <p class="landing-section-subtitle">Three starter decks to get you into the action immediately.</p>
+      <p class="landing-section-subtitle">Five starter decks to get you into the action immediately.</p>
       <div class="starter-grid">
         <a href="decks.html" class="starter-card" data-faction="skaal">
           <div class="starter-card-art-wrap">
@@ -302,21 +332,21 @@
           </div>
           <div class="starter-card-body">
             <span class="starter-card-faction" style="--fc: var(--skaal);">Skaal</span>
-            <div class="starter-card-name">Starter Goblins</div>
+            <div class="starter-card-name">Starter Deploy</div>
             <p class="starter-card-commander">Captain Greenbeard</p>
-            <p class="starter-card-desc">Fast-paced aggression. Deploy goblins into enemy territory with Haste and overwhelm before they can react.</p>
+            <p class="starter-card-desc">Goblin blitz. Deploy goblins with Haste into enemy territory and overwhelm before they can react.</p>
           </div>
         </a>
         <a href="decks.html" class="starter-card" data-faction="grenalia">
           <div class="starter-card-art-wrap">
-            <img src="assets/commanders/lubela-tender-of-the-wilds.jpg" alt="Lubela" class="starter-card-art" loading="lazy">
+            <img src="assets/commanders/jagris-the-huntsman.jpg" alt="Jagris the Huntsman" class="starter-card-art" loading="lazy">
             <div class="starter-card-overlay"></div>
           </div>
           <div class="starter-card-body">
             <span class="starter-card-faction" style="--fc: var(--grenalia);">Grenalia</span>
-            <div class="starter-card-name">Starter Growth</div>
-            <p class="starter-card-commander">Lubela, Tender of the Wilds</p>
-            <p class="starter-card-desc">Defensive ramp. Shield your minions, expand your territory, then drop game-ending threats.</p>
+            <div class="starter-card-name">Starter Beasts</div>
+            <p class="starter-card-commander">Jagris the Huntsman</p>
+            <p class="starter-card-desc">Beast synergy. Buff your creatures while Eagles and Enforcers dominate the board.</p>
           </div>
         </a>
         <a href="decks.html" class="starter-card" data-faction="lucia">
@@ -326,9 +356,33 @@
           </div>
           <div class="starter-card-body">
             <span class="starter-card-faction" style="--fc: var(--lucia);">Lucia</span>
-            <div class="starter-card-name">Starter Healing</div>
+            <div class="starter-card-name">Starter Military</div>
             <p class="starter-card-commander">Milo Sunstone</p>
-            <p class="starter-card-desc">Healing synergies. Milo heals every other turn, powering up threats that grow stronger from restoration.</p>
+            <p class="starter-card-desc">Paladin army. Milo heals your soldiers while Champions and Battlepriests hold the line.</p>
+          </div>
+        </a>
+        <a href="decks.html" class="starter-card" data-faction="shadis">
+          <div class="starter-card-art-wrap">
+            <img src="assets/commanders/soultaker-viessa.jpg" alt="Soultaker Viessa" class="starter-card-art" loading="lazy">
+            <div class="starter-card-overlay"></div>
+          </div>
+          <div class="starter-card-body">
+            <span class="starter-card-faction" style="--fc: var(--shadis);">Shadis</span>
+            <div class="starter-card-name">Starter Death</div>
+            <p class="starter-card-commander">Soultaker Viessa</p>
+            <p class="starter-card-desc">Dark aggression. Drain enemies while Dread Knights and Feral Vampires overwhelm the board.</p>
+          </div>
+        </a>
+        <a href="decks.html" class="starter-card" data-faction="archaeon">
+          <div class="starter-card-art-wrap">
+            <img src="assets/commanders/starwise-luna.jpg" alt="Starwise Luna" class="starter-card-art" loading="lazy">
+            <div class="starter-card-overlay"></div>
+          </div>
+          <div class="starter-card-body">
+            <span class="starter-card-faction" style="--fc: var(--archaeon);">Archaeon</span>
+            <div class="starter-card-name">Starter Mage</div>
+            <p class="starter-card-commander">Starwise Luna</p>
+            <p class="starter-card-desc">Spell mastery. Luna refreshes mana for powerful spells while frost creatures lock down the board.</p>
           </div>
         </a>
       </div>

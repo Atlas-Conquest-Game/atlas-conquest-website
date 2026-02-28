@@ -48,7 +48,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 20%;
+  object-position: center center;
 }
 
 .hero-art-overlay {
@@ -59,20 +59,17 @@
     linear-gradient(to right, rgba(14, 17, 23, 0.6) 0%, transparent 30%, transparent 70%, rgba(14, 17, 23, 0.6) 100%);
 }
 
-/* Hex grid pattern via CSS */
+/* Hex grid pattern via inline SVG */
 .hero-hex-grid {
   position: absolute;
   inset: 0;
-  opacity: 0.04;
-  background-image:
-    linear-gradient(30deg, var(--text) 12%, transparent 12.5%, transparent 87%, var(--text) 87.5%, var(--text)),
-    linear-gradient(150deg, var(--text) 12%, transparent 12.5%, transparent 87%, var(--text) 87.5%, var(--text)),
-    linear-gradient(30deg, var(--text) 12%, transparent 12.5%, transparent 87%, var(--text) 87.5%, var(--text)),
-    linear-gradient(150deg, var(--text) 12%, transparent 12.5%, transparent 87%, var(--text) 87.5%, var(--text)),
-    linear-gradient(60deg, rgba(230,237,243,0.06) 25%, transparent 25.5%, transparent 75%, rgba(230,237,243,0.06) 75%, rgba(230,237,243,0.06)),
-    linear-gradient(60deg, rgba(230,237,243,0.06) 25%, transparent 25.5%, transparent 75%, rgba(230,237,243,0.06) 75%, rgba(230,237,243,0.06));
-  background-size: 80px 140px;
-  background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
+  opacity: 0.05;
+  color: var(--text);
+}
+
+.hero-hex-grid svg {
+  width: 100%;
+  height: 100%;
 }
 
 /* Atmospheric glow effects */
@@ -300,13 +297,87 @@
   text-align: center;
 }
 
+/* ─── Hex Cluster Illustration ─────────────────────────── */
+
+.hex-cluster {
+  position: relative;
+  width: 180px;
+  height: 160px;
+  margin: 0.5rem auto 1rem;
+}
+
+.hex {
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  transition: all 0.4s ease;
+}
+
+.hex-center {
+  background: rgba(232, 182, 48, 0.25);
+  border: none;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 20px rgba(232, 182, 48, 0.1);
+}
+
+/* Top */
+.hex-1 {
+  background: rgba(0, 114, 178, 0.15);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, calc(-50% - 44px));
+}
+
+/* Top-right */
+.hex-2 {
+  background: rgba(213, 94, 0, 0.15);
+  left: 50%;
+  top: 50%;
+  transform: translate(calc(-50% + 38px), calc(-50% - 22px));
+}
+
+/* Bottom-right */
+.hex-3 {
+  background: rgba(0, 158, 115, 0.12);
+  left: 50%;
+  top: 50%;
+  transform: translate(calc(-50% + 38px), calc(-50% + 22px));
+}
+
+/* Bottom */
+.hex-4 {
+  background: rgba(123, 123, 142, 0.12);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, calc(-50% + 44px));
+}
+
+/* Bottom-left */
+.hex-5 {
+  background: rgba(168, 144, 120, 0.1);
+  left: 50%;
+  top: 50%;
+  transform: translate(calc(-50% - 38px), calc(-50% + 22px));
+}
+
+/* Top-left */
+.hex-6 {
+  background: rgba(0, 158, 115, 0.1);
+  left: 50%;
+  top: 50%;
+  transform: translate(calc(-50% - 38px), calc(-50% - 22px));
+}
+
 /* ─── How It Works ─────────────────────────────────────── */
 
 .how-it-works {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
-  margin-top: 3rem;
+  margin-top: 1.5rem;
 }
 
 .how-step {
@@ -314,7 +385,7 @@
   padding: 2rem 1.5rem;
 }
 
-.how-step-number {
+.how-step-icon {
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -322,15 +393,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Cinzel', serif;
-  font-size: 1.125rem;
-  font-weight: 700;
   color: var(--lucia);
   margin: 0 auto 1.25rem;
   transition: all 0.3s ease;
 }
 
-.how-step:hover .how-step-number {
+.how-step:hover .how-step-icon {
   border-color: var(--lucia);
   box-shadow: 0 0 20px rgba(232, 182, 48, 0.15);
 }
@@ -418,6 +486,15 @@
   text-overflow: ellipsis;
 }
 
+/* Commander faction color badges */
+.commander-showcase-card[data-faction]  { border-bottom: 3px solid transparent; }
+.commander-showcase-card[data-faction="skaal"]    { border-bottom-color: var(--skaal); }
+.commander-showcase-card[data-faction="grenalia"]  { border-bottom-color: var(--grenalia); }
+.commander-showcase-card[data-faction="lucia"]     { border-bottom-color: var(--lucia); }
+.commander-showcase-card[data-faction="shadis"]    { border-bottom-color: var(--shadis); }
+.commander-showcase-card[data-faction="archaeon"]  { border-bottom-color: var(--archaeon); }
+.commander-showcase-card[data-faction="neutral"]   { border-bottom-color: var(--neutral); }
+
 /* ─── Faction Grid ─────────────────────────────────────── */
 
 .faction-grid {
@@ -466,22 +543,23 @@
 }
 
 .faction-card-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 56px;
+  height: 56px;
   margin-bottom: 1rem;
-  color: var(--fc, var(--text-secondary));
   transition: all 0.3s ease;
 }
 
+.faction-card-icon img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
 .faction-card:hover .faction-card-icon {
-  border-color: var(--fc, var(--text-muted));
-  box-shadow: 0 0 16px rgba(255, 255, 255, 0.05);
+  transform: scale(1.1);
+  filter: brightness(1.15);
 }
 
 .faction-card-name {
@@ -508,9 +586,15 @@
 /* ─── Starter Decks ────────────────────────────────────── */
 
 .starter-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1.25rem;
+}
+
+.starter-grid .starter-card {
+  flex: 0 0 calc(33.33% - 0.84rem);
+  min-width: 0;
 }
 
 .starter-card {
@@ -750,11 +834,26 @@
     grid-template-columns: 1fr 1fr;
   }
 
-  .starter-grid {
-    grid-template-columns: 1fr;
-    max-width: 400px;
-    margin: 0 auto;
+  .starter-grid .starter-card {
+    flex: 0 0 calc(50% - 0.625rem);
   }
+
+  .hex-cluster {
+    width: 140px;
+    height: 130px;
+  }
+
+  .hex {
+    width: 42px;
+    height: 42px;
+  }
+
+  .hex-1 { transform: translate(-50%, calc(-50% - 36px)); }
+  .hex-2 { transform: translate(calc(-50% + 31px), calc(-50% - 18px)); }
+  .hex-3 { transform: translate(calc(-50% + 31px), calc(-50% + 18px)); }
+  .hex-4 { transform: translate(-50%, calc(-50% + 36px)); }
+  .hex-5 { transform: translate(calc(-50% - 31px), calc(-50% + 18px)); }
+  .hex-6 { transform: translate(calc(-50% - 31px), calc(-50% - 18px)); }
 
   .cta-grid {
     grid-template-columns: 1fr;
@@ -785,6 +884,33 @@
   .faction-grid {
     grid-template-columns: 1fr;
   }
+
+  .starter-grid .starter-card {
+    flex: 0 0 100%;
+    max-width: 400px;
+  }
+
+  .starter-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hex-cluster {
+    width: 120px;
+    height: 110px;
+  }
+
+  .hex {
+    width: 36px;
+    height: 36px;
+  }
+
+  .hex-1 { transform: translate(-50%, calc(-50% - 30px)); }
+  .hex-2 { transform: translate(calc(-50% + 26px), calc(-50% - 15px)); }
+  .hex-3 { transform: translate(calc(-50% + 26px), calc(-50% + 15px)); }
+  .hex-4 { transform: translate(-50%, calc(-50% + 30px)); }
+  .hex-5 { transform: translate(calc(-50% - 26px), calc(-50% + 15px)); }
+  .hex-6 { transform: translate(calc(-50% - 26px), calc(-50% - 15px)); }
 
   .hero-glow {
     display: none;
