@@ -28,6 +28,27 @@ The landing page is the first impression for three audiences:
 
 ---
 
+## UI/UX Assessment (Feb 2026)
+
+Visual review at desktop (1280px), tablet (768px), and mobile (375px).
+
+### Strengths
+
+- **Hero section is strong**: The cinematic wide art with SVG hex grid overlay and faction-colored glows creates an immediate premium impression. The stats row (17 commanders, 287+ cards, etc.) communicates scale.
+- **Commander carousel**: Infinite horizontal scroll with faction-colored bottom borders gives immediate faction context. Smooth on all viewports.
+- **Hex cluster illustration**: The 7-hex CSS cluster in "Conquer the Hex Grid" effectively communicates the hex mechanic visually. The SVG icons (cards, hex+flag, gem) are clear at all sizes.
+- **Faction section**: Real game emblem PNGs with colored top borders look premium and communicate the 6-faction system effectively.
+- **Starter decks 3+2 layout**: 5 decks in flexbox wrap — 3 top, 2 centered below — looks intentional and balanced at all breakpoints.
+- **Responsive behavior**: All sections scale well from 375px to 1280px. The hex cluster shrinks proportionally, cards stack cleanly.
+
+### Minor Issues
+
+- **Starter decks not clickable**: The 5 starter deck cards don't link anywhere yet (no deck codes encoded). Visual design suggests they should be interactive.
+- **Hero art is static**: Only showing one of 4 available hero images. Rotation would add variety for returning visitors.
+- **No OG/meta tags**: Sharing on Discord/Twitter shows a generic link preview rather than the hero image and tagline.
+
+---
+
 ## Phase 2 — Near-Term Improvements
 
 ### Starter Deck Deep Links

@@ -5,6 +5,38 @@
 
 ---
 
+## Current UI/UX Assessment (Feb 2026)
+
+Observations from visual review across desktop (1280px) and mobile (375px).
+
+### What's Working
+
+- **Consistent design system**: All 5 analytics pages share the same dark editorial aesthetic, filter bar, header pattern, and footer. Navigation feels cohesive.
+- **Two-tier nav**: Primary nav (Home/Analytics/Decks) + sub-nav (Overview/Commanders/Cards/Meta/Mulligan) is clear and intuitive. Sub-nav scrolls horizontally on mobile.
+- **Filter bar**: Period (1M/3M/6M/All) + Map (All/Dunes/Snowmelt/Tropics) is immediately understandable. Button pill style reads well.
+- **Info tooltips (?)**: Every metric has an info icon for definition. Good for a data-dense product.
+- **Collapsible sections on Meta**: Disclosure triangles let users focus on what they care about. Good pattern to extend to other pages.
+- **Cross-page navigation cards on Overview**: The bottom cards linking to Commanders, Cards, Meta give new visitors a clear next step.
+- **Card/Mulligan filtering**: Faction pill buttons + commander dropdown + search box is a powerful filter stack that composes well.
+
+### Issues to Fix
+
+- **Mobile table overflow (Cards + Mulligan)**: Tables have 9-10 columns. On mobile, only the first 3-4 columns (Card, Faction, Type) are visible — the critical data columns (winrates, rates) are clipped off-screen with no horizontal scroll indicator. This is the single biggest mobile UX problem.
+- **KPI cards stacking (Overview + Mulligan)**: Each KPI card takes full width on mobile, creating excessive vertical scroll. The Overview page is extremely long on mobile because 4 single-value KPIs stack vertically, followed by 3 empty chart areas. A 2x2 compact grid would halve the scroll.
+- **Filter bar wrapping**: At 375px the Period + Map filter buttons wrap but the "All Maps" label gets visually cramped. The two groups (Period, Map) could benefit from stacking vertically on mobile.
+- **Empty state / loading UX**: When Chart.js hasn't loaded data yet, chart areas are featureless dark boxes. No skeleton UI, spinner, or "No data" messaging. Functional but feels broken to a first-time visitor.
+- **Sub-nav active state**: The currently active sub-nav link lacks strong visual differentiation. A bottom border or background highlight would help orientation.
+- **Commanders page empty tables**: The "Winrate by Turns/Actions/Duration" tables collapse to just headers with no rows when data hasn't loaded — looks like broken content rather than a loading state.
+
+### Opportunities
+
+- **Sticky filter bar**: On long pages (especially Meta with 6 sections), the filter bar scrolls out of view. A sticky position would let users change filters without scrolling back to the top.
+- **Mobile-first table redesign**: For Cards and Mulligan, consider a card-based layout on mobile (one card per row showing name + key stats) instead of the wide table. The table works great on desktop.
+- **Default collapsed on mobile**: Meta page sections could default to collapsed on mobile (detected via viewport width) to reduce initial scroll depth.
+- **Matchup heatmap touch UX**: The heatmap will need horizontal scroll + pinch-to-zoom on mobile once it has data. Consider a "tap to see details" pattern for individual cells.
+
+---
+
 ## Quick Wins (existing data, minimal pipeline work)
 
 ### Meta Health Indicator
@@ -109,11 +141,23 @@ Persist the selected time period and map filter across page navigations using `s
 ### Commander Deep Links from Landing Page
 Commander cards in the landing page carousel could link to `commanders.html#<commander-name>` for direct access to that commander's analytics. Requires adding anchor-based scrolling to `commanders.js`.
 
-### Mobile-First Analytics
-The analytics pages work on mobile but aren't optimized for touch interaction:
-- **Matchup heatmap**: Add horizontal scroll indicator, consider pinch-to-zoom
-- **Chart touch targets**: Larger tap areas on chart elements and filter buttons
-- **Collapsible sections**: Already implemented with `collapsed` class — verify all sections default to collapsed on mobile to reduce scroll fatigue
+### Mobile Table Redesign (Cards + Mulligan)
+The 9-10 column data tables are unreadable on mobile — only the first 3-4 columns are visible with no scroll indicator. Options:
+- **Card-based layout**: On viewports <768px, render each card/row as a stacked "card" showing name, faction, and 3-4 key stats. Most impactful.
+- **Horizontal scroll with indicator**: Add `overflow-x: auto` with a visible scroll shadow/arrow hint.
+- **Column priority**: Hide low-priority columns (Avg Copies, Played Rate) on mobile via `display: none` at breakpoint.
+
+### Mobile KPI Layout
+Overview and Mulligan pages stack single-value KPIs as full-width cards on mobile, creating excessive scroll. Switch to a 2x2 compact grid at mobile breakpoints.
+
+### Loading States + Empty States
+Chart areas and tables currently show blank dark boxes when data hasn't loaded. Add:
+- Skeleton shimmer placeholders for chart areas
+- "Loading..." text in chart containers (not just tables)
+- "No data for this filter" messaging when a period/map combination has no matches
+
+### Sticky Filter Bar
+On long pages (Meta has 6 sections, Overview scrolls far on mobile), pin the filter bar below the nav so users can change Period/Map without scrolling back up.
 
 ---
 
