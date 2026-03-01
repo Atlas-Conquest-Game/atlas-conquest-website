@@ -5,13 +5,17 @@
 
 ---
 
-## Current State (v1.1 — Mar 2026)
+## Current State (v1.2 — Mar 2026)
 
-- **Import**: Decode deck code string into visual decklist with commander portrait
+- **Import**: Decode deck code string into visual decklist with commander portrait and full sidebar stats
 - **Build**: Select commander, search cards (faction-filtered), assemble deck, encode to deck code
 - **URL sharing**: `decks.html?code=<encoded>` auto-decodes on page load — works on GitHub Pages
 - **Card metadata**: Cost, type, faction loaded from `cardlist.json`
 - **Codec**: `deckcode.js` encodes/decodes deck codes compatible with the Unity game client
+- **Two-column layout**: Card list left, sticky stats sidebar right. Collapses to single column on mobile (sidebar stacks above card list).
+- **Card hover preview**: Hovering any card row shows a floating card art image (same pattern as cards.html).
+- **Mana curve**: Live CSS bar chart, costs 0–7+, updates on every add/remove.
+- **Type breakdown**: Minion vs Spell count + proportional two-tone bar (Minion = Skaal orange, Spell = Archaeon blue).
 
 ### URL Sharing on GitHub Pages
 
@@ -19,7 +23,7 @@
 
 A real share URL looks like:
 ```
-https://atlasconquest.gg/decks.html?code=wrNWQ29udHJvbHYz%3ADMHgDgzrwAAO...
+https://rossfw.github.io/atlas-conquest/decks.html?code=wrNWQ29udHJvbHYz%3ADMHgDgzrwAAO...
 ```
 - `wrNWQ29udHJvbHYz` = base64 of `(commanderID)(deckName)`
 - `%3A` = URL-encoded colon separator
@@ -27,41 +31,32 @@ https://atlasconquest.gg/decks.html?code=wrNWQ29udHJvbHYz%3ADMHgDgzrwAAO...
 
 ---
 
-## Current UI/UX Assessment (Feb–Mar 2026)
+## UI/UX History
 
-Observations from visual review at desktop (1280px) and mobile (375px).
+### Fixed in v1.1 (Feb 2026)
 
-### What's Working
+- **`.hidden` CSS class**: Was never defined — elements were always visible on load. Added `.hidden { display: none !important; }` to `base.css`.
+- **Commander portrait**: Hidden by default, revealed on deck load. Art path uses slug format matching actual filenames (`elyse-of-the-order.jpg`). `onerror` hides gracefully if file is missing.
+- **Empty deck state**: Dashed-border placeholder message guiding users to import or build.
+- **Faction-aware card search**: Build mode filters autocomplete to commander's faction + Neutral. Neutral commanders (Lazim, Newhaven Township) see all cards.
+- **Richer card suggestions**: Autocomplete shows `[cost] Name · Type · FACTION` format.
 
-- **Clean tab interface**: Import Deck / Build Deck tabs are clear and functional. Underline style is consistent with the design system.
-- **Form layout on desktop**: Commander dropdown + Deck Name side by side, full-width card search below — good spatial hierarchy.
-- **Stats bar**: The 5 deck stats (Cards, Unique, Avg Cost, Minions, Spells) are compact and readable at a glance.
-- **Mobile stacking**: Forms stack to single-column cleanly. Decode button goes full-width. Stats wrap to 3+2 layout.
-- **Copy buttons**: "Copy Deck Code" and "Copy Share URL" are prominent and well-placed for the primary use case (share a deck).
+### Fixed in v1.2 (Mar 2026)
 
-### Fixed in v1.1
-
-- **`.hidden` CSS class**: Was never defined — `deck-display` and `panel-build` were always visible on load. Added `.hidden { display: none !important; }` to `base.css`.
-- **Commander portrait**: Hidden by default, revealed on deck load. Art path uses slug format matching actual filenames (`elyse-of-the-order.jpg`). `onerror` hides the element gracefully if the file is missing.
-- **Empty deck state**: Replaced bare outlined box with a dashed-border placeholder message guiding users to import or build.
-- **Faction-aware card search**: Build mode filters card autocomplete to the selected commander's faction + Neutral. A filter hint label shows what's being filtered. Neutral commanders (Lazim, Newhaven Township) see all cards.
-- **Richer card suggestions**: Autocomplete now shows `[cost] Name · Type · FACTION` instead of just name + faction label.
+- **Two-column layout**: Desktop grid (`1fr 300px`), collapses to single column at 900px with sidebar above card list on mobile.
+- **Sticky stats sidebar**: Commander portrait, faction badge, deck name, Copy Share URL (primary CTA at top), quick stats (Cards / Unique / Avg Cost), mana curve, type breakdown, Copy Deck Code.
+- **Mana curve visualization**: Pure CSS bar chart, costs 0–7+. Updates live on every card add/remove.
+- **Type breakdown**: Minion vs Spell counts with proportional two-tone bar. No "Other" category — all cards are Minion or Spell.
+- **Card hover preview**: Fixed-position art image follows cursor over any card row. Same `card-preview` component pattern as `cards.html`. Art loaded from `assets/cards/<slug>.jpg`.
+- **Card row type badge**: Each card row now shows SPELL or MINION label in addition to faction badge.
+- **Copy Share URL moved up**: Primary CTA is now directly below commander name in sidebar, not buried at the bottom.
+- **Open Graph / Twitter Card tags**: Added to all pages for Discord/social embed previews.
 
 ### Remaining Opportunities
 
-- **Build tab discoverability**: The Import/Build tabs are subtle (small text, underline-only). A first-time visitor may not notice the Build tab exists.
-- **Deck code format hint**: Consider a small "What's a deck code?" tooltip for new players who don't know how to export from the game client.
-- **Commander portrait fallback**: When portrait fails to load, currently hides the element. Could show faction emblem as a fallback instead.
-
----
-
-## Phase 2 — Builder Enhancements
-
-### Mana Curve Visualization
-A live bar chart (pure CSS, no Chart.js dependency) showing cards-per-cost as the deck is built. Updates on every card add/remove. Costs 0–7+. Gives immediate visual feedback on curve shape.
-
-### Commander Portrait from Data
-`commanders.json` has an `art` field with the portrait path. Use it as a fallback if the slug-based path fails. This makes imported decks and built decks feel equally polished.
+- **Deck code format hint**: "What's a deck code?" tooltip for players who don't know how to export from the game client.
+- **Commander portrait fallback**: When portrait fails, show faction emblem instead of hiding the element.
+- **Import tab: card hover preview**: Currently works in both Import and Build mode but art files may be missing for some cards — `onerror` silently hides preview.
 
 ---
 
@@ -100,5 +95,5 @@ Jaccard similarity on card lists to find "decks like this one" from the match da
 
 - No backend required for Phase 1-3 (static hosting only)
 - Deck codes must remain compatible with the game client's C# codec
-- Card art hover previews should reuse the existing card-preview component pattern from analytics pages
+- Card art hover previews reuse the `card-preview` component pattern from `cards.html`
 - Consistent with the dark editorial design system

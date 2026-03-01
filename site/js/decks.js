@@ -12,6 +12,11 @@ let commanderMap = {};  // name → commander data (faction, art, etc.)
 let currentDeck = null; // {commander, deckName, cards: [{name, count}]}
 let currentMode = 'import';
 
+const FACTION_COLORS = {
+  skaal: '#D55E00', grenalia: '#009E73', lucia: '#E8B630',
+  neutral: '#A89078', shadis: '#7B7B8E', archaeon: '#0072B2',
+};
+
 // ─── Data Loading ──────────────────────────────────────────
 
 async function loadCardlist() {
@@ -47,59 +52,149 @@ async function loadCardlist() {
 
 function commanderArtPath(name) {
   // Commander art lives in assets/commanders/<slug>.jpg
-  // e.g. "Elyse of the Order" → "elyse-of-the-order"
   const slug = name.toLowerCase().replace(/[,.']/g, '').replace(/\s+/g, '-');
   return `assets/commanders/${slug}.jpg`;
 }
 
-// ─── Faction Badge ─────────────────────────────────────────
+// ─── Card Art Slug ─────────────────────────────────────────
+
+function cardArtSlug(name) {
+  return name.toLowerCase().replace(/[,.']/g, '').replace(/\s+/g, '-');
+}
+
+// ─── Faction Helpers ───────────────────────────────────────
 
 function factionColor(faction) {
-  const colors = {
-    skaal: '#D55E00', grenalia: '#009E73', lucia: '#E8B630',
-    neutral: '#A89078', shadis: '#7B7B8E', archaeon: '#0072B2',
-  };
-  return colors[(faction || '').toLowerCase()] || '#A89078';
+  return FACTION_COLORS[(faction || '').toLowerCase()] || FACTION_COLORS.neutral;
+}
+
+function factionBadge(faction) {
+  const f = (faction || 'neutral').toLowerCase();
+  const c = FACTION_COLORS[f] || FACTION_COLORS.neutral;
+  return `<span class="faction-badge" style="color:${c};background:${c}1a;padding:2px 7px;border-radius:4px;font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em">${f}</span>`;
+}
+
+// ─── Mana Curve ────────────────────────────────────────────
+
+function renderManaCurve(deck) {
+  const buckets = new Array(8).fill(0); // 0–6, then 7+
+  deck.cards.forEach(c => {
+    const cost = parseInt((cardInfoMap[c.name] || {}).cost) || 0;
+    buckets[Math.min(cost, 7)] += c.count;
+  });
+  const max = Math.max(...buckets, 1);
+  const labels = ['0', '1', '2', '3', '4', '5', '6', '7+'];
+  document.getElementById('mana-curve').innerHTML = labels.map((l, i) => {
+    const h = Math.round((buckets[i] / max) * 72);
+    return `<div class="mana-bar-col">
+      <div class="mana-bar-count">${buckets[i] || ''}</div>
+      <div class="mana-bar" style="height:${h}px"></div>
+      <div class="mana-bar-label">${l}</div>
+    </div>`;
+  }).join('');
+}
+
+// ─── Type Breakdown ────────────────────────────────────────
+
+function renderTypeBreakdown(deck) {
+  let minions = 0, spells = 0;
+  deck.cards.forEach(c => {
+    const t = ((cardInfoMap[c.name] || {}).type || '').toLowerCase();
+    if (t === 'minion') minions += c.count;
+    else if (t === 'spell') spells += c.count;
+  });
+  const total = minions + spells || 1;
+  const mPct = Math.round(minions / total * 100);
+  const sPct = 100 - mPct;
+  const mColor = FACTION_COLORS.skaal;   // #D55E00 — Minion orange
+  const sColor = FACTION_COLORS.archaeon; // #0072B2 — Spell blue
+  document.getElementById('type-breakdown').innerHTML = `
+    <div class="type-breakdown-counts">
+      <span style="color:${mColor}"><strong>${minions}</strong> Minions</span>
+      <span style="color:${sColor}"><strong>${spells}</strong> Spells</span>
+    </div>
+    <div class="type-breakdown-bar">
+      <div style="flex:${minions};background:${mColor}"></div>
+      <div style="flex:${spells};background:${sColor}"></div>
+    </div>
+    <div class="type-breakdown-pct">
+      <span>${mPct}%</span>
+      <span>${sPct}%</span>
+    </div>`;
+}
+
+// ─── Card Art Hover Preview ────────────────────────────────
+
+function initCardPreview() {
+  const preview = document.getElementById('card-preview');
+  const img = document.getElementById('card-preview-img');
+
+  document.addEventListener('mouseover', e => {
+    const row = e.target.closest('.deck-card-row');
+    if (!row) { preview.classList.remove('visible'); return; }
+    const slug = cardArtSlug(row.dataset.card || '');
+    img.src = `assets/cards/${slug}.jpg`;
+    img.onerror = () => { preview.classList.remove('visible'); };
+    preview.classList.add('visible');
+  });
+
+  document.addEventListener('mousemove', e => {
+    if (!preview.classList.contains('visible')) return;
+    const x = e.clientX + 24;
+    const flip = x + 220 > window.innerWidth;
+    preview.style.left = flip ? `${e.clientX - 224}px` : `${x}px`;
+    preview.style.top = `${Math.max(8, e.clientY - 120)}px`;
+  });
+
+  document.addEventListener('mouseout', e => {
+    if (!e.target.closest('.deck-card-row')) {
+      preview.classList.remove('visible');
+    }
+  });
 }
 
 // ─── Render Deck ───────────────────────────────────────────
 
 function renderDeck(deck) {
   currentDeck = deck;
-  const display = document.getElementById('deck-display');
-  display.classList.remove('hidden');
 
-  // Hide empty state
+  // Reveal sidebar + card list, hide empty state
+  document.getElementById('deck-sidebar').classList.remove('hidden');
+  document.getElementById('deck-card-list').classList.remove('hidden');
   document.getElementById('deck-empty-state').classList.add('hidden');
 
-  // Header
-  document.getElementById('deck-name').textContent = deck.deckName || 'Unnamed Deck';
-  document.getElementById('deck-commander').textContent = deck.commander;
+  // Commander portrait
   const artEl = document.getElementById('deck-commander-art');
   artEl.style.display = '';
   artEl.src = commanderArtPath(deck.commander);
   artEl.alt = deck.commander;
   artEl.onerror = () => { artEl.style.display = 'none'; };
 
-  // Stats
+  // Deck name + commander label + faction badge
+  document.getElementById('deck-name').textContent = deck.deckName || 'Unnamed Deck';
+  document.getElementById('deck-commander').textContent = deck.commander;
+  const cmdData = commanderMap[deck.commander];
+  const faction = cmdData ? (cmdData.faction || 'Neutral') : 'Neutral';
+  document.getElementById('deck-commander-faction').innerHTML = factionBadge(faction);
+
+  // Quick stats
   const totalCards = deck.cards.reduce((s, c) => s + c.count, 0);
   const uniqueCards = deck.cards.length;
-  let totalCost = 0, costCount = 0, minions = 0, spells = 0;
+  let totalCost = 0, costCount = 0;
   deck.cards.forEach(c => {
     const info = cardInfoMap[c.name];
     if (info) {
       const cost = parseInt(info.cost);
       if (!isNaN(cost)) { totalCost += cost * c.count; costCount += c.count; }
-      const t = (info.type || '').toLowerCase();
-      if (t === 'minion') minions += c.count;
-      else if (t === 'spell') spells += c.count;
     }
   });
   document.getElementById('stat-total-cards').textContent = totalCards;
   document.getElementById('stat-unique-cards').textContent = uniqueCards;
   document.getElementById('stat-avg-cost').textContent = costCount > 0 ? (totalCost / costCount).toFixed(1) : '?';
-  document.getElementById('stat-minion-count').textContent = minions;
-  document.getElementById('stat-spell-count').textContent = spells;
+
+  // Mana curve + type breakdown
+  renderManaCurve(deck);
+  renderTypeBreakdown(deck);
 
   // Card list grouped by cost
   const listEl = document.getElementById('deck-card-list');
@@ -114,9 +209,8 @@ function renderDeck(deck) {
   const groups = {};
   sorted.forEach(c => {
     const cost = parseInt((cardInfoMap[c.name] || {}).cost) || 0;
-    const key = cost;
-    if (!groups[key]) groups[key] = [];
-    groups[key].push(c);
+    if (!groups[cost]) groups[cost] = [];
+    groups[cost].push(c);
   });
 
   let html = '';
@@ -128,11 +222,13 @@ function renderDeck(deck) {
       const info = cardInfoMap[c.name] || {};
       const fc = factionColor(info.faction);
       const fLabel = (info.faction || 'neutral').toUpperCase();
+      const typeLabel = (info.type || '').toUpperCase();
       const isBuild = currentMode === 'build';
       html += `
         <div class="deck-card-row" data-card="${c.name}">
           <div class="deck-card-cost">${info.cost != null ? info.cost : '?'}</div>
           <span class="deck-card-name">${c.name}</span>
+          ${typeLabel ? `<span class="deck-card-type">${typeLabel}</span>` : ''}
           <span class="deck-card-faction" style="color:${fc};border:1px solid ${fc}40">${fLabel}</span>
           <span class="deck-card-count">${isBuild ? `<button class="deck-count-btn" data-card="${c.name}">&times;${c.count}</button>` : `&times;${c.count}`}</span>
           ${isBuild ? `<button class="deck-card-remove" data-card="${c.name}">&times;</button>` : ''}
@@ -402,6 +498,7 @@ async function init() {
 
   initTabs();
   initBuildMode();
+  initCardPreview();
 
   // Wire buttons
   document.getElementById('btn-decode').addEventListener('click', handleDecode);

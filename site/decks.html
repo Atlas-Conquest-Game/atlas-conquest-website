@@ -55,106 +55,125 @@
   <section class="section">
     <div class="container">
 
-      <!-- Mode Tabs -->
-      <div class="deck-tabs">
-        <button class="deck-tab active" data-mode="import" id="tab-import">Import Deck</button>
-        <button class="deck-tab" data-mode="build" id="tab-build">Build Deck</button>
-      </div>
+      <!-- Two-column layout -->
+      <div class="deck-layout">
 
-      <!-- Import Panel -->
-      <div class="deck-panel" id="panel-import">
-        <div class="import-area">
-          <label class="import-label" for="deck-code-input">Paste deck code</label>
-          <div class="import-row">
-            <input type="text" id="deck-code-input" class="import-input" placeholder="e.g. wrNWQ29udHJvbHYz:DMHgDgzrwAAO..." spellcheck="false">
-            <button class="btn btn-primary" id="btn-decode">Decode</button>
+        <!-- Left column: controls + card list -->
+        <div class="deck-main">
+
+          <!-- Mode Tabs -->
+          <div class="deck-tabs">
+            <button class="deck-tab active" data-mode="import" id="tab-import">Import Deck</button>
+            <button class="deck-tab" data-mode="build" id="tab-build">Build Deck</button>
           </div>
-          <p class="import-hint">Copy a deck code from the Atlas Conquest deck editor, then paste it here.</p>
-        </div>
-      </div>
 
-      <!-- Build Panel (hidden by default) -->
-      <div class="deck-panel hidden" id="panel-build">
-        <div class="build-controls">
-          <div class="build-row">
-            <div class="build-field">
-              <label class="build-label" for="build-commander">Commander</label>
-              <select id="build-commander" class="build-select">
-                <option value="">Select a commander...</option>
-              </select>
+          <!-- Import Panel -->
+          <div class="deck-panel" id="panel-import">
+            <label class="deck-input-label" for="deck-code-input">Paste deck code</label>
+            <div class="deck-input-row">
+              <input type="text" id="deck-code-input" class="deck-input" placeholder="e.g. wrNWQ29udHJvbHYz:DMHgDgzrwAAO..." spellcheck="false">
+              <button class="btn btn-primary" id="btn-decode">Decode</button>
             </div>
-            <div class="build-field">
-              <label class="build-label" for="build-name">Deck Name</label>
-              <input type="text" id="build-name" class="build-input" placeholder="My Deck">
-            </div>
+            <p class="deck-input-hint">Copy a deck code from the Atlas Conquest deck editor, then paste it here.</p>
           </div>
-          <div class="build-card-search">
-            <label class="build-label" for="build-card-input">Add Cards</label>
-            <div class="build-search-row">
-              <input type="text" id="build-card-input" class="build-input" placeholder="Search for a card..." autocomplete="off">
-              <div class="build-suggestions hidden" id="build-suggestions"></div>
-            </div>
-            <div class="build-filter-hint hidden" id="build-filter-hint"></div>
-          </div>
-        </div>
-      </div>
 
-      <!-- Empty State -->
-      <div class="deck-empty-state" id="deck-empty-state">
-        <p>Paste a deck code above to view a decklist, or switch to <strong>Build Deck</strong> to create one from scratch.</p>
-      </div>
-
-      <!-- Deck Display (shared between import and build) -->
-      <div class="deck-display hidden" id="deck-display">
-        <div class="deck-header">
-          <div class="deck-commander-info">
-            <img class="deck-commander-art" id="deck-commander-art" src="" alt="" style="display:none">
-            <div>
-              <h2 class="deck-name" id="deck-name"></h2>
-              <p class="deck-commander" id="deck-commander"></p>
+          <!-- Build Panel (hidden by default) -->
+          <div class="deck-panel hidden" id="panel-build">
+            <div class="build-controls">
+              <div class="build-row">
+                <div class="build-field">
+                  <label class="deck-input-label" for="build-commander">Commander</label>
+                  <select id="build-commander" class="deck-select">
+                    <option value="">Select a commander...</option>
+                  </select>
+                </div>
+                <div class="build-field">
+                  <label class="deck-input-label" for="build-name">Deck Name</label>
+                  <input type="text" id="build-name" class="deck-input" placeholder="My Deck">
+                </div>
+              </div>
+              <div class="build-card-search">
+                <label class="deck-input-label" for="build-card-input">Add Cards</label>
+                <div class="build-search-row">
+                  <input type="text" id="build-card-input" class="deck-input" placeholder="Search for a card..." autocomplete="off">
+                  <div class="build-suggestions hidden" id="build-suggestions"></div>
+                </div>
+                <div class="build-filter-hint hidden" id="build-filter-hint"></div>
+              </div>
             </div>
           </div>
-          <div class="deck-actions">
-            <button class="btn btn-secondary" id="btn-copy-code">Copy Deck Code</button>
-            <button class="btn btn-primary" id="btn-copy-url">Copy Share URL</button>
-          </div>
-        </div>
 
-        <!-- Deck Stats -->
-        <div class="deck-stats">
-          <div class="deck-stat">
-            <span class="deck-stat-value" id="stat-total-cards">0</span>
-            <span class="deck-stat-label">Cards</span>
+          <!-- Empty State -->
+          <div class="deck-empty-state" id="deck-empty-state">
+            <p>Paste a deck code above to view a decklist, or switch to <strong>Build Deck</strong> to create one from scratch.</p>
           </div>
-          <div class="deck-stat">
-            <span class="deck-stat-value" id="stat-unique-cards">0</span>
-            <span class="deck-stat-label">Unique</span>
-          </div>
-          <div class="deck-stat">
-            <span class="deck-stat-value" id="stat-avg-cost">0</span>
-            <span class="deck-stat-label">Avg Cost</span>
-          </div>
-          <div class="deck-stat">
-            <span class="deck-stat-value" id="stat-minion-count">0</span>
-            <span class="deck-stat-label">Minions</span>
-          </div>
-          <div class="deck-stat">
-            <span class="deck-stat-value" id="stat-spell-count">0</span>
-            <span class="deck-stat-label">Spells</span>
-          </div>
-        </div>
 
-        <!-- Card List -->
-        <div class="deck-card-list" id="deck-card-list"></div>
+          <!-- Card List -->
+          <div class="deck-card-list hidden" id="deck-card-list"></div>
 
-        <!-- Build mode: card list is editable -->
-        <div class="build-card-list-note hidden" id="build-note">
-          Click a card's count to change it. Click the X to remove.
-        </div>
-      </div>
+          <!-- Build mode note -->
+          <div class="deck-build-note hidden" id="build-note">
+            Click a card's count to cycle 1→2→3. Click × to remove.
+          </div>
 
-      <!-- Empty / Error States -->
-      <div class="deck-message hidden" id="deck-error"></div>
+          <!-- Error -->
+          <div class="deck-message hidden" id="deck-error"></div>
+
+        </div><!-- /deck-main -->
+
+        <!-- Right column: stats sidebar (shown when deck loaded) -->
+        <div class="deck-sidebar hidden" id="deck-sidebar">
+
+          <!-- Commander info + Share URL -->
+          <div class="deck-sidebar-card">
+            <div class="deck-commander-section">
+              <img id="deck-commander-art" class="deck-commander-portrait" src="" alt="" style="display:none">
+              <div class="deck-commander-meta">
+                <div class="deck-name" id="deck-name"></div>
+                <div class="deck-commander-faction" id="deck-commander-faction"></div>
+                <div class="deck-commander-label" id="deck-commander"></div>
+              </div>
+            </div>
+            <button class="btn btn-primary deck-btn-full" id="btn-copy-url">Copy Share URL</button>
+          </div>
+
+          <!-- Quick stats -->
+          <div class="deck-sidebar-card">
+            <div class="deck-quick-stats">
+              <div class="deck-quick-stat">
+                <div class="deck-quick-stat-value" id="stat-total-cards">0</div>
+                <div class="deck-quick-stat-label">Cards</div>
+              </div>
+              <div class="deck-quick-stat">
+                <div class="deck-quick-stat-value" id="stat-unique-cards">0</div>
+                <div class="deck-quick-stat-label">Unique</div>
+              </div>
+              <div class="deck-quick-stat">
+                <div class="deck-quick-stat-value" id="stat-avg-cost">—</div>
+                <div class="deck-quick-stat-label">Avg Cost</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mana Curve -->
+          <div class="deck-sidebar-card">
+            <div class="deck-sidebar-section-label">Mana Curve</div>
+            <div class="mana-curve" id="mana-curve"></div>
+          </div>
+
+          <!-- Type Breakdown -->
+          <div class="deck-sidebar-card">
+            <div class="deck-sidebar-section-label">Type Breakdown</div>
+            <div id="type-breakdown"></div>
+          </div>
+
+          <!-- Copy deck code -->
+          <button class="btn btn-secondary deck-btn-full" id="btn-copy-code">Copy Deck Code</button>
+
+        </div><!-- /deck-sidebar -->
+
+      </div><!-- /deck-layout -->
+
     </div>
   </section>
 
@@ -165,6 +184,11 @@
       <p class="footer-text footer-muted">Built for the community. Not affiliated with the Atlas Conquest development team.</p>
     </div>
   </footer>
+
+  <!-- Card art hover preview (fixed, follows cursor) -->
+  <div class="card-preview" id="card-preview">
+    <img id="card-preview-img" src="" alt="">
+  </div>
 
   <script src="js/deckcode.js"></script>
   <script src="js/decks.js"></script>
