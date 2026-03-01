@@ -366,6 +366,28 @@
   font-weight: 600;
 }
 
+/* Empty State */
+.deck-empty-state {
+  padding: 40px 24px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  margin-top: 8px;
+}
+
+.deck-empty-state strong {
+  color: var(--text-secondary);
+}
+
+/* Build Filter Hint */
+.build-filter-hint {
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
 /* Error / Message States */
 .deck-message {
   padding: 16px 20px;

@@ -5,17 +5,29 @@
 
 ---
 
-## Current State (v1 — Feb 2026)
+## Current State (v1.1 — Mar 2026)
 
-- **Import**: Decode deck code string into visual decklist
-- **Build**: Select commander, search cards, assemble deck, encode to deck code
-- **URL sharing**: `decks.html?code=<encoded>` auto-decodes on page load
+- **Import**: Decode deck code string into visual decklist with commander portrait
+- **Build**: Select commander, search cards (faction-filtered), assemble deck, encode to deck code
+- **URL sharing**: `decks.html?code=<encoded>` auto-decodes on page load — works on GitHub Pages
 - **Card metadata**: Cost, type, faction loaded from `cardlist.json`
 - **Codec**: `deckcode.js` encodes/decodes deck codes compatible with the Unity game client
 
+### URL Sharing on GitHub Pages
+
+`decks.html?code=X` works perfectly on static hosting. The deck code is read client-side via `URLSearchParams` — no server-side routing required. GitHub Pages serves HTTPS by default, which enables the `navigator.clipboard` API used for copy actions.
+
+A real share URL looks like:
+```
+https://atlasconquest.gg/decks.html?code=wrNWQ29udHJvbHYz%3ADMHgDgzrwAAO...
+```
+- `wrNWQ29udHJvbHYz` = base64 of `(commanderID)(deckName)`
+- `%3A` = URL-encoded colon separator
+- `DMHgDgzrwAAO...` = base64 of binary card data (20 bits per card)
+
 ---
 
-## Current UI/UX Assessment (Feb 2026)
+## Current UI/UX Assessment (Feb–Mar 2026)
 
 Observations from visual review at desktop (1280px) and mobile (375px).
 
@@ -27,85 +39,65 @@ Observations from visual review at desktop (1280px) and mobile (375px).
 - **Mobile stacking**: Forms stack to single-column cleanly. Decode button goes full-width. Stats wrap to 3+2 layout.
 - **Copy buttons**: "Copy Deck Code" and "Copy Share URL" are prominent and well-placed for the primary use case (share a deck).
 
-### Issues to Fix
+### Fixed in v1.1
 
-- **Broken commander portrait**: When no deck is loaded, the commander portrait area shows a broken `<img>` tag (missing image icon). Should either hide the image element or show a placeholder silhouette.
-- **Empty deck state**: The empty decklist area shows just a thin red/green outlined box. A new visitor has no idea what this area is for. Needs a welcoming empty state: "Your deck will appear here — paste a deck code or build one from scratch."
-- **Build tab discoverability**: The Import/Build tabs are subtle (small text, underline-only). A first-time visitor may not realize they can build a deck from scratch. Consider making the tab toggle more prominent, or showing both modes' entry points more visually.
-- **No starter decks on this page**: The landing page advertises 5 starter decks but the deck tools page has no quick-start gallery. A visitor clicking through expects to find them here.
+- **Commander portrait**: Hidden by default, revealed on deck load. Art path now uses slug format matching actual filenames.
+- **Empty deck state**: Replaced bare outlined box with a dashed-border placeholder message guiding users to import or build.
+- **Faction-aware card search**: Build mode now filters card autocomplete to the selected commander's faction + Neutral. A filter hint label shows what's being shown. Neutral commanders (Lazim, Newhaven) see all cards.
+- **Richer card suggestions**: Autocomplete now shows `[cost] Name · Type · FACTION` instead of just name + faction label.
 
-### Opportunities
+### Remaining Opportunities
 
-- **Empty state with starter deck shortcuts**: Replace the bare empty deck area with starter deck buttons — "Try a starter deck" with 5 faction-colored buttons that auto-load a pre-encoded deck code.
-- **Commander portrait placeholder**: Show the faction emblem or a generic commander silhouette when no commander is selected.
-- **Card search preview**: When typing in the "Search for a card" box, show a dropdown with matching cards including their art thumbnail, cost, and type. Currently it's likely text-only.
-- **Deck code format hint**: The placeholder text shows a truncated example code. Consider a small "What's a deck code?" link for new players who don't know how to export from the game client.
-
----
-
-## Phase 1.1 — Starter Deck Gallery
-
-Add a "Starter Decks" section to `decks.html` showing all 5 starter decks with pre-encoded deck codes. Clicking one loads the full decklist into the viewer.
-
-The landing page's starter deck cards would deep-link here via `decks.html?code=X`.
-
-**Starter decks** (from Unity `Assets/Resources/Deck/`):
-| Deck | Commander | Faction | Cards |
-|------|-----------|---------|-------|
-| Starter Deploy | Captain Greenbeard | Skaal | 40 cards (goblins, haste, lightning) |
-| Starter Beasts | Jagris the Huntsman | Grenalia | 40 cards (beasts, poisons, buffs) |
-| Starter Military | Milo Sunstone | Lucia | 40 cards (paladins, healing, soldiers) |
-| Starter Death | Soultaker Viessa | Shadis | 41 cards (vampires, drain, sacrifice) |
-| Starter Mage | Starwise Luna | Archaeon | 40 cards (frost, spells, mana refresh) |
+- **Build tab discoverability**: The Import/Build tabs are subtle (small text, underline-only). A first-time visitor may not notice the Build tab exists.
+- **Deck code format hint**: Consider a small "What's a deck code?" tooltip for new players who don't know how to export from the game client.
+- **Commander portrait placeholder**: When portrait fails to load (image not found), show faction emblem as fallback instead of nothing.
 
 ---
 
-## Phase 2 — Deck Sharing & Discovery
+## Phase 2 — Builder Enhancements
+
+### Mana Curve Visualization
+A live bar chart (pure CSS, no Chart.js dependency) showing cards-per-cost as the deck is built. Updates on every card add/remove. Costs 0–7+. Gives immediate visual feedback on curve shape.
+
+### Commander Portrait from Data
+`commanders.json` has an `art` field with the portrait path. Use it as a fallback if the slug-based path fails. This makes imported decks and built decks feel equally polished.
+
+---
+
+## Phase 3 — Deck Sharing & Discovery
 
 ### Community Deck Gallery
-Public deck submissions via deck code + metadata (name, description, tags). Storage options:
-- **GitHub Issues as backend** — free, no server, searchable via API
-- **Simple JSON file** — curated list committed to repo, generated from submissions
+Public deck submissions with no backend required:
+- **GitHub Issues as backend** — users open a prefilled Issue with deck code + metadata
+- A `community_decks.json` (manually curated or auto-generated from merged Issues) is committed to the repo
 - Browse by commander, faction, or archetype tag
 - "Copy deck code" and "View in builder" buttons per entry
 
 ### Deck Ratings
-Simple upvote system. Requires some form of persistence:
+Simple upvote system. Options:
 - GitHub Discussions API (free, community-visible)
 - Lightweight serverless function (Cloudflare Workers or similar)
-- Sort by popularity, recency, or winrate (if analytics integration exists)
+
+Revisit when there are enough players submitting decks organically.
 
 ---
 
-## Phase 3 — Analytics Integration
+## Phase 4 — Analytics Integration
 
 ### Card Stats in Deck View
 Hover/click a card in the deck viewer to see its drawn rate, played rate, and winrate from the analytics data. Color-code cards by performance (green = high WR, red = low WR).
 
 ### Deck Winrate Estimation
-Use historical card performance data to estimate a deck's expected winrate. Compare against meta averages for that commander. Show a "power budget" visualization.
+Use historical card performance data to estimate a deck's expected winrate. Compare against meta averages for that commander.
 
 ### Similar Decks
 Jaccard similarity on card lists to find "decks like this one" from the match database. Link to analytics for those archetypes.
 
 ---
 
-## Phase 4 — Advanced Builder
-
-### Faction-Aware Card Filtering
-Auto-filter card search to show only cards legal for the selected commander (commander's faction + neutral, or all factions for Lazim). Visual indicator for off-faction cards.
-
-### Mana Curve Visualization
-Live mana curve bar chart that updates as cards are added/removed. Overlay the average mana curve for that commander from analytics data.
-
-### Deck Comparison Tool
-Side-by-side comparison of two decks. Highlight cards that differ, show stat comparisons.
-
----
-
 ## Design Constraints
 
-- No backend required for Phase 1-2 (static hosting only)
+- No backend required for Phase 1-3 (static hosting only)
 - Deck codes must remain compatible with the game client's C# codec
 - Card art hover previews should reuse the existing card-preview component pattern from analytics pages
 - Consistent with the dark editorial design system

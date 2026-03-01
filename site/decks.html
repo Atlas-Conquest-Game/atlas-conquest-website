@@ -84,15 +84,21 @@
               <input type="text" id="build-card-input" class="build-input" placeholder="Search for a card..." autocomplete="off">
               <div class="build-suggestions hidden" id="build-suggestions"></div>
             </div>
+            <div class="build-filter-hint hidden" id="build-filter-hint"></div>
           </div>
         </div>
+      </div>
+
+      <!-- Empty State -->
+      <div class="deck-empty-state" id="deck-empty-state">
+        <p>Paste a deck code above to view a decklist, or switch to <strong>Build Deck</strong> to create one from scratch.</p>
       </div>
 
       <!-- Deck Display (shared between import and build) -->
       <div class="deck-display hidden" id="deck-display">
         <div class="deck-header">
           <div class="deck-commander-info">
-            <img class="deck-commander-art" id="deck-commander-art" src="" alt="">
+            <img class="deck-commander-art" id="deck-commander-art" src="" alt="" style="display:none">
             <div>
               <h2 class="deck-name" id="deck-name"></h2>
               <p class="deck-commander" id="deck-commander"></p>

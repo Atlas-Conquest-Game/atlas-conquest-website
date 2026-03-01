@@ -5,6 +5,9 @@
   box-sizing: border-box;
 }
 
+/* === Utility === */
+.hidden { display: none !important; }
+
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;

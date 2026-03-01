@@ -8,6 +8,7 @@ let cardlistData = null;
 let cardsData = null;  // card_stats for metadata (cost, type, faction)
 let cardInfoMap = {};  // name → {cost, type, faction}
 let commanderList = []; // names of commanders from cardlist
+let commanderMap = {};  // name → commander data (faction, art, etc.)
 let currentDeck = null; // {commander, deckName, cards: [{name, count}]}
 let currentMode = 'import';
 
@@ -22,7 +23,10 @@ async function loadCardlist() {
   const knownCommanders = new Set();
   const resp2 = await fetch('data/commanders.json');
   const commanders = await resp2.json();
-  commanders.forEach(c => knownCommanders.add(c.name));
+  commanders.forEach(c => {
+    knownCommanders.add(c.name);
+    commanderMap[c.name] = c;
+  });
   commanderList = [...knownCommanders].sort();
 
   // Load card metadata for display
@@ -42,8 +46,10 @@ async function loadCardlist() {
 // ─── Commander Art Path ────────────────────────────────────
 
 function commanderArtPath(name) {
-  // Commander art lives in assets/commanders/<name>.jpg
-  return `assets/commanders/${name}.jpg`;
+  // Commander art lives in assets/commanders/<slug>.jpg
+  // e.g. "Elyse of the Order" → "elyse-of-the-order"
+  const slug = name.toLowerCase().replace(/[,.']/g, '').replace(/\s+/g, '-');
+  return `assets/commanders/${slug}.jpg`;
 }
 
 // ─── Faction Badge ─────────────────────────────────────────
@@ -63,10 +69,14 @@ function renderDeck(deck) {
   const display = document.getElementById('deck-display');
   display.classList.remove('hidden');
 
+  // Hide empty state
+  document.getElementById('deck-empty-state').classList.add('hidden');
+
   // Header
   document.getElementById('deck-name').textContent = deck.deckName || 'Unnamed Deck';
   document.getElementById('deck-commander').textContent = deck.commander;
   const artEl = document.getElementById('deck-commander-art');
+  artEl.style.display = '';
   artEl.src = commanderArtPath(deck.commander);
   artEl.alt = deck.commander;
   artEl.onerror = () => { artEl.style.display = 'none'; };
@@ -188,6 +198,22 @@ function handleDecode() {
 
 // ─── Build Mode ────────────────────────────────────────────
 
+function updateFilterHint(commanderName) {
+  const hintEl = document.getElementById('build-filter-hint');
+  if (!hintEl) return;
+  const cmdData = commanderMap[commanderName];
+  if (!cmdData || !commanderName) {
+    hintEl.classList.add('hidden');
+    return;
+  }
+  const faction = cmdData.faction || 'Neutral';
+  const isNeutral = faction.toLowerCase() === 'neutral';
+  hintEl.textContent = isNeutral
+    ? 'Showing all factions (neutral commander)'
+    : `Showing ${faction} + Neutral cards`;
+  hintEl.classList.remove('hidden');
+}
+
 function initBuildMode() {
   const select = document.getElementById('build-commander');
   select.innerHTML = '<option value="">Select a commander...</option>' +
@@ -197,6 +223,7 @@ function initBuildMode() {
   select.addEventListener('change', () => {
     ensureBuildDeck();
     currentDeck.commander = select.value;
+    updateFilterHint(select.value);
     if (currentDeck.commander) renderDeck(currentDeck);
   });
 
@@ -222,10 +249,23 @@ function initBuildMode() {
         return;
       }
 
-      // Filter cards (non-commanders)
+      // Faction filtering: show commander's faction + neutral; neutral commanders see all
+      const selectedCommander = document.getElementById('build-commander').value;
+      const cmdData = commanderMap[selectedCommander];
+      const cmdFaction = cmdData ? (cmdData.faction || '').toLowerCase() : null;
+      const isNeutralCmd = cmdFaction === 'neutral' || !cmdFaction;
+
       const commanderSet = new Set(commanderList);
       const matches = cardlistData.cards
-        .filter(c => !commanderSet.has(c.name) && c.name.toLowerCase().includes(q))
+        .filter(c => {
+          if (commanderSet.has(c.name)) return false;
+          if (!c.name.toLowerCase().includes(q)) return false;
+          if (!isNeutralCmd) {
+            const cardFaction = (cardInfoMap[c.name]?.faction || '').toLowerCase();
+            if (cardFaction !== 'neutral' && cardFaction !== cmdFaction) return false;
+          }
+          return true;
+        })
         .slice(0, 12);
 
       if (matches.length === 0) {
@@ -235,10 +275,13 @@ function initBuildMode() {
 
       suggestionsEl.innerHTML = matches.map(c => {
         const info = cardInfoMap[c.name] || {};
-        const f = (info.faction || '').toUpperCase();
+        const cost = info.cost != null ? info.cost : '?';
+        const type = info.type || '';
+        const faction = (info.faction || '').toUpperCase();
+        const meta = [type, faction].filter(Boolean).join(' · ');
         return `<div class="build-suggestion" data-name="${c.name}">
-          <span>${c.name}</span>
-          <span class="build-suggestion-faction">${f}</span>
+          <span>[${cost}] ${c.name}</span>
+          <span class="build-suggestion-faction">${meta}</span>
         </div>`;
       }).join('');
       suggestionsEl.classList.remove('hidden');
