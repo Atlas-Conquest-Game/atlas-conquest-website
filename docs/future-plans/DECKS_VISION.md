@@ -41,16 +41,17 @@ Observations from visual review at desktop (1280px) and mobile (375px).
 
 ### Fixed in v1.1
 
-- **Commander portrait**: Hidden by default, revealed on deck load. Art path now uses slug format matching actual filenames.
+- **`.hidden` CSS class**: Was never defined — `deck-display` and `panel-build` were always visible on load. Added `.hidden { display: none !important; }` to `base.css`.
+- **Commander portrait**: Hidden by default, revealed on deck load. Art path uses slug format matching actual filenames (`elyse-of-the-order.jpg`). `onerror` hides the element gracefully if the file is missing.
 - **Empty deck state**: Replaced bare outlined box with a dashed-border placeholder message guiding users to import or build.
-- **Faction-aware card search**: Build mode now filters card autocomplete to the selected commander's faction + Neutral. A filter hint label shows what's being shown. Neutral commanders (Lazim, Newhaven) see all cards.
+- **Faction-aware card search**: Build mode filters card autocomplete to the selected commander's faction + Neutral. A filter hint label shows what's being filtered. Neutral commanders (Lazim, Newhaven Township) see all cards.
 - **Richer card suggestions**: Autocomplete now shows `[cost] Name · Type · FACTION` instead of just name + faction label.
 
 ### Remaining Opportunities
 
 - **Build tab discoverability**: The Import/Build tabs are subtle (small text, underline-only). A first-time visitor may not notice the Build tab exists.
 - **Deck code format hint**: Consider a small "What's a deck code?" tooltip for new players who don't know how to export from the game client.
-- **Commander portrait placeholder**: When portrait fails to load (image not found), show faction emblem as fallback instead of nothing.
+- **Commander portrait fallback**: When portrait fails to load, currently hides the element. Could show faction emblem as a fallback instead.
 
 ---
 
