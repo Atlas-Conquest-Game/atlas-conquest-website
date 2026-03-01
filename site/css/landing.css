@@ -481,9 +481,11 @@
   font-weight: 600;
   color: var(--text);
   text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  line-height: 1.3;
+  min-height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Commander faction color badges */
