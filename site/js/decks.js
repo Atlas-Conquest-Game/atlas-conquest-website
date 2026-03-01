@@ -11,11 +11,15 @@ let commanderList = []; // names of commanders from cardlist
 let commanderMap = {};  // name → commander data (faction, art, etc.)
 let currentDeck = null; // {commander, deckName, cards: [{name, count}]}
 let currentMode = 'import';
+let buildSortMode = 'cost'; // 'cost' | 'name'
 
 const FACTION_COLORS = {
   skaal: '#D55E00', grenalia: '#009E73', lucia: '#E8B630',
   neutral: '#A89078', shadis: '#7B7B8E', archaeon: '#0072B2',
 };
+
+const MINION_COLOR = 'var(--lucia)';  // gold — replaces Skaal orange
+const SPELL_COLOR  = '#7C9EFF';       // periwinkle — replaces Archaeon dark blue
 
 // ─── Data Loading ──────────────────────────────────────────
 
@@ -44,14 +48,12 @@ async function loadCardlist() {
       faction: c.faction || 'neutral',
     };
   });
-  // Also map from cardlist names that might not be in cards.json
   cardsData = cards;
 }
 
 // ─── Commander Art Path ────────────────────────────────────
 
 function commanderArtPath(name) {
-  // Commander art lives in assets/commanders/<slug>.jpg
   const slug = name.toLowerCase().replace(/[,.']/g, '').replace(/\s+/g, '-');
   return `assets/commanders/${slug}.jpg`;
 }
@@ -74,21 +76,34 @@ function factionBadge(faction) {
   return `<span class="faction-badge" style="color:${c};background:${c}1a;padding:2px 7px;border-radius:4px;font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em">${f}</span>`;
 }
 
-// ─── Mana Curve ────────────────────────────────────────────
+// ─── Mana Curve (stacked: spell on top, minion on bottom) ──
 
 function renderManaCurve(deck) {
-  const buckets = new Array(8).fill(0); // 0–6, then 7+
+  const minionBuckets = new Array(8).fill(0); // 0–6, then 7+
+  const spellBuckets  = new Array(8).fill(0);
   deck.cards.forEach(c => {
     const cost = parseInt((cardInfoMap[c.name] || {}).cost) || 0;
-    buckets[Math.min(cost, 7)] += c.count;
+    const idx = Math.min(cost, 7);
+    const t = ((cardInfoMap[c.name] || {}).type || '').toLowerCase();
+    if (t === 'spell') spellBuckets[idx] += c.count;
+    else               minionBuckets[idx] += c.count;
   });
-  const max = Math.max(...buckets, 1);
+
+  const totals = minionBuckets.map((m, i) => m + spellBuckets[i]);
+  const max = Math.max(...totals, 1);
   const labels = ['0', '1', '2', '3', '4', '5', '6', '7+'];
+
   document.getElementById('mana-curve').innerHTML = labels.map((l, i) => {
-    const h = Math.round((buckets[i] / max) * 72);
+    const totalH = Math.round((totals[i] / max) * 72);
+    const spellH  = totals[i] > 0 ? Math.round((spellBuckets[i] / totals[i]) * totalH) : 0;
+    const minionH = totalH - spellH;
+    const count = totals[i] || '';
     return `<div class="mana-bar-col">
-      <div class="mana-bar-count">${buckets[i] || ''}</div>
-      <div class="mana-bar" style="height:${h}px"></div>
+      <div class="mana-bar-count">${count}</div>
+      <div class="mana-bar-stack" style="height:${totalH}px">
+        <div class="mana-bar-seg spell"  style="height:${spellH}px"></div>
+        <div class="mana-bar-seg minion" style="height:${minionH}px"></div>
+      </div>
       <div class="mana-bar-label">${l}</div>
     </div>`;
   }).join('');
@@ -106,16 +121,14 @@ function renderTypeBreakdown(deck) {
   const total = minions + spells || 1;
   const mPct = Math.round(minions / total * 100);
   const sPct = 100 - mPct;
-  const mColor = FACTION_COLORS.skaal;   // #D55E00 — Minion orange
-  const sColor = FACTION_COLORS.archaeon; // #0072B2 — Spell blue
   document.getElementById('type-breakdown').innerHTML = `
     <div class="type-breakdown-counts">
-      <span style="color:${mColor}"><strong>${minions}</strong> Minions</span>
-      <span style="color:${sColor}"><strong>${spells}</strong> Spells</span>
+      <span style="color:${MINION_COLOR}"><strong>${minions}</strong> Minions</span>
+      <span style="color:${SPELL_COLOR}"><strong>${spells}</strong> Spells</span>
     </div>
     <div class="type-breakdown-bar">
-      <div style="flex:${minions};background:${mColor}"></div>
-      <div style="flex:${spells};background:${sColor}"></div>
+      <div style="flex:${minions};background:${MINION_COLOR}"></div>
+      <div style="flex:${spells};background:${SPELL_COLOR}"></div>
     </div>
     <div class="type-breakdown-pct">
       <span>${mPct}%</span>
@@ -205,7 +218,6 @@ function renderDeck(deck) {
     return a.name.localeCompare(b.name);
   });
 
-  // Group by cost
   const groups = {};
   sorted.forEach(c => {
     const cost = parseInt((cardInfoMap[c.name] || {}).cost) || 0;
@@ -238,7 +250,6 @@ function renderDeck(deck) {
   }
   listEl.innerHTML = html;
 
-  // Build mode: show note and wire remove/count buttons
   const buildNote = document.getElementById('build-note');
   if (currentMode === 'build') {
     buildNote.classList.remove('hidden');
@@ -267,6 +278,109 @@ function wireCardButtons() {
         card.count = (card.count % 3) + 1; // Cycle 1→2→3→1
         renderDeck(currentDeck);
       }
+    });
+  });
+}
+
+// ─── Build Mode: Card Suggestions ─────────────────────────
+
+function getFactionFilteredCards() {
+  const selectedCommander = document.getElementById('build-commander').value;
+  const cmdData = commanderMap[selectedCommander];
+  const cmdFaction = cmdData ? (cmdData.faction || '').toLowerCase() : null;
+  const isNeutralCmd = cmdFaction === 'neutral' || !cmdFaction;
+  const commanderSet = new Set(commanderList);
+
+  return cardlistData.cards.filter(c => {
+    if (commanderSet.has(c.name)) return false;
+    if (!isNeutralCmd) {
+      const cardFaction = (cardInfoMap[c.name]?.faction || '').toLowerCase();
+      if (cardFaction !== 'neutral' && cardFaction !== cmdFaction) return false;
+    }
+    return true;
+  });
+}
+
+function showCardSuggestions(q) {
+  const suggestionsEl = document.getElementById('build-suggestions');
+  const selectedCommander = document.getElementById('build-commander').value;
+
+  if (!selectedCommander) {
+    suggestionsEl.classList.add('hidden');
+    return;
+  }
+
+  const allFiltered = getFactionFilteredCards();
+
+  let matches;
+  if (!q) {
+    // Browse mode: show all faction-filtered cards up to 30
+    matches = [...allFiltered];
+  } else {
+    matches = allFiltered.filter(c => c.name.toLowerCase().includes(q));
+  }
+
+  // Sort
+  matches.sort((a, b) => {
+    if (buildSortMode === 'name') return a.name.localeCompare(b.name);
+    // cost sort (ascending), then name
+    const ca = parseInt((cardInfoMap[a.name] || {}).cost) || 0;
+    const cb = parseInt((cardInfoMap[b.name] || {}).cost) || 0;
+    if (ca !== cb) return ca - cb;
+    return a.name.localeCompare(b.name);
+  });
+
+  const limit = q ? 12 : 30;
+  matches = matches.slice(0, limit);
+
+  if (matches.length === 0) {
+    suggestionsEl.classList.add('hidden');
+    return;
+  }
+
+  // Sort controls header
+  const sortHTML = `<div class="build-sort-controls">
+    <span class="build-sort-label">Sort:</span>
+    <button class="build-sort-btn ${buildSortMode === 'cost' ? 'active' : ''}" data-sort="cost">Cost</button>
+    <button class="build-sort-btn ${buildSortMode === 'name' ? 'active' : ''}" data-sort="name">Name</button>
+  </div>`;
+
+  const cardHTML = matches.map(c => {
+    const info = cardInfoMap[c.name] || {};
+    const cost = info.cost != null ? info.cost : '?';
+    const type = info.type || '';
+    const faction = (info.faction || '').toUpperCase();
+    const meta = [type, faction].filter(Boolean).join(' · ');
+    const slug = cardArtSlug(c.name);
+    return `<div class="build-suggestion" data-name="${c.name}">
+      <img class="build-suggestion-img" src="assets/cards/${slug}.jpg" alt="" onerror="this.style.visibility='hidden'">
+      <div class="build-suggestion-info">
+        <div class="build-suggestion-name">[${cost}] ${c.name}</div>
+        <div class="build-suggestion-faction">${meta}</div>
+      </div>
+    </div>`;
+  }).join('');
+
+  suggestionsEl.innerHTML = sortHTML + cardHTML;
+  suggestionsEl.classList.remove('hidden');
+
+  // Wire sort buttons
+  suggestionsEl.querySelectorAll('.build-sort-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      buildSortMode = btn.dataset.sort;
+      const searchInput = document.getElementById('build-card-input');
+      showCardSuggestions(searchInput.value.trim().toLowerCase());
+    });
+  });
+
+  // Wire card clicks
+  suggestionsEl.querySelectorAll('.build-suggestion').forEach(el => {
+    el.addEventListener('click', () => {
+      addCardToBuild(el.dataset.name);
+      const searchInput = document.getElementById('build-card-input');
+      searchInput.value = '';
+      suggestionsEl.classList.add('hidden');
     });
   });
 }
@@ -321,6 +435,12 @@ function initBuildMode() {
     currentDeck.commander = select.value;
     updateFilterHint(select.value);
     if (currentDeck.commander) renderDeck(currentDeck);
+    // Refresh suggestions if dropdown is open
+    const searchInput = document.getElementById('build-card-input');
+    const suggestionsEl = document.getElementById('build-suggestions');
+    if (!suggestionsEl.classList.contains('hidden')) {
+      showCardSuggestions(searchInput.value.trim().toLowerCase());
+    }
   });
 
   // Deck name input
@@ -336,60 +456,14 @@ function initBuildMode() {
   const suggestionsEl = document.getElementById('build-suggestions');
   let debounceTimer;
 
+  searchInput.addEventListener('focus', () => {
+    showCardSuggestions(searchInput.value.trim().toLowerCase());
+  });
+
   searchInput.addEventListener('input', () => {
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(() => {
-      const q = searchInput.value.trim().toLowerCase();
-      if (q.length < 1) {
-        suggestionsEl.classList.add('hidden');
-        return;
-      }
-
-      // Faction filtering: show commander's faction + neutral; neutral commanders see all
-      const selectedCommander = document.getElementById('build-commander').value;
-      const cmdData = commanderMap[selectedCommander];
-      const cmdFaction = cmdData ? (cmdData.faction || '').toLowerCase() : null;
-      const isNeutralCmd = cmdFaction === 'neutral' || !cmdFaction;
-
-      const commanderSet = new Set(commanderList);
-      const matches = cardlistData.cards
-        .filter(c => {
-          if (commanderSet.has(c.name)) return false;
-          if (!c.name.toLowerCase().includes(q)) return false;
-          if (!isNeutralCmd) {
-            const cardFaction = (cardInfoMap[c.name]?.faction || '').toLowerCase();
-            if (cardFaction !== 'neutral' && cardFaction !== cmdFaction) return false;
-          }
-          return true;
-        })
-        .slice(0, 12);
-
-      if (matches.length === 0) {
-        suggestionsEl.classList.add('hidden');
-        return;
-      }
-
-      suggestionsEl.innerHTML = matches.map(c => {
-        const info = cardInfoMap[c.name] || {};
-        const cost = info.cost != null ? info.cost : '?';
-        const type = info.type || '';
-        const faction = (info.faction || '').toUpperCase();
-        const meta = [type, faction].filter(Boolean).join(' · ');
-        return `<div class="build-suggestion" data-name="${c.name}">
-          <span>[${cost}] ${c.name}</span>
-          <span class="build-suggestion-faction">${meta}</span>
-        </div>`;
-      }).join('');
-      suggestionsEl.classList.remove('hidden');
-
-      // Wire click
-      suggestionsEl.querySelectorAll('.build-suggestion').forEach(el => {
-        el.addEventListener('click', () => {
-          addCardToBuild(el.dataset.name);
-          searchInput.value = '';
-          suggestionsEl.classList.add('hidden');
-        });
-      });
+      showCardSuggestions(searchInput.value.trim().toLowerCase());
     }, 150);
   });
 
@@ -470,10 +544,19 @@ function initTabs() {
       document.getElementById('panel-import').classList.toggle('hidden', currentMode !== 'import');
       document.getElementById('panel-build').classList.toggle('hidden', currentMode !== 'build');
 
-      // Reset display when switching modes
       if (currentMode === 'build') {
+        // Auto-populate commander + deck name from any imported deck
+        if (currentDeck && currentDeck.commander) {
+          const sel = document.getElementById('build-commander');
+          if (!sel.value) {
+            sel.value = currentDeck.commander;
+            updateFilterHint(currentDeck.commander);
+            const ni = document.getElementById('build-name');
+            if (ni && currentDeck.deckName) ni.value = currentDeck.deckName;
+          }
+        }
         ensureBuildDeck();
-        if (currentDeck.commander) renderDeck(currentDeck);
+        if (currentDeck && currentDeck.commander) renderDeck(currentDeck);
       }
     });
   });

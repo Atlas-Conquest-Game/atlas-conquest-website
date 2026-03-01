@@ -134,7 +134,10 @@
                 <div class="deck-commander-label" id="deck-commander"></div>
               </div>
             </div>
-            <button class="btn btn-primary deck-btn-full" id="btn-copy-url">Copy Share URL</button>
+            <div class="deck-copy-row">
+              <button class="btn btn-primary" id="btn-copy-url">Copy URL</button>
+              <button class="btn btn-secondary" id="btn-copy-code">Copy Deck Code</button>
+            </div>
           </div>
 
           <!-- Quick stats -->
@@ -159,6 +162,10 @@
           <div class="deck-sidebar-card">
             <div class="deck-sidebar-section-label">Mana Curve</div>
             <div class="mana-curve" id="mana-curve"></div>
+            <div class="mana-curve-legend">
+              <span class="mana-legend-item"><span class="mana-legend-dot minion"></span>Minions</span>
+              <span class="mana-legend-item"><span class="mana-legend-dot spell"></span>Spells</span>
+            </div>
           </div>
 
           <!-- Type Breakdown -->
@@ -166,9 +173,6 @@
             <div class="deck-sidebar-section-label">Type Breakdown</div>
             <div id="type-breakdown"></div>
           </div>
-
-          <!-- Copy deck code -->
-          <button class="btn btn-secondary deck-btn-full" id="btn-copy-code">Copy Deck Code</button>
 
         </div><!-- /deck-sidebar -->
 
