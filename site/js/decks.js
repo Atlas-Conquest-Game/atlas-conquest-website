@@ -158,9 +158,13 @@ function initCardPreview() {
   const img = document.getElementById('card-preview-img');
 
   document.addEventListener('mouseover', e => {
-    const row = e.target.closest('.deck-card-row');
-    if (!row) { preview.classList.remove('visible'); return; }
-    const slug = cardArtSlug(row.dataset.card || '');
+    const row     = e.target.closest('.deck-card-row');
+    const artWrap = e.target.closest('.card-tile-art-wrap');
+    if (!row && !artWrap) { preview.classList.remove('visible'); return; }
+    const cardName = row
+      ? (row.dataset.card || '')
+      : (artWrap.closest('.card-tile')?.dataset.name || '');
+    const slug = cardArtSlug(cardName);
     img.src = `assets/cards/${slug}.jpg`;
     img.onerror = () => { preview.classList.remove('visible'); };
     preview.classList.add('visible');
@@ -175,7 +179,7 @@ function initCardPreview() {
   });
 
   document.addEventListener('mouseout', e => {
-    if (!e.target.closest('.deck-card-row')) {
+    if (!e.target.closest('.deck-card-row') && !e.target.closest('.card-tile-art-wrap')) {
       preview.classList.remove('visible');
     }
   });

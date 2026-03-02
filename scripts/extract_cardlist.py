@@ -3,7 +3,7 @@
 Run this when the game adds new cards:
     python scripts/extract_cardlist.py
 
-Reads:  friend deck conversion/FullCardList.asset
+Reads:  Formats/FullCardList.asset
 Writes: site/data/cardlist.json
 """
 
@@ -11,7 +11,7 @@ import json
 from pathlib import Path
 
 PROJECT_DIR = Path(__file__).resolve().parent.parent
-ASSET_PATH = PROJECT_DIR / "friend deck conversion" / "FullCardList.asset"
+ASSET_PATH = PROJECT_DIR / "Formats" / "FullCardList.asset"
 OUTPUT_PATH = PROJECT_DIR / "site" / "data" / "cardlist.json"
 
 LEGACY_NAMES = {
@@ -47,7 +47,7 @@ def main():
     cards = [{"id": i, "name": name} for i, name in enumerate(names)]
 
     output = {
-        "version": "2026-02-26",
+        "version": "2026-03-01",
         "total": len(cards),
         "cards": cards,
         "legacy_names": LEGACY_NAMES,
