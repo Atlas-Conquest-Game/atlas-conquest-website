@@ -4573,7 +4573,7 @@
     "all": {
       "Fael Spiritwalker": {
         "faction": "shadis",
-        "deck_count": 272,
+        "deck_count": 271,
         "avg_cost": 3.54,
         "cost_histogram": {
           "labels": [
@@ -4595,12 +4595,12 @@
             0.0,
             7.72,
             13.11,
-            5.89,
-            9.19,
-            6.83,
-            3.4,
+            5.9,
+            9.2,
+            6.85,
+            3.41,
             1.19,
-            0.98,
+            0.99,
             0.77,
             0.56,
             0.0,
@@ -4609,14 +4609,14 @@
           "winning_decks": [
             0.0,
             8.02,
-            12.91,
-            5.78,
+            12.9,
+            5.81,
             8.86,
-            6.82,
-            3.33,
+            6.86,
+            3.34,
             1.23,
-            1.03,
-            0.74,
+            1.04,
+            0.75,
             0.55,
             0.0,
             0.54
@@ -4637,13 +4637,13 @@
             0.46
           ]
         },
-        "avg_minion_count": 39.89,
+        "avg_minion_count": 39.93,
         "avg_spell_count": 10.25,
-        "avg_patron_cards": 17.1,
-        "avg_neutral_cards": 33.04,
+        "avg_patron_cards": 17.07,
+        "avg_neutral_cards": 33.11,
         "avg_other_cards": 0.0,
-        "win_avg_minion_count": 39.99,
-        "win_avg_spell_count": 9.82,
+        "win_avg_minion_count": 40.08,
+        "win_avg_spell_count": 9.81,
         "loss_avg_minion_count": 39.8,
         "loss_avg_spell_count": 10.63
       },
@@ -4877,7 +4877,7 @@
       },
       "Captain Greenbeard": {
         "faction": "skaal",
-        "deck_count": 142,
+        "deck_count": 141,
         "avg_cost": 2.84,
         "cost_histogram": {
           "labels": [
@@ -4897,12 +4897,12 @@
           ],
           "all_decks": [
             0.08,
-            7.72,
-            12.46,
-            10.12,
-            3.75,
-            4.56,
-            1.56,
+            7.69,
+            12.47,
+            10.11,
+            3.77,
+            4.57,
+            1.57,
             0.31,
             0.0,
             0.0,
@@ -4927,29 +4927,29 @@
           ],
           "losing_decks": [
             0.07,
-            7.93,
+            7.88,
             12.18,
-            9.68,
-            3.92,
-            4.74,
-            1.69,
+            9.66,
+            3.95,
+            4.77,
+            1.71,
             0.41,
             0.0,
             0.0,
             0.0,
             0.0,
-            0.32
+            0.33
           ]
         },
-        "avg_minion_count": 29.54,
+        "avg_minion_count": 29.55,
         "avg_spell_count": 11.26,
-        "avg_patron_cards": 14.02,
+        "avg_patron_cards": 14.03,
         "avg_neutral_cards": 26.78,
         "avg_other_cards": 0.0,
         "win_avg_minion_count": 30.72,
         "win_avg_spell_count": 9.94,
-        "loss_avg_minion_count": 28.46,
-        "loss_avg_spell_count": 12.47
+        "loss_avg_minion_count": 28.45,
+        "loss_avg_spell_count": 12.49
       },
       "Starwise Luna": {
         "faction": "archaeon",
@@ -5105,8 +5105,8 @@
       },
       "Jagris, the Huntsman": {
         "faction": "grenalia",
-        "deck_count": 572,
-        "avg_cost": 3.52,
+        "deck_count": 571,
+        "avg_cost": 3.51,
         "cost_histogram": {
           "labels": [
             "0",
@@ -5144,7 +5144,7 @@
             10.2,
             8.79,
             6.42,
-            4.95,
+            4.96,
             4.67,
             1.44,
             0.65,
@@ -5169,7 +5169,7 @@
             0.0
           ]
         },
-        "avg_minion_count": 33.78,
+        "avg_minion_count": 33.77,
         "avg_spell_count": 10.22,
         "avg_patron_cards": 20.58,
         "avg_neutral_cards": 23.42,
@@ -5409,7 +5409,7 @@
       },
       "Macks Speed": {
         "faction": "skaal",
-        "deck_count": 94,
+        "deck_count": 93,
         "avg_cost": 3.2,
         "cost_histogram": {
           "labels": [
@@ -5429,16 +5429,16 @@
           ],
           "all_decks": [
             0.0,
-            4.53,
-            14.26,
-            9.49,
-            4.33,
-            4.02,
-            1.94,
-            1.29,
+            4.48,
+            14.23,
+            9.53,
+            4.34,
+            4.04,
+            1.92,
+            1.3,
             0.31,
-            0.51,
-            0.07,
+            0.52,
+            0.08,
             0.0,
             0.33
           ],
@@ -5459,29 +5459,29 @@
           ],
           "losing_decks": [
             0.0,
-            4.25,
-            14.16,
-            9.75,
-            4.18,
-            4.38,
-            2.04,
-            1.4,
-            0.29,
-            0.49,
+            4.17,
+            14.11,
+            9.81,
+            4.2,
+            4.43,
+            2.02,
+            1.43,
+            0.3,
+            0.5,
             0.04,
             0.0,
-            0.36
+            0.37
           ]
         },
-        "avg_minion_count": 26.95,
-        "avg_spell_count": 14.13,
-        "avg_patron_cards": 13.34,
-        "avg_neutral_cards": 27.73,
+        "avg_minion_count": 26.97,
+        "avg_spell_count": 14.12,
+        "avg_patron_cards": 13.29,
+        "avg_neutral_cards": 27.8,
         "avg_other_cards": 0.0,
         "win_avg_minion_count": 26.26,
         "win_avg_spell_count": 14.44,
-        "loss_avg_minion_count": 27.44,
-        "loss_avg_spell_count": 13.91
+        "loss_avg_minion_count": 27.48,
+        "loss_avg_spell_count": 13.89
       },
       "Elyse of the Order": {
         "faction": "lucia",
@@ -5715,8 +5715,8 @@
     "Dunes": {
       "Fael Spiritwalker": {
         "faction": "shadis",
-        "deck_count": 251,
-        "avg_cost": 3.53,
+        "deck_count": 250,
+        "avg_cost": 3.54,
         "cost_histogram": {
           "labels": [
             "0",
@@ -5737,9 +5737,9 @@
             0.0,
             7.72,
             13.43,
-            5.77,
+            5.78,
             9.52,
-            6.92,
+            6.94,
             3.44,
             1.19,
             0.99,
@@ -5750,16 +5750,16 @@
           ],
           "winning_decks": [
             0.0,
-            7.93,
-            13.3,
-            5.67,
-            9.39,
-            7.01,
-            3.37,
+            7.92,
+            13.29,
+            5.7,
+            9.4,
+            7.05,
+            3.38,
             1.26,
-            1.06,
+            1.07,
             0.82,
-            0.61,
+            0.62,
             0.0,
             0.52
           ],
@@ -5779,12 +5779,12 @@
             0.43
           ]
         },
-        "avg_minion_count": 40.49,
+        "avg_minion_count": 40.54,
         "avg_spell_count": 10.38,
-        "avg_patron_cards": 16.58,
-        "avg_neutral_cards": 34.29,
+        "avg_patron_cards": 16.54,
+        "avg_neutral_cards": 34.37,
         "avg_other_cards": 0.0,
-        "win_avg_minion_count": 40.82,
+        "win_avg_minion_count": 40.93,
         "win_avg_spell_count": 10.11,
         "loss_avg_minion_count": 40.21,
         "loss_avg_spell_count": 10.6
@@ -5943,7 +5943,7 @@
       },
       "Captain Greenbeard": {
         "faction": "skaal",
-        "deck_count": 128,
+        "deck_count": 127,
         "avg_cost": 2.86,
         "cost_histogram": {
           "labels": [
@@ -5963,13 +5963,13 @@
           ],
           "all_decks": [
             0.09,
-            7.59,
+            7.56,
             12.58,
-            10.01,
-            3.72,
-            4.64,
-            1.62,
-            0.34,
+            10.0,
+            3.73,
+            4.65,
+            1.63,
+            0.35,
             0.0,
             0.0,
             0.0,
@@ -5993,29 +5993,29 @@
           ],
           "losing_decks": [
             0.08,
-            7.77,
-            12.26,
-            9.46,
-            3.95,
-            4.85,
-            1.77,
-            0.46,
+            7.7,
+            12.27,
+            9.44,
+            3.98,
+            4.88,
+            1.8,
+            0.47,
             0.0,
             0.0,
             0.0,
             0.0,
-            0.37
+            0.38
           ]
         },
-        "avg_minion_count": 29.52,
+        "avg_minion_count": 29.53,
         "avg_spell_count": 11.32,
-        "avg_patron_cards": 14.06,
+        "avg_patron_cards": 14.07,
         "avg_neutral_cards": 26.78,
         "avg_other_cards": 0.0,
         "win_avg_minion_count": 30.79,
         "win_avg_spell_count": 9.92,
-        "loss_avg_minion_count": 28.29,
-        "loss_avg_spell_count": 12.68
+        "loss_avg_minion_count": 28.28,
+        "loss_avg_spell_count": 12.7
       },
       "Starwise Luna": {
         "faction": "archaeon",
@@ -6171,7 +6171,7 @@
       },
       "Jagris, the Huntsman": {
         "faction": "grenalia",
-        "deck_count": 546,
+        "deck_count": 545,
         "avg_cost": 3.53,
         "cost_histogram": {
           "labels": [
@@ -6198,7 +6198,7 @@
             4.88,
             4.71,
             1.57,
-            0.71,
+            0.7,
             0.05,
             0.72,
             0.03,
@@ -6211,7 +6211,7 @@
             8.84,
             6.48,
             4.95,
-            4.69,
+            4.68,
             1.51,
             0.69,
             0.05,
@@ -6551,8 +6551,8 @@
       },
       "Macks Speed": {
         "faction": "skaal",
-        "deck_count": 87,
-        "avg_cost": 3.2,
+        "deck_count": 86,
+        "avg_cost": 3.21,
         "cost_histogram": {
           "labels": [
             "0",
@@ -6571,18 +6571,18 @@
           ],
           "all_decks": [
             0.0,
-            4.51,
-            14.28,
-            9.48,
-            4.33,
-            4.13,
-            1.95,
-            1.3,
+            4.45,
+            14.24,
+            9.52,
+            4.35,
+            4.15,
+            1.94,
+            1.31,
             0.29,
             0.51,
             0.05,
             0.0,
-            0.34
+            0.35
           ],
           "winning_decks": [
             0.0,
@@ -6601,29 +6601,29 @@
           ],
           "losing_decks": [
             0.0,
-            4.2,
-            14.14,
-            9.76,
-            4.16,
-            4.53,
-            2.08,
-            1.43,
-            0.27,
-            0.49,
+            4.1,
+            14.08,
+            9.84,
+            4.18,
+            4.58,
+            2.06,
+            1.46,
+            0.28,
+            0.5,
             0.0,
             0.0,
-            0.39
+            0.4
           ]
         },
-        "avg_minion_count": 27.18,
-        "avg_spell_count": 13.98,
-        "avg_patron_cards": 13.05,
-        "avg_neutral_cards": 28.11,
+        "avg_minion_count": 27.21,
+        "avg_spell_count": 13.97,
+        "avg_patron_cards": 12.99,
+        "avg_neutral_cards": 28.19,
         "avg_other_cards": 0.0,
         "win_avg_minion_count": 26.33,
         "win_avg_spell_count": 14.42,
-        "loss_avg_minion_count": 27.78,
-        "loss_avg_spell_count": 13.67
+        "loss_avg_minion_count": 27.84,
+        "loss_avg_spell_count": 13.64
       },
       "Elyse of the Order": {
         "faction": "lucia",
