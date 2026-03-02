@@ -84,6 +84,7 @@ Firebolt,Spell,"[Range 4]: Deal 3 Damage to a character. If this kills them, gai
 First Experiment,Minion,"Spellcaster. Whenever you play a Potion on an ally Experiment, gain +2 Power.",Experiment,1,1,3,3,,Neutral,0.1.7,AI_GENERATED,Midjourney
 Flame Acolyte,Minion,Arrival: add 2 copies of Flamelash to your hand.,Human,5,6,3,1,,Skaal,0.1.21,AI_GENERATED,Stable Diffusion
 Flamelash,Spell,[Range 2]: Deal 3 damage to a character.,Fire,1,,,,,Skaal,0.1.1,ARTIST_COMMISSIONED,Tomas Vinco
+Found City,Spell,Convert a tile you own to a village. Add a copy of Settle Village to your hand.,Village,5,,,,,Neutral,,AI_GENERATED,Stable Diffusion
 Fourth Experiment,Minion,"Whenever you play a Potion on an ally Experiment, gain +2/+1/+2.",Experiment,4,3,3,3,,Neutral,0.1.12,AI_GENERATED,Midjourney
 Frostblade,Spell,"[Range 1]: Deal 2 damage. If targeting a minion, stun it.",Frost,1,,,,,Archaeon,0.4.38,ARTIST_COMMISSIONED,Marc Petrelis
 Fungal Explosion,Spell,[Range 3]: Add 4 Poison to all characters in 1 Radius.,None,7,,,,,Grenalia,0.1.14,AI_GENERATED,Midjourney
