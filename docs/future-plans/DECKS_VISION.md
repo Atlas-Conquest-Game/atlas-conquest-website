@@ -5,17 +5,24 @@
 
 ---
 
-## Current State (v1.2 — Mar 2026)
+## Current State (v1.5 — Mar 2026)
 
 - **Import**: Decode deck code string into visual decklist with commander portrait and full sidebar stats
-- **Build**: Select commander, search cards (faction-filtered), assemble deck, encode to deck code
+- **Build**: Select commander, browse all faction-compatible cards in a scrollable grid, assemble deck, encode to deck code
 - **URL sharing**: `decks.html?code=<encoded>` auto-decodes on page load — works on GitHub Pages
-- **Card metadata**: Cost, type, faction loaded from `cardlist.json`
-- **Codec**: `deckcode.js` encodes/decodes deck codes compatible with the Unity game client
-- **Two-column layout**: Card list left, sticky stats sidebar right. Collapses to single column on mobile (sidebar stacks above card list).
-- **Card hover preview**: Hovering any card row shows a floating card art image (same pattern as cards.html).
-- **Mana curve**: Live CSS bar chart, costs 0–7+, updates on every add/remove.
-- **Type breakdown**: Minion vs Spell count + proportional two-tone bar (Minion = Skaal orange, Spell = Archaeon blue).
+- **Card metadata**: Cost, type, faction, card text, stats loaded from `cards.json`; deck codec uses `cardlist.json`
+- **Codec**: `deckcode.js` encodes/decodes deck codes compatible with the Unity game client (14-bit card ID + 6-bit count, 20-bit packed, LSB-first)
+- **Two-column layout**: Card list left, sticky stats sidebar right. Collapses to single column on mobile.
+- **Card hover preview**: Hovering any card row (Import mode) or card art tile (Build mode) shows a floating card art image following the cursor.
+- **Stacked mana curve**: CSS bar chart, costs 0–7+, stacked minion (gold) + spell (periwinkle) segments with legend. Updates live on every add/remove.
+- **Type breakdown**: Minion vs Spell counts with proportional two-tone bar (gold/periwinkle). Updates live.
+- **Import → Build sync**: Switching to Build tab after importing a deck auto-populates commander and deck name.
+- **Card grid browser**: Always-visible scrollable grid showing all faction-compatible cards with art thumbnails, cost badge, and +/− count controls. Sort by Cost or Name. Filters by text input. Shows "Showing X + Neutral cards" hint.
+- **Card pool filtering**: Only shows playable cards (sourced from `cards.json`). Tokens, placeholders, and commanders are excluded automatically.
+- **Faction compatibility rules**: Full faction + neutral for faction commanders; neutral-only for Newhaven Township; all non-neutral factions for Lazim (per card text).
+- **Incompatible card warning**: Importing a deck then changing commander highlights incompatible cards in red with a warning banner.
+- **Copy row**: "Copy URL" + "Copy Deck Code" side by side below commander portrait.
+- **Test suite**: `site/deck_tests.html` — 23 automated tests covering card compatibility, mana curve, codec roundtrip, and import→build sync.
 
 ### URL Sharing on GitHub Pages
 
@@ -43,20 +50,35 @@ https://rossfw.github.io/atlas-conquest/decks.html?code=wrNWQ29udHJvbHYz%3ADMHgD
 
 ### Fixed in v1.2 (Mar 2026)
 
-- **Two-column layout**: Desktop grid (`1fr 300px`), collapses to single column at 900px with sidebar above card list on mobile.
-- **Sticky stats sidebar**: Commander portrait, faction badge, deck name, Copy Share URL (primary CTA at top), quick stats (Cards / Unique / Avg Cost), mana curve, type breakdown, Copy Deck Code.
-- **Mana curve visualization**: Pure CSS bar chart, costs 0–7+. Updates live on every card add/remove.
-- **Type breakdown**: Minion vs Spell counts with proportional two-tone bar. No "Other" category — all cards are Minion or Spell.
-- **Card hover preview**: Fixed-position art image follows cursor over any card row. Same `card-preview` component pattern as `cards.html`. Art loaded from `assets/cards/<slug>.jpg`.
-- **Card row type badge**: Each card row now shows SPELL or MINION label in addition to faction badge.
-- **Copy Share URL moved up**: Primary CTA is now directly below commander name in sidebar, not buried at the bottom.
+- **Two-column layout**: Desktop grid (`1fr 300px`), collapses to single column at 900px.
+- **Sticky stats sidebar**: Commander portrait, faction badge, deck name, quick stats (Cards / Unique / Avg Cost), mana curve, type breakdown.
+- **Card hover preview**: Fixed-position art follows cursor. Same `card-preview` pattern as `cards.html`.
+- **Card row type badge**: Each row shows SPELL or MINION label.
 - **Open Graph / Twitter Card tags**: Added to all pages for Discord/social embed previews.
+
+### Fixed in v1.3 (Mar 2026)
+
+- **Stacked mana curve**: Minion (gold `var(--lucia)`) + spell (periwinkle `#7C9EFF`) stacked segments with legend. Replaced flat orange bars.
+- **Import → Build sync**: Switching tabs after import auto-fills commander + deck name in Build.
+- **Copy row**: "Copy URL" + "Copy Deck Code" side by side below portrait (was two separate buttons in different locations).
+- **Color scheme**: Replaced Skaal orange with site-native gold/periwinkle throughout type breakdown and curve.
+
+### Fixed in v1.4 (Mar 2026)
+
+- **Card grid browser**: Replaced dropdown autocomplete with always-visible scrollable grid. Shows all faction-compatible cards with art thumbnails, cost badge overlay, and +/− count controls. Sortable by Cost or Name.
+- **Commander sync fix**: Importing a deck then switching to Build correctly overwrites a previously selected commander (removed stale `if (!sel.value)` guard).
+- **Card pool filter**: `getCardPool()` now filters to `cards.json` entries only — excludes tokens (Durka Spawn, Dragon), placeholders (Default, Blaize), and commanders.
+- **Faction rules**: Newhaven Township = neutral-only; Lazim = all non-neutral factions (per card text); faction commanders = own faction + neutral.
+- **Incompatible card warning**: Red row highlighting + yellow banner when deck contains cards not legal for the selected commander.
+
+### Fixed in v1.5 (Mar 2026)
+
+- **Card tile hover preview**: Hovering the art portion of a card tile in Build mode triggers the same enlarged cursor-following preview as deck list rows.
 
 ### Remaining Opportunities
 
 - **Deck code format hint**: "What's a deck code?" tooltip for players who don't know how to export from the game client.
 - **Commander portrait fallback**: When portrait fails, show faction emblem instead of hiding the element.
-- **Import tab: card hover preview**: Currently works in both Import and Build mode but art files may be missing for some cards — `onerror` silently hides preview.
 
 ---
 

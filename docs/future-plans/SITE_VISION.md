@@ -21,16 +21,17 @@ The goal is to **unify everything under one GitHub Pages site** at `atlas-conque
 A deck viewer/builder page added to the existing analytics site.
 
 **Delivered:**
-- `site/decks.html` — Import (decode) and Build (encode) deck codes
+- `site/decks.html` — Full import + build deck editor (see [DECKS_VISION.md](DECKS_VISION.md) for full feature history)
 - `site/js/deckcode.js` — Deck codec ported from C# (14-bit card ID + 6-bit count, 20-bit packed, LSB-first)
-- `site/js/decks.js` — Page logic with autocomplete card search, URL param sharing
-- `site/data/cardlist.json` — 293 cards extracted from FullCardList.asset
-- `scripts/extract_cardlist.py` — One-time extraction script
+- `site/js/decks.js` — Page logic: card grid browser, mana curve, type breakdown, faction rules, hover preview, URL sharing
+- `site/data/cardlist.json` — 293 cards from `Formats/FullCardList.asset`; auto-updated by main pipeline
+- `scripts/extract_cardlist.py` — Thin wrapper; also callable standalone
+- `site/deck_tests.html` — 23 automated tests (card compatibility, mana curve, codec, import→build sync)
 - URL sharing: `decks.html?code=<encoded>` auto-decodes on load
 
 **To maintain:**
-- Run `python scripts/extract_cardlist.py` when new cards are added to the game
-- Card metadata (cost, type, faction) comes from `cards.json` pipeline output
+- `cardlist.json` is now auto-regenerated as part of the main pipeline (`fetch_data.py`). No manual steps needed when Matan adds new cards — just pull his commit and run the pipeline.
+- Card metadata (cost, type, faction, text) comes from `cards.json` pipeline output (sourced from `StandardFormatCards.csv`).
 
 ---
 

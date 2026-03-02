@@ -38,7 +38,7 @@
 | `pipeline/cleaning.py` | `parse_*`, `normalize_*`, `clean_game()` — data validation & transformation |
 | `pipeline/filtering.py` | `filter_games_by_period()`, `filter_games_by_map()` |
 | `pipeline/aggregation.py` | All 13 `aggregate_*` functions — stats computation |
-| `pipeline/io_helpers.py` | AWS, CSV loading, cache, thumbnails, `write_json()` |
+| `pipeline/io_helpers.py` | AWS, CSV loading, cache, thumbnails, cardlist update, `write_json()` |
 | `pipeline/main.py` | `build_and_write_all()`, `main()` — orchestration |
 | `daily_summary.py` | Generates yesterday's game summary for Discord notifications |
 
@@ -46,7 +46,7 @@
 - Static JSON files are the interface between the pipeline and the frontend.
 - Each file has a defined schema documented in [DATA_MODEL.md](DATA_MODEL.md).
 - Stats files are doubly nested (`data[period][map]`); reference files (`cards.json`, `commanders.json`) are flat arrays.
-- Files: `metadata.json`, `commander_stats.json`, `matchups.json`, `card_stats.json`, `commander_card_stats.json`, `trends.json`, `commander_trends.json`, `commander_winrate_trends.json`, `game_distributions.json`, `deck_composition.json`, `duration_winrates.json`, `action_winrates.json`, `turn_winrates.json`, `first_turn.json`, `cards.json`, `commanders.json`.
+- Files: `metadata.json`, `commander_stats.json`, `matchups.json`, `card_stats.json`, `commander_card_stats.json`, `trends.json`, `commander_trends.json`, `commander_winrate_trends.json`, `game_distributions.json`, `deck_composition.json`, `duration_winrates.json`, `action_winrates.json`, `turn_winrates.json`, `first_turn.json`, `mulligan_stats.json`, `commander_mulligan_stats.json`, `cards.json`, `commanders.json`, `cardlist.json`.
 - The site reads only from these files — no runtime API calls.
 
 ### 4. Frontend (`site/`)
@@ -57,22 +57,28 @@
 
 #### Pages
 
-| Page | File | Content |
-|------|------|---------|
-| Home | `index.html` | Overview stats, distribution charts, first-turn summary, quick-link cards |
-| Commanders | `commanders.html` | Commander grid, winrate-by-turns/actions/duration tables (Turns → Actions → Duration), deck composition charts, detail modal |
-| Cards | `cards.html` | 9-column card table with stacked sub-line counts, search, faction filter, commander dropdown, card hover preview, clickable rows |
-| Meta | `meta.html` | Faction popularity trends, commander popularity/winrate trends (with mirror exclusion toggle), matchup heatmap (with game counts), first-turn advantage by commander |
+| Page | File | JS | Content |
+|------|------|----|---------|
+| Home | `index.html` | (inline) | Game landing page — hero, factions, starter decks, explore links |
+| Analytics Overview | `analytics.html` | `home.js` | Overview stats, distribution charts, first-turn summary, quick-link cards |
+| Commanders | `commanders.html` | `commanders.js` | Commander grid, winrate-by-turns/actions/duration tables, deck composition charts, detail modal |
+| Cards | `cards.html` | `cards.js` | 9-column card table with stacked sub-line counts, search, faction filter, commander dropdown, card hover preview |
+| Meta | `meta.html` | `meta.js` | Faction popularity trends, commander popularity/winrate trends (mirror toggle), matchup heatmap, first-turn chart |
+| Mulligan | `mulligan.html` | `mulligan.js` | Opening hand keep rates, normalized keep preference, per-commander mulligan stats |
+| Decks | `decks.html` | `decks.js` + `deckcode.js` | Import (decode) and build (encode) deck codes; card grid browser with faction rules; mana curve; shareable URL |
 
 #### JavaScript Structure
 
 | File | Role |
 |------|------|
-| `js/shared.js` | Constants, helpers, data loading, time/map filters, modal, tooltip system |
-| `js/home.js` | Overview stats, distribution charts, first-turn summary |
+| `js/shared.js` | Constants, helpers, data loading, time/map filters, modal, tooltip system (analytics pages only) |
+| `js/home.js` | Analytics overview stats, distribution charts, first-turn summary |
 | `js/commanders.js` | Commander grid, winrate bucket tables (turns/actions/duration), deck composition rendering |
 | `js/cards.js` | Card table with stacked sub-line counts, search, sorting, faction filter, commander dropdown, card hover preview |
 | `js/meta.js` | Faction + commander trends/winrate charts, matchup heatmap, first-turn commander chart |
+| `js/mulligan.js` | Keep rate table, normalized keep delta chart, per-commander mulligan breakdown |
+| `js/deckcode.js` | Deck codec: encode/decode deck codes compatible with Unity game client (14-bit card ID + 6-bit count, 20-bit packed, LSB-first) |
+| `js/decks.js` | Deck tools page: card grid browser, mana curve, type breakdown, faction compatibility, hover preview, URL sharing |
 
 Each page loads `shared.js` first (globals, not ES modules), then its page-specific script. All pages share: nav with active state, sticky time/map filter bar, footer. Each page loads only the JSON files it needs via `loadData(keys)` rather than fetching all 13 files.
 
@@ -87,13 +93,15 @@ Each page loads `shared.js` first (globals, not ES modules), then its page-speci
 - First-turn advantage summary (Overview) and per-commander chart (Meta)
 - Graceful empty-state handling when map/period combos have insufficient data
 
-### 5. Asset Pipeline (Thumbnails)
-- Source artwork lives in `Artwork/` (commanders + cards) and `CardScreenshots/` (card previews).
+### 5. Asset Pipeline (Thumbnails + Cardlist)
+- Source artwork lives in `Artwork/` (commanders) and `CardScreenshots/` (card previews).
 - The data pipeline (`scripts/pipeline/io_helpers.py`) generates optimized JPEG thumbnails:
   - **Commander art**: `Artwork/<name>.png` → `site/assets/commanders/<slug>.jpg` (400px wide). Only files matching commander names in `StandardFormatCommanders.csv` are processed.
   - **Card previews**: `CardScreenshots/<name>.png` → `site/assets/cards/<slug>.jpg` (600px wide).
 - Thumbnails are only regenerated when the source image is newer than the target (or target is missing).
-- New art added to `Artwork/` or `CardScreenshots/` is automatically picked up on the next pipeline run.
+- GitHub Actions commits both `site/data/` and `site/assets/` so new thumbnails reach the live site automatically.
+- `cardlist.json` is also auto-generated during the pipeline run from `Formats/FullCardList.asset` (exported by Matan before playtests). `scripts/extract_cardlist.py` is a standalone wrapper for running just this step.
+- Game format assets live in `Formats/`: `FullCardList.asset` (card name index, used by pipeline) and `Standard.asset` (Unity GUID references — not parseable without the full game project).
 
 ### 6. Statistics Documentation (`docs/statistics/`)
 - [METHODOLOGY.md](statistics/METHODOLOGY.md) — Statistical significance guide: sample size thresholds, confidence intervals, z-tests, multiple testing corrections, practical significance.
@@ -102,11 +110,13 @@ Each page loads `shared.js` first (globals, not ES modules), then its page-speci
 ## Data Update Flow
 
 1. GitHub Actions triggers (cron daily at 06:00 UTC, or manual `workflow_dispatch`).
-2. Pipeline script connects to AWS using secrets stored in GitHub.
-3. Queries are run, data is aggregated and transformed.
-4. JSON files are written to `site/data/`.
-5. Changes are committed and pushed, triggering a GitHub Pages deploy.
-6. `scripts/daily_summary.py` computes yesterday's game stats (games played, unique players, avg duration, top 3 commanders) and posts a summary to Discord via webhook.
+2. Pipeline scans DynamoDB for new games, cleans and caches them.
+3. Thumbnails regenerated from `Artwork/` and `CardScreenshots/` into `site/assets/`.
+4. `cardlist.json` regenerated from `Formats/FullCardList.asset`.
+5. `cards.json` and `commanders.json` regenerated from CSVs.
+6. All stats files aggregated and written to `site/data/`.
+7. Changes committed (`site/data/` + `site/assets/`) and pushed, triggering a GitHub Pages deploy.
+8. `scripts/daily_summary.py` posts yesterday's game stats to Discord via webhook.
 
 ## Boundaries
 
