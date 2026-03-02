@@ -102,20 +102,25 @@
       'Deep Sea Leviathan': { cost: 8, type: 'minion', faction: 'archaeon' },
     };
 
+    const LAZIM_NAME = 'Lazim, Thief of Gods';
+
     const mockCommanderMap = {
-      'Elber':   { faction: 'Shadis' },
-      'Viessa':  { faction: 'Shadis' },
-      'Lazim':   { faction: 'Neutral' },
-      'Kira':    { faction: 'Grenalia' },
+      'Elber, Jungle Emissary': { faction: 'Shadis' },
+      'Soultaker Viessa':       { faction: 'Shadis' },
+      [LAZIM_NAME]:             { faction: 'Neutral' },
+      'Newhaven Township':      { faction: 'Neutral' },
+      'Kira, Grenalia Lead':    { faction: 'Grenalia' },
     };
 
+    // Mirror of decks.js isCardCompatible — if these diverge, tests will catch it
     function testIsCompat(cardName, commanderName) {
       if (!commanderName) return true;
       const cmdData = mockCommanderMap[commanderName];
       if (!cmdData) return true;
       const cmdFaction = (cmdData.faction || '').toLowerCase();
-      if (!cmdFaction || cmdFaction === 'neutral') return true;
       const cardFaction = (mockCardInfoMap[cardName]?.faction || '').toLowerCase();
+      if (commanderName === LAZIM_NAME) return cardFaction !== 'neutral';
+      if (cmdFaction === 'neutral') return cardFaction === 'neutral';
       return cardFaction === 'neutral' || cardFaction === cmdFaction;
     }
 
@@ -137,21 +142,21 @@
     suite('Card Compatibility');
 
     test('same-faction card is compatible', () => {
-      assert(testIsCompat('Goblin Scamp', 'Elber'),
-        'Shadis card should be compatible with Shadis commander Elber');
+      assert(testIsCompat('Goblin Scamp', 'Elber, Jungle Emissary'),
+        'Shadis card should be compatible with Shadis commander');
     });
 
-    test('neutral card is compatible with any commander', () => {
-      assert(testIsCompat('Stone Sentinel', 'Elber'),
+    test('neutral card is compatible with faction commander', () => {
+      assert(testIsCompat('Stone Sentinel', 'Elber, Jungle Emissary'),
         'Neutral card should be compatible with Shadis commander');
-      assert(testIsCompat('Stone Sentinel', 'Kira'),
+      assert(testIsCompat('Stone Sentinel', 'Kira, Grenalia Lead'),
         'Neutral card should be compatible with Grenalia commander');
     });
 
-    test('different-faction card is incompatible', () => {
-      assert(!testIsCompat('Ironbark Defender', 'Elber'),
+    test('different-faction card is incompatible with faction commander', () => {
+      assert(!testIsCompat('Ironbark Defender', 'Elber, Jungle Emissary'),
         'Grenalia card should NOT be compatible with Shadis commander');
-      assert(!testIsCompat('Flame Burst', 'Kira'),
+      assert(!testIsCompat('Flame Burst', 'Kira, Grenalia Lead'),
         'Skaal card should NOT be compatible with Grenalia commander');
     });
 
@@ -162,20 +167,35 @@
         'Without a commander, all cards should be compatible');
     });
 
-    test('neutral commander sees all factions', () => {
-      assert(testIsCompat('Ironbark Defender', 'Lazim'),
-        'Neutral commander should see Grenalia cards');
-      assert(testIsCompat('Flame Burst', 'Lazim'),
-        'Neutral commander should see Skaal cards');
+    test('neutral commander (Newhaven Township) sees neutral cards only', () => {
+      assert(testIsCompat('Stone Sentinel', 'Newhaven Township'),
+        'Neutral card should be compatible with Newhaven Township');
+      assert(!testIsCompat('Goblin Scamp', 'Newhaven Township'),
+        'Shadis card should NOT be compatible with Newhaven Township');
+      assert(!testIsCompat('Ironbark Defender', 'Newhaven Township'),
+        'Grenalia card should NOT be compatible with Newhaven Township');
+    });
+
+    test('Lazim sees all non-neutral faction cards', () => {
+      assert(testIsCompat('Goblin Scamp', LAZIM_NAME),
+        'Lazim should see Shadis cards');
+      assert(testIsCompat('Ironbark Defender', LAZIM_NAME),
+        'Lazim should see Grenalia cards');
+      assert(testIsCompat('Flame Burst', LAZIM_NAME),
+        'Lazim should see Skaal cards');
+    });
+
+    test('Lazim cannot use neutral cards', () => {
+      assert(!testIsCompat('Stone Sentinel', LAZIM_NAME),
+        'Lazim should NOT be compatible with neutral cards');
     });
 
     test('switching commander can make cards incompatible', () => {
-      // Cards compatible with Elber (Shadis)
       const deckCards = ['Goblin Scamp', 'Ritual of Shadows', 'Stone Sentinel'];
-      assert(deckCards.every(c => testIsCompat(c, 'Elber')), 'All should be compatible with Elber');
-      // Kira (Grenalia) makes Shadis cards incompatible
-      const incompatible = deckCards.filter(c => !testIsCompat(c, 'Kira'));
-      assertEqual(incompatible.length, 2, 'Goblin Scamp and Ritual of Shadows should be incompatible with Kira');
+      assert(deckCards.every(c => testIsCompat(c, 'Elber, Jungle Emissary')),
+        'All cards should be compatible with Elber (Shadis)');
+      const incompatible = deckCards.filter(c => !testIsCompat(c, 'Kira, Grenalia Lead'));
+      assertEqual(incompatible.length, 2, 'Goblin Scamp + Ritual of Shadows incompatible with Grenalia');
     });
 
     // ─── Suite: Mana Curve Bucketing ──────────────────────────────
@@ -307,13 +327,13 @@
     // These test the commander sync logic in isolation
     test('importing deck should update commander state', () => {
       // Simulate: currentDeck is set to an imported deck
-      const importedDeck = { commander: 'Viessa', deckName: 'VControlv3', cards: [] };
+      const importedDeck = { commander: 'Soultaker Viessa', deckName: 'VControlv3', cards: [] };
       // The sync logic from initTabs: always use currentDeck.commander
-      const fakeSelect = { value: 'Elber' };  // stale value from a previous build session
+      const fakeSelect = { value: 'Elber, Jungle Emissary' };  // stale value from previous build
       if (importedDeck && importedDeck.commander) {
         fakeSelect.value = importedDeck.commander;
       }
-      assertEqual(fakeSelect.value, 'Viessa', 'Select should update to imported deck commander');
+      assertEqual(fakeSelect.value, 'Soultaker Viessa', 'Select should update to imported deck commander');
     });
 
     test('no commander selected allows card pool display', () => {
@@ -324,12 +344,11 @@
 
     test('incompatible cards detected after commander change', () => {
       const deckCards = [
-        { name: 'Goblin Scamp',     faction: 'shadis'   },
+        { name: 'Goblin Scamp',      faction: 'shadis'   },
         { name: 'Ironbark Defender', faction: 'grenalia' },
-        { name: 'Stone Sentinel',   faction: 'neutral'  },
+        { name: 'Stone Sentinel',    faction: 'neutral'  },
       ];
-      // Select Elber (Shadis commander)
-      const incompatible = deckCards.filter(c => !testIsCompat(c.name, 'Elber'));
+      const incompatible = deckCards.filter(c => !testIsCompat(c.name, 'Elber, Jungle Emissary'));
       assertEqual(incompatible.length, 1, 'Only Ironbark Defender should be incompatible with Elber');
       assertEqual(incompatible[0].name, 'Ironbark Defender');
     });

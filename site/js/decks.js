@@ -21,6 +21,9 @@ const FACTION_COLORS = {
 const MINION_COLOR = 'var(--lucia)';
 const SPELL_COLOR  = '#7C9EFF';
 
+// Lazim has a unique rule: all non-neutral faction cards, but no neutral cards
+const LAZIM_NAME = 'Lazim, Thief of Gods';
+
 // ─── Data Loading ──────────────────────────────────────────
 
 async function loadCardlist() {
@@ -77,8 +80,17 @@ function isCardCompatible(cardName, commanderName) {
   const cmdData = commanderMap[commanderName];
   if (!cmdData) return true;
   const cmdFaction = (cmdData.faction || '').toLowerCase();
-  if (!cmdFaction || cmdFaction === 'neutral') return true;
   const cardFaction = (cardInfoMap[cardName]?.faction || '').toLowerCase();
+
+  if (commanderName === LAZIM_NAME) {
+    // Lazim: "cards from any god, but not neutral cards"
+    return cardFaction !== 'neutral';
+  }
+  if (cmdFaction === 'neutral') {
+    // Other neutral commanders: neutral cards only
+    return cardFaction === 'neutral';
+  }
+  // Faction commander: own faction + neutral
   return cardFaction === 'neutral' || cardFaction === cmdFaction;
 }
 
@@ -177,14 +189,17 @@ function getCardPool() {
   const selectedCommander = document.getElementById('build-commander')?.value || '';
   const cmdData = commanderMap[selectedCommander];
   const cmdFaction = cmdData ? (cmdData.faction || '').toLowerCase() : null;
-  const isNeutralCmd = !cmdFaction || cmdFaction === 'neutral';
 
   return cardlistData.cards.filter(c => {
     if (commanderSet.has(c.name)) return false;
-    if (!isNeutralCmd) {
-      const cf = (cardInfoMap[c.name]?.faction || '').toLowerCase();
-      if (cf !== 'neutral' && cf !== cmdFaction) return false;
-    }
+    // Only show cards tracked in cards.json — filters tokens, placeholders, etc.
+    if (!cardInfoMap[c.name]) return false;
+    if (!selectedCommander) return true; // no commander: show all playable cards
+
+    const cf = (cardInfoMap[c.name]?.faction || '').toLowerCase();
+    if (selectedCommander === LAZIM_NAME) return cf !== 'neutral';
+    if (cmdFaction === 'neutral') return cf === 'neutral';
+    if (cmdFaction) return cf === 'neutral' || cf === cmdFaction;
     return true;
   });
 }
@@ -394,10 +409,15 @@ function updateFilterHint(commanderName) {
   const cmdData = commanderMap[commanderName];
   if (!cmdData || !commanderName) { hintEl.classList.add('hidden'); return; }
   const faction = cmdData.faction || 'Neutral';
-  const isNeutral = faction.toLowerCase() === 'neutral';
-  hintEl.textContent = isNeutral
-    ? 'Showing all factions (neutral commander)'
-    : `Showing ${faction} + Neutral cards`;
+  let text;
+  if (commanderName === LAZIM_NAME) {
+    text = 'Showing all non-neutral faction cards';
+  } else if (faction.toLowerCase() === 'neutral') {
+    text = 'Showing neutral cards only';
+  } else {
+    text = `Showing ${faction} + Neutral cards`;
+  }
+  hintEl.textContent = text;
   hintEl.classList.remove('hidden');
 }
 
