@@ -232,16 +232,21 @@
         const cardlist = await resp.json();
         initDeckCodec(cardlist);
 
+        // Load commanders to get real names
+        const cmdResp = await fetch('data/commanders.json');
+        const commanders = await cmdResp.json();
+        const commanderNames = new Set(commanders.map(c => c.name));
+        const commander1 = commanders[0].name;
+        const commander2 = commanders[1].name;
+
         // Pick some non-commander cards
         const allCards = cardlist.cards || [];
-        const knownCommanderNames = new Set(['Elber', 'Viessa', 'Lazim', 'Kira',
-          'Elyse of the Order', 'Newhaven Township', 'Daemonprince Grizlocke']);
         const testCards = allCards
-          .filter(c => !knownCommanderNames.has(c.name))
+          .filter(c => !commanderNames.has(c.name))
           .slice(0, 8)
           .map(c => ({ name: c.name, count: 1 }));
 
-        const testDeck = { commander: 'Elber', deckName: 'Test Deck', cards: testCards };
+        const testDeck = { commander: commander1, deckName: 'Test Deck', cards: testCards };
 
         test('encode produces non-empty string with colon separator', () => {
           const code = encodeDeckCode(testDeck);
@@ -276,7 +281,7 @@
         });
 
         test('different commanders produce different codes', () => {
-          const deck2 = { ...testDeck, commander: 'Viessa' };
+          const deck2 = { ...testDeck, commander: commander2 };
           const code1 = encodeDeckCode(testDeck);
           const code2 = encodeDeckCode(deck2);
           assertNotEqual(code1, code2, 'Different commanders should produce different codes');
