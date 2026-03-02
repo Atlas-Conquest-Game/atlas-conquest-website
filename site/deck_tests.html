@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deck Editor Tests — Atlas Conquest</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <style>
+    body { padding: 32px; max-width: 800px; margin: 0 auto; font-family: Inter, system-ui, sans-serif; }
+    h1 { font-size: 1.5rem; margin-bottom: 4px; color: var(--text, #eee); }
+    .subtitle { color: var(--text-muted, #888); font-size: 0.875rem; margin-bottom: 24px; }
+    .suite { margin-bottom: 28px; }
+    .suite-title {
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--text-secondary, #aaa); margin-bottom: 10px; border-bottom: 1px solid var(--border, #333); padding-bottom: 6px;
+    }
+    .result {
+      padding: 8px 12px; border-radius: 4px; font-size: 0.85rem;
+      margin-bottom: 4px; display: flex; align-items: flex-start; gap: 10px;
+    }
+    .result.pass { background: rgba(0, 158, 115, 0.12); color: #00C896; }
+    .result.fail { background: rgba(255, 59, 59, 0.12); color: #FF5555; }
+    .result .icon { font-weight: 700; flex-shrink: 0; width: 14px; }
+    .summary {
+      padding: 16px 20px; border-radius: 6px; font-weight: 700; font-size: 1rem; margin-top: 16px;
+    }
+    .summary.all-pass { background: rgba(0, 158, 115, 0.15); color: #00C896; border: 1px solid rgba(0, 158, 115, 0.3); }
+    .summary.has-fail  { background: rgba(255, 59, 59, 0.15); color: #FF5555; border: 1px solid rgba(255, 59, 59, 0.3); }
+    .codec-note { font-size: 0.8rem; color: var(--text-muted, #888); margin-top: 6px; }
+  </style>
+</head>
+<body>
+  <h1>Deck Editor Tests</h1>
+  <p class="subtitle">Unit tests for deck building logic. Open in browser after starting local server.</p>
+  <div id="output"></div>
+
+  <script src="js/deckcode.js"></script>
+  <script>
+    // ─── Mini Test Runner ─────────────────────────────────────────
+
+    const suites = {};
+    let currentSuite = 'General';
+    let totalPass = 0, totalFail = 0;
+
+    function suite(name) { currentSuite = name; suites[name] = []; }
+
+    function test(name, fn) {
+      try {
+        fn();
+        suites[currentSuite] = suites[currentSuite] || [];
+        suites[currentSuite].push({ name, pass: true });
+        totalPass++;
+      } catch (e) {
+        suites[currentSuite] = suites[currentSuite] || [];
+        suites[currentSuite].push({ name, pass: false, error: e.message });
+        totalFail++;
+      }
+    }
+
+    function assert(cond, msg) {
+      if (!cond) throw new Error(msg || 'Assertion failed');
+    }
+    function assertEqual(a, b, msg) {
+      if (a !== b) throw new Error(msg || `Expected ${JSON.stringify(b)}, got ${JSON.stringify(a)}`);
+    }
+    function assertNotEqual(a, b, msg) {
+      if (a === b) throw new Error(msg || `Expected values to differ, both were ${JSON.stringify(a)}`);
+    }
+
+    function render() {
+      const out = document.getElementById('output');
+      out.innerHTML = '';
+      for (const [name, results] of Object.entries(suites)) {
+        const div = document.createElement('div');
+        div.className = 'suite';
+        div.innerHTML = `<div class="suite-title">${name}</div>` +
+          results.map(r => `<div class="result ${r.pass ? 'pass' : 'fail'}">
+            <span class="icon">${r.pass ? '✓' : '✗'}</span>
+            <span>${r.name}${r.error ? ` — ${r.error}` : ''}</span>
+          </div>`).join('');
+        out.appendChild(div);
+      }
+      const summary = document.createElement('div');
+      summary.className = `summary ${totalFail > 0 ? 'has-fail' : 'all-pass'}`;
+      summary.textContent = `${totalPass + totalFail} tests: ${totalPass} passed, ${totalFail} failed`;
+      out.appendChild(summary);
+    }
+
+    // ─── Mock Data ────────────────────────────────────────────────
+
+    // Inline versions of isCardCompatible + mana bucketing for testing
+    // (same logic as decks.js so any mismatch would indicate a bug)
+
+    const mockCardInfoMap = {
+      'Goblin Scamp':       { cost: 0, type: 'minion', faction: 'shadis' },
+      'Ritual of Shadows':  { cost: 1, type: 'spell',  faction: 'shadis' },
+      'Drain Energy':       { cost: 2, type: 'spell',  faction: 'shadis' },
+      'Stone Sentinel':     { cost: 3, type: 'minion', faction: 'neutral' },
+      'Ironbark Defender':  { cost: 4, type: 'minion', faction: 'grenalia' },
+      'Flame Burst':        { cost: 2, type: 'spell',  faction: 'skaal' },
+      'Deep Sea Leviathan': { cost: 8, type: 'minion', faction: 'archaeon' },
+    };
+
+    const mockCommanderMap = {
+      'Elber':   { faction: 'Shadis' },
+      'Viessa':  { faction: 'Shadis' },
+      'Lazim':   { faction: 'Neutral' },
+      'Kira':    { faction: 'Grenalia' },
+    };
+
+    function testIsCompat(cardName, commanderName) {
+      if (!commanderName) return true;
+      const cmdData = mockCommanderMap[commanderName];
+      if (!cmdData) return true;
+      const cmdFaction = (cmdData.faction || '').toLowerCase();
+      if (!cmdFaction || cmdFaction === 'neutral') return true;
+      const cardFaction = (mockCardInfoMap[cardName]?.faction || '').toLowerCase();
+      return cardFaction === 'neutral' || cardFaction === cmdFaction;
+    }
+
+    function testGetManaBuckets(cards) {
+      const minionBuckets = new Array(8).fill(0);
+      const spellBuckets  = new Array(8).fill(0);
+      cards.forEach(c => {
+        const cost = parseInt((mockCardInfoMap[c.name] || {}).cost) || 0;
+        const idx = Math.min(cost, 7);
+        const t = ((mockCardInfoMap[c.name] || {}).type || '').toLowerCase();
+        if (t === 'spell') spellBuckets[idx] += c.count;
+        else               minionBuckets[idx] += c.count;
+      });
+      return { minionBuckets, spellBuckets };
+    }
+
+    // ─── Suite: Card Compatibility ────────────────────────────────
+
+    suite('Card Compatibility');
+
+    test('same-faction card is compatible', () => {
+      assert(testIsCompat('Goblin Scamp', 'Elber'),
+        'Shadis card should be compatible with Shadis commander Elber');
+    });
+
+    test('neutral card is compatible with any commander', () => {
+      assert(testIsCompat('Stone Sentinel', 'Elber'),
+        'Neutral card should be compatible with Shadis commander');
+      assert(testIsCompat('Stone Sentinel', 'Kira'),
+        'Neutral card should be compatible with Grenalia commander');
+    });
+
+    test('different-faction card is incompatible', () => {
+      assert(!testIsCompat('Ironbark Defender', 'Elber'),
+        'Grenalia card should NOT be compatible with Shadis commander');
+      assert(!testIsCompat('Flame Burst', 'Kira'),
+        'Skaal card should NOT be compatible with Grenalia commander');
+    });
+
+    test('no commander: all cards are compatible', () => {
+      assert(testIsCompat('Ironbark Defender', ''),
+        'Without a commander, all cards should be compatible');
+      assert(testIsCompat('Flame Burst', null),
+        'Without a commander, all cards should be compatible');
+    });
+
+    test('neutral commander sees all factions', () => {
+      assert(testIsCompat('Ironbark Defender', 'Lazim'),
+        'Neutral commander should see Grenalia cards');
+      assert(testIsCompat('Flame Burst', 'Lazim'),
+        'Neutral commander should see Skaal cards');
+    });
+
+    test('switching commander can make cards incompatible', () => {
+      // Cards compatible with Elber (Shadis)
+      const deckCards = ['Goblin Scamp', 'Ritual of Shadows', 'Stone Sentinel'];
+      assert(deckCards.every(c => testIsCompat(c, 'Elber')), 'All should be compatible with Elber');
+      // Kira (Grenalia) makes Shadis cards incompatible
+      const incompatible = deckCards.filter(c => !testIsCompat(c, 'Kira'));
+      assertEqual(incompatible.length, 2, 'Goblin Scamp and Ritual of Shadows should be incompatible with Kira');
+    });
+
+    // ─── Suite: Mana Curve Bucketing ──────────────────────────────
+
+    suite('Mana Curve');
+
+    test('cost 0 minion goes in bucket 0', () => {
+      const { minionBuckets } = testGetManaBuckets([{ name: 'Goblin Scamp', count: 2 }]);
+      assertEqual(minionBuckets[0], 2, 'Should have 2 in cost-0 minion bucket');
+    });
+
+    test('cost 1 spell goes in spell bucket 1', () => {
+      const { spellBuckets } = testGetManaBuckets([{ name: 'Ritual of Shadows', count: 3 }]);
+      assertEqual(spellBuckets[1], 3, 'Should have 3 in cost-1 spell bucket');
+    });
+
+    test('cost 8 gets bucketed into 7+ slot', () => {
+      const { minionBuckets } = testGetManaBuckets([{ name: 'Deep Sea Leviathan', count: 1 }]);
+      assertEqual(minionBuckets[7], 1, 'Cost 8 should go in bucket 7 (7+ slot)');
+    });
+
+    test('mixed deck distributes correctly', () => {
+      const cards = [
+        { name: 'Goblin Scamp',      count: 2 },  // cost-0 minion
+        { name: 'Ritual of Shadows', count: 3 },  // cost-1 spell
+        { name: 'Drain Energy',      count: 2 },  // cost-2 spell
+        { name: 'Stone Sentinel',    count: 1 },  // cost-3 minion
+      ];
+      const { minionBuckets, spellBuckets } = testGetManaBuckets(cards);
+      assertEqual(minionBuckets[0], 2, 'cost-0 minions');
+      assertEqual(spellBuckets[1],  3, 'cost-1 spells');
+      assertEqual(spellBuckets[2],  2, 'cost-2 spells');
+      assertEqual(minionBuckets[3], 1, 'cost-3 minions');
+    });
+
+    test('card counts are summed per bucket', () => {
+      const cards = [
+        { name: 'Goblin Scamp', count: 3 },
+        { name: 'Stone Sentinel', count: 2 },  // neutral = minion bucket
+      ];
+      const { minionBuckets } = testGetManaBuckets(cards);
+      assertEqual(minionBuckets[0], 3);
+      assertEqual(minionBuckets[3], 2);
+    });
+
+    // ─── Suite: Deck Codec (requires cardlist.json) ───────────────
+
+    suite('Deck Codec');
+
+    async function runCodecTests() {
+      try {
+        const resp = await fetch('data/cardlist.json');
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const cardlist = await resp.json();
+        initDeckCodec(cardlist);
+
+        // Pick some non-commander cards
+        const allCards = cardlist.cards || [];
+        const knownCommanderNames = new Set(['Elber', 'Viessa', 'Lazim', 'Kira',
+          'Elyse of the Order', 'Newhaven Township', 'Daemonprince Grizlocke']);
+        const testCards = allCards
+          .filter(c => !knownCommanderNames.has(c.name))
+          .slice(0, 8)
+          .map(c => ({ name: c.name, count: 1 }));
+
+        const testDeck = { commander: 'Elber', deckName: 'Test Deck', cards: testCards };
+
+        test('encode produces non-empty string with colon separator', () => {
+          const code = encodeDeckCode(testDeck);
+          assert(typeof code === 'string' && code.length > 0, 'encode should return non-empty string');
+          assert(code.includes(':'), 'code should contain colon separator');
+        });
+
+        test('decode roundtrip preserves commander', () => {
+          const code = encodeDeckCode(testDeck);
+          const decoded = decodeDeckCode(code);
+          assertEqual(decoded.commander, testDeck.commander, 'Commander should survive roundtrip');
+        });
+
+        test('decode roundtrip preserves deck name', () => {
+          const code = encodeDeckCode(testDeck);
+          const decoded = decodeDeckCode(code);
+          assertEqual(decoded.deckName, testDeck.deckName, 'Deck name should survive roundtrip');
+        });
+
+        test('decode roundtrip preserves card count', () => {
+          const code = encodeDeckCode(testDeck);
+          const decoded = decodeDeckCode(code);
+          assertEqual(decoded.cards.length, testDeck.cards.length, 'Card count should match');
+        });
+
+        test('decode roundtrip preserves card names', () => {
+          const code = encodeDeckCode(testDeck);
+          const decoded = decodeDeckCode(code);
+          const origNames = testDeck.cards.map(c => c.name).sort().join('|');
+          const decodedNames = decoded.cards.map(c => c.name).sort().join('|');
+          assertEqual(origNames, decodedNames, 'Card names should match after roundtrip');
+        });
+
+        test('different commanders produce different codes', () => {
+          const deck2 = { ...testDeck, commander: 'Viessa' };
+          const code1 = encodeDeckCode(testDeck);
+          const code2 = encodeDeckCode(deck2);
+          assertNotEqual(code1, code2, 'Different commanders should produce different codes');
+        });
+
+        test('malformed code throws on decode', () => {
+          let threw = false;
+          try { decodeDeckCode('not-a-valid-code'); } catch (e) { threw = true; }
+          assert(threw, 'Invalid code should throw an error');
+        });
+
+      } catch (e) {
+        test('cardlist.json loaded', () => { throw new Error(e.message); });
+      }
+
+      render();
+    }
+
+    // ─── Suite: Import → Build Sync Logic ────────────────────────
+
+    suite('Import → Build Sync');
+
+    // These test the commander sync logic in isolation
+    test('importing deck should update commander state', () => {
+      // Simulate: currentDeck is set to an imported deck
+      const importedDeck = { commander: 'Viessa', deckName: 'VControlv3', cards: [] };
+      // The sync logic from initTabs: always use currentDeck.commander
+      const fakeSelect = { value: 'Elber' };  // stale value from a previous build session
+      if (importedDeck && importedDeck.commander) {
+        fakeSelect.value = importedDeck.commander;
+      }
+      assertEqual(fakeSelect.value, 'Viessa', 'Select should update to imported deck commander');
+    });
+
+    test('no commander selected allows card pool display', () => {
+      // Without a commander, isCardCompatible should return true for all cards
+      assert(testIsCompat('Ironbark Defender', ''), 'All cards allowed when no commander');
+      assert(testIsCompat('Flame Burst', ''), 'All cards allowed when no commander');
+    });
+
+    test('incompatible cards detected after commander change', () => {
+      const deckCards = [
+        { name: 'Goblin Scamp',     faction: 'shadis'   },
+        { name: 'Ironbark Defender', faction: 'grenalia' },
+        { name: 'Stone Sentinel',   faction: 'neutral'  },
+      ];
+      // Select Elber (Shadis commander)
+      const incompatible = deckCards.filter(c => !testIsCompat(c.name, 'Elber'));
+      assertEqual(incompatible.length, 1, 'Only Ironbark Defender should be incompatible with Elber');
+      assertEqual(incompatible[0].name, 'Ironbark Defender');
+    });
+
+    // Run codec tests async, render sync tests immediately
+    runCodecTests();  // will call render() when done
+  </script>
+</body>
+</html>

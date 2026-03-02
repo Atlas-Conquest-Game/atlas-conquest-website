@@ -79,27 +79,29 @@
 
           <!-- Build Panel (hidden by default) -->
           <div class="deck-panel hidden" id="panel-build">
-            <div class="build-controls">
-              <div class="build-row">
-                <div class="build-field">
-                  <label class="deck-input-label" for="build-commander">Commander</label>
-                  <select id="build-commander" class="deck-select">
-                    <option value="">Select a commander...</option>
-                  </select>
-                </div>
-                <div class="build-field">
-                  <label class="deck-input-label" for="build-name">Deck Name</label>
-                  <input type="text" id="build-name" class="deck-input" placeholder="My Deck">
+            <div class="build-row">
+              <div class="build-field">
+                <label class="deck-input-label" for="build-commander">Commander</label>
+                <select id="build-commander" class="deck-select">
+                  <option value="">Select a commander...</option>
+                </select>
+              </div>
+              <div class="build-field">
+                <label class="deck-input-label" for="build-name">Deck Name</label>
+                <input type="text" id="build-name" class="deck-input" placeholder="My Deck">
+              </div>
+            </div>
+            <!-- Card Pool Browser -->
+            <div class="card-browser" id="card-browser">
+              <div class="card-browser-toolbar">
+                <input type="text" id="build-card-input" class="deck-input" placeholder="Filter cards..." autocomplete="off">
+                <div class="card-browser-sort-row">
+                  <button class="build-sort-btn active" data-sort="cost" id="sort-btn-cost">Cost</button>
+                  <button class="build-sort-btn" data-sort="name" id="sort-btn-name">Name</button>
                 </div>
               </div>
-              <div class="build-card-search">
-                <label class="deck-input-label" for="build-card-input">Add Cards</label>
-                <div class="build-search-row">
-                  <input type="text" id="build-card-input" class="deck-input" placeholder="Search for a card..." autocomplete="off">
-                  <div class="build-suggestions hidden" id="build-suggestions"></div>
-                </div>
-                <div class="build-filter-hint hidden" id="build-filter-hint"></div>
-              </div>
+              <div class="build-filter-hint hidden" id="build-filter-hint"></div>
+              <div class="card-browser-grid" id="card-browser-grid"></div>
             </div>
           </div>
 
@@ -107,6 +109,9 @@
           <div class="deck-empty-state" id="deck-empty-state">
             <p>Paste a deck code above to view a decklist, or switch to <strong>Build Deck</strong> to create one from scratch.</p>
           </div>
+
+          <!-- Incompatible card warning -->
+          <div class="deck-warning hidden" id="deck-warning"></div>
 
           <!-- Card List -->
           <div class="deck-card-list hidden" id="deck-card-list"></div>

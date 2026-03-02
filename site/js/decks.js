@@ -1,25 +1,25 @@
 /**
- * Atlas Conquest — Deck Tools Page
+ * Atlas Conquest — Deck Tools Page v1.4
  *
  * Import (decode) and build (encode) deck codes.
  */
 
 let cardlistData = null;
-let cardsData = null;  // card_stats for metadata (cost, type, faction)
-let cardInfoMap = {};  // name → {cost, type, faction}
-let commanderList = []; // names of commanders from cardlist
-let commanderMap = {};  // name → commander data (faction, art, etc.)
-let currentDeck = null; // {commander, deckName, cards: [{name, count}]}
+let cardsData = null;
+let cardInfoMap = {};
+let commanderList = [];
+let commanderMap = {};
+let currentDeck = null;
 let currentMode = 'import';
-let buildSortMode = 'cost'; // 'cost' | 'name'
+let buildSortMode = 'cost';
 
 const FACTION_COLORS = {
   skaal: '#D55E00', grenalia: '#009E73', lucia: '#E8B630',
   neutral: '#A89078', shadis: '#7B7B8E', archaeon: '#0072B2',
 };
 
-const MINION_COLOR = 'var(--lucia)';  // gold — replaces Skaal orange
-const SPELL_COLOR  = '#7C9EFF';       // periwinkle — replaces Archaeon dark blue
+const MINION_COLOR = 'var(--lucia)';
+const SPELL_COLOR  = '#7C9EFF';
 
 // ─── Data Loading ──────────────────────────────────────────
 
@@ -28,7 +28,6 @@ async function loadCardlist() {
   cardlistData = await resp.json();
   initDeckCodec(cardlistData);
 
-  // Identify commanders (they appear in the card list but also in legacy names)
   const knownCommanders = new Set();
   const resp2 = await fetch('data/commanders.json');
   const commanders = await resp2.json();
@@ -38,7 +37,6 @@ async function loadCardlist() {
   });
   commanderList = [...knownCommanders].sort();
 
-  // Load card metadata for display
   const resp3 = await fetch('data/cards.json');
   const cards = await resp3.json();
   cards.forEach(c => {
@@ -51,20 +49,16 @@ async function loadCardlist() {
   cardsData = cards;
 }
 
-// ─── Commander Art Path ────────────────────────────────────
+// ─── Art & Faction Helpers ─────────────────────────────────
 
 function commanderArtPath(name) {
   const slug = name.toLowerCase().replace(/[,.']/g, '').replace(/\s+/g, '-');
   return `assets/commanders/${slug}.jpg`;
 }
 
-// ─── Card Art Slug ─────────────────────────────────────────
-
 function cardArtSlug(name) {
   return name.toLowerCase().replace(/[,.']/g, '').replace(/\s+/g, '-');
 }
-
-// ─── Faction Helpers ───────────────────────────────────────
 
 function factionColor(faction) {
   return FACTION_COLORS[(faction || '').toLowerCase()] || FACTION_COLORS.neutral;
@@ -76,10 +70,22 @@ function factionBadge(faction) {
   return `<span class="faction-badge" style="color:${c};background:${c}1a;padding:2px 7px;border-radius:4px;font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em">${f}</span>`;
 }
 
+// ─── Card Compatibility ────────────────────────────────────
+
+function isCardCompatible(cardName, commanderName) {
+  if (!commanderName) return true;
+  const cmdData = commanderMap[commanderName];
+  if (!cmdData) return true;
+  const cmdFaction = (cmdData.faction || '').toLowerCase();
+  if (!cmdFaction || cmdFaction === 'neutral') return true;
+  const cardFaction = (cardInfoMap[cardName]?.faction || '').toLowerCase();
+  return cardFaction === 'neutral' || cardFaction === cmdFaction;
+}
+
 // ─── Mana Curve (stacked: spell on top, minion on bottom) ──
 
 function renderManaCurve(deck) {
-  const minionBuckets = new Array(8).fill(0); // 0–6, then 7+
+  const minionBuckets = new Array(8).fill(0);
   const spellBuckets  = new Array(8).fill(0);
   deck.cards.forEach(c => {
     const cost = parseInt((cardInfoMap[c.name] || {}).cost) || 0;
@@ -88,18 +94,15 @@ function renderManaCurve(deck) {
     if (t === 'spell') spellBuckets[idx] += c.count;
     else               minionBuckets[idx] += c.count;
   });
-
   const totals = minionBuckets.map((m, i) => m + spellBuckets[i]);
   const max = Math.max(...totals, 1);
   const labels = ['0', '1', '2', '3', '4', '5', '6', '7+'];
-
   document.getElementById('mana-curve').innerHTML = labels.map((l, i) => {
     const totalH = Math.round((totals[i] / max) * 72);
     const spellH  = totals[i] > 0 ? Math.round((spellBuckets[i] / totals[i]) * totalH) : 0;
     const minionH = totalH - spellH;
-    const count = totals[i] || '';
     return `<div class="mana-bar-col">
-      <div class="mana-bar-count">${count}</div>
+      <div class="mana-bar-count">${totals[i] || ''}</div>
       <div class="mana-bar-stack" style="height:${totalH}px">
         <div class="mana-bar-seg spell"  style="height:${spellH}px"></div>
         <div class="mana-bar-seg minion" style="height:${minionH}px"></div>
@@ -166,12 +169,84 @@ function initCardPreview() {
   });
 }
 
+// ─── Card Pool (Build Mode) ────────────────────────────────
+
+function getCardPool() {
+  if (!cardlistData) return [];
+  const commanderSet = new Set(commanderList);
+  const selectedCommander = document.getElementById('build-commander')?.value || '';
+  const cmdData = commanderMap[selectedCommander];
+  const cmdFaction = cmdData ? (cmdData.faction || '').toLowerCase() : null;
+  const isNeutralCmd = !cmdFaction || cmdFaction === 'neutral';
+
+  return cardlistData.cards.filter(c => {
+    if (commanderSet.has(c.name)) return false;
+    if (!isNeutralCmd) {
+      const cf = (cardInfoMap[c.name]?.faction || '').toLowerCase();
+      if (cf !== 'neutral' && cf !== cmdFaction) return false;
+    }
+    return true;
+  });
+}
+
+function renderCardBrowser(q = '') {
+  const grid = document.getElementById('card-browser-grid');
+  if (!grid) return;
+
+  let pool = getCardPool();
+  if (q) pool = pool.filter(c => c.name.toLowerCase().includes(q));
+
+  pool.sort((a, b) => {
+    if (buildSortMode === 'name') return a.name.localeCompare(b.name);
+    const ca = parseInt((cardInfoMap[a.name] || {}).cost) || 0;
+    const cb = parseInt((cardInfoMap[b.name] || {}).cost) || 0;
+    if (ca !== cb) return ca - cb;
+    return a.name.localeCompare(b.name);
+  });
+
+  grid.innerHTML = pool.map(c => {
+    const info = cardInfoMap[c.name] || {};
+    const cost = info.cost != null ? info.cost : '?';
+    const slug = cardArtSlug(c.name);
+    const count = currentDeck ? (currentDeck.cards.find(x => x.name === c.name)?.count || 0) : 0;
+    const atMax = count >= 3;
+    return `<div class="card-tile${count > 0 ? ' in-deck' : ''}" data-name="${c.name}">
+      <div class="card-tile-art-wrap">
+        <img class="card-tile-art" src="assets/cards/${slug}.jpg" alt="" onerror="this.style.visibility='hidden'">
+        <div class="card-tile-cost-badge">${cost}</div>
+      </div>
+      <div class="card-tile-name">${c.name}</div>
+      <div class="card-tile-controls">
+        <button class="card-tile-btn minus" data-name="${c.name}"${count === 0 ? ' disabled' : ''}>−</button>
+        <span class="card-tile-count${count > 0 ? ' active' : ''}">${count}</span>
+        <button class="card-tile-btn plus" data-name="${c.name}"${atMax ? ' disabled' : ''}>+</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  // Event delegation — one handler on the grid
+  grid.onclick = e => {
+    const plusBtn  = e.target.closest('.card-tile-btn.plus');
+    const minusBtn = e.target.closest('.card-tile-btn.minus');
+    const tile     = e.target.closest('.card-tile');
+    if (plusBtn && !plusBtn.disabled) {
+      addCardToBuild(plusBtn.dataset.name);
+    } else if (minusBtn && !minusBtn.disabled) {
+      removeOneFromBuild(minusBtn.dataset.name);
+    } else if (tile && !e.target.closest('.card-tile-btn')) {
+      // Click on tile body: add if not at max
+      const name = tile.dataset.name;
+      const count = currentDeck ? (currentDeck.cards.find(x => x.name === name)?.count || 0) : 0;
+      if (count < 3) addCardToBuild(name);
+    }
+  };
+}
+
 // ─── Render Deck ───────────────────────────────────────────
 
 function renderDeck(deck) {
   currentDeck = deck;
 
-  // Reveal sidebar + card list, hide empty state
   document.getElementById('deck-sidebar').classList.remove('hidden');
   document.getElementById('deck-card-list').classList.remove('hidden');
   document.getElementById('deck-empty-state').classList.add('hidden');
@@ -179,16 +254,16 @@ function renderDeck(deck) {
   // Commander portrait
   const artEl = document.getElementById('deck-commander-art');
   artEl.style.display = '';
-  artEl.src = commanderArtPath(deck.commander);
-  artEl.alt = deck.commander;
+  artEl.src = commanderArtPath(deck.commander || '');
+  artEl.alt = deck.commander || '';
   artEl.onerror = () => { artEl.style.display = 'none'; };
 
   // Deck name + commander label + faction badge
   document.getElementById('deck-name').textContent = deck.deckName || 'Unnamed Deck';
-  document.getElementById('deck-commander').textContent = deck.commander;
+  document.getElementById('deck-commander').textContent = deck.commander || '—';
   const cmdData = commanderMap[deck.commander];
   const faction = cmdData ? (cmdData.faction || 'Neutral') : 'Neutral';
-  document.getElementById('deck-commander-faction').innerHTML = factionBadge(faction);
+  document.getElementById('deck-commander-faction').innerHTML = deck.commander ? factionBadge(faction) : '';
 
   // Quick stats
   const totalCards = deck.cards.reduce((s, c) => s + c.count, 0);
@@ -205,9 +280,21 @@ function renderDeck(deck) {
   document.getElementById('stat-unique-cards').textContent = uniqueCards;
   document.getElementById('stat-avg-cost').textContent = costCount > 0 ? (totalCost / costCount).toFixed(1) : '?';
 
-  // Mana curve + type breakdown
   renderManaCurve(deck);
   renderTypeBreakdown(deck);
+
+  // Incompatible card warning
+  const incompatibleCards = deck.cards.filter(c => !isCardCompatible(c.name, deck.commander));
+  const warningEl = document.getElementById('deck-warning');
+  if (warningEl) {
+    if (incompatibleCards.length > 0 && deck.commander) {
+      const n = incompatibleCards.length;
+      warningEl.textContent = `⚠ ${n} card${n > 1 ? 's' : ''} in your deck ${n > 1 ? 'are' : 'is'} incompatible with this commander and will be illegal in-game. Remove or replace ${n > 1 ? 'them' : 'it'}.`;
+      warningEl.classList.remove('hidden');
+    } else {
+      warningEl.classList.add('hidden');
+    }
+  }
 
   // Card list grouped by cost
   const listEl = document.getElementById('deck-card-list');
@@ -236,8 +323,9 @@ function renderDeck(deck) {
       const fLabel = (info.faction || 'neutral').toUpperCase();
       const typeLabel = (info.type || '').toUpperCase();
       const isBuild = currentMode === 'build';
+      const compatible = isCardCompatible(c.name, deck.commander);
       html += `
-        <div class="deck-card-row" data-card="${c.name}">
+        <div class="deck-card-row${compatible ? '' : ' incompatible'}" data-card="${c.name}">
           <div class="deck-card-cost">${info.cost != null ? info.cost : '?'}</div>
           <span class="deck-card-name">${c.name}</span>
           ${typeLabel ? `<span class="deck-card-type">${typeLabel}</span>` : ''}
@@ -254,133 +342,31 @@ function renderDeck(deck) {
   if (currentMode === 'build') {
     buildNote.classList.remove('hidden');
     wireCardButtons();
+    // Refresh card browser counts
+    const searchInput = document.getElementById('build-card-input');
+    renderCardBrowser(searchInput?.value.trim().toLowerCase() || '');
   } else {
     buildNote.classList.add('hidden');
   }
 }
 
-// ─── Build Mode: Card Buttons ──────────────────────────────
+// ─── Build Mode: Deck List Buttons ─────────────────────────
 
 function wireCardButtons() {
   document.querySelectorAll('.deck-card-remove').forEach(btn => {
     btn.addEventListener('click', () => {
-      const name = btn.dataset.card;
-      currentDeck.cards = currentDeck.cards.filter(c => c.name !== name);
+      currentDeck.cards = currentDeck.cards.filter(c => c.name !== btn.dataset.card);
       renderDeck(currentDeck);
     });
   });
 
   document.querySelectorAll('.deck-count-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      const name = btn.dataset.card;
-      const card = currentDeck.cards.find(c => c.name === name);
+      const card = currentDeck.cards.find(c => c.name === btn.dataset.card);
       if (card) {
-        card.count = (card.count % 3) + 1; // Cycle 1→2→3→1
+        card.count = (card.count % 3) + 1;
         renderDeck(currentDeck);
       }
-    });
-  });
-}
-
-// ─── Build Mode: Card Suggestions ─────────────────────────
-
-function getFactionFilteredCards() {
-  const selectedCommander = document.getElementById('build-commander').value;
-  const cmdData = commanderMap[selectedCommander];
-  const cmdFaction = cmdData ? (cmdData.faction || '').toLowerCase() : null;
-  const isNeutralCmd = cmdFaction === 'neutral' || !cmdFaction;
-  const commanderSet = new Set(commanderList);
-
-  return cardlistData.cards.filter(c => {
-    if (commanderSet.has(c.name)) return false;
-    if (!isNeutralCmd) {
-      const cardFaction = (cardInfoMap[c.name]?.faction || '').toLowerCase();
-      if (cardFaction !== 'neutral' && cardFaction !== cmdFaction) return false;
-    }
-    return true;
-  });
-}
-
-function showCardSuggestions(q) {
-  const suggestionsEl = document.getElementById('build-suggestions');
-  const selectedCommander = document.getElementById('build-commander').value;
-
-  if (!selectedCommander) {
-    suggestionsEl.classList.add('hidden');
-    return;
-  }
-
-  const allFiltered = getFactionFilteredCards();
-
-  let matches;
-  if (!q) {
-    // Browse mode: show all faction-filtered cards up to 30
-    matches = [...allFiltered];
-  } else {
-    matches = allFiltered.filter(c => c.name.toLowerCase().includes(q));
-  }
-
-  // Sort
-  matches.sort((a, b) => {
-    if (buildSortMode === 'name') return a.name.localeCompare(b.name);
-    // cost sort (ascending), then name
-    const ca = parseInt((cardInfoMap[a.name] || {}).cost) || 0;
-    const cb = parseInt((cardInfoMap[b.name] || {}).cost) || 0;
-    if (ca !== cb) return ca - cb;
-    return a.name.localeCompare(b.name);
-  });
-
-  const limit = q ? 12 : 30;
-  matches = matches.slice(0, limit);
-
-  if (matches.length === 0) {
-    suggestionsEl.classList.add('hidden');
-    return;
-  }
-
-  // Sort controls header
-  const sortHTML = `<div class="build-sort-controls">
-    <span class="build-sort-label">Sort:</span>
-    <button class="build-sort-btn ${buildSortMode === 'cost' ? 'active' : ''}" data-sort="cost">Cost</button>
-    <button class="build-sort-btn ${buildSortMode === 'name' ? 'active' : ''}" data-sort="name">Name</button>
-  </div>`;
-
-  const cardHTML = matches.map(c => {
-    const info = cardInfoMap[c.name] || {};
-    const cost = info.cost != null ? info.cost : '?';
-    const type = info.type || '';
-    const faction = (info.faction || '').toUpperCase();
-    const meta = [type, faction].filter(Boolean).join(' · ');
-    const slug = cardArtSlug(c.name);
-    return `<div class="build-suggestion" data-name="${c.name}">
-      <img class="build-suggestion-img" src="assets/cards/${slug}.jpg" alt="" onerror="this.style.visibility='hidden'">
-      <div class="build-suggestion-info">
-        <div class="build-suggestion-name">[${cost}] ${c.name}</div>
-        <div class="build-suggestion-faction">${meta}</div>
-      </div>
-    </div>`;
-  }).join('');
-
-  suggestionsEl.innerHTML = sortHTML + cardHTML;
-  suggestionsEl.classList.remove('hidden');
-
-  // Wire sort buttons
-  suggestionsEl.querySelectorAll('.build-sort-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      buildSortMode = btn.dataset.sort;
-      const searchInput = document.getElementById('build-card-input');
-      showCardSuggestions(searchInput.value.trim().toLowerCase());
-    });
-  });
-
-  // Wire card clicks
-  suggestionsEl.querySelectorAll('.build-suggestion').forEach(el => {
-    el.addEventListener('click', () => {
-      addCardToBuild(el.dataset.name);
-      const searchInput = document.getElementById('build-card-input');
-      searchInput.value = '';
-      suggestionsEl.classList.add('hidden');
     });
   });
 }
@@ -389,15 +375,9 @@ function showCardSuggestions(q) {
 
 function handleDecode() {
   const input = document.getElementById('deck-code-input');
-  const errorEl = document.getElementById('deck-error');
-  errorEl.classList.add('hidden');
-
+  document.getElementById('deck-error').classList.add('hidden');
   const code = input.value.trim();
-  if (!code) {
-    showError('Please paste a deck code.');
-    return;
-  }
-
+  if (!code) { showError('Please paste a deck code.'); return; }
   try {
     const deck = decodeDeckCode(code);
     renderDeck(deck);
@@ -406,16 +386,13 @@ function handleDecode() {
   }
 }
 
-// ─── Build Mode ────────────────────────────────────────────
+// ─── Build Mode Setup ──────────────────────────────────────
 
 function updateFilterHint(commanderName) {
   const hintEl = document.getElementById('build-filter-hint');
   if (!hintEl) return;
   const cmdData = commanderMap[commanderName];
-  if (!cmdData || !commanderName) {
-    hintEl.classList.add('hidden');
-    return;
-  }
+  if (!cmdData || !commanderName) { hintEl.classList.add('hidden'); return; }
   const faction = cmdData.faction || 'Neutral';
   const isNeutral = faction.toLowerCase() === 'neutral';
   hintEl.textContent = isNeutral
@@ -429,50 +406,49 @@ function initBuildMode() {
   select.innerHTML = '<option value="">Select a commander...</option>' +
     commanderList.map(c => `<option value="${c}">${c}</option>`).join('');
 
-  // Commander select → start/update deck
   select.addEventListener('change', () => {
     ensureBuildDeck();
     currentDeck.commander = select.value;
     updateFilterHint(select.value);
-    if (currentDeck.commander) renderDeck(currentDeck);
-    // Refresh suggestions if dropdown is open
-    const searchInput = document.getElementById('build-card-input');
-    const suggestionsEl = document.getElementById('build-suggestions');
-    if (!suggestionsEl.classList.contains('hidden')) {
-      showCardSuggestions(searchInput.value.trim().toLowerCase());
+    // Re-render deck (shows incompatible cards in red if any exist)
+    if (currentDeck.cards.length > 0 || currentDeck.commander) {
+      renderDeck(currentDeck);
     }
+    // Refresh card pool with new faction filter
+    const searchInput = document.getElementById('build-card-input');
+    renderCardBrowser(searchInput?.value.trim().toLowerCase() || '');
   });
 
-  // Deck name input
-  document.getElementById('build-name').addEventListener('input', (e) => {
+  document.getElementById('build-name').addEventListener('input', e => {
     ensureBuildDeck();
     currentDeck.deckName = e.target.value;
     const nameEl = document.getElementById('deck-name');
     if (nameEl) nameEl.textContent = currentDeck.deckName || 'Unnamed Deck';
   });
 
-  // Card search with autocomplete
+  // Search filters the card browser
   const searchInput = document.getElementById('build-card-input');
-  const suggestionsEl = document.getElementById('build-suggestions');
   let debounceTimer;
-
-  searchInput.addEventListener('focus', () => {
-    showCardSuggestions(searchInput.value.trim().toLowerCase());
-  });
-
   searchInput.addEventListener('input', () => {
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(() => {
-      showCardSuggestions(searchInput.value.trim().toLowerCase());
+      renderCardBrowser(searchInput.value.trim().toLowerCase());
     }, 150);
   });
 
-  // Close suggestions on click outside
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.build-card-search')) {
-      suggestionsEl.classList.add('hidden');
-    }
+  // Sort buttons
+  document.querySelectorAll('.build-sort-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      buildSortMode = btn.dataset.sort;
+      document.querySelectorAll('.build-sort-btn').forEach(b =>
+        b.classList.toggle('active', b.dataset.sort === buildSortMode)
+      );
+      renderCardBrowser(searchInput.value.trim().toLowerCase());
+    });
   });
+
+  // Initial card pool render (data is loaded by now)
+  renderCardBrowser('');
 }
 
 function ensureBuildDeck() {
@@ -489,11 +465,21 @@ function addCardToBuild(name) {
   ensureBuildDeck();
   const existing = currentDeck.cards.find(c => c.name === name);
   if (existing) {
-    if (existing.count < 3) existing.count++;
+    if (existing.count >= 3) return;
+    existing.count++;
   } else {
     currentDeck.cards.push({ name, count: 1 });
   }
-  if (currentDeck.commander) renderDeck(currentDeck);
+  renderDeck(currentDeck);
+}
+
+function removeOneFromBuild(name) {
+  if (!currentDeck) return;
+  const card = currentDeck.cards.find(c => c.name === name);
+  if (!card) return;
+  if (card.count > 1) card.count--;
+  else currentDeck.cards = currentDeck.cards.filter(c => c.name !== name);
+  renderDeck(currentDeck);
 }
 
 // ─── Copy Actions ──────────────────────────────────────────
@@ -526,10 +512,7 @@ function flashButton(id, text) {
   const original = btn.textContent;
   btn.textContent = text;
   btn.classList.add('copied');
-  setTimeout(() => {
-    btn.textContent = original;
-    btn.classList.remove('copied');
-  }, 1500);
+  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
 }
 
 // ─── Tabs ──────────────────────────────────────────────────
@@ -545,18 +528,23 @@ function initTabs() {
       document.getElementById('panel-build').classList.toggle('hidden', currentMode !== 'build');
 
       if (currentMode === 'build') {
-        // Auto-populate commander + deck name from any imported deck
+        const sel = document.getElementById('build-commander');
+        const ni  = document.getElementById('build-name');
+
+        // FIX: always sync commander + name from currentDeck when switching to Build.
+        // This ensures an imported deck's commander overwrites a stale Build selection.
         if (currentDeck && currentDeck.commander) {
-          const sel = document.getElementById('build-commander');
-          if (!sel.value) {
-            sel.value = currentDeck.commander;
-            updateFilterHint(currentDeck.commander);
-            const ni = document.getElementById('build-name');
-            if (ni && currentDeck.deckName) ni.value = currentDeck.deckName;
-          }
+          sel.value = currentDeck.commander;
+          updateFilterHint(currentDeck.commander);
+          if (ni && currentDeck.deckName) ni.value = currentDeck.deckName;
         }
+
         ensureBuildDeck();
-        if (currentDeck && currentDeck.commander) renderDeck(currentDeck);
+        if (currentDeck && (currentDeck.commander || currentDeck.cards.length > 0)) {
+          renderDeck(currentDeck);
+        }
+        const searchInput = document.getElementById('build-card-input');
+        renderCardBrowser(searchInput?.value.trim().toLowerCase() || '');
       }
     });
   });
@@ -575,7 +563,6 @@ function showError(msg) {
 async function init() {
   await loadCardlist();
 
-  // Highlight active nav link
   const decksLink = document.querySelector('.nav-link[data-nav="decks"]');
   if (decksLink) decksLink.classList.add('active');
 
@@ -583,15 +570,14 @@ async function init() {
   initBuildMode();
   initCardPreview();
 
-  // Wire buttons
   document.getElementById('btn-decode').addEventListener('click', handleDecode);
-  document.getElementById('deck-code-input').addEventListener('keydown', (e) => {
+  document.getElementById('deck-code-input').addEventListener('keydown', e => {
     if (e.key === 'Enter') handleDecode();
   });
   document.getElementById('btn-copy-code').addEventListener('click', handleCopyCode);
   document.getElementById('btn-copy-url').addEventListener('click', handleCopyUrl);
 
-  // Check URL for deck code
+  // Auto-decode from URL
   const params = new URLSearchParams(window.location.search);
   const code = params.get('code');
   if (code) {

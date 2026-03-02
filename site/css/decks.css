@@ -167,12 +167,6 @@
 
 /* ── Build controls ────────────────────────────────────── */
 
-.build-controls {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
 .build-row {
   display: flex;
   gap: 14px;
@@ -182,27 +176,157 @@
   flex: 1;
 }
 
-.build-card-search {
-  position: relative;
-}
+/* ── Card Pool Browser ─────────────────────────────────── */
 
-.build-search-row {
-  position: relative;
-}
-
-.build-suggestions {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  max-height: 240px;
-  overflow-y: auto;
-  background: var(--bg-elevated);
+.card-browser {
+  margin-top: 16px;
   border: 1px solid var(--border);
-  border-top: none;
-  border-radius: 0 0 var(--radius) var(--radius);
-  z-index: 100;
+  border-radius: var(--radius);
+  overflow: hidden;
 }
+
+.card-browser-toolbar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-elevated);
+}
+
+.card-browser-toolbar .deck-input {
+  flex: 1;
+}
+
+.card-browser-sort-row {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.card-browser .build-filter-hint {
+  padding: 5px 12px;
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border-subtle);
+  margin: 0;
+}
+
+.card-browser-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 6px;
+  padding: 10px;
+  max-height: 340px;
+  overflow-y: auto;
+  background: var(--bg-inset);
+}
+
+.card-tile {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.15s;
+}
+
+.card-tile:hover { border-color: var(--lucia); }
+
+.card-tile.in-deck {
+  border-color: var(--lucia);
+  border-width: 2px;
+}
+
+.card-tile-art-wrap {
+  position: relative;
+}
+
+.card-tile-art {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  display: block;
+}
+
+.card-tile-cost-badge {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 20px;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--lucia);
+}
+
+.card-tile-name {
+  padding: 4px 6px 2px;
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+}
+
+.card-tile-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 4px 6px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.card-tile-btn {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  background: none;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  padding: 0;
+  font-family: inherit;
+}
+
+.card-tile-btn:hover:not(:disabled) {
+  border-color: var(--lucia);
+  color: var(--lucia);
+}
+
+.card-tile-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.card-tile-count {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  width: 18px;
+  text-align: center;
+}
+
+.card-tile-count.active {
+  color: var(--lucia);
+}
+
+/* ── Sort controls (shared) ────────────────────────────── */
 
 .build-sort-controls {
   display: flex;
@@ -246,43 +370,27 @@
   color: var(--text);
 }
 
-.build-suggestion {
-  padding: 6px 12px;
-  cursor: pointer;
-  font-size: 0.85rem;
-  color: var(--text);
-  display: flex;
-  align-items: center;
-  gap: 10px;
+/* ── Incompatible card row ──────────────────────────────── */
+
+.deck-card-row.incompatible {
+  border-color: var(--negative);
+  background: rgba(255, 59, 59, 0.06);
 }
 
-.build-suggestion:hover { background: var(--bg-inset); }
-
-.build-suggestion-img {
-  width: 28px;
-  height: 36px;
-  object-fit: cover;
-  border-radius: 3px;
-  flex-shrink: 0;
-  background: var(--bg-inset);
+.deck-card-row.incompatible .deck-card-name {
+  color: var(--negative);
 }
 
-.build-suggestion-info {
-  flex: 1;
-  min-width: 0;
-}
+/* ── Incompatible warning banner ───────────────────────── */
 
-.build-suggestion-name {
-  font-size: 0.85rem;
-  color: var(--text);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.build-suggestion-faction {
-  font-size: 0.75rem;
-  color: var(--text-muted);
+.deck-warning {
+  padding: 10px 14px;
+  background: rgba(255, 160, 0, 0.1);
+  border: 1px solid rgba(255, 160, 0, 0.35);
+  border-radius: var(--radius);
+  color: #FFA000;
+  font-size: 0.8125rem;
+  margin-bottom: 12px;
 }
 
 .build-filter-hint {
@@ -706,5 +814,14 @@
 
   .deck-input-row .btn {
     width: 100%;
+  }
+
+  .card-browser-grid {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    max-height: 260px;
+  }
+
+  .deck-copy-row {
+    flex-direction: column;
   }
 }
