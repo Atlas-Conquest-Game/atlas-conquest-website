@@ -27,7 +27,7 @@ from pipeline.aggregation import (
 from pipeline.io_helpers import (
     load_cache, save_cache, write_json,
     get_dynamo_table, scan_all_games,
-    generate_thumbnails,
+    generate_thumbnails, write_cardlist,
     load_cards_csv, load_commanders_csv,
 )
 
@@ -282,22 +282,22 @@ def main():
     print("=" * 50)
 
     # Step 1: Load cache
-    print("\n[1/6] Loading cache...")
+    print("\n[1/7] Loading cache...")
     cached_games, cached_ids = load_cache()
 
     if args.skip_fetch:
-        print("\n[2/6] Skipping DynamoDB fetch (--skip-fetch)")
+        print("\n[2/7] Skipping DynamoDB fetch (--skip-fetch)")
         all_games = cached_games
         print(f"  Using {len(all_games)} cached games")
     else:
         # Step 2: Scan DynamoDB for new games
-        print("\n[2/6] Scanning DynamoDB...")
+        print("\n[2/7] Scanning DynamoDB...")
         table = get_dynamo_table()
         raw_items = scan_all_games(table, cached_ids)
         print(f"  Found {len(raw_items)} new items from DynamoDB")
 
         # Step 3: Clean new games
-        print("\n[3/6] Cleaning data...")
+        print("\n[3/7] Cleaning data...")
         new_games = []
         skip_log = []
         for item in raw_items:
@@ -317,19 +317,23 @@ def main():
         print(f"  Total games: {len(all_games)}")
 
         # Step 4: Save updated cache
-        print("\n[4/6] Saving cache...")
+        print("\n[4/7] Saving cache...")
         save_cache(all_games)
 
     # Step 5: Generate optimized thumbnails from Artwork/ and CardScreenshots/
     print("\n[5/7] Generating thumbnails...")
     generate_thumbnails()
 
-    print("\n[6/7] Loading reference data...")
+    # Step 6: Update cardlist from Formats/FullCardList.asset
+    print("\n[6/7] Updating cardlist...")
+    write_cardlist()
+
+    print("\n[7/7] Loading reference data...")
     cards_csv = load_cards_csv()
     commanders_csv = load_commanders_csv()
 
-    # Step 7: Aggregate and write JSONs (per time period)
-    print("\n[7/7] Aggregating and writing data files...")
+    # Aggregate and write JSONs (per time period)
+    print("\nAggregating and writing data files...")
     build_and_write_all(all_games, cards_csv, commanders_csv)
 
     print(f"\nDone! {len(all_games)} games processed → site/data/")

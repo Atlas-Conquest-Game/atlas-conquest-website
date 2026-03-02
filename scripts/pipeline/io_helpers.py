@@ -8,8 +8,8 @@ import time
 
 from pipeline.constants import (
     DATA_DIR, ASSETS_DIR, CARD_ASSETS_DIR, ARTWORK_DIR, CARD_SCREENSHOTS_DIR,
-    RAW_CACHE, CARDS_CSV, COMMANDERS_CSV,
-    DYNAMO_TABLE, DYNAMO_REGION, PATRON_MAP,
+    RAW_CACHE, CARDS_CSV, COMMANDERS_CSV, CARDLIST_ASSET,
+    DYNAMO_TABLE, DYNAMO_REGION, PATRON_MAP, COMMANDER_RENAMES,
 )
 from pipeline.cleaning import normalize_commander
 
@@ -99,6 +99,48 @@ def generate_thumbnails():
     print(f"  Thumbnails: {cmd_count} commander + {card_count} card images generated")
     if cmd_count == 0 and card_count == 0:
         print("  (all thumbnails up to date)")
+
+
+# ─── Card List ───────────────────────────────────────────────────
+
+def write_cardlist():
+    """Update site/data/cardlist.json from Formats/FullCardList.asset.
+
+    No-ops gracefully if the asset file is missing.
+    """
+    from datetime import date
+
+    if not CARDLIST_ASSET.exists():
+        print("  (Formats/FullCardList.asset not found, skipping cardlist update)")
+        return
+
+    names = []
+    in_list = False
+    with open(CARDLIST_ASSET, "r") as f:
+        for line in f:
+            stripped = line.strip()
+            if stripped == "_cardNameOrderedList:":
+                in_list = True
+                continue
+            if in_list:
+                if stripped.startswith("- "):
+                    names.append(stripped[2:])
+                else:
+                    break
+
+    output_path = DATA_DIR / "cardlist.json"
+    output = {
+        "version": date.today().isoformat(),
+        "total": len(names),
+        "cards": [{"id": i, "name": name} for i, name in enumerate(names)],
+        "legacy_names": COMMANDER_RENAMES,
+    }
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(output_path, "w") as f:
+        json.dump(output, f, indent=2)
+
+    size_kb = output_path.stat().st_size / 1024
+    print(f"  Updated cardlist.json: {len(names)} cards ({size_kb:.1f} KB)")
 
 
 # ─── AWS / DynamoDB ─────────────────────────────────────────────

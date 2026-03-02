@@ -18,6 +18,10 @@ RAW_CACHE = DATA_DIR / "raw_games.json"
 CARDS_CSV = PROJECT_DIR / "StandardFormatCards.csv"
 COMMANDERS_CSV = PROJECT_DIR / "StandardFormatCommanders.csv"
 
+# Game format assets (exported by Matan before playtests)
+FORMATS_DIR    = PROJECT_DIR / "Formats"
+CARDLIST_ASSET = FORMATS_DIR / "FullCardList.asset"
+
 # ─── AWS / DynamoDB ─────────────────────────────────────────────
 
 DYNAMO_TABLE = "games"
