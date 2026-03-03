@@ -8,6 +8,7 @@ Angelic Captain,Minion,Flying. Arrival AND at the beginning of your turn: ally m
 Angel's Grace,Spell,"[Range 4]: A character gains +4 movement. If it's a minion, it gains Flying this turn.",None,1,,,,,Lucia,0.1.4,AI_GENERATED,Midjourney
 Apothecary,Minion,"Realmbound. Whenever you play a Potion, draw a card.",Human,3,2,3,3,,Neutral,0.1.4,AI_GENERATED,Midjourney
 Apprentice Mage,Minion,"Spellcaster. [Arrival, Pay 1 Mana]: Draw a card.",Elf,2,3,3,2,,Archaeon,0.4.38,AI_GENERATED,DALL-E
+Archpaladin Erix,Minion,Flying. Arrival: Set the power of ALL minions equal to their health.,Dwarf,6,2,2,7,,Lucia,0.6.10,AI_GENERATED,ChatGPT Images
 Asera,Minion,"Legendary. [1 Mana]: Draw a card, deal 2 damage to Asera.",Dragon,10,5,4,13,True,Neutral,0.2.10,ARTIST_COMMISSIONED,Marc Petrelis
 Assistant Chemist,Minion,Potions in your hand cost 1 less.,Dwarf,2,3,2,2,,Neutral,0.3.4,AI_GENERATED,Midjourney
 "Atlas, First to Walk",Minion,Legendary. Trample. Haste. Atlas gains +1/+1/+1 when a tile is unclaimed. Arrival: Unclaim ALL tiles within Range 2.,Titan,14,10,0,10,True,Neutral,0.1.1,ARTIST_COMMISSIONED,Marc Petrelis
@@ -84,7 +85,7 @@ Firebolt,Spell,"[Range 4]: Deal 3 Damage to a character. If this kills them, gai
 First Experiment,Minion,"Spellcaster. Whenever you play a Potion on an ally Experiment, gain +2 Power.",Experiment,1,1,3,3,,Neutral,0.1.7,AI_GENERATED,Midjourney
 Flame Acolyte,Minion,Arrival: add 2 copies of Flamelash to your hand.,Human,5,6,3,1,,Skaal,0.1.21,AI_GENERATED,Stable Diffusion
 Flamelash,Spell,[Range 2]: Deal 3 damage to a character.,Fire,1,,,,,Skaal,0.1.1,ARTIST_COMMISSIONED,Tomas Vinco
-Found City,Spell,Convert a tile you own to a village. Add a copy of Settle Village to your hand.,Village,5,,,,,Neutral,,AI_GENERATED,Stable Diffusion
+Found City,Spell,Convert a tile you own to a village. Add a copy of Settle Village to your hand.,Village,5,,,,,Neutral,0.6.9,AI_GENERATED,ChatGPT Images
 Fourth Experiment,Minion,"Whenever you play a Potion on an ally Experiment, gain +2/+1/+2.",Experiment,4,3,3,3,,Neutral,0.1.12,AI_GENERATED,Midjourney
 Frostblade,Spell,"[Range 1]: Deal 2 damage. If targeting a minion, stun it.",Frost,1,,,,,Archaeon,0.4.38,ARTIST_COMMISSIONED,Marc Petrelis
 Fungal Explosion,Spell,[Range 3]: Add 4 Poison to all characters in 1 Radius.,None,7,,,,,Grenalia,0.1.14,AI_GENERATED,Midjourney
