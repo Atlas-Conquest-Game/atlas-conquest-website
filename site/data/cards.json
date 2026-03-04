@@ -117,6 +117,19 @@
     "art": "CardScreenshots/Apprentice-Mage.png"
   },
   {
+    "name": "Archpaladin Erix",
+    "type": "Minion",
+    "text": "Flying. Arrival: Set the power of ALL minions equal to their health.",
+    "subtype": "Dwarf",
+    "cost": 6,
+    "attack": 2,
+    "speed": 2,
+    "health": 7,
+    "legendary": false,
+    "faction": "lucia",
+    "art": null
+  },
+  {
     "name": "Asera",
     "type": "Minion",
     "text": "Legendary. [1 Mana]: Draw a card, deal 2 damage to Asera.",

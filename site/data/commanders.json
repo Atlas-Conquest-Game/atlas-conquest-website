@@ -15,9 +15,9 @@
     "text": "When you play a card that costs 8 or more, heal for 4.",
     "subtype": "Beast",
     "dominion": 7,
-    "intellect": 6,
+    "intellect": 7,
     "speed": 1,
-    "health": 28,
+    "health": 30,
     "faction": "grenalia",
     "art": "assets/commanders/elber-jungle-emissary.jpg"
   },
@@ -111,7 +111,7 @@
   },
   {
     "name": "Macks Speed",
-    "text": "Whenever you move, gain +1 Power this turn.",
+    "text": "[Warmup 4, Range 2]: Until end of turn, target character gains Trample and gains Power equal to its Movement (maximum 5).",
     "subtype": "Human",
     "dominion": 5,
     "intellect": 6,
