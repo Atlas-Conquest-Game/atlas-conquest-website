@@ -343,9 +343,9 @@
           "commander": "Elyse of the Order",
           "opponent": "Macks Speed",
           "wins": 5,
-          "losses": 1,
-          "total": 6,
-          "winrate": 0.8333
+          "losses": 2,
+          "total": 7,
+          "winrate": 0.7143
         },
         {
           "commander": "Elyse of the Order",
@@ -583,9 +583,9 @@
           "commander": "Fael Spiritwalker",
           "opponent": "Macks Speed",
           "wins": 10,
-          "losses": 6,
-          "total": 16,
-          "winrate": 0.625
+          "losses": 7,
+          "total": 17,
+          "winrate": 0.5882
         },
         {
           "commander": "Fael Spiritwalker",
@@ -855,9 +855,9 @@
           "commander": "Jagris, the Huntsman",
           "opponent": "Starwise Luna",
           "wins": 45,
-          "losses": 41,
-          "total": 86,
-          "winrate": 0.5233
+          "losses": 42,
+          "total": 87,
+          "winrate": 0.5172
         },
         {
           "commander": "Kai, Longcount Shaman",
@@ -1238,10 +1238,10 @@
         {
           "commander": "Macks Speed",
           "opponent": "Elyse of the Order",
-          "wins": 1,
+          "wins": 2,
           "losses": 5,
-          "total": 6,
-          "winrate": 0.1667
+          "total": 7,
+          "winrate": 0.2857
         },
         {
           "commander": "Macks Speed",
@@ -1254,10 +1254,10 @@
         {
           "commander": "Macks Speed",
           "opponent": "Fael Spiritwalker",
-          "wins": 6,
+          "wins": 7,
           "losses": 10,
-          "total": 16,
-          "winrate": 0.375
+          "total": 17,
+          "winrate": 0.4118
         },
         {
           "commander": "Macks Speed",
@@ -1326,10 +1326,10 @@
         {
           "commander": "Macks Speed",
           "opponent": "Soultaker Viessa",
-          "wins": 10,
+          "wins": 11,
           "losses": 11,
-          "total": 21,
-          "winrate": 0.4762
+          "total": 22,
+          "winrate": 0.5
         },
         {
           "commander": "Macks Speed",
@@ -1663,9 +1663,9 @@
           "commander": "Soultaker Viessa",
           "opponent": "Macks Speed",
           "wins": 11,
-          "losses": 10,
-          "total": 21,
-          "winrate": 0.5238
+          "losses": 11,
+          "total": 22,
+          "winrate": 0.5
         },
         {
           "commander": "Soultaker Viessa",
@@ -1750,10 +1750,10 @@
         {
           "commander": "Starwise Luna",
           "opponent": "Jagris, the Huntsman",
-          "wins": 41,
+          "wins": 42,
           "losses": 45,
-          "total": 86,
-          "winrate": 0.4767
+          "total": 87,
+          "winrate": 0.4828
         },
         {
           "commander": "Starwise Luna",
@@ -2164,9 +2164,9 @@
           "commander": "Elyse of the Order",
           "opponent": "Macks Speed",
           "wins": 5,
-          "losses": 1,
-          "total": 6,
-          "winrate": 0.8333
+          "losses": 2,
+          "total": 7,
+          "winrate": 0.7143
         },
         {
           "commander": "Elyse of the Order",
@@ -3059,10 +3059,10 @@
         {
           "commander": "Macks Speed",
           "opponent": "Elyse of the Order",
-          "wins": 1,
+          "wins": 2,
           "losses": 5,
-          "total": 6,
-          "winrate": 0.1667
+          "total": 7,
+          "winrate": 0.2857
         },
         {
           "commander": "Macks Speed",
@@ -3799,6 +3799,14 @@
         },
         {
           "commander": "Fael Spiritwalker",
+          "opponent": "Macks Speed",
+          "wins": 0,
+          "losses": 1,
+          "total": 1,
+          "winrate": 0.0
+        },
+        {
+          "commander": "Fael Spiritwalker",
           "opponent": "Newhaven Township",
           "wins": 1,
           "losses": 1,
@@ -4115,6 +4123,14 @@
           "wins": 2,
           "losses": 0,
           "total": 2,
+          "winrate": 1.0
+        },
+        {
+          "commander": "Macks Speed",
+          "opponent": "Fael Spiritwalker",
+          "wins": 1,
+          "losses": 0,
+          "total": 1,
           "winrate": 1.0
         },
         {
@@ -4734,9 +4750,9 @@
           "commander": "Jagris, the Huntsman",
           "opponent": "Starwise Luna",
           "wins": 1,
-          "losses": 0,
-          "total": 1,
-          "winrate": 1.0
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Kai, Longcount Shaman",
@@ -4948,6 +4964,14 @@
         },
         {
           "commander": "Macks Speed",
+          "opponent": "Soultaker Viessa",
+          "wins": 1,
+          "losses": 0,
+          "total": 1,
+          "winrate": 1.0
+        },
+        {
+          "commander": "Macks Speed",
           "opponent": "Starwise Luna",
           "wins": 0,
           "losses": 1,
@@ -5084,6 +5108,14 @@
         },
         {
           "commander": "Soultaker Viessa",
+          "opponent": "Macks Speed",
+          "wins": 0,
+          "losses": 1,
+          "total": 1,
+          "winrate": 0.0
+        },
+        {
+          "commander": "Soultaker Viessa",
           "opponent": "Newhaven Township",
           "wins": 1,
           "losses": 1,
@@ -5133,10 +5165,10 @@
         {
           "commander": "Starwise Luna",
           "opponent": "Jagris, the Huntsman",
-          "wins": 0,
+          "wins": 1,
           "losses": 1,
-          "total": 1,
-          "winrate": 0.0
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Starwise Luna",
@@ -5501,9 +5533,9 @@
           "commander": "Elyse of the Order",
           "opponent": "Macks Speed",
           "wins": 1,
-          "losses": 0,
-          "total": 1,
-          "winrate": 1.0
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Elyse of the Order",
@@ -5708,10 +5740,10 @@
         {
           "commander": "Fael Spiritwalker",
           "opponent": "Jagris, the Huntsman",
-          "wins": 65,
-          "losses": 84,
-          "total": 149,
-          "winrate": 0.4362
+          "wins": 62,
+          "losses": 82,
+          "total": 144,
+          "winrate": 0.4306
         },
         {
           "commander": "Fael Spiritwalker",
@@ -5741,9 +5773,9 @@
           "commander": "Fael Spiritwalker",
           "opponent": "Macks Speed",
           "wins": 6,
-          "losses": 5,
-          "total": 11,
-          "winrate": 0.5455
+          "losses": 6,
+          "total": 12,
+          "winrate": 0.5
         },
         {
           "commander": "Fael Spiritwalker",
@@ -5932,10 +5964,10 @@
         {
           "commander": "Jagris, the Huntsman",
           "opponent": "Fael Spiritwalker",
-          "wins": 84,
-          "losses": 65,
-          "total": 149,
-          "winrate": 0.5638
+          "wins": 82,
+          "losses": 62,
+          "total": 144,
+          "winrate": 0.5694
         },
         {
           "commander": "Jagris, the Huntsman",
@@ -6013,9 +6045,9 @@
           "commander": "Jagris, the Huntsman",
           "opponent": "Starwise Luna",
           "wins": 11,
-          "losses": 13,
-          "total": 24,
-          "winrate": 0.4583
+          "losses": 14,
+          "total": 25,
+          "winrate": 0.44
         },
         {
           "commander": "Kai, Longcount Shaman",
@@ -6372,10 +6404,10 @@
         {
           "commander": "Macks Speed",
           "opponent": "Elyse of the Order",
-          "wins": 0,
+          "wins": 1,
           "losses": 1,
-          "total": 1,
-          "winrate": 0.0
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Macks Speed",
@@ -6388,10 +6420,10 @@
         {
           "commander": "Macks Speed",
           "opponent": "Fael Spiritwalker",
-          "wins": 5,
+          "wins": 6,
           "losses": 6,
-          "total": 11,
-          "winrate": 0.4545
+          "total": 12,
+          "winrate": 0.5
         },
         {
           "commander": "Macks Speed",
@@ -6452,10 +6484,10 @@
         {
           "commander": "Macks Speed",
           "opponent": "Soultaker Viessa",
-          "wins": 7,
+          "wins": 8,
           "losses": 6,
-          "total": 13,
-          "winrate": 0.5385
+          "total": 14,
+          "winrate": 0.5714
         },
         {
           "commander": "Macks Speed",
@@ -6789,9 +6821,9 @@
           "commander": "Soultaker Viessa",
           "opponent": "Macks Speed",
           "wins": 6,
-          "losses": 7,
-          "total": 13,
-          "winrate": 0.4615
+          "losses": 8,
+          "total": 14,
+          "winrate": 0.4286
         },
         {
           "commander": "Soultaker Viessa",
@@ -6876,10 +6908,10 @@
         {
           "commander": "Starwise Luna",
           "opponent": "Jagris, the Huntsman",
-          "wins": 13,
+          "wins": 14,
           "losses": 11,
-          "total": 24,
-          "winrate": 0.5417
+          "total": 25,
+          "winrate": 0.56
         },
         {
           "commander": "Starwise Luna",
@@ -7234,9 +7266,9 @@
           "commander": "Elyse of the Order",
           "opponent": "Macks Speed",
           "wins": 1,
-          "losses": 0,
-          "total": 1,
-          "winrate": 1.0
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Elyse of the Order",
@@ -7441,10 +7473,10 @@
         {
           "commander": "Fael Spiritwalker",
           "opponent": "Jagris, the Huntsman",
-          "wins": 64,
-          "losses": 82,
-          "total": 146,
-          "winrate": 0.4384
+          "wins": 61,
+          "losses": 80,
+          "total": 141,
+          "winrate": 0.4326
         },
         {
           "commander": "Fael Spiritwalker",
@@ -7665,10 +7697,10 @@
         {
           "commander": "Jagris, the Huntsman",
           "opponent": "Fael Spiritwalker",
-          "wins": 82,
-          "losses": 64,
-          "total": 146,
-          "winrate": 0.5616
+          "wins": 80,
+          "losses": 61,
+          "total": 141,
+          "winrate": 0.5674
         },
         {
           "commander": "Jagris, the Huntsman",
@@ -8081,10 +8113,10 @@
         {
           "commander": "Macks Speed",
           "opponent": "Elyse of the Order",
-          "wins": 0,
+          "wins": 1,
           "losses": 1,
-          "total": 1,
-          "winrate": 0.0
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Macks Speed",
@@ -8797,6 +8829,14 @@
         },
         {
           "commander": "Fael Spiritwalker",
+          "opponent": "Macks Speed",
+          "wins": 0,
+          "losses": 1,
+          "total": 1,
+          "winrate": 0.0
+        },
+        {
+          "commander": "Fael Spiritwalker",
           "opponent": "Newhaven Township",
           "wins": 1,
           "losses": 1,
@@ -9113,6 +9153,14 @@
           "wins": 2,
           "losses": 0,
           "total": 2,
+          "winrate": 1.0
+        },
+        {
+          "commander": "Macks Speed",
+          "opponent": "Fael Spiritwalker",
+          "wins": 1,
+          "losses": 0,
+          "total": 1,
           "winrate": 1.0
         },
         {
@@ -9732,9 +9780,9 @@
           "commander": "Jagris, the Huntsman",
           "opponent": "Starwise Luna",
           "wins": 1,
-          "losses": 0,
-          "total": 1,
-          "winrate": 1.0
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Kai, Longcount Shaman",
@@ -9946,6 +9994,14 @@
         },
         {
           "commander": "Macks Speed",
+          "opponent": "Soultaker Viessa",
+          "wins": 1,
+          "losses": 0,
+          "total": 1,
+          "winrate": 1.0
+        },
+        {
+          "commander": "Macks Speed",
           "opponent": "Starwise Luna",
           "wins": 0,
           "losses": 1,
@@ -10082,6 +10138,14 @@
         },
         {
           "commander": "Soultaker Viessa",
+          "opponent": "Macks Speed",
+          "wins": 0,
+          "losses": 1,
+          "total": 1,
+          "winrate": 0.0
+        },
+        {
+          "commander": "Soultaker Viessa",
           "opponent": "Newhaven Township",
           "wins": 1,
           "losses": 1,
@@ -10131,10 +10195,10 @@
         {
           "commander": "Starwise Luna",
           "opponent": "Jagris, the Huntsman",
-          "wins": 0,
+          "wins": 1,
           "losses": 1,
-          "total": 1,
-          "winrate": 0.0
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Starwise Luna",
@@ -10483,9 +10547,9 @@
           "commander": "Elyse of the Order",
           "opponent": "Macks Speed",
           "wins": 1,
-          "losses": 0,
-          "total": 1,
-          "winrate": 1.0
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Elyse of the Order",
@@ -10715,9 +10779,9 @@
           "commander": "Fael Spiritwalker",
           "opponent": "Macks Speed",
           "wins": 4,
-          "losses": 4,
-          "total": 8,
-          "winrate": 0.5
+          "losses": 5,
+          "total": 9,
+          "winrate": 0.4444
         },
         {
           "commander": "Fael Spiritwalker",
@@ -10987,9 +11051,9 @@
           "commander": "Jagris, the Huntsman",
           "opponent": "Starwise Luna",
           "wins": 10,
-          "losses": 3,
-          "total": 13,
-          "winrate": 0.7692
+          "losses": 4,
+          "total": 14,
+          "winrate": 0.7143
         },
         {
           "commander": "Kai, Longcount Shaman",
@@ -11330,10 +11394,10 @@
         {
           "commander": "Macks Speed",
           "opponent": "Elyse of the Order",
-          "wins": 0,
+          "wins": 1,
           "losses": 1,
-          "total": 1,
-          "winrate": 0.0
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Macks Speed",
@@ -11346,10 +11410,10 @@
         {
           "commander": "Macks Speed",
           "opponent": "Fael Spiritwalker",
-          "wins": 4,
+          "wins": 5,
           "losses": 4,
-          "total": 8,
-          "winrate": 0.5
+          "total": 9,
+          "winrate": 0.5556
         },
         {
           "commander": "Macks Speed",
@@ -11394,10 +11458,10 @@
         {
           "commander": "Macks Speed",
           "opponent": "Soultaker Viessa",
-          "wins": 3,
+          "wins": 4,
           "losses": 2,
-          "total": 5,
-          "winrate": 0.6
+          "total": 6,
+          "winrate": 0.6667
         },
         {
           "commander": "Macks Speed",
@@ -11715,9 +11779,9 @@
           "commander": "Soultaker Viessa",
           "opponent": "Macks Speed",
           "wins": 2,
-          "losses": 3,
-          "total": 5,
-          "winrate": 0.4
+          "losses": 4,
+          "total": 6,
+          "winrate": 0.3333
         },
         {
           "commander": "Soultaker Viessa",
@@ -11794,10 +11858,10 @@
         {
           "commander": "Starwise Luna",
           "opponent": "Jagris, the Huntsman",
-          "wins": 3,
+          "wins": 4,
           "losses": 10,
-          "total": 13,
-          "winrate": 0.2308
+          "total": 14,
+          "winrate": 0.2857
         },
         {
           "commander": "Starwise Luna",
@@ -12120,9 +12184,9 @@
           "commander": "Elyse of the Order",
           "opponent": "Macks Speed",
           "wins": 1,
-          "losses": 0,
-          "total": 1,
-          "winrate": 1.0
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Elyse of the Order",
@@ -12927,10 +12991,10 @@
         {
           "commander": "Macks Speed",
           "opponent": "Elyse of the Order",
-          "wins": 0,
+          "wins": 1,
           "losses": 1,
-          "total": 1,
-          "winrate": 0.0
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Macks Speed",
@@ -13563,6 +13627,14 @@
         },
         {
           "commander": "Fael Spiritwalker",
+          "opponent": "Macks Speed",
+          "wins": 0,
+          "losses": 1,
+          "total": 1,
+          "winrate": 0.0
+        },
+        {
+          "commander": "Fael Spiritwalker",
           "opponent": "Newhaven Township",
           "wins": 1,
           "losses": 1,
@@ -13879,6 +13951,14 @@
           "wins": 2,
           "losses": 0,
           "total": 2,
+          "winrate": 1.0
+        },
+        {
+          "commander": "Macks Speed",
+          "opponent": "Fael Spiritwalker",
+          "wins": 1,
+          "losses": 0,
+          "total": 1,
           "winrate": 1.0
         },
         {
@@ -14498,9 +14578,9 @@
           "commander": "Jagris, the Huntsman",
           "opponent": "Starwise Luna",
           "wins": 1,
-          "losses": 0,
-          "total": 1,
-          "winrate": 1.0
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Kai, Longcount Shaman",
@@ -14712,6 +14792,14 @@
         },
         {
           "commander": "Macks Speed",
+          "opponent": "Soultaker Viessa",
+          "wins": 1,
+          "losses": 0,
+          "total": 1,
+          "winrate": 1.0
+        },
+        {
+          "commander": "Macks Speed",
           "opponent": "Starwise Luna",
           "wins": 0,
           "losses": 1,
@@ -14848,6 +14936,14 @@
         },
         {
           "commander": "Soultaker Viessa",
+          "opponent": "Macks Speed",
+          "wins": 0,
+          "losses": 1,
+          "total": 1,
+          "winrate": 0.0
+        },
+        {
+          "commander": "Soultaker Viessa",
           "opponent": "Newhaven Township",
           "wins": 1,
           "losses": 1,
@@ -14897,10 +14993,10 @@
         {
           "commander": "Starwise Luna",
           "opponent": "Jagris, the Huntsman",
-          "wins": 0,
+          "wins": 1,
           "losses": 1,
-          "total": 1,
-          "winrate": 0.0
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Starwise Luna",
@@ -15143,6 +15239,14 @@
         },
         {
           "commander": "Elyse of the Order",
+          "opponent": "Macks Speed",
+          "wins": 0,
+          "losses": 1,
+          "total": 1,
+          "winrate": 0.0
+        },
+        {
+          "commander": "Elyse of the Order",
           "opponent": "Milo Sunstone",
           "wins": 1,
           "losses": 0,
@@ -15256,9 +15360,9 @@
         {
           "commander": "Fael Spiritwalker",
           "opponent": "It That Weaves",
-          "wins": 2,
+          "wins": 1,
           "losses": 0,
-          "total": 2,
+          "total": 1,
           "winrate": 1.0
         },
         {
@@ -15288,10 +15392,18 @@
         {
           "commander": "Fael Spiritwalker",
           "opponent": "Lubela, Tender of the Wilds",
-          "wins": 1,
+          "wins": 0,
           "losses": 1,
-          "total": 2,
-          "winrate": 0.5
+          "total": 1,
+          "winrate": 0.0
+        },
+        {
+          "commander": "Fael Spiritwalker",
+          "opponent": "Macks Speed",
+          "wins": 0,
+          "losses": 1,
+          "total": 1,
+          "winrate": 0.0
         },
         {
           "commander": "Fael Spiritwalker",
@@ -15312,9 +15424,9 @@
         {
           "commander": "Fael Spiritwalker",
           "opponent": "Starwise Luna",
-          "wins": 3,
+          "wins": 1,
           "losses": 0,
-          "total": 3,
+          "total": 1,
           "winrate": 1.0
         },
         {
@@ -15345,8 +15457,8 @@
           "commander": "It That Weaves",
           "opponent": "Fael Spiritwalker",
           "wins": 0,
-          "losses": 2,
-          "total": 2,
+          "losses": 1,
+          "total": 1,
           "winrate": 0.0
         },
         {
@@ -15400,9 +15512,9 @@
         {
           "commander": "It That Weaves",
           "opponent": "Starwise Luna",
-          "wins": 3,
-          "losses": 6,
-          "total": 9,
+          "wins": 2,
+          "losses": 4,
+          "total": 6,
           "winrate": 0.3333
         },
         {
@@ -15492,6 +15604,14 @@
           "losses": 4,
           "total": 7,
           "winrate": 0.4286
+        },
+        {
+          "commander": "Jagris, the Huntsman",
+          "opponent": "Starwise Luna",
+          "wins": 0,
+          "losses": 1,
+          "total": 1,
+          "winrate": 0.0
         },
         {
           "commander": "Kai, Longcount Shaman",
@@ -15697,9 +15817,9 @@
           "commander": "Lubela, Tender of the Wilds",
           "opponent": "Fael Spiritwalker",
           "wins": 1,
-          "losses": 1,
-          "total": 2,
-          "winrate": 0.5
+          "losses": 0,
+          "total": 1,
+          "winrate": 1.0
         },
         {
           "commander": "Lubela, Tender of the Wilds",
@@ -15718,20 +15838,28 @@
           "winrate": 0.0
         },
         {
-          "commander": "Lubela, Tender of the Wilds",
-          "opponent": "Starwise Luna",
-          "wins": 2,
-          "losses": 0,
-          "total": 2,
-          "winrate": 1.0
-        },
-        {
           "commander": "Macks Speed",
           "opponent": "Captain Greenbeard",
           "wins": 0,
           "losses": 1,
           "total": 1,
           "winrate": 0.0
+        },
+        {
+          "commander": "Macks Speed",
+          "opponent": "Elyse of the Order",
+          "wins": 1,
+          "losses": 0,
+          "total": 1,
+          "winrate": 1.0
+        },
+        {
+          "commander": "Macks Speed",
+          "opponent": "Fael Spiritwalker",
+          "wins": 1,
+          "losses": 0,
+          "total": 1,
+          "winrate": 1.0
         },
         {
           "commander": "Macks Speed",
@@ -15752,10 +15880,10 @@
         {
           "commander": "Macks Speed",
           "opponent": "Soultaker Viessa",
-          "wins": 1,
+          "wins": 2,
           "losses": 1,
-          "total": 2,
-          "winrate": 0.5
+          "total": 3,
+          "winrate": 0.6667
         },
         {
           "commander": "Milo Sunstone",
@@ -15953,9 +16081,9 @@
           "commander": "Soultaker Viessa",
           "opponent": "Macks Speed",
           "wins": 1,
-          "losses": 1,
-          "total": 2,
-          "winrate": 0.5
+          "losses": 2,
+          "total": 3,
+          "winrate": 0.3333
         },
         {
           "commander": "Soultaker Viessa",
@@ -16001,17 +16129,25 @@
           "commander": "Starwise Luna",
           "opponent": "Fael Spiritwalker",
           "wins": 0,
-          "losses": 3,
-          "total": 3,
+          "losses": 1,
+          "total": 1,
           "winrate": 0.0
         },
         {
           "commander": "Starwise Luna",
           "opponent": "It That Weaves",
-          "wins": 6,
-          "losses": 3,
-          "total": 9,
+          "wins": 4,
+          "losses": 2,
+          "total": 6,
           "winrate": 0.6667
+        },
+        {
+          "commander": "Starwise Luna",
+          "opponent": "Jagris, the Huntsman",
+          "wins": 1,
+          "losses": 0,
+          "total": 1,
+          "winrate": 1.0
         },
         {
           "commander": "Starwise Luna",
@@ -16028,14 +16164,6 @@
           "losses": 1,
           "total": 3,
           "winrate": 0.6667
-        },
-        {
-          "commander": "Starwise Luna",
-          "opponent": "Lubela, Tender of the Wilds",
-          "wins": 0,
-          "losses": 2,
-          "total": 2,
-          "winrate": 0.0
         },
         {
           "commander": "Starwise Luna",
@@ -16147,6 +16275,14 @@
         },
         {
           "commander": "Elyse of the Order",
+          "opponent": "Macks Speed",
+          "wins": 0,
+          "losses": 1,
+          "total": 1,
+          "winrate": 0.0
+        },
+        {
+          "commander": "Elyse of the Order",
           "opponent": "Milo Sunstone",
           "wins": 1,
           "losses": 0,
@@ -16212,9 +16348,9 @@
         {
           "commander": "Fael Spiritwalker",
           "opponent": "It That Weaves",
-          "wins": 2,
+          "wins": 1,
           "losses": 0,
-          "total": 2,
+          "total": 1,
           "winrate": 1.0
         },
         {
@@ -16258,14 +16394,6 @@
           "winrate": 1.0
         },
         {
-          "commander": "Fael Spiritwalker",
-          "opponent": "Starwise Luna",
-          "wins": 1,
-          "losses": 0,
-          "total": 1,
-          "winrate": 1.0
-        },
-        {
           "commander": "It That Weaves",
           "opponent": "Elyse of the Order",
           "wins": 1,
@@ -16277,8 +16405,8 @@
           "commander": "It That Weaves",
           "opponent": "Fael Spiritwalker",
           "wins": 0,
-          "losses": 2,
-          "total": 2,
+          "losses": 1,
+          "total": 1,
           "winrate": 0.0
         },
         {
@@ -16300,10 +16428,10 @@
         {
           "commander": "It That Weaves",
           "opponent": "Starwise Luna",
-          "wins": 2,
-          "losses": 3,
-          "total": 5,
-          "winrate": 0.4
+          "wins": 1,
+          "losses": 2,
+          "total": 3,
+          "winrate": 0.3333
         },
         {
           "commander": "Jagris, the Huntsman",
@@ -16506,8 +16634,8 @@
           "winrate": 0.0
         },
         {
-          "commander": "Lubela, Tender of the Wilds",
-          "opponent": "Starwise Luna",
+          "commander": "Macks Speed",
+          "opponent": "Elyse of the Order",
           "wins": 1,
           "losses": 0,
           "total": 1,
@@ -16675,19 +16803,11 @@
         },
         {
           "commander": "Starwise Luna",
-          "opponent": "Fael Spiritwalker",
-          "wins": 0,
-          "losses": 1,
-          "total": 1,
-          "winrate": 0.0
-        },
-        {
-          "commander": "Starwise Luna",
           "opponent": "It That Weaves",
-          "wins": 3,
-          "losses": 2,
-          "total": 5,
-          "winrate": 0.6
+          "wins": 2,
+          "losses": 1,
+          "total": 3,
+          "winrate": 0.6667
         },
         {
           "commander": "Starwise Luna",
@@ -16704,14 +16824,6 @@
           "losses": 1,
           "total": 2,
           "winrate": 0.5
-        },
-        {
-          "commander": "Starwise Luna",
-          "opponent": "Lubela, Tender of the Wilds",
-          "wins": 0,
-          "losses": 1,
-          "total": 1,
-          "winrate": 0.0
         },
         {
           "commander": "Starwise Luna",
@@ -16832,19 +16944,11 @@
         },
         {
           "commander": "Fael Spiritwalker",
-          "opponent": "Lubela, Tender of the Wilds",
-          "wins": 1,
-          "losses": 0,
+          "opponent": "Macks Speed",
+          "wins": 0,
+          "losses": 1,
           "total": 1,
-          "winrate": 1.0
-        },
-        {
-          "commander": "Fael Spiritwalker",
-          "opponent": "Starwise Luna",
-          "wins": 1,
-          "losses": 0,
-          "total": 1,
-          "winrate": 1.0
+          "winrate": 0.0
         },
         {
           "commander": "It That Weaves",
@@ -16890,9 +16994,9 @@
           "commander": "It That Weaves",
           "opponent": "Starwise Luna",
           "wins": 1,
-          "losses": 1,
-          "total": 2,
-          "winrate": 0.5
+          "losses": 0,
+          "total": 1,
+          "winrate": 1.0
         },
         {
           "commander": "Jagris, the Huntsman",
@@ -17064,14 +17168,6 @@
         },
         {
           "commander": "Lubela, Tender of the Wilds",
-          "opponent": "Fael Spiritwalker",
-          "wins": 0,
-          "losses": 1,
-          "total": 1,
-          "winrate": 0.0
-        },
-        {
-          "commander": "Lubela, Tender of the Wilds",
           "opponent": "Jagris, the Huntsman",
           "wins": 0,
           "losses": 1,
@@ -17079,8 +17175,8 @@
           "winrate": 0.0
         },
         {
-          "commander": "Lubela, Tender of the Wilds",
-          "opponent": "Starwise Luna",
+          "commander": "Macks Speed",
+          "opponent": "Fael Spiritwalker",
           "wins": 1,
           "losses": 0,
           "total": 1,
@@ -17224,19 +17320,11 @@
         },
         {
           "commander": "Starwise Luna",
-          "opponent": "Fael Spiritwalker",
+          "opponent": "It That Weaves",
           "wins": 0,
           "losses": 1,
           "total": 1,
           "winrate": 0.0
-        },
-        {
-          "commander": "Starwise Luna",
-          "opponent": "It That Weaves",
-          "wins": 1,
-          "losses": 1,
-          "total": 2,
-          "winrate": 0.5
         },
         {
           "commander": "Starwise Luna",
@@ -17253,14 +17341,6 @@
           "losses": 0,
           "total": 1,
           "winrate": 1.0
-        },
-        {
-          "commander": "Starwise Luna",
-          "opponent": "Lubela, Tender of the Wilds",
-          "wins": 0,
-          "losses": 1,
-          "total": 1,
-          "winrate": 0.0
         },
         {
           "commander": "Starwise Luna",
@@ -17604,6 +17684,14 @@
           "winrate": 0.0
         },
         {
+          "commander": "Jagris, the Huntsman",
+          "opponent": "Starwise Luna",
+          "wins": 0,
+          "losses": 1,
+          "total": 1,
+          "winrate": 0.0
+        },
+        {
           "commander": "Kai, Longcount Shaman",
           "opponent": "Elber, Jungle Emissary",
           "wins": 0,
@@ -17724,6 +17812,14 @@
           "winrate": 0.0
         },
         {
+          "commander": "Macks Speed",
+          "opponent": "Soultaker Viessa",
+          "wins": 1,
+          "losses": 0,
+          "total": 1,
+          "winrate": 1.0
+        },
+        {
           "commander": "Milo Sunstone",
           "opponent": "Fael Spiritwalker",
           "wins": 0,
@@ -17821,6 +17917,14 @@
         },
         {
           "commander": "Soultaker Viessa",
+          "opponent": "Macks Speed",
+          "wins": 0,
+          "losses": 1,
+          "total": 1,
+          "winrate": 0.0
+        },
+        {
+          "commander": "Soultaker Viessa",
           "opponent": "Newhaven Township",
           "wins": 1,
           "losses": 1,
@@ -17857,6 +17961,14 @@
           "wins": 2,
           "losses": 0,
           "total": 2,
+          "winrate": 1.0
+        },
+        {
+          "commander": "Starwise Luna",
+          "opponent": "Jagris, the Huntsman",
+          "wins": 1,
+          "losses": 0,
+          "total": 1,
           "winrate": 1.0
         },
         {
