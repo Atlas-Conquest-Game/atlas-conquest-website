@@ -434,16 +434,16 @@
       {
         "name": "Jagris, the Huntsman",
         "faction": "grenalia",
-        "matches": 560,
-        "wins": 346,
-        "winrate": 0.6179
+        "matches": 555,
+        "wins": 342,
+        "winrate": 0.6162
       },
       {
         "name": "Fael Spiritwalker",
         "faction": "shadis",
-        "matches": 259,
-        "wins": 120,
-        "winrate": 0.4633
+        "matches": 254,
+        "wins": 119,
+        "winrate": 0.4685
       },
       {
         "name": "Soultaker Viessa",
@@ -541,16 +541,9 @@
       {
         "name": "Jagris, the Huntsman",
         "faction": "grenalia",
-        "matches": 529,
-        "wins": 325,
-        "winrate": 0.6144
-      },
-      {
-        "name": "Fael Spiritwalker",
-        "faction": "shadis",
-        "matches": 234,
-        "wins": 105,
-        "winrate": 0.4487
+        "matches": 524,
+        "wins": 321,
+        "winrate": 0.6126
       },
       {
         "name": "Soultaker Viessa",
@@ -558,6 +551,13 @@
         "matches": 230,
         "wins": 120,
         "winrate": 0.5217
+      },
+      {
+        "name": "Fael Spiritwalker",
+        "faction": "shadis",
+        "matches": 229,
+        "wins": 104,
+        "winrate": 0.4541
       },
       {
         "name": "It That Weaves",
@@ -1294,16 +1294,9 @@
       {
         "name": "Kai, Longcount Shaman",
         "faction": "skaal",
-        "matches": 36,
-        "wins": 17,
-        "winrate": 0.4722
-      },
-      {
-        "name": "Starwise Luna",
-        "faction": "archaeon",
         "matches": 31,
-        "wins": 17,
-        "winrate": 0.5484
+        "wins": 14,
+        "winrate": 0.4516
       },
       {
         "name": "Jagris, the Huntsman",
@@ -1318,6 +1311,13 @@
         "matches": 30,
         "wins": 16,
         "winrate": 0.5333
+      },
+      {
+        "name": "Starwise Luna",
+        "faction": "archaeon",
+        "matches": 24,
+        "wins": 14,
+        "winrate": 0.5833
       },
       {
         "name": "Fael Spiritwalker",
@@ -1350,9 +1350,9 @@
       {
         "name": "It That Weaves",
         "faction": "archaeon",
-        "matches": 19,
-        "wins": 9,
-        "winrate": 0.4737
+        "matches": 17,
+        "wins": 8,
+        "winrate": 0.4706
       },
       {
         "name": "Captain Greenbeard",
@@ -1401,16 +1401,9 @@
       {
         "name": "Kai, Longcount Shaman",
         "faction": "skaal",
-        "matches": 16,
-        "wins": 8,
-        "winrate": 0.5
-      },
-      {
-        "name": "Starwise Luna",
-        "faction": "archaeon",
-        "matches": 12,
+        "matches": 14,
         "wins": 7,
-        "winrate": 0.5833
+        "winrate": 0.5
       },
       {
         "name": "Jagris, the Huntsman",
@@ -1441,11 +1434,11 @@
         "winrate": 0.4444
       },
       {
-        "name": "It That Weaves",
+        "name": "Starwise Luna",
         "faction": "archaeon",
-        "matches": 8,
-        "wins": 4,
-        "winrate": 0.5
+        "matches": 9,
+        "wins": 5,
+        "winrate": 0.5556
       },
       {
         "name": "Elyse of the Order",
@@ -1453,6 +1446,13 @@
         "matches": 7,
         "wins": 2,
         "winrate": 0.2857
+      },
+      {
+        "name": "It That Weaves",
+        "faction": "archaeon",
+        "matches": 7,
+        "wins": 4,
+        "winrate": 0.5714
       },
       {
         "name": "Newhaven Township",
@@ -1513,20 +1513,6 @@
         "winrate": 0.6667
       },
       {
-        "name": "Kai, Longcount Shaman",
-        "faction": "skaal",
-        "matches": 9,
-        "wins": 3,
-        "winrate": 0.3333
-      },
-      {
-        "name": "Starwise Luna",
-        "faction": "archaeon",
-        "matches": 8,
-        "wins": 4,
-        "winrate": 0.5
-      },
-      {
         "name": "Lazim, Thief of Gods",
         "faction": "neutral",
         "matches": 8,
@@ -1534,11 +1520,11 @@
         "winrate": 0.125
       },
       {
-        "name": "It That Weaves",
-        "faction": "archaeon",
-        "matches": 7,
-        "wins": 4,
-        "winrate": 0.5714
+        "name": "Kai, Longcount Shaman",
+        "faction": "skaal",
+        "matches": 8,
+        "wins": 2,
+        "winrate": 0.25
       },
       {
         "name": "Newhaven Township",
@@ -1546,6 +1532,20 @@
         "matches": 7,
         "wins": 3,
         "winrate": 0.4286
+      },
+      {
+        "name": "Starwise Luna",
+        "faction": "archaeon",
+        "matches": 6,
+        "wins": 4,
+        "winrate": 0.6667
+      },
+      {
+        "name": "It That Weaves",
+        "faction": "archaeon",
+        "matches": 6,
+        "wins": 3,
+        "winrate": 0.5
       },
       {
         "name": "Elyse of the Order",
@@ -1606,25 +1606,25 @@
     ],
     "Tropics": [
       {
-        "name": "Kai, Longcount Shaman",
-        "faction": "skaal",
-        "matches": 11,
-        "wins": 6,
-        "winrate": 0.5455
-      },
-      {
-        "name": "Starwise Luna",
-        "faction": "archaeon",
-        "matches": 11,
-        "wins": 6,
-        "winrate": 0.5455
-      },
-      {
         "name": "Captain Greenbeard",
         "faction": "skaal",
         "matches": 10,
         "wins": 4,
         "winrate": 0.4
+      },
+      {
+        "name": "Kai, Longcount Shaman",
+        "faction": "skaal",
+        "matches": 9,
+        "wins": 5,
+        "winrate": 0.5556
+      },
+      {
+        "name": "Starwise Luna",
+        "faction": "archaeon",
+        "matches": 9,
+        "wins": 5,
+        "winrate": 0.5556
       },
       {
         "name": "Fael Spiritwalker",

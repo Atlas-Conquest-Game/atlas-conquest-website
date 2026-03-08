@@ -1385,12 +1385,12 @@
             "games": 48
           },
           {
-            "winrate": 0.3676,
-            "games": 68
+            "winrate": 0.3906,
+            "games": 64
           },
           {
-            "winrate": 0.5441,
-            "games": 68
+            "winrate": 0.5373,
+            "games": 67
           },
           {
             "winrate": 0.597,
@@ -1539,12 +1539,12 @@
             "games": 119
           },
           {
-            "winrate": 0.7349,
-            "games": 166
+            "winrate": 0.7284,
+            "games": 162
           },
           {
-            "winrate": 0.4878,
-            "games": 123
+            "winrate": 0.4918,
+            "games": 122
           },
           {
             "winrate": 0.4122,
@@ -1726,12 +1726,12 @@
             "games": 42
           },
           {
-            "winrate": 0.3226,
-            "games": 62
+            "winrate": 0.3448,
+            "games": 58
           },
           {
-            "winrate": 0.5323,
-            "games": 62
+            "winrate": 0.5246,
+            "games": 61
           },
           {
             "winrate": 0.6,
@@ -1858,12 +1858,12 @@
             "games": 107
           },
           {
-            "winrate": 0.7434,
-            "games": 152
+            "winrate": 0.7365,
+            "games": 148
           },
           {
-            "winrate": 0.4959,
-            "games": 121
+            "winrate": 0.5,
+            "games": 120
           },
           {
             "winrate": 0.4154,
@@ -4113,20 +4113,20 @@
             "games": 0
           },
           {
-            "winrate": 0.4167,
-            "games": 12
-          },
-          {
-            "winrate": 0.6364,
+            "winrate": 0.4545,
             "games": 11
           },
           {
-            "winrate": 1.0,
-            "games": 4
+            "winrate": 0.7143,
+            "games": 7
           },
           {
-            "winrate": 0.25,
-            "games": 4
+            "winrate": 1.0,
+            "games": 3
+          },
+          {
+            "winrate": 0.3333,
+            "games": 3
           }
         ],
         "Soultaker Viessa": [
@@ -4205,16 +4205,16 @@
             "games": 13
           },
           {
-            "winrate": 0.5714,
-            "games": 14
+            "winrate": 0.5455,
+            "games": 11
           },
           {
-            "winrate": 0.4,
-            "games": 5
+            "winrate": 0.5,
+            "games": 4
           },
           {
             "winrate": 1.0,
-            "games": 4
+            "games": 3
           }
         ],
         "Jagris, the Huntsman": [
@@ -4337,8 +4337,8 @@
             "games": 1
           },
           {
-            "winrate": 0.375,
-            "games": 8
+            "winrate": 0.3333,
+            "games": 6
           },
           {
             "winrate": 0.8,
@@ -4525,7 +4525,7 @@
           },
           {
             "winrate": 0.5,
-            "games": 6
+            "games": 4
           },
           {
             "winrate": 0.0,
@@ -4534,28 +4534,6 @@
           {
             "winrate": 1.0,
             "games": 3
-          }
-        ],
-        "Starwise Luna": [
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": 0.5,
-            "games": 4
-          },
-          {
-            "winrate": 0.6667,
-            "games": 6
-          },
-          {
-            "winrate": 1.0,
-            "games": 1
-          },
-          {
-            "winrate": 0.0,
-            "games": 1
           }
         ],
         "Lazim, Thief of Gods": [
@@ -4578,6 +4556,28 @@
           {
             "winrate": null,
             "games": 0
+          }
+        ],
+        "Starwise Luna": [
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": 0.5,
+            "games": 4
+          },
+          {
+            "winrate": 0.6667,
+            "games": 3
+          },
+          {
+            "winrate": 1.0,
+            "games": 1
+          },
+          {
+            "winrate": 0.0,
+            "games": 1
           }
         ],
         "Macks Speed": [
@@ -4744,8 +4744,8 @@
             "games": 0
           },
           {
-            "winrate": 0.4,
-            "games": 5
+            "winrate": 0.5,
+            "games": 4
           },
           {
             "winrate": 1.0,
@@ -4773,12 +4773,12 @@
             "games": 0
           },
           {
-            "winrate": 0.6,
-            "games": 5
+            "winrate": 0.75,
+            "games": 4
           },
           {
-            "winrate": 0.5,
-            "games": 2
+            "winrate": 1.0,
+            "games": 1
           },
           {
             "winrate": null,
@@ -4843,8 +4843,8 @@
             "games": 1
           },
           {
-            "winrate": 0.5,
-            "games": 2
+            "winrate": 0.0,
+            "games": 1
           },
           {
             "winrate": 1.0,
@@ -4997,8 +4997,8 @@
             "games": 3
           },
           {
-            "winrate": 0.5,
-            "games": 4
+            "winrate": 0.3333,
+            "games": 3
           },
           {
             "winrate": 0.5,
@@ -5122,12 +5122,12 @@
             "games": 4
           },
           {
-            "winrate": 0.5,
-            "games": 2
-          },
-          {
             "winrate": 1.0,
             "games": 1
+          },
+          {
+            "winrate": null,
+            "games": 0
           }
         ],
         "Jagris, the Huntsman": [
@@ -5167,11 +5167,11 @@
           },
           {
             "winrate": 1.0,
-            "games": 3
+            "games": 2
           },
           {
-            "winrate": 0.5,
-            "games": 2
+            "winrate": 1.0,
+            "games": 1
           }
         ],
         "Elber, Jungle Emissary": [
