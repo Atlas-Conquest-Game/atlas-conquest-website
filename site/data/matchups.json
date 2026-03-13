@@ -5740,10 +5740,10 @@
         {
           "commander": "Fael Spiritwalker",
           "opponent": "Jagris, the Huntsman",
-          "wins": 56,
-          "losses": 73,
-          "total": 129,
-          "winrate": 0.4341
+          "wins": 55,
+          "losses": 72,
+          "total": 127,
+          "winrate": 0.4331
         },
         {
           "commander": "Fael Spiritwalker",
@@ -5964,10 +5964,10 @@
         {
           "commander": "Jagris, the Huntsman",
           "opponent": "Fael Spiritwalker",
-          "wins": 73,
-          "losses": 56,
-          "total": 129,
-          "winrate": 0.5659
+          "wins": 72,
+          "losses": 55,
+          "total": 127,
+          "winrate": 0.5669
         },
         {
           "commander": "Jagris, the Huntsman",
@@ -7473,10 +7473,10 @@
         {
           "commander": "Fael Spiritwalker",
           "opponent": "Jagris, the Huntsman",
-          "wins": 55,
-          "losses": 71,
-          "total": 126,
-          "winrate": 0.4365
+          "wins": 54,
+          "losses": 70,
+          "total": 124,
+          "winrate": 0.4355
         },
         {
           "commander": "Fael Spiritwalker",
@@ -7697,10 +7697,10 @@
         {
           "commander": "Jagris, the Huntsman",
           "opponent": "Fael Spiritwalker",
-          "wins": 71,
-          "losses": 55,
-          "total": 126,
-          "winrate": 0.5635
+          "wins": 70,
+          "losses": 54,
+          "total": 124,
+          "winrate": 0.5645
         },
         {
           "commander": "Jagris, the Huntsman",
@@ -15048,10 +15048,10 @@
         {
           "commander": "Captain Greenbeard",
           "opponent": "Soultaker Viessa",
-          "wins": 1,
+          "wins": 0,
           "losses": 1,
-          "total": 2,
-          "winrate": 0.5
+          "total": 1,
+          "winrate": 0.0
         },
         {
           "commander": "Captain Greenbeard",
@@ -15175,14 +15175,6 @@
         },
         {
           "commander": "Executor Ginn",
-          "opponent": "Fael Spiritwalker",
-          "wins": 0,
-          "losses": 1,
-          "total": 1,
-          "winrate": 0.0
-        },
-        {
-          "commander": "Executor Ginn",
           "opponent": "It That Weaves",
           "wins": 1,
           "losses": 0,
@@ -15244,14 +15236,6 @@
           "losses": 3,
           "total": 5,
           "winrate": 0.4
-        },
-        {
-          "commander": "Fael Spiritwalker",
-          "opponent": "Executor Ginn",
-          "wins": 1,
-          "losses": 0,
-          "total": 1,
-          "winrate": 1.0
         },
         {
           "commander": "Fael Spiritwalker",
@@ -15824,10 +15808,10 @@
         {
           "commander": "Milo Sunstone",
           "opponent": "Starwise Luna",
-          "wins": 3,
+          "wins": 2,
           "losses": 1,
-          "total": 4,
-          "winrate": 0.75
+          "total": 3,
+          "winrate": 0.6667
         },
         {
           "commander": "Newhaven Township",
@@ -15913,9 +15897,9 @@
           "commander": "Soultaker Viessa",
           "opponent": "Captain Greenbeard",
           "wins": 1,
-          "losses": 1,
-          "total": 2,
-          "winrate": 0.5
+          "losses": 0,
+          "total": 1,
+          "winrate": 1.0
         },
         {
           "commander": "Soultaker Viessa",
@@ -16049,9 +16033,9 @@
           "commander": "Starwise Luna",
           "opponent": "Milo Sunstone",
           "wins": 1,
-          "losses": 3,
-          "total": 4,
-          "winrate": 0.25
+          "losses": 2,
+          "total": 3,
+          "winrate": 0.3333
         },
         {
           "commander": "Starwise Luna",
@@ -16677,7 +16661,6 @@
     },
     "Snowmelt": {
       "commanders": [
-        "Captain Greenbeard",
         "Elber, Jungle Emissary",
         "Elyse of the Order",
         "Executor Ginn",
@@ -16694,14 +16677,6 @@
         "Starwise Luna"
       ],
       "matchups": [
-        {
-          "commander": "Captain Greenbeard",
-          "opponent": "Soultaker Viessa",
-          "wins": 1,
-          "losses": 0,
-          "total": 1,
-          "winrate": 1.0
-        },
         {
           "commander": "Elber, Jungle Emissary",
           "opponent": "Lubela, Tender of the Wilds",
@@ -17047,14 +17022,6 @@
           "winrate": 0.5
         },
         {
-          "commander": "Milo Sunstone",
-          "opponent": "Starwise Luna",
-          "wins": 1,
-          "losses": 0,
-          "total": 1,
-          "winrate": 1.0
-        },
-        {
           "commander": "Newhaven Township",
           "opponent": "Jagris, the Huntsman",
           "wins": 0,
@@ -17089,14 +17056,6 @@
         {
           "commander": "Newhaven Township",
           "opponent": "Starwise Luna",
-          "wins": 0,
-          "losses": 1,
-          "total": 1,
-          "winrate": 0.0
-        },
-        {
-          "commander": "Soultaker Viessa",
-          "opponent": "Captain Greenbeard",
           "wins": 0,
           "losses": 1,
           "total": 1,
@@ -17157,14 +17116,6 @@
           "losses": 0,
           "total": 1,
           "winrate": 1.0
-        },
-        {
-          "commander": "Starwise Luna",
-          "opponent": "Milo Sunstone",
-          "wins": 0,
-          "losses": 1,
-          "total": 1,
-          "winrate": 0.0
         },
         {
           "commander": "Starwise Luna",
@@ -17341,14 +17292,6 @@
         },
         {
           "commander": "Executor Ginn",
-          "opponent": "Fael Spiritwalker",
-          "wins": 0,
-          "losses": 1,
-          "total": 1,
-          "winrate": 0.0
-        },
-        {
-          "commander": "Executor Ginn",
           "opponent": "It That Weaves",
           "wins": 1,
           "losses": 0,
@@ -17370,14 +17313,6 @@
           "losses": 1,
           "total": 2,
           "winrate": 0.5
-        },
-        {
-          "commander": "Fael Spiritwalker",
-          "opponent": "Executor Ginn",
-          "wins": 1,
-          "losses": 0,
-          "total": 1,
-          "winrate": 1.0
         },
         {
           "commander": "Fael Spiritwalker",
