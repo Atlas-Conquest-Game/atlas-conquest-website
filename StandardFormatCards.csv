@@ -8,10 +8,10 @@ Angelic Captain,Minion,Flying. Arrival AND at the beginning of your turn: ally m
 Angel's Grace,Spell,"[Range 4]: A character gains +4 movement. If it's a minion, it gains Flying this turn.",None,1,,,,,Lucia,0.1.4,AI_GENERATED,Midjourney
 Apothecary,Minion,"Realmbound. Whenever you play a Potion, draw a card.",Human,3,2,3,3,,Neutral,0.1.4,AI_GENERATED,Midjourney
 Apprentice Mage,Minion,"Spellcaster. [Arrival, Pay 1 Mana]: Draw a card.",Elf,2,3,3,2,,Archaeon,0.4.38,AI_GENERATED,DALL-E
-Archpaladin Erix,Minion,Flying. Arrival: Set the power of ALL minions equal to their health.,Dwarf,6,2,2,7,,Lucia,0.6.10,AI_GENERATED,ChatGPT Images
+Archpaladin Erix,Minion,Legendary. Flying. Arrival: Set the power of ALL minions equal to their health.,Dwarf,6,2,2,7,True,Lucia,0.6.10,AI_GENERATED,ChatGPT Images
 Asera,Minion,"Legendary. [1 Mana]: Draw a card, deal 2 damage to Asera.",Dragon,10,5,4,13,True,Neutral,0.2.10,ARTIST_COMMISSIONED,Marc Petrelis
 Assistant Chemist,Minion,Potions in your hand cost 1 less.,Dwarf,2,3,2,2,,Neutral,0.3.4,AI_GENERATED,Midjourney
-"Atlas, First to Walk",Minion,Legendary. Trample. Haste. Atlas gains +1/+1/+1 when a tile is unclaimed. Arrival: Unclaim ALL tiles within Range 2.,Titan,14,10,0,10,True,Neutral,0.1.1,ARTIST_COMMISSIONED,Marc Petrelis
+"Atlas, First to Walk",Minion,Legendary. Trample. Haste. Atlas gains +1/+1/+1 when a tile is unclaimed. Arrival: Unclaim ALL tiles within Range 2.,Titan,15,10,0,10,True,Neutral,0.1.1,ARTIST_COMMISSIONED,Marc Petrelis
 Baby Raptor,Minion,Has +2 Power and Speed if you control at least two other Beasts.,Beast,1,1,2,2,,Neutral,0.2.5,AI_GENERATED,Midjourney
 Badland Mercenary,Minion,"[Cooldown 2, Range 1]: Deal 1 damage to an ally minion and give it +2 Power.",Human,1,2,3,1,,Neutral,0.2.1,AI_GENERATED,Midjourney
 Battlefield Savior,Minion,Arrival: add a Guiding Light to hand.,Human,3,3,3,4,,Lucia,0.1.4,AI_GENERATED,Midjourney
@@ -48,10 +48,13 @@ Darkwing,Minion,Flying. Commander-Deploy. Arrival: Deal 2 damage to all non-daem
 Deathquill,Minion,"[Cooldown 1, Range 2]: Deal 1 damage and add 1 Poison to an enemy.",Beast,4,3,1,5,,Neutral,0.1.14,AI_GENERATED,Midjourney
 Demilich,Minion,Spellcaster. Arrival AND Postmortem: Draw a card.,Undead,6,5,2,4,,Neutral,0.4.42,AI_GENERATED,DALL-E
 Devout Caretaker,Minion,Arrival: add 2 Lucian Soldiers to hand.,Human,4,1,3,5,,Lucia,0.1.21,AI_GENERATED,Midjourney
+Diplomatic Envoy,Minion,Spellcaster. Arrival: Gain 2 Intellect.,Elf,2,2,3,3,,Neutral,0.6.11,AI_GENERATED,ChatGPT Images
 Domination,Spell,Gain control of an enemy minion.,Psychic,9,,,,,Shadis,0.4.21,AI_GENERATED,DALL-E
-Dragon Egg,Minion,Postmortem: Summon a 4/4/4 Dragon with Flying.,Dragon,2,0,0,3,,Neutral,0.4.16,AI_GENERATED,DALL-E
+Draconic Mage,Minion,Flying. Arrival: Draw a spell from your deck and add another copy to your hand.,Dragon,8,9,4,5,,Neutral,0.6.11,AI_GENERATED,ChatGPT Images
+Dragon Egg,Minion,Postmortem: Summon a 4/4/4 Dragon with Flying.,Dragon,2,0,0,2,,Neutral,0.4.16,AI_GENERATED,DALL-E
 Dragon Tamer,Minion,Realmbound. Dragons in your hand cost 2 less.,Human,2,2,3,2,,Neutral,0.4.8,AI_GENERATED,Meta AI
 Dragonkin Evoker,Minion,"Realmbound. Spell-Damage +1. When ANY spell is played, deal 1 damage to the enemy commander.",Dragon,1,1,2,3,,Neutral,0.3.4,AI_GENERATED,Midjourney
+Dragon's Breath,Spell,[Range 4]: Deal 5 damage to target minion. Play this only if you control a Dragon or have a Dragon card in your hand.,Fire,2,,,,,Skaal,0.6.11,AI_GENERATED,ChatGPT Images
 Drain Energy,Spell,An enemy minion gets -3 Power and -3 Health until end of turn. Your commander heals 3 life.,None,2,,,,,Shadis,0.4.15,AI_GENERATED,DALL-E
 Drakemire Shaman,Minion,"Spellcaster. Arrival: Draw a Dragon. Whenever an ally Dragon in Range 2 attacks, add a Poison Sting to your hand.",Elf,4,3,2,4,,Grenalia,0.4.38,ARTIST_COMMISSIONED,Tomas Vinco
 Dread Knight,Minion,Commander-Deploy. Enemy minions within Range 2 have -1 Power.,Human,6,7,3,6,,Neutral,0.1.1,ARTIST_COMMISSIONED,Marc Petrelis
@@ -81,7 +84,7 @@ Feeblemind,Spell,[Range 2]: Stun an enemy commander. Their Intellect becomes 1.,
 Feral Vampire,Minion,"Lifelink.  (When battling, your commander heals equal to this character's power.)",Vampire,3,4,3,3,,Neutral,0.4.20,AI_GENERATED,DALL-E
 Finishing Strike,Spell,[Range 4]: Destroy a damaged minion.,None,2,,,,,Skaal,0.5.2,AI_GENERATED,ChatGPT Images
 Fireball,Spell,[Range 4]: Deal 3 damage to all characters in 1 Radius.,Fire,5,,,,,Skaal,0.1.1,AI_GENERATED,DALL-E
-Firebolt,Spell,"[Range 4]: Deal 3 Damage to a character. If this kills them, gain 1 Dominion.",Fire,3,,,,,Skaal,0.1.7,AI_GENERATED,Stable Diffusion
+Firebolt,Spell,"[Range 4]: Deal 3 Damage to a character. If this kills them, gain 1 Dominion.",Fire,3,,,,,Skaal,0.1.7,ARTIST_COMMISSIONED,Marc Petrelis
 First Experiment,Minion,"Spellcaster. Whenever you play a Potion on an ally Experiment, gain +2 Power.",Experiment,1,1,3,3,,Neutral,0.1.7,AI_GENERATED,Midjourney
 Flame Acolyte,Minion,Arrival: add 2 copies of Flamelash to your hand.,Human,5,6,3,1,,Skaal,0.1.21,AI_GENERATED,Stable Diffusion
 Flamelash,Spell,[Range 2]: Deal 3 damage to a character.,Fire,1,,,,,Skaal,0.1.1,ARTIST_COMMISSIONED,Tomas Vinco
@@ -107,7 +110,7 @@ Goblin Scout,Minion,"Goblin-Deploy. Arrival: If you control 2 other Goblins, dra
 Goblin Shaman,Minion,"Spellcaster. [Arrival, Range 4]: Deal 1 Damage.",Goblin,1,2,2,1,,Neutral,0.2.1,AI_GENERATED,Midjourney
 Goblin Skirmisher,Minion,"Haste.  (When played, can move and Attack immediately.)",Goblin,3,3,2,3,,Neutral,0.1.1,AI_GENERATED,Stable Diffusion
 Gold Dragon,Minion,Flying. Lifelink. [Warmup 3]: Fully heal all allies.,Dragon,8,7,4,10,,Lucia,0.4.7,ARTIST_COMMISSIONED,Marc Petrelis
-Grand Illusion,Spell,[Range 2]: Swap an ally minion with a non-legendary minion from your deck.,Psychic,4,,,,,Archaeon,0.4.19,AI_GENERATED,DALL-E
+Grand Illusion,Spell,[Range 2]: Swap an ally minion with a non-Titan minion from your deck.,Psychic,4,,,,,Archaeon,0.4.19,AI_GENERATED,DALL-E
 Gravehand,Minion,"Whenever another minion you control within Range 2 dies, draw a card.",Human,4,1,3,3,,Neutral,0.1.2,AI_GENERATED,Midjourney
 Greater Healing Potion,Spell,[Range 2]: Heal a character for 8.,Potion,3,,,,,Neutral,0.2.5,ARTIST_COMMISSIONED,Tomas Vinco
 Green Dragon,Minion,"Flying. Trample. [Warmup 3, Range 2]: Add 3 poison to all characters within 1 Radius.",Dragon,7,6,4,8,,Grenalia,0.1.25,ARTIST_COMMISSIONED,Marc Petrelis
@@ -157,6 +160,8 @@ Mana Bloom,Minion,[Skip an Attack]: Gain 1 mana this turn.,Plant,1,0,0,3,,Grenal
 Manaphant,Minion,"[Cooldown 2, Skip an Attack]: Gain 1 mana this turn.",Beast,1,1,1,3,,Grenalia,0.1.1,AI_GENERATED,Stable Diffusion
 Master Craftsman,Minion,"[1 Mana, Warmup 2]: Convert the occupied tile to a village.",Dwarf,1,0,2,1,,Neutral,0.4.42,AI_GENERATED,DALL-E
 Memory Theft,Spell,"[Range 2]: Deal 1 damage to a character. If it dies, draw a card from their deck.",Psychic,1,,,,,Archaeon,0.5.3,AI_GENERATED,Nano Banana Pro
+Mind Blast,Spell,[Range 2]: Deal damage to target minion equal to your Intellect.,Psychic,3,,,,,Archaeon,0.6.11,AI_GENERATED,ChatGPT Images
+Mindstone Servant,Minion,"Whenever Mindstone Servant survives damage, draw a card and gain 1 Intellect.",Mech,5,3,2,6,,Neutral,0.6.11,AI_GENERATED,ChatGPT Images
 Minor Priest,Minion,"Spellcaster. [Range 2, Cooldown 1]: A character you control heals 1.",Human,1,1,3,2,,Neutral,0.1.2,AI_GENERATED,Midjourney
 Moonlight Seraph,Minion,"Flying. Lifelink. When Moonlight Seraph attacks and kills a minion, draw a card.",Angel,6,6,4,6,,Lucia,0.4.7,AI_GENERATED,Midjourney
 Mother of Beasts,Minion,Legendary. Ally Beasts within Range 3 have Regenerate 3.,Beast,3,2,3,4,True,Grenalia,0.1.21,AI_GENERATED,Stable Diffusion
@@ -166,6 +171,7 @@ Nexus Operative,Minion,"Spellcaster. Whenever you play a spell, your Spellcaster
 Nexus Recruit,Minion,"Spellcaster. Whenever you draw a card, gain +1/+1/+1 until end of turn.",Elf,1,1,2,2,,Archaeon,0.4.26,AI_GENERATED,DALL-E
 Nilo of One Thousand Cuts,Minion,"Legendary. Postmortem: Deal 2 damage to each commander, then add a copy of Nilo to your hand.",Demigod,2,2,2,2,True,Shadis,0.1.1,ARTIST_COMMISSIONED,Mark Petrelis
 Nobleman of the Order,Minion,"Whenever a minion is healed within Range 3, draw a card.",Human,4,3,3,4,,Lucia,0.1.7,AI_GENERATED,Midjourney
+Oathbroken Apprentice,Minion,"Commander-Deploy. Whenever your commander loses life on your turn, gain +1 Power.",Human,1,1,3,2,,Neutral,0.6.11,AI_GENERATED,ChatGPT Images
 Oathsworn Champion,Minion,Arrival: Heal all allies for 2.,Human,5,5,3,5,,Neutral,0.1.4,AI_GENERATED,Midjourney
 Oldsteel Guard,Minion,Has +1 Power for each territory you control.,Dwarf,2,0,2,2,,Neutral,0.6.4,AI_GENERATED,ChatGPT Images
 Outflank,Spell,[Range 3]: Target enemy minion takes damage equal to the number of humans you control.,None,1,,,,,Lucia,0.4.38,AI_GENERATED,DALL-E
@@ -225,7 +231,7 @@ Spore Thresher,Minion,"At the end of your turn, add 2 Poison to enemies and heal
 Stagasus,Minion,"Flying. [1 Mana, Range 2, Skip an Attack]: Give an ally +4 movement.",Beast,2,2,2,2,,Neutral,0.1.1,ARTIST_COMMISSIONED,Mark Petrelis
 Stalking Hippo,Minion,Regenerate 5.  (Heals for 5 at the end of your turn.),Beast,5,4,4,6,,Neutral,0.4.42,AI_GENERATED,DALL-E
 Stalwart Tarantula,Minion,Has +2 Power during enemy turns.,Arachnid,3,2,3,5,,Neutral,0.4.20,AI_GENERATED,DALL-E
-Stampede,Spell,Beasts you control within Range 3 gain +3/+3/+3 and gain Trample until the end of the turn.,None,5,,,,,Grenalia,0.3.2,ARTIST_COMMISSIONED,Marc Petrelis
+Stampede,Spell,Beasts you control within Range 3 gain +3/+3/+3 and gain Trample until the end of the turn.,None,6,,,,,Grenalia,0.3.2,ARTIST_COMMISSIONED,Marc Petrelis
 Steel Lancer,Minion,Haste. Shield.,Human,5,4,3,3,,Neutral,0.4.42,AI_GENERATED,DALL-E
 Stormrider Zurn,Minion,"Legendary. Spellcaster. Haste. When you play a Lightning spell, gain +2/+2/+2 until end of turn.",Demigod,4,6,0,6,True,Skaal,0.1.21,ARTIST_COMMISSIONED,Marc Petrelis
 Stout Knight,Minion,Shield.  (Prevent the first time this would be damaged from another source.),Dwarf,1,2,2,1,,Neutral,0.4.14,AI_GENERATED,DALL-E
