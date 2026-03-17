@@ -111,7 +111,7 @@
   },
   {
     "name": "Macks Speed",
-    "text": "[Warmup 4, Range 2]: Until end of turn, target character gains Trample and gains Power equal to its Movement (maximum 5).",
+    "text": "[Warmup 2, Range 2]: Target character gains +3 Speed and Trample until end of turn.",
     "subtype": "Human",
     "dominion": 5,
     "intellect": 6,
@@ -141,6 +141,17 @@
     "health": 33,
     "faction": "neutral",
     "art": "assets/commanders/newhaven-township.jpg"
+  },
+  {
+    "name": "Rosirix the Witch",
+    "text": "Draw cards until your hand is full.",
+    "subtype": "Human",
+    "dominion": 6,
+    "intellect": 6,
+    "speed": 1,
+    "health": 27,
+    "faction": "archaeon",
+    "art": "assets/commanders/rosirix-the-witch.jpg"
   },
   {
     "name": "Soultaker Viessa",

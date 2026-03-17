@@ -119,13 +119,13 @@
   {
     "name": "Archpaladin Erix",
     "type": "Minion",
-    "text": "Flying. Arrival: Set the power of ALL minions equal to their health.",
+    "text": "Legendary. Flying. Arrival: Set the power of ALL minions equal to their health.",
     "subtype": "Dwarf",
     "cost": 6,
     "attack": 2,
     "speed": 2,
     "health": 7,
-    "legendary": false,
+    "legendary": true,
     "faction": "lucia",
     "art": null
   },
@@ -160,7 +160,7 @@
     "type": "Minion",
     "text": "Legendary. Trample. Haste. Atlas gains +1/+1/+1 when a tile is unclaimed. Arrival: Unclaim ALL tiles within Range 2.",
     "subtype": "Titan",
-    "cost": 14,
+    "cost": 15,
     "attack": 10,
     "speed": 0,
     "health": 10,
@@ -637,6 +637,19 @@
     "art": "CardScreenshots/Devout-Caretaker.png"
   },
   {
+    "name": "Diplomatic Envoy",
+    "type": "Minion",
+    "text": "Spellcaster. Arrival: Gain 2 Intellect.",
+    "subtype": "Elf",
+    "cost": 2,
+    "attack": 2,
+    "speed": 3,
+    "health": 3,
+    "legendary": false,
+    "faction": "neutral",
+    "art": null
+  },
+  {
     "name": "Domination",
     "type": "Spell",
     "text": "Gain control of an enemy minion.",
@@ -650,6 +663,19 @@
     "art": "CardScreenshots/Domination.png"
   },
   {
+    "name": "Draconic Mage",
+    "type": "Minion",
+    "text": "Flying. Arrival: Draw a spell from your deck and add another copy to your hand.",
+    "subtype": "Dragon",
+    "cost": 8,
+    "attack": 9,
+    "speed": 4,
+    "health": 5,
+    "legendary": false,
+    "faction": "neutral",
+    "art": null
+  },
+  {
     "name": "Dragon Egg",
     "type": "Minion",
     "text": "Postmortem: Summon a 4/4/4 Dragon with Flying.",
@@ -657,7 +683,7 @@
     "cost": 2,
     "attack": 0,
     "speed": 0,
-    "health": 3,
+    "health": 2,
     "legendary": false,
     "faction": "neutral",
     "art": "CardScreenshots/Dragon-Egg.png"
@@ -687,6 +713,19 @@
     "legendary": false,
     "faction": "neutral",
     "art": "CardScreenshots/Dragonkin-Evoker.png"
+  },
+  {
+    "name": "Dragon's Breath",
+    "type": "Spell",
+    "text": "[Range 4]: Deal 5 damage to target minion. Play this only if you control a Dragon or have a Dragon card in your hand.",
+    "subtype": "Fire",
+    "cost": 2,
+    "attack": null,
+    "speed": null,
+    "health": null,
+    "legendary": false,
+    "faction": "skaal",
+    "art": null
   },
   {
     "name": "Drain Energy",
@@ -1406,7 +1445,7 @@
   {
     "name": "Grand Illusion",
     "type": "Spell",
-    "text": "[Range 2]: Swap an ally minion with a non-legendary minion from your deck.",
+    "text": "[Range 2]: Swap an ally minion with a non-Titan minion from your deck.",
     "subtype": "Psychic",
     "cost": 4,
     "attack": null,
@@ -2054,6 +2093,32 @@
     "art": null
   },
   {
+    "name": "Mind Blast",
+    "type": "Spell",
+    "text": "[Range 2]: Deal damage to target minion equal to your Intellect.",
+    "subtype": "Psychic",
+    "cost": 3,
+    "attack": null,
+    "speed": null,
+    "health": null,
+    "legendary": false,
+    "faction": "archaeon",
+    "art": null
+  },
+  {
+    "name": "Mindstone Servant",
+    "type": "Minion",
+    "text": "Whenever Mindstone Servant survives damage, draw a card and gain 1 Intellect.",
+    "subtype": "Mech",
+    "cost": 5,
+    "attack": 3,
+    "speed": 2,
+    "health": 6,
+    "legendary": false,
+    "faction": "neutral",
+    "art": null
+  },
+  {
     "name": "Minor Priest",
     "type": "Minion",
     "text": "Spellcaster. [Range 2, Cooldown 1]: A character you control heals 1.",
@@ -2169,6 +2234,19 @@
     "legendary": false,
     "faction": "lucia",
     "art": "CardScreenshots/Nobleman-of-the-Order.png"
+  },
+  {
+    "name": "Oathbroken Apprentice",
+    "type": "Minion",
+    "text": "Commander-Deploy. Whenever your commander loses life on your turn, gain +1 Power.",
+    "subtype": "Human",
+    "cost": 1,
+    "attack": 1,
+    "speed": 3,
+    "health": 2,
+    "legendary": false,
+    "faction": "neutral",
+    "art": null
   },
   {
     "name": "Oathsworn Champion",
@@ -2942,7 +3020,7 @@
     "type": "Spell",
     "text": "Beasts you control within Range 3 gain +3/+3/+3 and gain Trample until the end of the turn.",
     "subtype": "",
-    "cost": 5,
+    "cost": 6,
     "attack": null,
     "speed": null,
     "health": null,
