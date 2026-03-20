@@ -4377,16 +4377,16 @@
             "games": 0
           },
           {
-            "winrate": 0.375,
-            "games": 8
-          },
-          {
-            "winrate": 0.7143,
-            "games": 7
+            "winrate": 0.4,
+            "games": 5
           },
           {
             "winrate": 1.0,
-            "games": 1
+            "games": 3
+          },
+          {
+            "winrate": null,
+            "games": 0
           },
           {
             "winrate": 0.5,
@@ -4399,20 +4399,20 @@
             "games": 0
           },
           {
-            "winrate": 0.25,
-            "games": 8
-          },
-          {
-            "winrate": 0.6667,
-            "games": 15
-          },
-          {
-            "winrate": 0.6667,
-            "games": 3
+            "winrate": 0.1429,
+            "games": 7
           },
           {
             "winrate": 0.7143,
             "games": 7
+          },
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": 0.75,
+            "games": 4
           }
         ],
         "Newhaven Township": [
@@ -4421,60 +4421,16 @@
             "games": 0
           },
           {
-            "winrate": 0.5,
-            "games": 12
+            "winrate": 0.4,
+            "games": 10
           },
           {
-            "winrate": 0.3333,
-            "games": 12
+            "winrate": 0.5,
+            "games": 6
           },
           {
             "winrate": 1.0,
             "games": 2
-          },
-          {
-            "winrate": null,
-            "games": 0
-          }
-        ],
-        "Fael Spiritwalker": [
-          {
-            "winrate": 0.0,
-            "games": 3
-          },
-          {
-            "winrate": 0.3333,
-            "games": 3
-          },
-          {
-            "winrate": 0.8,
-            "games": 5
-          },
-          {
-            "winrate": 0.25,
-            "games": 4
-          },
-          {
-            "winrate": null,
-            "games": 0
-          }
-        ],
-        "Lubela, Tender of the Wilds": [
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": 0.0,
-            "games": 3
-          },
-          {
-            "winrate": 1.0,
-            "games": 1
-          },
-          {
-            "winrate": 1.0,
-            "games": 3
           },
           {
             "winrate": null,
@@ -4487,38 +4443,38 @@
             "games": 0
           },
           {
-            "winrate": 0.25,
-            "games": 12
+            "winrate": 0.3333,
+            "games": 6
           },
           {
-            "winrate": 0.5455,
-            "games": 11
+            "winrate": 0.6,
+            "games": 10
+          },
+          {
+            "winrate": 0.3333,
+            "games": 3
+          },
+          {
+            "winrate": 1.0,
+            "games": 1
+          }
+        ],
+        "Jagris, the Huntsman": [
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": 0.8571,
+            "games": 7
           },
           {
             "winrate": 0.5,
             "games": 4
           },
           {
-            "winrate": 1.0,
+            "winrate": 0.5,
             "games": 2
-          }
-        ],
-        "Jagris, the Huntsman": [
-          {
-            "winrate": 1.0,
-            "games": 1
-          },
-          {
-            "winrate": 0.8,
-            "games": 15
-          },
-          {
-            "winrate": 0.6667,
-            "games": 9
-          },
-          {
-            "winrate": 0.3333,
-            "games": 3
           },
           {
             "winrate": null,
@@ -4532,15 +4488,15 @@
           },
           {
             "winrate": 1.0,
-            "games": 2
-          },
-          {
-            "winrate": 1.0,
             "games": 1
           },
           {
-            "winrate": 0.0,
-            "games": 1
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": null,
+            "games": 0
           },
           {
             "winrate": null,
@@ -4553,38 +4509,16 @@
             "games": 0
           },
           {
-            "winrate": 0.2222,
-            "games": 9
+            "winrate": 0.0,
+            "games": 4
           },
           {
-            "winrate": 0.0909,
-            "games": 11
+            "winrate": 0.0,
+            "games": 7
           },
           {
             "winrate": 1.0,
             "games": 2
-          },
-          {
-            "winrate": 0.0,
-            "games": 1
-          }
-        ],
-        "Elyse of the Order": [
-          {
-            "winrate": 0.0,
-            "games": 1
-          },
-          {
-            "winrate": 0.5714,
-            "games": 7
-          },
-          {
-            "winrate": 0.2,
-            "games": 5
-          },
-          {
-            "winrate": 0.0,
-            "games": 3
           },
           {
             "winrate": 0.0,
@@ -4613,62 +4547,106 @@
             "games": 1
           }
         ],
+        "Elyse of the Order": [
+          {
+            "winrate": 0.0,
+            "games": 1
+          },
+          {
+            "winrate": 0.75,
+            "games": 4
+          },
+          {
+            "winrate": 0.0,
+            "games": 3
+          },
+          {
+            "winrate": 0.0,
+            "games": 2
+          },
+          {
+            "winrate": 0.0,
+            "games": 1
+          }
+        ],
+        "Fael Spiritwalker": [
+          {
+            "winrate": 0.0,
+            "games": 1
+          },
+          {
+            "winrate": 0.3333,
+            "games": 3
+          },
+          {
+            "winrate": 1.0,
+            "games": 1
+          },
+          {
+            "winrate": 0.5,
+            "games": 2
+          },
+          {
+            "winrate": null,
+            "games": 0
+          }
+        ],
         "Executor Ginn": [
           {
             "winrate": null,
             "games": 0
           },
           {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
             "winrate": 0.0,
             "games": 1
-          },
-          {
-            "winrate": 1.0,
-            "games": 4
-          },
-          {
-            "winrate": 0.6667,
-            "games": 3
           },
           {
             "winrate": null,
             "games": 0
           }
         ],
-        "Captain Greenbeard": [
+        "Lubela, Tender of the Wilds": [
           {
             "winrate": null,
             "games": 0
           },
           {
-            "winrate": 0.6,
-            "games": 5
-          },
-          {
-            "winrate": 0.2,
-            "games": 5
-          },
-          {
             "winrate": 0.0,
             "games": 1
           },
           {
-            "winrate": 0.0,
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": 1.0,
             "games": 1
+          },
+          {
+            "winrate": null,
+            "games": 0
           }
         ],
         "Macks Speed": [
           {
-            "winrate": 0.5,
-            "games": 2
+            "winrate": 1.0,
+            "games": 1
           },
           {
             "winrate": 1.0,
-            "games": 5
+            "games": 3
           },
           {
-            "winrate": 0.5,
-            "games": 2
+            "winrate": 1.0,
+            "games": 1
           },
           {
             "winrate": null,
@@ -4689,12 +4667,12 @@
             "games": 0
           },
           {
-            "winrate": 0.4,
-            "games": 5
+            "winrate": 0.5,
+            "games": 2
           },
           {
             "winrate": 1.0,
-            "games": 2
+            "games": 1
           },
           {
             "winrate": 0.0,
@@ -4708,15 +4686,15 @@
           },
           {
             "winrate": 0.5,
-            "games": 4
+            "games": 2
           },
           {
-            "winrate": 0.0,
-            "games": 1
+            "winrate": null,
+            "games": 0
           },
           {
-            "winrate": 0.25,
-            "games": 4
+            "winrate": 0.5,
+            "games": 2
           },
           {
             "winrate": null,
@@ -4744,8 +4722,8 @@
             "games": 4
           },
           {
-            "winrate": 0.3333,
-            "games": 3
+            "winrate": 1.0,
+            "games": 1
           },
           {
             "winrate": 1.0,
@@ -4762,10 +4740,6 @@
             "games": 0
           },
           {
-            "winrate": 0.25,
-            "games": 4
-          },
-          {
             "winrate": 0.5,
             "games": 2
           },
@@ -4776,68 +4750,6 @@
           {
             "winrate": null,
             "games": 0
-          }
-        ],
-        "Fael Spiritwalker": [
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": 0.6667,
-            "games": 3
-          },
-          {
-            "winrate": 0.0,
-            "games": 2
-          },
-          {
-            "winrate": null,
-            "games": 0
-          }
-        ],
-        "Lubela, Tender of the Wilds": [
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": 1.0,
-            "games": 1
-          },
-          {
-            "winrate": 1.0,
-            "games": 1
-          },
-          {
-            "winrate": null,
-            "games": 0
-          }
-        ],
-        "Jagris, the Huntsman": [
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": 0.75,
-            "games": 4
-          },
-          {
-            "winrate": 1.0,
-            "games": 3
-          },
-          {
-            "winrate": 0.5,
-            "games": 2
           },
           {
             "winrate": null,
@@ -4850,8 +4762,8 @@
             "games": 0
           },
           {
-            "winrate": 0.4,
-            "games": 5
+            "winrate": 0.5,
+            "games": 2
           },
           {
             "winrate": 0.6667,
@@ -4863,25 +4775,25 @@
           },
           {
             "winrate": 1.0,
-            "games": 2
+            "games": 1
           }
         ],
-        "Lazim, Thief of Gods": [
+        "Jagris, the Huntsman": [
           {
             "winrate": null,
             "games": 0
           },
           {
-            "winrate": 0.5,
-            "games": 4
-          },
-          {
-            "winrate": 0.25,
-            "games": 4
+            "winrate": 0.6667,
+            "games": 3
           },
           {
             "winrate": 1.0,
             "games": 1
+          },
+          {
+            "winrate": 0.5,
+            "games": 2
           },
           {
             "winrate": null,
@@ -4910,62 +4822,18 @@
             "games": 1
           }
         ],
-        "Macks Speed": [
-          {
-            "winrate": 1.0,
-            "games": 1
-          },
-          {
-            "winrate": 1.0,
-            "games": 2
-          },
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": 1.0,
-            "games": 1
-          }
-        ],
         "Elyse of the Order": [
           {
             "winrate": 0.0,
             "games": 1
           },
           {
-            "winrate": 1.0,
-            "games": 1
-          },
-          {
-            "winrate": 0.0,
-            "games": 1
-          },
-          {
-            "winrate": 0.0,
-            "games": 1
-          },
-          {
-            "winrate": 0.0,
-            "games": 1
-          }
-        ],
-        "Captain Greenbeard": [
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
             "winrate": null,
             "games": 0
           },
           {
             "winrate": 0.0,
-            "games": 2
+            "games": 1
           },
           {
             "winrate": null,
@@ -4982,7 +4850,47 @@
             "games": 0
           },
           {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
             "winrate": 0.0,
+            "games": 1
+          },
+          {
+            "winrate": null,
+            "games": 0
+          }
+        ],
+        "Lubela, Tender of the Wilds": [
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": 1.0,
+            "games": 1
+          },
+          {
+            "winrate": null,
+            "games": 0
+          }
+        ],
+        "Macks Speed": [
+          {
+            "winrate": 1.0,
             "games": 1
           },
           {
@@ -4990,12 +4898,16 @@
             "games": 1
           },
           {
-            "winrate": 0.5,
-            "games": 2
+            "winrate": null,
+            "games": 0
           },
           {
             "winrate": null,
             "games": 0
+          },
+          {
+            "winrate": 1.0,
+            "games": 1
           }
         ],
         "Soultaker Viessa": [
@@ -5008,16 +4920,38 @@
             "games": 3
           },
           {
-            "winrate": 0.6,
-            "games": 5
+            "winrate": 1.0,
+            "games": 2
+          },
+          {
+            "winrate": null,
+            "games": 0
           },
           {
             "winrate": 0.5,
             "games": 2
+          }
+        ],
+        "Lazim, Thief of Gods": [
+          {
+            "winrate": null,
+            "games": 0
           },
           {
-            "winrate": 0.5,
-            "games": 2
+            "winrate": 0.0,
+            "games": 1
+          },
+          {
+            "winrate": 0.0,
+            "games": 3
+          },
+          {
+            "winrate": 1.0,
+            "games": 1
+          },
+          {
+            "winrate": null,
+            "games": 0
           }
         ],
         "Milo Sunstone": [
@@ -5026,16 +4960,38 @@
             "games": 0
           },
           {
-            "winrate": 0.3333,
-            "games": 3
-          },
-          {
             "winrate": 0.0,
             "games": 1
           },
           {
             "winrate": null,
             "games": 0
+          },
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": null,
+            "games": 0
+          }
+        ],
+        "Fael Spiritwalker": [
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": 1.0,
+            "games": 1
+          },
+          {
+            "winrate": 0.0,
+            "games": 1
           },
           {
             "winrate": null,
@@ -5052,12 +5008,12 @@
             "games": 0
           },
           {
-            "winrate": 0.6667,
-            "games": 3
+            "winrate": 0.5,
+            "games": 2
           },
           {
-            "winrate": 1.0,
-            "games": 1
+            "winrate": null,
+            "games": 0
           },
           {
             "winrate": null,
@@ -5082,7 +5038,7 @@
           },
           {
             "winrate": 1.0,
-            "games": 2
+            "games": 1
           },
           {
             "winrate": 1.0,
@@ -5103,82 +5059,38 @@
             "games": 0
           },
           {
-            "winrate": 0.5,
-            "games": 2
-          },
-          {
-            "winrate": 0.8571,
-            "games": 7
-          },
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": 0.6667,
-            "games": 3
-          }
-        ],
-        "Newhaven Township": [
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": 0.5,
-            "games": 2
-          },
-          {
-            "winrate": 0.3333,
-            "games": 6
-          },
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": null,
-            "games": 0
-          }
-        ],
-        "Jagris, the Huntsman": [
-          {
-            "winrate": 1.0,
-            "games": 1
-          },
-          {
-            "winrate": 0.6667,
-            "games": 6
-          },
-          {
-            "winrate": 1.0,
-            "games": 3
-          },
-          {
-            "winrate": 0.0,
-            "games": 1
-          },
-          {
-            "winrate": null,
-            "games": 0
-          }
-        ],
-        "It That Weaves": [
-          {
-            "winrate": 0.5,
-            "games": 2
-          },
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
             "winrate": 0.0,
             "games": 1
           },
           {
             "winrate": 1.0,
+            "games": 2
+          },
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": 1.0,
             "games": 1
+          }
+        ],
+        "Fael Spiritwalker": [
+          {
+            "winrate": 0.0,
+            "games": 1
+          },
+          {
+            "winrate": 0.5,
+            "games": 2
+          },
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": null,
+            "games": 0
           },
           {
             "winrate": null,
@@ -5191,38 +5103,16 @@
             "games": 0
           },
           {
-            "winrate": 0.6667,
-            "games": 3
-          },
-          {
-            "winrate": 0.0,
-            "games": 2
-          },
-          {
-            "winrate": 0.0,
-            "games": 1
-          },
-          {
-            "winrate": null,
-            "games": 0
-          }
-        ],
-        "Fael Spiritwalker": [
-          {
-            "winrate": 0.0,
-            "games": 2
-          },
-          {
-            "winrate": 0.5,
-            "games": 2
-          },
-          {
             "winrate": 1.0,
-            "games": 1
+            "games": 2
           },
           {
-            "winrate": null,
-            "games": 0
+            "winrate": 0.0,
+            "games": 2
+          },
+          {
+            "winrate": 0.0,
+            "games": 1
           },
           {
             "winrate": null,
@@ -5236,7 +5126,7 @@
           },
           {
             "winrate": 0.0,
-            "games": 4
+            "games": 2
           },
           {
             "winrate": 0.0,
@@ -5251,18 +5141,18 @@
             "games": 0
           }
         ],
-        "Macks Speed": [
+        "Newhaven Township": [
           {
             "winrate": null,
             "games": 0
           },
           {
-            "winrate": 1.0,
-            "games": 3
-          },
-          {
             "winrate": 0.0,
             "games": 1
+          },
+          {
+            "winrate": 0.6667,
+            "games": 3
           },
           {
             "winrate": null,
@@ -5280,7 +5170,7 @@
           },
           {
             "winrate": 0.0,
-            "games": 3
+            "games": 1
           },
           {
             "winrate": 0.25,
@@ -5289,6 +5179,50 @@
           {
             "winrate": 0.5,
             "games": 2
+          },
+          {
+            "winrate": null,
+            "games": 0
+          }
+        ],
+        "It That Weaves": [
+          {
+            "winrate": 0.5,
+            "games": 2
+          },
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": 1.0,
+            "games": 1
+          },
+          {
+            "winrate": null,
+            "games": 0
+          }
+        ],
+        "Jagris, the Huntsman": [
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": 1.0,
+            "games": 1
+          },
+          {
+            "winrate": 1.0,
+            "games": 1
+          },
+          {
+            "winrate": null,
+            "games": 0
           },
           {
             "winrate": null,
@@ -5309,8 +5243,8 @@
             "games": 0
           },
           {
-            "winrate": 1.0,
-            "games": 1
+            "winrate": null,
+            "games": 0
           },
           {
             "winrate": null,
@@ -5339,22 +5273,22 @@
             "games": 0
           }
         ],
-        "Executor Ginn": [
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": null,
-            "games": 0
-          },
+        "Macks Speed": [
           {
             "winrate": null,
             "games": 0
           },
           {
             "winrate": 1.0,
-            "games": 1
+            "games": 2
+          },
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": null,
+            "games": 0
           },
           {
             "winrate": null,
@@ -5375,30 +5309,8 @@
             "games": 0
           },
           {
-            "winrate": 0.3333,
-            "games": 3
-          },
-          {
-            "winrate": null,
-            "games": 0
-          }
-        ],
-        "Elber, Jungle Emissary": [
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": 0.0,
-            "games": 1
+            "winrate": 0.5,
+            "games": 2
           },
           {
             "winrate": null,
@@ -5422,16 +5334,16 @@
             "games": 0
           },
           {
-            "winrate": 0.25,
-            "games": 4
-          },
-          {
-            "winrate": 0.75,
-            "games": 4
+            "winrate": 0.3333,
+            "games": 3
           },
           {
             "winrate": 1.0,
-            "games": 1
+            "games": 3
+          },
+          {
+            "winrate": null,
+            "games": 0
           },
           {
             "winrate": null,
@@ -5445,11 +5357,11 @@
           },
           {
             "winrate": 1.0,
-            "games": 5
+            "games": 3
           },
           {
             "winrate": 0.0,
-            "games": 3
+            "games": 2
           },
           {
             "winrate": null,
@@ -5470,12 +5382,12 @@
             "games": 2
           },
           {
-            "winrate": 0.6667,
-            "games": 3
-          },
-          {
             "winrate": 1.0,
             "games": 1
+          },
+          {
+            "winrate": null,
+            "games": 0
           },
           {
             "winrate": 1.0,
@@ -5489,10 +5401,6 @@
           },
           {
             "winrate": 1.0,
-            "games": 2
-          },
-          {
-            "winrate": 1.0,
             "games": 1
           },
           {
@@ -5502,46 +5410,6 @@
           {
             "winrate": null,
             "games": 0
-          }
-        ],
-        "Lazim, Thief of Gods": [
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": 0.0,
-            "games": 1
-          },
-          {
-            "winrate": 0.0,
-            "games": 3
-          },
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": 0.0,
-            "games": 1
-          }
-        ],
-        "Elyse of the Order": [
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": 0.3333,
-            "games": 3
-          },
-          {
-            "winrate": 0.5,
-            "games": 2
-          },
-          {
-            "winrate": 0.0,
-            "games": 1
           },
           {
             "winrate": null,
@@ -5554,12 +5422,12 @@
             "games": 0
           },
           {
-            "winrate": 0.5,
-            "games": 6
+            "winrate": 0.4,
+            "games": 5
           },
           {
-            "winrate": 0.3333,
-            "games": 3
+            "winrate": 0.0,
+            "games": 2
           },
           {
             "winrate": 1.0,
@@ -5584,48 +5452,18 @@
             "games": 3
           },
           {
+            "winrate": null,
+            "games": 0
+          },
+          {
             "winrate": 1.0,
             "games": 1
-          },
-          {
-            "winrate": 1.0,
-            "games": 2
           }
         ],
-        "Executor Ginn": [
+        "Lazim, Thief of Gods": [
           {
             "winrate": null,
             "games": 0
-          },
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": 1.0,
-            "games": 3
-          },
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": null,
-            "games": 0
-          }
-        ],
-        "Captain Greenbeard": [
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": 0.6,
-            "games": 5
-          },
-          {
-            "winrate": 0.3333,
-            "games": 3
           },
           {
             "winrate": 0.0,
@@ -5634,64 +5472,6 @@
           {
             "winrate": null,
             "games": 0
-          }
-        ],
-        "Fael Spiritwalker": [
-          {
-            "winrate": 0.0,
-            "games": 1
-          },
-          {
-            "winrate": 0.0,
-            "games": 1
-          },
-          {
-            "winrate": 1.0,
-            "games": 1
-          },
-          {
-            "winrate": 0.5,
-            "games": 2
-          },
-          {
-            "winrate": null,
-            "games": 0
-          }
-        ],
-        "Lubela, Tender of the Wilds": [
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": 0.0,
-            "games": 2
-          },
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": 1.0,
-            "games": 1
-          },
-          {
-            "winrate": null,
-            "games": 0
-          }
-        ],
-        "It That Weaves": [
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": 0.0,
-            "games": 1
           },
           {
             "winrate": null,
@@ -5738,8 +5518,8 @@
             "games": 0
           },
           {
-            "winrate": 0.0,
-            "games": 1
+            "winrate": null,
+            "games": 0
           },
           {
             "winrate": null,
@@ -5748,8 +5528,8 @@
         ],
         "Macks Speed": [
           {
-            "winrate": 0.0,
-            "games": 1
+            "winrate": null,
+            "games": 0
           },
           {
             "winrate": null,
@@ -5766,6 +5546,72 @@
           {
             "winrate": null,
             "games": 0
+          }
+        ],
+        "Fael Spiritwalker": [
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": 0.0,
+            "games": 1
+          },
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": 1.0,
+            "games": 1
+          },
+          {
+            "winrate": null,
+            "games": 0
+          }
+        ],
+        "Elyse of the Order": [
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": 0.5,
+            "games": 2
+          },
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": 0.0,
+            "games": 1
+          },
+          {
+            "winrate": null,
+            "games": 0
+          }
+        ],
+        "It That Weaves": [
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": 0.0,
+            "games": 1
           }
         ]
       }
