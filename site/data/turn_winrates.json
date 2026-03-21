@@ -2923,20 +2923,20 @@
             "games": 8
           },
           {
-            "winrate": 0.4783,
-            "games": 23
-          },
-          {
-            "winrate": 0.4706,
-            "games": 17
-          },
-          {
-            "winrate": 0.6,
+            "winrate": 0.5,
             "games": 20
           },
           {
-            "winrate": 0.5833,
-            "games": 12
+            "winrate": 0.5,
+            "games": 16
+          },
+          {
+            "winrate": 0.5789,
+            "games": 19
+          },
+          {
+            "winrate": 0.5455,
+            "games": 11
           }
         ],
         "Lazim, Thief of Gods": [
@@ -2993,8 +2993,8 @@
             "games": 34
           },
           {
-            "winrate": 0.4615,
-            "games": 39
+            "winrate": 0.4737,
+            "games": 38
           },
           {
             "winrate": 0.4783,
@@ -3059,8 +3059,8 @@
             "games": 12
           },
           {
-            "winrate": 0.5789,
-            "games": 19
+            "winrate": 0.5882,
+            "games": 17
           },
           {
             "winrate": 0.7778,
@@ -3095,8 +3095,8 @@
         ],
         "Jagris, the Huntsman": [
           {
-            "winrate": 0.8,
-            "games": 15
+            "winrate": 0.8571,
+            "games": 14
           },
           {
             "winrate": 0.8036,
@@ -3125,8 +3125,8 @@
             "games": 19
           },
           {
-            "winrate": 0.6471,
-            "games": 34
+            "winrate": 0.6364,
+            "games": 33
           },
           {
             "winrate": 0.6111,
@@ -3169,8 +3169,8 @@
             "games": 16
           },
           {
-            "winrate": 0.3684,
-            "games": 19
+            "winrate": 0.3889,
+            "games": 18
           },
           {
             "winrate": 0.4444,
@@ -3227,24 +3227,24 @@
         ],
         "Macks Speed": [
           {
-            "winrate": 0.6667,
-            "games": 3
+            "winrate": 0.5,
+            "games": 2
+          },
+          {
+            "winrate": 0.6364,
+            "games": 11
+          },
+          {
+            "winrate": 0.3333,
+            "games": 9
+          },
+          {
+            "winrate": 0.1667,
+            "games": 6
           },
           {
             "winrate": 0.6923,
             "games": 13
-          },
-          {
-            "winrate": 0.4,
-            "games": 10
-          },
-          {
-            "winrate": 0.1429,
-            "games": 7
-          },
-          {
-            "winrate": 0.6429,
-            "games": 14
           }
         ],
         "Rosirix the Witch": [
@@ -3286,20 +3286,20 @@
             "games": 3
           },
           {
-            "winrate": 0.4375,
-            "games": 16
+            "winrate": 0.4615,
+            "games": 13
           },
           {
-            "winrate": 0.2727,
-            "games": 11
-          },
-          {
-            "winrate": 0.5714,
-            "games": 14
-          },
-          {
-            "winrate": 0.6,
+            "winrate": 0.3,
             "games": 10
+          },
+          {
+            "winrate": 0.5385,
+            "games": 13
+          },
+          {
+            "winrate": 0.5556,
+            "games": 9
           }
         ],
         "Lazim, Thief of Gods": [
@@ -3334,8 +3334,8 @@
             "games": 22
           },
           {
-            "winrate": 0.5,
-            "games": 26
+            "winrate": 0.52,
+            "games": 25
           },
           {
             "winrate": 0.2857,
@@ -3400,8 +3400,8 @@
             "games": 10
           },
           {
-            "winrate": 0.5333,
-            "games": 15
+            "winrate": 0.5385,
+            "games": 13
           },
           {
             "winrate": 0.75,
@@ -3436,8 +3436,8 @@
         ],
         "Jagris, the Huntsman": [
           {
-            "winrate": 0.7692,
-            "games": 13
+            "winrate": 0.8333,
+            "games": 12
           },
           {
             "winrate": 0.7955,
@@ -3488,8 +3488,8 @@
             "games": 9
           },
           {
-            "winrate": 0.4286,
-            "games": 14
+            "winrate": 0.4615,
+            "games": 13
           },
           {
             "winrate": 0.5,
@@ -3544,28 +3544,6 @@
             "games": 4
           }
         ],
-        "Macks Speed": [
-          {
-            "winrate": 1.0,
-            "games": 2
-          },
-          {
-            "winrate": 0.625,
-            "games": 8
-          },
-          {
-            "winrate": 0.375,
-            "games": 8
-          },
-          {
-            "winrate": 0.1429,
-            "games": 7
-          },
-          {
-            "winrate": 0.6667,
-            "games": 12
-          }
-        ],
         "Lubela, Tender of the Wilds": [
           {
             "winrate": 0.0,
@@ -3598,12 +3576,34 @@
             "games": 13
           },
           {
-            "winrate": 0.5909,
-            "games": 22
+            "winrate": 0.5714,
+            "games": 21
           },
           {
             "winrate": 0.6667,
             "games": 15
+          },
+          {
+            "winrate": 0.7273,
+            "games": 11
+          }
+        ],
+        "Macks Speed": [
+          {
+            "winrate": 1.0,
+            "games": 1
+          },
+          {
+            "winrate": 0.5,
+            "games": 6
+          },
+          {
+            "winrate": 0.2857,
+            "games": 7
+          },
+          {
+            "winrate": 0.1667,
+            "games": 6
           },
           {
             "winrate": 0.7273,
@@ -4469,8 +4469,8 @@
             "games": 7
           },
           {
-            "winrate": 0.5,
-            "games": 4
+            "winrate": 0.3333,
+            "games": 3
           },
           {
             "winrate": 0.5,
@@ -4619,8 +4619,8 @@
             "games": 0
           },
           {
-            "winrate": 0.0,
-            "games": 1
+            "winrate": null,
+            "games": 0
           },
           {
             "winrate": null,
@@ -5214,28 +5214,6 @@
           },
           {
             "winrate": 1.0,
-            "games": 1
-          },
-          {
-            "winrate": 1.0,
-            "games": 1
-          },
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": null,
-            "games": 0
-          }
-        ],
-        "Lubela, Tender of the Wilds": [
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": 0.0,
             "games": 1
           },
           {

@@ -2398,16 +2398,16 @@
       "commanders": {
         "Fael Spiritwalker": [
           {
-            "winrate": 0.3939,
-            "games": 33
+            "winrate": 0.4194,
+            "games": 31
           },
           {
-            "winrate": 0.75,
-            "games": 28
+            "winrate": 0.7692,
+            "games": 26
           },
           {
-            "winrate": 0.4375,
-            "games": 16
+            "winrate": 0.3571,
+            "games": 14
           },
           {
             "winrate": 0.3333,
@@ -2456,8 +2456,8 @@
             "games": 34
           },
           {
-            "winrate": 0.5098,
-            "games": 51
+            "winrate": 0.52,
+            "games": 50
           },
           {
             "winrate": 0.5429,
@@ -2510,8 +2510,8 @@
             "games": 13
           },
           {
-            "winrate": 0.5652,
-            "games": 23
+            "winrate": 0.5714,
+            "games": 21
           },
           {
             "winrate": 0.5,
@@ -2542,8 +2542,8 @@
         ],
         "Jagris, the Huntsman": [
           {
-            "winrate": 0.7826,
-            "games": 69
+            "winrate": 0.7941,
+            "games": 68
           },
           {
             "winrate": 0.6271,
@@ -2564,8 +2564,8 @@
             "games": 34
           },
           {
-            "winrate": 0.575,
-            "games": 40
+            "winrate": 0.5641,
+            "games": 39
           },
           {
             "winrate": 0.6364,
@@ -2600,8 +2600,8 @@
             "games": 22
           },
           {
-            "winrate": 0.3684,
-            "games": 19
+            "winrate": 0.3889,
+            "games": 18
           },
           {
             "winrate": 0.5556,
@@ -2650,16 +2650,16 @@
         ],
         "Macks Speed": [
           {
-            "winrate": 0.6471,
-            "games": 17
-          },
-          {
-            "winrate": 0.4375,
-            "games": 16
+            "winrate": 0.5714,
+            "games": 14
           },
           {
             "winrate": 0.4,
-            "games": 10
+            "games": 15
+          },
+          {
+            "winrate": 0.5,
+            "games": 8
           },
           {
             "winrate": 0.75,
@@ -2696,16 +2696,16 @@
       "commanders": {
         "Fael Spiritwalker": [
           {
-            "winrate": 0.2857,
-            "games": 21
-          },
-          {
-            "winrate": 0.7368,
+            "winrate": 0.3158,
             "games": 19
           },
           {
-            "winrate": 0.4286,
-            "games": 14
+            "winrate": 0.7647,
+            "games": 17
+          },
+          {
+            "winrate": 0.3333,
+            "games": 12
           },
           {
             "winrate": null,
@@ -2736,8 +2736,8 @@
             "games": 22
           },
           {
-            "winrate": 0.4737,
-            "games": 38
+            "winrate": 0.4865,
+            "games": 37
           },
           {
             "winrate": 0.5833,
@@ -2790,8 +2790,8 @@
             "games": 10
           },
           {
-            "winrate": 0.5238,
-            "games": 21
+            "winrate": 0.5263,
+            "games": 19
           },
           {
             "winrate": 0.5,
@@ -2822,8 +2822,8 @@
         ],
         "Jagris, the Huntsman": [
           {
-            "winrate": 0.7885,
-            "games": 52
+            "winrate": 0.8039,
+            "games": 51
           },
           {
             "winrate": 0.625,
@@ -2862,8 +2862,8 @@
             "games": 14
           },
           {
-            "winrate": 0.5,
-            "games": 12
+            "winrate": 0.5455,
+            "games": 11
           },
           {
             "winrate": 0.5,
@@ -2910,24 +2910,6 @@
             "games": 0
           }
         ],
-        "Macks Speed": [
-          {
-            "winrate": 0.7,
-            "games": 10
-          },
-          {
-            "winrate": 0.4,
-            "games": 15
-          },
-          {
-            "winrate": 0.4444,
-            "games": 9
-          },
-          {
-            "winrate": 0.6667,
-            "games": 3
-          }
-        ],
         "Lubela, Tender of the Wilds": [
           {
             "winrate": 0.4444,
@@ -2952,8 +2934,8 @@
             "games": 25
           },
           {
-            "winrate": 0.5517,
-            "games": 29
+            "winrate": 0.5357,
+            "games": 28
           },
           {
             "winrate": 0.8,
@@ -2962,6 +2944,24 @@
           {
             "winrate": 1.0,
             "games": 2
+          }
+        ],
+        "Macks Speed": [
+          {
+            "winrate": 0.5714,
+            "games": 7
+          },
+          {
+            "winrate": 0.3571,
+            "games": 14
+          },
+          {
+            "winrate": 0.5714,
+            "games": 7
+          },
+          {
+            "winrate": 0.6667,
+            "games": 3
           }
         ],
         "Rosirix the Witch": [
@@ -3664,8 +3664,8 @@
         ],
         "Jagris, the Huntsman": [
           {
-            "winrate": 0.8571,
-            "games": 7
+            "winrate": 0.8333,
+            "games": 6
           },
           {
             "winrate": 0.4,
@@ -3790,8 +3790,8 @@
         ],
         "Lubela, Tender of the Wilds": [
           {
-            "winrate": 0.0,
-            "games": 1
+            "winrate": null,
+            "games": 0
           },
           {
             "winrate": 1.0,
@@ -4278,30 +4278,12 @@
         ],
         "Jagris, the Huntsman": [
           {
+            "winrate": null,
+            "games": 0
+          },
+          {
             "winrate": 1.0,
             "games": 1
-          },
-          {
-            "winrate": 1.0,
-            "games": 1
-          },
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": null,
-            "games": 0
-          }
-        ],
-        "Lubela, Tender of the Wilds": [
-          {
-            "winrate": 0.0,
-            "games": 1
-          },
-          {
-            "winrate": null,
-            "games": 0
           },
           {
             "winrate": null,
