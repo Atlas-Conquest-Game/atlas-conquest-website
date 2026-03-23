@@ -1204,20 +1204,20 @@
       "commanders": {
         "Fael Spiritwalker": [
           {
-            "winrate": 0.2881,
-            "games": 59
+            "winrate": 0.2759,
+            "games": 58
           },
           {
-            "winrate": 0.5455,
-            "games": 99
+            "winrate": 0.551,
+            "games": 98
           },
           {
-            "winrate": 0.5349,
-            "games": 43
+            "winrate": 0.5366,
+            "games": 41
           },
           {
-            "winrate": 0.5,
-            "games": 10
+            "winrate": 0.4444,
+            "games": 9
           }
         ],
         "Lazim, Thief of Gods": [
@@ -1330,20 +1330,20 @@
         ],
         "Jagris, the Huntsman": [
           {
-            "winrate": 0.8158,
-            "games": 152
+            "winrate": 0.8176,
+            "games": 148
           },
           {
-            "winrate": 0.5984,
-            "games": 244
+            "winrate": 0.5872,
+            "games": 235
           },
           {
-            "winrate": 0.4054,
-            "games": 74
+            "winrate": 0.3944,
+            "games": 71
           },
           {
-            "winrate": 0.3913,
-            "games": 23
+            "winrate": 0.381,
+            "games": 21
           }
         ],
         "Newhaven Township": [
@@ -1402,20 +1402,20 @@
         ],
         "Soultaker Viessa": [
           {
-            "winrate": 0.5111,
-            "games": 90
+            "winrate": 0.5287,
+            "games": 87
           },
           {
-            "winrate": 0.5246,
-            "games": 122
+            "winrate": 0.5526,
+            "games": 114
           },
           {
-            "winrate": 0.5789,
-            "games": 38
+            "winrate": 0.5946,
+            "games": 37
           },
           {
-            "winrate": 0.7273,
-            "games": 11
+            "winrate": 0.8,
+            "games": 10
           }
         ],
         "Macks Speed": [
@@ -1502,20 +1502,20 @@
       "commanders": {
         "Fael Spiritwalker": [
           {
-            "winrate": 0.2128,
-            "games": 47
+            "winrate": 0.1957,
+            "games": 46
           },
           {
-            "winrate": 0.5222,
-            "games": 90
+            "winrate": 0.5281,
+            "games": 89
           },
           {
-            "winrate": 0.5366,
-            "games": 41
+            "winrate": 0.5385,
+            "games": 39
           },
           {
-            "winrate": 0.5714,
-            "games": 7
+            "winrate": 0.5,
+            "games": 6
           }
         ],
         "Lazim, Thief of Gods": [
@@ -1610,20 +1610,20 @@
         ],
         "Jagris, the Huntsman": [
           {
-            "winrate": 0.8222,
-            "games": 135
+            "winrate": 0.8244,
+            "games": 131
           },
           {
-            "winrate": 0.5966,
-            "games": 233
+            "winrate": 0.5848,
+            "games": 224
           },
           {
-            "winrate": 0.4085,
-            "games": 71
+            "winrate": 0.3971,
+            "games": 68
           },
           {
-            "winrate": 0.3913,
-            "games": 23
+            "winrate": 0.381,
+            "games": 21
           }
         ],
         "Newhaven Township": [
@@ -1736,20 +1736,20 @@
         ],
         "Soultaker Viessa": [
           {
-            "winrate": 0.4938,
-            "games": 81
+            "winrate": 0.5128,
+            "games": 78
           },
           {
-            "winrate": 0.5135,
-            "games": 111
+            "winrate": 0.5437,
+            "games": 103
           },
           {
-            "winrate": 0.5938,
-            "games": 32
+            "winrate": 0.6129,
+            "games": 31
           },
           {
-            "winrate": 0.6667,
-            "games": 9
+            "winrate": 0.75,
+            "games": 8
           }
         ],
         "Elber, Jungle Emissary": [
@@ -2396,42 +2396,6 @@
         "30+"
       ],
       "commanders": {
-        "Fael Spiritwalker": [
-          {
-            "winrate": 0.4194,
-            "games": 31
-          },
-          {
-            "winrate": 0.7826,
-            "games": 23
-          },
-          {
-            "winrate": 0.3571,
-            "games": 14
-          },
-          {
-            "winrate": 0.3333,
-            "games": 3
-          }
-        ],
-        "Lazim, Thief of Gods": [
-          {
-            "winrate": 0.2128,
-            "games": 47
-          },
-          {
-            "winrate": 0.3824,
-            "games": 34
-          },
-          {
-            "winrate": 0.4091,
-            "games": 22
-          },
-          {
-            "winrate": 0.0,
-            "games": 5
-          }
-        ],
         "Lubela, Tender of the Wilds": [
           {
             "winrate": 0.4167,
@@ -2448,6 +2412,42 @@
           {
             "winrate": 0.5,
             "games": 2
+          }
+        ],
+        "Lazim, Thief of Gods": [
+          {
+            "winrate": 0.1957,
+            "games": 46
+          },
+          {
+            "winrate": 0.4194,
+            "games": 31
+          },
+          {
+            "winrate": 0.4211,
+            "games": 19
+          },
+          {
+            "winrate": 0.0,
+            "games": 5
+          }
+        ],
+        "Fael Spiritwalker": [
+          {
+            "winrate": 0.4333,
+            "games": 30
+          },
+          {
+            "winrate": 0.75,
+            "games": 20
+          },
+          {
+            "winrate": 0.2727,
+            "games": 11
+          },
+          {
+            "winrate": 0.3333,
+            "games": 3
           }
         ],
         "Kai, Longcount Shaman": [
@@ -2696,16 +2696,16 @@
       "commanders": {
         "Fael Spiritwalker": [
           {
-            "winrate": 0.3158,
-            "games": 19
-          },
-          {
-            "winrate": 0.7857,
-            "games": 14
-          },
-          {
             "winrate": 0.3333,
-            "games": 12
+            "games": 18
+          },
+          {
+            "winrate": 0.7273,
+            "games": 11
+          },
+          {
+            "winrate": 0.2222,
+            "games": 9
           },
           {
             "winrate": null,
@@ -2714,16 +2714,16 @@
         ],
         "Lazim, Thief of Gods": [
           {
-            "winrate": 0.2667,
-            "games": 30
+            "winrate": 0.2414,
+            "games": 29
           },
           {
-            "winrate": 0.4,
-            "games": 25
+            "winrate": 0.4545,
+            "games": 22
           },
           {
-            "winrate": 0.3529,
-            "games": 17
+            "winrate": 0.3571,
+            "games": 14
           },
           {
             "winrate": 0.0,
