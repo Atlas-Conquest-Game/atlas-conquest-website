@@ -59562,7 +59562,7 @@
           "keep_winrate": 0.5,
           "return_winrate": 1.0,
           "winrate_delta": -0.5,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Scout Hunter",
@@ -59574,7 +59574,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 0.6667,
           "winrate_delta": 0.3333,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Homesong Minstrel",
@@ -59586,7 +59586,7 @@
           "keep_winrate": null,
           "return_winrate": 0.25,
           "winrate_delta": null,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Mad Warlock",
@@ -59598,7 +59598,7 @@
           "keep_winrate": 0.5,
           "return_winrate": 0.0,
           "winrate_delta": 0.5,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Apprentice Mage",
@@ -59610,7 +59610,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 1.0,
           "winrate_delta": 0.0,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Illusory Legion",
@@ -59622,7 +59622,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 1.0,
           "winrate_delta": 0.0,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Owl Familiar",
@@ -59634,7 +59634,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.0,
           "winrate_delta": 0.0,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Cone of Cold",
@@ -59646,19 +59646,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 0.0,
           "winrate_delta": 1.0,
-          "games": 10
-        },
-        {
-          "name": "Growth Potion",
-          "kept_count": 0,
-          "returned_count": 2,
-          "total_seen": 2,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.4286,
-          "keep_winrate": null,
-          "return_winrate": 0.0,
-          "winrate_delta": null,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Memory Theft",
@@ -59670,7 +59658,7 @@
           "keep_winrate": 1.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Grand Illusion",
@@ -59682,7 +59670,7 @@
           "keep_winrate": 1.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Blue Dragon",
@@ -59694,7 +59682,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 1.0,
           "winrate_delta": 0.0,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Settle Village",
@@ -59706,7 +59694,7 @@
           "keep_winrate": 1.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Second Experiment",
@@ -59718,7 +59706,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.0,
           "winrate_delta": 0.0,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Outland Village",
@@ -59730,7 +59718,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 1.0,
           "winrate_delta": 0.0,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Giant Eagle",
@@ -59742,7 +59730,7 @@
           "keep_winrate": 0.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Fade to Mists",
@@ -59754,7 +59742,7 @@
           "keep_winrate": 0.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Prideplain Enforcer",
@@ -59766,7 +59754,7 @@
           "keep_winrate": 0.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Wise Elder",
@@ -59778,67 +59766,7 @@
           "keep_winrate": 0.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 10
-        },
-        {
-          "name": "Mage Slayer",
-          "kept_count": 1,
-          "returned_count": 0,
-          "total_seen": 1,
-          "keep_rate": 1.0,
-          "norm_keep_delta": 0.5714,
-          "keep_winrate": 0.0,
-          "return_winrate": null,
-          "winrate_delta": null,
-          "games": 10
-        },
-        {
-          "name": "Tadpole",
-          "kept_count": 1,
-          "returned_count": 0,
-          "total_seen": 1,
-          "keep_rate": 1.0,
-          "norm_keep_delta": 0.5714,
-          "keep_winrate": 0.0,
-          "return_winrate": null,
-          "winrate_delta": null,
-          "games": 10
-        },
-        {
-          "name": "Explosive Potion",
-          "kept_count": 1,
-          "returned_count": 0,
-          "total_seen": 1,
-          "keep_rate": 1.0,
-          "norm_keep_delta": 0.5714,
-          "keep_winrate": 0.0,
-          "return_winrate": null,
-          "winrate_delta": null,
-          "games": 10
-        },
-        {
-          "name": "Blinkshot",
-          "kept_count": 0,
-          "returned_count": 1,
-          "total_seen": 1,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.4286,
-          "keep_winrate": null,
-          "return_winrate": 0.0,
-          "winrate_delta": null,
-          "games": 10
-        },
-        {
-          "name": "Greater Healing Potion",
-          "kept_count": 0,
-          "returned_count": 1,
-          "total_seen": 1,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.4286,
-          "keep_winrate": null,
-          "return_winrate": 0.0,
-          "winrate_delta": null,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Mind Blast",
@@ -59850,7 +59778,7 @@
           "keep_winrate": null,
           "return_winrate": 1.0,
           "winrate_delta": null,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Energy Potion",
@@ -59862,7 +59790,7 @@
           "keep_winrate": null,
           "return_winrate": 1.0,
           "winrate_delta": null,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Expropriation",
@@ -59874,7 +59802,7 @@
           "keep_winrate": null,
           "return_winrate": 1.0,
           "winrate_delta": null,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Demilich",
@@ -59886,7 +59814,7 @@
           "keep_winrate": null,
           "return_winrate": 1.0,
           "winrate_delta": null,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Peer",
@@ -59898,7 +59826,7 @@
           "keep_winrate": null,
           "return_winrate": 1.0,
           "winrate_delta": null,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Big Game Hunter",
@@ -59910,7 +59838,7 @@
           "keep_winrate": null,
           "return_winrate": 1.0,
           "winrate_delta": null,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Goblin Shaman",
@@ -59922,7 +59850,7 @@
           "keep_winrate": null,
           "return_winrate": 1.0,
           "winrate_delta": null,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Durka Wurm",
@@ -59934,7 +59862,7 @@
           "keep_winrate": null,
           "return_winrate": 1.0,
           "winrate_delta": null,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Sage Potion",
@@ -59946,7 +59874,7 @@
           "keep_winrate": 1.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 10
+          "games": 9
         },
         {
           "name": "First Experiment",
@@ -59958,7 +59886,7 @@
           "keep_winrate": 0.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Elixirist",
@@ -59970,7 +59898,7 @@
           "keep_winrate": 0.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Swiftness Potion",
@@ -59982,7 +59910,7 @@
           "keep_winrate": 0.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Fourth Experiment",
@@ -59994,7 +59922,7 @@
           "keep_winrate": null,
           "return_winrate": 0.0,
           "winrate_delta": null,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Nexus Recruit",
@@ -60006,7 +59934,7 @@
           "keep_winrate": null,
           "return_winrate": 0.0,
           "winrate_delta": null,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Skerr'drix",
@@ -60018,7 +59946,7 @@
           "keep_winrate": null,
           "return_winrate": 1.0,
           "winrate_delta": null,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Elf Ranger",
@@ -60030,7 +59958,7 @@
           "keep_winrate": 1.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Ponder",
@@ -60042,7 +59970,7 @@
           "keep_winrate": 1.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Styrian Infantry",
@@ -60054,7 +59982,7 @@
           "keep_winrate": 1.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Remit",
@@ -60066,7 +59994,7 @@
           "keep_winrate": null,
           "return_winrate": 1.0,
           "winrate_delta": null,
-          "games": 10
+          "games": 9
         },
         {
           "name": "Drowsy Lizard",
@@ -60078,7 +60006,7 @@
           "keep_winrate": null,
           "return_winrate": 1.0,
           "winrate_delta": null,
-          "games": 10
+          "games": 9
         }
       ],
       "Soultaker Viessa": [
@@ -61779,68 +61707,6 @@
           "return_winrate": 1.0,
           "winrate_delta": null,
           "games": 11
-        }
-      ],
-      "Elber, Jungle Emissary": [
-        {
-          "name": "Dyana, Prime Huntress",
-          "kept_count": 1,
-          "returned_count": 1,
-          "total_seen": 2,
-          "keep_rate": 0.5,
-          "norm_keep_delta": -0.0714,
-          "keep_winrate": 1.0,
-          "return_winrate": 1.0,
-          "winrate_delta": 0.0,
-          "games": 1
-        },
-        {
-          "name": "Pack Wolf",
-          "kept_count": 1,
-          "returned_count": 0,
-          "total_seen": 1,
-          "keep_rate": 1.0,
-          "norm_keep_delta": 0.4286,
-          "keep_winrate": 1.0,
-          "return_winrate": null,
-          "winrate_delta": null,
-          "games": 1
-        },
-        {
-          "name": "Emerald Asp",
-          "kept_count": 1,
-          "returned_count": 0,
-          "total_seen": 1,
-          "keep_rate": 1.0,
-          "norm_keep_delta": 0.4286,
-          "keep_winrate": 1.0,
-          "return_winrate": null,
-          "winrate_delta": null,
-          "games": 1
-        },
-        {
-          "name": "Prideplain Queen",
-          "kept_count": 1,
-          "returned_count": 0,
-          "total_seen": 1,
-          "keep_rate": 1.0,
-          "norm_keep_delta": 0.4286,
-          "keep_winrate": 1.0,
-          "return_winrate": null,
-          "winrate_delta": null,
-          "games": 1
-        },
-        {
-          "name": "Prideplain Enforcer",
-          "kept_count": 0,
-          "returned_count": 1,
-          "total_seen": 1,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.5714,
-          "keep_winrate": null,
-          "return_winrate": 1.0,
-          "winrate_delta": null,
-          "games": 1
         }
       ],
       "Lazim, Thief of Gods": [
@@ -69649,370 +69515,6 @@
           "games": 5
         }
       ],
-      "Starwise Luna": [
-        {
-          "name": "Growth Potion",
-          "kept_count": 0,
-          "returned_count": 2,
-          "total_seen": 2,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.4286,
-          "keep_winrate": null,
-          "return_winrate": 0.0,
-          "winrate_delta": null,
-          "games": 4
-        },
-        {
-          "name": "Second Experiment",
-          "kept_count": 1,
-          "returned_count": 1,
-          "total_seen": 2,
-          "keep_rate": 0.5,
-          "norm_keep_delta": -0.0714,
-          "keep_winrate": 0.0,
-          "return_winrate": 0.0,
-          "winrate_delta": 0.0,
-          "games": 4
-        },
-        {
-          "name": "Outland Village",
-          "kept_count": 1,
-          "returned_count": 1,
-          "total_seen": 2,
-          "keep_rate": 0.5,
-          "norm_keep_delta": 0.0714,
-          "keep_winrate": 1.0,
-          "return_winrate": 1.0,
-          "winrate_delta": 0.0,
-          "games": 4
-        },
-        {
-          "name": "Mage Slayer",
-          "kept_count": 1,
-          "returned_count": 0,
-          "total_seen": 1,
-          "keep_rate": 1.0,
-          "norm_keep_delta": 0.5714,
-          "keep_winrate": 0.0,
-          "return_winrate": null,
-          "winrate_delta": null,
-          "games": 4
-        },
-        {
-          "name": "Tadpole",
-          "kept_count": 1,
-          "returned_count": 0,
-          "total_seen": 1,
-          "keep_rate": 1.0,
-          "norm_keep_delta": 0.5714,
-          "keep_winrate": 0.0,
-          "return_winrate": null,
-          "winrate_delta": null,
-          "games": 4
-        },
-        {
-          "name": "Explosive Potion",
-          "kept_count": 1,
-          "returned_count": 0,
-          "total_seen": 1,
-          "keep_rate": 1.0,
-          "norm_keep_delta": 0.5714,
-          "keep_winrate": 0.0,
-          "return_winrate": null,
-          "winrate_delta": null,
-          "games": 4
-        },
-        {
-          "name": "Blinkshot",
-          "kept_count": 0,
-          "returned_count": 1,
-          "total_seen": 1,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.4286,
-          "keep_winrate": null,
-          "return_winrate": 0.0,
-          "winrate_delta": null,
-          "games": 4
-        },
-        {
-          "name": "Greater Healing Potion",
-          "kept_count": 0,
-          "returned_count": 1,
-          "total_seen": 1,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.4286,
-          "keep_winrate": null,
-          "return_winrate": 0.0,
-          "winrate_delta": null,
-          "games": 4
-        },
-        {
-          "name": "First Experiment",
-          "kept_count": 1,
-          "returned_count": 0,
-          "total_seen": 1,
-          "keep_rate": 1.0,
-          "norm_keep_delta": 0.4286,
-          "keep_winrate": 0.0,
-          "return_winrate": null,
-          "winrate_delta": null,
-          "games": 4
-        },
-        {
-          "name": "Elixirist",
-          "kept_count": 1,
-          "returned_count": 0,
-          "total_seen": 1,
-          "keep_rate": 1.0,
-          "norm_keep_delta": 0.4286,
-          "keep_winrate": 0.0,
-          "return_winrate": null,
-          "winrate_delta": null,
-          "games": 4
-        },
-        {
-          "name": "Swiftness Potion",
-          "kept_count": 1,
-          "returned_count": 0,
-          "total_seen": 1,
-          "keep_rate": 1.0,
-          "norm_keep_delta": 0.4286,
-          "keep_winrate": 0.0,
-          "return_winrate": null,
-          "winrate_delta": null,
-          "games": 4
-        },
-        {
-          "name": "Fourth Experiment",
-          "kept_count": 0,
-          "returned_count": 1,
-          "total_seen": 1,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.5714,
-          "keep_winrate": null,
-          "return_winrate": 0.0,
-          "winrate_delta": null,
-          "games": 4
-        },
-        {
-          "name": "Nexus Recruit",
-          "kept_count": 0,
-          "returned_count": 1,
-          "total_seen": 1,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.5714,
-          "keep_winrate": null,
-          "return_winrate": 0.0,
-          "winrate_delta": null,
-          "games": 4
-        },
-        {
-          "name": "Cone of Cold",
-          "kept_count": 1,
-          "returned_count": 0,
-          "total_seen": 1,
-          "keep_rate": 1.0,
-          "norm_keep_delta": 0.5714,
-          "keep_winrate": 1.0,
-          "return_winrate": null,
-          "winrate_delta": null,
-          "games": 4
-        },
-        {
-          "name": "Settle Village",
-          "kept_count": 1,
-          "returned_count": 0,
-          "total_seen": 1,
-          "keep_rate": 1.0,
-          "norm_keep_delta": 0.5714,
-          "keep_winrate": 1.0,
-          "return_winrate": null,
-          "winrate_delta": null,
-          "games": 4
-        },
-        {
-          "name": "Skerr'drix",
-          "kept_count": 0,
-          "returned_count": 1,
-          "total_seen": 1,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.4286,
-          "keep_winrate": null,
-          "return_winrate": 1.0,
-          "winrate_delta": null,
-          "games": 4
-        },
-        {
-          "name": "Blue Dragon",
-          "kept_count": 0,
-          "returned_count": 1,
-          "total_seen": 1,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.4286,
-          "keep_winrate": null,
-          "return_winrate": 1.0,
-          "winrate_delta": null,
-          "games": 4
-        },
-        {
-          "name": "Illusory Legion",
-          "kept_count": 0,
-          "returned_count": 1,
-          "total_seen": 1,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.4286,
-          "keep_winrate": null,
-          "return_winrate": 1.0,
-          "winrate_delta": null,
-          "games": 4
-        },
-        {
-          "name": "Elf Ranger",
-          "kept_count": 1,
-          "returned_count": 0,
-          "total_seen": 1,
-          "keep_rate": 1.0,
-          "norm_keep_delta": 0.4286,
-          "keep_winrate": 1.0,
-          "return_winrate": null,
-          "winrate_delta": null,
-          "games": 4
-        },
-        {
-          "name": "Ponder",
-          "kept_count": 1,
-          "returned_count": 0,
-          "total_seen": 1,
-          "keep_rate": 1.0,
-          "norm_keep_delta": 0.4286,
-          "keep_winrate": 1.0,
-          "return_winrate": null,
-          "winrate_delta": null,
-          "games": 4
-        },
-        {
-          "name": "Memory Theft",
-          "kept_count": 1,
-          "returned_count": 0,
-          "total_seen": 1,
-          "keep_rate": 1.0,
-          "norm_keep_delta": 0.4286,
-          "keep_winrate": 1.0,
-          "return_winrate": null,
-          "winrate_delta": null,
-          "games": 4
-        },
-        {
-          "name": "Styrian Infantry",
-          "kept_count": 1,
-          "returned_count": 0,
-          "total_seen": 1,
-          "keep_rate": 1.0,
-          "norm_keep_delta": 0.4286,
-          "keep_winrate": 1.0,
-          "return_winrate": null,
-          "winrate_delta": null,
-          "games": 4
-        },
-        {
-          "name": "Homesong Minstrel",
-          "kept_count": 0,
-          "returned_count": 1,
-          "total_seen": 1,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.5714,
-          "keep_winrate": null,
-          "return_winrate": 1.0,
-          "winrate_delta": null,
-          "games": 4
-        },
-        {
-          "name": "Remit",
-          "kept_count": 0,
-          "returned_count": 1,
-          "total_seen": 1,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.5714,
-          "keep_winrate": null,
-          "return_winrate": 1.0,
-          "winrate_delta": null,
-          "games": 4
-        },
-        {
-          "name": "Drowsy Lizard",
-          "kept_count": 0,
-          "returned_count": 1,
-          "total_seen": 1,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.5714,
-          "keep_winrate": null,
-          "return_winrate": 1.0,
-          "winrate_delta": null,
-          "games": 4
-        }
-      ],
-      "Elber, Jungle Emissary": [
-        {
-          "name": "Dyana, Prime Huntress",
-          "kept_count": 1,
-          "returned_count": 1,
-          "total_seen": 2,
-          "keep_rate": 0.5,
-          "norm_keep_delta": -0.0714,
-          "keep_winrate": 1.0,
-          "return_winrate": 1.0,
-          "winrate_delta": 0.0,
-          "games": 1
-        },
-        {
-          "name": "Pack Wolf",
-          "kept_count": 1,
-          "returned_count": 0,
-          "total_seen": 1,
-          "keep_rate": 1.0,
-          "norm_keep_delta": 0.4286,
-          "keep_winrate": 1.0,
-          "return_winrate": null,
-          "winrate_delta": null,
-          "games": 1
-        },
-        {
-          "name": "Emerald Asp",
-          "kept_count": 1,
-          "returned_count": 0,
-          "total_seen": 1,
-          "keep_rate": 1.0,
-          "norm_keep_delta": 0.4286,
-          "keep_winrate": 1.0,
-          "return_winrate": null,
-          "winrate_delta": null,
-          "games": 1
-        },
-        {
-          "name": "Prideplain Queen",
-          "kept_count": 1,
-          "returned_count": 0,
-          "total_seen": 1,
-          "keep_rate": 1.0,
-          "norm_keep_delta": 0.4286,
-          "keep_winrate": 1.0,
-          "return_winrate": null,
-          "winrate_delta": null,
-          "games": 1
-        },
-        {
-          "name": "Prideplain Enforcer",
-          "kept_count": 0,
-          "returned_count": 1,
-          "total_seen": 1,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.5714,
-          "keep_winrate": null,
-          "return_winrate": 1.0,
-          "winrate_delta": null,
-          "games": 1
-        }
-      ],
       "Newhaven Township": [
         {
           "name": "Throne Guardian",
@@ -70883,6 +70385,236 @@
           "return_winrate": 1.0,
           "winrate_delta": null,
           "games": 1
+        }
+      ],
+      "Starwise Luna": [
+        {
+          "name": "Second Experiment",
+          "kept_count": 1,
+          "returned_count": 1,
+          "total_seen": 2,
+          "keep_rate": 0.5,
+          "norm_keep_delta": -0.0714,
+          "keep_winrate": 0.0,
+          "return_winrate": 0.0,
+          "winrate_delta": 0.0,
+          "games": 3
+        },
+        {
+          "name": "Outland Village",
+          "kept_count": 1,
+          "returned_count": 1,
+          "total_seen": 2,
+          "keep_rate": 0.5,
+          "norm_keep_delta": 0.0714,
+          "keep_winrate": 1.0,
+          "return_winrate": 1.0,
+          "winrate_delta": 0.0,
+          "games": 3
+        },
+        {
+          "name": "First Experiment",
+          "kept_count": 1,
+          "returned_count": 0,
+          "total_seen": 1,
+          "keep_rate": 1.0,
+          "norm_keep_delta": 0.4286,
+          "keep_winrate": 0.0,
+          "return_winrate": null,
+          "winrate_delta": null,
+          "games": 3
+        },
+        {
+          "name": "Elixirist",
+          "kept_count": 1,
+          "returned_count": 0,
+          "total_seen": 1,
+          "keep_rate": 1.0,
+          "norm_keep_delta": 0.4286,
+          "keep_winrate": 0.0,
+          "return_winrate": null,
+          "winrate_delta": null,
+          "games": 3
+        },
+        {
+          "name": "Swiftness Potion",
+          "kept_count": 1,
+          "returned_count": 0,
+          "total_seen": 1,
+          "keep_rate": 1.0,
+          "norm_keep_delta": 0.4286,
+          "keep_winrate": 0.0,
+          "return_winrate": null,
+          "winrate_delta": null,
+          "games": 3
+        },
+        {
+          "name": "Fourth Experiment",
+          "kept_count": 0,
+          "returned_count": 1,
+          "total_seen": 1,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.5714,
+          "keep_winrate": null,
+          "return_winrate": 0.0,
+          "winrate_delta": null,
+          "games": 3
+        },
+        {
+          "name": "Nexus Recruit",
+          "kept_count": 0,
+          "returned_count": 1,
+          "total_seen": 1,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.5714,
+          "keep_winrate": null,
+          "return_winrate": 0.0,
+          "winrate_delta": null,
+          "games": 3
+        },
+        {
+          "name": "Cone of Cold",
+          "kept_count": 1,
+          "returned_count": 0,
+          "total_seen": 1,
+          "keep_rate": 1.0,
+          "norm_keep_delta": 0.5714,
+          "keep_winrate": 1.0,
+          "return_winrate": null,
+          "winrate_delta": null,
+          "games": 3
+        },
+        {
+          "name": "Settle Village",
+          "kept_count": 1,
+          "returned_count": 0,
+          "total_seen": 1,
+          "keep_rate": 1.0,
+          "norm_keep_delta": 0.5714,
+          "keep_winrate": 1.0,
+          "return_winrate": null,
+          "winrate_delta": null,
+          "games": 3
+        },
+        {
+          "name": "Skerr'drix",
+          "kept_count": 0,
+          "returned_count": 1,
+          "total_seen": 1,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.4286,
+          "keep_winrate": null,
+          "return_winrate": 1.0,
+          "winrate_delta": null,
+          "games": 3
+        },
+        {
+          "name": "Blue Dragon",
+          "kept_count": 0,
+          "returned_count": 1,
+          "total_seen": 1,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.4286,
+          "keep_winrate": null,
+          "return_winrate": 1.0,
+          "winrate_delta": null,
+          "games": 3
+        },
+        {
+          "name": "Illusory Legion",
+          "kept_count": 0,
+          "returned_count": 1,
+          "total_seen": 1,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.4286,
+          "keep_winrate": null,
+          "return_winrate": 1.0,
+          "winrate_delta": null,
+          "games": 3
+        },
+        {
+          "name": "Elf Ranger",
+          "kept_count": 1,
+          "returned_count": 0,
+          "total_seen": 1,
+          "keep_rate": 1.0,
+          "norm_keep_delta": 0.4286,
+          "keep_winrate": 1.0,
+          "return_winrate": null,
+          "winrate_delta": null,
+          "games": 3
+        },
+        {
+          "name": "Ponder",
+          "kept_count": 1,
+          "returned_count": 0,
+          "total_seen": 1,
+          "keep_rate": 1.0,
+          "norm_keep_delta": 0.4286,
+          "keep_winrate": 1.0,
+          "return_winrate": null,
+          "winrate_delta": null,
+          "games": 3
+        },
+        {
+          "name": "Memory Theft",
+          "kept_count": 1,
+          "returned_count": 0,
+          "total_seen": 1,
+          "keep_rate": 1.0,
+          "norm_keep_delta": 0.4286,
+          "keep_winrate": 1.0,
+          "return_winrate": null,
+          "winrate_delta": null,
+          "games": 3
+        },
+        {
+          "name": "Styrian Infantry",
+          "kept_count": 1,
+          "returned_count": 0,
+          "total_seen": 1,
+          "keep_rate": 1.0,
+          "norm_keep_delta": 0.4286,
+          "keep_winrate": 1.0,
+          "return_winrate": null,
+          "winrate_delta": null,
+          "games": 3
+        },
+        {
+          "name": "Homesong Minstrel",
+          "kept_count": 0,
+          "returned_count": 1,
+          "total_seen": 1,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.5714,
+          "keep_winrate": null,
+          "return_winrate": 1.0,
+          "winrate_delta": null,
+          "games": 3
+        },
+        {
+          "name": "Remit",
+          "kept_count": 0,
+          "returned_count": 1,
+          "total_seen": 1,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.5714,
+          "keep_winrate": null,
+          "return_winrate": 1.0,
+          "winrate_delta": null,
+          "games": 3
+        },
+        {
+          "name": "Drowsy Lizard",
+          "kept_count": 0,
+          "returned_count": 1,
+          "total_seen": 1,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.5714,
+          "keep_winrate": null,
+          "return_winrate": 1.0,
+          "winrate_delta": null,
+          "games": 3
         }
       ],
       "Milo Sunstone": [
