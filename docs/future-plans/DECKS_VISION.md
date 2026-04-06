@@ -30,7 +30,7 @@
 
 A real share URL looks like:
 ```
-https://rossfw.github.io/atlas-conquest/decks.html?code=wrNWQ29udHJvbHYz%3ADMHgDgzrwAAO...
+https://atlas-conquest.com/decks.html?code=wrNWQ29udHJvbHYz%3ADMHgDgzrwAAO...
 ```
 - `wrNWQ29udHJvbHYz` = base64 of `(commanderID)(deckName)`
 - `%3A` = URL-encoded colon separator
