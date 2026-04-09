@@ -15,7 +15,7 @@
   {
     "name": "Acrid Potion",
     "type": "Spell",
-    "text": "[Range 2]: An ally minion gains +1 Power, Fatal, and Lifelink.",
+    "text": "[Range 2]: Target minion gains +1 Power, Fatal, and Lifelink.",
     "subtype": "Potion",
     "cost": 2,
     "attack": null,
@@ -592,7 +592,7 @@
     "cost": 7,
     "attack": 7,
     "speed": 3,
-    "health": 5,
+    "health": 4,
     "legendary": false,
     "faction": "shadis",
     "art": "CardScreenshots/Darkwing.png"
@@ -665,12 +665,12 @@
   {
     "name": "Draconic Mage",
     "type": "Minion",
-    "text": "Flying. Arrival: Draw a spell from your deck and add another copy to your hand.",
+    "text": "Flying. Spellcaster. Spell-Damage +2. Arrival: Draw a spell from your deck and add two extra copies of it to your hand.",
     "subtype": "Dragon",
-    "cost": 8,
-    "attack": 9,
+    "cost": 10,
+    "attack": 10,
     "speed": 4,
-    "health": 5,
+    "health": 8,
     "legendary": false,
     "faction": "neutral",
     "art": null
@@ -951,7 +951,7 @@
   {
     "name": "Energy Potion",
     "type": "Spell",
-    "text": "[Range 2]: A minion regains their movement and regains an Attack.",
+    "text": "[Range 2]: A minion gains Haste, regains their movement, and regains an Attack.",
     "subtype": "Potion",
     "cost": 2,
     "attack": null,
@@ -1133,7 +1133,7 @@
   {
     "name": "Flame Acolyte",
     "type": "Minion",
-    "text": "Arrival: add 2 copies of Flamelash to your hand.",
+    "text": "Spellcaster. Arrival: add 2 copies of Flamelash to your hand.",
     "subtype": "Human",
     "cost": 5,
     "attack": 6,
@@ -1643,9 +1643,9 @@
     "text": "Spellcaster.  (Spells with Range can be played within Range of High Elf Mage instead of your commander.)",
     "subtype": "Elf",
     "cost": 1,
-    "attack": 1,
+    "attack": 2,
     "speed": 3,
-    "health": 2,
+    "health": 1,
     "legendary": false,
     "faction": "neutral",
     "art": "CardScreenshots/High-Elf-Mage.png"
@@ -2522,6 +2522,19 @@
     "art": "CardScreenshots/Prideplain-Queen.png"
   },
   {
+    "name": "Primordial Storm",
+    "type": "Spell",
+    "text": "Deal 5 damage to all enemy minions.",
+    "subtype": "Lightning",
+    "cost": 9,
+    "attack": null,
+    "speed": null,
+    "health": null,
+    "legendary": false,
+    "faction": "skaal",
+    "art": null
+  },
+  {
     "name": "Prince Xerxes",
     "type": "Minion",
     "text": "Legendary. Realmbound. Your Arrival abilities trigger an additional time.",
@@ -2563,7 +2576,7 @@
   {
     "name": "Pyromaniac",
     "type": "Minion",
-    "text": "Arrival: Draw a fire card from your deck.",
+    "text": "Spellcaster. Arrival: Draw a fire card from your deck.",
     "subtype": "Human",
     "cost": 3,
     "attack": 3,
