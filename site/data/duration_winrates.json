@@ -1312,16 +1312,16 @@
         ],
         "It That Weaves": [
           {
-            "winrate": 0.4375,
-            "games": 32
+            "winrate": 0.4516,
+            "games": 31
           },
           {
-            "winrate": 0.369,
-            "games": 84
+            "winrate": 0.4133,
+            "games": 75
           },
           {
-            "winrate": 0.4545,
-            "games": 22
+            "winrate": 0.5,
+            "games": 20
           },
           {
             "winrate": 0.7143,
@@ -1330,16 +1330,16 @@
         ],
         "Jagris, the Huntsman": [
           {
-            "winrate": 0.8194,
-            "games": 144
+            "winrate": 0.8182,
+            "games": 143
           },
           {
-            "winrate": 0.5782,
-            "games": 211
+            "winrate": 0.5594,
+            "games": 202
           },
           {
-            "winrate": 0.3729,
-            "games": 59
+            "winrate": 0.3509,
+            "games": 57
           },
           {
             "winrate": 0.2778,
@@ -1592,16 +1592,16 @@
         ],
         "It That Weaves": [
           {
-            "winrate": 0.4286,
-            "games": 28
+            "winrate": 0.4444,
+            "games": 27
           },
           {
-            "winrate": 0.3649,
-            "games": 74
+            "winrate": 0.4154,
+            "games": 65
           },
           {
-            "winrate": 0.4737,
-            "games": 19
+            "winrate": 0.5294,
+            "games": 17
           },
           {
             "winrate": 0.8182,
@@ -1610,16 +1610,16 @@
         ],
         "Jagris, the Huntsman": [
           {
-            "winrate": 0.8254,
-            "games": 126
+            "winrate": 0.824,
+            "games": 125
           },
           {
-            "winrate": 0.5808,
-            "games": 198
+            "winrate": 0.5608,
+            "games": 189
           },
           {
-            "winrate": 0.375,
-            "games": 56
+            "winrate": 0.3519,
+            "games": 54
           },
           {
             "winrate": 0.25,
@@ -2406,8 +2406,8 @@
             "games": 14
           },
           {
-            "winrate": 0.625,
-            "games": 8
+            "winrate": 0.7143,
+            "games": 7
           },
           {
             "winrate": 0.5,
@@ -2416,34 +2416,34 @@
         ],
         "Lazim, Thief of Gods": [
           {
-            "winrate": 0.1892,
-            "games": 37
+            "winrate": 0.1714,
+            "games": 35
           },
           {
-            "winrate": 0.3704,
-            "games": 27
+            "winrate": 0.375,
+            "games": 24
           },
           {
-            "winrate": 0.5714,
-            "games": 14
+            "winrate": 0.5385,
+            "games": 13
           },
           {
-            "winrate": 0.3333,
-            "games": 3
+            "winrate": 0.5,
+            "games": 2
           }
         ],
         "Fael Spiritwalker": [
           {
-            "winrate": 0.5357,
-            "games": 28
+            "winrate": 0.5556,
+            "games": 27
           },
           {
-            "winrate": 0.65,
-            "games": 20
+            "winrate": 0.6316,
+            "games": 19
           },
           {
-            "winrate": 0.4,
-            "games": 10
+            "winrate": 0.4444,
+            "games": 9
           },
           {
             "winrate": 0.5,
@@ -2452,16 +2452,16 @@
         ],
         "Starwise Luna": [
           {
-            "winrate": 0.5161,
-            "games": 31
+            "winrate": 0.5,
+            "games": 30
           },
           {
-            "winrate": 0.5806,
-            "games": 31
+            "winrate": 0.5556,
+            "games": 27
           },
           {
-            "winrate": 0.4762,
-            "games": 21
+            "winrate": 0.4737,
+            "games": 19
           },
           {
             "winrate": 0.5,
@@ -2474,34 +2474,16 @@
             "games": 22
           },
           {
-            "winrate": 0.5806,
-            "games": 31
+            "winrate": 0.6207,
+            "games": 29
           },
           {
-            "winrate": 0.4444,
-            "games": 9
+            "winrate": 0.375,
+            "games": 8
           },
           {
             "winrate": 1.0,
             "games": 3
-          }
-        ],
-        "Kai, Longcount Shaman": [
-          {
-            "winrate": 0.4412,
-            "games": 34
-          },
-          {
-            "winrate": 0.5135,
-            "games": 37
-          },
-          {
-            "winrate": 0.6875,
-            "games": 16
-          },
-          {
-            "winrate": null,
-            "games": 0
           }
         ],
         "Newhaven Township": [
@@ -2550,22 +2532,40 @@
             "games": 17
           },
           {
-            "winrate": 0.3846,
-            "games": 13
+            "winrate": 0.3333,
+            "games": 12
           },
           {
             "winrate": 0.6667,
             "games": 6
           }
         ],
-        "Jagris, the Huntsman": [
+        "Kai, Longcount Shaman": [
           {
-            "winrate": 0.8286,
+            "winrate": 0.4412,
+            "games": 34
+          },
+          {
+            "winrate": 0.4857,
             "games": 35
           },
           {
-            "winrate": 0.5526,
-            "games": 38
+            "winrate": 0.6364,
+            "games": 11
+          },
+          {
+            "winrate": null,
+            "games": 0
+          }
+        ],
+        "Jagris, the Huntsman": [
+          {
+            "winrate": 0.8485,
+            "games": 33
+          },
+          {
+            "winrate": 0.5405,
+            "games": 37
           },
           {
             "winrate": 0.6667,
@@ -2578,12 +2578,12 @@
         ],
         "Executor Ginn": [
           {
-            "winrate": 0.4444,
-            "games": 9
+            "winrate": 0.375,
+            "games": 8
           },
           {
-            "winrate": 0.6,
-            "games": 10
+            "winrate": 0.625,
+            "games": 8
           },
           {
             "winrate": 0.75,
@@ -2591,7 +2591,7 @@
           },
           {
             "winrate": 0.0,
-            "games": 3
+            "games": 2
           }
         ],
         "Elber, Jungle Emissary": [
@@ -2600,12 +2600,12 @@
             "games": 6
           },
           {
-            "winrate": 0.3333,
-            "games": 3
+            "winrate": 0.5,
+            "games": 2
           },
           {
             "winrate": 0.0,
-            "games": 2
+            "games": 1
           },
           {
             "winrate": 0.0,
@@ -2618,16 +2618,16 @@
             "games": 15
           },
           {
-            "winrate": 0.4074,
-            "games": 27
+            "winrate": 0.44,
+            "games": 25
           },
           {
-            "winrate": 0.4286,
-            "games": 7
+            "winrate": 0.5,
+            "games": 6
           },
           {
-            "winrate": 0.5714,
-            "games": 7
+            "winrate": 0.4,
+            "games": 5
           }
         ],
         "Elyse of the Order": [
@@ -2640,8 +2640,8 @@
             "games": 15
           },
           {
-            "winrate": 0.1667,
-            "games": 6
+            "winrate": 0.25,
+            "games": 4
           },
           {
             "winrate": 0.0,
@@ -2668,8 +2668,8 @@
         ],
         "Captain Greenbeard": [
           {
-            "winrate": 0.625,
-            "games": 8
+            "winrate": 0.7143,
+            "games": 7
           },
           {
             "winrate": 0.2308,
@@ -2696,16 +2696,16 @@
       "commanders": {
         "Fael Spiritwalker": [
           {
-            "winrate": 0.4545,
-            "games": 11
+            "winrate": 0.5,
+            "games": 10
           },
           {
-            "winrate": 0.625,
-            "games": 8
-          },
-          {
-            "winrate": 0.2857,
+            "winrate": 0.5714,
             "games": 7
+          },
+          {
+            "winrate": 0.3333,
+            "games": 6
           },
           {
             "winrate": 1.0,
@@ -2714,38 +2714,20 @@
         ],
         "Lazim, Thief of Gods": [
           {
-            "winrate": 0.2632,
-            "games": 19
+            "winrate": 0.2353,
+            "games": 17
           },
           {
-            "winrate": 0.3077,
-            "games": 13
-          },
-          {
-            "winrate": 0.75,
-            "games": 4
-          },
-          {
-            "winrate": 0.3333,
-            "games": 3
-          }
-        ],
-        "Kai, Longcount Shaman": [
-          {
-            "winrate": 0.4737,
-            "games": 19
-          },
-          {
-            "winrate": 0.5625,
-            "games": 16
-          },
-          {
-            "winrate": 0.6,
+            "winrate": 0.3,
             "games": 10
           },
           {
-            "winrate": null,
-            "games": 0
+            "winrate": 0.6667,
+            "games": 3
+          },
+          {
+            "winrate": 0.5,
+            "games": 2
           }
         ],
         "Newhaven Township": [
@@ -2768,16 +2750,16 @@
         ],
         "Starwise Luna": [
           {
-            "winrate": 0.5556,
-            "games": 18
-          },
-          {
             "winrate": 0.5294,
             "games": 17
           },
           {
-            "winrate": 0.4444,
-            "games": 9
+            "winrate": 0.4615,
+            "games": 13
+          },
+          {
+            "winrate": 0.4286,
+            "games": 7
           },
           {
             "winrate": 0.5,
@@ -2794,12 +2776,30 @@
             "games": 9
           },
           {
-            "winrate": 0.75,
-            "games": 4
+            "winrate": 1.0,
+            "games": 3
           },
           {
             "winrate": 0.0,
             "games": 1
+          }
+        ],
+        "Kai, Longcount Shaman": [
+          {
+            "winrate": 0.4737,
+            "games": 19
+          },
+          {
+            "winrate": 0.5,
+            "games": 14
+          },
+          {
+            "winrate": 0.4,
+            "games": 5
+          },
+          {
+            "winrate": null,
+            "games": 0
           }
         ],
         "It That Weaves": [
@@ -2808,16 +2808,16 @@
             "games": 11
           },
           {
-            "winrate": 0.4118,
-            "games": 17
+            "winrate": 0.4667,
+            "games": 15
+          },
+          {
+            "winrate": 0.6667,
+            "games": 3
           },
           {
             "winrate": 0.5,
-            "games": 4
-          },
-          {
-            "winrate": 0.75,
-            "games": 4
+            "games": 2
           }
         ],
         "Macks Speed": [
@@ -2830,8 +2830,8 @@
             "games": 8
           },
           {
-            "winrate": 0.2857,
-            "games": 7
+            "winrate": 0.1667,
+            "games": 6
           },
           {
             "winrate": 0.6667,
@@ -2844,12 +2844,12 @@
             "games": 2
           },
           {
-            "winrate": 0.3333,
-            "games": 3
+            "winrate": 0.5,
+            "games": 2
           },
           {
-            "winrate": 0.0,
-            "games": 1
+            "winrate": null,
+            "games": 0
           },
           {
             "winrate": 0.0,
@@ -2858,30 +2858,30 @@
         ],
         "Executor Ginn": [
           {
-            "winrate": 0.5,
-            "games": 6
+            "winrate": 0.4,
+            "games": 5
           },
           {
             "winrate": 0.5,
-            "games": 8
+            "games": 6
           },
           {
             "winrate": 1.0,
             "games": 2
           },
           {
-            "winrate": 0.0,
-            "games": 1
+            "winrate": null,
+            "games": 0
           }
         ],
         "Jagris, the Huntsman": [
           {
-            "winrate": 0.8824,
-            "games": 17
+            "winrate": 0.9333,
+            "games": 15
           },
           {
-            "winrate": 0.56,
-            "games": 25
+            "winrate": 0.5417,
+            "games": 24
           },
           {
             "winrate": 0.8333,
@@ -2898,12 +2898,12 @@
             "games": 13
           },
           {
-            "winrate": 0.5556,
-            "games": 18
+            "winrate": 0.625,
+            "games": 16
           },
           {
-            "winrate": 0.5,
-            "games": 2
+            "winrate": 0.0,
+            "games": 1
           },
           {
             "winrate": 1.0,
@@ -2930,8 +2930,8 @@
         ],
         "Captain Greenbeard": [
           {
-            "winrate": 0.5,
-            "games": 4
+            "winrate": 0.6667,
+            "games": 3
           },
           {
             "winrate": 0.3333,
@@ -2957,7 +2957,7 @@
           },
           {
             "winrate": 0.0,
-            "games": 4
+            "games": 2
           },
           {
             "winrate": null,
