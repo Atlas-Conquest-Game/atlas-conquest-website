@@ -126,6 +126,14 @@
         },
         {
           "commander": "Captain Greenbeard",
+          "opponent": "Rosirix the Witch",
+          "wins": 1,
+          "losses": 0,
+          "total": 1,
+          "winrate": 1.0
+        },
+        {
+          "commander": "Captain Greenbeard",
           "opponent": "Soultaker Viessa",
           "wins": 4,
           "losses": 21,
@@ -247,10 +255,10 @@
         {
           "commander": "Elber, Jungle Emissary",
           "opponent": "Rosirix the Witch",
-          "wins": 0,
+          "wins": 1,
           "losses": 1,
-          "total": 1,
-          "winrate": 0.0
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Elber, Jungle Emissary",
@@ -296,9 +304,9 @@
           "commander": "Elyse of the Order",
           "opponent": "Executor Ginn",
           "wins": 15,
-          "losses": 6,
-          "total": 21,
-          "winrate": 0.7143
+          "losses": 7,
+          "total": 22,
+          "winrate": 0.6818
         },
         {
           "commander": "Elyse of the Order",
@@ -415,10 +423,10 @@
         {
           "commander": "Executor Ginn",
           "opponent": "Elyse of the Order",
-          "wins": 6,
+          "wins": 7,
           "losses": 15,
-          "total": 21,
-          "winrate": 0.2857
+          "total": 22,
+          "winrate": 0.3182
         },
         {
           "commander": "Executor Ginn",
@@ -695,10 +703,10 @@
         {
           "commander": "It That Weaves",
           "opponent": "Jagris, the Huntsman",
-          "wins": 11,
+          "wins": 12,
           "losses": 48,
-          "total": 59,
-          "winrate": 0.1864
+          "total": 60,
+          "winrate": 0.2
         },
         {
           "commander": "It That Weaves",
@@ -808,9 +816,9 @@
           "commander": "Jagris, the Huntsman",
           "opponent": "It That Weaves",
           "wins": 48,
-          "losses": 11,
-          "total": 59,
-          "winrate": 0.8136
+          "losses": 12,
+          "total": 60,
+          "winrate": 0.8
         },
         {
           "commander": "Jagris, the Huntsman",
@@ -1095,10 +1103,10 @@
         {
           "commander": "Lazim, Thief of Gods",
           "opponent": "Macks Speed",
-          "wins": 8,
-          "losses": 21,
-          "total": 29,
-          "winrate": 0.2759
+          "wins": 9,
+          "losses": 23,
+          "total": 32,
+          "winrate": 0.2812
         },
         {
           "commander": "Lazim, Thief of Gods",
@@ -1327,10 +1335,10 @@
         {
           "commander": "Macks Speed",
           "opponent": "Lazim, Thief of Gods",
-          "wins": 21,
-          "losses": 8,
-          "total": 29,
-          "winrate": 0.7241
+          "wins": 23,
+          "losses": 9,
+          "total": 32,
+          "winrate": 0.7188
         },
         {
           "commander": "Macks Speed",
@@ -1646,11 +1654,19 @@
         },
         {
           "commander": "Rosirix the Witch",
+          "opponent": "Captain Greenbeard",
+          "wins": 0,
+          "losses": 1,
+          "total": 1,
+          "winrate": 0.0
+        },
+        {
+          "commander": "Rosirix the Witch",
           "opponent": "Elber, Jungle Emissary",
           "wins": 1,
-          "losses": 0,
-          "total": 1,
-          "winrate": 1.0
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Rosirix the Witch",
@@ -2097,6 +2113,14 @@
           "losses": 4,
           "total": 13,
           "winrate": 0.6923
+        },
+        {
+          "commander": "Captain Greenbeard",
+          "opponent": "Rosirix the Witch",
+          "wins": 1,
+          "losses": 0,
+          "total": 1,
+          "winrate": 1.0
         },
         {
           "commander": "Captain Greenbeard",
@@ -3045,10 +3069,10 @@
         {
           "commander": "Lazim, Thief of Gods",
           "opponent": "Macks Speed",
-          "wins": 6,
-          "losses": 16,
-          "total": 22,
-          "winrate": 0.2727
+          "wins": 7,
+          "losses": 17,
+          "total": 24,
+          "winrate": 0.2917
         },
         {
           "commander": "Lazim, Thief of Gods",
@@ -3277,10 +3301,10 @@
         {
           "commander": "Macks Speed",
           "opponent": "Lazim, Thief of Gods",
-          "wins": 16,
-          "losses": 6,
-          "total": 22,
-          "winrate": 0.7273
+          "wins": 17,
+          "losses": 7,
+          "total": 24,
+          "winrate": 0.7083
         },
         {
           "commander": "Macks Speed",
@@ -3585,6 +3609,14 @@
           "losses": 20,
           "total": 31,
           "winrate": 0.3548
+        },
+        {
+          "commander": "Rosirix the Witch",
+          "opponent": "Captain Greenbeard",
+          "wins": 0,
+          "losses": 1,
+          "total": 1,
+          "winrate": 0.0
         },
         {
           "commander": "Rosirix the Witch",
@@ -3923,18 +3955,18 @@
         {
           "commander": "Elber, Jungle Emissary",
           "opponent": "Rosirix the Witch",
-          "wins": 0,
+          "wins": 1,
           "losses": 1,
-          "total": 1,
-          "winrate": 0.0
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Elyse of the Order",
           "opponent": "Executor Ginn",
           "wins": 1,
-          "losses": 0,
-          "total": 1,
-          "winrate": 1.0
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Elyse of the Order",
@@ -3995,10 +4027,10 @@
         {
           "commander": "Executor Ginn",
           "opponent": "Elyse of the Order",
-          "wins": 0,
+          "wins": 1,
           "losses": 1,
-          "total": 1,
-          "winrate": 0.0
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Executor Ginn",
@@ -4356,9 +4388,9 @@
           "commander": "Lazim, Thief of Gods",
           "opponent": "Macks Speed",
           "wins": 1,
-          "losses": 3,
-          "total": 4,
-          "winrate": 0.25
+          "losses": 4,
+          "total": 5,
+          "winrate": 0.2
         },
         {
           "commander": "Lazim, Thief of Gods",
@@ -4459,10 +4491,10 @@
         {
           "commander": "Macks Speed",
           "opponent": "Lazim, Thief of Gods",
-          "wins": 3,
+          "wins": 4,
           "losses": 1,
-          "total": 4,
-          "winrate": 0.75
+          "total": 5,
+          "winrate": 0.8
         },
         {
           "commander": "Macks Speed",
@@ -4612,9 +4644,9 @@
           "commander": "Rosirix the Witch",
           "opponent": "Elber, Jungle Emissary",
           "wins": 1,
-          "losses": 0,
-          "total": 1,
-          "winrate": 1.0
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Rosirix the Witch",
@@ -5168,6 +5200,14 @@
         },
         {
           "commander": "It That Weaves",
+          "opponent": "Jagris, the Huntsman",
+          "wins": 1,
+          "losses": 0,
+          "total": 1,
+          "winrate": 1.0
+        },
+        {
+          "commander": "It That Weaves",
           "opponent": "Kai, Longcount Shaman",
           "wins": 0,
           "losses": 1,
@@ -5221,6 +5261,14 @@
           "losses": 0,
           "total": 1,
           "winrate": 1.0
+        },
+        {
+          "commander": "Jagris, the Huntsman",
+          "opponent": "It That Weaves",
+          "wins": 0,
+          "losses": 1,
+          "total": 1,
+          "winrate": 0.0
         },
         {
           "commander": "Jagris, the Huntsman",
@@ -6040,6 +6088,14 @@
         },
         {
           "commander": "Captain Greenbeard",
+          "opponent": "Rosirix the Witch",
+          "wins": 1,
+          "losses": 0,
+          "total": 1,
+          "winrate": 1.0
+        },
+        {
+          "commander": "Captain Greenbeard",
           "opponent": "Soultaker Viessa",
           "wins": 3,
           "losses": 13,
@@ -6120,14 +6176,6 @@
         },
         {
           "commander": "Elber, Jungle Emissary",
-          "opponent": "Milo Sunstone",
-          "wins": 1,
-          "losses": 0,
-          "total": 1,
-          "winrate": 1.0
-        },
-        {
-          "commander": "Elber, Jungle Emissary",
           "opponent": "Newhaven Township",
           "wins": 2,
           "losses": 2,
@@ -6137,10 +6185,10 @@
         {
           "commander": "Elber, Jungle Emissary",
           "opponent": "Rosirix the Witch",
-          "wins": 0,
+          "wins": 1,
           "losses": 1,
-          "total": 1,
-          "winrate": 0.0
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Elber, Jungle Emissary",
@@ -6186,9 +6234,9 @@
           "commander": "Elyse of the Order",
           "opponent": "Executor Ginn",
           "wins": 2,
-          "losses": 2,
-          "total": 4,
-          "winrate": 0.5
+          "losses": 3,
+          "total": 5,
+          "winrate": 0.4
         },
         {
           "commander": "Elyse of the Order",
@@ -6297,10 +6345,10 @@
         {
           "commander": "Executor Ginn",
           "opponent": "Elyse of the Order",
-          "wins": 2,
+          "wins": 3,
           "losses": 2,
-          "total": 4,
-          "winrate": 0.5
+          "total": 5,
+          "winrate": 0.6
         },
         {
           "commander": "Executor Ginn",
@@ -6441,10 +6489,10 @@
         {
           "commander": "Fael Spiritwalker",
           "opponent": "It That Weaves",
-          "wins": 3,
-          "losses": 6,
-          "total": 9,
-          "winrate": 0.3333
+          "wins": 2,
+          "losses": 5,
+          "total": 7,
+          "winrate": 0.2857
         },
         {
           "commander": "Fael Spiritwalker",
@@ -6561,10 +6609,10 @@
         {
           "commander": "It That Weaves",
           "opponent": "Fael Spiritwalker",
-          "wins": 6,
-          "losses": 3,
-          "total": 9,
-          "winrate": 0.6667
+          "wins": 5,
+          "losses": 2,
+          "total": 7,
+          "winrate": 0.7143
         },
         {
           "commander": "It That Weaves",
@@ -6577,10 +6625,10 @@
         {
           "commander": "It That Weaves",
           "opponent": "Jagris, the Huntsman",
-          "wins": 6,
-          "losses": 10,
+          "wins": 7,
+          "losses": 9,
           "total": 16,
-          "winrate": 0.375
+          "winrate": 0.4375
         },
         {
           "commander": "It That Weaves",
@@ -6689,10 +6737,10 @@
         {
           "commander": "Jagris, the Huntsman",
           "opponent": "It That Weaves",
-          "wins": 10,
-          "losses": 6,
+          "wins": 9,
+          "losses": 7,
           "total": 16,
-          "winrate": 0.625
+          "winrate": 0.5625
         },
         {
           "commander": "Jagris, the Huntsman",
@@ -6754,9 +6802,9 @@
           "commander": "Jagris, the Huntsman",
           "opponent": "Soultaker Viessa",
           "wins": 30,
-          "losses": 38,
-          "total": 68,
-          "winrate": 0.4412
+          "losses": 37,
+          "total": 67,
+          "winrate": 0.4478
         },
         {
           "commander": "Jagris, the Huntsman",
@@ -6969,10 +7017,10 @@
         {
           "commander": "Lazim, Thief of Gods",
           "opponent": "Macks Speed",
-          "wins": 6,
-          "losses": 7,
-          "total": 13,
-          "winrate": 0.4615
+          "wins": 7,
+          "losses": 9,
+          "total": 16,
+          "winrate": 0.4375
         },
         {
           "commander": "Lazim, Thief of Gods",
@@ -7185,10 +7233,10 @@
         {
           "commander": "Macks Speed",
           "opponent": "Lazim, Thief of Gods",
-          "wins": 7,
-          "losses": 6,
-          "total": 13,
-          "winrate": 0.5385
+          "wins": 9,
+          "losses": 7,
+          "total": 16,
+          "winrate": 0.5625
         },
         {
           "commander": "Macks Speed",
@@ -7253,14 +7301,6 @@
           "losses": 6,
           "total": 13,
           "winrate": 0.5385
-        },
-        {
-          "commander": "Milo Sunstone",
-          "opponent": "Elber, Jungle Emissary",
-          "wins": 0,
-          "losses": 1,
-          "total": 1,
-          "winrate": 0.0
         },
         {
           "commander": "Milo Sunstone",
@@ -7504,11 +7544,19 @@
         },
         {
           "commander": "Rosirix the Witch",
+          "opponent": "Captain Greenbeard",
+          "wins": 0,
+          "losses": 1,
+          "total": 1,
+          "winrate": 0.0
+        },
+        {
+          "commander": "Rosirix the Witch",
           "opponent": "Elber, Jungle Emissary",
           "wins": 1,
-          "losses": 0,
-          "total": 1,
-          "winrate": 1.0
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Rosirix the Witch",
@@ -7633,10 +7681,10 @@
         {
           "commander": "Soultaker Viessa",
           "opponent": "Jagris, the Huntsman",
-          "wins": 38,
+          "wins": 37,
           "losses": 30,
-          "total": 68,
-          "winrate": 0.5588
+          "total": 67,
+          "winrate": 0.5522
         },
         {
           "commander": "Soultaker Viessa",
@@ -7958,6 +8006,14 @@
         },
         {
           "commander": "Captain Greenbeard",
+          "opponent": "Rosirix the Witch",
+          "wins": 1,
+          "losses": 0,
+          "total": 1,
+          "winrate": 1.0
+        },
+        {
+          "commander": "Captain Greenbeard",
           "opponent": "Soultaker Viessa",
           "wins": 2,
           "losses": 12,
@@ -8019,14 +8075,6 @@
           "losses": 1,
           "total": 3,
           "winrate": 0.6667
-        },
-        {
-          "commander": "Elber, Jungle Emissary",
-          "opponent": "Milo Sunstone",
-          "wins": 1,
-          "losses": 0,
-          "total": 1,
-          "winrate": 1.0
         },
         {
           "commander": "Elber, Jungle Emissary",
@@ -8319,10 +8367,10 @@
         {
           "commander": "Fael Spiritwalker",
           "opponent": "It That Weaves",
-          "wins": 3,
-          "losses": 5,
-          "total": 8,
-          "winrate": 0.375
+          "wins": 2,
+          "losses": 4,
+          "total": 6,
+          "winrate": 0.3333
         },
         {
           "commander": "Fael Spiritwalker",
@@ -8439,10 +8487,10 @@
         {
           "commander": "It That Weaves",
           "opponent": "Fael Spiritwalker",
-          "wins": 5,
-          "losses": 3,
-          "total": 8,
-          "winrate": 0.625
+          "wins": 4,
+          "losses": 2,
+          "total": 6,
+          "winrate": 0.6667
         },
         {
           "commander": "It That Weaves",
@@ -8456,9 +8504,9 @@
           "commander": "It That Weaves",
           "opponent": "Jagris, the Huntsman",
           "wins": 6,
-          "losses": 9,
-          "total": 15,
-          "winrate": 0.4
+          "losses": 8,
+          "total": 14,
+          "winrate": 0.4286
         },
         {
           "commander": "It That Weaves",
@@ -8567,10 +8615,10 @@
         {
           "commander": "Jagris, the Huntsman",
           "opponent": "It That Weaves",
-          "wins": 9,
+          "wins": 8,
           "losses": 6,
-          "total": 15,
-          "winrate": 0.6
+          "total": 14,
+          "winrate": 0.5714
         },
         {
           "commander": "Jagris, the Huntsman",
@@ -8632,9 +8680,9 @@
           "commander": "Jagris, the Huntsman",
           "opponent": "Soultaker Viessa",
           "wins": 29,
-          "losses": 35,
-          "total": 64,
-          "winrate": 0.4531
+          "losses": 34,
+          "total": 63,
+          "winrate": 0.4603
         },
         {
           "commander": "Jagris, the Huntsman",
@@ -8839,10 +8887,10 @@
         {
           "commander": "Lazim, Thief of Gods",
           "opponent": "Macks Speed",
-          "wins": 4,
-          "losses": 2,
-          "total": 6,
-          "winrate": 0.6667
+          "wins": 5,
+          "losses": 3,
+          "total": 8,
+          "winrate": 0.625
         },
         {
           "commander": "Lazim, Thief of Gods",
@@ -9039,10 +9087,10 @@
         {
           "commander": "Macks Speed",
           "opponent": "Lazim, Thief of Gods",
-          "wins": 2,
-          "losses": 4,
-          "total": 6,
-          "winrate": 0.3333
+          "wins": 3,
+          "losses": 5,
+          "total": 8,
+          "winrate": 0.375
         },
         {
           "commander": "Macks Speed",
@@ -9099,14 +9147,6 @@
           "losses": 6,
           "total": 13,
           "winrate": 0.5385
-        },
-        {
-          "commander": "Milo Sunstone",
-          "opponent": "Elber, Jungle Emissary",
-          "wins": 0,
-          "losses": 1,
-          "total": 1,
-          "winrate": 0.0
         },
         {
           "commander": "Milo Sunstone",
@@ -9334,6 +9374,14 @@
         },
         {
           "commander": "Rosirix the Witch",
+          "opponent": "Captain Greenbeard",
+          "wins": 0,
+          "losses": 1,
+          "total": 1,
+          "winrate": 0.0
+        },
+        {
+          "commander": "Rosirix the Witch",
           "opponent": "Fael Spiritwalker",
           "wins": 0,
           "losses": 1,
@@ -9431,10 +9479,10 @@
         {
           "commander": "Soultaker Viessa",
           "opponent": "Jagris, the Huntsman",
-          "wins": 35,
+          "wins": 34,
           "losses": 29,
-          "total": 64,
-          "winrate": 0.5469
+          "total": 63,
+          "winrate": 0.5397
         },
         {
           "commander": "Soultaker Viessa",
@@ -9669,18 +9717,18 @@
         {
           "commander": "Elber, Jungle Emissary",
           "opponent": "Rosirix the Witch",
-          "wins": 0,
+          "wins": 1,
           "losses": 1,
-          "total": 1,
-          "winrate": 0.0
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Elyse of the Order",
           "opponent": "Executor Ginn",
           "wins": 1,
-          "losses": 0,
-          "total": 1,
-          "winrate": 1.0
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Elyse of the Order",
@@ -9741,10 +9789,10 @@
         {
           "commander": "Executor Ginn",
           "opponent": "Elyse of the Order",
-          "wins": 0,
+          "wins": 1,
           "losses": 1,
-          "total": 1,
-          "winrate": 0.0
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Executor Ginn",
@@ -10102,9 +10150,9 @@
           "commander": "Lazim, Thief of Gods",
           "opponent": "Macks Speed",
           "wins": 1,
-          "losses": 3,
-          "total": 4,
-          "winrate": 0.25
+          "losses": 4,
+          "total": 5,
+          "winrate": 0.2
         },
         {
           "commander": "Lazim, Thief of Gods",
@@ -10205,10 +10253,10 @@
         {
           "commander": "Macks Speed",
           "opponent": "Lazim, Thief of Gods",
-          "wins": 3,
+          "wins": 4,
           "losses": 1,
-          "total": 4,
-          "winrate": 0.75
+          "total": 5,
+          "winrate": 0.8
         },
         {
           "commander": "Macks Speed",
@@ -10358,9 +10406,9 @@
           "commander": "Rosirix the Witch",
           "opponent": "Elber, Jungle Emissary",
           "wins": 1,
-          "losses": 0,
-          "total": 1,
-          "winrate": 1.0
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Rosirix the Witch",
@@ -10914,6 +10962,14 @@
         },
         {
           "commander": "It That Weaves",
+          "opponent": "Jagris, the Huntsman",
+          "wins": 1,
+          "losses": 0,
+          "total": 1,
+          "winrate": 1.0
+        },
+        {
+          "commander": "It That Weaves",
           "opponent": "Kai, Longcount Shaman",
           "wins": 0,
           "losses": 1,
@@ -10967,6 +11023,14 @@
           "losses": 0,
           "total": 1,
           "winrate": 1.0
+        },
+        {
+          "commander": "Jagris, the Huntsman",
+          "opponent": "It That Weaves",
+          "wins": 0,
+          "losses": 1,
+          "total": 1,
+          "winrate": 0.0
         },
         {
           "commander": "Jagris, the Huntsman",
@@ -11762,6 +11826,14 @@
         },
         {
           "commander": "Captain Greenbeard",
+          "opponent": "Rosirix the Witch",
+          "wins": 1,
+          "losses": 0,
+          "total": 1,
+          "winrate": 1.0
+        },
+        {
+          "commander": "Captain Greenbeard",
           "opponent": "Soultaker Viessa",
           "wins": 1,
           "losses": 2,
@@ -11811,10 +11883,10 @@
         {
           "commander": "Elber, Jungle Emissary",
           "opponent": "Rosirix the Witch",
-          "wins": 0,
+          "wins": 1,
           "losses": 1,
-          "total": 1,
-          "winrate": 0.0
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Elber, Jungle Emissary",
@@ -11844,9 +11916,9 @@
           "commander": "Elyse of the Order",
           "opponent": "Executor Ginn",
           "wins": 2,
-          "losses": 0,
-          "total": 2,
-          "winrate": 1.0
+          "losses": 1,
+          "total": 3,
+          "winrate": 0.6667
         },
         {
           "commander": "Elyse of the Order",
@@ -11939,10 +12011,10 @@
         {
           "commander": "Executor Ginn",
           "opponent": "Elyse of the Order",
-          "wins": 0,
+          "wins": 1,
           "losses": 2,
-          "total": 2,
-          "winrate": 0.0
+          "total": 3,
+          "winrate": 0.3333
         },
         {
           "commander": "Executor Ginn",
@@ -12179,10 +12251,10 @@
         {
           "commander": "It That Weaves",
           "opponent": "Jagris, the Huntsman",
-          "wins": 0,
+          "wins": 1,
           "losses": 3,
-          "total": 3,
-          "winrate": 0.0
+          "total": 4,
+          "winrate": 0.25
         },
         {
           "commander": "It That Weaves",
@@ -12268,9 +12340,9 @@
           "commander": "Jagris, the Huntsman",
           "opponent": "It That Weaves",
           "wins": 3,
-          "losses": 0,
-          "total": 3,
-          "winrate": 1.0
+          "losses": 1,
+          "total": 4,
+          "winrate": 0.75
         },
         {
           "commander": "Jagris, the Huntsman",
@@ -12339,10 +12411,10 @@
         {
           "commander": "Jagris, the Huntsman",
           "opponent": "Starwise Luna",
-          "wins": 7,
-          "losses": 2,
-          "total": 9,
-          "winrate": 0.7778
+          "wins": 5,
+          "losses": 1,
+          "total": 6,
+          "winrate": 0.8333
         },
         {
           "commander": "Kai, Longcount Shaman",
@@ -12539,10 +12611,10 @@
         {
           "commander": "Lazim, Thief of Gods",
           "opponent": "Macks Speed",
-          "wins": 4,
-          "losses": 6,
-          "total": 10,
-          "winrate": 0.4
+          "wins": 5,
+          "losses": 8,
+          "total": 13,
+          "winrate": 0.3846
         },
         {
           "commander": "Lazim, Thief of Gods",
@@ -12731,10 +12803,10 @@
         {
           "commander": "Macks Speed",
           "opponent": "Lazim, Thief of Gods",
-          "wins": 6,
-          "losses": 4,
-          "total": 10,
-          "winrate": 0.6
+          "wins": 8,
+          "losses": 5,
+          "total": 13,
+          "winrate": 0.6154
         },
         {
           "commander": "Macks Speed",
@@ -12978,11 +13050,19 @@
         },
         {
           "commander": "Rosirix the Witch",
+          "opponent": "Captain Greenbeard",
+          "wins": 0,
+          "losses": 1,
+          "total": 1,
+          "winrate": 0.0
+        },
+        {
+          "commander": "Rosirix the Witch",
           "opponent": "Elber, Jungle Emissary",
           "wins": 1,
-          "losses": 0,
-          "total": 1,
-          "winrate": 1.0
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Rosirix the Witch",
@@ -13203,10 +13283,10 @@
         {
           "commander": "Starwise Luna",
           "opponent": "Jagris, the Huntsman",
-          "wins": 2,
-          "losses": 7,
-          "total": 9,
-          "winrate": 0.2222
+          "wins": 1,
+          "losses": 5,
+          "total": 6,
+          "winrate": 0.1667
         },
         {
           "commander": "Starwise Luna",
@@ -13325,6 +13405,14 @@
           "losses": 1,
           "total": 1,
           "winrate": 0.0
+        },
+        {
+          "commander": "Captain Greenbeard",
+          "opponent": "Rosirix the Witch",
+          "wins": 1,
+          "losses": 0,
+          "total": 1,
+          "winrate": 1.0
         },
         {
           "commander": "Captain Greenbeard",
@@ -13745,10 +13833,10 @@
         {
           "commander": "Jagris, the Huntsman",
           "opponent": "Starwise Luna",
-          "wins": 4,
-          "losses": 1,
-          "total": 5,
-          "winrate": 0.8
+          "wins": 2,
+          "losses": 0,
+          "total": 2,
+          "winrate": 1.0
         },
         {
           "commander": "Kai, Longcount Shaman",
@@ -13889,10 +13977,10 @@
         {
           "commander": "Lazim, Thief of Gods",
           "opponent": "Macks Speed",
-          "wins": 2,
-          "losses": 1,
-          "total": 3,
-          "winrate": 0.6667
+          "wins": 3,
+          "losses": 2,
+          "total": 5,
+          "winrate": 0.6
         },
         {
           "commander": "Lazim, Thief of Gods",
@@ -14017,10 +14105,10 @@
         {
           "commander": "Macks Speed",
           "opponent": "Lazim, Thief of Gods",
-          "wins": 1,
-          "losses": 2,
-          "total": 3,
-          "winrate": 0.3333
+          "wins": 2,
+          "losses": 3,
+          "total": 5,
+          "winrate": 0.4
         },
         {
           "commander": "Macks Speed",
@@ -14157,6 +14245,14 @@
           "losses": 0,
           "total": 1,
           "winrate": 1.0
+        },
+        {
+          "commander": "Rosirix the Witch",
+          "opponent": "Captain Greenbeard",
+          "wins": 0,
+          "losses": 1,
+          "total": 1,
+          "winrate": 0.0
         },
         {
           "commander": "Rosirix the Witch",
@@ -14329,10 +14425,10 @@
         {
           "commander": "Starwise Luna",
           "opponent": "Jagris, the Huntsman",
-          "wins": 1,
-          "losses": 4,
-          "total": 5,
-          "winrate": 0.2
+          "wins": 0,
+          "losses": 2,
+          "total": 2,
+          "winrate": 0.0
         },
         {
           "commander": "Starwise Luna",
@@ -14431,18 +14527,18 @@
         {
           "commander": "Elber, Jungle Emissary",
           "opponent": "Rosirix the Witch",
-          "wins": 0,
+          "wins": 1,
           "losses": 1,
-          "total": 1,
-          "winrate": 0.0
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Elyse of the Order",
           "opponent": "Executor Ginn",
           "wins": 1,
-          "losses": 0,
-          "total": 1,
-          "winrate": 1.0
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Elyse of the Order",
@@ -14503,10 +14599,10 @@
         {
           "commander": "Executor Ginn",
           "opponent": "Elyse of the Order",
-          "wins": 0,
+          "wins": 1,
           "losses": 1,
-          "total": 1,
-          "winrate": 0.0
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Executor Ginn",
@@ -14864,9 +14960,9 @@
           "commander": "Lazim, Thief of Gods",
           "opponent": "Macks Speed",
           "wins": 1,
-          "losses": 3,
-          "total": 4,
-          "winrate": 0.25
+          "losses": 4,
+          "total": 5,
+          "winrate": 0.2
         },
         {
           "commander": "Lazim, Thief of Gods",
@@ -14967,10 +15063,10 @@
         {
           "commander": "Macks Speed",
           "opponent": "Lazim, Thief of Gods",
-          "wins": 3,
+          "wins": 4,
           "losses": 1,
-          "total": 4,
-          "winrate": 0.75
+          "total": 5,
+          "winrate": 0.8
         },
         {
           "commander": "Macks Speed",
@@ -15120,9 +15216,9 @@
           "commander": "Rosirix the Witch",
           "opponent": "Elber, Jungle Emissary",
           "wins": 1,
-          "losses": 0,
-          "total": 1,
-          "winrate": 1.0
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Rosirix the Witch",
@@ -15676,6 +15772,14 @@
         },
         {
           "commander": "It That Weaves",
+          "opponent": "Jagris, the Huntsman",
+          "wins": 1,
+          "losses": 0,
+          "total": 1,
+          "winrate": 1.0
+        },
+        {
+          "commander": "It That Weaves",
           "opponent": "Kai, Longcount Shaman",
           "wins": 0,
           "losses": 1,
@@ -15729,6 +15833,14 @@
           "losses": 0,
           "total": 1,
           "winrate": 1.0
+        },
+        {
+          "commander": "Jagris, the Huntsman",
+          "opponent": "It That Weaves",
+          "wins": 0,
+          "losses": 1,
+          "total": 1,
+          "winrate": 0.0
         },
         {
           "commander": "Jagris, the Huntsman",
@@ -16458,6 +16570,14 @@
           "winrate": 1.0
         },
         {
+          "commander": "Captain Greenbeard",
+          "opponent": "Rosirix the Witch",
+          "wins": 1,
+          "losses": 0,
+          "total": 1,
+          "winrate": 1.0
+        },
+        {
           "commander": "Elber, Jungle Emissary",
           "opponent": "Newhaven Township",
           "wins": 0,
@@ -16468,6 +16588,14 @@
         {
           "commander": "Elber, Jungle Emissary",
           "opponent": "Rosirix the Witch",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Elyse of the Order",
+          "opponent": "Executor Ginn",
           "wins": 0,
           "losses": 1,
           "total": 1,
@@ -16512,6 +16640,14 @@
           "losses": 2,
           "total": 2,
           "winrate": 0.0
+        },
+        {
+          "commander": "Executor Ginn",
+          "opponent": "Elyse of the Order",
+          "wins": 1,
+          "losses": 0,
+          "total": 1,
+          "winrate": 1.0
         },
         {
           "commander": "Executor Ginn",
@@ -16579,6 +16715,14 @@
         },
         {
           "commander": "It That Weaves",
+          "opponent": "Jagris, the Huntsman",
+          "wins": 1,
+          "losses": 0,
+          "total": 1,
+          "winrate": 1.0
+        },
+        {
+          "commander": "It That Weaves",
           "opponent": "Lazim, Thief of Gods",
           "wins": 0,
           "losses": 1,
@@ -16592,6 +16736,14 @@
           "losses": 0,
           "total": 1,
           "winrate": 1.0
+        },
+        {
+          "commander": "Jagris, the Huntsman",
+          "opponent": "It That Weaves",
+          "wins": 0,
+          "losses": 1,
+          "total": 1,
+          "winrate": 0.0
         },
         {
           "commander": "Jagris, the Huntsman",
@@ -16756,10 +16908,10 @@
         {
           "commander": "Lazim, Thief of Gods",
           "opponent": "Macks Speed",
-          "wins": 4,
-          "losses": 3,
-          "total": 7,
-          "winrate": 0.5714
+          "wins": 5,
+          "losses": 5,
+          "total": 10,
+          "winrate": 0.5
         },
         {
           "commander": "Lazim, Thief of Gods",
@@ -16820,10 +16972,10 @@
         {
           "commander": "Macks Speed",
           "opponent": "Lazim, Thief of Gods",
-          "wins": 3,
-          "losses": 4,
-          "total": 7,
-          "winrate": 0.4286
+          "wins": 5,
+          "losses": 5,
+          "total": 10,
+          "winrate": 0.5
         },
         {
           "commander": "Macks Speed",
@@ -16947,11 +17099,19 @@
         },
         {
           "commander": "Rosirix the Witch",
+          "opponent": "Captain Greenbeard",
+          "wins": 0,
+          "losses": 1,
+          "total": 1,
+          "winrate": 0.0
+        },
+        {
+          "commander": "Rosirix the Witch",
           "opponent": "Elber, Jungle Emissary",
           "wins": 1,
-          "losses": 0,
-          "total": 1,
-          "winrate": 1.0
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Rosirix the Witch",
@@ -17151,6 +17311,14 @@
           "winrate": 0.0
         },
         {
+          "commander": "Captain Greenbeard",
+          "opponent": "Rosirix the Witch",
+          "wins": 1,
+          "losses": 0,
+          "total": 1,
+          "winrate": 1.0
+        },
+        {
           "commander": "Elber, Jungle Emissary",
           "opponent": "Newhaven Township",
           "wins": 0,
@@ -17281,10 +17449,10 @@
         {
           "commander": "Lazim, Thief of Gods",
           "opponent": "Macks Speed",
-          "wins": 2,
-          "losses": 0,
-          "total": 2,
-          "winrate": 1.0
+          "wins": 3,
+          "losses": 1,
+          "total": 4,
+          "winrate": 0.75
         },
         {
           "commander": "Lazim, Thief of Gods",
@@ -17337,10 +17505,10 @@
         {
           "commander": "Macks Speed",
           "opponent": "Lazim, Thief of Gods",
-          "wins": 0,
-          "losses": 2,
-          "total": 2,
-          "winrate": 0.0
+          "wins": 1,
+          "losses": 3,
+          "total": 4,
+          "winrate": 0.25
         },
         {
           "commander": "Macks Speed",
@@ -17405,6 +17573,14 @@
           "losses": 0,
           "total": 1,
           "winrate": 1.0
+        },
+        {
+          "commander": "Rosirix the Witch",
+          "opponent": "Captain Greenbeard",
+          "wins": 0,
+          "losses": 1,
+          "total": 1,
+          "winrate": 0.0
         },
         {
           "commander": "Rosirix the Witch",
@@ -17524,6 +17700,7 @@
       "commanders": [
         "Elber, Jungle Emissary",
         "Elyse of the Order",
+        "Executor Ginn",
         "Fael Spiritwalker",
         "Kai, Longcount Shaman",
         "Lazim, Thief of Gods",
@@ -17538,6 +17715,14 @@
         {
           "commander": "Elber, Jungle Emissary",
           "opponent": "Rosirix the Witch",
+          "wins": 1,
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
+        },
+        {
+          "commander": "Elyse of the Order",
+          "opponent": "Executor Ginn",
           "wins": 0,
           "losses": 1,
           "total": 1,
@@ -17574,6 +17759,14 @@
           "losses": 1,
           "total": 1,
           "winrate": 0.0
+        },
+        {
+          "commander": "Executor Ginn",
+          "opponent": "Elyse of the Order",
+          "wins": 1,
+          "losses": 0,
+          "total": 1,
+          "winrate": 1.0
         },
         {
           "commander": "Fael Spiritwalker",
@@ -17651,9 +17844,9 @@
           "commander": "Lazim, Thief of Gods",
           "opponent": "Macks Speed",
           "wins": 1,
-          "losses": 2,
-          "total": 3,
-          "winrate": 0.3333
+          "losses": 3,
+          "total": 4,
+          "winrate": 0.25
         },
         {
           "commander": "Lazim, Thief of Gods",
@@ -17690,10 +17883,10 @@
         {
           "commander": "Macks Speed",
           "opponent": "Lazim, Thief of Gods",
-          "wins": 2,
+          "wins": 3,
           "losses": 1,
-          "total": 3,
-          "winrate": 0.6667
+          "total": 4,
+          "winrate": 0.75
         },
         {
           "commander": "Macks Speed",
@@ -17771,9 +17964,9 @@
           "commander": "Rosirix the Witch",
           "opponent": "Elber, Jungle Emissary",
           "wins": 1,
-          "losses": 0,
-          "total": 1,
-          "winrate": 1.0
+          "losses": 1,
+          "total": 2,
+          "winrate": 0.5
         },
         {
           "commander": "Rosirix the Witch",
@@ -17963,7 +18156,23 @@
         },
         {
           "commander": "It That Weaves",
+          "opponent": "Jagris, the Huntsman",
+          "wins": 1,
+          "losses": 0,
+          "total": 1,
+          "winrate": 1.0
+        },
+        {
+          "commander": "It That Weaves",
           "opponent": "Lazim, Thief of Gods",
+          "wins": 0,
+          "losses": 1,
+          "total": 1,
+          "winrate": 0.0
+        },
+        {
+          "commander": "Jagris, the Huntsman",
+          "opponent": "It That Weaves",
           "wins": 0,
           "losses": 1,
           "total": 1,
