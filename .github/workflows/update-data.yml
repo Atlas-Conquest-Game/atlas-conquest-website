@@ -37,12 +37,18 @@ jobs:
       - name: Run pipeline tests
         run: pytest scripts/tests/ -v --tb=short
 
+      # Regenerate per-commander deck-unfurl pages (site/decks/<slug>/index.html)
+      # after each data refresh so newly added commanders automatically get
+      # Discord-friendly og:image pages without a manual rebuild step.
+      - name: Generate per-commander deck pages
+        run: python scripts/generate_deck_pages.py
+
       - name: Commit and push updated data
         id: commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add site/data/ site/assets/
+          git add site/data/ site/assets/ site/decks/
           if git diff --staged --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else

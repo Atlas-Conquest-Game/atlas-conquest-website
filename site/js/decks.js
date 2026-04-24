@@ -519,11 +519,26 @@ function handleCopyCode() {
   }
 }
 
+// Must match commanderSlug() in site/js/shared.js AND slugify() in
+// scripts/generate_deck_pages.py — those three slug functions produce the
+// paths under /decks/<slug>/ that the generator creates for Discord unfurls.
+function deckCommanderSlug(name) {
+  return name.toLowerCase().replace(/[,']/g, '').replace(/\s+/g, '-');
+}
+
 function handleCopyUrl() {
   if (!currentDeck) return;
   try {
     const code = encodeDeckCode(currentDeck);
-    const url = `${window.location.origin}${window.location.pathname}?code=${encodeURIComponent(code)}`;
+    // Build the share URL against the per-commander path if a pre-generated page
+    // exists (lets Discord show commander-specific unfurls). Fall back to the
+    // current pathname — keeps builds with no commander working, and anything
+    // hosted outside the expected origin (local dev, preview deploys) unchanged.
+    let pathname = window.location.pathname;
+    if (currentDeck.commander) {
+      pathname = `/decks/${deckCommanderSlug(currentDeck.commander)}/`;
+    }
+    const url = `${window.location.origin}${pathname}?code=${encodeURIComponent(code)}`;
     navigator.clipboard.writeText(url);
     flashButton('btn-copy-url', 'Copied!');
   } catch (e) {

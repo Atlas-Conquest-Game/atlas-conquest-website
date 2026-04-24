@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- GEN:META:BEGIN — generated for Soultaker Viessa; edit scripts/generate_deck_pages.py, not this file. -->
+  <title>Soultaker Viessa Deck — Atlas Conquest</title>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Atlas Conquest">
+  <meta property="og:title" content="Soultaker Viessa Deck — Atlas Conquest">
+  <meta property="og:description" content="Import this Soultaker Viessa deck in Atlas Conquest. Paste the shared URL to view the decklist, stats, and mana curve.">
+  <meta property="og:image" content="https://atlas-conquest.com/assets/commanders/soultaker-viessa.jpg">
+  <meta property="og:url" content="https://atlas-conquest.com/decks/soultaker-viessa/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Soultaker Viessa Deck — Atlas Conquest">
+  <meta name="twitter:description" content="Import this Soultaker Viessa deck in Atlas Conquest. Paste the shared URL to view the decklist, stats, and mana curve.">
+  <meta name="twitter:image" content="https://atlas-conquest.com/assets/commanders/soultaker-viessa.jpg">
+  <link rel="icon" type="image/jpeg" href="https://atlas-conquest.com/assets/commanders/soultaker-viessa.jpg">
+  <!-- GEN:META:END -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/tooltips.css">
+  <link rel="stylesheet" href="/css/decks.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/index.html" class="nav-logo">
+        <img src="/assets/logo/atlas-conquest-icon.png" alt="" width="24" height="24" class="nav-logo-icon" aria-hidden="true">
+        Atlas Conquest
+      </a>
+      <div class="nav-links">
+        <a href="/index.html" class="nav-link" data-nav="home">Home</a>
+        <a href="/analytics.html" class="nav-link" data-nav="analytics">Analytics</a>
+        <a href="/decks.html" class="nav-link" data-nav="decks">Decks</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero hero-compact">
+    <div class="container">
+      <h1 class="hero-title">Deck Tools</h1>
+      <p class="hero-subtitle">Import, view, and share Atlas Conquest decks</p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <section class="section">
+    <div class="container">
+
+      <!-- Two-column layout -->
+      <div class="deck-layout">
+
+        <!-- Left column: controls + card list -->
+        <div class="deck-main">
+
+          <!-- Mode Tabs -->
+          <div class="deck-tabs">
+            <button class="deck-tab active" data-mode="import" id="tab-import">Import Deck</button>
+            <button class="deck-tab" data-mode="build" id="tab-build">Build Deck</button>
+          </div>
+
+          <!-- Import Panel -->
+          <div class="deck-panel" id="panel-import">
+            <label class="deck-input-label" for="deck-code-input">Paste deck code</label>
+            <div class="deck-input-row">
+              <input type="text" id="deck-code-input" class="deck-input" placeholder="e.g. wrNWQ29udHJvbHYz:DMHgDgzrwAAO..." spellcheck="false">
+              <button class="btn btn-primary" id="btn-decode">Decode</button>
+            </div>
+            <p class="deck-input-hint">Copy a deck code from the Atlas Conquest deck editor, then paste it here.</p>
+          </div>
+
+          <!-- Build Panel (hidden by default) -->
+          <div class="deck-panel hidden" id="panel-build">
+            <div class="build-row">
+              <div class="build-field">
+                <label class="deck-input-label" for="build-commander">Commander</label>
+                <select id="build-commander" class="deck-select">
+                  <option value="">Select a commander...</option>
+                </select>
+              </div>
+              <div class="build-field">
+                <label class="deck-input-label" for="build-name">Deck Name</label>
+                <input type="text" id="build-name" class="deck-input" placeholder="My Deck">
+              </div>
+            </div>
+            <!-- Card Pool Browser -->
+            <div class="card-browser" id="card-browser">
+              <div class="card-browser-toolbar">
+                <input type="text" id="build-card-input" class="deck-input" placeholder="Filter cards..." autocomplete="off">
+                <div class="card-browser-sort-row">
+                  <button class="build-sort-btn active" data-sort="cost" id="sort-btn-cost">Cost</button>
+                  <button class="build-sort-btn" data-sort="name" id="sort-btn-name">Name</button>
+                </div>
+              </div>
+              <div class="build-filter-hint hidden" id="build-filter-hint"></div>
+              <div class="card-browser-grid" id="card-browser-grid"></div>
+            </div>
+          </div>
+
+          <!-- Empty State -->
+          <div class="deck-empty-state" id="deck-empty-state">
+            <p>Paste a deck code above to view a decklist, or switch to <strong>Build Deck</strong> to create one from scratch.</p>
+          </div>
+
+          <!-- Incompatible card warning -->
+          <div class="deck-warning hidden" id="deck-warning"></div>
+
+          <!-- Card List -->
+          <div class="deck-card-list hidden" id="deck-card-list"></div>
+
+          <!-- Build mode note -->
+          <div class="deck-build-note hidden" id="build-note">
+            Click a card's count to cycle 1→2→3. Click × to remove.
+          </div>
+
+          <!-- Error -->
+          <div class="deck-message hidden" id="deck-error"></div>
+
+        </div><!-- /deck-main -->
+
+        <!-- Right column: stats sidebar (shown when deck loaded) -->
+        <div class="deck-sidebar hidden" id="deck-sidebar">
+
+          <!-- Commander info + Share URL -->
+          <div class="deck-sidebar-card">
+            <div class="deck-commander-section">
+              <img id="deck-commander-art" class="deck-commander-portrait" src="" alt="" style="display:none">
+              <div class="deck-commander-meta">
+                <div class="deck-name" id="deck-name"></div>
+                <div class="deck-commander-faction" id="deck-commander-faction"></div>
+                <div class="deck-commander-label" id="deck-commander"></div>
+              </div>
+            </div>
+            <div class="deck-copy-row">
+              <button class="btn btn-primary" id="btn-copy-url">Copy URL</button>
+              <button class="btn btn-secondary" id="btn-copy-code">Copy Deck Code</button>
+            </div>
+          </div>
+
+          <!-- Quick stats -->
+          <div class="deck-sidebar-card">
+            <div class="deck-quick-stats">
+              <div class="deck-quick-stat">
+                <div class="deck-quick-stat-value" id="stat-total-cards">0</div>
+                <div class="deck-quick-stat-label">Cards</div>
+              </div>
+              <div class="deck-quick-stat">
+                <div class="deck-quick-stat-value" id="stat-unique-cards">0</div>
+                <div class="deck-quick-stat-label">Unique</div>
+              </div>
+              <div class="deck-quick-stat">
+                <div class="deck-quick-stat-value" id="stat-avg-cost">—</div>
+                <div class="deck-quick-stat-label">Avg Cost</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mana Curve -->
+          <div class="deck-sidebar-card">
+            <div class="deck-sidebar-section-label">Mana Curve</div>
+            <div class="mana-curve" id="mana-curve"></div>
+            <div class="mana-curve-legend">
+              <span class="mana-legend-item"><span class="mana-legend-dot minion"></span>Minions</span>
+              <span class="mana-legend-item"><span class="mana-legend-dot spell"></span>Spells</span>
+            </div>
+          </div>
+
+          <!-- Type Breakdown -->
+          <div class="deck-sidebar-card">
+            <div class="deck-sidebar-section-label">Type Breakdown</div>
+            <div id="type-breakdown"></div>
+          </div>
+
+        </div><!-- /deck-sidebar -->
+
+      </div><!-- /deck-layout -->
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-text">Atlas Conquest Analytics &mdash; Updated daily from game data.</p>
+      <p class="footer-text footer-muted">Built for the community. Not affiliated with the Atlas Conquest development team.</p>
+    </div>
+  </footer>
+
+  <!-- Card art hover preview (fixed, follows cursor) -->
+  <div class="card-preview" id="card-preview">
+    <img id="card-preview-img" src="" alt="">
+  </div>
+
+  <script src="/js/deckcode.js"></script>
+  <script src="/js/decks.js"></script>
+</body>
+</html>
