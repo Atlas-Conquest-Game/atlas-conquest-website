@@ -1,0 +1,44 @@
+name: Deploy to GitHub Pages
+
+on:
+  # Manual trigger (also how update-data.yml chains into this workflow)
+  workflow_dispatch:
+  # Keep a push trigger as a safety net for direct edits (e.g. committing from your laptop).
+  # NOTE: pushes authored by GITHUB_TOKEN inside another workflow do NOT trigger this —
+  # that's why update-data.yml explicitly dispatches this workflow at the end.
+  push:
+    branches: [main]
+    paths:
+      - 'site/**'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
