@@ -37,9 +37,13 @@ jobs:
       - name: Run pipeline tests
         run: pytest scripts/tests/ -v --tb=short
 
-      # Regenerate per-commander deck-unfurl pages (site/decks/<slug>/index.html)
+      # Regenerate per-commander 1200×630 OG hero images + deck-unfurl pages
       # after each data refresh so newly added commanders automatically get
-      # Discord-friendly og:image pages without a manual rebuild step.
+      # Discord-friendly link previews without a manual rebuild step.
+      # Order matters: images first, then pages (pages reference the images).
+      - name: Generate per-commander OG images
+        run: python scripts/generate_og_images.py
+
       - name: Generate per-commander deck pages
         run: python scripts/generate_deck_pages.py
 

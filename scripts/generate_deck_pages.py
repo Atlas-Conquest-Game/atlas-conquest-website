@@ -63,8 +63,12 @@ def meta_block(commander: dict) -> str:
     """Build the replacement meta/title/favicon block for a given commander."""
     name = commander["name"]
     slug = slugify(name)
-    art_rel = commander.get("art") or f"assets/commanders/{slug}.jpg"
-    art_abs = f"{SITE_ROOT}/{art_rel.lstrip('/')}"
+    # og:image points at the 1200×630 hero produced by scripts/generate_og_images.py;
+    # favicon uses the raw 400×400 commander portrait which fits better at 16×16.
+    og_rel = f"assets/og/{slug}.jpg"
+    portrait_rel = commander.get("art") or f"assets/commanders/{slug}.jpg"
+    og_abs = f"{SITE_ROOT}/{og_rel}"
+    portrait_abs = f"{SITE_ROOT}/{portrait_rel.lstrip('/')}"
     page_url = f"{SITE_ROOT}/decks/{slug}/"
     title = f"{name} Deck — Atlas Conquest"
     description = (
@@ -76,7 +80,8 @@ def meta_block(commander: dict) -> str:
     t = html.escape(title, quote=True)
     d = html.escape(description, quote=True)
     u = html.escape(page_url, quote=True)
-    i = html.escape(art_abs, quote=True)
+    og = html.escape(og_abs, quote=True)
+    pt = html.escape(portrait_abs, quote=True)
     return (
         f"{SENTINEL_BEGIN} — generated for {name}; "
         f"edit scripts/generate_deck_pages.py, not this file. -->\n"
@@ -85,13 +90,17 @@ def meta_block(commander: dict) -> str:
         f"  <meta property=\"og:site_name\" content=\"Atlas Conquest\">\n"
         f"  <meta property=\"og:title\" content=\"{t}\">\n"
         f"  <meta property=\"og:description\" content=\"{d}\">\n"
-        f"  <meta property=\"og:image\" content=\"{i}\">\n"
+        f"  <meta property=\"og:image\" content=\"{og}\">\n"
+        f"  <meta property=\"og:image:type\" content=\"image/jpeg\">\n"
+        f"  <meta property=\"og:image:width\" content=\"1200\">\n"
+        f"  <meta property=\"og:image:height\" content=\"630\">\n"
+        f"  <meta property=\"og:image:alt\" content=\"{t}\">\n"
         f"  <meta property=\"og:url\" content=\"{u}\">\n"
         f"  <meta name=\"twitter:card\" content=\"summary_large_image\">\n"
         f"  <meta name=\"twitter:title\" content=\"{t}\">\n"
         f"  <meta name=\"twitter:description\" content=\"{d}\">\n"
-        f"  <meta name=\"twitter:image\" content=\"{i}\">\n"
-        f"  <link rel=\"icon\" type=\"image/jpeg\" href=\"{i}\">\n"
+        f"  <meta name=\"twitter:image\" content=\"{og}\">\n"
+        f"  <link rel=\"icon\" type=\"image/jpeg\" href=\"{pt}\">\n"
         f"  {SENTINEL_END}"
     )
 

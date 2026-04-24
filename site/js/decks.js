@@ -27,12 +27,15 @@ const LAZIM_NAME = 'Lazim, Thief of Gods';
 // ─── Data Loading ──────────────────────────────────────────
 
 async function loadCardlist() {
-  const resp = await fetch('data/cardlist.json');
+  // Root-absolute paths: decks.js now runs from both /decks.html and from the
+  // per-commander unfurl pages at /decks/<slug>/index.html. A relative 'data/...'
+  // would resolve against the current directory and 404 on the nested pages.
+  const resp = await fetch('/data/cardlist.json');
   cardlistData = await resp.json();
   initDeckCodec(cardlistData);
 
   const knownCommanders = new Set();
-  const resp2 = await fetch('data/commanders.json');
+  const resp2 = await fetch('/data/commanders.json');
   const commanders = await resp2.json();
   commanders.forEach(c => {
     knownCommanders.add(c.name);
@@ -40,7 +43,7 @@ async function loadCardlist() {
   });
   commanderList = [...knownCommanders].sort();
 
-  const resp3 = await fetch('data/cards.json');
+  const resp3 = await fetch('/data/cards.json');
   const cards = await resp3.json();
   cards.forEach(c => {
     cardInfoMap[c.name] = {
@@ -56,7 +59,7 @@ async function loadCardlist() {
 
 function commanderArtPath(name) {
   const slug = name.toLowerCase().replace(/[,.']/g, '').replace(/\s+/g, '-');
-  return `assets/commanders/${slug}.jpg`;
+  return `/assets/commanders/${slug}.jpg`;
 }
 
 function cardArtSlug(name) {
@@ -165,7 +168,7 @@ function initCardPreview() {
       ? (row.dataset.card || '')
       : (artWrap.closest('.card-tile')?.dataset.name || '');
     const slug = cardArtSlug(cardName);
-    img.src = `assets/cards/${slug}.jpg`;
+    img.src = `/assets/cards/${slug}.jpg`;
     img.onerror = () => { preview.classList.remove('visible'); };
     preview.classList.add('visible');
   });
@@ -231,7 +234,7 @@ function renderCardBrowser(q = '') {
     const atMax = count >= 3;
     return `<div class="card-tile${count > 0 ? ' in-deck' : ''}" data-name="${c.name}">
       <div class="card-tile-art-wrap">
-        <img class="card-tile-art" src="assets/cards/${slug}.jpg" alt="" onerror="this.style.visibility='hidden'">
+        <img class="card-tile-art" src="/assets/cards/${slug}.jpg" alt="" onerror="this.style.visibility='hidden'">
         <div class="card-tile-cost-badge">${cost}</div>
       </div>
       <div class="card-tile-name">${c.name}</div>
