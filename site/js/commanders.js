@@ -97,12 +97,18 @@ function renderBucketTable(tableId, data, unitSuffix) {
   } else if (sortState.key === 'total') {
     rows.sort((a, b) => sortState.dir === 'asc' ? a.totalGames - b.totalGames : b.totalGames - a.totalGames);
   } else {
-    // Sort by a bucket index winrate
+    // Sort by a bucket index winrate. Buckets with <5 games render as `--` in the
+    // table (see renderBucketTable row HTML) — treat them as NA and sink them to
+    // the bottom regardless of sort direction, rather than sorting as 0 or -1.
     const idx = parseInt(sortState.key);
     rows.sort((a, b) => {
-      const aWr = a.bucketData[idx] && a.bucketData[idx].winrate !== null ? a.bucketData[idx].winrate : -1;
-      const bWr = b.bucketData[idx] && b.bucketData[idx].winrate !== null ? b.bucketData[idx].winrate : -1;
-      return sortState.dir === 'asc' ? aWr - bWr : bWr - aWr;
+      const aBucket = a.bucketData[idx];
+      const bBucket = b.bucketData[idx];
+      const aEmpty = !aBucket || aBucket.winrate == null || (aBucket.games || 0) < 5;
+      const bEmpty = !bBucket || bBucket.winrate == null || (bBucket.games || 0) < 5;
+      const aWr = aBucket ? aBucket.winrate : 0;
+      const bWr = bBucket ? bBucket.winrate : 0;
+      return compareNALast(aEmpty, bEmpty, aWr, bWr, sortState.dir);
     });
   }
 

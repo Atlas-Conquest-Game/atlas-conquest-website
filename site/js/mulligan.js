@@ -73,14 +73,21 @@ function renderMulliganTable() {
       return sortDir === 'asc' ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
     }
 
-    // For winrate columns, push low-sample to bottom
-    const isWinrate = ['keep_winrate', 'return_winrate', 'winrate_delta', 'keep_rate', 'norm_keep_delta'].includes(sortKey);
-    const aEmpty = aVal == null || (isWinrate && (a.total_seen || 0) < 5);
-    const bEmpty = bVal == null || (isWinrate && (b.total_seen || 0) < 5);
-    if (aEmpty && bEmpty) return 0;
-    if (aEmpty) return 1;
-    if (bEmpty) return -1;
-    return sortDir === 'asc' ? aVal - bVal : bVal - aVal;
+    // For sample-gated columns, treat a row as NA when the same threshold the
+    // display uses for rendering `--` is tripped. Keep these in sync with the
+    // render logic below and with winrateCell / winrateDeltaCell / normKeepDeltaCell.
+    //   key              -> [countField, threshold]
+    const NA_RULES = {
+      keep_rate:       ['total_seen',     5],
+      keep_winrate:    ['kept_count',     5],
+      return_winrate:  ['returned_count', 5],
+      winrate_delta:   ['total_seen',    30],
+      norm_keep_delta: ['total_seen',    30],
+    };
+    const rule = NA_RULES[sortKey];
+    const aEmpty = aVal == null || (rule && (a[rule[0]] || 0) < rule[1]);
+    const bEmpty = bVal == null || (rule && (b[rule[0]] || 0) < rule[1]);
+    return compareNALast(aEmpty, bEmpty, aVal, bVal, sortDir);
   });
 
   // Update search count

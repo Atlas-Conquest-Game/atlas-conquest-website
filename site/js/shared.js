@@ -170,6 +170,19 @@ function normKeepDeltaCell(delta, totalSeen) {
   return `<span class="${cls}">${sign}${pct}%</span>`;
 }
 
+/**
+ * Comparator helper: push rows with NA values to the bottom regardless of sort direction.
+ * Use inside Array.prototype.sort. `aEmpty` / `bEmpty` should be computed by the caller
+ * using the same NA rule that the display (winrateCell / winrateDeltaCell / etc.) uses,
+ * so sort order matches what the user sees as `--`.
+ */
+function compareNALast(aEmpty, bEmpty, aVal, bVal, dir) {
+  if (aEmpty && bEmpty) return 0;
+  if (aEmpty) return 1;
+  if (bEmpty) return -1;
+  return dir === 'asc' ? aVal - bVal : bVal - aVal;
+}
+
 function shiftColor(hex, pct) {
   // Lighten a hex color by pct% (e.g. 15 = 15% lighter)
   const num = parseInt(hex.slice(1), 16);
