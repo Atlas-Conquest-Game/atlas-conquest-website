@@ -20,6 +20,7 @@ from pipeline.aggregation import (
     aggregate_commander_card_stats,
     aggregate_game_distributions,
     aggregate_deck_composition,
+    aggregate_archetypes,
     aggregate_commander_winrate_trends,
     aggregate_mulligan_stats,
     aggregate_commander_mulligan_stats,
@@ -58,6 +59,7 @@ def build_and_write_all(games, cards_csv, commanders_csv):
         "trends": {},
         "distributions": {},
         "deck_comp": {},
+        "archetypes": {},
         "first_turn": {},
         "cmd_trends": {},
         "duration_wr": {},
@@ -194,6 +196,9 @@ def build_and_write_all(games, cards_csv, commanders_csv):
             # ── deck composition ──
             out["deck_comp"][period_key][map_name] = aggregate_deck_composition(map_games, card_info, cmd_faction)
 
+            # ── metagame archetypes ──
+            out["archetypes"][period_key][map_name] = aggregate_archetypes(map_games)
+
             # ── first-turn advantage ──
             out["first_turn"][period_key][map_name] = aggregate_first_turn(map_games)
 
@@ -260,6 +265,7 @@ def build_and_write_all(games, cards_csv, commanders_csv):
     write_json("trends.json", out["trends"])
     write_json("game_distributions.json", out["distributions"])
     write_json("deck_composition.json", out["deck_comp"])
+    write_json("archetypes.json", out["archetypes"], compact=True)
     write_json("first_turn.json", out["first_turn"])
     write_json("commander_trends.json", out["cmd_trends"])
     write_json("duration_winrates.json", out["duration_wr"])
@@ -336,4 +342,4 @@ def main():
     print("\nAggregating and writing data files...")
     build_and_write_all(all_games, cards_csv, commanders_csv)
 
-    print(f"\nDone! {len(all_games)} games processed → site/data/")
+    print(f"\nDone! {len(all_games)} games processed -> site/data/")

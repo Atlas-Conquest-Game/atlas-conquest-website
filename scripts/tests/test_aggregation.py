@@ -20,6 +20,7 @@ from pipeline.aggregation import (
     aggregate_turn_winrates,
     aggregate_commander_card_stats,
     aggregate_game_distributions,
+    aggregate_archetypes,
 )
 
 
@@ -346,3 +347,116 @@ class TestB12_AvgCopiesDenominator:
             for card in result["Captain Greenbeard"]:
                 if card["name"] == "Fire Bolt":
                     assert card["avg_copies"] == 2.0
+
+
+# ─── B13: Archetype discovery ─────────────────────────────────────
+
+class TestB13_ArchetypeDiscovery:
+    """Louvain card packages should separate cards that co-occur together."""
+
+    def test_separates_two_card_packages_for_one_commander(self):
+        games = []
+        burn_cards = [
+            {"name": "Flame Volley", "count": 3},
+            {"name": "War Chant", "count": 3},
+            {"name": "Ash Raider", "count": 2},
+        ]
+        ramp_cards = [
+            {"name": "Root Bloom", "count": 3},
+            {"name": "Ancient Beast", "count": 2},
+            {"name": "Wild Growth", "count": 3},
+        ]
+
+        for i in range(5):
+            games.append(make_clean_game(
+                game_id=f"burn-{i}",
+                players_overrides=[
+                    {
+                        "commander": "Captain Greenbeard",
+                        "winner": i < 3,
+                        "cards_in_deck": burn_cards,
+                    },
+                    {"commander": "Opponent", "winner": i >= 3},
+                ],
+            ))
+        for i in range(5):
+            games.append(make_clean_game(
+                game_id=f"ramp-{i}",
+                players_overrides=[
+                    {
+                        "commander": "Captain Greenbeard",
+                        "winner": i < 2,
+                        "cards_in_deck": ramp_cards,
+                    },
+                    {"commander": "Opponent", "winner": i >= 2},
+                ],
+            ))
+
+        result = aggregate_archetypes(
+            games,
+            min_commander_decks=4,
+            min_card_decks=2,
+            min_edge_weight=2,
+            min_archetype_decks=2,
+        )
+
+        commander = result["commanders"]["Captain Greenbeard"]
+        assert commander["skipped"] is False
+        assert len(commander["packages"]) == 2
+        assert len(commander["archetypes"]) == 2
+
+        package_sets = [set(p["cards"]) for p in commander["packages"]]
+        assert set(c["name"] for c in burn_cards) in package_sets
+        assert set(c["name"] for c in ramp_cards) in package_sets
+
+        archetype = commander["archetypes"][0]
+        assert "cards" in archetype
+        assert len(archetype["cards"]) == 3
+        assert archetype["cards"][0]["inclusion_rate"] == 1.0
+        assert archetype["cards"][0]["avg_copies"] > 0
+        assert archetype["total_cards_seen"] == 3
+        assert archetype["card_display_threshold"] == 0.25
+
+    def test_skips_commanders_with_too_few_decks(self):
+        games = make_games(2, commander1="Tiny Sample", commander2="Other")
+        result = aggregate_archetypes(games, min_commander_decks=8)
+
+        assert result["commanders"]["Tiny Sample"]["skipped"] is True
+        assert result["commanders"]["Tiny Sample"]["reason"] == "insufficient_decks"
+
+    def test_representative_cards_trim_low_prevalence_tail(self):
+        games = []
+        for i in range(20):
+            cards = [
+                {"name": "Core A", "count": 3},
+                {"name": "Core B", "count": 2},
+                {"name": "Core C", "count": 1},
+            ]
+            if i < 2:
+                cards.append({"name": f"Rare Tech {i}", "count": 1})
+            games.append(make_clean_game(
+                game_id=f"tail-{i}",
+                players_overrides=[
+                    {
+                        "commander": "Captain Greenbeard",
+                        "winner": i % 2 == 0,
+                        "cards_in_deck": cards,
+                    },
+                    {"commander": "Opponent", "winner": i % 2 != 0},
+                ],
+            ))
+
+        result = aggregate_archetypes(
+            games,
+            min_commander_decks=4,
+            min_card_decks=2,
+            min_edge_weight=2,
+            min_archetype_decks=2,
+            representative_card_rate=0.25,
+            min_representative_cards=3,
+        )
+        archetype = result["commanders"]["Captain Greenbeard"]["archetypes"][0]
+        displayed_names = {card["name"] for card in archetype["cards"]}
+
+        assert archetype["total_cards_seen"] == 5
+        assert displayed_names == {"Core A", "Core B", "Core C"}
