@@ -4,8 +4,10 @@ All functions take a list of clean game dicts and return aggregated data.
 No I/O, no side effects.
 """
 
-from collections import defaultdict
+import math
+from collections import Counter, defaultdict
 from datetime import datetime
+from itertools import combinations
 
 
 def aggregate_commander_stats(games):
@@ -771,6 +773,422 @@ def aggregate_deck_composition(games, card_info, cmd_faction):
         }
 
     return result
+
+
+def aggregate_archetypes(games, min_commander_decks=8, min_card_decks=3,
+                         min_edge_weight=2, min_package_cards=2,
+                         min_archetype_decks=3, representative_card_rate=0.25,
+                         min_representative_cards=15, staple_threshold=0.40):
+    """Discover commander-specific deck archetypes from card co-occurrence.
+
+    The model has two layers:
+    1. Build a card co-occurrence graph per commander and run a deterministic
+       Louvain local-moving pass to find card packages.
+    2. Assign each deck to the strongest package combination and aggregate
+       those deck groups into archetype rows for the metagame page.
+
+    staple_threshold controls which cards are excluded from package names.
+    A card is considered a staple if its global inclusion rate (fraction of
+    all player-deck entries containing it across all commanders) exceeds this
+    value. Using a global rate rather than a per-commander rate means faction-
+    specific cards that are popular within one commander's pool (e.g. Quickling
+    for Jagris) are not incorrectly labelled staples.
+    """
+    commander_decks = defaultdict(list)
+    total_player_decks = 0
+
+    # Precompute global card inclusion rate (card present in X% of all decks).
+    global_card_counts: Counter = Counter()
+    global_total_decks = 0
+
+    for game in games:
+        for p in game["players"]:
+            cmd = p.get("commander")
+            cards = p.get("cards_in_deck", [])
+            if not cmd or not cards:
+                continue
+
+            card_counts = Counter()
+            for card in cards:
+                name = card.get("name")
+                count = card.get("count", 1)
+                if name:
+                    card_counts[name] += count
+
+            if not card_counts:
+                continue
+
+            global_card_counts.update(card_counts.keys())
+            global_total_decks += 1
+
+            commander_decks[cmd].append({
+                "winner": bool(p.get("winner")),
+                "cards": dict(card_counts),
+                "deck_name": p.get("deck_name", "") or "",
+                "username": p.get("name", "") or "",
+            })
+            total_player_decks += 1
+
+    global_card_rate: dict = {
+        card: count / global_total_decks
+        for card, count in global_card_counts.items()
+    } if global_total_decks else {}
+
+    result = {
+        "total_decks": total_player_decks,
+        "commanders": {},
+    }
+
+    for cmd, decks in sorted(commander_decks.items()):
+        deck_count = len(decks)
+        if deck_count < min_commander_decks:
+            result["commanders"][cmd] = {
+                "deck_count": deck_count,
+                "skipped": True,
+                "reason": "insufficient_decks",
+                "packages": [],
+                "archetypes": [],
+            }
+            continue
+
+        nodes, edges, card_deck_counts = _build_card_graph(
+            decks, min_card_decks, min_edge_weight
+        )
+        communities = _louvain_local_moving(nodes, edges)
+        packages = _build_card_packages(
+            communities, decks, card_deck_counts, deck_count, min_package_cards,
+            global_card_rate, staple_threshold
+        )
+        archetypes = _build_archetype_rows(
+            decks, packages, card_deck_counts, deck_count, total_player_decks,
+            min_archetype_decks, representative_card_rate,
+            min_representative_cards
+        )
+
+        result["commanders"][cmd] = {
+            "deck_count": deck_count,
+            "skipped": False,
+            "packages": packages,
+            "archetypes": archetypes,
+        }
+
+    return result
+
+
+def _build_card_graph(decks, min_card_decks, min_edge_weight):
+    card_deck_counts = Counter()
+    edge_counts = Counter()
+
+    for deck in decks:
+        present = sorted(deck["cards"].keys())
+        card_deck_counts.update(present)
+        for a, b in combinations(present, 2):
+            edge_counts[(a, b)] += 1
+
+    nodes = {
+        card for card, count in card_deck_counts.items()
+        if count >= min_card_decks
+    }
+    edges = defaultdict(dict)
+    for (a, b), weight in edge_counts.items():
+        if weight < min_edge_weight or a not in nodes or b not in nodes:
+            continue
+        edges[a][b] = weight
+        edges[b][a] = weight
+
+    # Drop isolated cards after edge filtering; Louvain communities with one
+    # card do not help define an archetype package.
+    connected_nodes = {node for node in nodes if edges.get(node)}
+    return connected_nodes, edges, card_deck_counts
+
+
+def _louvain_local_moving(nodes, edges, resolution=1.0, max_passes=25):
+    """Deterministic single-level Louvain community detection.
+
+    This is the local-moving phase of Louvain. It is intentionally small and
+    dependency-free because the pipeline runs in GitHub Actions.
+    """
+    if not nodes:
+        return {}
+
+    communities = {node: i for i, node in enumerate(sorted(nodes))}
+    degrees = {
+        node: sum(edges.get(node, {}).values())
+        for node in nodes
+    }
+    total_weight = sum(
+        weight for a, neighbors in edges.items()
+        for b, weight in neighbors.items()
+        if a < b
+    )
+    if total_weight == 0:
+        return {}
+
+    comm_totals = defaultdict(float)
+    comm_internal = defaultdict(float)
+    for node, comm in communities.items():
+        comm_totals[comm] += degrees[node]
+
+    for _ in range(max_passes):
+        moved = False
+        ordered_nodes = sorted(
+            nodes,
+            key=lambda n: (-sum(edges.get(n, {}).values()), n)
+        )
+
+        for node in ordered_nodes:
+            original = communities[node]
+            neighbor_weights = defaultdict(float)
+            for neighbor, weight in edges.get(node, {}).items():
+                neighbor_weights[communities[neighbor]] += weight
+
+            neighbor_comms = sorted(neighbor_weights)
+            best_comm = original
+            best_delta = 0
+
+            for comm in neighbor_comms:
+                if comm == original:
+                    continue
+                delta = _move_modularity_delta(
+                    node, original, comm, degrees, comm_totals, comm_internal,
+                    neighbor_weights, total_weight, resolution
+                )
+                if delta > best_delta + 1e-12:
+                    best_delta = delta
+                    best_comm = comm
+
+            if best_comm != original:
+                node_degree = degrees[node]
+                comm_totals[original] -= node_degree
+                comm_internal[original] -= neighbor_weights.get(original, 0)
+                comm_totals[best_comm] += node_degree
+                comm_internal[best_comm] += neighbor_weights.get(best_comm, 0)
+                communities[node] = best_comm
+                moved = True
+
+        if not moved:
+            break
+
+    grouped = defaultdict(list)
+    for node, comm in communities.items():
+        grouped[comm].append(node)
+
+    normalized = {}
+    for idx, cards in enumerate(sorted(grouped.values(), key=lambda c: (-len(c), sorted(c)))):
+        for card in cards:
+            normalized[card] = idx
+    return normalized
+
+
+def _move_modularity_delta(node, old_comm, new_comm, degrees, comm_totals,
+                           comm_internal, neighbor_weights, total_weight,
+                           resolution):
+    node_degree = degrees[node]
+    old_links = neighbor_weights.get(old_comm, 0)
+    new_links = neighbor_weights.get(new_comm, 0)
+
+    old_before = _community_modularity(
+        comm_internal[old_comm], comm_totals[old_comm], total_weight, resolution
+    )
+    new_before = _community_modularity(
+        comm_internal[new_comm], comm_totals[new_comm], total_weight, resolution
+    )
+    old_after = _community_modularity(
+        comm_internal[old_comm] - old_links,
+        comm_totals[old_comm] - node_degree,
+        total_weight,
+        resolution,
+    )
+    new_after = _community_modularity(
+        comm_internal[new_comm] + new_links,
+        comm_totals[new_comm] + node_degree,
+        total_weight,
+        resolution,
+    )
+    return (old_after + new_after) - (old_before + new_before)
+
+
+def _community_modularity(internal_weight, total_degree, total_weight, resolution):
+    return (
+        internal_weight / total_weight
+        - resolution * (total_degree / (2 * total_weight)) ** 2
+    )
+
+
+def _build_card_packages(communities, decks, card_deck_counts, deck_count,
+                         min_package_cards, global_card_rate=None,
+                         staple_threshold=0.40):
+    grouped = defaultdict(list)
+    for card, comm in communities.items():
+        grouped[comm].append(card)
+
+    _global_rate = global_card_rate or {}
+    packages = []
+    for cards in grouped.values():
+        if len(cards) < min_package_cards:
+            continue
+
+        card_set = set(cards)
+        containing_decks = []
+        for deck in decks:
+            overlap = card_set.intersection(deck["cards"])
+            if len(overlap) >= min(2, len(card_set)):
+                containing_decks.append(deck)
+
+        package_deck_count = len(containing_decks)
+        if package_deck_count == 0:
+            continue
+
+        card_rows = []
+        for card in sorted(cards):
+            in_package = sum(1 for deck in containing_decks if card in deck["cards"])
+            package_rate = in_package / package_deck_count
+            baseline_rate = card_deck_counts[card] / deck_count
+            # IDF: penalises cards that are globally common across all commanders.
+            # Falls back to per-commander rate when global data is unavailable.
+            g_rate = _global_rate.get(card) or baseline_rate
+            idf = math.log(1.0 / (g_rate + 1e-9))
+            card_rows.append({
+                "name": card,
+                "package_rate": round(package_rate, 4),
+                "baseline_rate": round(baseline_rate, 4),
+                "lift": round(package_rate - baseline_rate, 4),
+                "tfidf": round(package_rate * idf, 4),
+                "deck_count": card_deck_counts[card],
+            })
+
+        card_rows.sort(key=lambda c: (-c["tfidf"], -c["package_rate"], c["name"]))
+        packages.append({
+            "cards": [c["name"] for c in card_rows],
+            "deck_count": package_deck_count,
+            "inclusion_rate": round(package_deck_count / deck_count, 4),
+            "signature_cards": card_rows[:8],
+        })
+
+    packages.sort(key=lambda p: (-p["deck_count"], p["cards"][0]))
+    for i, package in enumerate(packages, start=1):
+        package["id"] = f"pkg-{i}"
+        # signature_cards is already sorted by TF-IDF descending, so the top-2
+        # are the most distinctive cards for this package.
+        sig = package["signature_cards"]
+        package["name"] = " / ".join(c["name"] for c in sig[:2])
+
+    return packages
+
+
+def _build_archetype_rows(decks, packages, card_deck_counts, commander_deck_count,
+                          total_player_decks, min_archetype_decks,
+                          representative_card_rate, min_representative_cards):
+    if not packages:
+        return []
+
+    package_lookup = {p["id"]: set(p["cards"]) for p in packages}
+    package_names = {p["id"]: p["name"] for p in packages}
+    grouped = defaultdict(list)
+
+    for deck in decks:
+        deck_cards = set(deck["cards"])
+        scores = []
+        for package_id, cards in package_lookup.items():
+            overlap = deck_cards.intersection(cards)
+            if len(overlap) < 2:
+                continue
+            score = len(overlap) / len(cards)
+            if score >= 0.3:
+                scores.append((package_id, score, len(overlap)))
+
+        if scores:
+            scores.sort(key=lambda x: (-x[1], -x[2], x[0]))
+            key = tuple(package_id for package_id, _, _ in scores[:2])
+        else:
+            key = ("misc",)
+        grouped[key].append(deck)
+
+    archetypes = []
+    for key, group in grouped.items():
+        if len(group) < min_archetype_decks:
+            continue
+
+        wins = sum(1 for deck in group if deck["winner"])
+        card_totals = Counter()
+        card_decks = Counter()
+        for deck in group:
+            card_totals.update(deck["cards"])
+            card_decks.update(deck["cards"].keys())
+
+        cards = []
+        for card, seen in card_decks.items():
+            inclusion = seen / len(group)
+            baseline = card_deck_counts[card] / commander_deck_count
+            cards.append({
+                "name": card,
+                "inclusion_rate": round(inclusion, 4),
+                "baseline_rate": round(baseline, 4),
+                "lift": round(inclusion - baseline, 4),
+                "avg_copies": round(card_totals[card] / seen, 2),
+            })
+        representative_cards = sorted(
+            cards,
+            key=lambda c: (-c["inclusion_rate"], -c["avg_copies"], -c["lift"], c["name"])
+        )
+        representative_cutoff = sum(
+            1 for c in representative_cards
+            if c["inclusion_rate"] >= representative_card_rate
+        )
+        representative_limit = min(
+            len(representative_cards),
+            max(min_representative_cards, representative_cutoff)
+        )
+        signature_cards = sorted(
+            cards,
+            key=lambda c: (-c["lift"], -c["inclusion_rate"], c["name"])
+        )
+
+        # Collect unique deck names with their play counts and primary username.
+        # If multiple players share a deck name the most frequent user is shown.
+        deck_name_counts: dict = defaultdict(lambda: {"count": 0, "usernames": Counter()})
+        for deck in group:
+            dn = deck.get("deck_name") or "Unknown"
+            uname = deck.get("username") or "Unknown"
+            deck_name_counts[dn]["count"] += 1
+            deck_name_counts[dn]["usernames"][uname] += 1
+        decklists = [
+            {
+                "deck_name": dn,
+                "username": data["usernames"].most_common(1)[0][0],
+                "count": data["count"],
+            }
+            for dn, data in sorted(deck_name_counts.items(), key=lambda x: -x[1]["count"])
+        ]
+
+        package_ids = list(key)
+        raw_names = [package_names.get(pid, "Misc") for pid in package_ids]
+        # For multi-package archetypes use only the first card from each package
+        # name to keep labels short; single-package archetypes keep the full
+        # "CardA / CardB" form since both cards are meaningful there.
+        if len(raw_names) > 1:
+            package_label = " + ".join(n.split(" / ")[0] for n in raw_names)
+        else:
+            package_label = raw_names[0] if raw_names else "Misc"
+        archetypes.append({
+            "id": "-".join(package_ids),
+            "name": package_label,
+            "package_ids": package_ids,
+            "deck_count": len(group),
+            "wins": wins,
+            "winrate": round(wins / len(group), 4),
+            "commander_share": round(len(group) / commander_deck_count, 4),
+            "meta_share": round(len(group) / total_player_decks, 4) if total_player_decks else 0,
+            "cards": representative_cards[:representative_limit],
+            "total_cards_seen": len(representative_cards),
+            "card_display_threshold": representative_card_rate,
+            "card_display_minimum": min_representative_cards,
+            "key_cards": signature_cards[:12],
+            "decklists": decklists,
+        })
+
+    archetypes.sort(key=lambda a: (-a["deck_count"], a["name"]))
+    return archetypes
 
 
 def aggregate_mulligan_stats(games, intellect_lookup=None):

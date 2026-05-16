@@ -76,6 +76,7 @@ const DATA_FILES = {
   turnWinrates: 'data/turn_winrates.json',
   commanderWinrateTrends: 'data/commander_winrate_trends.json',
   mulliganStats: 'data/mulligan_stats.json',
+  archetypes: 'data/archetypes.json',
 };
 
 async function loadData(keys) {
@@ -251,6 +252,7 @@ function initNavActiveState() {
     const nav = link.dataset.nav;
     if (nav === 'home' && currentPage === 'index.html') link.classList.add('active');
     else if (nav === 'analytics' && analyticsPages.includes(currentPage)) link.classList.add('active');
+    else if (nav === 'metagame' && currentPage === 'metagame.html') link.classList.add('active');
     else if (nav === 'decks' && currentPage === 'decks.html') link.classList.add('active');
   });
 

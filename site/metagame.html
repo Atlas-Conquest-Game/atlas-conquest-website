@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cards — Atlas Conquest Analytics</title>
+  <title>Metagame &mdash; Atlas Conquest Analytics</title>
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Atlas Conquest">
-  <meta property="og:title" content="Cards — Atlas Conquest Analytics">
-  <meta property="og:description" content="Card stats — deck rate, draw rate, play rate, and winrate for every card in Atlas Conquest.">
+  <meta property="og:title" content="Metagame &mdash; Atlas Conquest Analytics">
+  <meta property="og:description" content="Atlas Conquest deck archetypes, metagame share, winrates, and defining card packages.">
   <meta property="og:image" content="https://atlas-conquest.com/assets/logo/atlas-conquest-icon.png">
-  <meta property="og:url" content="https://atlas-conquest.com/cards.html">
+  <meta property="og:url" content="https://atlas-conquest.com/metagame.html">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Cards — Atlas Conquest Analytics">
-  <meta name="twitter:description" content="Card stats — deck rate, draw rate, play rate, and winrate for every card in Atlas Conquest.">
+  <meta name="twitter:title" content="Metagame &mdash; Atlas Conquest Analytics">
+  <meta name="twitter:description" content="Atlas Conquest deck archetypes, metagame share, winrates, and defining card packages.">
   <meta name="twitter:image" content="https://atlas-conquest.com/assets/logo/atlas-conquest-icon.png">
   <link rel="icon" type="image/png" href="assets/logo/atlas-conquest-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,15 +22,13 @@
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/modals.css">
   <link rel="stylesheet" href="css/responsive.css">
   <link rel="stylesheet" href="css/tooltips.css">
-  <link rel="stylesheet" href="css/cards.css">
+  <link rel="stylesheet" href="css/metagame.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
 </head>
 <body class="has-sub-nav">
 
-  <!-- Navigation -->
   <nav class="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">
@@ -46,7 +44,6 @@
     </div>
   </nav>
 
-  <!-- Analytics Sub-Navigation -->
   <div class="sub-nav">
     <div class="container sub-nav-inner">
       <a href="analytics.html" class="sub-nav-link">Overview</a>
@@ -58,11 +55,10 @@
     </div>
   </div>
 
-  <!-- Hero (compact) -->
   <header class="hero hero-compact">
     <div class="container">
-      <h1 class="hero-title">Card Analytics</h1>
-      <p class="hero-subtitle">Most played cards and their impact on match outcomes.</p>
+      <h1 class="hero-title">Metagame</h1>
+      <p class="hero-subtitle">Deck archetypes discovered from cards that repeatedly appear together.</p>
       <div class="hero-meta">
         <span class="hero-stat" id="hero-matches">-- matches</span>
         <span class="hero-divider"></span>
@@ -71,7 +67,6 @@
     </div>
   </header>
 
-  <!-- Time Filter -->
   <div class="time-filter-bar" id="time-filter-bar">
     <div class="container time-filter-inner">
       <span class="filter-label">Period</span>
@@ -88,57 +83,40 @@
     </div>
   </div>
 
-  <!-- Cards Section -->
-  <section id="cards" class="section">
+  <section class="section">
     <div class="container">
-      <div class="filter-bar">
-        <button class="filter-btn active" data-faction="all">All</button>
-        <button class="filter-btn" data-faction="skaal">Skaal</button>
-        <button class="filter-btn" data-faction="grenalia">Grenalia</button>
-        <button class="filter-btn" data-faction="lucia">Lucia</button>
-        <button class="filter-btn" data-faction="neutral">Neutral</button>
-        <button class="filter-btn" data-faction="shadis">Shadis</button>
-        <button class="filter-btn" data-faction="archaeon">Archaeon</button>
-        <span class="filter-divider"></span>
-        <select id="commander-filter" class="commander-select">
-          <option value="all">All Commanders</option>
-        </select>
+      <div class="metagame-header">
+        <div>
+          <h2 class="section-title">Archetypes</h2>
+          <p class="section-desc">Expand an archetype to inspect the cards that define it.</p>
+        </div>
+        <div class="metagame-summary" id="metagame-summary">Loading...</div>
       </div>
 
-      <div class="card-search-bar">
-        <input type="text" id="card-search" placeholder="Search by name, type, or subtype..." autocomplete="off">
-        <span class="search-count" id="search-count">Loading...</span>
+      <div class="metagame-toolbar">
+        <label class="metagame-control">
+          <span>Commander</span>
+          <select id="commander-filter" class="commander-select">
+            <option value="all">All Commanders</option>
+          </select>
+        </label>
+        <div class="sort-control" role="group" aria-label="Sort archetypes">
+          <span>Sort</span>
+          <button class="sort-btn active" data-sort="prevalence">Prevalence</button>
+          <button class="sort-btn" data-sort="winrate">Winrate</button>
+        </div>
       </div>
 
-      <div class="table-wrapper">
-        <table class="data-table" id="card-table">
-          <thead>
-            <tr>
-              <th class="sortable" data-sort="name">Card</th>
-              <th class="sortable" data-sort="faction">Faction</th>
-              <th class="sortable" data-sort="type">Type</th>
-              <th class="sortable" data-sort="deck_rate">Included <span class="tooltip-icon" data-tooltip="% of decks that include this card. Sub-line shows deck count of total games.">?</span></th>
-              <th class="sortable" data-sort="drawn_winrate">Drawn WR <span class="tooltip-icon" data-tooltip="Win rate when this card is drawn. Sub-line shows sample size.">?</span></th>
-              <th class="sortable" data-sort="played_winrate">Played WR <span class="tooltip-icon" data-tooltip="Win rate when this card is played. Sub-line shows sample size.">?</span></th>
-              <th class="sortable col-deemph" data-sort="drawn_rate">Drawn Rate <span class="tooltip-icon" data-tooltip="% of games where this card was drawn. Sub-line shows game count of total.">?</span></th>
-              <th class="sortable col-deemph" data-sort="played_rate">Played Rate <span class="tooltip-icon" data-tooltip="% of games where this card was played. Sub-line shows game count of total.">?</span></th>
-              <th class="sortable" data-sort="avg_copies">Avg Copies <span class="tooltip-icon" data-tooltip="Average number of copies of this card per deck that includes it. Max 3.">?</span></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="placeholder-row"><td colspan="9">Loading...</td></tr>
-          </tbody>
-        </table>
+      <div class="metagame-list" id="archetype-list">
+        <div class="metagame-empty">Loading archetypes...</div>
       </div>
     </div>
   </section>
 
-  <!-- Card Preview (hover) -->
   <div class="card-preview" id="card-preview">
     <img id="card-preview-img" src="" alt="">
   </div>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <p class="footer-text">Atlas Conquest Analytics &mdash; Updated daily from game data.</p>
@@ -147,6 +125,6 @@
   </footer>
 
   <script src="js/shared.js"></script>
-  <script src="js/cards.js"></script>
+  <script src="js/metagame.js"></script>
 </body>
 </html>

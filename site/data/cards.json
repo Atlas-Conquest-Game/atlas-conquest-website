@@ -36,7 +36,7 @@
     "health": null,
     "legendary": false,
     "faction": "skaal",
-    "art": null
+    "art": "CardScreenshots/Action-Surge.png"
   },
   {
     "name": "Alchemist",
@@ -56,7 +56,7 @@
     "type": "Minion",
     "text": "Costs 1 less mana to play for each card in your hand.",
     "subtype": "Mech",
-    "cost": 12,
+    "cost": 11,
     "attack": 9,
     "speed": 3,
     "health": 9,
@@ -127,7 +127,7 @@
     "health": 7,
     "legendary": true,
     "faction": "lucia",
-    "art": null
+    "art": "CardScreenshots/Archpaladin-Erix.png"
   },
   {
     "name": "Asera",
@@ -452,7 +452,7 @@
     "health": null,
     "legendary": false,
     "faction": "lucia",
-    "art": null
+    "art": "CardScreenshots/City-Planning.png"
   },
   {
     "name": "Cloning Magic",
@@ -647,7 +647,7 @@
     "health": 3,
     "legendary": false,
     "faction": "neutral",
-    "art": null
+    "art": "CardScreenshots/Diplomatic-Envoy.png"
   },
   {
     "name": "Domination",
@@ -673,7 +673,7 @@
     "health": 8,
     "legendary": false,
     "faction": "neutral",
-    "art": null
+    "art": "CardScreenshots/Draconic-Mage.png"
   },
   {
     "name": "Dragon Egg",
@@ -725,7 +725,7 @@
     "health": null,
     "legendary": false,
     "faction": "skaal",
-    "art": null
+    "art": "CardScreenshots/Dragons-Breath.png"
   },
   {
     "name": "Drain Energy",
@@ -907,7 +907,7 @@
     "health": 2,
     "legendary": false,
     "faction": "neutral",
-    "art": null
+    "art": "CardScreenshots/Elixirist.png"
   },
   {
     "name": "Elven Spellblade",
@@ -920,7 +920,7 @@
     "health": 5,
     "legendary": false,
     "faction": "neutral",
-    "art": null
+    "art": "CardScreenshots/Elven-Spellblade.png"
   },
   {
     "name": "Ember",
@@ -985,7 +985,7 @@
     "health": 2,
     "legendary": false,
     "faction": "shadis",
-    "art": null
+    "art": "CardScreenshots/Ereloth.png"
   },
   {
     "name": "Eternal Wall",
@@ -1050,7 +1050,7 @@
     "health": null,
     "legendary": false,
     "faction": "archaeon",
-    "art": null
+    "art": "CardScreenshots/Fade-to-Mists.png"
   },
   {
     "name": "Feeblemind",
@@ -1089,7 +1089,7 @@
     "health": null,
     "legendary": false,
     "faction": "skaal",
-    "art": null
+    "art": "CardScreenshots/Finishing-Strike.png"
   },
   {
     "name": "Fireball",
@@ -1167,7 +1167,7 @@
     "health": null,
     "legendary": false,
     "faction": "neutral",
-    "art": null
+    "art": "CardScreenshots/Found-City.png"
   },
   {
     "name": "Fourth Experiment",
@@ -1570,7 +1570,7 @@
     "health": 8,
     "legendary": false,
     "faction": "grenalia",
-    "art": null
+    "art": "CardScreenshots/Guardian-Ent.png"
   },
   {
     "name": "Guerilla Gorilla",
@@ -1713,7 +1713,7 @@
     "health": 5,
     "legendary": false,
     "faction": "neutral",
-    "art": null
+    "art": "CardScreenshots/Hover-Tank.png"
   },
   {
     "name": "Illusory Legion",
@@ -1791,7 +1791,7 @@
     "health": null,
     "legendary": false,
     "faction": "skaal",
-    "art": null
+    "art": "CardScreenshots/Kindle.png"
   },
   {
     "name": "King Darian",
@@ -1822,7 +1822,7 @@
   {
     "name": "Lay Claim",
     "type": "Spell",
-    "text": "[Range 0]: Increase your Dominion by 1. Claim a territory an opponent controls.",
+    "text": "[Range 0]: Claim a territory an opponent controls. Increase your Dominion by 1.",
     "subtype": "",
     "cost": 2,
     "attack": null,
@@ -1856,7 +1856,20 @@
     "health": 3,
     "legendary": false,
     "faction": "lucia",
-    "art": null
+    "art": "CardScreenshots/Light-Elemental.png"
+  },
+  {
+    "name": "Lightbound Martyr",
+    "type": "Minion",
+    "text": "Postmortem: give the leftmost Minion in your hand +2/+1/+2.",
+    "subtype": "Human",
+    "cost": 3,
+    "attack": 3,
+    "speed": 3,
+    "health": 2,
+    "legendary": false,
+    "faction": "lucia",
+    "art": "CardScreenshots/Lightbound-Martyr.png"
   },
   {
     "name": "Lightning Bolt",
@@ -1921,7 +1934,7 @@
     "health": 3,
     "legendary": true,
     "faction": "archaeon",
-    "art": null
+    "art": "CardScreenshots/Longleg-Dorathru.png"
   },
   {
     "name": "Lord of Casterhorn",
@@ -1986,7 +1999,7 @@
     "health": 1,
     "legendary": false,
     "faction": "lucia",
-    "art": null
+    "art": "CardScreenshots/Lucian-Squire.png"
   },
   {
     "name": "Lucian Zealot",
@@ -2038,7 +2051,7 @@
     "health": 3,
     "legendary": false,
     "faction": "neutral",
-    "art": null
+    "art": "CardScreenshots/Mage-Slayer.png"
   },
   {
     "name": "Mana Bloom",
@@ -2090,7 +2103,7 @@
     "health": null,
     "legendary": false,
     "faction": "archaeon",
-    "art": null
+    "art": "CardScreenshots/Memory-Theft.png"
   },
   {
     "name": "Mind Blast",
@@ -2103,7 +2116,7 @@
     "health": null,
     "legendary": false,
     "faction": "archaeon",
-    "art": null
+    "art": "CardScreenshots/Mind-Blast.png"
   },
   {
     "name": "Mindstone Servant",
@@ -2116,7 +2129,7 @@
     "health": 6,
     "legendary": false,
     "faction": "neutral",
-    "art": null
+    "art": "CardScreenshots/Mindstone-Servant.png"
   },
   {
     "name": "Minor Priest",
@@ -2186,11 +2199,11 @@
   {
     "name": "Nexus Operative",
     "type": "Minion",
-    "text": "Spellcaster. Whenever you play a spell, your Spellcasters gain +1/+1/+1 until end of turn.",
+    "text": "Spellcaster. Whenever you play a spell, your other Spellcasters gain +1/+1/+1 until end of turn.",
     "subtype": "Elf",
     "cost": 3,
     "attack": 3,
-    "speed": 2,
+    "speed": 3,
     "health": 3,
     "legendary": false,
     "faction": "archaeon",
@@ -2246,7 +2259,7 @@
     "health": 2,
     "legendary": false,
     "faction": "neutral",
-    "art": null
+    "art": "CardScreenshots/Oathbroken-Apprentice.png"
   },
   {
     "name": "Oathsworn Champion",
@@ -2272,7 +2285,7 @@
     "health": 2,
     "legendary": false,
     "faction": "neutral",
-    "art": null
+    "art": "CardScreenshots/Oldsteel-Guard.png"
   },
   {
     "name": "Outflank",
@@ -2415,7 +2428,7 @@
     "health": 1,
     "legendary": false,
     "faction": "neutral",
-    "art": null
+    "art": "CardScreenshots/Pixie-Pikeman.png"
   },
   {
     "name": "Poison Spray",
@@ -2532,7 +2545,7 @@
     "health": null,
     "legendary": false,
     "faction": "skaal",
-    "art": null
+    "art": "CardScreenshots/Primordial-Storm.png"
   },
   {
     "name": "Prince Xerxes",
@@ -2669,7 +2682,7 @@
     "type": "Spell",
     "text": "[Range 2] Return a minion to their controller's hand.",
     "subtype": "Psychic",
-    "cost": 2,
+    "cost": 1,
     "attack": null,
     "speed": null,
     "health": null,
@@ -2689,6 +2702,19 @@
     "legendary": false,
     "faction": "grenalia",
     "art": "CardScreenshots/Revoke-the-Living.png"
+  },
+  {
+    "name": "Rhea, Morning Saint",
+    "type": "Minion",
+    "text": "Legendary. Shield. Arrival: if your other minions have 7 or more total Health, give the leftmost minion in your hand +5/+1/+5 and Shield.",
+    "subtype": "Human",
+    "cost": 5,
+    "attack": 6,
+    "speed": 3,
+    "health": 3,
+    "legendary": true,
+    "faction": "lucia",
+    "art": "CardScreenshots/Rhea-Morning-Saint.png"
   },
   {
     "name": "Ritual of Shadows",
@@ -2870,7 +2896,7 @@
     "health": null,
     "legendary": false,
     "faction": "lucia",
-    "art": null
+    "art": "CardScreenshots/Silence.png"
   },
   {
     "name": "Silver Dragon",
@@ -2935,7 +2961,7 @@
     "health": null,
     "legendary": false,
     "faction": "shadis",
-    "art": null
+    "art": "CardScreenshots/Soul-Sale.png"
   },
   {
     "name": "Soulreap",
@@ -3182,7 +3208,7 @@
     "health": 5,
     "legendary": false,
     "faction": "neutral",
-    "art": null
+    "art": "CardScreenshots/Tax-Collector.png"
   },
   {
     "name": "Throne Guardian",
@@ -3507,6 +3533,6 @@
     "health": 3,
     "legendary": true,
     "faction": "shadis",
-    "art": null
+    "art": "CardScreenshots/Zoloth-the-Butcher.png"
   }
 ]
