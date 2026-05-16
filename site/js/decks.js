@@ -160,15 +160,30 @@ function initCardPreview() {
   const preview = document.getElementById('card-preview');
   const img = document.getElementById('card-preview-img');
 
+  // Returns the image src for whatever the cursor is over, or null if nothing
+  // previewable. Both cards AND commanders live under /assets/cards/<slug>.jpg
+  // (the framed card with name banner + text box). /assets/commanders/ holds
+  // just the cropped art and is used for thumbnails / OG hero panels — not here.
+  function previewSrcFor(target) {
+    const cmd = target.closest('.deck-commander-section[data-commander]');
+    if (cmd) {
+      const name = cmd.dataset.commander;
+      return name ? `/assets/cards/${cardArtSlug(name)}.jpg` : null;
+    }
+    const row = target.closest('.deck-card-row');
+    if (row) return `/assets/cards/${cardArtSlug(row.dataset.card || '')}.jpg`;
+    const artWrap = target.closest('.card-tile-art-wrap');
+    if (artWrap) {
+      const name = artWrap.closest('.card-tile')?.dataset.name || '';
+      return `/assets/cards/${cardArtSlug(name)}.jpg`;
+    }
+    return null;
+  }
+
   document.addEventListener('mouseover', e => {
-    const row     = e.target.closest('.deck-card-row');
-    const artWrap = e.target.closest('.card-tile-art-wrap');
-    if (!row && !artWrap) { preview.classList.remove('visible'); return; }
-    const cardName = row
-      ? (row.dataset.card || '')
-      : (artWrap.closest('.card-tile')?.dataset.name || '');
-    const slug = cardArtSlug(cardName);
-    img.src = `/assets/cards/${slug}.jpg`;
+    const src = previewSrcFor(e.target);
+    if (!src) { preview.classList.remove('visible'); return; }
+    img.src = src;
     img.onerror = () => { preview.classList.remove('visible'); };
     preview.classList.add('visible');
   });
@@ -182,7 +197,7 @@ function initCardPreview() {
   });
 
   document.addEventListener('mouseout', e => {
-    if (!e.target.closest('.deck-card-row') && !e.target.closest('.card-tile-art-wrap')) {
+    if (!previewSrcFor(e.target)) {
       preview.classList.remove('visible');
     }
   });
@@ -279,6 +294,14 @@ function renderDeck(deck) {
   artEl.src = commanderArtPath(deck.commander || '');
   artEl.alt = deck.commander || '';
   artEl.onerror = () => { artEl.style.display = 'none'; };
+
+  // Tag the commander section so initCardPreview() can show the commander art
+  // on hover — same machinery as card-name hover, just sourced from /assets/commanders/.
+  const cmdSection = artEl.closest('.deck-commander-section');
+  if (cmdSection) {
+    if (deck.commander) cmdSection.dataset.commander = deck.commander;
+    else delete cmdSection.dataset.commander;
+  }
 
   // Deck name + commander label + faction badge
   document.getElementById('deck-name').textContent = deck.deckName || 'Unnamed Deck';
