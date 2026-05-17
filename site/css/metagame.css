@@ -117,6 +117,7 @@
   display: flex;
   align-items: center;
   gap: 0;
+  overflow: hidden;
   pointer-events: none;
   opacity: 0.18;
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 45%);
@@ -127,9 +128,14 @@
 .archetype-bg-img {
   display: block;
   height: 100%;
-  width: auto;
+  width: 68px;
   object-fit: cover;
+  object-position: center;
   flex-shrink: 0;
+}
+
+.archetype-bg-commander {
+  width: 80px;
 }
 
 .archetype-main,
