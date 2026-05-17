@@ -775,6 +775,25 @@ def aggregate_deck_composition(games, card_info, cmd_faction):
     return result
 
 
+_COMMANDER_SHORT_NAMES = {
+    "Jagris, the Huntsman": "Jagris",
+    "Captain Greenbeard": "Greenbeard",
+    "Elber, Jungle Emissary": "Elber",
+    "Elyse of the Order": "Elyse",
+    "Executor Ginn": "Ginn",
+    "Fael Spiritwalker": "Fael",
+    "Kai, Longcount Shaman": "Kai",
+    "Lazim, Thief of Gods": "Lazim",
+    "Lubela, Tender of the Wilds": "Lubela",
+    "Starwise Luna": "Luna",
+    "Macks Speed": "Macks",
+    "Milo Sunstone": "Milo",
+    "Rosirix the Witch": "Rosirix",
+    "Newhaven Township": "Town",
+    "Soultaker Viessa": "Viessa",
+}
+
+
 def aggregate_archetypes(games, min_commander_decks=8, min_card_decks=3,
                          min_edge_weight=2, min_package_cards=2,
                          min_archetype_decks=3, representative_card_rate=0.25,
@@ -864,8 +883,9 @@ def aggregate_archetypes(games, min_commander_decks=8, min_card_decks=3,
             min_archetype_decks, representative_card_rate,
             min_representative_cards
         )
+        short_name = _COMMANDER_SHORT_NAMES.get(cmd, cmd)
         for archetype in archetypes:
-            archetype["name"] = f"{cmd}: {archetype['name']}"
+            archetype["name"] = f"{short_name}: {archetype['name']}"
 
         result["commanders"][cmd] = {
             "deck_count": deck_count,
