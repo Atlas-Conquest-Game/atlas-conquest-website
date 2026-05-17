@@ -110,19 +110,27 @@
 
 .archetype-tab-bg {
   position: absolute;
-  right: 0;
   top: 50%;
   transform: translateY(-50%);
-  height: 140%;
+  height: 100%;
   display: flex;
   align-items: center;
-  gap: 0;
   overflow: hidden;
   pointer-events: none;
   opacity: 0.18;
+  z-index: 0;
+}
+
+.archetype-tab-bg-left {
+  left: 0;
+  -webkit-mask-image: linear-gradient(to right, black 0%, transparent 100%);
+  mask-image: linear-gradient(to right, black 0%, transparent 100%);
+}
+
+.archetype-tab-bg-right {
+  right: 0;
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 45%);
   mask-image: linear-gradient(to right, transparent 0%, black 45%);
-  z-index: 0;
 }
 
 .archetype-bg-img {
@@ -132,6 +140,7 @@
   object-fit: cover;
   object-position: center;
   flex-shrink: 0;
+  transform: scale(1.12);
 }
 
 .archetype-bg-commander {

@@ -178,12 +178,17 @@ function archetypeNameCards(name) {
 function renderArchetypeTabBg(row) {
   const cmdSlug = commanderSlug(row.commander);
   const nameCards = archetypeNameCards(row.name);
-  const cardImgs = nameCards.map(n => {
-    const slug = commanderSlug(n);
-    return `<img class="archetype-bg-img" src="assets/cards/${slug}.jpg" alt="" onerror="this.style.display='none'">`;
-  }).join('');
-  const cmdImg = `<img class="archetype-bg-img archetype-bg-commander" src="assets/commanders/${cmdSlug}.jpg" alt="" onerror="this.style.display='none'">`;
-  return `<span class="archetype-tab-bg" aria-hidden="true">${cardImgs}${cmdImg}</span>`;
+
+  const cmdBg = `<span class="archetype-tab-bg archetype-tab-bg-left" aria-hidden="true"><img class="archetype-bg-img archetype-bg-commander" src="assets/commanders/${cmdSlug}.jpg" alt="" onerror="this.style.display='none'"></span>`;
+
+  const cardImgs = nameCards.map(n =>
+    `<img class="archetype-bg-img" src="assets/cards/${commanderSlug(n)}.jpg" alt="" onerror="this.style.display='none'">`
+  ).join('');
+  const cardsBg = nameCards.length
+    ? `<span class="archetype-tab-bg archetype-tab-bg-right" aria-hidden="true">${cardImgs}</span>`
+    : '';
+
+  return cmdBg + cardsBg;
 }
 
 function renderArchetypeCard(row, index) {
