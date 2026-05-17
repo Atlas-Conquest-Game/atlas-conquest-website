@@ -864,6 +864,8 @@ def aggregate_archetypes(games, min_commander_decks=8, min_card_decks=3,
             min_archetype_decks, representative_card_rate,
             min_representative_cards
         )
+        for archetype in archetypes:
+            archetype["name"] = f"{cmd}: {archetype['name']}"
 
         result["commanders"][cmd] = {
             "deck_count": deck_count,
