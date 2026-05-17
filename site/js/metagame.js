@@ -168,6 +168,24 @@ function renderDecklists(decklists) {
   `;
 }
 
+function archetypeNameCards(name) {
+  const colon = name.indexOf(': ');
+  const remainder = colon >= 0 ? name.slice(colon + 2) : name;
+  if (!remainder || remainder === 'Misc') return [];
+  return remainder.split(/ \/ | \+ /).slice(0, 2);
+}
+
+function renderArchetypeTabBg(row) {
+  const cmdSlug = commanderSlug(row.commander);
+  const nameCards = archetypeNameCards(row.name);
+  const cardImgs = nameCards.map(n => {
+    const slug = commanderSlug(n);
+    return `<img class="archetype-bg-img" src="assets/cards/${slug}.jpg" alt="" onerror="this.style.display='none'">`;
+  }).join('');
+  const cmdImg = `<img class="archetype-bg-img archetype-bg-commander" src="assets/commanders/${cmdSlug}.jpg" alt="" onerror="this.style.display='none'">`;
+  return `<span class="archetype-tab-bg" aria-hidden="true">${cardImgs}${cmdImg}</span>`;
+}
+
 function renderArchetypeCard(row, index) {
   const cards = row.cards || row.key_cards || [];
   const previewCards = cards.slice(0, 5).map(card => `
@@ -178,6 +196,7 @@ function renderArchetypeCard(row, index) {
   return `
     <article class="archetype-card" data-archetype-index="${index}">
       <button class="archetype-tab" type="button" aria-expanded="false" aria-controls="${panelId}">
+        ${renderArchetypeTabBg(row)}
         <span class="archetype-main">
           <span class="archetype-title-row">
             <span class="archetype-name">${escapeHTML(row.name || 'Unnamed Archetype')}</span>

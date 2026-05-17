@@ -104,6 +104,38 @@
   font-family: inherit;
   text-align: left;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.archetype-tab-bg {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 140%;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  pointer-events: none;
+  opacity: 0.18;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 45%);
+  mask-image: linear-gradient(to right, transparent 0%, black 45%);
+  z-index: 0;
+}
+
+.archetype-bg-img {
+  display: block;
+  height: 100%;
+  width: auto;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.archetype-main,
+.archetype-metrics {
+  position: relative;
+  z-index: 1;
 }
 
 .archetype-tab:focus-visible {
