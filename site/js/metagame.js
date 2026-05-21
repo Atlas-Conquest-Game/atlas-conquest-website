@@ -182,7 +182,7 @@ function renderArchetypeTabBg(row) {
   const cmdBg = `<span class="archetype-tab-bg archetype-tab-bg-left" aria-hidden="true"><img class="archetype-bg-img archetype-bg-commander" src="assets/commanders/${cmdSlug}.jpg" alt="" onerror="this.style.display='none'"></span>`;
 
   const cardImgs = nameCards.map(n =>
-    `<img class="archetype-bg-img" src="assets/cards/${commanderSlug(n)}.jpg" alt="" onerror="this.style.display='none'">`
+    `<img class="archetype-bg-img archetype-bg-card" src="assets/cards/${commanderSlug(n)}.jpg" alt="" onerror="this.style.display='none'">`
   ).join('');
   const cardsBg = nameCards.length
     ? `<span class="archetype-tab-bg archetype-tab-bg-right" aria-hidden="true">${cardImgs}</span>`
