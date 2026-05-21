@@ -143,9 +143,7 @@
 }
 
 .archetype-bg-card {
-  /* Frame extends ~75px (~12.5%) from each side on 600px-wide card images.
-     scale(1.4) crops ~14% from every edge, eliminating the frame entirely. */
-  transform: scale(1.4);
+  object-position: center top;
 }
 
 .archetype-bg-commander {
