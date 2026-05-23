@@ -17,7 +17,7 @@
     "dominion": 7,
     "intellect": 7,
     "speed": 1,
-    "health": 30,
+    "health": 33,
     "faction": "grenalia",
     "art": "assets/commanders/elber-jungle-emissary.jpg"
   },
@@ -72,7 +72,7 @@
     "dominion": 5,
     "intellect": 6,
     "speed": 1,
-    "health": 30,
+    "health": 29,
     "faction": "grenalia",
     "art": "assets/commanders/jagris-the-huntsman.jpg"
   },
@@ -111,7 +111,7 @@
   },
   {
     "name": "Macks Speed",
-    "text": "[Cooldown 2, Range 2]: Target character gains +3 Speed and Trample until end of turn.",
+    "text": "[Cooldown 2, Range 2]: Target character gains +2 Speed and Trample until end of turn.",
     "subtype": "Human",
     "dominion": 5,
     "intellect": 6,
