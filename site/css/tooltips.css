@@ -46,3 +46,26 @@
 .info-tooltip.visible {
   opacity: 1;
 }
+
+/* === Card art hover preview (used by initCardPreview in shared.js) === */
+
+.card-preview {
+  position: fixed;
+  z-index: 1100;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.6));
+}
+
+.card-preview.visible {
+  opacity: 1;
+}
+
+.card-preview img {
+  display: block;
+  width: 220px;
+  /* No background or border-radius — the source PNG has transparent corners
+     and the filter: drop-shadow on .card-preview already follows the alpha
+     silhouette. Painting a background here would defeat the transparency. */
+}

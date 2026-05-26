@@ -10,6 +10,9 @@ PROJECT_DIR = SCRIPT_DIR.parent
 DATA_DIR = PROJECT_DIR / "site" / "data"
 ASSETS_DIR = PROJECT_DIR / "site" / "assets" / "commanders"
 CARD_ASSETS_DIR = PROJECT_DIR / "site" / "assets" / "cards"
+# RGBA card art — same images as CARD_ASSETS_DIR but PNG with transparent
+# corners, used for hover popups and inline article images.
+CARD_PNG_ASSETS_DIR = PROJECT_DIR / "site" / "assets" / "card-art-png"
 ARTWORK_DIR = PROJECT_DIR / "Artwork"
 CARD_SCREENSHOTS_DIR = PROJECT_DIR / "CardScreenshots"
 RAW_CACHE = DATA_DIR / "raw_games.json"

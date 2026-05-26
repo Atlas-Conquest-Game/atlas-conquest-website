@@ -112,6 +112,5 @@
 .card-preview img {
   display: block;
   width: 250px;
-  border-radius: 8px;
-  background: var(--bg-elevated);
+  /* No background/border-radius — the source PNG has transparent corners. */
 }

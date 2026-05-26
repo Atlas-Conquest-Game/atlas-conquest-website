@@ -1,0 +1,545 @@
+/* === Articles section === */
+
+/* ─── Article index (the grid at /articles/) ──────────────── */
+
+.article-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.article-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.article-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--lucia);
+  box-shadow: var(--shadow-md);
+}
+
+.article-card-hero {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: var(--bg-elevated);
+}
+
+.article-card-hero-placeholder {
+  background: linear-gradient(135deg, var(--bg-elevated), var(--bg-subtle));
+}
+
+.article-card-body {
+  padding: 18px 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.article-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.article-card-tags:empty {
+  display: none;
+}
+
+.article-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.3;
+  color: var(--text);
+}
+
+.article-card-summary {
+  font-size: 0.94rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.article-card-byline {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-top: auto;
+  padding-top: 6px;
+}
+
+.articles-empty {
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 60px 0;
+  font-size: 1.05rem;
+}
+
+/* ─── Tag chips (shared between index and article header) ── */
+
+.article-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  text-decoration: none;
+}
+
+a.article-tag:hover {
+  color: var(--text);
+  border-color: var(--lucia);
+}
+
+/* ─── Article page layout ─────────────────────────────────── */
+
+.article-page {
+  padding-bottom: 60px;
+}
+
+.article-header {
+  position: relative;
+  background: var(--bg-subtle);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 32px;
+  overflow: hidden;
+}
+
+.article-hero {
+  display: block;
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  background: var(--bg-elevated);
+}
+
+.article-header-inner {
+  padding: 28px 0 32px;
+}
+
+.article-header .article-tags {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.article-header .article-tags:empty {
+  display: none;
+}
+
+.article-title {
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 12px;
+  color: var(--text);
+}
+
+.article-byline {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+}
+
+.article-summary {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin: 0;
+  max-width: 720px;
+}
+
+/* ─── Prose body ──────────────────────────────────────────── */
+
+.article-prose {
+  max-width: 760px;
+  font-size: 1.04rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.article-prose > * {
+  margin-top: 0;
+  margin-bottom: 1.1em;
+}
+
+.article-prose h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-top: 2.2em;
+  margin-bottom: 0.6em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text);
+}
+
+.article-prose h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 1.8em;
+  margin-bottom: 0.5em;
+  color: var(--text);
+}
+
+.article-prose h4 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-top: 1.5em;
+  margin-bottom: 0.4em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.article-prose p,
+.article-prose li {
+  color: var(--text);
+}
+
+.article-prose a {
+  color: var(--lucia);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(232, 182, 48, 0.3);
+  transition: border-color 0.15s ease;
+}
+
+.article-prose a:hover {
+  border-bottom-color: var(--lucia);
+}
+
+.article-prose strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.article-prose em {
+  font-style: italic;
+  color: var(--text);
+}
+
+.article-prose ul,
+.article-prose ol {
+  padding-left: 1.6em;
+}
+
+.article-prose li {
+  margin-bottom: 0.4em;
+}
+
+.article-prose li > ul,
+.article-prose li > ol {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+.article-prose blockquote {
+  margin: 1.4em 0;
+  padding: 0.6em 1.2em;
+  border-left: 3px solid var(--lucia);
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.article-prose blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.article-prose code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9em;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: 1px 6px;
+}
+
+.article-prose pre {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  overflow-x: auto;
+}
+
+.article-prose pre code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+.article-prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  display: block;
+  margin: 1.6em auto;
+}
+
+.article-prose hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 2em 0;
+}
+
+.article-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.4em 0;
+  font-size: 0.95rem;
+}
+
+.article-prose th,
+.article-prose td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.article-prose th {
+  background: var(--bg-subtle);
+  font-weight: 600;
+}
+
+/* ─── Inline card link / image ───────────────────────────── */
+
+.article-prose .card-link {
+  color: var(--lucia);
+  font-weight: 500;
+  border-bottom: 1px dotted rgba(232, 182, 48, 0.5);
+  cursor: pointer;
+}
+
+.article-prose .card-link:hover {
+  border-bottom-style: solid;
+}
+
+/* Inline card art ([[card-img:Name]]).
+   The img is RGBA PNG with transparent corners, so we use filter: drop-shadow
+   (which follows the alpha silhouette) instead of box-shadow (which would
+   draw a rectangle around the bounding box).
+   When a paragraph contains card-imgs, switch the paragraph to a flex row so
+   multiple shortcodes on one source line lay out side-by-side, wrapping on
+   narrow viewports. Flex wins over the global `.article-prose img { display: block }`
+   because flex items get their own layout context regardless of display. */
+.article-prose p:has(> .card-art-inline) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 1.4em 0;
+}
+
+.article-prose .card-art-inline {
+  max-width: 220px;
+  flex: 0 1 auto;
+  margin: 0;
+  height: auto;
+  border-radius: 0;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.6));
+}
+
+.article-prose .card-art-inline:only-child {
+  max-width: 300px;
+}
+
+@media (max-width: 540px) {
+  .article-prose .card-art-inline {
+    max-width: 160px;
+  }
+  .article-prose .card-art-inline:only-child {
+    max-width: 240px;
+  }
+}
+
+/* ─── Embedded deck (block form) ─────────────────────────── */
+
+.article-deck {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin: 1.8em 0;
+  max-width: 100%;
+}
+
+.article-deck-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px;
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s ease;
+}
+
+.article-deck-header:hover {
+  background: var(--bg-subtle);
+}
+
+/* Override .article-prose a underline */
+.article-prose .article-deck-header {
+  border-bottom: 1px solid var(--border);
+}
+
+.article-deck-portrait {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.article-deck-meta {
+  flex: 1;
+  min-width: 0;
+}
+
+.article-deck-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.article-deck-commander {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 2px;
+}
+
+.article-deck-commander span {
+  font-weight: 600;
+}
+
+.article-deck-stats {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.article-deck-open {
+  font-size: 0.85rem;
+  color: var(--lucia);
+  font-weight: 500;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.article-deck-list {
+  list-style: none;
+  margin: 0;
+  padding: 6px 0;
+  max-height: 480px;
+  overflow-y: auto;
+}
+
+.article-deck-row {
+  display: grid;
+  grid-template-columns: 32px 1fr auto auto;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 18px;
+  font-size: 0.92rem;
+  cursor: default;
+  transition: background 0.1s ease;
+}
+
+.article-deck-row:hover {
+  background: var(--bg-subtle);
+}
+
+.article-deck-cost {
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+}
+
+.article-deck-name {
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.article-deck-faction {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.article-deck-count {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+  min-width: 24px;
+  text-align: right;
+}
+
+/* Inline deck pill ([[deck:...]] used inline rather than as a block). */
+.article-deck-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  font-size: 0.85rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--lucia) !important;
+  text-decoration: none;
+}
+
+.article-prose .article-deck-pill {
+  border-bottom: 1px solid var(--border);
+}
+
+/* ─── Responsive ──────────────────────────────────────────── */
+
+@media (max-width: 700px) {
+  .article-card-grid {
+    grid-template-columns: 1fr;
+  }
+  .article-hero {
+    max-height: 240px;
+  }
+  .article-prose {
+    font-size: 0.98rem;
+  }
+  .article-deck-header {
+    flex-wrap: wrap;
+  }
+  .article-deck-open {
+    width: 100%;
+    text-align: right;
+  }
+}
