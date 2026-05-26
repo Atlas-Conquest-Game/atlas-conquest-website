@@ -782,8 +782,8 @@
 
 .card-preview img {
   width: 200px;
-  border-radius: 8px;
   display: block;
+  /* No background/border-radius — the source PNG has transparent corners. */
 }
 
 /* ── Responsive ────────────────────────────────────────── */
