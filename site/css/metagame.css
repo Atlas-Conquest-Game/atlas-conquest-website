@@ -297,6 +297,20 @@
   font-weight: 600;
 }
 
+.metagame-deck-name a {
+  color: var(--skaal);
+  text-decoration: none;
+}
+
+.metagame-deck-name a:visited {
+  color: #a8541a;
+}
+
+.metagame-deck-name a:hover,
+.metagame-deck-name a:focus {
+  text-decoration: underline;
+}
+
 .archetype-panel-divider {
   grid-column: 1 / -1;
   border-top: 1px solid var(--border-subtle);
