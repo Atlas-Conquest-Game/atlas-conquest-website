@@ -3,7 +3,8 @@
 from collections import defaultdict
 from datetime import datetime, timezone
 
-from pipeline.constants import PERIODS, MAPS
+from pipeline.constants import PERIODS, MAPS, DATA_DIR
+from pipeline.deckcode_py import DeckCodec, DeckCodecError
 from pipeline.cleaning import clean_game
 from pipeline.filtering import filter_games_by_period, filter_games_by_map
 from pipeline.aggregation import (
@@ -48,6 +49,14 @@ def build_and_write_all(games, cards_csv, commanders_csv):
     # Reference data (no time/map filtering)
     write_json("cards.json", cards_csv)
     write_json("commanders.json", commanders_csv)
+
+    # Deck codec for archetype decklists. Missing/invalid cardlist degrades
+    # gracefully: rows just won't include a deck_code (no link).
+    try:
+        deck_codec = DeckCodec.from_cardlist_json(DATA_DIR / "cardlist.json")
+    except (FileNotFoundError, DeckCodecError) as exc:
+        print(f"  (cardlist.json unavailable, decklists won't have deck codes: {exc})")
+        deck_codec = None
 
     # Per-period × map aggregation
     out = {
@@ -197,7 +206,7 @@ def build_and_write_all(games, cards_csv, commanders_csv):
             out["deck_comp"][period_key][map_name] = aggregate_deck_composition(map_games, card_info, cmd_faction)
 
             # ── metagame archetypes ──
-            out["archetypes"][period_key][map_name] = aggregate_archetypes(map_games)
+            out["archetypes"][period_key][map_name] = aggregate_archetypes(map_games, codec=deck_codec)
 
             # ── first-turn advantage ──
             out["first_turn"][period_key][map_name] = aggregate_first_turn(map_games)

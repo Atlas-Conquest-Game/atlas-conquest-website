@@ -9,6 +9,8 @@ from collections import Counter, defaultdict
 from datetime import datetime
 from itertools import combinations
 
+from pipeline.deckcode_py import DeckCodecError
+
 
 def aggregate_commander_stats(games):
     """Compute per-commander winrate, matches, popularity."""
@@ -797,7 +799,8 @@ _COMMANDER_SHORT_NAMES = {
 def aggregate_archetypes(games, min_commander_decks=8, min_card_decks=3,
                          min_edge_weight=2, min_package_cards=2,
                          min_archetype_decks=3, representative_card_rate=0.25,
-                         min_representative_cards=15, staple_threshold=0.40):
+                         min_representative_cards=15, staple_threshold=0.40,
+                         codec=None, decklists_top_n=20):
     """Discover commander-specific deck archetypes from card co-occurrence.
 
     The model has two layers:
@@ -881,7 +884,8 @@ def aggregate_archetypes(games, min_commander_decks=8, min_card_decks=3,
         archetypes = _build_archetype_rows(
             decks, packages, card_deck_counts, deck_count, total_player_decks,
             min_archetype_decks, representative_card_rate,
-            min_representative_cards
+            min_representative_cards, commander_name=cmd, codec=codec,
+            decklists_top_n=decklists_top_n,
         )
         short_name = _COMMANDER_SHORT_NAMES.get(cmd, cmd)
         for archetype in archetypes:
@@ -1100,7 +1104,8 @@ def _build_card_packages(communities, decks, card_deck_counts, deck_count,
 
 def _build_archetype_rows(decks, packages, card_deck_counts, commander_deck_count,
                           total_player_decks, min_archetype_decks,
-                          representative_card_rate, min_representative_cards):
+                          representative_card_rate, min_representative_cards,
+                          commander_name="", codec=None, decklists_top_n=20):
     if not packages:
         return []
 
@@ -1166,22 +1171,55 @@ def _build_archetype_rows(decks, packages, card_deck_counts, commander_deck_coun
             key=lambda c: (-c["lift"], -c["inclusion_rate"], c["name"])
         )
 
-        # Collect unique deck names with their play counts and primary username.
-        # If multiple players share a deck name the most frequent user is shown.
-        deck_name_counts: dict = defaultdict(lambda: {"count": 0, "usernames": Counter()})
+        # Group decks by card multiset (commander + cards) so identical lists
+        # collapse into one row even when players named them differently. The
+        # most-common deck_name and username are shown. A deck code is computed
+        # per group so the frontend can link to /decks/<slug>/?code=... Rows
+        # whose cards/commander aren't in the cardlist are dropped (no working
+        # link possible); deck_count above stays authoritative.
+        multiset_groups: dict = defaultdict(
+            lambda: {"count": 0, "deck_names": Counter(), "usernames": Counter(), "cards": None}
+        )
         for deck in group:
-            dn = deck.get("deck_name") or "Unknown"
-            uname = deck.get("username") or "Unknown"
-            deck_name_counts[dn]["count"] += 1
-            deck_name_counts[dn]["usernames"][uname] += 1
-        decklists = [
-            {
-                "deck_name": dn,
-                "username": data["usernames"].most_common(1)[0][0],
-                "count": data["count"],
+            cards = deck.get("cards") or {}
+            if not cards:
+                continue
+            multiset_key = tuple(sorted(cards.items()))
+            entry = multiset_groups[multiset_key]
+            entry["count"] += 1
+            entry["deck_names"][deck.get("deck_name") or "Unknown"] += 1
+            entry["usernames"][deck.get("username") or "Unknown"] += 1
+            if entry["cards"] is None:
+                entry["cards"] = dict(cards)
+
+        decklists = []
+        for entry in multiset_groups.values():
+            top_name = entry["deck_names"].most_common(1)[0][0]
+            top_user = entry["usernames"].most_common(1)[0][0]
+            row = {
+                "deck_name": top_name,
+                "username": top_user,
+                "count": entry["count"],
             }
-            for dn, data in sorted(deck_name_counts.items(), key=lambda x: -x[1]["count"])
-        ]
+            if codec is not None:
+                try:
+                    row["deck_code"] = codec.encode({
+                        "commander": commander_name,
+                        "deck_name": top_name,
+                        "cards": [
+                            {"name": n, "count": c}
+                            for n, c in entry["cards"].items()
+                        ],
+                    })
+                except DeckCodecError:
+                    # Unknown card or commander — drop row entirely so the
+                    # frontend never renders a broken link. deck_count above
+                    # already counted this deck.
+                    continue
+            decklists.append(row)
+
+        decklists.sort(key=lambda d: (-d["count"], d["deck_name"].lower(), d["username"].lower()))
+        decklists = decklists[:decklists_top_n]
 
         package_ids = list(key)
         raw_names = [package_names.get(pid, "Misc") for pid in package_ids]

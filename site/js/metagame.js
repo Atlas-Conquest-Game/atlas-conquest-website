@@ -141,17 +141,23 @@ function renderKeyCards(cards) {
   `;
 }
 
-function renderDecklists(decklists) {
+function renderDecklists(decklists, commanderName) {
   if (!decklists || !decklists.length) {
     return '<div class="metagame-empty metagame-empty-inline">No decklist data available.</div>';
   }
-  const rows = decklists.map(d => `
+  const slug = commanderName ? commanderSlug(commanderName) : '';
+  const rows = decklists.map(d => {
+    const nameCell = d.deck_code && slug
+      ? `<a href="/decks/${slug}/?code=${encodeURIComponent(d.deck_code)}" target="_blank" rel="noopener">${escapeHTML(d.deck_name)}</a>`
+      : escapeHTML(d.deck_name);
+    return `
     <tr>
-      <td class="metagame-deck-name">${escapeHTML(d.deck_name)}</td>
+      <td class="metagame-deck-name">${nameCell}</td>
       <td>${escapeHTML(d.username)}</td>
       <td>${d.count}</td>
     </tr>
-  `).join('');
+  `;
+  }).join('');
   return `
     <div class="table-wrapper metagame-card-table-wrap">
       <table class="data-table metagame-card-table">
@@ -242,7 +248,7 @@ function renderArchetypeCard(row, index) {
             <h3>Decklists</h3>
             <p>Unique deck names played in this archetype, with the submitting player and number of games.</p>
           </div>
-          ${renderDecklists(row.decklists)}
+          ${renderDecklists(row.decklists, row.commander)}
         </div>
       </div>
     </article>
