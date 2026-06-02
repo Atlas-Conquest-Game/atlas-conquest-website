@@ -88,6 +88,32 @@ class DeckCodec:
 
         return {"commander": commander, "deck_name": deck_name, "cards": cards}
 
+    def encode(self, deck: dict) -> str:
+        """Encode a deck dict into a deck code string.
+
+        deck shape: {"commander": str, "deck_name": str, "cards": [{"name", "count"}, ...]}
+        Raises DeckCodecError if the commander or any card is unknown.
+        """
+        cmd_id = self._name_to_id.get(deck["commander"])
+        if cmd_id is None:
+            raise DeckCodecError(f"Unknown commander: {deck['commander']}")
+        prefix_str = chr(cmd_id) + deck.get("deck_name", "")
+        prefix_b64 = base64.b64encode(prefix_str.encode("utf-8")).decode("ascii")
+
+        total_bits = len(deck["cards"]) * 20
+        num_bytes = total_bits // 8 + 1
+        buf = bytearray(num_bytes)
+        bit_pos = 0
+        for card in deck["cards"]:
+            card_id = self._name_to_id.get(card["name"])
+            if card_id is None:
+                raise DeckCodecError(f"Unknown card: {card['name']}")
+            _set_bits(buf, bit_pos, card_id, 14)
+            _set_bits(buf, bit_pos + 14, card["count"], 6)
+            bit_pos += 20
+        cards_b64 = base64.b64encode(bytes(buf)).decode("ascii")
+        return f"{prefix_b64}:{cards_b64}"
+
 
 def _b64decode_lenient(s: str) -> bytes:
     """Match JS atob() behavior: accept unpadded base64 by re-padding before decode."""
@@ -101,35 +127,6 @@ def _set_bits(data: bytearray, bit_pos: int, value: int, num_bits: int) -> None:
         bit_index = (bit_pos + i) % 8
         if value & (1 << i):
             data[byte_index] |= 1 << bit_index
-
-
-def _encode_deck(codec: "DeckCodec", deck: dict) -> str:
-    """Mirror of encodeDeckCode() in site/js/deckcode.js.
-
-    Kept private — only used by the fixture/round-trip tests. Production code
-    never encodes from Python (encoding happens in the JS Build tab on the
-    Decks page); but a Python encoder lets us write self-contained tests
-    without depending on Node.
-    """
-    cmd_id = codec._name_to_id.get(deck["commander"])
-    if cmd_id is None:
-        raise DeckCodecError(f"Unknown commander: {deck['commander']}")
-    prefix_str = chr(cmd_id) + deck.get("deck_name", "")
-    prefix_b64 = base64.b64encode(prefix_str.encode("utf-8")).decode("ascii")
-
-    total_bits = len(deck["cards"]) * 20
-    num_bytes = total_bits // 8 + 1
-    buf = bytearray(num_bytes)
-    bit_pos = 0
-    for card in deck["cards"]:
-        card_id = codec._name_to_id.get(card["name"])
-        if card_id is None:
-            raise DeckCodecError(f"Unknown card: {card['name']}")
-        _set_bits(buf, bit_pos, card_id, 14)
-        _set_bits(buf, bit_pos + 14, card["count"], 6)
-        bit_pos += 20
-    cards_b64 = base64.b64encode(bytes(buf)).decode("ascii")
-    return f"{prefix_b64}:{cards_b64}"
 
 
 def _get_bits(data: bytes, bit_pos: int, num_bits: int) -> int:

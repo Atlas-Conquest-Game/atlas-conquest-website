@@ -15,7 +15,7 @@ from pathlib import Path
 import pytest
 
 import build_articles as ba
-from pipeline.deckcode_py import DeckCodec, _encode_deck
+from pipeline.deckcode_py import DeckCodec
 
 
 # ─── Fixtures ──────────────────────────────────────────────
@@ -241,7 +241,7 @@ def test_deck_block_renders(codec, cards_index):
         "deck_name": "Test Deck",
         "cards": [{"name": "Acid Rain", "count": 3}, {"name": "Action Surge", "count": 2}],
     }
-    code = _encode_deck(codec, deck)
+    code = codec.encode(deck)
     a = _render(f"[[deck:{code}]]", "x", codec, cards_index)
     assert 'class="article-deck"' in a.body_html
     assert 'data-commander="Captain Greenbeard"' in a.body_html
@@ -258,7 +258,7 @@ def test_deck_inline_pill(codec, cards_index):
         "deck_name": "Pill",
         "cards": [{"name": "Acid Rain", "count": 1}],
     }
-    code = _encode_deck(codec, deck)
+    code = codec.encode(deck)
     # Inline use (not the entire paragraph) — should render as a pill.
     a = _render(f"See [[deck:{code}]] here.", "x", codec, cards_index)
     assert 'class="article-deck-pill"' in a.body_html
@@ -329,7 +329,7 @@ def test_python_codec_roundtrip(codec):
             {"name": "Alchemist", "count": 1},
         ],
     }
-    code = _encode_deck(codec, deck)
+    code = codec.encode(deck)
     decoded = codec.decode(code)
     assert decoded["commander"] == deck["commander"]
     assert decoded["deck_name"] == deck["deck_name"]

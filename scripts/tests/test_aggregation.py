@@ -460,3 +460,167 @@ class TestB13_ArchetypeDiscovery:
 
         assert archetype["total_cards_seen"] == 5
         assert displayed_names == {"Core A", "Core B", "Core C"}
+
+
+# ─── B14: Decklist grouping (multiset + deck codes) ──────────────
+
+# Real card names from site/data/cardlist.json so codec.encode() succeeds.
+_REAL_CARDS_A = [
+    {"name": "Acid Rain", "count": 3},
+    {"name": "Action Surge", "count": 2},
+    {"name": "Alchemist", "count": 1},
+]
+_REAL_CARDS_B = [
+    {"name": "Angelic Captain", "count": 2},
+    {"name": "Angel's Grace", "count": 2},
+    {"name": "Apothecary", "count": 1},
+]
+
+
+def _real_codec():
+    from pathlib import Path
+
+    from pipeline.deckcode_py import DeckCodec
+    cardlist = Path(__file__).resolve().parent.parent.parent / "site" / "data" / "cardlist.json"
+    return DeckCodec.from_cardlist_json(cardlist)
+
+
+def _archetype_with_decklists(player_specs, codec=None, **agg_kwargs):
+    """Build games where each player_spec is (player_name, deck_name, cards) for
+    player 1 (Captain Greenbeard). Player 2 is a fixed loser with cards_B so the
+    Greenbeard side has a clean archetype to inspect."""
+    games = []
+    for i, (player, deck_name, cards) in enumerate(player_specs):
+        games.append(make_clean_game(
+            game_id=f"dl-{i}",
+            players_overrides=[
+                {
+                    "name": player,
+                    "commander": "Captain Greenbeard",
+                    "winner": True,
+                    "deck_name": deck_name,
+                    "cards_in_deck": cards,
+                },
+                {"commander": "Elber, Jungle Emissary", "winner": False,
+                 "cards_in_deck": _REAL_CARDS_B},
+            ],
+        ))
+    return aggregate_archetypes(
+        games,
+        min_commander_decks=min(4, len(player_specs)),
+        min_card_decks=2,
+        min_edge_weight=2,
+        min_archetype_decks=2,
+        codec=codec,
+        **agg_kwargs,
+    )
+
+
+class TestB14_DecklistGrouping:
+    """Decklists are grouped by card multiset and carry deck codes."""
+
+    def test_identical_multisets_collapse_with_representative_name(self):
+        # Three games, same cards, three different names — should collapse into
+        # one row with count==3 and the most-common name/user.
+        specs = [
+            ("alice", "Goblin Rush", _REAL_CARDS_A),
+            ("alice", "Goblin Rush", _REAL_CARDS_A),  # alice + "Goblin Rush" twice
+            ("bob",   "Starter Goblins", _REAL_CARDS_A),
+        ]
+        codec = _real_codec()
+        result = _archetype_with_decklists(specs, codec=codec)
+        decklists = result["commanders"]["Captain Greenbeard"]["archetypes"][0]["decklists"]
+
+        assert len(decklists) == 1
+        row = decklists[0]
+        assert row["count"] == 3
+        assert row["deck_name"] == "Goblin Rush"
+        assert row["username"] == "alice"
+        assert row["deck_code"]
+
+    def test_top_n_threshold(self):
+        # 25 unique multisets (vary count of Acid Rain). Top 20 by count desc.
+        specs = []
+        for i in range(25):
+            cards = [
+                {"name": "Acid Rain", "count": (i % 3) + 1},
+                {"name": "Action Surge", "count": 1},
+                {"name": "Alchemist", "count": i + 1},  # makes each unique
+            ]
+            # Submit the higher-index decks more times so they rank top
+            for _ in range(i + 1):
+                specs.append((f"p{i}", f"Deck {i}", cards))
+
+        codec = _real_codec()
+        result = _archetype_with_decklists(specs, codec=codec, decklists_top_n=20)
+        decklists = result["commanders"]["Captain Greenbeard"]["archetypes"][0]["decklists"]
+
+        assert len(decklists) == 20
+        counts = [d["count"] for d in decklists]
+        assert counts == sorted(counts, reverse=True)
+        assert min(counts) == 6  # indices 5..24 contribute 6..25 games
+
+    def test_tie_break_is_alphabetical_on_deck_name(self):
+        # Two decks both with count==1, different multisets and different names.
+        specs = [
+            ("p", "Zeta",  [{"name": "Acid Rain", "count": 1}, {"name": "Action Surge", "count": 1}]),
+            ("p", "Alpha", [{"name": "Acid Rain", "count": 2}, {"name": "Action Surge", "count": 1}]),
+            ("p", "Mu",    [{"name": "Acid Rain", "count": 3}, {"name": "Action Surge", "count": 1}]),
+        ]
+        codec = _real_codec()
+        result = _archetype_with_decklists(specs, codec=codec)
+        decklists = result["commanders"]["Captain Greenbeard"]["archetypes"][0]["decklists"]
+
+        names_in_order = [d["deck_name"] for d in decklists]
+        assert names_in_order == ["Alpha", "Mu", "Zeta"]
+
+    def test_unknown_card_drops_row_but_keeps_deck_count(self):
+        # 4 known-card decks + 1 deck that's the same real cards plus an
+        # unknown card. The bogus deck overlaps enough to land in the same
+        # archetype, but its multiset differs (extra card), so it gets its
+        # own row — which then must be dropped because encoding fails.
+        bogus = _REAL_CARDS_A + [{"name": "Definitely Not A Real Card", "count": 1}]
+        specs = [
+            ("p1", "Real A", _REAL_CARDS_A),
+            ("p2", "Real A", _REAL_CARDS_A),
+            ("p3", "Real A", _REAL_CARDS_A),
+            ("p4", "Real A", _REAL_CARDS_A),
+            ("p5", "Bogus",  bogus),
+        ]
+        codec = _real_codec()
+        result = _archetype_with_decklists(specs, codec=codec)
+        archetype = result["commanders"]["Captain Greenbeard"]["archetypes"][0]
+        decklists = archetype["decklists"]
+
+        # The bogus row drops; only the real one remains.
+        assert len(decklists) == 1
+        assert decklists[0]["deck_name"] == "Real A"
+        assert decklists[0]["count"] == 4
+        # But the archetype's overall deck_count includes the bogus deck.
+        assert archetype["deck_count"] == 5
+
+    def test_deck_code_round_trips(self):
+        codec = _real_codec()
+        specs = [("alice", "Round Trip", _REAL_CARDS_A)] * 3
+        result = _archetype_with_decklists(specs, codec=codec)
+        row = result["commanders"]["Captain Greenbeard"]["archetypes"][0]["decklists"][0]
+
+        decoded = codec.decode(row["deck_code"])
+        assert decoded["commander"] == "Captain Greenbeard"
+        assert decoded["deck_name"] == "Round Trip"
+        decoded_multiset = {c["name"]: c["count"] for c in decoded["cards"]}
+        expected_multiset = {c["name"]: c["count"] for c in _REAL_CARDS_A}
+        assert decoded_multiset == expected_multiset
+
+    def test_no_codec_omits_deck_code_but_still_groups(self):
+        # Backwards-compatible path: aggregate_archetypes() with no codec still
+        # collapses by multiset, but the deck_code field is absent.
+        specs = [
+            ("alice", "Goblin Rush", _REAL_CARDS_A),
+            ("bob",   "Goblin Rush", _REAL_CARDS_A),
+        ]
+        result = _archetype_with_decklists(specs, codec=None)
+        decklists = result["commanders"]["Captain Greenbeard"]["archetypes"][0]["decklists"]
+        assert len(decklists) == 1
+        assert "deck_code" not in decklists[0]
+        assert decklists[0]["count"] == 2
