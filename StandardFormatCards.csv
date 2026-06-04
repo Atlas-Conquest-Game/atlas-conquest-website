@@ -60,7 +60,7 @@ Drakemire Shaman,Minion,"Spellcaster. Arrival: Draw a Dragon. Whenever an ally D
 Dread Knight,Minion,Commander-Deploy. Enemy minions within Range 2 have -1 Power.,Human,6,7,3,6,,Neutral,0.1.1,ARTIST_COMMISSIONED,Marc Petrelis
 Dread Proclamation,Spell,"Until the end of the turn, all enemies get -1/-0/-1. When an enemy dies this turn, gain 1 Dominion.",Psychic,3,,,,,Shadis,0.4.24,AI_GENERATED,DALL-E
 Dreadlord Cyrion,Minion,Legendary. Commander-Deploy. Enemy minions within Range 2 have -1/-1/-1.,Human,7,8,3,6,True,Neutral,0.1.21,ARTIST_COMMISSIONED,Marc Petrelis
-Drowsy Lizard,Minion,"[Arrival, Range 4]: Silence a minion.",Beast,2,2,1,3,,Neutral,0.1.1,AI_GENERATED,Midjourney
+Drowsy Lizard,Minion,"[Arrival, Range 4]: Silence a minion.",Beast,2,2,1,3,,Neutral,0.1.1,ARTIST_COMMISSIONED,Tomas Vinco
 Durka Wurm,Minion,Postmortem: Summon a 1/2/1 Spawn token in every unoccupied tile within Range 1.,Beast,8,7,4,7,,Neutral,0.4.8,AI_GENERATED,Midjourney
 Dwarven Battlepriest,Minion,"Spellcaster. [Arrival, Range 4]: An ally minion gains +3 Health.",Dwarf,2,2,2,3,,Lucia,0.4.2,AI_GENERATED,DALL-E
 Dwarven Stout,Spell,"[Range 2]: Give a Dwarf minion +4/+0/+4 and ""At the end of your turns, deal 1 damage to all adjacent characters.""",Potion,4,,,,,Lucia,0.4.26,ARTIST_COMMISSIONED,Tomas Vinco
@@ -248,7 +248,7 @@ Tadpole,Minion,"Whenever you play a Spell, Tadpole gains +1 Power and +1 Health.
 Tax Collector,Minion,Arrival: ALL players gain 2 Dominion.,Human,4,2,4,5,,Neutral,0.6.5,AI_GENERATED,ChatGPT Images
 Throne Guardian,Minion,"Flying. Arrival: Gain 1 Dominion, Gain 1 Intellect, Draw 1 Card.",Dragon,5,4,4,4,,Neutral,0.4.4,AI_GENERATED,DALL-E
 Thunder Jolt,Spell,[Range 4]: Deal 1 damage.,Lightning,0,,,,,Skaal,0.1.4,ARTIST_COMMISSIONED,Marc Petrelis
-Thunder Skywhale,Minion,Flying. Deploy. [Arrival]: Return all enemy minions within Range 2 that have Health less than the number of tiles in your territory.,Beast,8,6,3,6,,Archaeon,0.4.41,AI_GENERATED,DALL-E
+Thunder Skywhale,Minion,Flying. Deploy. [Arrival]: Return all enemy minions within Range 2 that have Health less than the number of tiles in your territory.,Beast,8,6,3,6,,Archaeon,0.4.41,ARTIST_COMMISSIONED,Marc Petrelis
 Thunder Step,Spell,"A friendly character may Teleport up to 2 tiles this turn. Before it does, Stun all adjacent minions.",Lightning,3,,,,,Skaal,0.4.5,AI_GENERATED,DALL-E
 Thunderous Warbeast,Minion,"Arrival: Add two Thunder Jolts to your hand. When you play a Lightning spell, your commander heals 2.",Beast,5,2,3,5,,Skaal,0.2.5,AI_GENERATED,Midjourney
 Titan Herald,Minion,Arrival: Draw the highest cost card from your deck and unclaim the current tile.,Human,4,4,3,3,,Neutral,0.2.10,AI_GENERATED,Midjourney
