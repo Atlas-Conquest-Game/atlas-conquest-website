@@ -130,4 +130,4 @@ For Atlas Conquest decision-making:
 2. **Confounding variables**: A card with high drawn winrate might just appear in already-strong decks rather than being the cause of wins.
 3. **Meta evolution**: Aggregating across all time periods mixes different meta states. The 1M/3M filters help isolate recent performance.
 4. **Small maps**: Snowmelt (~60 games) and Tropics (~50 games) have far too few games for most per-commander or per-card analysis. Use "All Maps" for robust conclusions.
-5. **First-player data gap**: First-player tracking stopped in August 2025. All first-turn advantage data comes from pre-August games only.
+5. **First-player data gap**: Explicit first-player tracking stopped in August 2025. For games after that, turn order is inferred from mulligan kept counts (the player going first keeps 3 cards, going second keeps 4), so first-turn advantage stats are available across all time periods. Games where neither source resolves turn order (e.g. ambiguous mulligan, both players kept the same number) are excluded.

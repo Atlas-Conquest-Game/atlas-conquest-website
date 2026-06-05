@@ -85,7 +85,7 @@ function renderFirstTurn(ftData) {
 
   const noteEl = document.getElementById('ft-note');
   if (noteEl) {
-    noteEl.textContent = `Based on ${ftData.total_games} games where first player was explicitly recorded.`;
+    noteEl.textContent = `Based on ${ftData.total_games} games where turn order is known (recorded or inferred from mulligan).`;
   }
 }
 

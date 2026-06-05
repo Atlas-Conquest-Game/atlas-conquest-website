@@ -118,12 +118,14 @@ class TestB4_MatchupSymmetry:
                 assert t1 == t2, f"Asymmetry: {c1} vs {c2}"
 
 
-# ─── B5: First-turn stats only include explicit first_player ─────
+# ─── B5: First-turn stats exclude undeterminable turn order ──────
 
 class TestB5_FirstTurnFiltering:
-    """Only games with first_player '1' or '2' should be counted."""
+    """Games count only when turn order is known: an explicit first_player
+    of '1'/'2', or an unambiguous mulligan kept-count (3 vs 4)."""
 
-    def test_99_excluded(self):
+    def test_99_excluded_without_mulligan(self):
+        # No mulligan data, so first_player="99" can't be resolved.
         games = make_games(5, first_player="99") + make_games(5, first_player="1")
         ft = aggregate_first_turn(games)
         assert ft["total_games"] == 5  # Only the "1" games
@@ -132,6 +134,53 @@ class TestB5_FirstTurnFiltering:
         games = make_games(5, first_player="")
         ft = aggregate_first_turn(games)
         assert ft["total_games"] == 0
+
+
+# ─── B5b: First-turn order inferred from mulligan kept counts ────
+
+def _set_mulligan(game, p0_kept, p1_kept):
+    """Attach mulligan_kept lists of the given sizes to each player."""
+    game["players"][0]["mulligan_kept"] = [{"name": "X", "count": p0_kept}]
+    game["players"][1]["mulligan_kept"] = [{"name": "Y", "count": p1_kept}]
+    return game
+
+
+class TestB5b_FirstTurnMulliganInference:
+    """When first_player is missing/unknown, turn order is inferred from
+    mulligan kept counts: the player who kept 3 went first, 4 went second."""
+
+    def test_inferred_when_first_player_missing(self):
+        games = make_games(4, first_player="99", p1_wins=4)
+        for g in games:
+            _set_mulligan(g, 3, 4)  # p1 (index 0) went first
+        ft = aggregate_first_turn(games)
+        assert ft["total_games"] == 4
+        assert ft["first_player_wins"] == 4  # p1 went first and won all
+        assert ft["first_player_winrate"] == 1.0
+
+    def test_inferred_second_player_first(self):
+        games = make_games(4, first_player="99", p1_wins=0)
+        for g in games:
+            _set_mulligan(g, 4, 3)  # p2 (index 1) went first, and p2 wins all
+        ft = aggregate_first_turn(games)
+        assert ft["total_games"] == 4
+        assert ft["first_player_wins"] == 4
+
+    def test_ambiguous_mulligan_excluded(self):
+        games = make_games(4, first_player="99")
+        for g in games:
+            _set_mulligan(g, 3, 3)  # both kept 3 — can't disambiguate
+        ft = aggregate_first_turn(games)
+        assert ft["total_games"] == 0
+
+    def test_explicit_field_takes_precedence(self):
+        # Explicit "1" should win even if mulligan would suggest otherwise.
+        games = make_games(2, first_player="1", p1_wins=2)
+        for g in games:
+            _set_mulligan(g, 4, 3)  # mulligan would say p2 first
+        ft = aggregate_first_turn(games)
+        assert ft["total_games"] == 2
+        assert ft["first_player_wins"] == 2  # p1 (explicit first) won both
 
 
 # ─── B6: First-turn game counts add up ───────────────────────────
