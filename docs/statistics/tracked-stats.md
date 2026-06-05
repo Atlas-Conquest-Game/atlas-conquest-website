@@ -14,7 +14,7 @@ Every stat computed by the pipeline and displayed on the dashboard, organized by
 | Unique Cards | `metadata.json` | Count distinct cards across all decks | 1 | Only cards that appear in at least one deck |
 | Top Commander | `commander_stats.json` | Commander with highest game count | 10 | Popularity, not strength |
 | Best Winrate | `commander_stats.json` | Commander with highest winrate (min 10 games) | 10 | See methodology for CI |
-| First-Turn WR | `first_turn.json` | `first_player_wins / total_fp_tracked_games` | 10 | Only games with fp=1 or fp=2 |
+| First-Turn WR | `first_turn.json` | `first_player_wins / total_fp_tracked_games` | 10 | Turn order from recorded fp=1/2, else inferred from mulligan kept count |
 
 ### Distribution Charts
 
@@ -156,7 +156,7 @@ Opened by clicking a cell in the heatmap. Shows the head-to-head breakdown for a
 |------|--------|-------------|-----------|---------|
 | Total games | `matchup_details.json` | Count of games between the pair | 1 | |
 | Win/Loss record | `matchup_details.json` | Wins and losses for the row commander | 1 | |
-| Going First WR | `matchup_details.json` | WR when row commander goes first | 5 | Only games with explicit `first_player` (see Data Anomalies below) |
+| Going First WR | `matchup_details.json` | WR when row commander goes first | 5 | Turn order from recorded `first_player`, else inferred from mulligan kept count (see Data Anomalies below) |
 | Going Second WR | `matchup_details.json` | WR when row commander goes second | 5 | |
 | Top cards (win/loss) | `matchup_details.json` | Most common cards in winning vs losing decks | 3 | Raw counts, not rates |
 
@@ -164,7 +164,7 @@ Opened by clicking a cell in the heatmap. Shows the head-to-head breakdown for a
 
 | Stat | Source | Calculation | Min Sample | Caveats |
 |------|--------|-------------|-----------|---------|
-| Overall going-first WR | `first_turn.json` | `first_player_wins / total_fp_tracked_games` | 10 | Only games with explicit fp=1 or fp=2 |
+| Overall going-first WR | `first_turn.json` | `first_player_wins / total_fp_tracked_games` | 10 | Turn order from recorded fp=1/2, else inferred from mulligan kept count |
 | Overall going-second WR | computed client-side | `1 - first_player_winrate` | 10 | Displayed alongside going-first |
 | Per-commander FP WR | `first_turn.json` | First/second winrate split per commander | 5 per position | Commanders with <5 first OR second games hidden |
 
@@ -280,8 +280,8 @@ These are valid games that pass cleaning but behave differently in specific stat
 
 | Anomaly | Affected field | How it's handled |
 |---------|---------------|-----------------|
-| `firstPlayer = "99"` | First-turn stats | Means "random" or "unknown" — the game client didn't record who went first. The game is **included** in overall win/loss counts but **excluded** from Going First / Going Second breakdowns and first-turn advantage stats. This is why total wins + losses in a matchup may not equal going-first-games + going-second-games. |
-| `firstPlayer = "abc"` or other non-numeric | First-turn stats | Same handling as "99" — game is valid but excluded from first-turn analysis. |
+| `firstPlayer = "99"` | First-turn stats | Means "random" or "unknown" — the game client didn't record who went first (explicit tracking stopped August 2025). Turn order is recovered from the mulligan kept count (3 kept = went first, 4 = went second). If that's also ambiguous (both players kept the same number, or mulligan data is missing), the game is **included** in overall win/loss counts but **excluded** from Going First / Going Second breakdowns. This is why total wins + losses in a matchup may not equal going-first-games + going-second-games. |
+| `firstPlayer = "abc"` or other non-numeric | First-turn stats | Same handling as "99" — falls back to mulligan-based inference, and is excluded from first-turn analysis only if that also can't resolve turn order. |
 | Missing `datetime` or `datetimeStarted` | Duration, time filters | Game is still counted in stats but `duration_minutes` is `None`. If `datetimeStarted` is missing, the game won't appear in time-filtered views (1M, 3M, 6M) but will appear in "All". |
 | `winner` field missing | Win/loss attribution | Defaults to `false` — the player is counted as a loser. |
 

@@ -12,6 +12,45 @@ from itertools import combinations
 from pipeline.deckcode_py import DeckCodecError
 
 
+def _infer_first_index_from_mulligan(players):
+    """Infer which player (index 0 or 1) went first from mulligan kept counts.
+
+    Mulligan rule: the player going first keeps exactly 3 cards, going second
+    keeps 4. Returns 0 or 1 only when exactly one player kept 3 and the other
+    kept 4 (unambiguous); otherwise None.
+    """
+    if len(players) != 2:
+        return None
+    kept = []
+    for p in players:
+        mk = p.get("mulligan_kept", [])
+        if not mk:
+            return None
+        kept.append(sum(c.get("count", 1) for c in mk))
+    if kept[0] == 3 and kept[1] == 4:
+        return 0
+    if kept[0] == 4 and kept[1] == 3:
+        return 1
+    return None
+
+
+def first_player_index(game):
+    """Determine the index (0 or 1) of the player who went first.
+
+    Prefers the explicit ``first_player`` field ("1"/"2"). For games recorded
+    after first-player tracking stopped (August 2025), falls back to inferring
+    turn order from mulligan kept counts (3 kept = went first, 4 = went second).
+    Returns 0, 1, or None when turn order cannot be determined.
+    """
+    players = game.get("players", [])
+    if len(players) != 2:
+        return None
+    fp = game.get("first_player")
+    if fp in ("1", "2"):
+        return int(fp) - 1
+    return _infer_first_index_from_mulligan(players)
+
+
 def aggregate_commander_stats(games):
     """Compute per-commander winrate, matches, popularity."""
     stats = defaultdict(lambda: {"matches": 0, "wins": 0, "faction": ""})
@@ -100,10 +139,9 @@ def aggregate_matchup_details(games):
         elif p1_won:
             matchup_data[key2]["losses"] += 1
 
-        # First-turn tracking
-        fp = game.get("first_player")
-        if fp in ("1", "2"):
-            first_idx = int(fp) - 1
+        # First-turn tracking (explicit field, or inferred from mulligan)
+        first_idx = first_player_index(game)
+        if first_idx is not None:
             # From c1's perspective
             if first_idx == 0:  # p1 (c1) went first
                 matchup_data[key1]["cmd_first_games"] += 1
@@ -262,10 +300,18 @@ def aggregate_trends(games):
 def aggregate_first_turn(games):
     """Compute first-player advantage stats.
 
-    Only includes games where first_player is "1" or "2" (explicit).
-    Games with first_player="99" (random/unknown) are excluded.
+    Turn order comes from the explicit first_player field ("1"/"2") when
+    present, and is otherwise inferred from mulligan kept counts (3 = went
+    first, 4 = went second) — first-player tracking stopped in August 2025,
+    so recent games rely on this inference. Games where turn order cannot be
+    determined (e.g. first_player="99" with no usable mulligan data) are
+    excluded.
     """
-    fp_games = [g for g in games if g.get("first_player") in ("1", "2")]
+    fp_games = []
+    for g in games:
+        first_idx = first_player_index(g)
+        if first_idx is not None:
+            fp_games.append((g, first_idx))
     total = len(fp_games)
 
     if total == 0:
@@ -282,15 +328,8 @@ def aggregate_first_turn(games):
         "second_games": 0, "second_wins": 0,
     })
 
-    for game in fp_games:
-        fp = game["first_player"]
+    for game, first_idx in fp_games:
         players = game["players"]
-        if len(players) != 2:
-            continue
-
-        first_idx = int(fp) - 1
-        if first_idx not in (0, 1):
-            continue
 
         first_p = players[first_idx]
         second_p = players[1 - first_idx]
