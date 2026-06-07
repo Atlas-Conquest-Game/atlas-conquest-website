@@ -76,18 +76,58 @@
     display: none;
   }
 
+  .nav-inner {
+    padding: 0 1rem;
+  }
+
+  /* Collapse the primary nav into a hamburger dropdown */
+  .nav-burger {
+    display: flex;
+  }
+
   .nav-links {
+    position: absolute;
+    top: var(--nav-height);
+    right: 1rem;
+    min-width: 180px;
+    flex-direction: column;
     gap: 0.125rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 0.5rem;
+    box-shadow: var(--shadow-md);
+    display: none;
+  }
+
+  .nav-toggle:checked ~ .nav-links {
+    display: flex;
   }
 
   .nav-link {
-    font-size: 0.75rem;
-    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    padding: 0.5rem 0.75rem;
   }
 
   .sub-nav-inner {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+  }
+
+  /* Swap the period/map button rows for compact dropdowns */
+  .time-filter-inner {
+    flex-wrap: wrap;
+    gap: 0.375rem 0.5rem;
+  }
+
+  .time-filter-inner .time-btn,
+  .time-filter-inner .map-btn,
+  .time-filter-inner .filter-divider {
+    display: none;
+  }
+
+  .filter-select {
+    display: inline-block;
   }
 
   .section {
