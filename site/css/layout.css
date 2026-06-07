@@ -61,6 +61,50 @@
   background: var(--bg-elevated);
 }
 
+/* Hamburger toggle — hidden on desktop, shown on mobile via responsive.css */
+.nav-toggle {
+  display: none;
+}
+
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.15s ease;
+}
+
+.nav-burger:hover {
+  background: var(--bg-elevated);
+}
+
+.nav-burger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--text-secondary);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Animate to an X when the menu is open */
+.nav-toggle:checked ~ .nav-burger span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.nav-toggle:checked ~ .nav-burger span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle:checked ~ .nav-burger span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
 /* === Sub Navigation (analytics pages) === */
 .sub-nav {
   position: sticky;
@@ -234,6 +278,25 @@
   background: var(--bg-elevated);
   border-color: #388bfd;
   color: #58a6ff;
+}
+
+/* Filter dropdowns — hidden on desktop, swapped in for the button rows on mobile */
+.filter-select {
+  display: none;
+  padding: 0.3125rem 1.75rem 0.3125rem 0.625rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-elevated);
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238b949e' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
 }
 
 /* === Sections === */

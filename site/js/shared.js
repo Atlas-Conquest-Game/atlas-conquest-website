@@ -218,32 +218,55 @@ function renderMetadata(metadata) {
   el('stat-matches', metadata.total_matches.toLocaleString());
 }
 
+// ─── Filter Dropdowns (mobile) ──────────────────────────────
+
+// Build a native <select> mirroring a set of filter buttons. On mobile the
+// buttons are hidden via CSS and the select is shown, so the period/map
+// controls fit on narrow screens instead of overflowing off the right edge.
+function buildFilterSelect(buttons, dataKey, insertAfterNode) {
+  if (!buttons.length || !insertAfterNode) return null;
+  const select = document.createElement('select');
+  select.className = 'filter-select';
+  select.setAttribute('aria-label', dataKey === 'period' ? 'Time period' : 'Map');
+  buttons.forEach(btn => {
+    const opt = document.createElement('option');
+    opt.value = btn.dataset[dataKey];
+    opt.textContent = btn.textContent.trim();
+    if (btn.classList.contains('active')) opt.selected = true;
+    select.appendChild(opt);
+  });
+  insertAfterNode.insertAdjacentElement('afterend', select);
+  return select;
+}
+
 // ─── Time Filter ────────────────────────────────────────────
 
 function initTimeFilters(renderCallback) {
-  const buttons = document.querySelectorAll('.time-btn');
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      buttons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentPeriod = btn.dataset.period;
-      if (renderCallback) renderCallback();
-    });
-  });
+  const buttons = Array.from(document.querySelectorAll('.time-btn'));
+  const select = buildFilterSelect(buttons, 'period', buttons[buttons.length - 1]);
+  const apply = value => {
+    buttons.forEach(b => b.classList.toggle('active', b.dataset.period === value));
+    if (select) select.value = value;
+    currentPeriod = value;
+    if (renderCallback) renderCallback();
+  };
+  buttons.forEach(btn => btn.addEventListener('click', () => apply(btn.dataset.period)));
+  if (select) select.addEventListener('change', () => apply(select.value));
 }
 
 // ─── Map Filter ────────────────────────────────────────────
 
 function initMapFilters(renderCallback) {
-  const buttons = document.querySelectorAll('.map-btn');
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      buttons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentMap = btn.dataset.map;
-      if (renderCallback) renderCallback();
-    });
-  });
+  const buttons = Array.from(document.querySelectorAll('.map-btn'));
+  const select = buildFilterSelect(buttons, 'map', buttons[buttons.length - 1]);
+  const apply = value => {
+    buttons.forEach(b => b.classList.toggle('active', b.dataset.map === value));
+    if (select) select.value = value;
+    currentMap = value;
+    if (renderCallback) renderCallback();
+  };
+  buttons.forEach(btn => btn.addEventListener('click', () => apply(btn.dataset.map)));
+  if (select) select.addEventListener('change', () => apply(select.value));
 }
 
 // ─── Nav Active State ───────────────────────────────────────
