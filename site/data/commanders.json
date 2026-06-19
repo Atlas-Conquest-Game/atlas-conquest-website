@@ -1,14 +1,18 @@
 [
   {
     "name": "Captain Greenbeard",
-    "text": "[Cooldown 2]: This turn, minions you summon in enemy territory have Haste.",
+    "text": "[Cooldown 2]: Your minions in enemy territory have Haste this turn.",
     "subtype": "Goblin",
     "dominion": 5,
     "intellect": 7,
     "speed": 1,
     "health": 28,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": "assets/commanders/captain-greenbeard.jpg"
+    "art": "assets/commanders/captain-greenbeard.jpg",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": true
   },
   {
     "name": "Elber, Jungle Emissary",
@@ -18,8 +22,12 @@
     "intellect": 7,
     "speed": 1,
     "health": 33,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "assets/commanders/elber-jungle-emissary.jpg"
+    "art": "assets/commanders/elber-jungle-emissary.jpg",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false
   },
   {
     "name": "Elyse of the Order",
@@ -29,8 +37,12 @@
     "intellect": 8,
     "speed": 1,
     "health": 26,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": "assets/commanders/elyse-of-the-order.jpg"
+    "art": "assets/commanders/elyse-of-the-order.jpg",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false
   },
   {
     "name": "Executor Ginn",
@@ -40,8 +52,12 @@
     "intellect": 7,
     "speed": 1,
     "health": 30,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": "assets/commanders/executor-ginn.jpg"
+    "art": "assets/commanders/executor-ginn.jpg",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false
   },
   {
     "name": "Fael Spiritwalker",
@@ -51,8 +67,12 @@
     "intellect": 6,
     "speed": 1,
     "health": 27,
+    "patron": "Shadis",
     "faction": "shadis",
-    "art": "assets/commanders/fael-spiritwalker.jpg"
+    "art": "assets/commanders/fael-spiritwalker.jpg",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": true
   },
   {
     "name": "It That Weaves",
@@ -62,19 +82,27 @@
     "intellect": 7,
     "speed": 2,
     "health": 27,
+    "patron": "Archaeon",
     "faction": "archaeon",
-    "art": "assets/commanders/it-that-weaves.jpg"
+    "art": "assets/commanders/it-that-weaves.jpg",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false
   },
   {
     "name": "Jagris, the Huntsman",
-    "text": "[Range 2, Cooldown 2]: A minion gains +1/+1/+1.",
+    "text": "[Range 2, Cooldown 3]: A minion gains +1/+1/+1.",
     "subtype": "Human",
     "dominion": 5,
     "intellect": 6,
     "speed": 1,
     "health": 29,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "assets/commanders/jagris-the-huntsman.jpg"
+    "art": "assets/commanders/jagris-the-huntsman.jpg",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false
   },
   {
     "name": "Kai, Longcount Shaman",
@@ -84,8 +112,12 @@
     "intellect": 10,
     "speed": 1,
     "health": 30,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": "assets/commanders/kai-longcount-shaman.jpg"
+    "art": "assets/commanders/kai-longcount-shaman.jpg",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false
   },
   {
     "name": "Lazim, Thief of Gods",
@@ -95,8 +127,12 @@
     "intellect": 8,
     "speed": 1,
     "health": 25,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "assets/commanders/lazim-thief-of-gods.jpg"
+    "art": "assets/commanders/lazim-thief-of-gods.jpg",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false
   },
   {
     "name": "Lubela, Tender of the Wilds",
@@ -106,8 +142,12 @@
     "intellect": 8,
     "speed": 1,
     "health": 31,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "assets/commanders/lubela-tender-of-the-wilds.jpg"
+    "art": "assets/commanders/lubela-tender-of-the-wilds.jpg",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false
   },
   {
     "name": "Macks Speed",
@@ -117,8 +157,12 @@
     "intellect": 6,
     "speed": 2,
     "health": 29,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": "assets/commanders/macks-speed.jpg"
+    "art": "assets/commanders/macks-speed.jpg",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false
   },
   {
     "name": "Milo Sunstone",
@@ -128,8 +172,12 @@
     "intellect": 9,
     "speed": 1,
     "health": 32,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": "assets/commanders/milo-sunstone.jpg"
+    "art": "assets/commanders/milo-sunstone.jpg",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false
   },
   {
     "name": "Newhaven Township",
@@ -139,8 +187,12 @@
     "intellect": 7,
     "speed": 0,
     "health": 33,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "assets/commanders/newhaven-township.jpg"
+    "art": "assets/commanders/newhaven-township.jpg",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false
   },
   {
     "name": "Rosirix the Witch",
@@ -150,8 +202,12 @@
     "intellect": 6,
     "speed": 1,
     "health": 28,
+    "patron": "Archaeon",
     "faction": "archaeon",
-    "art": "assets/commanders/rosirix-the-witch.jpg"
+    "art": "assets/commanders/rosirix-the-witch.jpg",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false
   },
   {
     "name": "Soultaker Viessa",
@@ -161,8 +217,12 @@
     "intellect": 8,
     "speed": 1,
     "health": 30,
+    "patron": "Shadis",
     "faction": "shadis",
-    "art": "assets/commanders/soultaker-viessa.jpg"
+    "art": "assets/commanders/soultaker-viessa.jpg",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false
   },
   {
     "name": "Starwise Luna",
@@ -172,7 +232,11 @@
     "intellect": 7,
     "speed": 1,
     "health": 26,
+    "patron": "Archaeon",
     "faction": "archaeon",
-    "art": "assets/commanders/starwise-luna.jpg"
+    "art": "assets/commanders/starwise-luna.jpg",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": true
   }
 ]

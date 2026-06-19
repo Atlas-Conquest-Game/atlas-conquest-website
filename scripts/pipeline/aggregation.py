@@ -1435,3 +1435,115 @@ def aggregate_commander_mulligan_stats(games, intellect_lookup=None):
         result[cmd] = card_list
 
     return result
+
+
+def aggregate_goals(cards, commanders):
+    """Build the Goals page payload from card/commander art metadata.
+
+    Static (not period/map nested). Mirrors the two Trello "target" cards:
+    an Alpha Goals section (the 8 verbatim goals) and an Overall Progress
+    section (overall commission/animation rates, broken down by raw patron).
+
+    "Commissioned" means non-AI art (ARTIST_COMMISSIONED or PURCHASED_ASSET),
+    captured upstream in each record's ``commissioned`` flag.
+    """
+
+    def rate(num, den):
+        return round(num / den, 4) if den else 0.0
+
+    def count_goal(gid, label, current, target):
+        return {"id": gid, "label": label, "kind": "count",
+                "current": current, "target": target, "met": current >= target}
+
+    def percent_goal(gid, label, records, attr, target):
+        num = sum(1 for r in records if r[attr])
+        den = len(records)
+        current = rate(num, den)
+        return {"id": gid, "label": label, "kind": "percent",
+                "numerator": num, "denominator": den,
+                "current": current, "target": target, "met": current >= target}
+
+    leg_minions = [c for c in cards if c["legendary"] and c["type"] == "Minion"]
+    starter_cards = [c for c in cards if c["starter_decks"]]
+    deck_names = sorted({d for c in starter_cards for d in c["starter_decks"]})
+
+    def deck_detail(attr):
+        """Per-deck rate of ``attr`` (commissioned/has_animation)."""
+        detail = []
+        for deck in deck_names:
+            deck_cards = [c for c in cards if deck in c["starter_decks"]]
+            num = sum(1 for c in deck_cards if c[attr])
+            detail.append({
+                "deck": deck,
+                "total": len(deck_cards),
+                "met_count": num,
+                "rate": rate(num, len(deck_cards)),
+            })
+        return detail
+
+    def decks_goal(gid, label, attr, threshold):
+        detail = deck_detail(attr)
+        for d in detail:
+            d["met"] = d["rate"] >= threshold
+        met_decks = sum(1 for d in detail if d["met"])
+        return {"id": gid, "label": label, "kind": "decks",
+                "threshold": threshold, "metric": attr,
+                "current": met_decks, "target": len(detail),
+                "met": met_decks == len(detail) and len(detail) > 0,
+                "detail": detail}
+
+    art_goals = [
+        count_goal("art_count", "100 Cards Commissioned",
+                   sum(1 for c in cards if c["commissioned"]), 100),
+        percent_goal("art_commanders", "100% of Commanders Commissioned",
+                     commanders, "commissioned", 1.0),
+        percent_goal("art_legendary", "75% of Legendary Minions Commissioned",
+                     leg_minions, "commissioned", 0.75),
+        decks_goal("art_starters", "75% of Starter Decks Commissioned",
+                   "commissioned", 0.75),
+    ]
+
+    animation_goals = [
+        percent_goal("anim_all", "20% of all Cards have an animation",
+                     cards, "has_animation", 0.20),
+        percent_goal("anim_commanders", "50% of Commanders have an animation",
+                     commanders, "has_animation", 0.50),
+        percent_goal("anim_legendary", "50% of Legendary Minions have an animation",
+                     leg_minions, "has_animation", 0.50),
+        decks_goal("anim_starters", "50% of Starter Deck cards have an animation",
+                   "has_animation", 0.50),
+    ]
+
+    def totals(records):
+        commissioned = sum(1 for r in records if r["commissioned"])
+        animated = sum(1 for r in records if r["has_animation"])
+        return {
+            "total": len(records),
+            "commissioned": commissioned,
+            "commissioned_rate": rate(commissioned, len(records)),
+            "animated": animated,
+            "animated_rate": rate(animated, len(records)),
+        }
+
+    # Per-patron breakdown (raw patron values, kept separate).
+    patrons = sorted({r["patron"] for r in (cards + commanders)})
+    by_patron = []
+    for patron in patrons:
+        p_cards = [c for c in cards if c["patron"] == patron]
+        p_cmds = [c for c in commanders if c["patron"] == patron]
+        by_patron.append({
+            "patron": patron,
+            "faction": (p_cards or p_cmds)[0]["faction"],
+            "cards": totals(p_cards),
+            "commanders": totals(p_cmds),
+        })
+
+    return {
+        "art_goals": art_goals,
+        "animation_goals": animation_goals,
+        "overall": {
+            "cards": totals(cards),
+            "commanders": totals(commanders),
+        },
+        "by_patron": by_patron,
+    }

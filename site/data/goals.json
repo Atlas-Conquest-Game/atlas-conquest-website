@@ -1,0 +1,338 @@
+{
+  "art_goals": [
+    {
+      "id": "art_count",
+      "label": "100 Cards Commissioned",
+      "kind": "count",
+      "current": 69,
+      "target": 100,
+      "met": false
+    },
+    {
+      "id": "art_commanders",
+      "label": "100% of Commanders Commissioned",
+      "kind": "percent",
+      "numerator": 15,
+      "denominator": 16,
+      "current": 0.9375,
+      "target": 1.0,
+      "met": false
+    },
+    {
+      "id": "art_legendary",
+      "label": "75% of Legendary Minions Commissioned",
+      "kind": "percent",
+      "numerator": 13,
+      "denominator": 27,
+      "current": 0.4815,
+      "target": 0.75,
+      "met": false
+    },
+    {
+      "id": "art_starters",
+      "label": "75% of Starter Decks Commissioned",
+      "kind": "decks",
+      "threshold": 0.75,
+      "metric": "commissioned",
+      "current": 0,
+      "target": 5,
+      "met": false,
+      "detail": [
+        {
+          "deck": "Starter Beasts",
+          "total": 15,
+          "met_count": 4,
+          "rate": 0.2667,
+          "met": false
+        },
+        {
+          "deck": "Starter Death",
+          "total": 14,
+          "met_count": 3,
+          "rate": 0.2143,
+          "met": false
+        },
+        {
+          "deck": "Starter Deploy",
+          "total": 15,
+          "met_count": 6,
+          "rate": 0.4,
+          "met": false
+        },
+        {
+          "deck": "Starter Mage",
+          "total": 14,
+          "met_count": 5,
+          "rate": 0.3571,
+          "met": false
+        },
+        {
+          "deck": "Starter Military",
+          "total": 15,
+          "met_count": 3,
+          "rate": 0.2,
+          "met": false
+        }
+      ]
+    }
+  ],
+  "animation_goals": [
+    {
+      "id": "anim_all",
+      "label": "20% of all Cards have an animation",
+      "kind": "percent",
+      "numerator": 45,
+      "denominator": 273,
+      "current": 0.1648,
+      "target": 0.2,
+      "met": false
+    },
+    {
+      "id": "anim_commanders",
+      "label": "50% of Commanders have an animation",
+      "kind": "percent",
+      "numerator": 3,
+      "denominator": 16,
+      "current": 0.1875,
+      "target": 0.5,
+      "met": false
+    },
+    {
+      "id": "anim_legendary",
+      "label": "50% of Legendary Minions have an animation",
+      "kind": "percent",
+      "numerator": 7,
+      "denominator": 27,
+      "current": 0.2593,
+      "target": 0.5,
+      "met": false
+    },
+    {
+      "id": "anim_starters",
+      "label": "50% of Starter Deck cards have an animation",
+      "kind": "decks",
+      "threshold": 0.5,
+      "metric": "has_animation",
+      "current": 0,
+      "target": 5,
+      "met": false,
+      "detail": [
+        {
+          "deck": "Starter Beasts",
+          "total": 15,
+          "met_count": 4,
+          "rate": 0.2667,
+          "met": false
+        },
+        {
+          "deck": "Starter Death",
+          "total": 14,
+          "met_count": 3,
+          "rate": 0.2143,
+          "met": false
+        },
+        {
+          "deck": "Starter Deploy",
+          "total": 15,
+          "met_count": 3,
+          "rate": 0.2,
+          "met": false
+        },
+        {
+          "deck": "Starter Mage",
+          "total": 14,
+          "met_count": 1,
+          "rate": 0.0714,
+          "met": false
+        },
+        {
+          "deck": "Starter Military",
+          "total": 15,
+          "met_count": 2,
+          "rate": 0.1333,
+          "met": false
+        }
+      ]
+    }
+  ],
+  "overall": {
+    "cards": {
+      "total": 273,
+      "commissioned": 69,
+      "commissioned_rate": 0.2527,
+      "animated": 45,
+      "animated_rate": 0.1648
+    },
+    "commanders": {
+      "total": 16,
+      "commissioned": 15,
+      "commissioned_rate": 0.9375,
+      "animated": 3,
+      "animated_rate": 0.1875
+    }
+  },
+  "by_patron": [
+    {
+      "patron": "Adora",
+      "faction": "neutral",
+      "cards": {
+        "total": 1,
+        "commissioned": 0,
+        "commissioned_rate": 0.0,
+        "animated": 0,
+        "animated_rate": 0.0
+      },
+      "commanders": {
+        "total": 0,
+        "commissioned": 0,
+        "commissioned_rate": 0.0,
+        "animated": 0,
+        "animated_rate": 0.0
+      }
+    },
+    {
+      "patron": "Archaeon",
+      "faction": "archaeon",
+      "cards": {
+        "total": 25,
+        "commissioned": 8,
+        "commissioned_rate": 0.32,
+        "animated": 1,
+        "animated_rate": 0.04
+      },
+      "commanders": {
+        "total": 3,
+        "commissioned": 3,
+        "commissioned_rate": 1.0,
+        "animated": 1,
+        "animated_rate": 0.3333
+      }
+    },
+    {
+      "patron": "Grenalia",
+      "faction": "grenalia",
+      "cards": {
+        "total": 33,
+        "commissioned": 10,
+        "commissioned_rate": 0.303,
+        "animated": 17,
+        "animated_rate": 0.5152
+      },
+      "commanders": {
+        "total": 3,
+        "commissioned": 3,
+        "commissioned_rate": 1.0,
+        "animated": 0,
+        "animated_rate": 0.0
+      }
+    },
+    {
+      "patron": "Lucia",
+      "faction": "lucia",
+      "cards": {
+        "total": 36,
+        "commissioned": 5,
+        "commissioned_rate": 0.1389,
+        "animated": 3,
+        "animated_rate": 0.0833
+      },
+      "commanders": {
+        "total": 3,
+        "commissioned": 3,
+        "commissioned_rate": 1.0,
+        "animated": 0,
+        "animated_rate": 0.0
+      }
+    },
+    {
+      "patron": "Mechanus",
+      "faction": "neutral",
+      "cards": {
+        "total": 1,
+        "commissioned": 0,
+        "commissioned_rate": 0.0,
+        "animated": 0,
+        "animated_rate": 0.0
+      },
+      "commanders": {
+        "total": 0,
+        "commissioned": 0,
+        "commissioned_rate": 0.0,
+        "animated": 0,
+        "animated_rate": 0.0
+      }
+    },
+    {
+      "patron": "Neutral",
+      "faction": "neutral",
+      "cards": {
+        "total": 119,
+        "commissioned": 32,
+        "commissioned_rate": 0.2689,
+        "animated": 10,
+        "animated_rate": 0.084
+      },
+      "commanders": {
+        "total": 2,
+        "commissioned": 1,
+        "commissioned_rate": 0.5,
+        "animated": 0,
+        "animated_rate": 0.0
+      }
+    },
+    {
+      "patron": "Shadis",
+      "faction": "shadis",
+      "cards": {
+        "total": 23,
+        "commissioned": 4,
+        "commissioned_rate": 0.1739,
+        "animated": 2,
+        "animated_rate": 0.087
+      },
+      "commanders": {
+        "total": 2,
+        "commissioned": 2,
+        "commissioned_rate": 1.0,
+        "animated": 1,
+        "animated_rate": 0.5
+      }
+    },
+    {
+      "patron": "Skaal",
+      "faction": "skaal",
+      "cards": {
+        "total": 34,
+        "commissioned": 10,
+        "commissioned_rate": 0.2941,
+        "animated": 12,
+        "animated_rate": 0.3529
+      },
+      "commanders": {
+        "total": 3,
+        "commissioned": 3,
+        "commissioned_rate": 1.0,
+        "animated": 1,
+        "animated_rate": 0.3333
+      }
+    },
+    {
+      "patron": "Treasure",
+      "faction": "neutral",
+      "cards": {
+        "total": 1,
+        "commissioned": 0,
+        "commissioned_rate": 0.0,
+        "animated": 0,
+        "animated_rate": 0.0
+      },
+      "commanders": {
+        "total": 0,
+        "commissioned": 0,
+        "commissioned_rate": 0.0,
+        "animated": 0,
+        "animated_rate": 0.0
+      }
+    }
+  ]
+}

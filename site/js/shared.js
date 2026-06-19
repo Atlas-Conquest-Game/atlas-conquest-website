@@ -77,6 +77,7 @@ const DATA_FILES = {
   commanderWinrateTrends: 'data/commander_winrate_trends.json',
   mulliganStats: 'data/mulligan_stats.json',
   archetypes: 'data/archetypes.json',
+  goals: 'data/goals.json',
 };
 
 async function loadData(keys) {
@@ -276,7 +277,7 @@ function initNavActiveState() {
   const currentPage = pageName === '' ? 'index.html' : pageName;
 
   // Primary nav: highlight based on data-nav attribute
-  const analyticsPages = ['analytics.html', 'commanders.html', 'cards.html', 'meta.html', 'mulligan.html'];
+  const analyticsPages = ['analytics.html', 'commanders.html', 'cards.html', 'meta.html', 'mulligan.html', 'goals.html'];
   const path = window.location.pathname;
   const isArticles = currentPage === 'articles.html' || path.startsWith('/articles/') || path.includes('/articles/');
   const isDecks = currentPage === 'decks.html' || path.startsWith('/decks/') || path.includes('/decks/');
