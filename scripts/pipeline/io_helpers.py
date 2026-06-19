@@ -262,6 +262,11 @@ def load_cards_csv():
             art_file = f"{art_slug}.png"
             has_art = (CARD_SCREENSHOTS_DIR / art_file).exists() if CARD_SCREENSHOTS_DIR.exists() else False
 
+            # Art/animation metadata for goal tracking. Non-AI ("commissioned")
+            # art includes the handful of purchased assets.
+            art_type = row.get("ArtType", "").strip()
+            starter_decks = [d.strip() for d in row.get("StarterDecks", "").split(",") if d.strip()]
+
             cards.append({
                 "name": name,
                 "type": row.get("Type", "").strip(),
@@ -272,8 +277,13 @@ def load_cards_csv():
                 "speed": int(speed) if speed.isdigit() else None,
                 "health": int(health) if health.isdigit() else None,
                 "legendary": row.get("Legendary", "").strip().lower() == "true",
+                "patron": patron,
                 "faction": PATRON_MAP.get(patron, "neutral"),
                 "art": f"CardScreenshots/{art_file}" if has_art else None,
+                "art_type": art_type,
+                "commissioned": art_type in ("ARTIST_COMMISSIONED", "PURCHASED_ASSET"),
+                "has_animation": row.get("HasAnimation", "").strip().lower() == "true",
+                "starter_decks": starter_decks,
             })
 
     print(f"  Loaded {len(cards)} cards from CSV")
@@ -301,6 +311,8 @@ def load_commanders_csv():
             art_file = f"{art_slug}.jpg"
             has_art = (ASSETS_DIR / art_file).exists() if ASSETS_DIR.exists() else False
 
+            art_type = row.get("ArtType", "").strip()
+
             commanders.append({
                 "name": name,
                 "text": row.get("TextBox", "").strip(),
@@ -309,8 +321,12 @@ def load_commanders_csv():
                 "intellect": int(row.get("Intellect", 0) or 0),
                 "speed": int(row.get("Speed", 0) or 0),
                 "health": int(row.get("Health", 0) or 0),
+                "patron": patron,
                 "faction": PATRON_MAP.get(patron, "neutral"),
                 "art": f"assets/commanders/{art_file}" if has_art else None,
+                "art_type": art_type,
+                "commissioned": art_type in ("ARTIST_COMMISSIONED", "PURCHASED_ASSET"),
+                "has_animation": row.get("HasAnimation", "").strip().lower() == "true",
             })
 
     print(f"  Loaded {len(commanders)} commanders from CSV")

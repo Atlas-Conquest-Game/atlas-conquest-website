@@ -25,6 +25,7 @@ from pipeline.aggregation import (
     aggregate_commander_winrate_trends,
     aggregate_mulligan_stats,
     aggregate_commander_mulligan_stats,
+    aggregate_goals,
 )
 from pipeline.io_helpers import (
     load_cache, save_cache, write_json,
@@ -49,6 +50,9 @@ def build_and_write_all(games, cards_csv, commanders_csv):
     # Reference data (no time/map filtering)
     write_json("cards.json", cards_csv)
     write_json("commanders.json", commanders_csv)
+
+    # Goals tracker (static card-pool metadata, not period/map nested)
+    write_json("goals.json", aggregate_goals(cards_csv, commanders_csv))
 
     # Deck codec for archetype decklists. Missing/invalid cardlist degrades
     # gracefully: rows just won't include a deck_code (no link).

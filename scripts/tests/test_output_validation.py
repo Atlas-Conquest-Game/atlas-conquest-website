@@ -374,3 +374,59 @@ class TestC10_CommanderSanityFloor:
         for cmd in data:
             for field in required:
                 assert field in cmd, f"Commander missing '{field}': {cmd}"
+
+
+# ─── C11: goals.json structure (not period/map nested) ────────────
+
+class TestC11_GoalsStructure:
+    """goals.json is flat card-pool metadata: validate shape, bounds, totals."""
+
+    @pytest.fixture(autouse=True)
+    def check_data(self):
+        skip_if_no_data()
+
+    def _load(self):
+        data = load_real_json("goals.json")
+        if data is None:
+            pytest.skip("goals.json not found")
+        return data
+
+    def test_top_level_keys(self):
+        data = self._load()
+        for key in ("art_goals", "animation_goals", "overall", "by_patron"):
+            assert key in data, f"goals.json missing '{key}'"
+        assert len(data["art_goals"]) == 4
+        assert len(data["animation_goals"]) == 4
+
+    def test_goal_fields_and_bounds(self):
+        data = self._load()
+        for goal in data["art_goals"] + data["animation_goals"]:
+            for field in ("id", "label", "kind", "current", "target", "met"):
+                assert field in goal, f"goal missing '{field}': {goal}"
+            assert goal["current"] >= 0
+            assert goal["target"] >= 0
+            assert isinstance(goal["met"], bool)
+            if goal["kind"] == "decks":
+                # roll-up never claims more decks met than exist
+                assert 0 <= goal["current"] <= goal["target"]
+                for d in goal["detail"]:
+                    assert 0.0 <= d["rate"] <= 1.0
+
+    def test_overall_rates_bounded(self):
+        data = self._load()
+        for group in ("cards", "commanders"):
+            stats = data["overall"][group]
+            assert stats["total"] >= 0
+            assert 0 <= stats["commissioned"] <= stats["total"]
+            assert 0 <= stats["animated"] <= stats["total"]
+            assert 0.0 <= stats["commissioned_rate"] <= 1.0
+            assert 0.0 <= stats["animated_rate"] <= 1.0
+
+    def test_by_patron_totals_reconcile_with_overall(self):
+        data = self._load()
+        card_total = sum(p["cards"]["total"] for p in data["by_patron"])
+        card_comm = sum(p["cards"]["commissioned"] for p in data["by_patron"])
+        cmd_total = sum(p["commanders"]["total"] for p in data["by_patron"])
+        assert card_total == data["overall"]["cards"]["total"]
+        assert card_comm == data["overall"]["cards"]["commissioned"]
+        assert cmd_total == data["overall"]["commanders"]["total"]

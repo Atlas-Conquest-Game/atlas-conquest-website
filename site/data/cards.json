@@ -9,8 +9,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "CardScreenshots/Acid-Rain.png"
+    "art": "CardScreenshots/Acid-Rain.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": true,
+    "starter_decks": []
   },
   {
     "name": "Acrid Potion",
@@ -22,8 +27,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Shadis",
     "faction": "shadis",
-    "art": "CardScreenshots/Acrid-Potion.png"
+    "art": "CardScreenshots/Acrid-Potion.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Action Surge",
@@ -35,8 +45,15 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": null
+    "art": "CardScreenshots/Action-Surge.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Deploy"
+    ]
   },
   {
     "name": "Alchemist",
@@ -48,8 +65,13 @@
     "speed": 3,
     "health": 2,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Alchemist.png"
+    "art": "CardScreenshots/Alchemist.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Ancient Golem",
@@ -61,8 +83,13 @@
     "speed": 3,
     "health": 9,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Ancient-Golem.png"
+    "art": "CardScreenshots/Ancient-Golem.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Angelic Captain",
@@ -74,21 +101,31 @@
     "speed": 3,
     "health": 4,
     "legendary": false,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": "CardScreenshots/Angelic-Captain.png"
+    "art": "CardScreenshots/Angelic-Captain.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Angel's Grace",
     "type": "Spell",
-    "text": "[Range 4]: A character gains +4 movement. If it's a minion, it gains Flying this turn.",
+    "text": "[Range 4]: A character gains +4 movement this turn. If it's a minion, it gains Flying this turn.",
     "subtype": "",
     "cost": 1,
     "attack": null,
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": "CardScreenshots/Angels-Grace.png"
+    "art": "CardScreenshots/Angels-Grace.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Apothecary",
@@ -100,8 +137,13 @@
     "speed": 3,
     "health": 3,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Apothecary.png"
+    "art": "CardScreenshots/Apothecary.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Apprentice Mage",
@@ -113,8 +155,13 @@
     "speed": 3,
     "health": 2,
     "legendary": false,
+    "patron": "Archaeon",
     "faction": "archaeon",
-    "art": "CardScreenshots/Apprentice-Mage.png"
+    "art": "CardScreenshots/Apprentice-Mage.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Archpaladin Erix",
@@ -126,8 +173,13 @@
     "speed": 2,
     "health": 7,
     "legendary": true,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": null
+    "art": "CardScreenshots/Archpaladin-Erix.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Asera",
@@ -139,8 +191,13 @@
     "speed": 4,
     "health": 13,
     "legendary": true,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Asera.png"
+    "art": "CardScreenshots/Asera.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Assistant Chemist",
@@ -152,8 +209,13 @@
     "speed": 2,
     "health": 2,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Assistant-Chemist.png"
+    "art": "CardScreenshots/Assistant-Chemist.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Atlas, First to Walk",
@@ -165,8 +227,13 @@
     "speed": 0,
     "health": 10,
     "legendary": true,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Atlas-First-to-Walk.png"
+    "art": "CardScreenshots/Atlas-First-to-Walk.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": true,
+    "starter_decks": []
   },
   {
     "name": "Baby Raptor",
@@ -178,8 +245,15 @@
     "speed": 2,
     "health": 2,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Baby-Raptor.png"
+    "art": "CardScreenshots/Baby-Raptor.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Beasts"
+    ]
   },
   {
     "name": "Badland Mercenary",
@@ -191,8 +265,13 @@
     "speed": 3,
     "health": 1,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Badland-Mercenary.png"
+    "art": "CardScreenshots/Badland-Mercenary.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Battlefield Savior",
@@ -204,8 +283,13 @@
     "speed": 3,
     "health": 4,
     "legendary": false,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": "CardScreenshots/Battlefield-Savior.png"
+    "art": "CardScreenshots/Battlefield-Savior.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Battlefield Webspinner",
@@ -217,8 +301,13 @@
     "speed": 3,
     "health": 4,
     "legendary": false,
+    "patron": "Archaeon",
     "faction": "archaeon",
-    "art": "CardScreenshots/Battlefield-Webspinner.png"
+    "art": "CardScreenshots/Battlefield-Webspinner.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Beast Trainer",
@@ -230,8 +319,13 @@
     "speed": 3,
     "health": 3,
     "legendary": false,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "CardScreenshots/Beast-Trainer.png"
+    "art": "CardScreenshots/Beast-Trainer.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Big Game Hunter",
@@ -243,8 +337,13 @@
     "speed": 2,
     "health": 2,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Big-Game-Hunter.png"
+    "art": "CardScreenshots/Big-Game-Hunter.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Black Dragon",
@@ -256,8 +355,13 @@
     "speed": 4,
     "health": 5,
     "legendary": false,
+    "patron": "Shadis",
     "faction": "shadis",
-    "art": "CardScreenshots/Black-Dragon.png"
+    "art": "CardScreenshots/Black-Dragon.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Black Scorpion",
@@ -269,21 +373,33 @@
     "speed": 2,
     "health": 3,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Black-Scorpion.png"
+    "art": "CardScreenshots/Black-Scorpion.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Death"
+    ]
   },
   {
     "name": "Blessed Force",
     "type": "Spell",
-    "text": "Destroy all minions with mana cost 3 or less within Range 2.",
+    "text": "Destroy all minions with mana cost 3 or less within Range 3.",
     "subtype": "",
     "cost": 5,
     "attack": null,
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": "CardScreenshots/Blessed-Force.png"
+    "art": "CardScreenshots/Blessed-Force.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Blinkshot",
@@ -295,8 +411,15 @@
     "speed": 3,
     "health": 3,
     "legendary": false,
+    "patron": "Archaeon",
     "faction": "archaeon",
-    "art": "CardScreenshots/Blinkshot.png"
+    "art": "CardScreenshots/Blinkshot.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Mage"
+    ]
   },
   {
     "name": "Bloodrush",
@@ -308,8 +431,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": "CardScreenshots/Bloodrush.png"
+    "art": "CardScreenshots/Bloodrush.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Blue Dragon",
@@ -321,8 +449,13 @@
     "speed": 4,
     "health": 5,
     "legendary": false,
+    "patron": "Archaeon",
     "faction": "archaeon",
-    "art": "CardScreenshots/Blue-Dragon.png"
+    "art": "CardScreenshots/Blue-Dragon.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Bramble",
@@ -334,8 +467,13 @@
     "speed": 0,
     "health": 3,
     "legendary": false,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "CardScreenshots/Bramble.png"
+    "art": "CardScreenshots/Bramble.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Brash Outfitter",
@@ -347,8 +485,13 @@
     "speed": 2,
     "health": 1,
     "legendary": false,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": "CardScreenshots/Brash-Outfitter.png"
+    "art": "CardScreenshots/Brash-Outfitter.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Burgeon",
@@ -360,8 +503,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "CardScreenshots/Burgeon.png"
+    "art": "CardScreenshots/Burgeon.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Call of the Jungle",
@@ -373,8 +521,15 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "CardScreenshots/Call-of-the-Jungle.png"
+    "art": "CardScreenshots/Call-of-the-Jungle.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Beasts"
+    ]
   },
   {
     "name": "Champion of the Wilds",
@@ -386,8 +541,13 @@
     "speed": 2,
     "health": 7,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Champion-of-the-Wilds.png"
+    "art": "CardScreenshots/Champion-of-the-Wilds.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Chant of the Old Ones",
@@ -399,8 +559,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "CardScreenshots/Chant-of-the-Old-Ones.png"
+    "art": "CardScreenshots/Chant-of-the-Old-Ones.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": true,
+    "starter_decks": []
   },
   {
     "name": "Charge Up",
@@ -412,8 +577,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": "CardScreenshots/Charge-Up.png"
+    "art": "CardScreenshots/Charge-Up.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Charger",
@@ -425,8 +595,13 @@
     "speed": 2,
     "health": 3,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Charger.png"
+    "art": "CardScreenshots/Charger.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Citadel Lord",
@@ -438,8 +613,13 @@
     "speed": 3,
     "health": 3,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Citadel-Lord.png"
+    "art": "CardScreenshots/Citadel-Lord.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "City Planning",
@@ -451,8 +631,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": null
+    "art": "CardScreenshots/City-Planning.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Cloning Magic",
@@ -464,8 +649,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Archaeon",
     "faction": "archaeon",
-    "art": "CardScreenshots/Cloning-Magic.png"
+    "art": "CardScreenshots/Cloning-Magic.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Combust",
@@ -477,8 +667,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": "CardScreenshots/Combust.png"
+    "art": "CardScreenshots/Combust.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Cone of Cold",
@@ -490,8 +685,15 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Archaeon",
     "faction": "archaeon",
-    "art": "CardScreenshots/Cone-of-Cold.png"
+    "art": "CardScreenshots/Cone-of-Cold.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Mage"
+    ]
   },
   {
     "name": "Conscription",
@@ -503,8 +705,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": "CardScreenshots/Conscription.png"
+    "art": "CardScreenshots/Conscription.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Crippling Tax",
@@ -516,8 +723,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": "CardScreenshots/Crippling-Tax.png"
+    "art": "CardScreenshots/Crippling-Tax.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Daemonic Summoning",
@@ -529,8 +741,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Shadis",
     "faction": "shadis",
-    "art": "CardScreenshots/Daemonic-Summoning.png"
+    "art": "CardScreenshots/Daemonic-Summoning.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Daemonprince Grizlocke",
@@ -542,8 +759,13 @@
     "speed": 3,
     "health": 13,
     "legendary": true,
+    "patron": "Shadis",
     "faction": "shadis",
-    "art": "CardScreenshots/Daemonprince-Grizlocke.png"
+    "art": "CardScreenshots/Daemonprince-Grizlocke.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Danrir, Omenhound",
@@ -555,8 +777,15 @@
     "speed": 4,
     "health": 4,
     "legendary": true,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Danrir-Omenhound.png"
+    "art": "CardScreenshots/Danrir-Omenhound.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Beasts"
+    ]
   },
   {
     "name": "Darkroot Ooze",
@@ -568,8 +797,13 @@
     "speed": 3,
     "health": 3,
     "legendary": false,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "CardScreenshots/Darkroot-Ooze.png"
+    "art": "CardScreenshots/Darkroot-Ooze.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": true,
+    "starter_decks": []
   },
   {
     "name": "Darkroot Witch",
@@ -581,8 +815,13 @@
     "speed": 2,
     "health": 2,
     "legendary": false,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "CardScreenshots/Darkroot-Witch.png"
+    "art": "CardScreenshots/Darkroot-Witch.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": true,
+    "starter_decks": []
   },
   {
     "name": "Darkwing",
@@ -594,8 +833,13 @@
     "speed": 3,
     "health": 4,
     "legendary": false,
+    "patron": "Shadis",
     "faction": "shadis",
-    "art": "CardScreenshots/Darkwing.png"
+    "art": "CardScreenshots/Darkwing.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Deathquill",
@@ -607,8 +851,13 @@
     "speed": 1,
     "health": 5,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Deathquill.png"
+    "art": "CardScreenshots/Deathquill.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": true,
+    "starter_decks": []
   },
   {
     "name": "Demilich",
@@ -620,8 +869,15 @@
     "speed": 2,
     "health": 4,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Demilich.png"
+    "art": "CardScreenshots/Demilich.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Mage"
+    ]
   },
   {
     "name": "Devout Caretaker",
@@ -633,8 +889,13 @@
     "speed": 3,
     "health": 5,
     "legendary": false,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": "CardScreenshots/Devout-Caretaker.png"
+    "art": "CardScreenshots/Devout-Caretaker.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Diplomatic Envoy",
@@ -646,8 +907,13 @@
     "speed": 3,
     "health": 3,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": null
+    "art": "CardScreenshots/Diplomatic-Envoy.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Domination",
@@ -659,8 +925,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Shadis",
     "faction": "shadis",
-    "art": "CardScreenshots/Domination.png"
+    "art": "CardScreenshots/Domination.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Draconic Mage",
@@ -672,8 +943,13 @@
     "speed": 4,
     "health": 8,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": null
+    "art": "CardScreenshots/Draconic-Mage.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Dragon Egg",
@@ -685,8 +961,13 @@
     "speed": 0,
     "health": 2,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Dragon-Egg.png"
+    "art": "CardScreenshots/Dragon-Egg.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Dragon Tamer",
@@ -698,8 +979,13 @@
     "speed": 3,
     "health": 2,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Dragon-Tamer.png"
+    "art": "CardScreenshots/Dragon-Tamer.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Dragonkin Evoker",
@@ -711,8 +997,13 @@
     "speed": 2,
     "health": 3,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Dragonkin-Evoker.png"
+    "art": "CardScreenshots/Dragonkin-Evoker.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Dragon's Breath",
@@ -724,8 +1015,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": null
+    "art": "CardScreenshots/Dragons-Breath.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Drain Energy",
@@ -737,8 +1033,15 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Shadis",
     "faction": "shadis",
-    "art": "CardScreenshots/Drain-Energy.png"
+    "art": "CardScreenshots/Drain-Energy.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Death"
+    ]
   },
   {
     "name": "Drakemire Shaman",
@@ -750,8 +1053,13 @@
     "speed": 2,
     "health": 4,
     "legendary": false,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "CardScreenshots/Drakemire-Shaman.png"
+    "art": "CardScreenshots/Drakemire-Shaman.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": true,
+    "starter_decks": []
   },
   {
     "name": "Dread Knight",
@@ -763,8 +1071,16 @@
     "speed": 3,
     "health": 6,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Dread-Knight.png"
+    "art": "CardScreenshots/Dread-Knight.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Death",
+      "Starter Deploy"
+    ]
   },
   {
     "name": "Dread Proclamation",
@@ -776,8 +1092,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Shadis",
     "faction": "shadis",
-    "art": "CardScreenshots/Dread-Proclamation.png"
+    "art": "CardScreenshots/Dread-Proclamation.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Dreadlord Cyrion",
@@ -789,8 +1110,13 @@
     "speed": 3,
     "health": 6,
     "legendary": true,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Dreadlord-Cyrion.png"
+    "art": "CardScreenshots/Dreadlord-Cyrion.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Drowsy Lizard",
@@ -802,8 +1128,13 @@
     "speed": 1,
     "health": 3,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Drowsy-Lizard.png"
+    "art": "CardScreenshots/Drowsy-Lizard.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Durka Wurm",
@@ -815,8 +1146,13 @@
     "speed": 4,
     "health": 7,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Durka-Wurm.png"
+    "art": "CardScreenshots/Durka-Wurm.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Dwarven Battlepriest",
@@ -828,8 +1164,15 @@
     "speed": 2,
     "health": 3,
     "legendary": false,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": "CardScreenshots/Dwarven-Battlepriest.png"
+    "art": "CardScreenshots/Dwarven-Battlepriest.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Military"
+    ]
   },
   {
     "name": "Dwarven Stout",
@@ -841,8 +1184,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": "CardScreenshots/Dwarven-Stout.png"
+    "art": "CardScreenshots/Dwarven-Stout.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Dyana, Prime Huntress",
@@ -854,8 +1202,13 @@
     "speed": 2,
     "health": 7,
     "legendary": true,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "CardScreenshots/Dyana-Prime-Huntress.png"
+    "art": "CardScreenshots/Dyana-Prime-Huntress.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": true,
+    "starter_decks": []
   },
   {
     "name": "Eagle King",
@@ -867,8 +1220,15 @@
     "speed": 4,
     "health": 4,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Eagle-King.png"
+    "art": "CardScreenshots/Eagle-King.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Beasts"
+    ]
   },
   {
     "name": "Elf Ranger",
@@ -880,8 +1240,16 @@
     "speed": 2,
     "health": 3,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Elf-Ranger.png"
+    "art": "CardScreenshots/Elf-Ranger.png",
+    "art_type": "PURCHASED_ASSET",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Beasts",
+      "Starter Military"
+    ]
   },
   {
     "name": "Elite Mercenary",
@@ -893,8 +1261,13 @@
     "speed": 3,
     "health": 5,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Elite-Mercenary.png"
+    "art": "CardScreenshots/Elite-Mercenary.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Elixirist",
@@ -906,8 +1279,16 @@
     "speed": 3,
     "health": 2,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": null
+    "art": "CardScreenshots/Elixirist.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Beasts",
+      "Starter Mage"
+    ]
   },
   {
     "name": "Elven Spellblade",
@@ -919,8 +1300,15 @@
     "speed": 4,
     "health": 5,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": null
+    "art": "CardScreenshots/Elven-Spellblade.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Deploy"
+    ]
   },
   {
     "name": "Ember",
@@ -932,8 +1320,13 @@
     "speed": 3,
     "health": 3,
     "legendary": false,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": "CardScreenshots/Ember.png"
+    "art": "CardScreenshots/Ember.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Emerald Asp",
@@ -945,8 +1338,13 @@
     "speed": 3,
     "health": 1,
     "legendary": false,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "CardScreenshots/Emerald-Asp.png"
+    "art": "CardScreenshots/Emerald-Asp.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": true,
+    "starter_decks": []
   },
   {
     "name": "Energy Potion",
@@ -958,8 +1356,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Energy-Potion.png"
+    "art": "CardScreenshots/Energy-Potion.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": true,
+    "starter_decks": []
   },
   {
     "name": "Enigmatic Golem",
@@ -971,8 +1374,13 @@
     "speed": 3,
     "health": 9,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Enigmatic-Golem.png"
+    "art": "CardScreenshots/Enigmatic-Golem.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Ereloth",
@@ -984,8 +1392,13 @@
     "speed": 4,
     "health": 2,
     "legendary": false,
+    "patron": "Shadis",
     "faction": "shadis",
-    "art": null
+    "art": "CardScreenshots/Ereloth.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Eternal Wall",
@@ -997,8 +1410,13 @@
     "speed": 0,
     "health": 6,
     "legendary": false,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": "CardScreenshots/Eternal-Wall.png"
+    "art": "CardScreenshots/Eternal-Wall.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Expand the Wilds",
@@ -1010,8 +1428,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "CardScreenshots/Expand-the-Wilds.png"
+    "art": "CardScreenshots/Expand-the-Wilds.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Explosive Potion",
@@ -1023,8 +1446,15 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Explosive-Potion.png"
+    "art": "CardScreenshots/Explosive-Potion.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Deploy"
+    ]
   },
   {
     "name": "Expropriation",
@@ -1036,8 +1466,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Archaeon",
     "faction": "archaeon",
-    "art": "CardScreenshots/Expropriation.png"
+    "art": "CardScreenshots/Expropriation.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Fade to Mists",
@@ -1049,8 +1484,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Archaeon",
     "faction": "archaeon",
-    "art": null
+    "art": "CardScreenshots/Fade-to-Mists.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Feeblemind",
@@ -1062,8 +1502,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Archaeon",
     "faction": "archaeon",
-    "art": "CardScreenshots/Feeblemind.png"
+    "art": "CardScreenshots/Feeblemind.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Feral Vampire",
@@ -1075,8 +1520,15 @@
     "speed": 3,
     "health": 3,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Feral-Vampire.png"
+    "art": "CardScreenshots/Feral-Vampire.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Death"
+    ]
   },
   {
     "name": "Finishing Strike",
@@ -1088,8 +1540,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": null
+    "art": "CardScreenshots/Finishing-Strike.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Fireball",
@@ -1101,8 +1558,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": "CardScreenshots/Fireball.png"
+    "art": "CardScreenshots/Fireball.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": true,
+    "starter_decks": []
   },
   {
     "name": "Firebolt",
@@ -1114,8 +1576,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": "CardScreenshots/Firebolt.png"
+    "art": "CardScreenshots/Firebolt.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": true,
+    "starter_decks": []
   },
   {
     "name": "First Experiment",
@@ -1127,8 +1594,13 @@
     "speed": 3,
     "health": 3,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/First-Experiment.png"
+    "art": "CardScreenshots/First-Experiment.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Flame Acolyte",
@@ -1140,8 +1612,13 @@
     "speed": 3,
     "health": 1,
     "legendary": false,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": "CardScreenshots/Flame-Acolyte.png"
+    "art": "CardScreenshots/Flame-Acolyte.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": true,
+    "starter_decks": []
   },
   {
     "name": "Flamelash",
@@ -1153,8 +1630,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": "CardScreenshots/Flamelash.png"
+    "art": "CardScreenshots/Flamelash.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": true,
+    "starter_decks": []
   },
   {
     "name": "Found City",
@@ -1166,8 +1648,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": null
+    "art": "CardScreenshots/Found-City.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Fourth Experiment",
@@ -1179,8 +1666,13 @@
     "speed": 3,
     "health": 3,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Fourth-Experiment.png"
+    "art": "CardScreenshots/Fourth-Experiment.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Frostblade",
@@ -1192,8 +1684,15 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Archaeon",
     "faction": "archaeon",
-    "art": "CardScreenshots/Frostblade.png"
+    "art": "CardScreenshots/Frostblade.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": true,
+    "starter_decks": [
+      "Starter Mage"
+    ]
   },
   {
     "name": "Fungal Explosion",
@@ -1205,8 +1704,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "CardScreenshots/Fungal-Explosion.png"
+    "art": "CardScreenshots/Fungal-Explosion.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": true,
+    "starter_decks": []
   },
   {
     "name": "Ghast",
@@ -1218,8 +1722,13 @@
     "speed": 2,
     "health": 3,
     "legendary": false,
+    "patron": "Shadis",
     "faction": "shadis",
-    "art": "CardScreenshots/Ghast.png"
+    "art": "CardScreenshots/Ghast.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Giant Eagle",
@@ -1231,8 +1740,15 @@
     "speed": 4,
     "health": 4,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Giant-Eagle.png"
+    "art": "CardScreenshots/Giant-Eagle.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Mage"
+    ]
   },
   {
     "name": "Giant River Snapper",
@@ -1244,8 +1760,13 @@
     "speed": 2,
     "health": 10,
     "legendary": false,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "CardScreenshots/Giant-River-Snapper.png"
+    "art": "CardScreenshots/Giant-River-Snapper.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Gilded Defender",
@@ -1257,8 +1778,13 @@
     "speed": 3,
     "health": 5,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Gilded-Defender.png"
+    "art": "CardScreenshots/Gilded-Defender.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Goblin Duo",
@@ -1270,8 +1796,13 @@
     "speed": 2,
     "health": 1,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Goblin-Duo.png"
+    "art": "CardScreenshots/Goblin-Duo.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Goblin Firebow",
@@ -1283,8 +1814,13 @@
     "speed": 2,
     "health": 2,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Goblin-Firebow.png"
+    "art": "CardScreenshots/Goblin-Firebow.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Goblin Infantry",
@@ -1296,8 +1832,13 @@
     "speed": 2,
     "health": 3,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Goblin-Infantry.png"
+    "art": "CardScreenshots/Goblin-Infantry.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Goblin Infiltrator",
@@ -1309,8 +1850,16 @@
     "speed": 2,
     "health": 5,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Goblin-Infiltrator.png"
+    "art": "CardScreenshots/Goblin-Infiltrator.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Death",
+      "Starter Deploy"
+    ]
   },
   {
     "name": "Goblin King",
@@ -1322,8 +1871,13 @@
     "speed": 2,
     "health": 3,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Goblin-King.png"
+    "art": "CardScreenshots/Goblin-King.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Goblin Lorespeaker",
@@ -1335,8 +1889,13 @@
     "speed": 2,
     "health": 4,
     "legendary": false,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": "CardScreenshots/Goblin-Lorespeaker.png"
+    "art": "CardScreenshots/Goblin-Lorespeaker.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": true,
+    "starter_decks": []
   },
   {
     "name": "Goblin Musclejuice",
@@ -1348,8 +1907,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": "CardScreenshots/Goblin-Musclejuice.png"
+    "art": "CardScreenshots/Goblin-Musclejuice.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Goblin Paratrooper",
@@ -1361,8 +1925,15 @@
     "speed": 2,
     "health": 3,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Goblin-Paratrooper.png"
+    "art": "CardScreenshots/Goblin-Paratrooper.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Deploy"
+    ]
   },
   {
     "name": "Goblin Recruitment",
@@ -1374,8 +1945,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": "CardScreenshots/Goblin-Recruitment.png"
+    "art": "CardScreenshots/Goblin-Recruitment.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Goblin Scamp",
@@ -1387,8 +1963,13 @@
     "speed": 2,
     "health": 1,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Goblin-Scamp.png"
+    "art": "CardScreenshots/Goblin-Scamp.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Goblin Scout",
@@ -1400,8 +1981,13 @@
     "speed": 2,
     "health": 2,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Goblin-Scout.png"
+    "art": "CardScreenshots/Goblin-Scout.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Goblin Shaman",
@@ -1413,8 +1999,15 @@
     "speed": 2,
     "health": 1,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Goblin-Shaman.png"
+    "art": "CardScreenshots/Goblin-Shaman.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": true,
+    "starter_decks": [
+      "Starter Deploy"
+    ]
   },
   {
     "name": "Goblin Skirmisher",
@@ -1426,8 +2019,13 @@
     "speed": 2,
     "health": 3,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Goblin-Skirmisher.png"
+    "art": "CardScreenshots/Goblin-Skirmisher.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": true,
+    "starter_decks": []
   },
   {
     "name": "Gold Dragon",
@@ -1439,8 +2037,13 @@
     "speed": 4,
     "health": 10,
     "legendary": false,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": "CardScreenshots/Gold-Dragon.png"
+    "art": "CardScreenshots/Gold-Dragon.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Grand Illusion",
@@ -1452,8 +2055,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Archaeon",
     "faction": "archaeon",
-    "art": "CardScreenshots/Grand-Illusion.png"
+    "art": "CardScreenshots/Grand-Illusion.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Gravehand",
@@ -1465,8 +2073,13 @@
     "speed": 3,
     "health": 3,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Gravehand.png"
+    "art": "CardScreenshots/Gravehand.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Greater Healing Potion",
@@ -1478,8 +2091,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Greater-Healing-Potion.png"
+    "art": "CardScreenshots/Greater-Healing-Potion.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Green Dragon",
@@ -1491,8 +2109,13 @@
     "speed": 4,
     "health": 8,
     "legendary": false,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "CardScreenshots/Green-Dragon.png"
+    "art": "CardScreenshots/Green-Dragon.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": true,
+    "starter_decks": []
   },
   {
     "name": "Grey Wastes Shade",
@@ -1504,8 +2127,13 @@
     "speed": 2,
     "health": 3,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Grey-Wastes-Shade.png"
+    "art": "CardScreenshots/Grey-Wastes-Shade.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Growth",
@@ -1517,8 +2145,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "CardScreenshots/Growth.png"
+    "art": "CardScreenshots/Growth.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Growth Potion",
@@ -1530,8 +2163,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Growth-Potion.png"
+    "art": "CardScreenshots/Growth-Potion.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Grutali",
@@ -1543,8 +2181,13 @@
     "speed": 3,
     "health": 13,
     "legendary": true,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Grutali.png"
+    "art": "CardScreenshots/Grutali.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Gruth, Ogre Champion",
@@ -1556,8 +2199,13 @@
     "speed": 4,
     "health": 7,
     "legendary": true,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": "CardScreenshots/Gruth-Ogre-Champion.png"
+    "art": "CardScreenshots/Gruth-Ogre-Champion.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": true,
+    "starter_decks": []
   },
   {
     "name": "Guardian Ent",
@@ -1569,8 +2217,13 @@
     "speed": 2,
     "health": 8,
     "legendary": false,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": null
+    "art": "CardScreenshots/Guardian-Ent.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Guerilla Gorilla",
@@ -1582,8 +2235,13 @@
     "speed": 3,
     "health": 5,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Guerilla-Gorilla.png"
+    "art": "CardScreenshots/Guerilla-Gorilla.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Guide to Heavens",
@@ -1595,8 +2253,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": "CardScreenshots/Guide-to-Heavens.png"
+    "art": "CardScreenshots/Guide-to-Heavens.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Guiding Light",
@@ -1608,8 +2271,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": "CardScreenshots/Guiding-Light.png"
+    "art": "CardScreenshots/Guiding-Light.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Heaven's Legion",
@@ -1621,8 +2289,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": "CardScreenshots/Heavens-Legion.png"
+    "art": "CardScreenshots/Heavens-Legion.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Heavy Cavalry",
@@ -1634,8 +2307,16 @@
     "speed": 4,
     "health": 8,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Heavy-Cavalry.png"
+    "art": "CardScreenshots/Heavy-Cavalry.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Deploy",
+      "Starter Military"
+    ]
   },
   {
     "name": "High Elf Mage",
@@ -1647,8 +2328,13 @@
     "speed": 3,
     "health": 1,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/High-Elf-Mage.png"
+    "art": "CardScreenshots/High-Elf-Mage.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Holy Fervor",
@@ -1660,8 +2346,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": "CardScreenshots/Holy-Fervor.png"
+    "art": "CardScreenshots/Holy-Fervor.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Homesong Minstrel",
@@ -1673,8 +2364,13 @@
     "speed": 2,
     "health": 2,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Homesong-Minstrel.png"
+    "art": "CardScreenshots/Homesong-Minstrel.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Hoplite Vanguard",
@@ -1686,8 +2382,16 @@
     "speed": 3,
     "health": 1,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Hoplite-Vanguard.png"
+    "art": "CardScreenshots/Hoplite-Vanguard.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Beasts",
+      "Starter Deploy"
+    ]
   },
   {
     "name": "Horde Leader",
@@ -1699,8 +2403,13 @@
     "speed": 2,
     "health": 2,
     "legendary": false,
+    "patron": "Shadis",
     "faction": "shadis",
-    "art": "CardScreenshots/Horde-Leader.png"
+    "art": "CardScreenshots/Horde-Leader.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": true,
+    "starter_decks": []
   },
   {
     "name": "Hover Tank",
@@ -1712,8 +2421,13 @@
     "speed": 2,
     "health": 5,
     "legendary": false,
+    "patron": "Mechanus",
     "faction": "neutral",
-    "art": null
+    "art": "CardScreenshots/Hover-Tank.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Illusory Legion",
@@ -1725,8 +2439,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Archaeon",
     "faction": "archaeon",
-    "art": "CardScreenshots/Illusory-Legion.png"
+    "art": "CardScreenshots/Illusory-Legion.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Imp",
@@ -1738,8 +2457,13 @@
     "speed": 2,
     "health": 2,
     "legendary": false,
+    "patron": "Shadis",
     "faction": "shadis",
-    "art": "CardScreenshots/Imp.png"
+    "art": "CardScreenshots/Imp.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Infected Dreg",
@@ -1751,8 +2475,15 @@
     "speed": 2,
     "health": 1,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Infected-Dreg.png"
+    "art": "CardScreenshots/Infected-Dreg.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": true,
+    "starter_decks": [
+      "Starter Beasts"
+    ]
   },
   {
     "name": "Khazgar, Flame Emperor",
@@ -1764,8 +2495,13 @@
     "speed": 3,
     "health": 12,
     "legendary": true,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Khazgar-Flame-Emperor.png"
+    "art": "CardScreenshots/Khazgar-Flame-Emperor.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": true,
+    "starter_decks": []
   },
   {
     "name": "Killing Hex",
@@ -1777,8 +2513,15 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Shadis",
     "faction": "shadis",
-    "art": "CardScreenshots/Killing-Hex.png"
+    "art": "CardScreenshots/Killing-Hex.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": true,
+    "starter_decks": [
+      "Starter Death"
+    ]
   },
   {
     "name": "Kindle",
@@ -1790,8 +2533,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": null
+    "art": "CardScreenshots/Kindle.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "King Darian",
@@ -1803,8 +2551,13 @@
     "speed": 3,
     "health": 6,
     "legendary": true,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/King-Darian.png"
+    "art": "CardScreenshots/King-Darian.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Knife Sharpener",
@@ -1816,8 +2569,13 @@
     "speed": 2,
     "health": 1,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Knife-Sharpener.png"
+    "art": "CardScreenshots/Knife-Sharpener.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Lay Claim",
@@ -1829,8 +2587,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": "CardScreenshots/Lay-Claim.png"
+    "art": "CardScreenshots/Lay-Claim.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Lifeweaver",
@@ -1842,8 +2605,13 @@
     "speed": 2,
     "health": 3,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Lifeweaver.png"
+    "art": "CardScreenshots/Lifeweaver.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Light Elemental",
@@ -1855,8 +2623,13 @@
     "speed": 3,
     "health": 3,
     "legendary": false,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": null
+    "art": "CardScreenshots/Light-Elemental.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Lightbound Martyr",
@@ -1868,8 +2641,13 @@
     "speed": 3,
     "health": 2,
     "legendary": false,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": null
+    "art": "CardScreenshots/Lightbound-Martyr.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Lightning Bolt",
@@ -1881,8 +2659,15 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": "CardScreenshots/Lightning-Bolt.png"
+    "art": "CardScreenshots/Lightning-Bolt.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": true,
+    "starter_decks": [
+      "Starter Deploy"
+    ]
   },
   {
     "name": "Limmick, Goblin Hedonist",
@@ -1894,8 +2679,15 @@
     "speed": 2,
     "health": 2,
     "legendary": true,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": "CardScreenshots/Limmick-Goblin-Hedonist.png"
+    "art": "CardScreenshots/Limmick-Goblin-Hedonist.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Deploy"
+    ]
   },
   {
     "name": "Live off the Land",
@@ -1907,8 +2699,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "CardScreenshots/Live-off-the-Land.png"
+    "art": "CardScreenshots/Live-off-the-Land.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Local Trader",
@@ -1920,8 +2717,13 @@
     "speed": 3,
     "health": 1,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Local-Trader.png"
+    "art": "CardScreenshots/Local-Trader.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Longleg Dorathru",
@@ -1933,8 +2735,13 @@
     "speed": 3,
     "health": 3,
     "legendary": true,
+    "patron": "Archaeon",
     "faction": "archaeon",
-    "art": null
+    "art": "CardScreenshots/Longleg-Dorathru.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Lord of Casterhorn",
@@ -1946,8 +2753,15 @@
     "speed": 3,
     "health": 3,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Lord-of-Casterhorn.png"
+    "art": "CardScreenshots/Lord-of-Casterhorn.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Deploy"
+    ]
   },
   {
     "name": "Lord of Heavenspire",
@@ -1959,8 +2773,13 @@
     "speed": 2,
     "health": 3,
     "legendary": false,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": "CardScreenshots/Lord-of-Heavenspire.png"
+    "art": "CardScreenshots/Lord-of-Heavenspire.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Lorecaller Gazan",
@@ -1972,8 +2791,13 @@
     "speed": 3,
     "health": 7,
     "legendary": true,
+    "patron": "Archaeon",
     "faction": "archaeon",
-    "art": "CardScreenshots/Lorecaller-Gazan.png"
+    "art": "CardScreenshots/Lorecaller-Gazan.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Lucian Battalion",
@@ -1985,8 +2809,13 @@
     "speed": 3,
     "health": 1,
     "legendary": false,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": "CardScreenshots/Lucian-Battalion.png"
+    "art": "CardScreenshots/Lucian-Battalion.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Lucian Squire",
@@ -1998,8 +2827,13 @@
     "speed": 3,
     "health": 1,
     "legendary": false,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": null
+    "art": "CardScreenshots/Lucian-Squire.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Lucian Zealot",
@@ -2011,8 +2845,13 @@
     "speed": 3,
     "health": 5,
     "legendary": false,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": "CardScreenshots/Lucian-Zealot.png"
+    "art": "CardScreenshots/Lucian-Zealot.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Lumbering Ogre",
@@ -2024,8 +2863,13 @@
     "speed": 1,
     "health": 6,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Lumbering-Ogre.png"
+    "art": "CardScreenshots/Lumbering-Ogre.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Mad Warlock",
@@ -2037,8 +2881,16 @@
     "speed": 3,
     "health": 3,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Mad-Warlock.png"
+    "art": "CardScreenshots/Mad-Warlock.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Death",
+      "Starter Mage"
+    ]
   },
   {
     "name": "Mage Slayer",
@@ -2050,8 +2902,13 @@
     "speed": 2,
     "health": 3,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": null
+    "art": "CardScreenshots/Mage-Slayer.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Mana Bloom",
@@ -2063,8 +2920,13 @@
     "speed": 0,
     "health": 3,
     "legendary": false,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "CardScreenshots/Mana-Bloom.png"
+    "art": "CardScreenshots/Mana-Bloom.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Manaphant",
@@ -2076,8 +2938,13 @@
     "speed": 1,
     "health": 3,
     "legendary": false,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "CardScreenshots/Manaphant.png"
+    "art": "CardScreenshots/Manaphant.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Master Craftsman",
@@ -2089,8 +2956,13 @@
     "speed": 2,
     "health": 1,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Master-Craftsman.png"
+    "art": "CardScreenshots/Master-Craftsman.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Memory Theft",
@@ -2102,8 +2974,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Archaeon",
     "faction": "archaeon",
-    "art": null
+    "art": "CardScreenshots/Memory-Theft.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Mind Blast",
@@ -2115,8 +2992,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Archaeon",
     "faction": "archaeon",
-    "art": null
+    "art": "CardScreenshots/Mind-Blast.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Mindstone Servant",
@@ -2128,8 +3010,13 @@
     "speed": 3,
     "health": 6,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": null
+    "art": "CardScreenshots/Mindstone-Servant.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Minor Priest",
@@ -2141,8 +3028,13 @@
     "speed": 3,
     "health": 2,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Minor-Priest.png"
+    "art": "CardScreenshots/Minor-Priest.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Moonlight Seraph",
@@ -2154,8 +3046,13 @@
     "speed": 4,
     "health": 6,
     "legendary": false,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": "CardScreenshots/Moonlight-Seraph.png"
+    "art": "CardScreenshots/Moonlight-Seraph.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Mother of Beasts",
@@ -2167,8 +3064,13 @@
     "speed": 3,
     "health": 4,
     "legendary": true,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "CardScreenshots/Mother-of-Beasts.png"
+    "art": "CardScreenshots/Mother-of-Beasts.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Mummified Warrior",
@@ -2180,8 +3082,15 @@
     "speed": 2,
     "health": 2,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Mummified-Warrior.png"
+    "art": "CardScreenshots/Mummified-Warrior.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Death"
+    ]
   },
   {
     "name": "Nevisha Ascendant",
@@ -2193,8 +3102,13 @@
     "speed": 5,
     "health": 6,
     "legendary": true,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": "CardScreenshots/Nevisha-Ascendant.png"
+    "art": "CardScreenshots/Nevisha-Ascendant.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Nexus Operative",
@@ -2206,8 +3120,13 @@
     "speed": 3,
     "health": 3,
     "legendary": false,
+    "patron": "Archaeon",
     "faction": "archaeon",
-    "art": "CardScreenshots/Nexus-Operative.png"
+    "art": "CardScreenshots/Nexus-Operative.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Nexus Recruit",
@@ -2219,8 +3138,13 @@
     "speed": 2,
     "health": 2,
     "legendary": false,
+    "patron": "Archaeon",
     "faction": "archaeon",
-    "art": "CardScreenshots/Nexus-Recruit.png"
+    "art": "CardScreenshots/Nexus-Recruit.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Nilo of One Thousand Cuts",
@@ -2232,8 +3156,13 @@
     "speed": 2,
     "health": 2,
     "legendary": true,
+    "patron": "Shadis",
     "faction": "shadis",
-    "art": "CardScreenshots/Nilo-of-One-Thousand-Cuts.png"
+    "art": "CardScreenshots/Nilo-of-One-Thousand-Cuts.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Nobleman of the Order",
@@ -2245,8 +3174,15 @@
     "speed": 3,
     "health": 4,
     "legendary": false,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": "CardScreenshots/Nobleman-of-the-Order.png"
+    "art": "CardScreenshots/Nobleman-of-the-Order.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Military"
+    ]
   },
   {
     "name": "Oathbroken Apprentice",
@@ -2258,8 +3194,13 @@
     "speed": 3,
     "health": 2,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": null
+    "art": "CardScreenshots/Oathbroken-Apprentice.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Oathsworn Champion",
@@ -2271,8 +3212,15 @@
     "speed": 3,
     "health": 5,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Oathsworn-Champion.png"
+    "art": "CardScreenshots/Oathsworn-Champion.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Military"
+    ]
   },
   {
     "name": "Oldsteel Guard",
@@ -2284,8 +3232,13 @@
     "speed": 2,
     "health": 2,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": null
+    "art": "CardScreenshots/Oldsteel-Guard.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Outflank",
@@ -2297,8 +3250,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": "CardScreenshots/Outflank.png"
+    "art": "CardScreenshots/Outflank.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Outland Berserker",
@@ -2310,8 +3268,15 @@
     "speed": 3,
     "health": 7,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Outland-Berserker.png"
+    "art": "CardScreenshots/Outland-Berserker.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Military"
+    ]
   },
   {
     "name": "Outland Village",
@@ -2323,8 +3288,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Outland-Village.png"
+    "art": "CardScreenshots/Outland-Village.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Owl Familiar",
@@ -2336,8 +3306,15 @@
     "speed": 4,
     "health": 2,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Owl-Familiar.png"
+    "art": "CardScreenshots/Owl-Familiar.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Mage"
+    ]
   },
   {
     "name": "Pack Wolf",
@@ -2349,8 +3326,13 @@
     "speed": 3,
     "health": 2,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Pack-Wolf.png"
+    "art": "CardScreenshots/Pack-Wolf.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Paladin Initiate",
@@ -2362,8 +3344,15 @@
     "speed": 3,
     "health": 3,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Paladin-Initiate.png"
+    "art": "CardScreenshots/Paladin-Initiate.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Military"
+    ]
   },
   {
     "name": "Paladin of Eos",
@@ -2375,8 +3364,13 @@
     "speed": 3,
     "health": 4,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Paladin-of-Eos.png"
+    "art": "CardScreenshots/Paladin-of-Eos.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Paladin Proselyte",
@@ -2388,8 +3382,15 @@
     "speed": 3,
     "health": 3,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Paladin-Proselyte.png"
+    "art": "CardScreenshots/Paladin-Proselyte.png",
+    "art_type": "PURCHASED_ASSET",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Military"
+    ]
   },
   {
     "name": "Peer",
@@ -2401,8 +3402,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Archaeon",
     "faction": "archaeon",
-    "art": "CardScreenshots/Peer.png"
+    "art": "CardScreenshots/Peer.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Pit Lord",
@@ -2414,8 +3420,13 @@
     "speed": 4,
     "health": 7,
     "legendary": false,
+    "patron": "Shadis",
     "faction": "shadis",
-    "art": "CardScreenshots/Pit-Lord.png"
+    "art": "CardScreenshots/Pit-Lord.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Pixie Pikeman",
@@ -2427,8 +3438,13 @@
     "speed": 4,
     "health": 1,
     "legendary": false,
+    "patron": "Adora",
     "faction": "neutral",
-    "art": null
+    "art": "CardScreenshots/Pixie-Pikeman.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Poison Spray",
@@ -2440,8 +3456,15 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "CardScreenshots/Poison-Spray.png"
+    "art": "CardScreenshots/Poison-Spray.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": true,
+    "starter_decks": [
+      "Starter Beasts"
+    ]
   },
   {
     "name": "Poison Sting",
@@ -2453,8 +3476,15 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "CardScreenshots/Poison-Sting.png"
+    "art": "CardScreenshots/Poison-Sting.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": true,
+    "starter_decks": [
+      "Starter Beasts"
+    ]
   },
   {
     "name": "Pond Hopper",
@@ -2466,8 +3496,13 @@
     "speed": 3,
     "health": 3,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Pond-Hopper.png"
+    "art": "CardScreenshots/Pond-Hopper.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Ponder",
@@ -2479,8 +3514,15 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Archaeon",
     "faction": "archaeon",
-    "art": "CardScreenshots/Ponder.png"
+    "art": "CardScreenshots/Ponder.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Mage"
+    ]
   },
   {
     "name": "Potion of Healing",
@@ -2492,8 +3534,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Potion-of-Healing.png"
+    "art": "CardScreenshots/Potion-of-Healing.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Power Potion",
@@ -2505,8 +3552,17 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Power-Potion.png"
+    "art": "CardScreenshots/Power-Potion.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Death",
+      "Starter Deploy",
+      "Starter Military"
+    ]
   },
   {
     "name": "Prideplain Enforcer",
@@ -2518,8 +3574,15 @@
     "speed": 2,
     "health": 2,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Prideplain-Enforcer.png"
+    "art": "CardScreenshots/Prideplain-Enforcer.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Beasts"
+    ]
   },
   {
     "name": "Prideplain Queen",
@@ -2531,21 +3594,33 @@
     "speed": 3,
     "health": 6,
     "legendary": false,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "CardScreenshots/Prideplain-Queen.png"
+    "art": "CardScreenshots/Prideplain-Queen.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": true,
+    "starter_decks": [
+      "Starter Beasts"
+    ]
   },
   {
     "name": "Primordial Storm",
     "type": "Spell",
-    "text": "Deal 5 damage to all enemy minions.",
+    "text": "Deal 3 damage to all enemy minions twice.",
     "subtype": "Lightning",
-    "cost": 9,
+    "cost": 8,
     "attack": null,
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": null
+    "art": "CardScreenshots/Primordial-Storm.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Prince Xerxes",
@@ -2557,21 +3632,31 @@
     "speed": 3,
     "health": 3,
     "legendary": true,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Prince-Xerxes.png"
+    "art": "CardScreenshots/Prince-Xerxes.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Purifier Euron",
     "type": "Minion",
     "text": "Legendary. [Once Per Game]: Destroy the current tile if it's a village to destroy ALL other minions.",
     "subtype": "Demigod",
-    "cost": 8,
+    "cost": 9,
     "attack": 8,
     "speed": 3,
     "health": 6,
     "legendary": true,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": "CardScreenshots/Purifier-Euron.png"
+    "art": "CardScreenshots/Purifier-Euron.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": true,
+    "starter_decks": []
   },
   {
     "name": "Pyromancer Apprentice",
@@ -2583,8 +3668,13 @@
     "speed": 3,
     "health": 2,
     "legendary": false,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": "CardScreenshots/Pyromancer-Apprentice.png"
+    "art": "CardScreenshots/Pyromancer-Apprentice.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": true,
+    "starter_decks": []
   },
   {
     "name": "Pyromaniac",
@@ -2596,8 +3686,13 @@
     "speed": 3,
     "health": 1,
     "legendary": false,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": "CardScreenshots/Pyromaniac.png"
+    "art": "CardScreenshots/Pyromaniac.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Quell the Weak",
@@ -2609,8 +3704,15 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": "CardScreenshots/Quell-the-Weak.png"
+    "art": "CardScreenshots/Quell-the-Weak.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": true,
+    "starter_decks": [
+      "Starter Military"
+    ]
   },
   {
     "name": "Quickling",
@@ -2622,8 +3724,15 @@
     "speed": 9,
     "health": 6,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Quickling.png"
+    "art": "CardScreenshots/Quickling.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Beasts"
+    ]
   },
   {
     "name": "Ravenous Wolf",
@@ -2635,8 +3744,15 @@
     "speed": 4,
     "health": 2,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Ravenous-Wolf.png"
+    "art": "CardScreenshots/Ravenous-Wolf.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Beasts"
+    ]
   },
   {
     "name": "Red Dragon",
@@ -2648,8 +3764,13 @@
     "speed": 4,
     "health": 5,
     "legendary": false,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": "CardScreenshots/Red-Dragon.png"
+    "art": "CardScreenshots/Red-Dragon.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": true,
+    "starter_decks": []
   },
   {
     "name": "Regeneration Potion",
@@ -2661,21 +3782,31 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "CardScreenshots/Regeneration-Potion.png"
+    "art": "CardScreenshots/Regeneration-Potion.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Reileigh, Brewpatron",
     "type": "Minion",
     "text": "Legendary. Potions in your hand cost 0.",
     "subtype": "Human",
-    "cost": 7,
+    "cost": 6,
     "attack": 4,
     "speed": 3,
     "health": 6,
     "legendary": true,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Reileigh-Brewpatron.png"
+    "art": "CardScreenshots/Reileigh-Brewpatron.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Remit",
@@ -2687,8 +3818,15 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Archaeon",
     "faction": "archaeon",
-    "art": "CardScreenshots/Remit.png"
+    "art": "CardScreenshots/Remit.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Mage"
+    ]
   },
   {
     "name": "Revoke the Living",
@@ -2700,8 +3838,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "CardScreenshots/Revoke-the-Living.png"
+    "art": "CardScreenshots/Revoke-the-Living.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": true,
+    "starter_decks": []
   },
   {
     "name": "Rhea, Morning Saint",
@@ -2713,8 +3856,13 @@
     "speed": 3,
     "health": 3,
     "legendary": true,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": null
+    "art": "CardScreenshots/Rhea-Morning-Saint.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Ritual of Shadows",
@@ -2726,8 +3874,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Shadis",
     "faction": "shadis",
-    "art": "CardScreenshots/Ritual-of-Shadows.png"
+    "art": "CardScreenshots/Ritual-of-Shadows.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Royal Commander",
@@ -2739,8 +3892,16 @@
     "speed": 3,
     "health": 6,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Royal-Commander.png"
+    "art": "CardScreenshots/Royal-Commander.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Death",
+      "Starter Military"
+    ]
   },
   {
     "name": "Rule the Hinterlands",
@@ -2752,8 +3913,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "CardScreenshots/Rule-the-Hinterlands.png"
+    "art": "CardScreenshots/Rule-the-Hinterlands.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Runic Knight",
@@ -2765,8 +3931,15 @@
     "speed": 3,
     "health": 4,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Runic-Knight.png"
+    "art": "CardScreenshots/Runic-Knight.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Mage"
+    ]
   },
   {
     "name": "Sacrificial Offering",
@@ -2778,8 +3951,15 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Shadis",
     "faction": "shadis",
-    "art": "CardScreenshots/Sacrificial-Offering.png"
+    "art": "CardScreenshots/Sacrificial-Offering.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Death"
+    ]
   },
   {
     "name": "Sage Potion",
@@ -2791,8 +3971,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Archaeon",
     "faction": "archaeon",
-    "art": "CardScreenshots/Sage-Potion.png"
+    "art": "CardScreenshots/Sage-Potion.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Sanguine Baroness",
@@ -2804,8 +3989,13 @@
     "speed": 3,
     "health": 3,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Sanguine-Baroness.png"
+    "art": "CardScreenshots/Sanguine-Baroness.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Scout Hunter",
@@ -2817,8 +4007,15 @@
     "speed": 3,
     "health": 4,
     "legendary": false,
+    "patron": "Archaeon",
     "faction": "archaeon",
-    "art": "CardScreenshots/Scout-Hunter.png"
+    "art": "CardScreenshots/Scout-Hunter.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Mage"
+    ]
   },
   {
     "name": "Second Experiment",
@@ -2830,8 +4027,13 @@
     "speed": 1,
     "health": 3,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Second-Experiment.png"
+    "art": "CardScreenshots/Second-Experiment.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Sentinel of Light",
@@ -2843,8 +4045,15 @@
     "speed": 3,
     "health": 2,
     "legendary": false,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": "CardScreenshots/Sentinel-of-Light.png"
+    "art": "CardScreenshots/Sentinel-of-Light.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Military"
+    ]
   },
   {
     "name": "Settle Village",
@@ -2856,8 +4065,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Settle-Village.png"
+    "art": "CardScreenshots/Settle-Village.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Shield Potion",
@@ -2869,8 +4083,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": "CardScreenshots/Shield-Potion.png"
+    "art": "CardScreenshots/Shield-Potion.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Shock Nova",
@@ -2882,8 +4101,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": "CardScreenshots/Shock-Nova.png"
+    "art": "CardScreenshots/Shock-Nova.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Silence",
@@ -2895,8 +4119,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": null
+    "art": "CardScreenshots/Silence.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Silver Dragon",
@@ -2908,8 +4137,13 @@
     "speed": 4,
     "health": 5,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Silver-Dragon.png"
+    "art": "CardScreenshots/Silver-Dragon.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Skerr'drix",
@@ -2921,8 +4155,13 @@
     "speed": 4,
     "health": 6,
     "legendary": true,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Skerrdrix.png"
+    "art": "CardScreenshots/Skerrdrix.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Slash and Burn",
@@ -2934,8 +4173,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": "CardScreenshots/Slash-and-Burn.png"
+    "art": "CardScreenshots/Slash-and-Burn.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Slay the Mighty",
@@ -2947,8 +4191,15 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": "CardScreenshots/Slay-the-Mighty.png"
+    "art": "CardScreenshots/Slay-the-Mighty.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": true,
+    "starter_decks": [
+      "Starter Military"
+    ]
   },
   {
     "name": "Soul Sale",
@@ -2960,8 +4211,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Shadis",
     "faction": "shadis",
-    "art": null
+    "art": "CardScreenshots/Soul-Sale.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Soulreap",
@@ -2973,8 +4229,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Shadis",
     "faction": "shadis",
-    "art": "CardScreenshots/Soulreap.png"
+    "art": "CardScreenshots/Soulreap.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Spiderling Rider",
@@ -2986,8 +4247,13 @@
     "speed": 3,
     "health": 3,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Spiderling-Rider.png"
+    "art": "CardScreenshots/Spiderling-Rider.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Spoils of War",
@@ -2999,8 +4265,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": "CardScreenshots/Spoils-of-War.png"
+    "art": "CardScreenshots/Spoils-of-War.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Spore Thresher",
@@ -3012,8 +4283,13 @@
     "speed": 0,
     "health": 6,
     "legendary": false,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "CardScreenshots/Spore-Thresher.png"
+    "art": "CardScreenshots/Spore-Thresher.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": true,
+    "starter_decks": []
   },
   {
     "name": "Stagasus",
@@ -3025,8 +4301,15 @@
     "speed": 2,
     "health": 2,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Stagasus.png"
+    "art": "CardScreenshots/Stagasus.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Deploy"
+    ]
   },
   {
     "name": "Stalking Hippo",
@@ -3038,8 +4321,15 @@
     "speed": 4,
     "health": 6,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Stalking-Hippo.png"
+    "art": "CardScreenshots/Stalking-Hippo.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Beasts"
+    ]
   },
   {
     "name": "Stalwart Tarantula",
@@ -3051,8 +4341,15 @@
     "speed": 3,
     "health": 5,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Stalwart-Tarantula.png"
+    "art": "CardScreenshots/Stalwart-Tarantula.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Death"
+    ]
   },
   {
     "name": "Stampede",
@@ -3064,8 +4361,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "CardScreenshots/Stampede.png"
+    "art": "CardScreenshots/Stampede.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Steel Lancer",
@@ -3077,8 +4379,15 @@
     "speed": 3,
     "health": 3,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Steel-Lancer.png"
+    "art": "CardScreenshots/Steel-Lancer.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": true,
+    "starter_decks": [
+      "Starter Death"
+    ]
   },
   {
     "name": "Stormrider Zurn",
@@ -3090,8 +4399,13 @@
     "speed": 0,
     "health": 6,
     "legendary": true,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": "CardScreenshots/Stormrider-Zurn.png"
+    "art": "CardScreenshots/Stormrider-Zurn.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": true,
+    "starter_decks": []
   },
   {
     "name": "Stout Knight",
@@ -3103,8 +4417,13 @@
     "speed": 2,
     "health": 1,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Stout-Knight.png"
+    "art": "CardScreenshots/Stout-Knight.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Strategic Reserves",
@@ -3116,8 +4435,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": "CardScreenshots/Strategic-Reserves.png"
+    "art": "CardScreenshots/Strategic-Reserves.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Stumbling Ghoul",
@@ -3129,8 +4453,13 @@
     "speed": 2,
     "health": 1,
     "legendary": false,
+    "patron": "Shadis",
     "faction": "shadis",
-    "art": "CardScreenshots/Stumbling-Ghoul.png"
+    "art": "CardScreenshots/Stumbling-Ghoul.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Styrian Infantry",
@@ -3142,8 +4471,13 @@
     "speed": 3,
     "health": 1,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Styrian-Infantry.png"
+    "art": "CardScreenshots/Styrian-Infantry.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Supercharger",
@@ -3155,8 +4489,15 @@
     "speed": 3,
     "health": 4,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Supercharger.png"
+    "art": "CardScreenshots/Supercharger.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Mage"
+    ]
   },
   {
     "name": "Swiftfoot Goblin",
@@ -3168,8 +4509,16 @@
     "speed": 2,
     "health": 1,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Swiftfoot-Goblin.png"
+    "art": "CardScreenshots/Swiftfoot-Goblin.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": true,
+    "starter_decks": [
+      "Starter Death",
+      "Starter Deploy"
+    ]
   },
   {
     "name": "Swiftness Potion",
@@ -3181,8 +4530,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Swiftness-Potion.png"
+    "art": "CardScreenshots/Swiftness-Potion.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Tadpole",
@@ -3194,8 +4548,15 @@
     "speed": 3,
     "health": 2,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Tadpole.png"
+    "art": "CardScreenshots/Tadpole.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Mage"
+    ]
   },
   {
     "name": "Tax Collector",
@@ -3207,8 +4568,13 @@
     "speed": 4,
     "health": 5,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": null
+    "art": "CardScreenshots/Tax-Collector.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Throne Guardian",
@@ -3220,8 +4586,13 @@
     "speed": 4,
     "health": 4,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Throne-Guardian.png"
+    "art": "CardScreenshots/Throne-Guardian.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Thunder Jolt",
@@ -3233,8 +4604,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": "CardScreenshots/Thunder-Jolt.png"
+    "art": "CardScreenshots/Thunder-Jolt.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": true,
+    "starter_decks": []
   },
   {
     "name": "Thunder Skywhale",
@@ -3246,8 +4622,13 @@
     "speed": 3,
     "health": 6,
     "legendary": false,
+    "patron": "Archaeon",
     "faction": "archaeon",
-    "art": "CardScreenshots/Thunder-Skywhale.png"
+    "art": "CardScreenshots/Thunder-Skywhale.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Thunder Step",
@@ -3259,8 +4640,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": "CardScreenshots/Thunder-Step.png"
+    "art": "CardScreenshots/Thunder-Step.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Thunderous Warbeast",
@@ -3268,12 +4654,17 @@
     "text": "Arrival: Add two Thunder Jolts to your hand. When you play a Lightning spell, your commander heals 2.",
     "subtype": "Beast",
     "cost": 5,
-    "attack": 2,
+    "attack": 4,
     "speed": 3,
     "health": 5,
     "legendary": false,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": "CardScreenshots/Thunderous-Warbeast.png"
+    "art": "CardScreenshots/Thunderous-Warbeast.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": true,
+    "starter_decks": []
   },
   {
     "name": "Titan Herald",
@@ -3285,8 +4676,13 @@
     "speed": 3,
     "health": 3,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Titan-Herald.png"
+    "art": "CardScreenshots/Titan-Herald.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Toxic Watering",
@@ -3298,8 +4694,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "CardScreenshots/Toxic-Watering.png"
+    "art": "CardScreenshots/Toxic-Watering.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": true,
+    "starter_decks": []
   },
   {
     "name": "Toxicologist",
@@ -3311,8 +4712,13 @@
     "speed": 1,
     "health": 6,
     "legendary": false,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "CardScreenshots/Toxicologist.png"
+    "art": "CardScreenshots/Toxicologist.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": true,
+    "starter_decks": []
   },
   {
     "name": "Toxicologist's Vial",
@@ -3324,8 +4730,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "CardScreenshots/Toxicologists-Vial.png"
+    "art": "CardScreenshots/Toxicologists-Vial.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": true,
+    "starter_decks": []
   },
   {
     "name": "Tree of Life",
@@ -3337,8 +4748,13 @@
     "speed": 0,
     "health": 13,
     "legendary": true,
+    "patron": "Grenalia",
     "faction": "grenalia",
-    "art": "CardScreenshots/Tree-of-Life.png"
+    "art": "CardScreenshots/Tree-of-Life.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Undying Behemoth",
@@ -3350,8 +4766,13 @@
     "speed": 2,
     "health": 5,
     "legendary": false,
+    "patron": "Shadis",
     "faction": "shadis",
-    "art": "CardScreenshots/Undying-Behemoth.png"
+    "art": "CardScreenshots/Undying-Behemoth.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Ursine Blade Trio",
@@ -3363,8 +4784,13 @@
     "speed": 3,
     "health": 3,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Ursine-Blade-Trio.png"
+    "art": "CardScreenshots/Ursine-Blade-Trio.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Vergis, Doomed Archaeologist",
@@ -3376,8 +4802,13 @@
     "speed": 2,
     "health": 6,
     "legendary": true,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Vergis-Doomed-Archaeologist.png"
+    "art": "CardScreenshots/Vergis-Doomed-Archaeologist.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": true,
+    "starter_decks": []
   },
   {
     "name": "Viridian War Beast",
@@ -3389,8 +4820,13 @@
     "speed": 3,
     "health": 12,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Viridian-War-Beast.png"
+    "art": "CardScreenshots/Viridian-War-Beast.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Vyre Aristocrat",
@@ -3402,8 +4838,13 @@
     "speed": 3,
     "health": 2,
     "legendary": false,
+    "patron": "Shadis",
     "faction": "shadis",
-    "art": "CardScreenshots/Vyre-Aristocrat.png"
+    "art": "CardScreenshots/Vyre-Aristocrat.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Wandering Ancient",
@@ -3415,8 +4856,13 @@
     "speed": 4,
     "health": 12,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Wandering-Ancient.png"
+    "art": "CardScreenshots/Wandering-Ancient.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "War Banner",
@@ -3426,10 +4872,15 @@
     "cost": 1,
     "attack": 0,
     "speed": 0,
-    "health": 4,
+    "health": 3,
     "legendary": false,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": "CardScreenshots/War-Banner.png"
+    "art": "CardScreenshots/War-Banner.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "War Chest",
@@ -3441,8 +4892,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Treasure",
     "faction": "neutral",
-    "art": null
+    "art": "CardScreenshots/War-Chest.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Warcry",
@@ -3454,8 +4910,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Skaal",
     "faction": "skaal",
-    "art": "CardScreenshots/Warcry.png"
+    "art": "CardScreenshots/Warcry.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Warscarred Rhino",
@@ -3467,8 +4928,15 @@
     "speed": 3,
     "health": 7,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Warscarred-Rhino.png"
+    "art": "CardScreenshots/Warscarred-Rhino.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Military"
+    ]
   },
   {
     "name": "Warscarred Soldier",
@@ -3480,8 +4948,15 @@
     "speed": 3,
     "health": 6,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Warscarred-Soldier.png"
+    "art": "CardScreenshots/Warscarred-Soldier.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [
+      "Starter Military"
+    ]
   },
   {
     "name": "Wise Elder",
@@ -3493,8 +4968,13 @@
     "speed": 2,
     "health": 2,
     "legendary": false,
+    "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Wise-Elder.png"
+    "art": "CardScreenshots/Wise-Elder.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Zealous Captain",
@@ -3506,8 +4986,13 @@
     "speed": 4,
     "health": 4,
     "legendary": false,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": "CardScreenshots/Zealous-Captain.png"
+    "art": "CardScreenshots/Zealous-Captain.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Zealous Strength",
@@ -3519,8 +5004,13 @@
     "speed": null,
     "health": null,
     "legendary": false,
+    "patron": "Lucia",
     "faction": "lucia",
-    "art": "CardScreenshots/Zealous-Strength.png"
+    "art": "CardScreenshots/Zealous-Strength.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Zoghn, Eye of Treason",
@@ -3532,8 +5022,13 @@
     "speed": 0,
     "health": 10,
     "legendary": true,
+    "patron": "Archaeon",
     "faction": "archaeon",
-    "art": "CardScreenshots/Zoghn-Eye-of-Treason.png"
+    "art": "CardScreenshots/Zoghn-Eye-of-Treason.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": false,
+    "starter_decks": []
   },
   {
     "name": "Zoloth the Butcher",
@@ -3545,7 +5040,12 @@
     "speed": 2,
     "health": 3,
     "legendary": true,
+    "patron": "Shadis",
     "faction": "shadis",
-    "art": null
+    "art": "CardScreenshots/Zoloth-the-Butcher.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": []
   }
 ]

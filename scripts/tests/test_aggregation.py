@@ -21,7 +21,29 @@ from pipeline.aggregation import (
     aggregate_commander_card_stats,
     aggregate_game_distributions,
     aggregate_archetypes,
+    aggregate_goals,
 )
+
+
+# ─── Goals fixtures ──────────────────────────────────────────────
+
+def _card(name, *, type="Minion", legendary=False, commissioned=False,
+          has_animation=False, patron="Neutral", faction="neutral",
+          starter_decks=None):
+    return {
+        "name": name, "type": type, "legendary": legendary,
+        "commissioned": commissioned, "has_animation": has_animation,
+        "patron": patron, "faction": faction,
+        "starter_decks": starter_decks or [],
+    }
+
+
+def _commander(name, *, commissioned=False, has_animation=False,
+               patron="Neutral", faction="neutral"):
+    return {
+        "name": name, "commissioned": commissioned,
+        "has_animation": has_animation, "patron": patron, "faction": faction,
+    }
 
 
 # ─── B1: wins + losses = total for every commander ───────────────
@@ -673,3 +695,106 @@ class TestB14_DecklistGrouping:
         assert len(decklists) == 1
         assert "deck_code" not in decklists[0]
         assert decklists[0]["count"] == 2
+
+
+# ─── B-Goals: art/animation goal aggregation ─────────────────────
+
+class TestGoals_Aggregation:
+    """aggregate_goals turns card/commander art metadata into the Goals payload."""
+
+    def _goal(self, result, section, gid):
+        return next(g for g in result[section] if g["id"] == gid)
+
+    def test_art_count_counts_commissioned_cards(self):
+        cards = [
+            _card("A", commissioned=True),
+            _card("B", commissioned=True),
+            _card("C", commissioned=False),
+        ]
+        result = aggregate_goals(cards, [])
+        g = self._goal(result, "art_goals", "art_count")
+        assert g["kind"] == "count"
+        assert g["current"] == 2
+        assert g["target"] == 100
+        assert g["met"] is False
+
+    def test_commander_commission_percent_and_met(self):
+        commanders = [
+            _commander("X", commissioned=True),
+            _commander("Y", commissioned=True),
+        ]
+        result = aggregate_goals([], commanders)
+        g = self._goal(result, "art_goals", "art_commanders")
+        assert g["numerator"] == 2 and g["denominator"] == 2
+        assert g["current"] == 1.0
+        assert g["met"] is True  # 100% >= 100% target
+
+    def test_legendary_minion_filter(self):
+        cards = [
+            _card("Leg1", type="Minion", legendary=True, commissioned=True),
+            _card("Leg2", type="Minion", legendary=True, commissioned=False),
+            _card("LegSpell", type="Spell", legendary=True, commissioned=True),  # excluded
+            _card("Plain", type="Minion", legendary=False, commissioned=True),   # excluded
+        ]
+        result = aggregate_goals(cards, [])
+        g = self._goal(result, "art_goals", "art_legendary")
+        # Only the two legendary minions count; 1 of 2 commissioned.
+        assert g["denominator"] == 2
+        assert g["numerator"] == 1
+        assert g["current"] == 0.5
+        assert g["met"] is False  # below 0.75
+
+    def test_starter_decks_per_deck_rollup(self):
+        # Deck Alpha: 2/2 commissioned (meets 0.75). Deck Beta: 1/3 (fails).
+        cards = [
+            _card("a1", commissioned=True, starter_decks=["Starter Alpha"]),
+            _card("a2", commissioned=True, starter_decks=["Starter Alpha"]),
+            _card("b1", commissioned=True, starter_decks=["Starter Beta"]),
+            _card("b2", commissioned=False, starter_decks=["Starter Beta"]),
+            _card("b3", commissioned=False, starter_decks=["Starter Beta"]),
+        ]
+        result = aggregate_goals(cards, [])
+        g = self._goal(result, "art_goals", "art_starters")
+        assert g["kind"] == "decks"
+        assert g["target"] == 2          # two distinct decks
+        assert g["current"] == 1         # only Alpha meets threshold
+        assert g["met"] is False
+        by_deck = {d["deck"]: d for d in g["detail"]}
+        assert by_deck["Starter Alpha"]["met"] is True
+        assert by_deck["Starter Beta"]["met"] is False
+
+    def test_animation_goals_use_has_animation(self):
+        cards = [_card("a", has_animation=True), _card("b", has_animation=False)]
+        result = aggregate_goals(cards, [])
+        g = self._goal(result, "animation_goals", "anim_all")
+        assert g["numerator"] == 1 and g["denominator"] == 2
+        assert g["current"] == 0.5
+        assert g["met"] is True  # 50% >= 20%
+
+    def test_by_patron_keeps_raw_patrons_separate(self):
+        cards = [
+            _card("a", patron="Skaal", faction="skaal", commissioned=True),
+            _card("b", patron="Mechanus", faction="neutral", has_animation=True),
+            _card("c", patron="Neutral", faction="neutral"),
+        ]
+        commanders = [_commander("X", patron="Skaal", faction="skaal")]
+        result = aggregate_goals(cards, commanders)
+        patrons = {p["patron"]: p for p in result["by_patron"]}
+        assert set(patrons) == {"Skaal", "Mechanus", "Neutral"}
+        assert patrons["Skaal"]["cards"]["total"] == 1
+        assert patrons["Skaal"]["commanders"]["total"] == 1
+        assert patrons["Mechanus"]["cards"]["animated"] == 1
+
+    def test_overall_totals_match_inputs(self):
+        cards = [
+            _card("a", commissioned=True, has_animation=True),
+            _card("b", commissioned=False, has_animation=False),
+        ]
+        result = aggregate_goals(cards, [])
+        assert result["overall"]["cards"]["total"] == 2
+        assert result["overall"]["cards"]["commissioned"] == 1
+        assert result["overall"]["cards"]["animated"] == 1
+        # rates within [0,1]
+        for stats in (result["overall"]["cards"], result["overall"]["commanders"]):
+            assert 0.0 <= stats["commissioned_rate"] <= 1.0
+            assert 0.0 <= stats["animated_rate"] <= 1.0
