@@ -49,8 +49,8 @@
             "games": 152
           },
           {
-            "winrate": 0.3407,
-            "games": 91
+            "winrate": 0.337,
+            "games": 92
           }
         ],
         "Elber, Jungle Emissary": [
@@ -239,8 +239,8 @@
             "games": 346
           },
           {
-            "winrate": 0.6676,
-            "games": 364
+            "winrate": 0.6658,
+            "games": 365
           },
           {
             "winrate": 0.5339,
@@ -261,8 +261,8 @@
             "games": 144
           },
           {
-            "winrate": 0.5667,
-            "games": 120
+            "winrate": 0.5702,
+            "games": 121
           },
           {
             "winrate": 0.6269,
@@ -335,8 +335,8 @@
             "games": 47
           },
           {
-            "winrate": 0.3939,
-            "games": 33
+            "winrate": 0.4118,
+            "games": 34
           }
         ],
         "Soultaker Viessa": [
@@ -602,8 +602,8 @@
             "games": 283
           },
           {
-            "winrate": 0.6611,
-            "games": 298
+            "winrate": 0.6589,
+            "games": 299
           },
           {
             "winrate": 0.5385,
@@ -624,8 +624,8 @@
             "games": 96
           },
           {
-            "winrate": 0.5526,
-            "games": 76
+            "winrate": 0.5584,
+            "games": 77
           },
           {
             "winrate": 0.6739,
@@ -1116,8 +1116,8 @@
             "games": 31
           },
           {
-            "winrate": 0.375,
-            "games": 8
+            "winrate": 0.3333,
+            "games": 9
           }
         ],
         "Milo Sunstone": [
@@ -1160,8 +1160,8 @@
             "games": 13
           },
           {
-            "winrate": 0.5714,
-            "games": 7
+            "winrate": 0.625,
+            "games": 8
           }
         ],
         "Newhaven Township": [
@@ -1463,50 +1463,6 @@
         "14+"
       ],
       "commanders": {
-        "Fael Spiritwalker": [
-          {
-            "winrate": 0.4,
-            "games": 10
-          },
-          {
-            "winrate": 0.4884,
-            "games": 43
-          },
-          {
-            "winrate": 0.6,
-            "games": 40
-          },
-          {
-            "winrate": 0.7037,
-            "games": 27
-          },
-          {
-            "winrate": 0.65,
-            "games": 20
-          }
-        ],
-        "Lazim, Thief of Gods": [
-          {
-            "winrate": 0.1875,
-            "games": 16
-          },
-          {
-            "winrate": 0.2547,
-            "games": 161
-          },
-          {
-            "winrate": 0.4695,
-            "games": 164
-          },
-          {
-            "winrate": 0.5229,
-            "games": 109
-          },
-          {
-            "winrate": 0.2712,
-            "games": 59
-          }
-        ],
         "Lubela, Tender of the Wilds": [
           {
             "winrate": 0.2,
@@ -1527,6 +1483,28 @@
           {
             "winrate": 0.4375,
             "games": 16
+          }
+        ],
+        "Lazim, Thief of Gods": [
+          {
+            "winrate": 0.1875,
+            "games": 16
+          },
+          {
+            "winrate": 0.25,
+            "games": 160
+          },
+          {
+            "winrate": 0.4724,
+            "games": 163
+          },
+          {
+            "winrate": 0.5283,
+            "games": 106
+          },
+          {
+            "winrate": 0.2759,
+            "games": 58
           }
         ],
         "Executor Ginn": [
@@ -1561,8 +1539,8 @@
             "games": 79
           },
           {
-            "winrate": 0.5789,
-            "games": 76
+            "winrate": 0.5844,
+            "games": 77
           },
           {
             "winrate": 0.561,
@@ -1571,6 +1549,28 @@
           {
             "winrate": 0.641,
             "games": 39
+          }
+        ],
+        "Fael Spiritwalker": [
+          {
+            "winrate": 0.4,
+            "games": 10
+          },
+          {
+            "winrate": 0.4884,
+            "games": 43
+          },
+          {
+            "winrate": 0.6154,
+            "games": 39
+          },
+          {
+            "winrate": 0.6957,
+            "games": 23
+          },
+          {
+            "winrate": 0.6111,
+            "games": 18
           }
         ],
         "Macks Speed": [
@@ -1627,8 +1627,8 @@
             "games": 141
           },
           {
-            "winrate": 0.6508,
-            "games": 126
+            "winrate": 0.6457,
+            "games": 127
           },
           {
             "winrate": 0.45,
@@ -1701,8 +1701,8 @@
             "games": 47
           },
           {
-            "winrate": 0.3939,
-            "games": 33
+            "winrate": 0.4118,
+            "games": 34
           }
         ],
         "Kai, Longcount Shaman": [
@@ -1836,16 +1836,16 @@
             "games": 19
           },
           {
-            "winrate": 0.4762,
-            "games": 21
+            "winrate": 0.5,
+            "games": 20
           },
           {
-            "winrate": 0.7059,
-            "games": 17
+            "winrate": 0.6923,
+            "games": 13
           },
           {
-            "winrate": 0.6667,
-            "games": 12
+            "winrate": 0.6,
+            "games": 10
           }
         ],
         "Lazim, Thief of Gods": [
@@ -1854,20 +1854,20 @@
             "games": 9
           },
           {
-            "winrate": 0.2286,
+            "winrate": 0.2174,
+            "games": 69
+          },
+          {
+            "winrate": 0.5143,
             "games": 70
           },
           {
-            "winrate": 0.507,
-            "games": 71
+            "winrate": 0.5435,
+            "games": 46
           },
           {
-            "winrate": 0.5306,
-            "games": 49
-          },
-          {
-            "winrate": 0.2564,
-            "games": 39
+            "winrate": 0.2703,
+            "games": 37
           }
         ],
         "Elyse of the Order": [
@@ -1880,8 +1880,8 @@
             "games": 31
           },
           {
-            "winrate": 0.5625,
-            "games": 32
+            "winrate": 0.5758,
+            "games": 33
           },
           {
             "winrate": 0.6,
@@ -1946,8 +1946,8 @@
             "games": 78
           },
           {
-            "winrate": 0.6,
-            "games": 60
+            "winrate": 0.5902,
+            "games": 61
           },
           {
             "winrate": 0.4444,
@@ -2570,8 +2570,8 @@
             "games": 31
           },
           {
-            "winrate": 0.375,
-            "games": 8
+            "winrate": 0.3333,
+            "games": 9
           }
         ],
         "Milo Sunstone": [
@@ -2614,8 +2614,8 @@
             "games": 13
           },
           {
-            "winrate": 0.5714,
-            "games": 7
+            "winrate": 0.625,
+            "games": 8
           }
         ],
         "Newhaven Township": [
@@ -2949,8 +2949,8 @@
             "games": 63
           },
           {
-            "winrate": 0.6379,
-            "games": 58
+            "winrate": 0.6441,
+            "games": 59
           },
           {
             "winrate": 0.5938,
@@ -3015,8 +3015,8 @@
             "games": 86
           },
           {
-            "winrate": 0.6447,
-            "games": 76
+            "winrate": 0.6364,
+            "games": 77
           },
           {
             "winrate": 0.5,
@@ -3067,8 +3067,8 @@
             "games": 89
           },
           {
-            "winrate": 0.2857,
-            "games": 35
+            "winrate": 0.2778,
+            "games": 36
           }
         ],
         "Milo Sunstone": [
@@ -3111,8 +3111,8 @@
             "games": 47
           },
           {
-            "winrate": 0.4062,
-            "games": 32
+            "winrate": 0.4242,
+            "games": 33
           }
         ],
         "Kai, Longcount Shaman": [
@@ -3290,8 +3290,8 @@
             "games": 22
           },
           {
-            "winrate": 0.6316,
-            "games": 19
+            "winrate": 0.65,
+            "games": 20
           },
           {
             "winrate": 0.6429,
@@ -3356,8 +3356,8 @@
             "games": 35
           },
           {
-            "winrate": 0.5,
-            "games": 24
+            "winrate": 0.48,
+            "games": 25
           },
           {
             "winrate": 0.4667,
@@ -4024,8 +4024,8 @@
             "games": 27
           },
           {
-            "winrate": 0.4286,
-            "games": 7
+            "winrate": 0.375,
+            "games": 8
           }
         ],
         "Milo Sunstone": [
@@ -4068,8 +4068,8 @@
             "games": 13
           },
           {
-            "winrate": 0.5714,
-            "games": 7
+            "winrate": 0.625,
+            "games": 8
           }
         ],
         "Newhaven Township": [
@@ -4399,20 +4399,20 @@
             "games": 1
           },
           {
-            "winrate": 0.6512,
-            "games": 43
+            "winrate": 0.6667,
+            "games": 42
           },
           {
             "winrate": 0.6765,
             "games": 34
           },
           {
-            "winrate": 0.6471,
-            "games": 17
+            "winrate": 0.6,
+            "games": 15
           },
           {
-            "winrate": 0.7059,
-            "games": 17
+            "winrate": 0.75,
+            "games": 16
           }
         ],
         "Newhaven Township": [
@@ -4487,16 +4487,16 @@
             "games": 7
           },
           {
-            "winrate": 0.2959,
-            "games": 98
+            "winrate": 0.2887,
+            "games": 97
           },
           {
             "winrate": 0.4521,
             "games": 73
           },
           {
-            "winrate": 0.4706,
-            "games": 51
+            "winrate": 0.48,
+            "games": 50
           },
           {
             "winrate": 0.2778,
@@ -4517,8 +4517,8 @@
             "games": 25
           },
           {
-            "winrate": 0.3846,
-            "games": 13
+            "winrate": 0.4167,
+            "games": 12
           },
           {
             "winrate": 0.0,
@@ -4553,20 +4553,20 @@
             "games": 0
           },
           {
-            "winrate": 0.125,
-            "games": 16
+            "winrate": 0.1333,
+            "games": 15
           },
           {
             "winrate": 0.4444,
             "games": 18
           },
           {
-            "winrate": 0.8182,
-            "games": 11
+            "winrate": 0.8,
+            "games": 10
           },
           {
-            "winrate": 0.7333,
-            "games": 15
+            "winrate": 0.6923,
+            "games": 13
           }
         ],
         "Jagris, the Huntsman": [
@@ -4579,12 +4579,12 @@
             "games": 69
           },
           {
-            "winrate": 0.5962,
-            "games": 52
+            "winrate": 0.5849,
+            "games": 53
           },
           {
-            "winrate": 0.55,
-            "games": 20
+            "winrate": 0.5789,
+            "games": 19
           },
           {
             "winrate": 0.75,
@@ -4609,8 +4609,8 @@
             "games": 4
           },
           {
-            "winrate": 0.3333,
-            "games": 9
+            "winrate": 0.4,
+            "games": 10
           }
         ],
         "Elber, Jungle Emissary": [
@@ -4862,8 +4862,8 @@
             "games": 20
           },
           {
-            "winrate": 0.25,
-            "games": 8
+            "winrate": 0.2857,
+            "games": 7
           }
         ],
         "Rosirix the Witch": [
@@ -4920,8 +4920,8 @@
             "games": 27
           },
           {
-            "winrate": 0.375,
-            "games": 16
+            "winrate": 0.3529,
+            "games": 17
           },
           {
             "winrate": 0.5,
@@ -4998,28 +4998,6 @@
             "games": 11
           }
         ],
-        "Soultaker Viessa": [
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": 0.0,
-            "games": 4
-          },
-          {
-            "winrate": 0.5,
-            "games": 6
-          },
-          {
-            "winrate": 0.5,
-            "games": 2
-          },
-          {
-            "winrate": 0.75,
-            "games": 4
-          }
-        ],
         "Milo Sunstone": [
           {
             "winrate": null,
@@ -5040,6 +5018,28 @@
           {
             "winrate": 0.0,
             "games": 1
+          }
+        ],
+        "Soultaker Viessa": [
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": 0.0,
+            "games": 3
+          },
+          {
+            "winrate": 0.5,
+            "games": 6
+          },
+          {
+            "winrate": 0.5,
+            "games": 2
+          },
+          {
+            "winrate": 0.6667,
+            "games": 3
           }
         ],
         "Fael Spiritwalker": [
@@ -5125,16 +5125,16 @@
             "games": 0
           },
           {
-            "winrate": 0.5714,
-            "games": 14
+            "winrate": 0.6154,
+            "games": 13
           },
           {
             "winrate": 1.0,
             "games": 6
           },
           {
-            "winrate": 0.6,
-            "games": 5
+            "winrate": 0.3333,
+            "games": 3
           },
           {
             "winrate": 0.75,
@@ -5147,16 +5147,16 @@
             "games": 4
           },
           {
-            "winrate": 0.3846,
-            "games": 26
+            "winrate": 0.36,
+            "games": 25
           },
           {
             "winrate": 0.3478,
             "games": 23
           },
           {
-            "winrate": 0.4375,
-            "games": 16
+            "winrate": 0.4667,
+            "games": 15
           },
           {
             "winrate": 0.25,
@@ -5199,8 +5199,8 @@
             "games": 10
           },
           {
-            "winrate": 0.25,
-            "games": 4
+            "winrate": 0.3333,
+            "games": 3
           },
           {
             "winrate": null,
@@ -5265,8 +5265,8 @@
             "games": 25
           },
           {
-            "winrate": 0.6667,
-            "games": 3
+            "winrate": 1.0,
+            "games": 2
           },
           {
             "winrate": 1.0,
@@ -5313,8 +5313,8 @@
             "games": 6
           },
           {
-            "winrate": 0.7778,
-            "games": 9
+            "winrate": 0.75,
+            "games": 8
           }
         ],
         "It That Weaves": [
@@ -5478,8 +5478,8 @@
             "games": 15
           },
           {
-            "winrate": 0.5,
-            "games": 2
+            "winrate": 0.3333,
+            "games": 3
           }
         ],
         "Milo Sunstone": [
@@ -5519,7 +5519,7 @@
           },
           {
             "winrate": 1.0,
-            "games": 3
+            "games": 2
           },
           {
             "winrate": 0.5,
@@ -5588,8 +5588,8 @@
             "games": 0
           },
           {
-            "winrate": 0.5,
-            "games": 2
+            "winrate": 0.6667,
+            "games": 3
           }
         ],
         "Macks Speed": [
@@ -5654,8 +5654,8 @@
             "games": 3
           },
           {
-            "winrate": 0.6667,
-            "games": 3
+            "winrate": 1.0,
+            "games": 2
           }
         ],
         "Executor Ginn": [
