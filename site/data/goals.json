@@ -4,7 +4,7 @@
       "id": "art_count",
       "label": "100 Cards Commissioned",
       "kind": "count",
-      "current": 69,
+      "current": 71,
       "target": 100,
       "met": false
     },
@@ -82,8 +82,8 @@
       "label": "20% of all Cards have an animation",
       "kind": "percent",
       "numerator": 45,
-      "denominator": 273,
-      "current": 0.1648,
+      "denominator": 274,
+      "current": 0.1642,
       "target": 0.2,
       "met": false
     },
@@ -157,11 +157,11 @@
   ],
   "overall": {
     "cards": {
-      "total": 273,
-      "commissioned": 69,
-      "commissioned_rate": 0.2527,
+      "total": 274,
+      "commissioned": 71,
+      "commissioned_rate": 0.2591,
       "animated": 45,
-      "animated_rate": 0.1648
+      "animated_rate": 0.1642
     },
     "commanders": {
       "total": 16,
@@ -194,11 +194,11 @@
       "patron": "Archaeon",
       "faction": "archaeon",
       "cards": {
-        "total": 25,
+        "total": 26,
         "commissioned": 8,
-        "commissioned_rate": 0.32,
+        "commissioned_rate": 0.3077,
         "animated": 1,
-        "animated_rate": 0.04
+        "animated_rate": 0.0385
       },
       "commanders": {
         "total": 3,
@@ -213,8 +213,8 @@
       "faction": "grenalia",
       "cards": {
         "total": 33,
-        "commissioned": 10,
-        "commissioned_rate": 0.303,
+        "commissioned": 11,
+        "commissioned_rate": 0.3333,
         "animated": 17,
         "animated_rate": 0.5152
       },
@@ -267,8 +267,8 @@
       "faction": "neutral",
       "cards": {
         "total": 119,
-        "commissioned": 32,
-        "commissioned_rate": 0.2689,
+        "commissioned": 33,
+        "commissioned_rate": 0.2773,
         "animated": 10,
         "animated_rate": 0.084
       },
