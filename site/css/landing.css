@@ -195,6 +195,22 @@
   height: auto;
 }
 
+.gameplay-caption {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  margin: -1rem auto 2rem;
+}
+
+.gameplay-caption a {
+  color: var(--lucia);
+  text-decoration: none;
+}
+
+.gameplay-caption a:hover {
+  text-decoration: underline;
+}
+
 .landing-hero-tagline {
   font-size: 1.25rem;
   color: var(--text-secondary);
