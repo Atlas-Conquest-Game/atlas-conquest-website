@@ -277,7 +277,7 @@ function initNavActiveState() {
   const currentPage = pageName === '' ? 'index.html' : pageName;
 
   // Primary nav: highlight based on data-nav attribute
-  const analyticsPages = ['analytics.html', 'commanders.html', 'cards.html', 'meta.html', 'mulligan.html', 'goals.html'];
+  const analyticsPages = ['analytics.html', 'commanders.html', 'cards.html', 'meta.html', 'metagame.html', 'mulligan.html', 'goals.html'];
   const path = window.location.pathname;
   const isArticles = currentPage === 'articles.html' || path.startsWith('/articles/') || path.includes('/articles/');
   const isDecks = currentPage === 'decks.html' || path.startsWith('/decks/') || path.includes('/decks/');
@@ -286,7 +286,6 @@ function initNavActiveState() {
     const nav = link.dataset.nav;
     if (nav === 'home' && currentPage === 'index.html') link.classList.add('active');
     else if (nav === 'analytics' && analyticsPages.includes(currentPage)) link.classList.add('active');
-    else if (nav === 'metagame' && currentPage === 'metagame.html') link.classList.add('active');
     else if (nav === 'decks' && isDecks) link.classList.add('active');
     else if (nav === 'articles' && isArticles) link.classList.add('active');
   });
