@@ -170,6 +170,14 @@
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
+.landing-hero-logo {
+  display: block;
+  width: min(680px, 90vw);
+  height: auto;
+  margin: 0 auto;
+  filter: drop-shadow(0 4px 24px rgba(0, 0, 0, 0.55));
+}
+
 .landing-hero-tagline {
   font-size: 1.25rem;
   color: var(--text-secondary);
