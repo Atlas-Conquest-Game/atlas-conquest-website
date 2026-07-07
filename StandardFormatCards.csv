@@ -43,7 +43,7 @@ Daemonic Summoning,Spell,Draw a Daemon from your deck. It costs 3 less mana.,Non
 Daemonprince Grizlocke,Minion,"Legendary. Flying. Trample. [Cooldown 1, Range 1]: Claim ANY unoccupied tile, gain 1 Dominion, and summon a Daemon Knight.",Daemon,12,13,3,13,True,Shadis,0.4.38,AI_GENERATED,DALL-E,False,0,,
 "Danrir, Omenhound",Minion,"Legendary. When Danrir attacks and kills an enemy minion, he gains +2 Power and +2 Health.",Beast,4,4,4,4,True,Neutral,0.1.1,AI_GENERATED,Stable Diffusion,False,0,,Starter Beasts
 Darkroot Ooze,Minion,"When Darkroot Ooze battles, double the enemy's poison.",None,2,1,3,3,,Grenalia,0.1.14,AI_GENERATED,Midjourney,True,3,LoopingParticle;ParticleDisplayFXAnimation,
-Darkroot Witch,Minion,Spellcaster. Arrival: Add a Poison Sting to your hand.,Elf,2,1,2,2,,Grenalia,0.1.14,AI_GENERATED,Midjourney,True,3,LoopingParticle;ParticleDisplayFXAnimation,
+Darkroot Witch,Minion,Spellcaster. Arrival: Add a Poison Sting to your hand.,Elf,2,1,2,2,,Grenalia,0.1.14,ARTIST_COMMISSIONED,Marc Petrelis,True,3,LoopingParticle;ParticleDisplayFXAnimation,
 Darkwing,Minion,Flying. Commander-Deploy. Arrival: Deal 2 damage to all non-daemon characters.,Daemon,7,7,3,4,,Shadis,0.4.27,AI_GENERATED,DALL-E,False,0,,
 Deathquill,Minion,"[Cooldown 1, Range 2]: Deal 1 damage and add 1 Poison to an enemy.",Beast,4,3,1,5,,Neutral,0.1.14,AI_GENERATED,Midjourney,True,3,LoopingParticle;ParticleDisplayFXAnimation,
 Demilich,Minion,Spellcaster. Arrival AND Postmortem: Draw a card.,Undead,6,5,2,4,,Neutral,0.4.42,AI_GENERATED,DALL-E,False,0,,Starter Mage
