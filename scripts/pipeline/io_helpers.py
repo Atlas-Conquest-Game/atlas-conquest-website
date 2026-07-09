@@ -1,6 +1,7 @@
 """I/O operations — AWS, CSV loading, cache management, thumbnails, JSON writing."""
 
 import csv
+import hashlib
 import json
 import subprocess
 import sys
@@ -65,6 +66,21 @@ def _art_slug(name):
     return name.lower().replace(" ", "-").replace(",", "").replace("'", "")
 
 
+def _file_hash(path):
+    """SHA-1 of a file's bytes, used to detect when source art actually changed.
+
+    We hash content rather than compare mtimes because git does not preserve
+    mtimes: a fresh CI checkout stamps every file with the checkout time, so an
+    mtime comparison can never tell whether the underlying art changed. See the
+    manifest logic in generate_thumbnails().
+    """
+    h = hashlib.sha1()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
 def generate_thumbnails():
     """Generate optimized thumbnails for commanders (from Artwork/) and cards (from CardScreenshots/).
 
@@ -72,11 +88,32 @@ def generate_thumbnails():
                     Only processes files whose slug matches a commander in the CSV.
     Card previews:  CardScreenshots/*.png → site/assets/cards/*.jpg  (600px wide)
 
-    Only regenerates if source is newer than target or target is missing.
+    Regenerates a thumbnail when its target is missing or the source art's
+    content has changed. Change is detected by hashing the source bytes and
+    comparing against a committed manifest (site/assets/.thumbnail-src-hashes.json)
+    rather than by mtime: git does not preserve mtimes, so in a fresh CI checkout
+    every file carries the checkout time and an mtime comparison silently skips
+    updated art (it would only ever regenerate brand-new cards). See _file_hash().
     """
     ASSETS_DIR.mkdir(parents=True, exist_ok=True)
     CARD_ASSETS_DIR.mkdir(parents=True, exist_ok=True)
     CARD_PNG_ASSETS_DIR.mkdir(parents=True, exist_ok=True)
+
+    # Manifest of source-art hashes, keyed by "<kind>:<slug>". Lives under
+    # site/assets/ so the daily pipeline's `git add site/assets/` commits it and
+    # the next checkout can read it back.
+    manifest_path = CARD_PNG_ASSETS_DIR.parent / ".thumbnail-src-hashes.json"
+    manifest = {}
+    if manifest_path.exists():
+        try:
+            with open(manifest_path, "r", encoding="utf-8") as f:
+                manifest = json.load(f)
+        except (json.JSONDecodeError, OSError):
+            manifest = {}
+
+    def _needs_regen(key, target, source_hash):
+        """Regenerate if the target is missing or the source content changed."""
+        return not target.exists() or manifest.get(key) != source_hash
 
     cmd_count = 0
     card_count = 0
@@ -92,18 +129,32 @@ def generate_thumbnails():
                 if name:
                     commander_slugs.add(_art_slug(name))
 
-    # Commander thumbnails from Artwork/ (only files matching commander names)
+    # Commander thumbnails from Artwork/ (only files matching commander names).
+    # A slug can have more than one source file (e.g. both executor-ginn.png and
+    # executor-ginn.jpg). They share a single .jpg target, so pick one winner
+    # deterministically — prefer the PNG master — and skip the rest, otherwise
+    # they overwrite each other's manifest entry and regenerate on every run.
     if ARTWORK_DIR.exists() and commander_slugs:
-        for source in ARTWORK_DIR.iterdir():
-            if source.suffix.lower() not in (".png", ".jpg", ".jpeg"):
-                continue
+        _ext_priority = {".png": 0, ".jpg": 1, ".jpeg": 1}
+        sources = sorted(
+            (s for s in ARTWORK_DIR.iterdir()
+             if s.suffix.lower() in _ext_priority and s.stem.lower() in commander_slugs),
+            key=lambda s: (s.stem.lower(), _ext_priority[s.suffix.lower()], s.name),
+        )
+        seen_slugs = set()
+        for source in sources:
             slug = source.stem.lower()
-            if slug not in commander_slugs:
+            if slug in seen_slugs:
+                print(f"  (skipping duplicate commander art {source.name}; already have {slug})")
                 continue
+            seen_slugs.add(slug)
             target = ASSETS_DIR / f"{slug}.jpg"
-            if target.exists() and target.stat().st_mtime >= source.stat().st_mtime:
+            src_hash = _file_hash(source)
+            key = f"cmd:{slug}"
+            if not _needs_regen(key, target, src_hash):
                 continue
             if _resize_image(source, target, 400):
+                manifest[key] = src_hash
                 cmd_count += 1
 
     # Card thumbnails from CardScreenshots/. Each source PNG produces:
@@ -116,17 +167,25 @@ def generate_thumbnails():
             if source.suffix.lower() not in (".png", ".jpg", ".jpeg"):
                 continue
             slug = source.stem.lower()
+            src_hash = _file_hash(source)
             jpg_target = CARD_ASSETS_DIR / f"{slug}.jpg"
-            if not (jpg_target.exists() and jpg_target.stat().st_mtime >= source.stat().st_mtime):
+            jpg_key = f"card-jpg:{slug}"
+            if _needs_regen(jpg_key, jpg_target, src_hash):
                 if _resize_image(source, jpg_target, 600):
+                    manifest[jpg_key] = src_hash
                     card_count += 1
             # PNG with alpha — only meaningful if source has alpha (RGBA PNGs in
             # CardScreenshots/). _resize_png_rgba auto-converts otherwise.
             if source.suffix.lower() == ".png":
                 png_target = CARD_PNG_ASSETS_DIR / f"{slug}.png"
-                if not (png_target.exists() and png_target.stat().st_mtime >= source.stat().st_mtime):
+                png_key = f"card-png:{slug}"
+                if _needs_regen(png_key, png_target, src_hash):
                     if _resize_png_rgba(source, png_target, 500):
+                        manifest[png_key] = src_hash
                         card_png_count += 1
+
+    with open(manifest_path, "w", encoding="utf-8") as f:
+        json.dump(manifest, f, indent=2, sort_keys=True)
 
     print(f"  Thumbnails: {cmd_count} commander + {card_count} card JPGs + {card_png_count} card PNGs generated")
     if cmd_count == 0 and card_count == 0 and card_png_count == 0:
