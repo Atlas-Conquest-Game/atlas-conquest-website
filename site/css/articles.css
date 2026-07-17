@@ -296,6 +296,179 @@ a.article-tag:hover {
   margin: 1.6em auto;
 }
 
+/* Diagrams and other wide figures break out of the 760px prose column so their
+   labels stay legible. Add with attr_list: ![alt](diagram.png){: .wide }
+   The 94vw cap keeps the figure inside the viewport at any width; below the
+   prose width it degrades to a normal full-width image. */
+.article-prose img.wide {
+  width: 94vw;
+  max-width: 1160px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ── Zoomable figures ──────────────────────────────────────
+   article.js wraps each img.wide in .article-zoom at runtime, so the rule
+   above still governs the no-JS case. The wrapper takes over the breakout
+   sizing and the image simply fills it. */
+.article-prose .article-zoom {
+  display: block;
+  position: relative;
+  width: 94vw;
+  max-width: 1160px;
+  margin: 1.6em 0 1.6em 50%;
+  transform: translateX(-50%);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: zoom-in;
+}
+
+.article-prose .article-zoom img.wide {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  transform: none;
+  border-radius: 0;
+}
+
+/* Light tint on hover — signals the figure is interactive without obscuring it. */
+.article-zoom::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(88, 166, 255, 0);
+  transition: background 0.15s ease;
+  pointer-events: none;
+}
+
+.article-zoom:hover::after,
+.article-zoom:focus-visible::after {
+  background: rgba(88, 166, 255, 0.07);
+}
+
+.article-zoom:focus-visible {
+  outline: 2px solid #58a6ff;
+  outline-offset: 2px;
+}
+
+.article-zoom-hint {
+  position: absolute;
+  z-index: 2;
+  right: 12px;
+  bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.6rem;
+  background: rgba(14, 17, 23, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  pointer-events: none;
+}
+
+.article-zoom:hover .article-zoom-hint,
+.article-zoom:focus-visible .article-zoom-hint {
+  opacity: 1;
+}
+
+/* Touch devices have no hover — keep the affordance permanently visible. */
+@media (hover: none) {
+  .article-zoom-hint { opacity: 1; }
+}
+
+/* ── Lightbox ──────────────────────────────────────────────
+   Sits above the card-preview popup (z-index 1100). */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem 3.5rem;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.lightbox.open { display: flex; }
+
+.lightbox-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: var(--radius);
+  cursor: zoom-in;
+  animation: fadeUp 0.25s ease;
+}
+
+/* Zoomed: drop to natural size and let the overlay scroll — these diagrams are
+   2480px wide, so 1:1 is where the fine labels become readable on a phone. */
+.lightbox.zoomed {
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0;
+  overflow: auto;
+  cursor: zoom-out;
+}
+
+.lightbox.zoomed .lightbox-img {
+  max-width: none;
+  max-height: none;
+  border-radius: 0;
+  cursor: zoom-out;
+  animation: none;
+}
+
+.lightbox-caption {
+  position: fixed;
+  left: 50%;
+  bottom: 0.85rem;
+  transform: translateX(-50%);
+  max-width: min(860px, 92vw);
+  text-align: center;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--text-secondary);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.9);
+  pointer-events: none;
+}
+
+.lightbox-close {
+  position: fixed;
+  top: 0.75rem;
+  right: 0.9rem;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(28, 33, 40, 0.85);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+
+.lightbox-close:hover {
+  background: var(--bg-elevated);
+  color: var(--text);
+  border-color: var(--text-muted);
+}
+
 .article-prose hr {
   border: 0;
   border-top: 1px solid var(--border);
