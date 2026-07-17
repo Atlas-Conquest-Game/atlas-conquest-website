@@ -64,6 +64,7 @@ See [ARCHITECTURE.md](docs/ARCHITECTURE.md) for the full system design.
 - **Faction colors** (colorblind-safe Okabe-Ito palette): Skaal = `#D55E00`, Grenalia = `#009E73`, Lucia = `#E8B630`, Neutral = `#A89078`, Shadis = `#7B7B8E`, Archaeon = `#0072B2`.
 - **Static JSON files** in `site/data/` are the contract between pipeline and frontend. All stats files are nested `data[period][map]` where period is `all|6m|3m|1m` and map is `all|Dunes|Snowmelt|Tropics`.
 - **Python 3.10+** for scripts. Use `boto3` for AWS access. Virtual env at `venv/`.
+- **Dependencies**: `scripts/requirements.txt` is what CI installs — keep it to what the pipeline and tests need. Local-only tooling goes in `scripts/requirements-dev.txt`.
 - **Tests**: `pytest scripts/tests/ -v` — cleaning, aggregation, and output validation tests.
 - **`raw_games.json`** is a local cache (gitignored). Delete it to force a full re-fetch from DynamoDB.
 
@@ -95,4 +96,8 @@ python3 -m http.server 8000 --directory site
 
 # Run tests
 pytest scripts/tests/ -v
+
+# Verify a frontend change in a real browser (Playwright drives an already-
+# installed Edge/Chrome via channel="msedge" — no browser download needed)
+pip install -r scripts/requirements-dev.txt
 ```

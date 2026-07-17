@@ -1,0 +1,20 @@
+# Development-only dependencies.
+#
+# CI installs requirements.txt (not this file) — see .github/workflows/
+# update-data.yml. Keep anything CI needs at runtime in requirements.txt;
+# this file is for tools you only run locally.
+#
+#   pip install -r scripts/requirements-dev.txt
+
+-r requirements.txt
+
+# Browser automation, for verifying frontend changes end-to-end — driving the
+# article lightbox, catching console errors, checking layout at mobile widths.
+#
+# No browser download needed: point it at an already-installed browser with
+# the `channel` argument, e.g.
+#
+#   p.chromium.launch(channel="msedge")    # or "chrome"
+#
+# Only run `playwright install chromium` if you want its bundled browser.
+playwright>=1.61.0
