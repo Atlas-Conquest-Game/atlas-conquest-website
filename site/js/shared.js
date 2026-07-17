@@ -26,10 +26,14 @@ const FACTION_LABELS = {
   archaeon: 'Archaeon',
 };
 
-// Chart.js dark theme defaults
-Chart.defaults.color = '#8b949e';
-Chart.defaults.borderColor = '#30363d';
-Chart.defaults.font.family = "'Inter', sans-serif";
+// Chart.js dark theme defaults. Guarded because the Articles pages load
+// shared.js (for the nav and card preview) without Chart.js — an unguarded
+// reference throws and halts the rest of this file's top-level execution.
+if (typeof Chart !== 'undefined') {
+  Chart.defaults.color = '#8b949e';
+  Chart.defaults.borderColor = '#30363d';
+  Chart.defaults.font.family = "'Inter', sans-serif";
+}
 
 // Shared chart tooltip style
 const CHART_TOOLTIP = {
