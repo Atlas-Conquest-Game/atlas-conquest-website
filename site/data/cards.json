@@ -32,7 +32,7 @@
     "art": "CardScreenshots/Acrid-Potion.png",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": []
   },
   {
@@ -710,7 +710,7 @@
     "art": "CardScreenshots/Conscription.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": []
   },
   {
@@ -838,7 +838,7 @@
     "art": "CardScreenshots/Darkwing.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": []
   },
   {
@@ -1085,7 +1085,7 @@
   {
     "name": "Dread Proclamation",
     "type": "Spell",
-    "text": "Until the end of the turn, all enemies get -1/-0/-1. When an enemy dies this turn, gain 1 Dominion.",
+    "text": "Until the end of the turn, all enemy minions get -1/-0/-1. When an enemy dies this turn, gain 1 Dominion.",
     "subtype": "Psychic",
     "cost": 3,
     "attack": null,
@@ -1189,7 +1189,7 @@
     "art": "CardScreenshots/Dwarven-Stout.png",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": []
   },
   {
@@ -1284,7 +1284,7 @@
     "art": null,
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Beasts",
       "Starter Mage"
@@ -1451,7 +1451,7 @@
     "art": "CardScreenshots/Explosive-Potion.png",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Deploy"
     ]
@@ -1653,7 +1653,7 @@
     "art": null,
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": []
   },
   {
@@ -1912,7 +1912,7 @@
     "art": "CardScreenshots/Goblin-Musclejuice.png",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": []
   },
   {
@@ -2096,7 +2096,7 @@
     "art": "CardScreenshots/Greater-Healing-Potion.png",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": []
   },
   {
@@ -2168,7 +2168,7 @@
     "art": "CardScreenshots/Growth-Potion.png",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": []
   },
   {
@@ -2961,7 +2961,7 @@
     "art": "CardScreenshots/Master-Craftsman.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": []
   },
   {
@@ -3293,7 +3293,7 @@
     "art": "CardScreenshots/Outland-Village.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": []
   },
   {
@@ -3539,7 +3539,7 @@
     "art": "CardScreenshots/Potion-of-Healing.png",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": []
   },
   {
@@ -3557,7 +3557,7 @@
     "art": "CardScreenshots/Power-Potion.png",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Death",
       "Starter Deploy",
@@ -3787,7 +3787,7 @@
     "art": "CardScreenshots/Regeneration-Potion.png",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": []
   },
   {
@@ -3976,7 +3976,7 @@
     "art": "CardScreenshots/Sage-Potion.png",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": []
   },
   {
@@ -4070,7 +4070,7 @@
     "art": "CardScreenshots/Settle-Village.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": []
   },
   {
@@ -4088,7 +4088,7 @@
     "art": "CardScreenshots/Shield-Potion.png",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": []
   },
   {
@@ -4535,7 +4535,7 @@
     "art": "CardScreenshots/Swiftness-Potion.png",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": []
   },
   {

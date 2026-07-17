@@ -81,19 +81,19 @@
       "id": "anim_all",
       "label": "20% of all Cards have an animation",
       "kind": "percent",
-      "numerator": 45,
+      "numerator": 64,
       "denominator": 274,
-      "current": 0.1642,
+      "current": 0.2336,
       "target": 0.2,
-      "met": false
+      "met": true
     },
     {
       "id": "anim_commanders",
       "label": "50% of Commanders have an animation",
       "kind": "percent",
-      "numerator": 3,
+      "numerator": 4,
       "denominator": 16,
-      "current": 0.1875,
+      "current": 0.25,
       "target": 0.5,
       "met": false
     },
@@ -120,36 +120,36 @@
         {
           "deck": "Starter Beasts",
           "total": 15,
-          "met_count": 4,
-          "rate": 0.2667,
+          "met_count": 5,
+          "rate": 0.3333,
           "met": false
         },
         {
           "deck": "Starter Death",
           "total": 14,
-          "met_count": 3,
-          "rate": 0.2143,
+          "met_count": 4,
+          "rate": 0.2857,
           "met": false
         },
         {
           "deck": "Starter Deploy",
           "total": 15,
-          "met_count": 3,
-          "rate": 0.2,
+          "met_count": 5,
+          "rate": 0.3333,
           "met": false
         },
         {
           "deck": "Starter Mage",
           "total": 14,
-          "met_count": 1,
-          "rate": 0.0714,
+          "met_count": 2,
+          "rate": 0.1429,
           "met": false
         },
         {
           "deck": "Starter Military",
           "total": 15,
-          "met_count": 2,
-          "rate": 0.1333,
+          "met_count": 3,
+          "rate": 0.2,
           "met": false
         }
       ]
@@ -160,15 +160,15 @@
       "total": 274,
       "commissioned": 72,
       "commissioned_rate": 0.2628,
-      "animated": 45,
-      "animated_rate": 0.1642
+      "animated": 64,
+      "animated_rate": 0.2336
     },
     "commanders": {
       "total": 16,
       "commissioned": 15,
       "commissioned_rate": 0.9375,
-      "animated": 3,
-      "animated_rate": 0.1875
+      "animated": 4,
+      "animated_rate": 0.25
     }
   },
   "by_patron": [
@@ -197,8 +197,8 @@
         "total": 26,
         "commissioned": 8,
         "commissioned_rate": 0.3077,
-        "animated": 1,
-        "animated_rate": 0.0385
+        "animated": 2,
+        "animated_rate": 0.0769
       },
       "commanders": {
         "total": 3,
@@ -215,8 +215,8 @@
         "total": 33,
         "commissioned": 12,
         "commissioned_rate": 0.3636,
-        "animated": 17,
-        "animated_rate": 0.5152
+        "animated": 18,
+        "animated_rate": 0.5455
       },
       "commanders": {
         "total": 3,
@@ -233,15 +233,15 @@
         "total": 36,
         "commissioned": 5,
         "commissioned_rate": 0.1389,
-        "animated": 3,
-        "animated_rate": 0.0833
+        "animated": 6,
+        "animated_rate": 0.1667
       },
       "commanders": {
         "total": 3,
         "commissioned": 3,
         "commissioned_rate": 1.0,
-        "animated": 0,
-        "animated_rate": 0.0
+        "animated": 1,
+        "animated_rate": 0.3333
       }
     },
     {
@@ -269,8 +269,8 @@
         "total": 119,
         "commissioned": 33,
         "commissioned_rate": 0.2773,
-        "animated": 10,
-        "animated_rate": 0.084
+        "animated": 21,
+        "animated_rate": 0.1765
       },
       "commanders": {
         "total": 2,
@@ -287,8 +287,8 @@
         "total": 23,
         "commissioned": 4,
         "commissioned_rate": 0.1739,
-        "animated": 2,
-        "animated_rate": 0.087
+        "animated": 4,
+        "animated_rate": 0.1739
       },
       "commanders": {
         "total": 2,
@@ -305,8 +305,8 @@
         "total": 34,
         "commissioned": 10,
         "commissioned_rate": 0.2941,
-        "animated": 12,
-        "animated_rate": 0.3529
+        "animated": 13,
+        "animated_rate": 0.3824
       },
       "commanders": {
         "total": 3,
