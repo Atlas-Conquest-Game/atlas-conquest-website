@@ -414,8 +414,8 @@
     "patron": "Archaeon",
     "faction": "archaeon",
     "art": "CardScreenshots/Blinkshot.png",
-    "art_type": "AI_GENERATED",
-    "commissioned": false,
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
     "has_animation": false,
     "starter_decks": [
       "Starter Mage"
@@ -780,8 +780,8 @@
     "patron": "Neutral",
     "faction": "neutral",
     "art": "CardScreenshots/Danrir-Omenhound.png",
-    "art_type": "AI_GENERATED",
-    "commissioned": false,
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
     "has_animation": false,
     "starter_decks": [
       "Starter Beasts"
