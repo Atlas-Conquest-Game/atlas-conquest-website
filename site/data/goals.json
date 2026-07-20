@@ -4,7 +4,7 @@
       "id": "art_count",
       "label": "100 Cards Commissioned",
       "kind": "count",
-      "current": 72,
+      "current": 74,
       "target": 100,
       "met": false
     },
@@ -22,9 +22,9 @@
       "id": "art_legendary",
       "label": "75% of Legendary Minions Commissioned",
       "kind": "percent",
-      "numerator": 13,
+      "numerator": 14,
       "denominator": 27,
-      "current": 0.4815,
+      "current": 0.5185,
       "target": 0.75,
       "met": false
     },
@@ -41,8 +41,8 @@
         {
           "deck": "Starter Beasts",
           "total": 15,
-          "met_count": 4,
-          "rate": 0.2667,
+          "met_count": 5,
+          "rate": 0.3333,
           "met": false
         },
         {
@@ -62,8 +62,8 @@
         {
           "deck": "Starter Mage",
           "total": 14,
-          "met_count": 5,
-          "rate": 0.3571,
+          "met_count": 6,
+          "rate": 0.4286,
           "met": false
         },
         {
@@ -158,8 +158,8 @@
   "overall": {
     "cards": {
       "total": 274,
-      "commissioned": 72,
-      "commissioned_rate": 0.2628,
+      "commissioned": 74,
+      "commissioned_rate": 0.2701,
       "animated": 64,
       "animated_rate": 0.2336
     },
@@ -195,8 +195,8 @@
       "faction": "archaeon",
       "cards": {
         "total": 26,
-        "commissioned": 8,
-        "commissioned_rate": 0.3077,
+        "commissioned": 9,
+        "commissioned_rate": 0.3462,
         "animated": 2,
         "animated_rate": 0.0769
       },
@@ -267,8 +267,8 @@
       "faction": "neutral",
       "cards": {
         "total": 119,
-        "commissioned": 33,
-        "commissioned_rate": 0.2773,
+        "commissioned": 34,
+        "commissioned_rate": 0.2857,
         "animated": 21,
         "animated_rate": 0.1765
       },
