@@ -21,7 +21,7 @@ Big Game Hunter,Minion,"[Arrival, Range 3]: Destroy an enemy minion with 5 or mo
 Black Dragon,Minion,"Flying. Fatal. [Warmup 3, Range 2]: Destroy a Minion.",Dragon,5,7,4,5,,Shadis,0.4.15,ARTIST_COMMISSIONED,Marc Petrelis,False,0,,
 Black Scorpion,Minion,Fatal.  (Destroy any enemy minion this damages.),Arachnid,2,1,2,3,,Neutral,0.4.15,AI_GENERATED,DALL-E,False,0,,Starter Death
 Blessed Force,Spell,Destroy all minions with mana cost 3 or less within Range 3.,None,5,,,,,Lucia,0.1.2,ARTIST_COMMISSIONED,Tomas Vinco,False,0,,
-Blinkshot,Minion,"[Cooldown 2, Range 2]: Deal 4 damage. [Cooldown 2, Range 2]: Teleport.",Arachnid,6,4,3,3,,Archaeon,0.4.25,AI_GENERATED,DALL-E,False,0,,Starter Mage
+Blinkshot,Minion,"[Cooldown 2, Range 2]: Deal 4 damage. [Cooldown 2, Range 2]: Teleport.",Arachnid,6,4,3,3,,Archaeon,0.4.25,ARTIST_COMMISSIONED,Marc Petrelis,False,0,,Starter Mage
 Bloodrush,Spell,Your characters gain 2 Movement. Your commander loses 2 life. Draw a card.,None,1,,,,,Skaal,0.2.1,AI_GENERATED,Midjourney,False,0,,
 Blue Dragon,Minion,"Flying. Spellcaster. [Warmup 3, Range 2]: Deal 2 damage to all characters within 1 Radius and Stun any minions.",Dragon,4,4,4,5,,Archaeon,0.4.15,ARTIST_COMMISSIONED,Marc Petrelis,False,0,,
 Bramble,Minion,Commander-Deploy. Arrival: Add a copy of this to your hand with Ethereal.,Plant,2,3,0,3,,Grenalia,0.4.22,AI_GENERATED,DALL-E,False,0,,
@@ -41,7 +41,7 @@ Conscription,Spell,Add 3 Lucian Soldiers to your hand. They gain Ethereal.,None,
 Crippling Tax,Spell,Destroy a friendly village. Draw 3 cards. Gain 3 Dominion.,None,4,,,,,Lucia,0.4.4,AI_GENERATED,DALL-E,False,0,,
 Daemonic Summoning,Spell,Draw a Daemon from your deck. It costs 3 less mana.,None,3,,,,,Shadis,0.4.28,AI_GENERATED,DALL-E,False,0,,
 Daemonprince Grizlocke,Minion,"Legendary. Flying. Trample. [Cooldown 1, Range 1]: Claim ANY unoccupied tile, gain 1 Dominion, and summon a Daemon Knight.",Daemon,12,13,3,13,True,Shadis,0.4.38,AI_GENERATED,DALL-E,False,0,,
-"Danrir, Omenhound",Minion,"Legendary. When Danrir attacks and kills an enemy minion, he gains +2 Power and +2 Health.",Beast,4,4,4,4,True,Neutral,0.1.1,AI_GENERATED,Stable Diffusion,False,0,,Starter Beasts
+"Danrir, Omenhound",Minion,"Legendary. When Danrir attacks and kills an enemy minion, he gains +2 Power and +2 Health.",Beast,4,4,4,4,True,Neutral,0.1.1,ARTIST_COMMISSIONED,Tomas Vinco,False,0,,Starter Beasts
 Darkroot Ooze,Minion,"When Darkroot Ooze battles, double the enemy's poison.",None,2,1,3,3,,Grenalia,0.1.14,AI_GENERATED,Midjourney,True,3,LoopingParticle;ParticleDisplayFXAnimation,
 Darkroot Witch,Minion,Spellcaster. Arrival: Add a Poison Sting to your hand.,Elf,2,1,2,2,,Grenalia,0.1.14,ARTIST_COMMISSIONED,Marc Petrelis,True,3,LoopingParticle;ParticleDisplayFXAnimation,
 Darkwing,Minion,Flying. Commander-Deploy. Arrival: Deal 2 damage to all non-daemon characters.,Daemon,7,7,3,4,,Shadis,0.4.27,AI_GENERATED,DALL-E,True,7,BoardTintFXAnimation;CharacterSpinFXAnimation;CompositeFXAnimation;ParticleDisplayFXAnimation;ProjectileRainFXAnimation;RandomSoundFXAnimation,
