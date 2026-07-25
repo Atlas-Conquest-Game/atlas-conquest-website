@@ -1627,9 +1627,9 @@
   },
   "1m": {
     "all": {
-      "total_games": 392,
-      "first_player_wins": 195,
-      "first_player_winrate": 0.4974,
+      "total_games": 380,
+      "first_player_wins": 186,
+      "first_player_winrate": 0.4895,
       "per_commander": {
         "Rosirix the Witch": {
           "first_games": 11,
@@ -1640,20 +1640,20 @@
           "second_winrate": 0.4545
         },
         "Lazim, Thief of Gods": {
-          "first_games": 76,
-          "first_wins": 32,
-          "first_winrate": 0.4211,
-          "second_games": 63,
+          "first_games": 74,
+          "first_wins": 30,
+          "first_winrate": 0.4054,
+          "second_games": 59,
           "second_wins": 25,
-          "second_winrate": 0.3968
+          "second_winrate": 0.4237
         },
         "Soultaker Viessa": {
-          "first_games": 40,
-          "first_wins": 16,
-          "first_winrate": 0.4,
-          "second_games": 40,
+          "first_games": 39,
+          "first_wins": 15,
+          "first_winrate": 0.3846,
+          "second_games": 39,
           "second_wins": 21,
-          "second_winrate": 0.525
+          "second_winrate": 0.5385
         },
         "Milo Sunstone": {
           "first_games": 12,
@@ -1664,28 +1664,28 @@
           "second_winrate": 0.2
         },
         "Elyse of the Order": {
-          "first_games": 40,
-          "first_wins": 23,
-          "first_winrate": 0.575,
-          "second_games": 41,
-          "second_wins": 22,
-          "second_winrate": 0.5366
+          "first_games": 38,
+          "first_wins": 22,
+          "first_winrate": 0.5789,
+          "second_games": 40,
+          "second_wins": 21,
+          "second_winrate": 0.525
         },
         "Macks Speed": {
-          "first_games": 59,
-          "first_wins": 35,
-          "first_winrate": 0.5932,
-          "second_games": 54,
-          "second_wins": 35,
-          "second_winrate": 0.6481
+          "first_games": 55,
+          "first_wins": 33,
+          "first_winrate": 0.6,
+          "second_games": 51,
+          "second_wins": 34,
+          "second_winrate": 0.6667
         },
         "Executor Ginn": {
-          "first_games": 31,
-          "first_wins": 18,
-          "first_winrate": 0.5806,
-          "second_games": 35,
+          "first_games": 28,
+          "first_wins": 15,
+          "first_winrate": 0.5357,
+          "second_games": 33,
           "second_wins": 16,
-          "second_winrate": 0.4571
+          "second_winrate": 0.4848
         },
         "Jagris, the Huntsman": {
           "first_games": 20,
@@ -1747,9 +1747,9 @@
           "first_games": 12,
           "first_wins": 4,
           "first_winrate": 0.3333,
-          "second_games": 23,
-          "second_wins": 10,
-          "second_winrate": 0.4348
+          "second_games": 22,
+          "second_wins": 9,
+          "second_winrate": 0.4091
         },
         "Elber, Jungle Emissary": {
           "first_games": 3,
@@ -1762,9 +1762,9 @@
       }
     },
     "Dunes": {
-      "total_games": 142,
-      "first_player_wins": 66,
-      "first_player_winrate": 0.4648,
+      "total_games": 138,
+      "first_player_wins": 64,
+      "first_player_winrate": 0.4638,
       "per_commander": {
         "Rosirix the Witch": {
           "first_games": 2,
@@ -1775,17 +1775,17 @@
           "second_winrate": 0.8333
         },
         "Lazim, Thief of Gods": {
-          "first_games": 29,
-          "first_wins": 11,
-          "first_winrate": 0.3793,
-          "second_games": 26,
+          "first_games": 28,
+          "first_wins": 10,
+          "first_winrate": 0.3571,
+          "second_games": 25,
           "second_wins": 10,
-          "second_winrate": 0.3846
+          "second_winrate": 0.4
         },
         "Elyse of the Order": {
-          "first_games": 15,
+          "first_games": 14,
           "first_wins": 8,
-          "first_winrate": 0.5333,
+          "first_winrate": 0.5714,
           "second_games": 17,
           "second_wins": 9,
           "second_winrate": 0.5294
@@ -1830,14 +1830,6 @@
           "second_wins": 6,
           "second_winrate": 0.8571
         },
-        "Macks Speed": {
-          "first_games": 21,
-          "first_wins": 11,
-          "first_winrate": 0.5238,
-          "second_games": 21,
-          "second_wins": 15,
-          "second_winrate": 0.7143
-        },
         "Jagris, the Huntsman": {
           "first_games": 3,
           "first_wins": 1,
@@ -1846,21 +1838,29 @@
           "second_wins": 2,
           "second_winrate": 0.2857
         },
+        "Macks Speed": {
+          "first_games": 19,
+          "first_wins": 10,
+          "first_winrate": 0.5263,
+          "second_games": 20,
+          "second_wins": 14,
+          "second_winrate": 0.7
+        },
         "Executor Ginn": {
           "first_games": 12,
           "first_wins": 7,
           "first_winrate": 0.5833,
-          "second_games": 7,
+          "second_games": 6,
           "second_wins": 1,
-          "second_winrate": 0.1429
+          "second_winrate": 0.1667
         },
         "Captain Greenbeard": {
           "first_games": 6,
           "first_wins": 2,
           "first_winrate": 0.3333,
-          "second_games": 9,
-          "second_wins": 6,
-          "second_winrate": 0.6667
+          "second_games": 8,
+          "second_wins": 5,
+          "second_winrate": 0.625
         },
         "Kai, Longcount Shaman": {
           "first_games": 7,
@@ -1897,33 +1897,33 @@
       }
     },
     "Snowmelt": {
-      "total_games": 127,
-      "first_player_wins": 65,
-      "first_player_winrate": 0.5118,
+      "total_games": 122,
+      "first_player_wins": 61,
+      "first_player_winrate": 0.5,
       "per_commander": {
         "Macks Speed": {
-          "first_games": 20,
-          "first_wins": 13,
-          "first_winrate": 0.65,
+          "first_games": 18,
+          "first_wins": 12,
+          "first_winrate": 0.6667,
           "second_games": 15,
           "second_wins": 11,
           "second_winrate": 0.7333
         },
         "Soultaker Viessa": {
-          "first_games": 10,
-          "first_wins": 4,
-          "first_winrate": 0.4,
-          "second_games": 16,
+          "first_games": 9,
+          "first_wins": 3,
+          "first_winrate": 0.3333,
+          "second_games": 15,
           "second_wins": 8,
-          "second_winrate": 0.5
+          "second_winrate": 0.5333
         },
         "Lazim, Thief of Gods": {
           "first_games": 27,
           "first_wins": 12,
           "first_winrate": 0.4444,
-          "second_games": 18,
+          "second_games": 16,
           "second_wins": 8,
-          "second_winrate": 0.4444
+          "second_winrate": 0.5
         },
         "Jagris, the Huntsman": {
           "first_games": 6,
@@ -1961,17 +1961,17 @@
           "first_games": 12,
           "first_wins": 7,
           "first_winrate": 0.5833,
-          "second_games": 12,
-          "second_wins": 8,
-          "second_winrate": 0.6667
+          "second_games": 11,
+          "second_wins": 7,
+          "second_winrate": 0.6364
         },
         "Executor Ginn": {
-          "first_games": 11,
-          "first_wins": 6,
-          "first_winrate": 0.5455,
-          "second_games": 13,
+          "first_games": 9,
+          "first_wins": 4,
+          "first_winrate": 0.4444,
+          "second_games": 12,
           "second_wins": 6,
-          "second_winrate": 0.4615
+          "second_winrate": 0.5
         },
         "It That Weaves": {
           "first_games": 3,
@@ -2032,9 +2032,9 @@
       }
     },
     "Tropics": {
-      "total_games": 123,
-      "first_player_wins": 64,
-      "first_player_winrate": 0.5203,
+      "total_games": 120,
+      "first_player_wins": 61,
+      "first_player_winrate": 0.5083,
       "per_commander": {
         "Soultaker Viessa": {
           "first_games": 14,
@@ -2053,25 +2053,25 @@
           "second_winrate": 0.0
         },
         "Lazim, Thief of Gods": {
-          "first_games": 20,
-          "first_wins": 9,
-          "first_winrate": 0.45,
-          "second_games": 19,
+          "first_games": 19,
+          "first_wins": 8,
+          "first_winrate": 0.4211,
+          "second_games": 18,
           "second_wins": 7,
-          "second_winrate": 0.3684
+          "second_winrate": 0.3889
         },
         "Macks Speed": {
           "first_games": 18,
           "first_wins": 11,
           "first_winrate": 0.6111,
-          "second_games": 18,
+          "second_games": 16,
           "second_wins": 9,
-          "second_winrate": 0.5
+          "second_winrate": 0.5625
         },
         "Executor Ginn": {
-          "first_games": 8,
-          "first_wins": 5,
-          "first_winrate": 0.625,
+          "first_games": 7,
+          "first_wins": 4,
+          "first_winrate": 0.5714,
           "second_games": 15,
           "second_wins": 9,
           "second_winrate": 0.6
@@ -2093,9 +2093,9 @@
           "second_winrate": 0.25
         },
         "Elyse of the Order": {
-          "first_games": 13,
-          "first_wins": 8,
-          "first_winrate": 0.6154,
+          "first_games": 12,
+          "first_wins": 7,
+          "first_winrate": 0.5833,
           "second_games": 12,
           "second_wins": 5,
           "second_winrate": 0.4167
