@@ -1605,8 +1605,8 @@
             "games": 68
           },
           {
-            "winrate": 0.4638,
-            "games": 69
+            "winrate": 0.4706,
+            "games": 68
           },
           {
             "winrate": 0.6863,
@@ -1649,8 +1649,8 @@
             "games": 39
           },
           {
-            "winrate": 0.6842,
-            "games": 38
+            "winrate": 0.7027,
+            "games": 37
           },
           {
             "winrate": 0.7391,
@@ -1737,8 +1737,8 @@
             "games": 81
           },
           {
-            "winrate": 0.5065,
-            "games": 77
+            "winrate": 0.4933,
+            "games": 75
           },
           {
             "winrate": 0.4762,
@@ -2243,8 +2243,8 @@
             "games": 24
           },
           {
-            "winrate": 0.4091,
-            "games": 22
+            "winrate": 0.4286,
+            "games": 21
           },
           {
             "winrate": 0.9231,
@@ -2397,8 +2397,8 @@
             "games": 11
           },
           {
-            "winrate": 0.6667,
-            "games": 6
+            "winrate": 0.8,
+            "games": 5
           },
           {
             "winrate": 0.8333,
@@ -2507,8 +2507,8 @@
             "games": 26
           },
           {
-            "winrate": 0.4211,
-            "games": 19
+            "winrate": 0.3529,
+            "games": 17
           },
           {
             "winrate": 0.4444,
@@ -2927,8 +2927,8 @@
             "games": 172
           },
           {
-            "winrate": 0.4891,
-            "games": 137
+            "winrate": 0.4925,
+            "games": 134
           },
           {
             "winrate": 0.45,
@@ -2971,12 +2971,12 @@
             "games": 40
           },
           {
-            "winrate": 0.5714,
-            "games": 35
+            "winrate": 0.5758,
+            "games": 33
           },
           {
-            "winrate": 0.5294,
-            "games": 17
+            "winrate": 0.5,
+            "games": 16
           },
           {
             "winrate": 0.381,
@@ -3290,8 +3290,8 @@
             "games": 14
           },
           {
-            "winrate": 0.6429,
-            "games": 14
+            "winrate": 0.6154,
+            "games": 13
           },
           {
             "winrate": 0.5,
@@ -3312,8 +3312,8 @@
             "games": 73
           },
           {
-            "winrate": 0.5283,
-            "games": 53
+            "winrate": 0.5385,
+            "games": 52
           },
           {
             "winrate": 0.4545,
@@ -3697,8 +3697,8 @@
             "games": 45
           },
           {
-            "winrate": 0.439,
-            "games": 41
+            "winrate": 0.425,
+            "games": 40
           },
           {
             "winrate": 0.4,
@@ -3961,8 +3961,8 @@
             "games": 10
           },
           {
-            "winrate": 0.1429,
-            "games": 7
+            "winrate": 0.1667,
+            "games": 6
           },
           {
             "winrate": 0.4286,
@@ -4016,8 +4016,8 @@
             "games": 54
           },
           {
-            "winrate": 0.4884,
-            "games": 43
+            "winrate": 0.5,
+            "games": 42
           },
           {
             "winrate": 0.5,
@@ -4197,7 +4197,7 @@
           },
           {
             "winrate": 1.0,
-            "games": 2
+            "games": 1
           },
           {
             "winrate": 0.4,
@@ -4487,12 +4487,12 @@
             "games": 1
           },
           {
-            "winrate": 0.7619,
-            "games": 42
+            "winrate": 0.7838,
+            "games": 37
           },
           {
-            "winrate": 0.6389,
-            "games": 36
+            "winrate": 0.5938,
+            "games": 32
           },
           {
             "winrate": 0.5714,
@@ -4553,8 +4553,8 @@
             "games": 0
           },
           {
-            "winrate": 0.2727,
-            "games": 11
+            "winrate": 0.3333,
+            "games": 9
           },
           {
             "winrate": 0.6667,
@@ -4689,8 +4689,8 @@
             "games": 12
           },
           {
-            "winrate": 0.1538,
-            "games": 13
+            "winrate": 0.2,
+            "games": 10
           },
           {
             "winrate": 0.0,
@@ -4898,8 +4898,8 @@
             "games": 14
           },
           {
-            "winrate": 0.6667,
-            "games": 15
+            "winrate": 0.6429,
+            "games": 14
           },
           {
             "winrate": 0.3333,
@@ -4930,28 +4930,6 @@
           {
             "winrate": 1.0,
             "games": 3
-          }
-        ],
-        "Captain Greenbeard": [
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": 0.8333,
-            "games": 6
-          },
-          {
-            "winrate": 0.1667,
-            "games": 6
-          },
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": 0.5,
-            "games": 2
           }
         ],
         "Kai, Longcount Shaman": [
@@ -5014,6 +4992,28 @@
           {
             "winrate": 1.0,
             "games": 1
+          },
+          {
+            "winrate": 0.5,
+            "games": 2
+          }
+        ],
+        "Captain Greenbeard": [
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": 0.8333,
+            "games": 6
+          },
+          {
+            "winrate": 0.2,
+            "games": 5
+          },
+          {
+            "winrate": null,
+            "games": 0
           },
           {
             "winrate": 0.5,
@@ -5103,12 +5103,12 @@
             "games": 0
           },
           {
-            "winrate": 0.8125,
-            "games": 16
+            "winrate": 0.8462,
+            "games": 13
           },
           {
-            "winrate": 0.75,
-            "games": 8
+            "winrate": 0.6667,
+            "games": 6
           },
           {
             "winrate": 0.8,
@@ -5390,7 +5390,7 @@
           },
           {
             "winrate": 0.0,
-            "games": 5
+            "games": 3
           },
           {
             "winrate": 0.8,
@@ -5438,7 +5438,7 @@
           },
           {
             "winrate": 0.0,
-            "games": 3
+            "games": 2
           },
           {
             "winrate": 0.0,
@@ -5554,12 +5554,12 @@
             "games": 0
           },
           {
-            "winrate": 0.6667,
-            "games": 12
+            "winrate": 0.7,
+            "games": 10
           },
           {
-            "winrate": 0.5385,
-            "games": 13
+            "winrate": 0.5,
+            "games": 12
           },
           {
             "winrate": 0.6667,
@@ -5734,8 +5734,8 @@
             "games": 2
           },
           {
-            "winrate": 0.25,
-            "games": 4
+            "winrate": 0.3333,
+            "games": 3
           },
           {
             "winrate": 0.0,
