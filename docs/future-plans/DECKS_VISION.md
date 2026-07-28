@@ -44,6 +44,13 @@
   already-cached image from its own grid) every commander selection was a fresh, uncached fetch —
   the previous commander's art stayed on screen until the new one finished loading. Now hidden
   immediately on selection and revealed only once the new image actually loads.
+- **Commander art now precaches unconditionally on install**, closing a real gap: "opportunistic"
+  caching meant a commander you'd never viewed while online (portrait *or* full framed card — they're
+  separate images, see the stale-image-flash fix above) would show a broken image offline. Since
+  every deck needs a commander and the roster is small (~2.5MB for all 16, portraits + framed
+  cards combined), `service-worker.js` now fetches `commanders.json` on install and precaches all of
+  it — verified with a fresh install that goes straight to offline with zero prior browsing, and
+  every commander's art (including ones never hovered, tapped, or selected) still renders.
 
 ## Current State (v1.7 — Jul 2026)
 
@@ -76,11 +83,13 @@ actual device rather than DevTools emulation:
   (192/512/maskable + Apple touch icon).
 - **Offline deck building**: the service worker precaches the app shell (`decks.html`, its CSS/JS,
   and `cardlist.json`/`cards.json`/`commanders.json`) so import/build/encode works with zero
-  connectivity. Card/commander art is cached opportunistically as it's viewed (cache-first), not
-  bulk-downloaded — the art directory is 34MB. Data JSON uses stale-while-revalidate so new cards
-  show up automatically on the next online visit. The service worker's fetch handler only
-  intercepts deck-tools URLs and explicitly passes everything else through untouched, even though
-  its registration scope is site-wide.
+  connectivity. Card art is cached opportunistically as it's viewed (cache-first), not
+  bulk-downloaded — the art directory is 34MB. Commander art is the exception: every deck needs a
+  commander, and the roster is small and fixed, so all 16 commanders' portraits + full framed cards
+  (~2.5MB total) are precached unconditionally on install — see v1.8 below. Data JSON uses
+  stale-while-revalidate so new cards show up automatically on the next online visit. The service
+  worker's fetch handler only intercepts deck-tools URLs and explicitly passes everything else
+  through untouched, even though its registration scope is site-wide.
   **Maintenance note**: bump `CACHE_NAME` in `service-worker.js` whenever the precached shell file
   list changes, so old caches get evicted on the next visit.
 - **Touch-friendly card browser**: horizontally-scrollable cost filter chips (tap instead of

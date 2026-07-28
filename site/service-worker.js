@@ -38,11 +38,38 @@ const DATA_URLS = [
   '/data/commanders.json',
 ];
 
+// Matches commanderArtPath()/cardArtSlug() in site/js/decks.js.
+function slugify(name) {
+  return name.toLowerCase().replace(/[,.']/g, '').replace(/\s+/g, '-');
+}
+
+// Every deck needs a commander, so — unlike the ~150-card pool (34MB, too
+// large to force-download on install) — it's worth guaranteeing the picker
+// always has real art on a completely fresh offline session, before anything
+// has been browsed. The commander roster is small and fixed (~2.5MB total
+// for both the cropped portraits and the full framed cards), so precache it
+// unconditionally rather than waiting for it to be viewed.
+async function precacheCommanderArt(artCache) {
+  try {
+    const res = await fetch('/data/commanders.json');
+    const commanders = await res.json();
+    const urls = commanders.flatMap(c => {
+      const slug = slugify(c.name);
+      return [`/assets/commanders/${slug}.jpg`, `/assets/cards/${slug}.jpg`];
+    });
+    await artCache.addAll(urls);
+  } catch {
+    // Best effort — if this fails (e.g. install while offline), commander
+    // art just falls back to the normal opportunistic cache-first behavior.
+  }
+}
+
 self.addEventListener('install', event => {
   event.waitUntil(
     Promise.all([
       caches.open(CACHE_NAME).then(cache => cache.addAll(SHELL_URLS)),
       caches.open(DATA_CACHE).then(cache => cache.addAll(DATA_URLS)),
+      caches.open(ART_CACHE).then(precacheCommanderArt),
     ]).then(() => self.skipWaiting())
   );
 });
