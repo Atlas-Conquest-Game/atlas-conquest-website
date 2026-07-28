@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <!-- GEN:META:BEGIN — generated for Elyse of the Order; edit scripts/generate_deck_pages.py, not this file. -->
   <title>Elyse of the Order Deck — Atlas Conquest</title>
   <meta property="og:type" content="website">
@@ -21,6 +21,15 @@
   <meta name="twitter:image" content="https://atlas-conquest.com/assets/og/elyse-of-the-order.jpg">
   <link rel="icon" type="image/jpeg" href="https://atlas-conquest.com/assets/commanders/elyse-of-the-order.jpg">
   <!-- GEN:META:END -->
+  <!-- PWA — deliberately outside GEN:META so the per-commander generator's
+       block-replace never touches this; it still reaches every generated
+       page since generate_deck_pages.py copies this whole file. -->
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#0e1117">
+  <link rel="apple-touch-icon" href="/assets/logo/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="AC Decks">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -83,7 +92,14 @@
 
           <!-- Import Panel -->
           <div class="deck-panel" id="panel-import">
-            <label class="deck-input-label" for="deck-code-input">Paste deck code</label>
+            <label class="deck-input-label" for="deck-code-input">
+              Paste deck code
+              <button type="button" class="deck-code-help-btn" id="deck-code-help-btn" aria-label="What's a deck code?">?</button>
+            </label>
+            <div class="deck-code-help hidden" id="deck-code-help">
+              In the Atlas Conquest game client, open the deck editor and use the "Export" / "Copy Code"
+              option on any deck. It copies a text code to your clipboard — paste it here.
+            </div>
             <div class="deck-input-row">
               <input type="text" id="deck-code-input" class="deck-input" placeholder="e.g. wrNWQ29udHJvbHYz:DMHgDgzrwAAO..." spellcheck="false">
               <button class="btn btn-primary" id="btn-decode">Decode</button>
@@ -95,8 +111,16 @@
           <div class="deck-panel hidden" id="panel-build">
             <div class="build-row">
               <div class="build-field">
-                <label class="deck-input-label" for="build-commander">Commander</label>
-                <select id="build-commander" class="deck-select">
+                <label class="deck-input-label" for="commander-picker-btn">Commander</label>
+                <button type="button" class="commander-picker-btn" id="commander-picker-btn">
+                  <span class="commander-picker-btn-portrait" id="commander-picker-btn-portrait"></span>
+                  <span class="commander-picker-btn-label placeholder" id="commander-picker-btn-label">Select a commander...</span>
+                  <span class="commander-picker-btn-chevron">▾</span>
+                </button>
+                <!-- Actual state lives here — the picker above just drives this
+                     select's value + dispatches 'change', so all existing
+                     commander-selection logic is untouched. -->
+                <select id="build-commander" class="hidden" aria-hidden="true" tabindex="-1">
                   <option value="">Select a commander...</option>
                 </select>
               </div>
@@ -105,6 +129,14 @@
                 <input type="text" id="build-name" class="deck-input" placeholder="My Deck">
               </div>
             </div>
+
+            <!-- Mobile-only: split browsing the card pool from viewing your
+                 current deck, instead of one long scrolling page. -->
+            <div class="build-mobile-tabs" id="build-mobile-tabs">
+              <button type="button" class="build-mobile-tab active" data-view="browse">Add Cards</button>
+              <button type="button" class="build-mobile-tab" data-view="deck">My Deck <span class="build-mobile-tab-count" id="build-mobile-tab-count">0</span></button>
+            </div>
+
             <!-- Card Pool Browser -->
             <div class="card-browser" id="card-browser">
               <div class="card-browser-toolbar">
@@ -113,6 +145,17 @@
                   <button class="build-sort-btn active" data-sort="cost" id="sort-btn-cost">Cost</button>
                   <button class="build-sort-btn" data-sort="name" id="sort-btn-name">Name</button>
                 </div>
+              </div>
+              <!-- Cost filter chips — tap-friendly alternative to typing on mobile -->
+              <div class="card-browser-chip-row" id="card-browser-chip-row">
+                <button class="cost-chip" data-cost="0">0</button>
+                <button class="cost-chip" data-cost="1">1</button>
+                <button class="cost-chip" data-cost="2">2</button>
+                <button class="cost-chip" data-cost="3">3</button>
+                <button class="cost-chip" data-cost="4">4</button>
+                <button class="cost-chip" data-cost="5">5</button>
+                <button class="cost-chip" data-cost="6">6</button>
+                <button class="cost-chip" data-cost="7">7+</button>
               </div>
               <div class="build-filter-hint hidden" id="build-filter-hint"></div>
               <div class="card-browser-grid" id="card-browser-grid"></div>
@@ -132,7 +175,7 @@
 
           <!-- Build mode note -->
           <div class="deck-build-note hidden" id="build-note">
-            Click a card's count to cycle 1→2→3. Click × to remove.
+            Use +/− to adjust a card's count, or tap its art for details.
           </div>
 
           <!-- Error -->
@@ -140,13 +183,19 @@
 
         </div><!-- /deck-main -->
 
-        <!-- Right column: stats sidebar (shown when deck loaded) -->
+        <!-- Right column: stats sidebar (shown when deck loaded). On mobile
+             this same panel becomes a slide-up drawer, toggled by the pill
+             button below — see .deck-drawer-* rules in decks.css. -->
         <div class="deck-sidebar hidden" id="deck-sidebar">
+
+          <!-- Mobile-only drawer close button -->
+          <button class="deck-drawer-close" id="deck-drawer-close" aria-label="Close deck panel">&times;</button>
 
           <!-- Commander info + Share URL -->
           <div class="deck-sidebar-card">
             <div class="deck-commander-section">
               <img id="deck-commander-art" class="deck-commander-portrait" src="" alt="" style="display:none">
+              <div class="deck-commander-portrait deck-commander-fallback hidden" id="deck-commander-fallback"></div>
               <div class="deck-commander-meta">
                 <div class="deck-name" id="deck-name"></div>
                 <div class="deck-commander-faction" id="deck-commander-faction"></div>
@@ -197,6 +246,14 @@
 
       </div><!-- /deck-layout -->
 
+      <!-- Mobile deck drawer trigger + backdrop (desktop hides these; the
+           sidebar above is used directly there). Shown once a deck exists. -->
+      <div class="deck-drawer-backdrop" id="deck-drawer-backdrop"></div>
+      <button class="deck-drawer-pill hidden" id="deck-drawer-pill" aria-expanded="false">
+        <span class="deck-drawer-pill-label">Deck</span>
+        <span class="deck-drawer-pill-count" id="deck-drawer-pill-count">0 cards</span>
+      </button>
+
     </div>
   </section>
 
@@ -211,6 +268,52 @@
   <!-- Card art hover preview (fixed, follows cursor) -->
   <div class="card-preview" id="card-preview">
     <img id="card-preview-img" src="" alt="">
+  </div>
+
+  <!-- Commander picker — visual replacement for the plain <select>, tap the
+       commander field to open. -->
+  <div class="commander-picker-backdrop hidden" id="commander-picker-backdrop"></div>
+  <div class="commander-picker-modal hidden" id="commander-picker-modal">
+    <div class="commander-picker-header">
+      <span class="commander-picker-title">Select Commander</span>
+      <button class="commander-picker-close" id="commander-picker-close" aria-label="Close">&times;</button>
+    </div>
+    <div class="commander-picker-grid" id="commander-picker-grid"></div>
+  </div>
+
+  <!-- Commander detail — tapping a tile in the picker opens this instead of
+       selecting immediately, so you can see abilities/stats before
+       committing. The real card art already has the ability text and all
+       4 stats (dominion/intellect/speed/health) baked in by the game. -->
+  <div class="commander-detail-backdrop hidden" id="commander-detail-backdrop"></div>
+  <div class="commander-detail-sheet hidden" id="commander-detail-sheet">
+    <div class="card-detail-handle"></div>
+    <button class="card-detail-close" id="commander-detail-close" aria-label="Close">&times;</button>
+    <div class="commander-detail-body">
+      <img class="commander-detail-art" id="commander-detail-art" src="" alt="">
+      <button class="btn btn-primary commander-detail-select-btn" id="commander-detail-select-btn">Select Commander</button>
+    </div>
+  </div>
+
+  <!-- Card detail sheet — tap a card tile's art to open. Primary large-target
+       path for adding/removing cards on touch devices (the inline +/- on
+       each tile still works too). -->
+  <div class="card-detail-backdrop hidden" id="card-detail-backdrop"></div>
+  <div class="card-detail-sheet hidden" id="card-detail-sheet">
+    <div class="card-detail-handle"></div>
+    <button class="card-detail-close" id="card-detail-close" aria-label="Close">&times;</button>
+    <div class="card-detail-body">
+      <img class="card-detail-art" id="card-detail-art" src="" alt="">
+      <div class="card-detail-info">
+        <div class="card-detail-name" id="card-detail-name"></div>
+        <div class="card-detail-badges" id="card-detail-badges"></div>
+      </div>
+      <div class="card-detail-stepper">
+        <button class="card-detail-btn minus" id="card-detail-minus" aria-label="Remove one">−</button>
+        <span class="card-detail-count" id="card-detail-count">0</span>
+        <button class="card-detail-btn plus" id="card-detail-plus" aria-label="Add one">+</button>
+      </div>
+    </div>
   </div>
 
   <script src="/js/deckcode.js"></script>

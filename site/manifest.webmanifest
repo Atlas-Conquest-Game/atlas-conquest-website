@@ -1,0 +1,31 @@
+{
+  "name": "Atlas Conquest Decks",
+  "short_name": "AC Decks",
+  "description": "Build, import, and share Atlas Conquest decks — works offline.",
+  "start_url": "/decks.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0e1117",
+  "theme_color": "#0e1117",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/assets/logo/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/logo/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/logo/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
