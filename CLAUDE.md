@@ -30,7 +30,7 @@ See [ARCHITECTURE.md](docs/ARCHITECTURE.md) for the full system design.
 | Cards | `site/cards.html` | `cards.js` | Card stats (deck/draw/play rates and winrates), per-commander breakdown |
 | Meta | `site/meta.html` | `meta.js` | Matchup heatmap, faction/commander popularity and winrate trends, first-turn advantage |
 | Mulligan | `site/mulligan.html` | `mulligan.js` | Opening hand keep rates, normalized keep preference, per-commander mulligan stats |
-| Decks | `site/decks.html` | `decks.js` + `deckcode.js` | Import (decode) and build (encode) deck codes, shareable via URL |
+| Decks | `site/decks.html` | `decks.js` + `deckcode.js` | Import (decode) and build (encode) deck codes, shareable via URL. Installable PWA with full offline support — see `site/manifest.webmanifest` + `site/service-worker.js`. |
 
 **Navigation**: Primary nav (Home, Analytics, Decks) on all pages. Analytics pages also have a sub-nav (Overview, Commanders, Cards, Meta, Mulligan). Analytics pages share `site/js/shared.js` (data loading, filters, helper functions). The Home and Decks pages are standalone.
 

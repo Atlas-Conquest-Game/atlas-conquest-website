@@ -96,21 +96,6 @@
   color: var(--text-muted);
 }
 
-.deck-select {
-  width: 100%;
-  padding: 10px 14px;
-  background: var(--bg-inset);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  color: var(--text);
-  font-size: 0.875rem;
-}
-
-.deck-select:focus {
-  outline: none;
-  border-color: var(--lucia);
-}
-
 /* ── Buttons ───────────────────────────────────────────── */
 
 .btn {
@@ -370,14 +355,14 @@
   color: var(--text);
 }
 
-/* ── Incompatible card row ──────────────────────────────── */
+/* ── Incompatible card tile ─────────────────────────────── */
 
-.deck-card-row.incompatible {
+.card-tile.incompatible {
   border-color: var(--negative);
-  background: rgba(255, 59, 59, 0.06);
+  background: rgba(255, 59, 59, 0.08);
 }
 
-.deck-card-row.incompatible .deck-card-name {
+.card-tile.incompatible .card-tile-name {
   color: var(--negative);
 }
 
@@ -413,6 +398,23 @@
 
 .deck-empty-state strong { color: var(--text-secondary); }
 
+.deck-list-empty-hint {
+  padding: 32px 20px;
+  text-align: center;
+  color: var(--text-muted);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.deck-list-empty-hint p {
+  margin-bottom: 14px;
+  font-size: 0.9rem;
+}
+
+.deck-list-empty-hint .btn {
+  display: inline-block;
+}
+
 /* ── Card List ─────────────────────────────────────────── */
 
 .deck-card-list {
@@ -439,106 +441,15 @@
   padding: 0 2px 6px;
 }
 
-.deck-card-row {
-  display: flex;
-  align-items: center;
-  padding: 7px 10px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius);
-  gap: 10px;
-  cursor: default;
-  transition: background 0.1s;
+/* Deck cards render as the same art-forward tiles as the Add Cards browser
+   (.card-tile, defined above) — this just supplies the grid wrapper. No
+   height cap: unlike the ~150-card pool, a deck tops out around 40 cards,
+   so there's never a reason to trap it in its own nested scroll box. */
+.deck-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 6px;
 }
-
-.deck-card-row:hover {
-  background: var(--bg-elevated);
-}
-
-.deck-card-cost {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--lucia);
-  flex-shrink: 0;
-}
-
-.deck-card-name {
-  flex: 1;
-  font-size: 0.875rem;
-  color: var(--text);
-  font-weight: 500;
-  min-width: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.deck-card-type {
-  font-size: 0.65rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-weight: 500;
-  flex-shrink: 0;
-}
-
-.deck-card-faction {
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 2px 7px;
-  border-radius: 4px;
-  font-weight: 600;
-  flex-shrink: 0;
-}
-
-.deck-card-count {
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: var(--text-secondary);
-  width: 28px;
-  text-align: center;
-  flex-shrink: 0;
-}
-
-.deck-count-btn {
-  background: none;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  color: var(--text);
-  cursor: pointer;
-  font-size: 0.8rem;
-  font-weight: 700;
-  padding: 2px 6px;
-  width: 36px;
-  text-align: center;
-}
-
-.deck-count-btn:hover {
-  border-color: var(--lucia);
-  color: var(--lucia);
-}
-
-.deck-card-remove {
-  background: none;
-  border: none;
-  color: var(--text-muted);
-  cursor: pointer;
-  font-size: 1rem;
-  padding: 0 2px;
-  line-height: 1;
-  flex-shrink: 0;
-}
-
-.deck-card-remove:hover { color: var(--negative); }
 
 .deck-build-note {
   margin-top: 10px;
@@ -771,7 +682,12 @@
 
 .card-preview {
   position: fixed;
-  z-index: 1100;
+  /* Highest z-index in this file, deliberately — it's a transient,
+     cursor-following, pointer-events:none popup that now also triggers from
+     inside the commander picker (z-index 1300) and detail sheets (up to
+     1400), and must always render above whatever overlay it's hovering
+     within. */
+  z-index: 1500;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.12s;
@@ -786,6 +702,478 @@
   /* No background/border-radius — the source PNG has transparent corners. */
 }
 
+/* ── Deck code help tooltip ────────────────────────────── */
+
+.deck-code-help-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  margin-left: 6px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  font-size: 0.65rem;
+  font-weight: 700;
+  cursor: pointer;
+  vertical-align: middle;
+  padding: 0;
+  font-family: inherit;
+}
+
+.deck-code-help-btn:hover {
+  border-color: var(--lucia);
+  color: var(--lucia);
+}
+
+.deck-code-help {
+  margin: -2px 0 10px;
+  padding: 8px 12px;
+  background: var(--bg-inset);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+/* ── Cost filter chips ─────────────────────────────────── */
+
+.card-browser-chip-row {
+  display: flex;
+  gap: 6px;
+  padding: 8px 12px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-elevated);
+}
+
+.cost-chip {
+  flex-shrink: 0;
+  min-width: 32px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg-inset);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.cost-chip.active {
+  border-color: var(--lucia);
+  background: rgba(232, 182, 48, 0.15);
+  color: var(--lucia);
+}
+
+.cost-chip:hover:not(.active) {
+  color: var(--text);
+}
+
+/* ── Commander picker (visual replacement for <select>) ─── */
+
+.commander-picker-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  background: var(--bg-inset);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: 0.875rem;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.commander-picker-btn:hover {
+  border-color: var(--lucia);
+}
+
+.commander-picker-btn-portrait {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--bg-elevated);
+  flex-shrink: 0;
+}
+
+.commander-picker-btn-label {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.commander-picker-btn-label.placeholder {
+  color: var(--text-muted);
+}
+
+.commander-picker-btn-chevron {
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  flex-shrink: 0;
+}
+
+.commander-picker-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1250;
+}
+
+.commander-picker-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1300;
+  width: min(92vw, 560px);
+  max-height: 80vh;
+  /* Single scroll container for header+grid together — nesting a second
+     `overflow-y: auto` grid inside a flex column here would let the flex
+     algorithm shrink the grid (and its "auto" rows) below its content size
+     to fit the available space, squashing every tile instead of scrolling. */
+  overflow-y: auto;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+.commander-picker-header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-subtle);
+}
+
+.commander-picker-title {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.commander-picker-close {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.commander-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 10px;
+  padding: 14px;
+}
+
+.commander-picker-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+  text-align: left;
+}
+
+.commander-picker-tile:hover,
+.commander-picker-tile:focus-visible {
+  border-color: var(--lucia);
+}
+
+.commander-picker-tile.selected {
+  border-color: var(--lucia);
+  border-width: 2px;
+}
+
+.commander-picker-tile-art {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  background: var(--bg-elevated);
+}
+
+.commander-picker-tile-name {
+  padding: 6px 8px 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.commander-picker-tile-faction {
+  margin: 4px 8px 8px;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+/* ── Commander detail sheet (detail-then-confirm) ──────────
+   Opened from a picker tile tap, stacked above the picker (which stays open
+   underneath) — z-index deliberately higher than the picker's 1250/1300. */
+
+.commander-detail-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 1350;
+}
+
+.commander-detail-sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1400;
+  background: var(--bg-subtle);
+  border-radius: 16px 16px 0 0;
+  box-shadow: var(--shadow-lg);
+  padding: 10px 20px calc(20px + env(safe-area-inset-bottom));
+  transform: translateY(100%);
+  transition: transform 0.2s ease;
+  max-width: 480px;
+  max-height: 88vh;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+
+.commander-detail-sheet.open {
+  transform: translateY(0);
+}
+
+.commander-detail-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding-top: 4px;
+}
+
+.commander-detail-art {
+  width: min(80vw, 320px);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+}
+
+.commander-detail-select-btn {
+  width: 100%;
+}
+
+/* ── Commander portrait fallback ───────────────────────── */
+
+.deck-commander-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  font-weight: 700;
+  background: var(--bg-elevated);
+}
+
+/* ── Card detail sheet (mobile-friendly add/remove) ────── */
+
+.card-detail-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1250;
+}
+
+.card-detail-sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1300;
+  background: var(--bg-subtle);
+  border-radius: 16px 16px 0 0;
+  box-shadow: var(--shadow-lg);
+  padding: 10px 20px calc(20px + env(safe-area-inset-bottom));
+  transform: translateY(100%);
+  transition: transform 0.2s ease;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.card-detail-sheet.open {
+  transform: translateY(0);
+}
+
+.card-detail-handle {
+  width: 36px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--border);
+  margin: 6px auto 14px;
+}
+
+.card-detail-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.card-detail-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  padding-top: 4px;
+}
+
+.card-detail-art {
+  width: min(72vw, 240px);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+}
+
+.card-detail-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.card-detail-badges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.card-detail-badge-cost {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--lucia);
+  flex-shrink: 0;
+}
+
+.card-detail-badge-type {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+  align-self: center;
+}
+
+.card-detail-badge-faction {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-weight: 600;
+  align-self: center;
+}
+
+.card-detail-stepper {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 4px;
+}
+
+.card-detail-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  color: var(--text);
+  font-size: 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+}
+
+.card-detail-btn:hover {
+  border-color: var(--lucia);
+  color: var(--lucia);
+}
+
+.card-detail-count {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+  min-width: 28px;
+  text-align: center;
+}
+
+/* ── Mobile deck drawer (pill + backdrop + close button) ──
+   Hidden entirely on desktop; the ≥900px layout uses .deck-sidebar directly
+   as a sticky column. Enabled inside the 900px media query below. ────── */
+
+.deck-drawer-pill,
+.deck-drawer-backdrop,
+.deck-drawer-close {
+  display: none;
+}
+
+/* ── Build mode mobile tabs (Add Cards / My Deck) ──────────
+   Hidden entirely on desktop — the ≥900px two-column layout already shows
+   the browser and deck stats side by side. Enabled inside the 900px media
+   query below, where it replaces the floating drawer for Build mode only
+   (Import mode keeps the drawer/pill, unchanged). */
+
+.build-mobile-tabs {
+  display: none;
+}
+
 /* ── Responsive ────────────────────────────────────────── */
 
 @media (max-width: 900px) {
@@ -793,13 +1181,212 @@
     grid-template-columns: 1fr;
   }
 
+  /* Sidebar becomes a slide-up drawer instead of a static block pushed
+     above/below the card list — opened via the fixed pill button. */
   .deck-sidebar {
+    position: fixed;
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    order: initial;
+    max-height: 82vh;
+    overflow-y: auto;
+    background: var(--bg-subtle);
+    border-radius: 16px 16px 0 0;
+    box-shadow: var(--shadow-lg);
+    z-index: 1200;
+    padding: 20px 16px calc(20px + env(safe-area-inset-bottom));
+    transform: translateY(100%);
+    transition: transform 0.25s ease;
+  }
+
+  .deck-sidebar.drawer-open {
+    transform: translateY(0);
+  }
+
+  .deck-drawer-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  .deck-drawer-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: fixed;
+    left: 50%;
+    bottom: calc(16px + env(safe-area-inset-bottom));
+    transform: translateX(-50%);
+    background: var(--lucia);
+    color: #111;
+    border: none;
+    border-radius: 999px;
+    padding: 12px 20px;
+    font-weight: 700;
+    font-size: 0.875rem;
+    box-shadow: var(--shadow-lg);
+    z-index: 1100;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .deck-drawer-pill-count {
+    font-weight: 600;
+    opacity: 0.85;
+  }
+
+  .deck-drawer-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 1150;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .deck-drawer-backdrop.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Room for the fixed pill so it never covers the last card row */
+  .deck-main {
+    padding-bottom: 72px;
+  }
+
+  /* ── Build mode: Add Cards / My Deck tabs ──────────────────
+     Replaces the drawer above for Build mode specifically — Import mode
+     keeps it unchanged, since these classes are only ever applied while
+     currentMode === 'build' (see setBuildMobileView() in decks.js). */
+
+  .build-mobile-tabs {
+    display: flex;
+    gap: 6px;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: var(--bg);
+    padding: 10px 0;
+    margin-bottom: 4px;
+  }
+
+  .build-mobile-tab {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-inset);
+    color: var(--text-secondary);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .build-mobile-tab.active {
+    border-color: var(--lucia);
+    color: var(--lucia);
+    background: rgba(232, 182, 48, 0.12);
+  }
+
+  .build-mobile-tab-count {
+    display: inline-block;
+    margin-left: 4px;
+    padding: 1px 6px;
+    border-radius: 999px;
+    background: var(--bg-elevated);
+    font-size: 0.7rem;
+  }
+
+  .build-mobile-tab.active .build-mobile-tab-count {
+    background: rgba(232, 182, 48, 0.25);
+  }
+
+  /* "Add Cards" tab (default): hide deck content, show the browser */
+  .deck-layout.build-view-browse #deck-sidebar,
+  .deck-layout.build-view-browse #deck-card-list,
+  .deck-layout.build-view-browse #deck-warning,
+  .deck-layout.build-view-browse #build-note {
+    display: none;
+  }
+
+  /* "My Deck" tab: hide the browser, show the sidebar content inline (not
+     as a floating drawer) directly above the itemized card list. */
+  .deck-layout.build-view-deck #card-browser {
+    display: none;
+  }
+
+  .deck-layout.build-view-deck #deck-sidebar {
     position: static;
-    order: -1;
+    transform: none;
+    max-height: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    background: transparent;
+    margin-bottom: 16px;
+  }
+
+  .deck-layout.build-view-deck #deck-drawer-close {
+    display: none;
+  }
+
+  /* Build mode never uses the Import-style floating pill/backdrop */
+  .deck-layout.build-view-browse #deck-drawer-pill,
+  .deck-layout.build-view-browse #deck-drawer-backdrop,
+  .deck-layout.build-view-deck #deck-drawer-pill,
+  .deck-layout.build-view-deck #deck-drawer-backdrop {
+    display: none !important;
   }
 
   .deck-quick-stats {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Bigger tap targets for the card grid's inline +/- controls.
+     flex-shrink:0 is required — the tile is narrow enough that the controls
+     row would otherwise compress the buttons below their set size. */
+  .card-tile-controls {
+    padding: 4px 3px;
+    gap: 2px;
+  }
+
+  .card-tile-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .card-tile-count {
+    width: 18px;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+
+  /* Let the card browser flow with the whole page instead of scrolling in
+     its own small nested box — a fixed-height inner scroll region is the
+     classic "scroll trap" on touch (your thumb is over the small box, not
+     the page, so only the tiny region scrolls). */
+  .card-browser-grid {
+    max-height: none;
+    overflow-y: visible;
   }
 }
 
@@ -817,8 +1404,7 @@
   }
 
   .card-browser-grid {
-    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-    max-height: 260px;
+    grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
   }
 
   .deck-copy-row {

@@ -5,6 +5,106 @@
 
 ---
 
+## Current State (v1.8 — Jul 2026)
+
+**Second round of real-device/desktop feedback** — polish and one architectural fix:
+
+- **Deck list shows card art**: the "My Deck" view (and Import's decklist) now renders the same
+  art-forward `.card-tile` grid used by the Add Cards browser, grouped by cost, instead of plain
+  text rows. Import mode gets a read-only ×N badge in place of the +/- stepper.
+- **Fixed a state-leak bug**: a deck started fresh in Build mode was staying visible if you
+  switched to the Import tab, since Import and Build share one underlying deck object (by design —
+  it's what lets an imported deck carry into Build for further editing). Added a `deckSource` flag
+  (`'import'` | `'build'`) so Import only shows the shared list/sidebar when it actually originated
+  from an import; the "carry an imported deck into Build" behavior is unaffected.
+- **Desktop no longer gets the mobile detail-then-confirm sheets**: those were built to work around
+  touch devices having no hover. On desktop, clicking a commander tile now selects immediately
+  (hover already previews the full card — extended to cover picker tiles, which previously had no
+  hover preview at all) and clicking a card's art quick-adds instead of opening a bottom sheet.
+  Touch devices are unaffected. Gated by one `supportsHover` check (`matchMedia('(hover: hover) and
+  (pointer: fine)')`), reused everywhere this distinction matters.
+- **Empty "My Deck" tab** now shows an "Add Cards" nudge instead of blank stat cards; fixed the
+  type breakdown showing a nonsensical "0% Minions / 100% Spells" for an empty deck.
+- **Escape closes the topmost open overlay** (commander picker, either detail sheet, deck drawer),
+  peeling off one layer at a time to match backdrop-click behavior. Opening an overlay moves focus
+  to its close button; closing the picker or deck drawer returns focus to the button that opened it.
+- Ran a Lighthouse audit as a final check — Lighthouse dropped its dedicated PWA-scoring category
+  as of v10 (this is v12.8.2, `categories` comes back empty for `--only-categories=pwa`); Google now
+  points to Chrome DevTools' Application/Manifest panel instead, which is what the manual
+  Playwright-driven checks throughout this project's PWA work already replicate (manifest
+  fetch/parse, icon reachability, SW registration → `activated`, precache contents, secure-context
+  behavior).
+- **Fixed two small bugs found in live testing**: the hover-preview popup (`z-index: 1100`, set
+  before any of the picker/detail overlays existed) was rendering *behind* the commander picker
+  modal (`z-index: 1300`) once hover was extended to work inside it — bumped to `1500`, the highest
+  in the file, since it's a transient popup that should always float above whatever it's triggered
+  from. Also fixed a stale-image flash when switching between commanders in the detail sheet: the
+  picker grid only ever loads the cropped portrait (`/assets/commanders/`), never the full framed
+  card the detail sheet shows (`/assets/cards/`), so unlike the card detail sheet (which reuses an
+  already-cached image from its own grid) every commander selection was a fresh, uncached fetch —
+  the previous commander's art stayed on screen until the new one finished loading. Now hidden
+  immediately on selection and revealed only once the new image actually loads.
+- **Commander art now precaches unconditionally on install**, closing a real gap: "opportunistic"
+  caching meant a commander you'd never viewed while online (portrait *or* full framed card — they're
+  separate images, see the stale-image-flash fix above) would show a broken image offline. Since
+  every deck needs a commander and the roster is small (~2.5MB for all 16, portraits + framed
+  cards combined), `service-worker.js` now fetches `commanders.json` on install and precaches all of
+  it — verified with a fresh install that goes straight to offline with zero prior browsing, and
+  every commander's art (including ones never hovered, tapped, or selected) still renders.
+
+## Current State (v1.7 — Jul 2026)
+
+**Real-phone testing follow-up** — two fixes to the v1.6 mobile pass, found by testing on an
+actual device rather than DevTools emulation:
+
+- **Commander detail-then-confirm**: tapping a commander tile in the visual picker (v1.6) used to
+  select it instantly, with no way to see abilities/stats first. Now it opens a detail sheet
+  showing the commander's actual card art — the game already bakes the ability text and all 4
+  stats (dominion/intellect/speed/health) into that image, so no separate stat-block UI was
+  needed — with a "Select Commander" button that performs the actual selection. Tapping your
+  *already-selected* commander's tile reopens the same view, doubling as a way to check its
+  abilities mid-build. Matches how Hearthstone/MTG Arena preview a hero before you commit.
+- **Build mode Add Cards / My Deck tabs (mobile only)**: v1.6 removed the card browser's nested
+  scroll box so it wouldn't trap your thumb, but that meant the full ~150-card pool sat inline
+  above the deck list — you had to scroll past all of it to see what you'd built. Build mode's
+  mobile layout is now split into two tabs pinned near the top: **Add Cards** (commander picker +
+  search/chips + full-height grid, nothing else) and **My Deck** (commander header + stats + mana
+  curve + type breakdown + itemized list). Replaces the floating pill+drawer *for Build mode
+  only* — Import mode keeps that pattern unchanged, since it has no card pool to scroll past.
+  Matches how Hearthstone/MTG Arena/Marvel Snap separate "browse the pool" from "manage your deck."
+
+## Current State (v1.6 — Jul 2026)
+
+**Mobile & PWA upgrade** — the deck builder is now installable and works fully offline:
+
+- **Installable PWA**: `site/manifest.webmanifest` + `site/service-worker.js`. Installs as
+  "Atlas Conquest Decks", launches straight into `decks.html` (`start_url`), standalone display,
+  dark theme color. Icons generated by `scripts/generate_pwa_icons.py` from the existing app icon
+  (192/512/maskable + Apple touch icon).
+- **Offline deck building**: the service worker precaches the app shell (`decks.html`, its CSS/JS,
+  and `cardlist.json`/`cards.json`/`commanders.json`) so import/build/encode works with zero
+  connectivity. Card art is cached opportunistically as it's viewed (cache-first), not
+  bulk-downloaded — the art directory is 34MB. Commander art is the exception: every deck needs a
+  commander, and the roster is small and fixed, so all 16 commanders' portraits + full framed cards
+  (~2.5MB total) are precached unconditionally on install — see v1.8 below. Data JSON uses
+  stale-while-revalidate so new cards show up automatically on the next online visit. The service
+  worker's fetch handler only intercepts deck-tools URLs and explicitly passes everything else
+  through untouched, even though its registration scope is site-wide.
+  **Maintenance note**: bump `CACHE_NAME` in `service-worker.js` whenever the precached shell file
+  list changes, so old caches get evicted on the next visit.
+- **Touch-friendly card browser**: horizontally-scrollable cost filter chips (tap instead of
+  typing), larger +/- tap targets on mobile, and a new tap-to-open card detail sheet (large art +
+  big stepper) — the primary large-target path for adding/removing cards on touch, alongside the
+  existing inline tile controls. Desktop hover preview (`initCardPreview()`) is unchanged.
+- **Mobile deck drawer**: below 900px, the stats sidebar is no longer pushed above/below the card
+  list. It's now a slide-up bottom-sheet drawer opened via a fixed "Deck · N cards" pill, closed via
+  its own close button, backdrop tap, or tap-outside. Desktop (≥900px) two-column layout is
+  unchanged. No swipe gestures — buttons/taps only, by design (see Design Constraints).
+- **Commander portrait fallback**: missing art now shows a faction-colored initial badge instead of
+  just disappearing.
+- **"What's a deck code?" tooltip**: info button next to the import input for players unfamiliar
+  with exporting from the game client.
+
 ## Current State (v1.5 — Mar 2026)
 
 - **Import**: Decode deck code string into visual decklist with commander portrait and full sidebar stats
@@ -77,8 +177,14 @@ https://atlas-conquest.com/decks.html?code=wrNWQ29udHJvbHYz%3ADMHgDgzrwAAO...
 
 ### Remaining Opportunities
 
-- **Deck code format hint**: "What's a deck code?" tooltip for players who don't know how to export from the game client.
-- **Commander portrait fallback**: When portrait fails, show faction emblem instead of hiding the element.
+- **Real 512px icon master**: current PWA icons are upscaled from the 256px source app icon; a
+  proper 512px+ master asset would look sharper on high-DPI install prompts.
+- **Swipe-to-remove**: swipe-left-to-delete on deck list rows, deferred from the v1.6 mobile pass
+  to keep custom touch-gesture handling out of scope for now (large tap targets cover the same need).
+- **iOS/Safari real-device testing**: the mobile/PWA work has only been verified on Android/Chrome
+  (Pixel). The `apple-mobile-web-app-*` meta tags and apple-touch-icon are in place, but iOS's
+  install flow (Share Sheet, not `beforeinstallprompt`) and its partial manifest support haven't
+  been confirmed on an actual device.
 
 ---
 
