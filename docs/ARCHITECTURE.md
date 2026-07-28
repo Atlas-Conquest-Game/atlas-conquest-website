@@ -54,6 +54,13 @@
 - Dark theme. Chart.js 4 for all visualizations.
 - Multi-page architecture with shared nav and time filter.
 - Hosted on GitHub Pages.
+- **Deck tools is an installable PWA**: `site/manifest.webmanifest` + `site/service-worker.js`
+  (registered from `decks.js`). Registration scope is site-wide (`/`, since the worker is served
+  from site root), but its fetch handler only intercepts deck-tools URLs — everything else passes
+  through untouched. Precaches the deck-builder app shell + card/commander JSON + all commander art
+  (~2.5MB, every deck needs one) for full offline use; the ~150-card pool's art (34MB) is cached
+  opportunistically as viewed instead of bulk-downloaded. See `docs/future-plans/DECKS_VISION.md`
+  for the caching strategy and the `CACHE_NAME` version-bump convention.
 
 #### Pages
 

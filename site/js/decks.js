@@ -1,7 +1,8 @@
 /**
- * Atlas Conquest — Deck Tools Page v1.4
+ * Atlas Conquest — Deck Tools Page v1.7
  *
- * Import (decode) and build (encode) deck codes.
+ * Import (decode) and build (encode) deck codes. PWA-installable, mobile
+ * touch-friendly deck browsing/building. See docs/future-plans/DECKS_VISION.md.
  */
 
 let cardlistData = null;
@@ -10,8 +11,22 @@ let cardInfoMap = {};
 let commanderList = [];
 let commanderMap = {};
 let currentDeck = null;
+// Which mode *originated* currentDeck — 'import' | 'build' | null. Import and
+// Build intentionally share one currentDeck (so an imported deck can be
+// carried into Build for further editing), but a deck started fresh in
+// Build shouldn't leak backward and render on the Import tab. See the
+// currentMode === 'import' branch in initTabs().
+let deckSource = null;
 let currentMode = 'import';
 let buildSortMode = 'cost';
+const activeCostChips = new Set(); // cost bucket strings, e.g. '0'..'6', '7' (= "7+")
+
+// True on devices with a real mouse (hover + precise pointer). Gates which
+// interaction pattern is used for "see the full card before acting":
+// desktop reuses the existing hover preview (see initCardPreview()) and
+// clicks act immediately; touch devices have no hover, so they get a
+// tap-to-open detail sheet with an explicit confirm step instead.
+const supportsHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
 const FACTION_COLORS = {
   skaal: '#D55E00', grenalia: '#009E73', lucia: '#E8B630',
@@ -136,9 +151,9 @@ function renderTypeBreakdown(deck) {
     if (t === 'minion') minions += c.count;
     else if (t === 'spell') spells += c.count;
   });
-  const total = minions + spells || 1;
-  const mPct = Math.round(minions / total * 100);
-  const sPct = 100 - mPct;
+  const total = minions + spells;
+  const mPct = total > 0 ? Math.round(minions / total * 100) : 0;
+  const sPct = total > 0 ? 100 - mPct : 0;
   document.getElementById('type-breakdown').innerHTML = `
     <div class="type-breakdown-counts">
       <span style="color:${MINION_COLOR}"><strong>${minions}</strong> Minions</span>
@@ -157,6 +172,13 @@ function renderTypeBreakdown(deck) {
 // ─── Card Art Hover Preview ────────────────────────────────
 
 function initCardPreview() {
+  // Touch devices synthesize a `mouseover` (with no matching `mouseout`) on
+  // tap, which would otherwise leave this hover popup stuck on screen behind
+  // the tap-to-open detail sheets. Only wire it up on devices that actually
+  // support hover with a precise pointer (i.e. a real mouse) — see
+  // `supportsHover`.
+  if (!supportsHover) return;
+
   const preview = document.getElementById('card-preview');
   const img = document.getElementById('card-preview-img');
 
@@ -170,8 +192,8 @@ function initCardPreview() {
       const name = cmd.dataset.commander;
       return name ? `/assets/cards/${cardArtSlug(name)}.jpg` : null;
     }
-    const row = target.closest('.deck-card-row');
-    if (row) return `/assets/cards/${cardArtSlug(row.dataset.card || '')}.jpg`;
+    const cmdTile = target.closest('.commander-picker-tile');
+    if (cmdTile) return `/assets/cards/${cardArtSlug(cmdTile.dataset.name || '')}.jpg`;
     const artWrap = target.closest('.card-tile-art-wrap');
     if (artWrap) {
       const name = artWrap.closest('.card-tile')?.dataset.name || '';
@@ -232,6 +254,12 @@ function renderCardBrowser(q = '') {
 
   let pool = getCardPool();
   if (q) pool = pool.filter(c => c.name.toLowerCase().includes(q));
+  if (activeCostChips.size > 0) {
+    pool = pool.filter(c => {
+      const cost = parseInt((cardInfoMap[c.name] || {}).cost) || 0;
+      return activeCostChips.has(String(Math.min(cost, 7)));
+    });
+  }
 
   pool.sort((a, b) => {
     if (buildSortMode === 'name') return a.name.localeCompare(b.name);
@@ -249,7 +277,7 @@ function renderCardBrowser(q = '') {
     const atMax = count >= 3;
     return `<div class="card-tile${count > 0 ? ' in-deck' : ''}" data-name="${c.name}">
       <div class="card-tile-art-wrap">
-        <img class="card-tile-art" src="/assets/cards/${slug}.jpg" alt="" onerror="this.style.visibility='hidden'">
+        <img class="card-tile-art" src="/assets/cards/${slug}.jpg" alt="" loading="lazy" onerror="this.style.visibility='hidden'">
         <div class="card-tile-cost-badge">${cost}</div>
       </div>
       <div class="card-tile-name">${c.name}</div>
@@ -265,18 +293,143 @@ function renderCardBrowser(q = '') {
   grid.onclick = e => {
     const plusBtn  = e.target.closest('.card-tile-btn.plus');
     const minusBtn = e.target.closest('.card-tile-btn.minus');
+    const artWrap  = e.target.closest('.card-tile-art-wrap');
     const tile     = e.target.closest('.card-tile');
     if (plusBtn && !plusBtn.disabled) {
       addCardToBuild(plusBtn.dataset.name);
     } else if (minusBtn && !minusBtn.disabled) {
       removeOneFromBuild(minusBtn.dataset.name);
-    } else if (tile && !e.target.closest('.card-tile-btn')) {
-      // Click on tile body: add if not at max
+    } else if (artWrap && tile && !supportsHover) {
+      // Tapping the art opens the large detail sheet — the primary path for
+      // seeing the full card on touch, which has no hover to preview with.
+      // On desktop this falls through to the quick-add branch below instead
+      // — hovering already shows the full card via initCardPreview().
+      openCardDetailSheet(tile.dataset.name);
+    } else if (tile) {
+      // Click elsewhere on the tile body (or anywhere on it, on desktop):
+      // quick-add if not at max
       const name = tile.dataset.name;
       const count = currentDeck ? (currentDeck.cards.find(x => x.name === name)?.count || 0) : 0;
       if (count < 3) addCardToBuild(name);
     }
   };
+}
+
+// ─── Card Detail Sheet (mobile-friendly add/remove) ────────
+
+function openCardDetailSheet(name) {
+  // Defensive: on hybrid devices (touchscreen + mouse) a tap can still leave
+  // the hover popup visible; the detail sheet is about to cover it anyway,
+  // but clear it so it can't get stuck once the sheet closes.
+  document.getElementById('card-preview')?.classList.remove('visible');
+
+  const info = cardInfoMap[name] || {};
+  const cost = info.cost != null ? info.cost : '?';
+  const fc = factionColor(info.faction);
+  const fLabel = (info.faction || 'neutral').toUpperCase();
+  const typeLabel = (info.type || '').toUpperCase();
+  const count = currentDeck ? (currentDeck.cards.find(c => c.name === name)?.count || 0) : 0;
+
+  // Usually already cached (same URL as the grid tile you tapped), but
+  // guard against the same stale-image flash as the commander sheet in case
+  // this card's art hasn't loaded yet (e.g. still lazy-loading).
+  const art = document.getElementById('card-detail-art');
+  art.style.visibility = 'hidden';
+  art.onload = art.onerror = () => { art.style.visibility = ''; };
+  art.src = `/assets/cards/${cardArtSlug(name)}.jpg`;
+  art.alt = name;
+  document.getElementById('card-detail-name').textContent = name;
+  document.getElementById('card-detail-badges').innerHTML = `
+    <span class="card-detail-badge-cost">${cost}</span>
+    ${typeLabel ? `<span class="card-detail-badge-type">${typeLabel}</span>` : ''}
+    <span class="card-detail-badge-faction" style="color:${fc};border:1px solid ${fc}40">${fLabel}</span>`;
+  document.getElementById('card-detail-count').textContent = count;
+
+  const sheet = document.getElementById('card-detail-sheet');
+  const backdrop = document.getElementById('card-detail-backdrop');
+  sheet.dataset.card = name;
+  sheet.classList.remove('hidden');
+  backdrop.classList.remove('hidden');
+  requestAnimationFrame(() => sheet.classList.add('open'));
+  document.getElementById('card-detail-close').focus();
+}
+
+function closeCardDetailSheet() {
+  const sheet = document.getElementById('card-detail-sheet');
+  if (sheet.classList.contains('hidden')) return;
+  sheet.classList.remove('open');
+  setTimeout(() => {
+    sheet.classList.add('hidden');
+    document.getElementById('card-detail-backdrop').classList.add('hidden');
+  }, 200);
+}
+
+function initCardDetailSheet() {
+  document.getElementById('card-detail-close').addEventListener('click', closeCardDetailSheet);
+  document.getElementById('card-detail-backdrop').addEventListener('click', closeCardDetailSheet);
+
+  document.getElementById('card-detail-plus').addEventListener('click', () => {
+    const name = document.getElementById('card-detail-sheet').dataset.card;
+    if (!name) return;
+    const count = currentDeck ? (currentDeck.cards.find(c => c.name === name)?.count || 0) : 0;
+    if (count >= 3) return;
+    addCardToBuild(name);
+    document.getElementById('card-detail-count').textContent = count + 1;
+  });
+
+  document.getElementById('card-detail-minus').addEventListener('click', () => {
+    const name = document.getElementById('card-detail-sheet').dataset.card;
+    if (!name) return;
+    removeOneFromBuild(name);
+    const count = currentDeck ? (currentDeck.cards.find(c => c.name === name)?.count || 0) : 0;
+    document.getElementById('card-detail-count').textContent = count;
+  });
+}
+
+// ─── Mobile Deck Drawer ─────────────────────────────────────
+// Below 900px the `.deck-sidebar` (built for the desktop two-column layout)
+// becomes a slide-up drawer, opened via the fixed pill button and closed via
+// its own close button, the backdrop, or tapping outside — see .deck-drawer-*
+// and .deck-sidebar.drawer-open rules in decks.css. No gesture tracking.
+
+function openDeckDrawer() {
+  document.getElementById('deck-sidebar').classList.add('drawer-open');
+  document.getElementById('deck-drawer-backdrop').classList.add('visible');
+  document.getElementById('deck-drawer-pill').setAttribute('aria-expanded', 'true');
+  document.getElementById('deck-drawer-close').focus();
+}
+
+function closeDeckDrawer() {
+  if (!document.getElementById('deck-sidebar').classList.contains('drawer-open')) return;
+  document.getElementById('deck-sidebar').classList.remove('drawer-open');
+  document.getElementById('deck-drawer-backdrop').classList.remove('visible');
+  document.getElementById('deck-drawer-pill').setAttribute('aria-expanded', 'false');
+  document.getElementById('deck-drawer-pill').focus();
+}
+
+function initDeckDrawer() {
+  document.getElementById('deck-drawer-pill').addEventListener('click', openDeckDrawer);
+  document.getElementById('deck-drawer-close').addEventListener('click', closeDeckDrawer);
+  document.getElementById('deck-drawer-backdrop').addEventListener('click', closeDeckDrawer);
+}
+
+// ─── Cost Filter Chips ──────────────────────────────────────
+
+function initCostChips() {
+  document.querySelectorAll('.cost-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const cost = chip.dataset.cost;
+      if (activeCostChips.has(cost)) {
+        activeCostChips.delete(cost);
+        chip.classList.remove('active');
+      } else {
+        activeCostChips.add(cost);
+        chip.classList.add('active');
+      }
+      const searchInput = document.getElementById('build-card-input');
+      renderCardBrowser(searchInput?.value.trim().toLowerCase() || '');
+    });
+  });
 }
 
 // ─── Render Deck ───────────────────────────────────────────
@@ -288,12 +441,27 @@ function renderDeck(deck) {
   document.getElementById('deck-card-list').classList.remove('hidden');
   document.getElementById('deck-empty-state').classList.add('hidden');
 
-  // Commander portrait
+  const cmdData = commanderMap[deck.commander];
+  const faction = cmdData ? (cmdData.faction || 'Neutral') : 'Neutral';
+
+  // Commander portrait — falls back to a faction-colored initial badge if the
+  // art file is missing, instead of just leaving a blank gap.
   const artEl = document.getElementById('deck-commander-art');
+  const fallbackEl = document.getElementById('deck-commander-fallback');
   artEl.style.display = '';
   artEl.src = commanderArtPath(deck.commander || '');
   artEl.alt = deck.commander || '';
-  artEl.onerror = () => { artEl.style.display = 'none'; };
+  if (fallbackEl) fallbackEl.classList.add('hidden');
+  artEl.onload = () => { if (fallbackEl) fallbackEl.classList.add('hidden'); };
+  artEl.onerror = () => {
+    artEl.style.display = 'none';
+    if (!fallbackEl) return;
+    const fc = factionColor(faction);
+    fallbackEl.textContent = (deck.commander || '?').charAt(0).toUpperCase();
+    fallbackEl.style.background = `${fc}33`;
+    fallbackEl.style.color = fc;
+    fallbackEl.classList.remove('hidden');
+  };
 
   // Tag the commander section so initCardPreview() can show the commander art
   // on hover — same machinery as card-name hover, just sourced from /assets/commanders/.
@@ -306,8 +474,6 @@ function renderDeck(deck) {
   // Deck name + commander label + faction badge
   document.getElementById('deck-name').textContent = deck.deckName || 'Unnamed Deck';
   document.getElementById('deck-commander').textContent = deck.commander || '—';
-  const cmdData = commanderMap[deck.commander];
-  const faction = cmdData ? (cmdData.faction || 'Neutral') : 'Neutral';
   document.getElementById('deck-commander-faction').innerHTML = deck.commander ? factionBadge(faction) : '';
 
   // Quick stats
@@ -325,6 +491,22 @@ function renderDeck(deck) {
   document.getElementById('stat-unique-cards').textContent = uniqueCards;
   document.getElementById('stat-avg-cost').textContent = costCount > 0 ? (totalCost / costCount).toFixed(1) : '?';
 
+  // Mobile deck drawer pill — Import mode only. Build mode uses the
+  // Add Cards / My Deck tabs instead (see setBuildMobileView()).
+  const pill = document.getElementById('deck-drawer-pill');
+  if (pill) {
+    if (currentMode === 'import') {
+      pill.classList.remove('hidden');
+      document.getElementById('deck-drawer-pill-count').textContent =
+        `${totalCards} card${totalCards === 1 ? '' : 's'}`;
+    } else {
+      pill.classList.add('hidden');
+    }
+  }
+
+  const tabCount = document.getElementById('build-mobile-tab-count');
+  if (tabCount) tabCount.textContent = totalCards;
+
   renderManaCurve(deck);
   renderTypeBreakdown(deck);
 
@@ -341,7 +523,10 @@ function renderDeck(deck) {
     }
   }
 
-  // Card list grouped by cost
+  // Card list grouped by cost — rendered as the same art-forward tiles used
+  // in the Add Cards browser (not a plain text list), so you can recognize
+  // cards by art here too. Import mode gets a read-only ×N badge instead of
+  // the +/- stepper.
   const listEl = document.getElementById('deck-card-list');
   const sorted = [...deck.cards].sort((a, b) => {
     const ca = parseInt((cardInfoMap[a.name] || {}).cost) || 0;
@@ -357,36 +542,49 @@ function renderDeck(deck) {
     groups[cost].push(c);
   });
 
+  const isBuild = currentMode === 'build';
   let html = '';
+  if (sorted.length === 0 && isBuild) {
+    // The "My Deck" tab otherwise just shows blank stat cards with nothing
+    // telling you where to go — nudge back to the card browser.
+    html = `<div class="deck-list-empty-hint">
+      <p>Your deck doesn't have any cards yet.</p>
+      <button type="button" class="btn btn-primary" id="deck-list-empty-add-btn">Add Cards</button>
+    </div>`;
+  }
   for (const cost of Object.keys(groups).sort((a, b) => a - b)) {
     const cards = groups[cost];
     html += `<div class="deck-cost-group">`;
     html += `<div class="deck-cost-group-label">${cost} Cost (${cards.reduce((s, c) => s + c.count, 0)} cards)</div>`;
+    html += `<div class="deck-card-grid">`;
     cards.forEach(c => {
       const info = cardInfoMap[c.name] || {};
-      const fc = factionColor(info.faction);
-      const fLabel = (info.faction || 'neutral').toUpperCase();
-      const typeLabel = (info.type || '').toUpperCase();
-      const isBuild = currentMode === 'build';
+      const tileCost = info.cost != null ? info.cost : '?';
+      const slug = cardArtSlug(c.name);
       const compatible = isCardCompatible(c.name, deck.commander);
-      html += `
-        <div class="deck-card-row${compatible ? '' : ' incompatible'}" data-card="${c.name}">
-          <div class="deck-card-cost">${info.cost != null ? info.cost : '?'}</div>
-          <span class="deck-card-name">${c.name}</span>
-          ${typeLabel ? `<span class="deck-card-type">${typeLabel}</span>` : ''}
-          <span class="deck-card-faction" style="color:${fc};border:1px solid ${fc}40">${fLabel}</span>
-          <span class="deck-card-count">${isBuild ? `<button class="deck-count-btn" data-card="${c.name}">&times;${c.count}</button>` : `&times;${c.count}`}</span>
-          ${isBuild ? `<button class="deck-card-remove" data-card="${c.name}">&times;</button>` : ''}
-        </div>`;
+      html += `<div class="card-tile${compatible ? '' : ' incompatible'}" data-name="${c.name}">
+        <div class="card-tile-art-wrap">
+          <img class="card-tile-art" src="/assets/cards/${slug}.jpg" alt="" loading="lazy" onerror="this.style.visibility='hidden'">
+          <div class="card-tile-cost-badge">${tileCost}</div>
+        </div>
+        <div class="card-tile-name">${c.name}</div>
+        <div class="card-tile-controls">
+          ${isBuild
+            ? `<button class="card-tile-btn minus" data-name="${c.name}">−</button>
+               <span class="card-tile-count active">${c.count}</span>
+               <button class="card-tile-btn plus" data-name="${c.name}"${c.count >= 3 ? ' disabled' : ''}>+</button>`
+            : `<span class="card-tile-count active">&times;${c.count}</span>`}
+        </div>
+      </div>`;
     });
-    html += `</div>`;
+    html += `</div></div>`;
   }
   listEl.innerHTML = html;
 
   const buildNote = document.getElementById('build-note');
   if (currentMode === 'build') {
     buildNote.classList.remove('hidden');
-    wireCardButtons();
+    wireDeckListTiles();
     // Refresh card browser counts
     const searchInput = document.getElementById('build-card-input');
     renderCardBrowser(searchInput?.value.trim().toLowerCase() || '');
@@ -395,25 +593,31 @@ function renderDeck(deck) {
   }
 }
 
-// ─── Build Mode: Deck List Buttons ─────────────────────────
+// ─── Build Mode: Deck List Tile Buttons ─────────────────────
+// Same interaction pattern as the browser grid's delegated click handler:
+// +/- adjust the count, tapping the art opens the card detail sheet.
 
-function wireCardButtons() {
-  document.querySelectorAll('.deck-card-remove').forEach(btn => {
-    btn.addEventListener('click', () => {
-      currentDeck.cards = currentDeck.cards.filter(c => c.name !== btn.dataset.card);
-      renderDeck(currentDeck);
-    });
-  });
-
-  document.querySelectorAll('.deck-count-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const card = currentDeck.cards.find(c => c.name === btn.dataset.card);
-      if (card) {
-        card.count = (card.count % 3) + 1;
-        renderDeck(currentDeck);
-      }
-    });
-  });
+function wireDeckListTiles() {
+  const listEl = document.getElementById('deck-card-list');
+  listEl.onclick = e => {
+    if (e.target.closest('#deck-list-empty-add-btn')) {
+      setBuildMobileView('browse');
+      return;
+    }
+    const plusBtn  = e.target.closest('.card-tile-btn.plus');
+    const minusBtn = e.target.closest('.card-tile-btn.minus');
+    const artWrap  = e.target.closest('.card-tile-art-wrap');
+    const tile     = e.target.closest('.card-tile');
+    if (plusBtn && !plusBtn.disabled) {
+      addCardToBuild(plusBtn.dataset.name);
+    } else if (minusBtn) {
+      removeOneFromBuild(minusBtn.dataset.name);
+    } else if (artWrap && tile && !supportsHover) {
+      // Touch-only, same reasoning as the browser grid above — desktop
+      // already has hover preview for these tiles, no click action needed.
+      openCardDetailSheet(tile.dataset.name);
+    }
+  };
 }
 
 // ─── Import (Decode) ───────────────────────────────────────
@@ -425,6 +629,7 @@ function handleDecode() {
   if (!code) { showError('Please paste a deck code.'); return; }
   try {
     const deck = decodeDeckCode(code);
+    deckSource = 'import';
     renderDeck(deck);
   } catch (e) {
     showError(`Failed to decode: ${e.message}`);
@@ -460,6 +665,7 @@ function initBuildMode() {
     ensureBuildDeck();
     currentDeck.commander = select.value;
     updateFilterHint(select.value);
+    updateCommanderPickerButton(select.value);
     // Re-render deck (shows incompatible cards in red if any exist)
     if (currentDeck.cards.length > 0 || currentDeck.commander) {
       renderDeck(currentDeck);
@@ -501,6 +707,144 @@ function initBuildMode() {
   renderCardBrowser('');
 }
 
+// ─── Commander Picker (visual replacement for <select>) ────
+// The hidden <select id="build-commander"> stays the actual state — this
+// just renders a tap-friendly portrait grid on top of it and drives the
+// select's value + dispatches 'change' so all existing selection logic
+// (faction filtering, deck sync, etc.) is untouched.
+
+function renderCommanderPicker() {
+  const grid = document.getElementById('commander-picker-grid');
+  if (!grid) return;
+  const current = document.getElementById('build-commander').value;
+  grid.innerHTML = commanderList.map(name => {
+    const data = commanderMap[name] || {};
+    const faction = data.faction || 'Neutral';
+    const fc = factionColor(faction);
+    return `<button type="button" class="commander-picker-tile${name === current ? ' selected' : ''}" data-name="${name}">
+      <img class="commander-picker-tile-art" src="${commanderArtPath(name)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'">
+      <span class="commander-picker-tile-name">${name}</span>
+      <span class="commander-picker-tile-faction" style="color:${fc};border:1px solid ${fc}40">${faction.toUpperCase()}</span>
+    </button>`;
+  }).join('');
+}
+
+function updateCommanderPickerButton(name) {
+  const portrait = document.getElementById('commander-picker-btn-portrait');
+  const label = document.getElementById('commander-picker-btn-label');
+  if (!portrait || !label) return;
+  if (!name) {
+    portrait.style.backgroundImage = '';
+    label.textContent = 'Select a commander...';
+    label.classList.add('placeholder');
+    return;
+  }
+  portrait.style.backgroundImage = `url(${commanderArtPath(name)})`;
+  label.textContent = name;
+  label.classList.remove('placeholder');
+}
+
+function openCommanderPicker() {
+  renderCommanderPicker(); // refresh 'selected' highlight
+  document.getElementById('commander-picker-modal').classList.remove('hidden');
+  document.getElementById('commander-picker-backdrop').classList.remove('hidden');
+  // Land focus inside the modal (on its close button) rather than leaving it
+  // on the trigger button behind an open overlay — standard modal behavior.
+  document.getElementById('commander-picker-close').focus();
+}
+
+function closeCommanderPicker() {
+  document.getElementById('commander-picker-modal').classList.add('hidden');
+  document.getElementById('commander-picker-backdrop').classList.add('hidden');
+  document.getElementById('commander-picker-btn').focus();
+}
+
+function initCommanderPicker() {
+  renderCommanderPicker();
+
+  const select = document.getElementById('build-commander');
+  const backdrop = document.getElementById('commander-picker-backdrop');
+
+  document.getElementById('commander-picker-btn').addEventListener('click', openCommanderPicker);
+  document.getElementById('commander-picker-close').addEventListener('click', closeCommanderPicker);
+  backdrop.addEventListener('click', closeCommanderPicker);
+
+  document.getElementById('commander-picker-grid').addEventListener('click', e => {
+    const tile = e.target.closest('.commander-picker-tile');
+    if (!tile) return;
+    if (supportsHover) {
+      // Desktop: hovering already previews the full card (see
+      // previewSrcFor()'s .commander-picker-tile branch), so a click can
+      // select immediately — no detail-then-confirm detour needed.
+      selectCommander(tile.dataset.name);
+    } else {
+      // Touch: no hover, so open the detail view first — the picker modal
+      // stays open underneath until "Select Commander" is tapped.
+      openCommanderDetail(tile.dataset.name);
+    }
+  });
+}
+
+// ─── Commander Detail (detail-then-confirm) ─────────────────
+// Shows the real card art — the game already bakes ability text and all 4
+// stats (dominion/intellect/speed/health) into it — with a confirm button
+// that actually applies the selection. Reopening the currently-selected
+// commander's tile (marked via .selected in renderCommanderPicker) doubles
+// as a way to check your commander's abilities mid-build at no extra cost.
+
+function openCommanderDetail(name) {
+  const art = document.getElementById('commander-detail-art');
+  // The picker grid only ever loads the cropped portrait
+  // (/assets/commanders/), never this full framed card — so unlike the card
+  // detail sheet (which reuses an already-cached image from its own grid),
+  // this is always a fresh fetch. Hide the old commander's art immediately
+  // instead of leaving it on screen until the new one finishes loading.
+  art.style.visibility = 'hidden';
+  art.onload = art.onerror = () => { art.style.visibility = ''; };
+  art.src = `/assets/cards/${cardArtSlug(name)}.jpg`;
+  art.alt = name;
+
+  const sheet = document.getElementById('commander-detail-sheet');
+  sheet.dataset.name = name;
+  sheet.classList.remove('hidden');
+  document.getElementById('commander-detail-backdrop').classList.remove('hidden');
+  requestAnimationFrame(() => sheet.classList.add('open'));
+  document.getElementById('commander-detail-close').focus();
+}
+
+function closeCommanderDetail() {
+  const sheet = document.getElementById('commander-detail-sheet');
+  if (sheet.classList.contains('hidden')) return; // already closed — nothing to do
+  sheet.classList.remove('open');
+  setTimeout(() => {
+    sheet.classList.add('hidden');
+    document.getElementById('commander-detail-backdrop').classList.add('hidden');
+  }, 200);
+  // Picker grid is still open underneath — land back on its close button
+  // rather than a now-possibly-stale tile reference.
+  document.getElementById('commander-picker-close').focus();
+}
+
+// Actually applies a commander selection: sets the hidden <select>'s value,
+// dispatches 'change' (so all existing selection logic fires), and closes
+// both the detail sheet and the picker grid behind it.
+function selectCommander(name) {
+  const select = document.getElementById('build-commander');
+  select.value = name;
+  select.dispatchEvent(new Event('change'));
+  closeCommanderDetail();
+  closeCommanderPicker();
+}
+
+function initCommanderDetail() {
+  document.getElementById('commander-detail-close').addEventListener('click', closeCommanderDetail);
+  document.getElementById('commander-detail-backdrop').addEventListener('click', closeCommanderDetail);
+
+  document.getElementById('commander-detail-select-btn').addEventListener('click', () => {
+    selectCommander(document.getElementById('commander-detail-sheet').dataset.name);
+  });
+}
+
 function ensureBuildDeck() {
   if (!currentDeck || currentMode !== 'build') {
     currentDeck = {
@@ -508,6 +852,7 @@ function ensureBuildDeck() {
       deckName: document.getElementById('build-name').value || 'My Deck',
       cards: [],
     };
+    deckSource = 'build';
   }
 }
 
@@ -601,17 +946,77 @@ function initTabs() {
         if (currentDeck && currentDeck.commander) {
           sel.value = currentDeck.commander;
           updateFilterHint(currentDeck.commander);
+          updateCommanderPickerButton(currentDeck.commander);
           if (ni && currentDeck.deckName) ni.value = currentDeck.deckName;
         }
 
         ensureBuildDeck();
+        setBuildMobileView('browse');
         if (currentDeck && (currentDeck.commander || currentDeck.cards.length > 0)) {
           renderDeck(currentDeck);
         }
         const searchInput = document.getElementById('build-card-input');
         renderCardBrowser(searchInput?.value.trim().toLowerCase() || '');
+      } else {
+        // Leaving Build mode — drop its mobile-view classes and put the
+        // sidebar back where Import's existing drawer/pill styling expects it.
+        document.querySelector('.deck-layout')?.classList.remove('build-view-browse', 'build-view-deck');
+        restoreSidebarPosition();
+
+        // The shared deck list/sidebar should only show on Import if it's
+        // actually displaying an imported deck — not one started fresh in
+        // Build mode. (An imported deck carried into Build for editing
+        // keeps deckSource === 'import', so it correctly stays visible here.)
+        if (deckSource !== 'import') {
+          document.getElementById('deck-card-list').classList.add('hidden');
+          document.getElementById('deck-sidebar').classList.add('hidden');
+          document.getElementById('deck-warning').classList.add('hidden');
+          document.getElementById('deck-empty-state').classList.remove('hidden');
+        }
       }
     });
+  });
+}
+
+// ─── Build Mode Mobile Tabs (Add Cards / My Deck) ───────────
+// Mobile-only split so the full card pool doesn't bury the deck list on a
+// single long scrolling page — see .build-view-* rules in decks.css.
+
+function restoreSidebarPosition() {
+  // #deck-sidebar's natural place is as the second child of .deck-layout
+  // (a CSS Grid sibling of .deck-main). Undoes the relocation below.
+  const layout = document.querySelector('.deck-layout');
+  const sidebar = document.getElementById('deck-sidebar');
+  if (layout && sidebar && sidebar.parentElement !== layout) {
+    layout.appendChild(sidebar);
+  }
+}
+
+function setBuildMobileView(view) {
+  const layout = document.querySelector('.deck-layout');
+  if (!layout) return;
+  layout.classList.toggle('build-view-browse', view === 'browse');
+  layout.classList.toggle('build-view-deck', view === 'deck');
+  document.querySelectorAll('.build-mobile-tab').forEach(t => t.classList.toggle('active', t.dataset.view === view));
+
+  // The "My Deck" tab wants commander/stats/curve to read as an overview
+  // ABOVE the itemized card list. A CSS `order` swap can't do this: the
+  // Import/Build mode switcher (.deck-tabs) lives inside .deck-main ahead
+  // of the card list, so reordering .deck-main vs .deck-sidebar as whole
+  // grid items would drag that switcher down too. Relocate the sidebar
+  // node itself instead.
+  const cardList = document.getElementById('deck-card-list');
+  const sidebar = document.getElementById('deck-sidebar');
+  if (view === 'deck' && sidebar && cardList) {
+    cardList.parentNode.insertBefore(sidebar, cardList);
+  } else {
+    restoreSidebarPosition();
+  }
+}
+
+function initBuildMobileTabs() {
+  document.querySelectorAll('.build-mobile-tab').forEach(btn => {
+    btn.addEventListener('click', () => setBuildMobileView(btn.dataset.view));
   });
 }
 
@@ -625,15 +1030,58 @@ function showError(msg) {
 
 // ─── Init ──────────────────────────────────────────────────
 
+function initServiceWorker() {
+  if (!('serviceWorker' in navigator)) return;
+  // Registered directly (not deferred to window 'load') so offline support is
+  // available as soon as possible — deck tools is a small enough shell that
+  // there's no bandwidth-contention concern during initial page load.
+  navigator.serviceWorker.register('/service-worker.js').catch(() => {});
+}
+
+// Escape closes whichever overlay is topmost. Checked most-specific first —
+// the two detail sheets can each be stacked on top of the commander picker,
+// so Escape should peel off one layer at a time, matching their close
+// buttons/backdrop-click behavior rather than closing everything at once.
+function initOverlayEscapeHandling() {
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Escape') return;
+    if (!document.getElementById('commander-detail-sheet').classList.contains('hidden')) {
+      closeCommanderDetail();
+    } else if (!document.getElementById('card-detail-sheet').classList.contains('hidden')) {
+      closeCardDetailSheet();
+    } else if (!document.getElementById('commander-picker-modal').classList.contains('hidden')) {
+      closeCommanderPicker();
+    } else if (document.getElementById('deck-sidebar').classList.contains('drawer-open')) {
+      closeDeckDrawer();
+    }
+  });
+}
+
+function initDeckCodeHelp() {
+  const btn = document.getElementById('deck-code-help-btn');
+  const help = document.getElementById('deck-code-help');
+  if (!btn || !help) return;
+  btn.addEventListener('click', () => help.classList.toggle('hidden'));
+}
+
 async function init() {
   await loadCardlist();
 
   const decksLink = document.querySelector('.nav-link[data-nav="decks"]');
   if (decksLink) decksLink.classList.add('active');
 
+  initServiceWorker();
   initTabs();
   initBuildMode();
+  initCommanderPicker();
+  initCommanderDetail();
+  initBuildMobileTabs();
   initCardPreview();
+  initCostChips();
+  initCardDetailSheet();
+  initDeckDrawer();
+  initDeckCodeHelp();
+  initOverlayEscapeHandling();
 
   document.getElementById('btn-decode').addEventListener('click', handleDecode);
   document.getElementById('deck-code-input').addEventListener('keydown', e => {
@@ -649,6 +1097,7 @@ async function init() {
     document.getElementById('deck-code-input').value = code;
     try {
       const deck = decodeDeckCode(code);
+      deckSource = 'import';
       renderDeck(deck);
     } catch (e) {
       showError(`Failed to decode URL deck code: ${e.message}`);
