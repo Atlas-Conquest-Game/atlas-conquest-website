@@ -8,23 +8,35 @@ hero_image: map.png
 tags: [rules, reference]
 ---
 
+Welcome to Atlas Conquest: a grid-based strategy game that combines the very best of both board and card games!
+
+## Overview
+
+Each player builds and plays a deck of at least 40 cards. Each player also selects a commander to helm their strategy. The goal of the game is to reduce the opposing commander's health to 0 before they can do the same to you.
+
 ## The Map
 
 The map is a hexagonal grid. Commanders start in the same two positions each game, at opposite sides of the map. Initially only each commander's starting tile is claimed.
 
-![The Atlas Conquest hex-grid map](map.png)
+![The Dunes map, one of Atlas Conquest's battle maps](map.png)
 
-Tiles fall into a few categories:
+Tiles present on the map at the start of the game fall into a few types:
 
-- **Normal tiles** — can be occupied by characters, grant 1 mana each turn if claimed.
-- **Villages** — can be occupied, grant 2 mana each turn if claimed.
+- **Normal tiles** — can be occupied by any character, and grant 1 mana each turn if claimed.
+- **Villages** — can be occupied by any character, and grant 2 mana each turn if claimed.
 - **Mountains** — normal tile that can't be occupied by characters without Flying.
 
 There is no functional difference between the different normal tiles on the map such as the deserts, rocks, cacti, or oasis. Claiming a tile does not immediately grant its mana — you will receive the increased mana at the start of subsequent turns.
 
+You can right-click on a tile to display details of the tile, including its type, as well as the option to unclaim the tile, for when you need to make shifts in your territory once your maximum dominion has been reached.
+
 Cards may also create special tiles with unique abilities not present on the starting map.
 
-There is only one map at the moment, but in the future there will be multiple maps to play on.
+There are currently three maps in the game. Each one brings with it its own gameplay dynamics, so be sure to check out them all!
+
+![The Snowmelt map](map-snowmelt.png)
+
+![The Tropics map](map-tropics.png)
 
 ## Characters
 
@@ -66,10 +78,6 @@ Some common keywords:
 - **Splash N** — A distance, *N*, in tiles from the *target* that an effect reaches.
 - **Cooldown N** — The ability can only be used again after waiting *N* turns.
 
-## Unclaiming
-
-When you reach your maximum number of tiles claimed, a gray flag will be displayed by your mana counter. You can drag that to a tile you own to unclaim it. Your commander determines how many tiles you may have claimed at once.
-
 ## Commanders
 
 Your commander is a special card chosen to lead your deck in each game. You start with your commander on the board and defeat the enemy commander to win the game.
@@ -87,9 +95,10 @@ Finally, commanders have a **patron god** which is represented by the color of t
 
 The current main patrons and their themes are:
 
-- **Skaal (Red)** — *Goddess of War*. Strong, aggressive minions, destructive magic.
-- **Grenalia (Green)** — *Goddess of Nature*. Mana growth, poisons, big minions.
-- **Lucia (White)** — *Goddess of Light*. Unified armies, healing, villages.
-- Support for more patrons is coming soon!
+- **Skaal (Red Card Border)** — *Goddess of War*. Strong, aggressive minions, destructive magic.
+- **Grenalia (Green Card Border)** — *Goddess of Nature*. Mana growth, poisons, big minions.
+- **Lucia (White Card Border)** — *Goddess of Light*. Unified armies, healing, villages.
+- **Shadis (Black Card Border)** — *god of death.* Unrelenting, powerful removal, death synergies.
+- **Archaeon (Blue Card Border)** — *knowledge and information.* Efficient card draw, spellcasters, tempo plays.
 
-![The three current patron gods](patron-gods.png)
+![The current patron gods](patron-gods.png)
