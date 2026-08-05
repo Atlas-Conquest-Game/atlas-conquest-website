@@ -4,7 +4,7 @@
       "id": "art_count",
       "label": "100 Cards Commissioned",
       "kind": "count",
-      "current": 74,
+      "current": 77,
       "target": 100,
       "met": false
     },
@@ -41,15 +41,15 @@
         {
           "deck": "Starter Beasts",
           "total": 15,
-          "met_count": 5,
-          "rate": 0.3333,
+          "met_count": 6,
+          "rate": 0.4,
           "met": false
         },
         {
           "deck": "Starter Death",
           "total": 14,
-          "met_count": 3,
-          "rate": 0.2143,
+          "met_count": 4,
+          "rate": 0.2857,
           "met": false
         },
         {
@@ -62,15 +62,15 @@
         {
           "deck": "Starter Mage",
           "total": 14,
-          "met_count": 6,
-          "rate": 0.4286,
+          "met_count": 7,
+          "rate": 0.5,
           "met": false
         },
         {
           "deck": "Starter Military",
           "total": 15,
-          "met_count": 3,
-          "rate": 0.2,
+          "met_count": 4,
+          "rate": 0.2667,
           "met": false
         }
       ]
@@ -81,9 +81,9 @@
       "id": "anim_all",
       "label": "20% of all Cards have an animation",
       "kind": "percent",
-      "numerator": 64,
+      "numerator": 66,
       "denominator": 274,
-      "current": 0.2336,
+      "current": 0.2409,
       "target": 0.2,
       "met": true
     },
@@ -101,9 +101,9 @@
       "id": "anim_legendary",
       "label": "50% of Legendary Minions have an animation",
       "kind": "percent",
-      "numerator": 7,
+      "numerator": 8,
       "denominator": 27,
-      "current": 0.2593,
+      "current": 0.2963,
       "target": 0.5,
       "met": false
     },
@@ -141,8 +141,8 @@
         {
           "deck": "Starter Mage",
           "total": 14,
-          "met_count": 2,
-          "rate": 0.1429,
+          "met_count": 3,
+          "rate": 0.2143,
           "met": false
         },
         {
@@ -158,10 +158,10 @@
   "overall": {
     "cards": {
       "total": 274,
-      "commissioned": 74,
-      "commissioned_rate": 0.2701,
-      "animated": 64,
-      "animated_rate": 0.2336
+      "commissioned": 77,
+      "commissioned_rate": 0.281,
+      "animated": 66,
+      "animated_rate": 0.2409
     },
     "commanders": {
       "total": 16,
@@ -197,8 +197,8 @@
         "total": 26,
         "commissioned": 9,
         "commissioned_rate": 0.3462,
-        "animated": 2,
-        "animated_rate": 0.0769
+        "animated": 3,
+        "animated_rate": 0.1154
       },
       "commanders": {
         "total": 3,
@@ -213,8 +213,8 @@
       "faction": "grenalia",
       "cards": {
         "total": 33,
-        "commissioned": 12,
-        "commissioned_rate": 0.3636,
+        "commissioned": 13,
+        "commissioned_rate": 0.3939,
         "animated": 18,
         "animated_rate": 0.5455
       },
@@ -267,8 +267,8 @@
       "faction": "neutral",
       "cards": {
         "total": 119,
-        "commissioned": 34,
-        "commissioned_rate": 0.2857,
+        "commissioned": 36,
+        "commissioned_rate": 0.3025,
         "animated": 21,
         "animated_rate": 0.1765
       },
@@ -287,8 +287,8 @@
         "total": 23,
         "commissioned": 4,
         "commissioned_rate": 0.1739,
-        "animated": 4,
-        "animated_rate": 0.1739
+        "animated": 5,
+        "animated_rate": 0.2174
       },
       "commanders": {
         "total": 2,

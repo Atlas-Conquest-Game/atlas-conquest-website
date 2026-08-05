@@ -12,15 +12,15 @@
     "patron": "Grenalia",
     "faction": "grenalia",
     "art": "CardScreenshots/Acid-Rain.png",
-    "art_type": "AI_GENERATED",
-    "commissioned": false,
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
     "has_animation": true,
     "starter_decks": []
   },
   {
     "name": "Acrid Potion",
     "type": "Spell",
-    "text": "[Range 2]: Target minion gains +1 Power, Fatal, and Lifelink.",
+    "text": "[Range 2]: Target minion gains <sprite name=\"power_1\">, Fatal, and Lifelink.",
     "subtype": "Potion",
     "cost": 2,
     "attack": null,
@@ -76,7 +76,7 @@
   {
     "name": "Ancient Golem",
     "type": "Minion",
-    "text": "Costs 1 less mana to play for each card in your hand.",
+    "text": "Costs <sprite name=\"mana_1\"> less to play for each card in your hand.",
     "subtype": "Mech",
     "cost": 11,
     "attack": 9,
@@ -148,7 +148,7 @@
   {
     "name": "Apprentice Mage",
     "type": "Minion",
-    "text": "Spellcaster. [Arrival, Pay 1 Mana]: Draw a card.",
+    "text": "Spellcaster. [Arrival, Pay <sprite name=\"mana_1\">]: Draw a card.",
     "subtype": "Elf",
     "cost": 2,
     "attack": 3,
@@ -184,7 +184,7 @@
   {
     "name": "Asera",
     "type": "Minion",
-    "text": "Legendary. [1 Mana]: Draw a card, deal 2 damage to Asera.",
+    "text": "Legendary. [<sprite name=\"mana_1\">]: Draw a card, deal 2 damage to Asera.",
     "subtype": "Dragon",
     "cost": 10,
     "attack": 5,
@@ -202,7 +202,7 @@
   {
     "name": "Assistant Chemist",
     "type": "Minion",
-    "text": "Potions in your hand cost 1 less.",
+    "text": "Potions in your hand cost <sprite name=\"mana_1\"> less.",
     "subtype": "Dwarf",
     "cost": 2,
     "attack": 3,
@@ -220,7 +220,7 @@
   {
     "name": "Atlas, First to Walk",
     "type": "Minion",
-    "text": "Legendary. Trample. Haste. Atlas gains +1/+1/+1 when a tile is unclaimed. Arrival: Unclaim ALL tiles within Range 2.",
+    "text": "Legendary. Trample. Haste. Atlas gains <sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\"> when a tile is unclaimed. Arrival: Unclaim ALL tiles within Range 2.",
     "subtype": "Titan",
     "cost": 15,
     "attack": 10,
@@ -238,7 +238,7 @@
   {
     "name": "Baby Raptor",
     "type": "Minion",
-    "text": "Has +2 Power and Speed if you control at least two other Beasts.",
+    "text": "Has +<sprite name=\"power_2\"> and +<sprite name=\"speed_2\"> if you control at least two other Beasts.",
     "subtype": "Beast",
     "cost": 1,
     "attack": 1,
@@ -258,7 +258,7 @@
   {
     "name": "Badland Mercenary",
     "type": "Minion",
-    "text": "[Cooldown 2, Range 1]: Deal 1 damage to an ally minion and give it +2 Power.",
+    "text": "[Cooldown 2, Range 1]: Deal 1 damage to an ally minion and give it <sprite name=\"power_2\">.",
     "subtype": "Human",
     "cost": 1,
     "attack": 2,
@@ -294,7 +294,7 @@
   {
     "name": "Battlefield Webspinner",
     "type": "Minion",
-    "text": "Deploy. [Arrival, Pay 1 Mana]: Stun an adjacent minion.",
+    "text": "Deploy. [Arrival, Pay <sprite name=\"mana_1\">]: Stun an adjacent minion.",
     "subtype": "Arachnid",
     "cost": 3,
     "attack": 2,
@@ -416,7 +416,7 @@
     "art": "CardScreenshots/Blinkshot.png",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Mage"
     ]
@@ -478,7 +478,7 @@
   {
     "name": "Brash Outfitter",
     "type": "Minion",
-    "text": "Minions in your hand cost 1 less. When you play a Minion whose card costs 3 or more, deal 1 damage to it.",
+    "text": "Minions in your hand cost <sprite name=\"mana_1\"> less. When you play a Minion whose card costs 3 or more, deal 1 damage to it.",
     "subtype": "Goblin",
     "cost": 2,
     "attack": 3,
@@ -514,7 +514,7 @@
   {
     "name": "Call of the Jungle",
     "type": "Spell",
-    "text": "[Range 3]: An ally beast gains +2/+2/+2 and gains Trample.",
+    "text": "[Range 3]: An ally beast gains <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> and gains Trample.",
     "subtype": "",
     "cost": 3,
     "attack": null,
@@ -606,7 +606,7 @@
   {
     "name": "Citadel Lord",
     "type": "Minion",
-    "text": "Arrival: Gain +2 Power and +2 Health for each ally minion within Range 4.",
+    "text": "Arrival: Gain <sprite name=\"power_2\"> and <sprite name=\"health_2\"> for each ally minion within Range 4.",
     "subtype": "Giant",
     "cost": 5,
     "attack": 3,
@@ -716,7 +716,7 @@
   {
     "name": "Crippling Tax",
     "type": "Spell",
-    "text": "Destroy a friendly village. Draw 3 cards. Gain 3 Dominion.",
+    "text": "Destroy a friendly village. Draw 3 cards. Gain <sprite name=\"dominion_3\"> Dominion.",
     "subtype": "",
     "cost": 4,
     "attack": null,
@@ -734,7 +734,7 @@
   {
     "name": "Daemonic Summoning",
     "type": "Spell",
-    "text": "Draw a Daemon from your deck. It costs 3 less mana.",
+    "text": "Draw a Daemon from your deck. It costs <sprite name=\"mana_3\"> less.",
     "subtype": "",
     "cost": 3,
     "attack": null,
@@ -752,7 +752,7 @@
   {
     "name": "Daemonprince Grizlocke",
     "type": "Minion",
-    "text": "Legendary. Flying. Trample. [Cooldown 1, Range 1]: Claim ANY unoccupied tile, gain 1 Dominion, and summon a Daemon Knight.",
+    "text": "Legendary. Flying. Trample. [Cooldown 1, Range 1]: Claim ANY unoccupied tile, gain <sprite name=\"dominion_1\"> Dominion, and summon a Daemon Knight.",
     "subtype": "Daemon",
     "cost": 12,
     "attack": 13,
@@ -770,7 +770,7 @@
   {
     "name": "Danrir, Omenhound",
     "type": "Minion",
-    "text": "Legendary. When Danrir attacks and kills an enemy minion, he gains +2 Power and +2 Health.",
+    "text": "Legendary. When Danrir attacks and kills an enemy minion, he gains <sprite name=\"power_2\"> and <sprite name=\"health_2\">.",
     "subtype": "Beast",
     "cost": 4,
     "attack": 4,
@@ -900,7 +900,7 @@
   {
     "name": "Diplomatic Envoy",
     "type": "Minion",
-    "text": "Spellcaster. Arrival: Gain 2 Intellect.",
+    "text": "Spellcaster. Arrival: Gain <sprite name=\"intellect_2\"> Intellect. (Intellect is your max hand size.)",
     "subtype": "Elf",
     "cost": 2,
     "attack": 2,
@@ -954,7 +954,7 @@
   {
     "name": "Dragon Egg",
     "type": "Minion",
-    "text": "Postmortem: Summon a 4/4/4 Dragon with Flying.",
+    "text": "Postmortem: Summon a <sprite name=\"power_4\"><sprite name=\"speed_4\"><sprite name=\"health_4\"> Dragon with Flying.",
     "subtype": "Dragon",
     "cost": 2,
     "attack": 0,
@@ -972,7 +972,7 @@
   {
     "name": "Dragon Tamer",
     "type": "Minion",
-    "text": "Realmbound. Dragons in your hand cost 2 less.",
+    "text": "Realmbound. Dragons in your hand cost <sprite name=\"mana_2\"> less.",
     "subtype": "Human",
     "cost": 2,
     "attack": 2,
@@ -1026,7 +1026,7 @@
   {
     "name": "Drain Energy",
     "type": "Spell",
-    "text": "An enemy minion gets -3 Power and -3 Health until end of turn. Your commander heals 3 life.",
+    "text": "An enemy minion loses <sprite name=\"power_3\"> and <sprite name=\"health_3\"> until end of turn. Your commander heals 3 life.",
     "subtype": "",
     "cost": 2,
     "attack": null,
@@ -1064,7 +1064,7 @@
   {
     "name": "Dread Knight",
     "type": "Minion",
-    "text": "Commander-Deploy. Enemy minions within Range 2 have -1 Power.",
+    "text": "Commander-Deploy. Enemy minions within Range 2 have -<sprite name=\"power_1\">.",
     "subtype": "Human",
     "cost": 6,
     "attack": 7,
@@ -1085,7 +1085,7 @@
   {
     "name": "Dread Proclamation",
     "type": "Spell",
-    "text": "Until the end of the turn, all enemy minions get -1/-0/-1. When an enemy dies this turn, gain 1 Dominion.",
+    "text": "Until the end of the turn, all enemy minions lose <sprite name=\"power_1\"> and <sprite name=\"health_1\">. When an enemy dies this turn, gain <sprite name=\"dominion_1\"> Dominion.",
     "subtype": "Psychic",
     "cost": 3,
     "attack": null,
@@ -1103,7 +1103,7 @@
   {
     "name": "Dreadlord Cyrion",
     "type": "Minion",
-    "text": "Legendary. Commander-Deploy. Enemy minions within Range 2 have -1/-1/-1.",
+    "text": "Legendary. Commander-Deploy. Enemy minions within Range 2 have -<sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\">.",
     "subtype": "Human",
     "cost": 7,
     "attack": 8,
@@ -1139,7 +1139,7 @@
   {
     "name": "Durka Wurm",
     "type": "Minion",
-    "text": "Postmortem: Summon a 1/2/1 Spawn token in every unoccupied tile within Range 1.",
+    "text": "Postmortem: Summon a <sprite name=\"power_1\"><sprite name=\"speed_2\"><sprite name=\"health_1\"> Spawn token in every unoccupied tile within Range 1.",
     "subtype": "Beast",
     "cost": 8,
     "attack": 7,
@@ -1157,7 +1157,7 @@
   {
     "name": "Dwarven Battlepriest",
     "type": "Minion",
-    "text": "Spellcaster. [Arrival, Range 4]: An ally minion gains +3 Health.",
+    "text": "Spellcaster. [Arrival, Range 4]: An ally minion gains <sprite name=\"health_3\">.",
     "subtype": "Dwarf",
     "cost": 2,
     "attack": 2,
@@ -1177,7 +1177,7 @@
   {
     "name": "Dwarven Stout",
     "type": "Spell",
-    "text": "[Range 2]: Give a Dwarf minion +4/+0/+4 and \"At the end of your turns, deal 1 damage to all adjacent characters.\"",
+    "text": "[Range 2]: A Dwarf minion gains <sprite name=\"power_4\"> and <sprite name=\"health_4\"> and \"At the end of your turns, deal 1 damage to all adjacent characters.\"",
     "subtype": "Potion",
     "cost": 4,
     "attack": null,
@@ -1254,7 +1254,7 @@
   {
     "name": "Elite Mercenary",
     "type": "Minion",
-    "text": "Commander-Deploy. Lifelink. Shield. Costs 3 less if your opponent controls 4 or more minions.",
+    "text": "Commander-Deploy. Lifelink. Shield. Costs <sprite name=\"mana_3\"> less if your opponent controls 4 or more minions.",
     "subtype": "Human",
     "cost": 7,
     "attack": 4,
@@ -1282,8 +1282,8 @@
     "patron": "Neutral",
     "faction": "neutral",
     "art": null,
-    "art_type": "AI_GENERATED",
-    "commissioned": false,
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
     "has_animation": true,
     "starter_decks": [
       "Starter Beasts",
@@ -1313,7 +1313,7 @@
   {
     "name": "Ember",
     "type": "Minion",
-    "text": "When you play a Fire card, gain 2 Mana, gain +2 Power, and deal 1 damage to Ember.",
+    "text": "When you play a Fire card, gain <sprite name=\"mana_2\"> and <sprite name=\"power_2\"> this turn, and deal 1 damage to Ember.",
     "subtype": "Fire",
     "cost": 1,
     "attack": 0,
@@ -1367,7 +1367,7 @@
   {
     "name": "Enigmatic Golem",
     "type": "Minion",
-    "text": "Costs X less mana to play where X is your commander's missing Health.",
+    "text": "Costs <sprite name=\"mana_X\"> less to play where X is your commander's missing Health.",
     "subtype": "Mech",
     "cost": 20,
     "attack": 9,
@@ -1385,7 +1385,7 @@
   {
     "name": "Ereloth",
     "type": "Minion",
-    "text": "Lifelink. Arrival: give all minion cards in your opponent\u2019s hand -1 Power and -1 Health.",
+    "text": "Lifelink. Arrival: all minion cards in your opponent\u2019s hand lose <sprite name=\"power_1\"> and <sprite name=\"health_1\">.",
     "subtype": "Daemon",
     "cost": 4,
     "attack": 3,
@@ -1477,7 +1477,7 @@
   {
     "name": "Fade to Mists",
     "type": "Spell",
-    "text": "[Range 2]: Return a minion you control to your hand. It costs 3 less.",
+    "text": "[Range 2]: Return a minion you control to your hand. It costs <sprite name=\"mana_3\"> less.",
     "subtype": "Psychic",
     "cost": 1,
     "attack": null,
@@ -1569,7 +1569,7 @@
   {
     "name": "Firebolt",
     "type": "Spell",
-    "text": "[Range 4]: Deal 3 Damage to a character. If this kills them, gain 1 Dominion.",
+    "text": "[Range 4]: Deal 3 Damage to a character. If this kills them, gain <sprite name=\"dominion_1\"> Dominion.",
     "subtype": "Fire",
     "cost": 3,
     "attack": null,
@@ -1587,7 +1587,7 @@
   {
     "name": "First Experiment",
     "type": "Minion",
-    "text": "Spellcaster. Whenever you play a Potion on an ally Experiment, gain +2 Power.",
+    "text": "Spellcaster. Whenever you play a Potion on an ally Experiment, gain <sprite name=\"power_2\">.",
     "subtype": "Experiment",
     "cost": 1,
     "attack": 1,
@@ -1659,7 +1659,7 @@
   {
     "name": "Fourth Experiment",
     "type": "Minion",
-    "text": "Whenever you play a Potion on an ally Experiment, gain +2/+1/+2.",
+    "text": "Whenever you play a Potion on an ally Experiment, gain <sprite name=\"power_2\"><sprite name=\"speed_1\"><sprite name=\"health_2\">.",
     "subtype": "Experiment",
     "cost": 4,
     "attack": 3,
@@ -1715,7 +1715,7 @@
   {
     "name": "Ghast",
     "type": "Minion",
-    "text": "[Range 2]: Target minion gains -1/-0/-1. Ghast also gains -1/-0/-1.",
+    "text": "[Range 2]: Target minion loses <sprite name=\"power_1\"> and <sprite name=\"health_1\">. Ghast also loses <sprite name=\"power_1\"> and <sprite name=\"health_1\">.",
     "subtype": "Undead",
     "cost": 3,
     "attack": 3,
@@ -1825,7 +1825,7 @@
   {
     "name": "Goblin Infantry",
     "type": "Minion",
-    "text": "Gain +1 Power whenever you play a Goblin card.",
+    "text": "Gain <sprite name=\"power_1\"> whenever you play a Goblin card.",
     "subtype": "Goblin",
     "cost": 1,
     "attack": 1,
@@ -1864,7 +1864,7 @@
   {
     "name": "Goblin King",
     "type": "Minion",
-    "text": "Allied Goblin minions within Range 3 have +2 Power.",
+    "text": "Allied Goblin minions within Range 3 have +<sprite name=\"power_2\">.",
     "subtype": "Goblin",
     "cost": 3,
     "attack": 3,
@@ -1900,7 +1900,7 @@
   {
     "name": "Goblin Musclejuice",
     "type": "Spell",
-    "text": "[Range 2]: Give a Goblin minion +3/+2/+3.",
+    "text": "[Range 2]: A Goblin minion gains <sprite name=\"power_3\"><sprite name=\"speed_2\"><sprite name=\"health_3\">.",
     "subtype": "Potion",
     "cost": 3,
     "attack": null,
@@ -2138,7 +2138,7 @@
   {
     "name": "Growth",
     "type": "Spell",
-    "text": "Add 1 Mana.",
+    "text": "Gain <sprite name=\"mana_1\"> this turn.",
     "subtype": "",
     "cost": 0,
     "attack": null,
@@ -2156,7 +2156,7 @@
   {
     "name": "Growth Potion",
     "type": "Spell",
-    "text": "[Range 2]: Give a minion +1/+1/+1.",
+    "text": "[Range 2]: A minion gains <sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\">.",
     "subtype": "Potion",
     "cost": 1,
     "attack": null,
@@ -2174,7 +2174,7 @@
   {
     "name": "Grutali",
     "type": "Minion",
-    "text": "Legendary. Trample. Arrival: Gain 5 Dominion.",
+    "text": "Legendary. Trample. Arrival: Gain <sprite name=\"dominion_5\"> Dominion.",
     "subtype": "Dragon",
     "cost": 9,
     "attack": 4,
@@ -2210,7 +2210,7 @@
   {
     "name": "Guardian Ent",
     "type": "Minion",
-    "text": "Regenerate 3. Trample. Costs 3 less for each Plant you control.",
+    "text": "Regenerate 3. Trample. Costs <sprite name=\"mana_3\"> less for each Plant you control.",
     "subtype": "Plant",
     "cost": 11,
     "attack": 7,
@@ -2339,7 +2339,7 @@
   {
     "name": "Holy Fervor",
     "type": "Spell",
-    "text": "Ally Human minions within Range 3 gain +1/+1/+1.",
+    "text": "Ally Human minions within Range 3 gain <sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\">.",
     "subtype": "",
     "cost": 2,
     "attack": null,
@@ -2396,7 +2396,7 @@
   {
     "name": "Horde Leader",
     "type": "Minion",
-    "text": "Ally Undead within Range 3 have +1 Power and Postmortem: the enemy commander gains 2 Poison.",
+    "text": "Ally Undead within Range 3 have +<sprite name=\"power_1\"> and Postmortem: the enemy commander gains 2 Poison.",
     "subtype": "Undead",
     "cost": 3,
     "attack": 4,
@@ -2432,7 +2432,7 @@
   {
     "name": "Illusory Legion",
     "type": "Spell",
-    "text": "[Range 2]: Summon a 3/2/3 Illusion with Frail. Add a copy of this to your hand with Ethereal.",
+    "text": "[Range 2]: Summon a <sprite name=\"power_3\"><sprite name=\"speed_2\"><sprite name=\"health_3\"> Illusion with Frail. Add a copy of this to your hand with Ethereal.",
     "subtype": "Psychic",
     "cost": 2,
     "attack": null,
@@ -2488,7 +2488,7 @@
   {
     "name": "Khazgar, Flame Emperor",
     "type": "Minion",
-    "text": "Legendary. Tiles within Range 1 become Lava. Heals from Fire damage.  Costs 1 less per Fire card you play.",
+    "text": "Legendary. Tiles within Range 1 become Lava. Heals from Fire damage.  Costs <sprite name=\"mana_1\"> less per Fire card you play.",
     "subtype": "Titan",
     "cost": 13,
     "attack": 12,
@@ -2526,7 +2526,7 @@
   {
     "name": "Kindle",
     "type": "Spell",
-    "text": "Gain 2 Mana at the start of your next turn.",
+    "text": "Gain <sprite name=\"mana_2\"> at the start of your next turn.",
     "subtype": "Fire",
     "cost": 1,
     "attack": null,
@@ -2562,7 +2562,7 @@
   {
     "name": "Knife Sharpener",
     "type": "Minion",
-    "text": "When you play a Minion within Range 2, give it +1 Power.",
+    "text": "When you play a Minion within Range 2, give it <sprite name=\"power_1\">.",
     "subtype": "Dwarf",
     "cost": 1,
     "attack": 2,
@@ -2580,7 +2580,7 @@
   {
     "name": "Lay Claim",
     "type": "Spell",
-    "text": "[Range 0]: Claim a territory an opponent controls. Increase your Dominion by 1.",
+    "text": "[Range 0]: Claim a territory an opponent controls. Gain <sprite name=\"dominion_1\"> Dominion.",
     "subtype": "",
     "cost": 2,
     "attack": null,
@@ -2634,7 +2634,7 @@
   {
     "name": "Lightbound Martyr",
     "type": "Minion",
-    "text": "Postmortem: give the leftmost Minion in your hand +2/+1/+2.",
+    "text": "Postmortem: give the leftmost Minion in your hand <sprite name=\"power_2\"><sprite name=\"speed_1\"><sprite name=\"health_2\">.",
     "subtype": "Human",
     "cost": 3,
     "attack": 3,
@@ -2692,7 +2692,7 @@
   {
     "name": "Live off the Land",
     "type": "Spell",
-    "text": "Increase your Dominion by 1. Heal your commander for 4.",
+    "text": "Gain <sprite name=\"dominion_1\"> Dominion. Heal your commander for 4.",
     "subtype": "",
     "cost": 1,
     "attack": null,
@@ -2728,7 +2728,7 @@
   {
     "name": "Longleg Dorathru",
     "type": "Minion",
-    "text": "Legendary. Commander-Deploy. Arrival: Gain +2 Power and +2 Health for each card you've played this turn.",
+    "text": "Legendary. Commander-Deploy. Arrival: Gain <sprite name=\"power_2\"> and <sprite name=\"health_2\"> for each card you've played this turn.",
     "subtype": "Arachnid",
     "cost": 4,
     "attack": 3,
@@ -2746,7 +2746,7 @@
   {
     "name": "Lord of Casterhorn",
     "type": "Minion",
-    "text": "Commander-Deploy. Ally minions within Range 3 have +1 Power and +1 Health.",
+    "text": "Commander-Deploy. Ally minions within Range 3 have +<sprite name=\"power_1\"> and +<sprite name=\"health_1\">.",
     "subtype": "Human",
     "cost": 3,
     "attack": 2,
@@ -2820,7 +2820,7 @@
   {
     "name": "Lucian Squire",
     "type": "Minion",
-    "text": "Arrival: give the leftmost minion card in your hand +1 Power and +1 Health.",
+    "text": "Arrival: give the leftmost minion card in your hand <sprite name=\"power_1\"> and <sprite name=\"health_1\">.",
     "subtype": "Human",
     "cost": 1,
     "attack": 1,
@@ -2913,7 +2913,7 @@
   {
     "name": "Mana Bloom",
     "type": "Minion",
-    "text": "[Skip an Attack]: Gain 1 mana this turn.",
+    "text": "[Skip an Attack]: Gain <sprite name=\"mana_1\"> this turn.",
     "subtype": "Plant",
     "cost": 1,
     "attack": 0,
@@ -2931,7 +2931,7 @@
   {
     "name": "Manaphant",
     "type": "Minion",
-    "text": "[Cooldown 2, Skip an Attack]: Gain 1 mana this turn.",
+    "text": "[Cooldown 2, Skip an Attack]: Gain <sprite name=\"mana_1\"> this turn.",
     "subtype": "Beast",
     "cost": 1,
     "attack": 1,
@@ -2949,7 +2949,7 @@
   {
     "name": "Master Craftsman",
     "type": "Minion",
-    "text": "[1 Mana, Warmup 2]: Convert the occupied tile to a village.",
+    "text": "[<sprite name=\"mana_1\">, Warmup 2]: Convert the occupied tile to a village.",
     "subtype": "Dwarf",
     "cost": 1,
     "attack": 0,
@@ -3003,7 +3003,7 @@
   {
     "name": "Mindstone Servant",
     "type": "Minion",
-    "text": "Whenever Mindstone Servant takes damage, draw a card and gain 1 Intellect. Spellcaster.",
+    "text": "Whenever Mindstone Servant takes damage, draw a card and gain <sprite name=\"intellect_1\"> Intellect. Spellcaster.",
     "subtype": "Mech",
     "cost": 5,
     "attack": 3,
@@ -3095,7 +3095,7 @@
   {
     "name": "Nevisha Ascendant",
     "type": "Minion",
-    "text": "Legendary. Flying. Arrival AND at the beginning of your turn: add a Lucian Soldier to your hand and ally minions in Range 3 gain +1/+1/+1.",
+    "text": "Legendary. Flying. Arrival AND at the beginning of your turn: add a Lucian Soldier to your hand and ally minions in Range 3 gain <sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\">.",
     "subtype": "Angel",
     "cost": 7,
     "attack": 6,
@@ -3113,7 +3113,7 @@
   {
     "name": "Nexus Operative",
     "type": "Minion",
-    "text": "Spellcaster. Whenever you play a spell, your other Spellcasters gain +1/+1/+1 until end of turn.",
+    "text": "Spellcaster. Whenever you play a spell, your other Spellcasters gain <sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\"> until end of turn.",
     "subtype": "Elf",
     "cost": 3,
     "attack": 3,
@@ -3131,7 +3131,7 @@
   {
     "name": "Nexus Recruit",
     "type": "Minion",
-    "text": "Spellcaster. Whenever you draw a card, gain +1/+1/+1 until end of turn.",
+    "text": "Spellcaster. Whenever you draw a card, gain <sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\"> until end of turn.",
     "subtype": "Elf",
     "cost": 1,
     "attack": 1,
@@ -3161,7 +3161,7 @@
     "art": "CardScreenshots/Nilo-of-One-Thousand-Cuts.png",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": []
   },
   {
@@ -3187,7 +3187,7 @@
   {
     "name": "Oathbroken Apprentice",
     "type": "Minion",
-    "text": "Commander-Deploy. Whenever your commander loses life on your turn, gain +1 Power.",
+    "text": "Commander-Deploy. Whenever your commander loses life on your turn, gain <sprite name=\"power_1\">.",
     "subtype": "Human",
     "cost": 1,
     "attack": 1,
@@ -3225,7 +3225,7 @@
   {
     "name": "Oldsteel Guard",
     "type": "Minion",
-    "text": "Has +1 Power for each territory you control.",
+    "text": "Has +<sprite name=\"power_1\"> for each territory you control.",
     "subtype": "Dwarf",
     "cost": 2,
     "attack": 0,
@@ -3261,7 +3261,7 @@
   {
     "name": "Outland Berserker",
     "type": "Minion",
-    "text": "Commander-Deploy. Whenever Outland Berserker takes damage, it gains +2 Power.",
+    "text": "Commander-Deploy. Whenever Outland Berserker takes damage, it gains <sprite name=\"power_2\">.",
     "subtype": "Human",
     "cost": 5,
     "attack": 3,
@@ -3319,7 +3319,7 @@
   {
     "name": "Pack Wolf",
     "type": "Minion",
-    "text": "Gets +2 Power for each adjacent ally Beast.",
+    "text": "Has +<sprite name=\"power_2\"> for each adjacent ally Beast.",
     "subtype": "Beast",
     "cost": 2,
     "attack": 2,
@@ -3337,7 +3337,7 @@
   {
     "name": "Paladin Initiate",
     "type": "Minion",
-    "text": "Commander-Deploy. Whenever a character you own is healed, gain +1 Power.",
+    "text": "Commander-Deploy. Whenever a character you own is healed, gain <sprite name=\"power_1\">.",
     "subtype": "Human",
     "cost": 1,
     "attack": 1,
@@ -3375,7 +3375,7 @@
   {
     "name": "Paladin Proselyte",
     "type": "Minion",
-    "text": "Commander-Deploy. Whenever a character you own is healed, gain +1/+0/+1.",
+    "text": "Commander-Deploy. Whenever a character you own is healed, gain <sprite name=\"power_1\"> and <sprite name=\"health_1\">.",
     "subtype": "Human",
     "cost": 3,
     "attack": 3,
@@ -3545,7 +3545,7 @@
   {
     "name": "Power Potion",
     "type": "Spell",
-    "text": "[Range 2]: Give a minion +3/+0/+3",
+    "text": "[Range 2]: A minion gains <sprite name=\"power_3\"> and <sprite name=\"health_3\">.",
     "subtype": "Potion",
     "cost": 3,
     "attack": null,
@@ -3567,7 +3567,7 @@
   {
     "name": "Prideplain Enforcer",
     "type": "Minion",
-    "text": "Arrival: Gain 1 Dominion.",
+    "text": "Arrival: Gain <sprite name=\"dominion_1\"> Dominion.",
     "subtype": "Beast",
     "cost": 2,
     "attack": 3,
@@ -3793,7 +3793,7 @@
   {
     "name": "Reileigh, Brewpatron",
     "type": "Minion",
-    "text": "Legendary. Potions in your hand cost 0.",
+    "text": "Legendary. Potions in your hand cost <sprite name=\"mana_0\">.",
     "subtype": "Human",
     "cost": 6,
     "attack": 4,
@@ -3831,7 +3831,7 @@
   {
     "name": "Revoke the Living",
     "type": "Spell",
-    "text": "Add 2 poison to all enemies within Range 1 of your territory. Increase your Dominion by 1.",
+    "text": "Add 2 poison to all enemies within Range 1 of your territory. Gain <sprite name=\"dominion_1\"> Dominion.",
     "subtype": "",
     "cost": 4,
     "attack": null,
@@ -3849,7 +3849,7 @@
   {
     "name": "Rhea, Morning Saint",
     "type": "Minion",
-    "text": "Legendary. Shield. Arrival: if your other minions have 7 or more total Health, give the leftmost minion in your hand +5/+1/+5 and Shield.",
+    "text": "Legendary. Shield. Arrival: if your other minions have 7 or more total Health, give the leftmost minion in your hand <sprite name=\"power_5\"><sprite name=\"speed_1\"><sprite name=\"health_5\"> and Shield.",
     "subtype": "Human",
     "cost": 5,
     "attack": 6,
@@ -3885,7 +3885,7 @@
   {
     "name": "Royal Commander",
     "type": "Minion",
-    "text": "Ally minions within Range 3 have +1/+1/+1.",
+    "text": "Ally minions within Range 3 have +<sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\">.",
     "subtype": "Human",
     "cost": 6,
     "attack": 6,
@@ -3895,8 +3895,8 @@
     "patron": "Neutral",
     "faction": "neutral",
     "art": "CardScreenshots/Royal-Commander.png",
-    "art_type": "AI_GENERATED",
-    "commissioned": false,
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
     "has_animation": false,
     "starter_decks": [
       "Starter Death",
@@ -3906,7 +3906,7 @@
   {
     "name": "Rule the Hinterlands",
     "type": "Spell",
-    "text": "Claim an uncontested tile adjacent to your territory. Increase your Dominion by 2.",
+    "text": "Claim an uncontested tile adjacent to your territory. Gain <sprite name=\"dominion_2\"> Dominion.",
     "subtype": "",
     "cost": 3,
     "attack": null,
@@ -3964,7 +3964,7 @@
   {
     "name": "Sage Potion",
     "type": "Spell",
-    "text": "[Range 2]: A minion gains \"Whenever you draw a card, gain +1/+0/+1\".",
+    "text": "[Range 2]: A minion gains \"Whenever you draw a card, gain <sprite name=\"power_1\"> and <sprite name=\"health_1\">\".",
     "subtype": "Potion",
     "cost": 2,
     "attack": null,
@@ -4020,7 +4020,7 @@
   {
     "name": "Second Experiment",
     "type": "Minion",
-    "text": "Whenever you play a Potion on an ally Experiment, gain +1 Speed and +1 Power.",
+    "text": "Whenever you play a Potion on an ally Experiment, gain <sprite name=\"power_1\"> and <sprite name=\"speed_1\">.",
     "subtype": "Experiment",
     "cost": 2,
     "attack": 3,
@@ -4166,7 +4166,7 @@
   {
     "name": "Slash and Burn",
     "type": "Spell",
-    "text": "Unclaim a tile you control. Gain 2 Dominion.",
+    "text": "Unclaim a tile you control. Gain <sprite name=\"dominion_2\"> Dominion.",
     "subtype": "Fire",
     "cost": 1,
     "attack": null,
@@ -4204,7 +4204,7 @@
   {
     "name": "Soul Sale",
     "type": "Spell",
-    "text": "Add 3 Imps to your hand. They cost 0 and have Ethereal.",
+    "text": "Add 3 Imps to your hand. They cost <sprite name=\"mana_0\"> and have Ethereal.",
     "subtype": "",
     "cost": 4,
     "attack": null,
@@ -4222,7 +4222,7 @@
   {
     "name": "Soulreap",
     "type": "Spell",
-    "text": "An enemy minion gets -6 Power and -6 Health. Your commander heals 6 life. Costs 5 less if you control a Daemon.",
+    "text": "An enemy minion loses <sprite name=\"power_6\"> and <sprite name=\"health_6\">. Your commander heals 6 life. Costs <sprite name=\"mana_5\"> less if you control a Daemon.",
     "subtype": "",
     "cost": 8,
     "attack": null,
@@ -4294,7 +4294,7 @@
   {
     "name": "Stagasus",
     "type": "Minion",
-    "text": "Flying. [1 Mana, Range 2, Skip an Attack]: Give an ally +4 movement.",
+    "text": "Flying. [<sprite name=\"mana_1\">, Range 2, Skip an Attack]: Give an ally +4 movement.",
     "subtype": "Beast",
     "cost": 2,
     "attack": 2,
@@ -4334,7 +4334,7 @@
   {
     "name": "Stalwart Tarantula",
     "type": "Minion",
-    "text": "Has +2 Power during enemy turns.",
+    "text": "Has +<sprite name=\"power_2\"> during enemy turns.",
     "subtype": "Arachnid",
     "cost": 3,
     "attack": 2,
@@ -4354,7 +4354,7 @@
   {
     "name": "Stampede",
     "type": "Spell",
-    "text": "Beasts you control within Range 3 gain +3/+2/+3 and gain Trample until the end of the turn.",
+    "text": "Beasts you control within Range 3 gain <sprite name=\"power_3\"><sprite name=\"speed_2\"><sprite name=\"health_3\"> and gain Trample until the end of the turn.",
     "subtype": "",
     "cost": 6,
     "attack": null,
@@ -4392,7 +4392,7 @@
   {
     "name": "Stormrider Zurn",
     "type": "Minion",
-    "text": "Legendary. Spellcaster. Haste. When you play a Lightning spell, gain +2/+2/+2 until end of turn.",
+    "text": "Legendary. Spellcaster. Haste. When you play a Lightning spell, gain <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> until end of turn.",
     "subtype": "Demigod",
     "cost": 4,
     "attack": 6,
@@ -4446,7 +4446,7 @@
   {
     "name": "Stumbling Ghoul",
     "type": "Minion",
-    "text": "Postmortem: Summon a 2/2/2 Undead Zombie.",
+    "text": "Postmortem: Summon a <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> Undead Zombie.",
     "subtype": "Undead",
     "cost": 1,
     "attack": 1,
@@ -4523,7 +4523,7 @@
   {
     "name": "Swiftness Potion",
     "type": "Spell",
-    "text": "[Range 2]: Give a minion +3 Speed.",
+    "text": "[Range 2]: A minion gains <sprite name=\"speed_3\">.",
     "subtype": "Potion",
     "cost": 2,
     "attack": null,
@@ -4541,7 +4541,7 @@
   {
     "name": "Tadpole",
     "type": "Minion",
-    "text": "Whenever you play a Spell, Tadpole gains +1 Power and +1 Health.",
+    "text": "Whenever you play a Spell, Tadpole gains <sprite name=\"power_1\"> and <sprite name=\"health_1\">.",
     "subtype": "Beast",
     "cost": 1,
     "attack": 1,
@@ -4561,7 +4561,7 @@
   {
     "name": "Tax Collector",
     "type": "Minion",
-    "text": "Arrival: ALL players gain 2 Dominion.",
+    "text": "Arrival: ALL players gain <sprite name=\"dominion_2\"> Dominion.",
     "subtype": "Human",
     "cost": 4,
     "attack": 2,
@@ -4579,7 +4579,7 @@
   {
     "name": "Throne Guardian",
     "type": "Minion",
-    "text": "Flying. Arrival: Gain 1 Dominion, Gain 1 Intellect, Draw 1 Card.",
+    "text": "Flying. Arrival: Gain <sprite name=\"dominion_1\"> Dominion, Gain <sprite name=\"intellect_1\"> Intellect, Draw 1 Card.",
     "subtype": "Dragon",
     "cost": 5,
     "attack": 4,
@@ -4741,7 +4741,7 @@
   {
     "name": "Tree of Life",
     "type": "Minion",
-    "text": "Legendary. At the end of your turn, your commander and plants you control gain +2 Health (increases Max Health).",
+    "text": "Legendary. At the end of your turn, your commander and plants you control gain <sprite name=\"health_2\"> (increases Max Health).",
     "subtype": "Plant",
     "cost": 7,
     "attack": 2,
@@ -4777,7 +4777,7 @@
   {
     "name": "Undying Behemoth",
     "type": "Minion",
-    "text": "Postmortem: Summon a 2/2/2 Undead Zombie that has: \u201cPostmortem: Summon a 2/2/2 Undead Zombie.\u201d",
+    "text": "Postmortem: Summon a <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> Undead Zombie that has: \u201cPostmortem: Summon a <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> Undead Zombie.\u201d",
     "subtype": "Undead",
     "cost": 6,
     "attack": 4,
@@ -4849,7 +4849,7 @@
   {
     "name": "Vyre Aristocrat",
     "type": "Minion",
-    "text": "Lifelink. [1 Mana]: Sacrifice an adjacent Minion to gain +2/+0/+2.",
+    "text": "Lifelink. [<sprite name=\"mana_1\">]: Sacrifice an adjacent Minion to gain <sprite name=\"power_2\"> and <sprite name=\"health_2\">.",
     "subtype": "Vampire",
     "cost": 2,
     "attack": 2,
@@ -4885,7 +4885,7 @@
   {
     "name": "War Banner",
     "type": "Minion",
-    "text": "Deploy. Adjacent ally Minions have +2 Power.",
+    "text": "Deploy. Adjacent ally Minions have +<sprite name=\"power_2\">.",
     "subtype": "",
     "cost": 1,
     "attack": 0,
@@ -4903,7 +4903,7 @@
   {
     "name": "War Chest",
     "type": "Spell",
-    "text": "Add 1 Mana this turn, and at the start of your next turn.",
+    "text": "Gain <sprite name=\"mana_1\"> this turn, and at the start of your next turn.",
     "subtype": "",
     "cost": 0,
     "attack": null,
@@ -4921,7 +4921,7 @@
   {
     "name": "Warcry",
     "type": "Spell",
-    "text": "Your characters within Range 3 gain +2 Power and +2 Speed until end of turn.",
+    "text": "Your characters within Range 3 gain <sprite name=\"power_2\"> and <sprite name=\"speed_2\"> until end of turn.",
     "subtype": "",
     "cost": 3,
     "attack": null,
@@ -4997,7 +4997,7 @@
   {
     "name": "Zealous Captain",
     "type": "Minion",
-    "text": "Whenever a character you own is healed, adjacent ally minions gain +1/+0/+1.",
+    "text": "Whenever a character you own is healed, adjacent ally minions gain <sprite name=\"power_1\"> and <sprite name=\"health_1\">.",
     "subtype": "Human",
     "cost": 5,
     "attack": 4,
@@ -5015,7 +5015,7 @@
   {
     "name": "Zealous Strength",
     "type": "Spell",
-    "text": "Ally minions within Range 3 gain +2 Power and +2 Health. They also gain +1 Movement this turn only.",
+    "text": "Ally minions within Range 3 gain <sprite name=\"power_2\"> and <sprite name=\"health_2\">. They also gain +1 Movement this turn only.",
     "subtype": "",
     "cost": 4,
     "attack": null,
@@ -5051,7 +5051,7 @@
   {
     "name": "Zoloth the Butcher",
     "type": "Minion",
-    "text": "Legendary. [Arrival]: Sacrifice a Minion to add three 2/2/2 Zombies to your hand with Ethereal that cost 0.",
+    "text": "Legendary. [Arrival]: Sacrifice a Minion to add three <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> Zombies to your hand with Ethereal that cost <sprite name=\"mana_0\">.",
     "subtype": "Undead",
     "cost": 5,
     "attack": 6,
