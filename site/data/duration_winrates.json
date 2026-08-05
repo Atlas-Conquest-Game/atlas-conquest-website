@@ -3632,12 +3632,12 @@
             "games": 10
           },
           {
-            "winrate": 0.4348,
-            "games": 23
+            "winrate": 0.4211,
+            "games": 19
           },
           {
-            "winrate": 0.4545,
-            "games": 11
+            "winrate": 0.5,
+            "games": 10
           },
           {
             "winrate": 0.75,
@@ -3668,8 +3668,8 @@
             "games": 9
           },
           {
-            "winrate": 0.4545,
-            "games": 22
+            "winrate": 0.5,
+            "games": 20
           },
           {
             "winrate": 0.6,
@@ -3704,8 +3704,8 @@
             "games": 7
           },
           {
-            "winrate": 0.65,
-            "games": 20
+            "winrate": 0.6111,
+            "games": 18
           },
           {
             "winrate": 0.1667,
@@ -3722,12 +3722,12 @@
             "games": 5
           },
           {
-            "winrate": 0.5333,
-            "games": 15
+            "winrate": 0.5,
+            "games": 14
           },
           {
-            "winrate": 0.5714,
-            "games": 7
+            "winrate": 0.5,
+            "games": 6
           },
           {
             "winrate": 0.3333,
@@ -3740,8 +3740,8 @@
             "games": 16
           },
           {
-            "winrate": 0.4545,
-            "games": 11
+            "winrate": 0.5,
+            "games": 8
           },
           {
             "winrate": 1.0,
@@ -3930,8 +3930,8 @@
             "games": 5
           },
           {
-            "winrate": 0.3333,
-            "games": 9
+            "winrate": 0.375,
+            "games": 8
           },
           {
             "winrate": 0.5,
@@ -3948,12 +3948,30 @@
             "games": 2
           },
           {
-            "winrate": 0.6667,
-            "games": 6
+            "winrate": 0.6,
+            "games": 5
           },
           {
             "winrate": null,
             "games": 0
+          },
+          {
+            "winrate": 0.0,
+            "games": 1
+          }
+        ],
+        "Jagris, the Huntsman": [
+          {
+            "winrate": 1.0,
+            "games": 1
+          },
+          {
+            "winrate": 0.5,
+            "games": 2
+          },
+          {
+            "winrate": 0.0,
+            "games": 2
           },
           {
             "winrate": 0.0,
@@ -3966,8 +3984,8 @@
             "games": 6
           },
           {
-            "winrate": 0.6667,
-            "games": 3
+            "winrate": 0.5,
+            "games": 2
           },
           {
             "winrate": null,
@@ -3975,42 +3993,6 @@
           },
           {
             "winrate": 1.0,
-            "games": 1
-          }
-        ],
-        "Soultaker Viessa": [
-          {
-            "winrate": 0.3333,
-            "games": 6
-          },
-          {
-            "winrate": 0.4286,
-            "games": 7
-          },
-          {
-            "winrate": 0.6,
-            "games": 5
-          },
-          {
-            "winrate": 0.5,
-            "games": 2
-          }
-        ],
-        "Jagris, the Huntsman": [
-          {
-            "winrate": 1.0,
-            "games": 1
-          },
-          {
-            "winrate": 0.6667,
-            "games": 3
-          },
-          {
-            "winrate": 0.0,
-            "games": 2
-          },
-          {
-            "winrate": 0.0,
             "games": 1
           }
         ],
@@ -4084,6 +4066,24 @@
           {
             "winrate": null,
             "games": 0
+          }
+        ],
+        "Soultaker Viessa": [
+          {
+            "winrate": 0.3333,
+            "games": 6
+          },
+          {
+            "winrate": 0.6,
+            "games": 5
+          },
+          {
+            "winrate": 0.6,
+            "games": 5
+          },
+          {
+            "winrate": 0.5,
+            "games": 2
           }
         ],
         "Captain Greenbeard": [
@@ -4210,12 +4210,12 @@
             "games": 1
           },
           {
-            "winrate": 0.4,
-            "games": 10
+            "winrate": 0.3333,
+            "games": 9
           },
           {
-            "winrate": 0.5,
-            "games": 4
+            "winrate": 0.6667,
+            "games": 3
           },
           {
             "winrate": null,
@@ -4282,8 +4282,8 @@
             "games": 5
           },
           {
-            "winrate": 0.5,
-            "games": 4
+            "winrate": 0.6667,
+            "games": 3
           },
           {
             "winrate": 1.0,
@@ -4402,24 +4402,6 @@
             "games": 0
           }
         ],
-        "Lubela, Tender of the Wilds": [
-          {
-            "winrate": 0.5,
-            "games": 2
-          },
-          {
-            "winrate": 0.5,
-            "games": 6
-          },
-          {
-            "winrate": 0.8,
-            "games": 5
-          },
-          {
-            "winrate": 0.5,
-            "games": 2
-          }
-        ],
         "Captain Greenbeard": [
           {
             "winrate": 1.0,
@@ -4455,6 +4437,24 @@
             "winrate": null,
             "games": 0
           }
+        ],
+        "Lubela, Tender of the Wilds": [
+          {
+            "winrate": 0.5,
+            "games": 2
+          },
+          {
+            "winrate": 0.5,
+            "games": 6
+          },
+          {
+            "winrate": 0.75,
+            "games": 4
+          },
+          {
+            "winrate": 0.5,
+            "games": 2
+          }
         ]
       }
     },
@@ -4472,8 +4472,8 @@
             "games": 3
           },
           {
-            "winrate": 0.5,
-            "games": 6
+            "winrate": 0.4,
+            "games": 5
           },
           {
             "winrate": 0.0,
@@ -4526,8 +4526,8 @@
             "games": 5
           },
           {
-            "winrate": 0.25,
-            "games": 4
+            "winrate": 0.3333,
+            "games": 3
           },
           {
             "winrate": null,
@@ -4670,8 +4670,8 @@
             "games": 1
           },
           {
-            "winrate": 0.625,
-            "games": 8
+            "winrate": 0.7143,
+            "games": 7
           },
           {
             "winrate": 1.0,
@@ -4706,8 +4706,8 @@
             "games": 1
           },
           {
-            "winrate": 0.7,
-            "games": 10
+            "winrate": 0.6667,
+            "games": 9
           },
           {
             "winrate": null,

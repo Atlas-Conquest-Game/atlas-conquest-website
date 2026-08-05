@@ -46,7 +46,7 @@
   },
   {
     "name": "Executor Ginn",
-    "text": "[2 Mana, Skip an Attack]: Destroy an ally minion and convert the tile it occupied to a village.",
+    "text": "[<sprite name=\"mana_2\">, Skip an Attack]: Destroy an ally minion and convert the tile it occupied to a village.",
     "subtype": "Human",
     "dominion": 6,
     "intellect": 7,
@@ -76,7 +76,7 @@
   },
   {
     "name": "It That Weaves",
-    "text": "[Range 4, Cooldown 2]: Pull a minion in a straight line to It That Weaves. It has -1/-1/-1 until the end of its turn.",
+    "text": "[Range 4, Cooldown 2]: Pull a minion in a straight line to It That Weaves. It has -<sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\"> until the end of its turn.",
     "subtype": "Arachnid",
     "dominion": 5,
     "intellect": 7,
@@ -91,7 +91,7 @@
   },
   {
     "name": "Jagris, the Huntsman",
-    "text": "[Range 2, Cooldown 3]: A minion gains +1/+1/+1.",
+    "text": "[Range 2, Cooldown 3]: A minion gains <sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\">.",
     "subtype": "Human",
     "dominion": 5,
     "intellect": 6,
@@ -136,7 +136,7 @@
   },
   {
     "name": "Lubela, Tender of the Wilds",
-    "text": "When you play a minion in your territory, it gains +2 Health until the start of your next turn.",
+    "text": "When you play a minion in your territory, it gains <sprite name=\"health_2\"> until the start of your next turn.",
     "subtype": "Human",
     "dominion": 6,
     "intellect": 8,
@@ -151,7 +151,7 @@
   },
   {
     "name": "Macks Speed",
-    "text": "[Cooldown 2, Range 2]: Target character gains +2 Speed and Trample until end of turn.",
+    "text": "[Cooldown 2, Range 2]: Target character gains <sprite name=\"speed_2\"> and Trample until end of turn.",
     "subtype": "Human",
     "dominion": 5,
     "intellect": 6,
@@ -196,7 +196,7 @@
   },
   {
     "name": "Rosirix the Witch",
-    "text": "[Once Per Game]: Lose 1 Intellect, then draw cards until your hand is full.",
+    "text": "[Once Per Game]: Lose <sprite name=\"intellect_1\"> Intellect, then draw cards until your hand is full.",
     "subtype": "Human",
     "dominion": 6,
     "intellect": 6,
