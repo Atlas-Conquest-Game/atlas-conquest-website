@@ -12,7 +12,9 @@
 
 const CACHE_NAME = 'ac-decks-v1';
 const DATA_CACHE = 'ac-decks-data-v1';
-const ART_CACHE = 'ac-decks-art-v1';
+// Bumped to v2 to flush art cached under the old cache-first strategy, which
+// pinned every viewed card JPG permanently and hid updated screenshots.
+const ART_CACHE = 'ac-decks-art-v2';
 
 // App shell needed for fully offline deck building (import/build/encode).
 const SHELL_URLS = [
@@ -109,20 +111,6 @@ async function staleWhileRevalidate(request, cacheName) {
   return cached || (await networkFetch) || Response.error();
 }
 
-// Only cache art actually viewed — avoids bulk-downloading the ~34MB art dir.
-async function cacheFirst(request, cacheName) {
-  const cache = await caches.open(cacheName);
-  const cached = await cache.match(request);
-  if (cached) return cached;
-  try {
-    const response = await fetch(request);
-    if (response && response.ok) cache.put(request, response.clone());
-    return response;
-  } catch {
-    return cached || Response.error();
-  }
-}
-
 async function navigationWithFallback(request) {
   try {
     const response = await fetch(request);
@@ -153,7 +141,12 @@ self.addEventListener('fetch', event => {
     return;
   }
   if (isArtRequest(url)) {
-    event.respondWith(cacheFirst(request, ART_CACHE));
+    // Stale-while-revalidate, not cache-first: card screenshots get re-rendered
+    // whenever the art is updated upstream, and cache-first served the stale JPG
+    // forever with no way to invalidate short of bumping ART_CACHE by hand.
+    // Still only caches art actually viewed, so the ~34MB art dir is never bulk
+    // downloaded — each viewed image just costs one background revalidation.
+    event.respondWith(staleWhileRevalidate(request, ART_CACHE));
     return;
   }
   // Not a deck-tools asset — let the browser handle it normally.
