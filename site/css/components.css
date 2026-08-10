@@ -340,6 +340,24 @@
   background: rgba(0, 114, 178, 0.1);
 }
 
+.filter-btn[data-faction="adora"].active {
+  border-color: var(--adora);
+  color: var(--adora);
+  background: rgba(204, 121, 167, 0.1);
+}
+
+.filter-btn[data-faction="mechanus"].active {
+  border-color: var(--mechanus);
+  color: var(--mechanus);
+  background: rgba(169, 113, 75, 0.1);
+}
+
+.filter-btn[data-faction="treasure"].active {
+  border-color: var(--treasure);
+  color: var(--treasure);
+  background: rgba(237, 217, 160, 0.1);
+}
+
 /* === Data Table === */
 .table-wrapper {
   overflow-x: auto;
@@ -464,6 +482,22 @@
 .faction-badge.archaeon {
   background: rgba(0, 114, 178, 0.15);
   color: #58a6ff;
+}
+
+.faction-badge.adora {
+  background: rgba(204, 121, 167, 0.15);
+  color: #e094c0;
+}
+
+.faction-badge.mechanus {
+  background: rgba(169, 113, 75, 0.15);
+  color: #c68e63;
+}
+
+/* Treasure has no emblem in game — a metallic sheen stands in for one. */
+.faction-badge.treasure {
+  background: linear-gradient(100deg, rgba(184, 134, 11, 0.18), rgba(237, 217, 160, 0.3), rgba(184, 134, 11, 0.18));
+  color: #f0dda8;
 }
 
 /* Winrate coloring */

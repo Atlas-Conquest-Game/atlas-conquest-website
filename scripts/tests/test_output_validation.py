@@ -430,3 +430,56 @@ class TestC11_GoalsStructure:
         assert card_total == data["overall"]["cards"]["total"]
         assert card_comm == data["overall"]["cards"]["commissioned"]
         assert cmd_total == data["overall"]["commanders"]["total"]
+
+
+# ─── C12: Patron → faction mapping is complete ───────────────────
+
+class TestC12_PatronFactionMapping:
+    """Every patron in the reference data must have its own faction slug.
+
+    Adora, Mechanus and Treasure previously fell through PATRON_MAP's default
+    and were published as "neutral", which made them look deck-legal for every
+    commander. Any new patron added to the CSVs without a PATRON_MAP entry
+    would regress the same way, so assert the mapping covers what ships.
+    """
+
+    @pytest.fixture(autouse=True)
+    def check_data(self):
+        skip_if_no_data()
+
+    def test_card_factions_match_patron_map(self):
+        from pipeline.constants import PATRON_MAP
+
+        cards = load_real_json("cards.json")
+        if cards is None:
+            pytest.skip("cards.json not found")
+
+        unmapped = {c["patron"] for c in cards if c["patron"] not in PATRON_MAP}
+        assert not unmapped, f"Patrons missing from PATRON_MAP: {sorted(unmapped)}"
+
+        for card in cards:
+            assert card["faction"] == PATRON_MAP[card["patron"]], (
+                f"{card['name']}: patron {card['patron']} published as "
+                f"faction {card['faction']}"
+            )
+
+    def test_commander_factions_match_patron_map(self):
+        from pipeline.constants import PATRON_MAP
+
+        commanders = load_real_json("commanders.json")
+        if commanders is None:
+            pytest.skip("commanders.json not found")
+
+        for cmd in commanders:
+            assert cmd["patron"] in PATRON_MAP, (
+                f"{cmd['name']}: patron {cmd['patron']} missing from PATRON_MAP"
+            )
+            assert cmd["faction"] == PATRON_MAP[cmd["patron"]]
+
+    def test_minor_patrons_are_not_neutral(self):
+        from pipeline.constants import PATRON_MAP
+
+        for patron in ("Adora", "Mechanus", "Treasure"):
+            assert PATRON_MAP.get(patron) == patron.lower(), (
+                f"{patron} must map to its own faction slug, not neutral"
+            )

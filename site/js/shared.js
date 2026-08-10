@@ -15,6 +15,10 @@ const FACTION_COLORS = {
   neutral: '#A89078',
   shadis: '#7B7B8E',
   archaeon: '#0072B2',
+  // Minor patrons — a card or two each, see --adora/--mechanus/--treasure
+  adora: '#CC79A7',
+  mechanus: '#A9714B',
+  treasure: '#EDD9A0',
 };
 
 const FACTION_LABELS = {
@@ -24,6 +28,9 @@ const FACTION_LABELS = {
   neutral: 'Neutral',
   shadis: 'Shadis',
   archaeon: 'Archaeon',
+  adora: 'Adora',
+  mechanus: 'Mechanus',
+  treasure: 'Treasure',
 };
 
 // Chart.js dark theme defaults. Guarded because the Articles pages load

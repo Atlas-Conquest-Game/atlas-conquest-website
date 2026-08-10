@@ -195,6 +195,10 @@ def build_and_write_all(games, cards_csv, commanders_csv):
                 for cmd, count in weekly[week].items():
                     faction = cmd_faction.get(cmd, "neutral")
                     faction_counts[faction] += count
+                # Commander factions only — deliberately the six main patrons
+                # rather than all of PATRON_MAP, since no commander has a minor
+                # patron (Adora/Mechanus/Treasure) and empty series would just
+                # clutter the trend chart.
                 for faction in ["skaal", "grenalia", "lucia", "neutral", "shadis", "archaeon"]:
                     pct = round((faction_counts[faction] / total) * 100, 1) if total > 0 else 0
                     faction_weekly[faction].append(pct)

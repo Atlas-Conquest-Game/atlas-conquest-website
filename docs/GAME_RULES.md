@@ -14,6 +14,8 @@ Competitive 1v1 deck builder on a hex-grid board. Assemble a 40-60 card deck led
 
 Decks may only contain cards matching the commander's patron, or neutral (beige) cards.
 
+**Minor patrons.** Alongside the six main patrons and Neutral, three more exist with only a card or two each: **Adora** (Fae), **Mechanus** (Mech) and **Treasure**. They are *not* Neutral — no regular commander lists them, so those cards are unbuildable outside Lazim, whose patron list covers every god (Adora and Mechanus included, but not Treasure). Source of truth: the `Patron` enum and the commander `Patrons` lists in the game repo.
+
 ## Cards
 - **Minion cards**: Played on a claimed tile. Become a board character.
 - **Spell cards**: One-time effects, disappear after use.
