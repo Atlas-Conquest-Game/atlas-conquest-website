@@ -36,7 +36,7 @@ Citadel Lord,Minion,"Arrival: Gain <sprite name=""power_2""> and <sprite name=""
 City Planning,Spell,Draw 2 Village cards from your deck.,None,2,,,,,Lucia,0.6.2,AI_GENERATED,ChatGPT Images,False,0,,
 Cloning Magic,Spell,[Range 2]: Shuffle three copies of target minion into your deck.,Psychic,1,,,,,Archaeon,0.4.28,AI_GENERATED,DALL-E,False,0,,
 Combust,Spell,"An ally minion deals damage equal to its power to adjacent characters, then dies.",Fire,2,,,,,Skaal,0.4.26,AI_GENERATED,DALL-E,False,0,,
-Cone of Cold,Spell,[Range 2]: Deal 2 damage to all characters in 1 Radius and stun any minions.,Frost,5,,,,,Archaeon,0.4.15,ARTIST_COMMISSIONED,Marc Petrelis,False,0,,Starter Mage
+Cone of Cold,Spell,[Range 2]: Deal 2 damage to all characters in 1 Radius and stun any minions.,Frost,5,,,,,Archaeon,0.4.15,ARTIST_COMMISSIONED,Marc Petrelis,True,2,ParticleDisplayFXAnimation;SingleSoundFXAnimation,Starter Mage
 Conscription,Spell,Add 3 Lucian Soldiers to your hand. They gain Ethereal.,None,3,,,,,Lucia,0.4.6,AI_GENERATED,Meta AI,True,1,SingleSoundFXAnimation,
 Crippling Tax,Spell,"Destroy a friendly village. Draw 3 cards. Gain <sprite name=""dominion_3""> Dominion.",None,4,,,,,Lucia,0.4.4,AI_GENERATED,DALL-E,False,0,,
 Daemonic Summoning,Spell,"Draw a Daemon from your deck. It costs <sprite name=""mana_3""> less.",None,3,,,,,Shadis,0.4.28,AI_GENERATED,DALL-E,False,0,,
@@ -45,7 +45,7 @@ Daemonprince Grizlocke,Minion,"Legendary. Flying. Trample. [Cooldown 1, Range 1]
 Darkroot Ooze,Minion,"When Darkroot Ooze battles, double the enemy's poison.",None,2,1,3,3,,Grenalia,0.1.14,AI_GENERATED,Midjourney,True,3,LoopingParticle;ParticleDisplayFXAnimation,
 Darkroot Witch,Minion,Spellcaster. Arrival: Add a Poison Sting to your hand.,Elf,2,1,2,2,,Grenalia,0.1.14,ARTIST_COMMISSIONED,Marc Petrelis,True,3,LoopingParticle;ParticleDisplayFXAnimation,
 Darkwing,Minion,Flying. Commander-Deploy. Arrival: Deal 2 damage to all non-daemon characters.,Daemon,7,7,3,4,,Shadis,0.4.27,AI_GENERATED,DALL-E,True,7,BoardTintFXAnimation;CharacterSpinFXAnimation;CompositeFXAnimation;ParticleDisplayFXAnimation;ProjectileRainFXAnimation;RandomSoundFXAnimation,
-Deathquill,Minion,"[Cooldown 1, Range 2]: Deal 1 damage and add 1 Poison to an enemy.",Beast,4,3,1,5,,Neutral,0.1.14,AI_GENERATED,Midjourney,True,3,LoopingParticle;ParticleDisplayFXAnimation,
+Deathquill,Minion,"[Cooldown 1, Range 2]: Deal 1 damage and add 1 Poison to an enemy.",Beast,4,3,1,5,,Neutral,0.1.14,AI_GENERATED,Midjourney,True,9,LoopingParticle;ParticleDisplayFXAnimation;ParticleTwoPointMotionFXAnimation;SingleSoundFXAnimation,
 Demilich,Minion,Spellcaster. Arrival AND Postmortem: Draw a card.,Undead,6,5,2,4,,Neutral,0.4.42,AI_GENERATED,DALL-E,False,0,,Starter Mage
 Devout Caretaker,Minion,Arrival: add 2 Lucian Soldiers to hand.,Human,4,1,3,5,,Lucia,0.1.21,AI_GENERATED,Midjourney,False,0,,
 Diplomatic Envoy,Minion,"Spellcaster. Arrival: Gain <sprite name=""intellect_2""> Intellect. (Intellect is your max hand size.)",Elf,2,2,3,3,,Neutral,0.6.11,AI_GENERATED,ChatGPT Images,False,0,,
@@ -66,7 +66,7 @@ Dwarven Battlepriest,Minion,"Spellcaster. [Arrival, Range 4]: An ally minion gai
 Dwarven Stout,Spell,"[Range 2]: A Dwarf minion gains <sprite name=""power_4""> and <sprite name=""health_4""> and ""At the end of your turns, deal 1 damage to all adjacent characters.""",Potion,4,,,,,Lucia,0.4.26,ARTIST_COMMISSIONED,Tomas Vinco,True,4,LoopingParticle;ParticleDisplayFXAnimation;SingleSoundFXAnimation;SpriteProjectileFXAnimation,
 "Dyana, Prime Huntress",Minion,Legendary. You can't play Dyana unless you control 3 Beasts. [Range 5 Attack]: Deal 7 damage to an enemy.,Demigod,5,5,2,7,True,Grenalia,0.2.4,ARTIST_COMMISSIONED,Jack Nguyen,True,5,ParticleDisplayFXAnimation;ParticleTwoPointMotionFXAnimation;SingleSoundFXAnimation,
 Eagle King,Minion,"Flying. When your characters attack, your Commander heals 1. [Arrival]: Summon a Giant Eagle.",Beast,6,3,4,4,,Neutral,0.2.5,ARTIST_COMMISSIONED,Marc Petrelis,False,0,,Starter Beasts
-Elf Ranger,Minion,[Range 2 Attack]: Deal 2 damage to an enemy.,Elf,2,1,2,3,,Neutral,0.1.1,PURCHASED_ASSET,Nightfall Interactive,False,0,,"Starter Beasts, Starter Military"
+Elf Ranger,Minion,[Range 2 Attack]: Deal 2 damage to an enemy.,Elf,2,1,2,3,,Neutral,0.1.1,PURCHASED_ASSET,Nightfall Interactive,True,4,ParticleDisplayFXAnimation;ParticleTwoPointMotionFXAnimation;SingleSoundFXAnimation,"Starter Beasts, Starter Military"
 Elite Mercenary,Minion,"Commander-Deploy. Lifelink. Shield. Costs <sprite name=""mana_3""> less if your opponent controls 4 or more minions.",Human,7,4,3,5,,Neutral,0.4.42,AI_GENERATED,DALL-E,False,0,,
 Elixirist,Minion,Arrival: add a Growth Potion to your hand.,Elf,3,4,3,2,,Neutral,0.4.45,ARTIST_COMMISSIONED,Tomas Vinco,True,4,LoopingParticle;ParticleDisplayFXAnimation;SingleSoundFXAnimation;SpriteProjectileFXAnimation,"Starter Beasts, Starter Mage"
 Elven Spellblade,Minion,Arrival: Deal 3 damage to the enemy commander.,Elf,5,5,4,5,,Neutral,0.5.2,AI_GENERATED,Nano Banana Pro,False,0,,Starter Deploy
@@ -97,7 +97,7 @@ Giant Eagle,Minion,Flying.  (Can occupy non-traversable tiles.),Beast,4,3,4,4,,N
 Giant River Snapper,Minion,Arrival: Your commander heals 8 health.,Beast,8,8,2,10,,Grenalia,0.1.2,ARTIST_COMMISSIONED,Marc Petrelis,False,0,,
 Gilded Defender,Minion,Realmbound.  (May only occupy tiles you own.),Mech,2,5,3,5,,Neutral,0.4.42,AI_GENERATED,DALL-E,False,0,,
 Goblin Duo,Minion,Goblin-Deploy. Arrival: add a goblin scamp to hand.,Goblin,2,1,2,1,,Neutral,0.1.1,AI_GENERATED,Stable Diffusion,False,0,,
-Goblin Firebow,Minion,Goblin-Deploy. [Range 2 Attack]: Deal 2 damage. Deal 1 damage to Goblin Firebow,Goblin,1,1,2,2,,Neutral,0.1.2,AI_GENERATED,Nano Banana Pro,False,0,,
+Goblin Firebow,Minion,Goblin-Deploy. [Range 2 Attack]: Deal 2 damage. Deal 1 damage to Goblin Firebow,Goblin,1,1,2,2,,Neutral,0.1.2,AI_GENERATED,Nano Banana Pro,True,6,ParticleDisplayFXAnimation;ParticleTwoPointMotionFXAnimation;SingleSoundFXAnimation,
 Goblin Infantry,Minion,"Gain <sprite name=""power_1""> whenever you play a Goblin card.",Goblin,1,1,2,3,,Neutral,0.1.1,AI_GENERATED,Stable Diffusion,False,0,,
 Goblin Infiltrator,Minion,Trample. Deploy.,Goblin,5,5,2,5,,Neutral,0.1.1,AI_GENERATED,Stable Diffusion,False,0,,"Starter Death, Starter Deploy"
 Goblin King,Minion,"Allied Goblin minions within Range 3 have +<sprite name=""power_2"">.",Goblin,3,3,2,3,,Neutral,0.1.1,AI_GENERATED,Stable Diffusion,False,0,,
@@ -170,7 +170,7 @@ Mummified Warrior,Minion,Postmortem: Draw a card.,Undead,2,2,2,2,,Neutral,0.4.38
 Nevisha Ascendant,Minion,"Legendary. Flying. Arrival AND at the beginning of your turn: add a Lucian Soldier to your hand and ally minions in Range 3 gain <sprite name=""power_1""><sprite name=""speed_1""><sprite name=""health_1"">.",Angel,7,6,5,6,True,Lucia,0.1.23,AI_GENERATED,Midjourney,False,0,,
 Nexus Operative,Minion,"Spellcaster. Whenever you play a spell, your other Spellcasters gain <sprite name=""power_1""><sprite name=""speed_1""><sprite name=""health_1""> until end of turn.",Elf,3,3,3,3,,Archaeon,0.4.26,AI_GENERATED,DALL-E,False,0,,
 Nexus Recruit,Minion,"Spellcaster. Whenever you draw a card, gain <sprite name=""power_1""><sprite name=""speed_1""><sprite name=""health_1""> until end of turn.",Elf,1,1,2,2,,Archaeon,0.4.26,AI_GENERATED,DALL-E,False,0,,
-Nilo of One Thousand Cuts,Minion,"Legendary. Postmortem: Deal 2 damage to each commander, then add a copy of Nilo to your hand.",Demigod,2,2,2,2,True,Shadis,0.1.1,ARTIST_COMMISSIONED,Mark Petrelis,True,1,ParticleTwoPointMotionFXAnimation,
+Nilo of One Thousand Cuts,Minion,"Legendary. Postmortem: Deal 2 damage to each commander, then add a copy of Nilo to your hand.",Demigod,2,2,2,2,True,Shadis,0.1.1,ARTIST_COMMISSIONED,Mark Petrelis,True,4,ParticleDisplayFXAnimation;ParticleTwoPointMotionFXAnimation;RandomSoundFXAnimation;SingleSoundFXAnimation,
 Nobleman of the Order,Minion,"Whenever a minion is healed within Range 3, draw a card.",Human,4,3,3,4,,Lucia,0.1.7,AI_GENERATED,Midjourney,False,0,,Starter Military
 Oathbroken Apprentice,Minion,"Commander-Deploy. Whenever your commander loses life on your turn, gain <sprite name=""power_1"">.",Human,1,1,3,2,,Neutral,0.6.11,AI_GENERATED,ChatGPT Images,False,0,,
 Oathsworn Champion,Minion,Arrival: Heal all allies for 2.,Human,5,5,3,5,,Neutral,0.1.4,AI_GENERATED,Midjourney,False,0,,Starter Military
@@ -211,7 +211,7 @@ Revoke the Living,Spell,"Add 2 poison to all enemies within Range 1 of your terr
 Ritual of Shadows,Spell,Shuffle three Dark Offerings into your deck.,None,1,,,,,Shadis,0.4.25,AI_GENERATED,DALL-E,False,0,,
 Royal Commander,Minion,"Ally minions within Range 3 have +<sprite name=""power_1""><sprite name=""speed_1""><sprite name=""health_1"">.",Human,6,6,3,6,,Neutral,0.4.42,ARTIST_COMMISSIONED,Tomas Vinco,False,0,,"Starter Death, Starter Military"
 Rule the Hinterlands,Spell,"Claim an uncontested tile adjacent to your territory. Gain <sprite name=""dominion_2""> Dominion.",None,3,,,,,Grenalia,0.1.4,AI_GENERATED,Midjourney,False,0,,
-Runic Knight,Minion,Spell-Damage +1.  (Spells you play deal an extra 1 damage.),Human,3,3,3,4,,Neutral,0.4.42,AI_GENERATED,DALL-E,False,0,,Starter Mage
+Runic Knight,Minion,Spell-Damage +1.  (Spells you play deal an extra 1 damage.),Human,3,3,3,4,,Neutral,0.4.42,ARTIST_COMMISSIONED,Tomas Vinco,False,0,,Starter Mage
 Sacrificial Offering,Spell,Destroy an ally minion. Draw 2 cards.,None,1,,,,,Shadis,0.4.15,AI_GENERATED,DALL-E,False,0,,Starter Death
 Sage Potion,Spell,"[Range 2]: A minion gains ""Whenever you draw a card, gain <sprite name=""power_1""> and <sprite name=""health_1"">"".",Potion,2,,,,,Archaeon,0.4.23,ARTIST_COMMISSIONED,Tomas Vinco,True,4,LoopingParticle;ParticleDisplayFXAnimation;SingleSoundFXAnimation;SpriteProjectileFXAnimation,
 Sanguine Baroness,Minion,Fatal. Arrival: Draw 2 cards and your commander heals 2.,Vampire,7,3,3,3,,Neutral,0.4.42,AI_GENERATED,DALL-E,False,0,,
@@ -228,7 +228,7 @@ Slash and Burn,Spell,"Unclaim a tile you control. Gain <sprite name=""dominion_2
 Slay the Mighty,Spell,[Range 4]: Destroy a minion with mana cost 4 or greater.,None,3,,,,,Lucia,0.1.2,AI_GENERATED,DALL-E,True,2,ParticleDisplayFXAnimation;SingleSoundFXAnimation,Starter Military
 Soul Sale,Spell,"Add 3 Imps to your hand. They cost <sprite name=""mana_0""> and have Ethereal.",None,4,,,,,Shadis,0.4.44,AI_GENERATED,DALL-E,False,0,,
 Soulreap,Spell,"An enemy minion loses <sprite name=""power_6""> and <sprite name=""health_6"">. Your commander heals 6 life. Costs <sprite name=""mana_5""> less if you control a Daemon.",None,8,,,,,Shadis,0.4.22,AI_GENERATED,Midjourney,False,0,,
-Spiderling Rider,Minion,Trample. [Range 2 Attack]: Deal 2 damage to an enemy if you control another Arachnid.,Arachnid,3,3,3,3,,Neutral,0.4.38,ARTIST_COMMISSIONED,Marc Petrelis,False,0,,
+Spiderling Rider,Minion,Trample. [Range 2 Attack]: Deal 2 damage to an enemy if you control another Arachnid.,Arachnid,3,3,3,3,,Neutral,0.4.38,ARTIST_COMMISSIONED,Marc Petrelis,True,4,ParticleDisplayFXAnimation;ParticleTwoPointMotionFXAnimation;SingleSoundFXAnimation,
 Spoils of War,Spell,Discard your hand. Draw cards equal to the number of territories you control.,None,5,,,,,Skaal,0.4.7,AI_GENERATED,DALL-E,False,0,,
 Spore Thresher,Minion,"At the end of your turn, add 2 Poison to enemies and heal 2 for allies within Range 2.",Plant,6,1,0,6,,Grenalia,0.2.5,ARTIST_COMMISSIONED,Tomas Vinco,True,5,LoopingParticle;ParticleDisplayFXAnimation;SingleSoundFXAnimation,
 Stagasus,Minion,"Flying. [<sprite name=""mana_1"">, Range 2, Skip an Attack]: Give an ally +4 movement.",Beast,2,2,2,2,,Neutral,0.1.1,ARTIST_COMMISSIONED,Mark Petrelis,False,0,,Starter Deploy
