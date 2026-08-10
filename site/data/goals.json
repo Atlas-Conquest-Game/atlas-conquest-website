@@ -4,7 +4,7 @@
       "id": "art_count",
       "label": "100 Cards Commissioned",
       "kind": "count",
-      "current": 77,
+      "current": 78,
       "target": 100,
       "met": false
     },
@@ -62,8 +62,8 @@
         {
           "deck": "Starter Mage",
           "total": 14,
-          "met_count": 7,
-          "rate": 0.5,
+          "met_count": 8,
+          "rate": 0.5714,
           "met": false
         },
         {
@@ -81,9 +81,9 @@
       "id": "anim_all",
       "label": "20% of all Cards have an animation",
       "kind": "percent",
-      "numerator": 66,
+      "numerator": 70,
       "denominator": 274,
-      "current": 0.2409,
+      "current": 0.2555,
       "target": 0.2,
       "met": true
     },
@@ -120,8 +120,8 @@
         {
           "deck": "Starter Beasts",
           "total": 15,
-          "met_count": 5,
-          "rate": 0.3333,
+          "met_count": 6,
+          "rate": 0.4,
           "met": false
         },
         {
@@ -141,15 +141,15 @@
         {
           "deck": "Starter Mage",
           "total": 14,
-          "met_count": 3,
-          "rate": 0.2143,
+          "met_count": 4,
+          "rate": 0.2857,
           "met": false
         },
         {
           "deck": "Starter Military",
           "total": 15,
-          "met_count": 3,
-          "rate": 0.2,
+          "met_count": 4,
+          "rate": 0.2667,
           "met": false
         }
       ]
@@ -158,10 +158,10 @@
   "overall": {
     "cards": {
       "total": 274,
-      "commissioned": 77,
-      "commissioned_rate": 0.281,
-      "animated": 66,
-      "animated_rate": 0.2409
+      "commissioned": 78,
+      "commissioned_rate": 0.2847,
+      "animated": 70,
+      "animated_rate": 0.2555
     },
     "commanders": {
       "total": 16,
@@ -197,8 +197,8 @@
         "total": 26,
         "commissioned": 9,
         "commissioned_rate": 0.3462,
-        "animated": 3,
-        "animated_rate": 0.1154
+        "animated": 4,
+        "animated_rate": 0.1538
       },
       "commanders": {
         "total": 3,
@@ -267,10 +267,10 @@
       "faction": "neutral",
       "cards": {
         "total": 119,
-        "commissioned": 36,
-        "commissioned_rate": 0.3025,
-        "animated": 21,
-        "animated_rate": 0.1765
+        "commissioned": 37,
+        "commissioned_rate": 0.3109,
+        "animated": 24,
+        "animated_rate": 0.2017
       },
       "commanders": {
         "total": 2,

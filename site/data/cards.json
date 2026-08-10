@@ -690,7 +690,7 @@
     "art": "CardScreenshots/Cone-of-Cold.png",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Mage"
     ]
@@ -1245,7 +1245,7 @@
     "art": "CardScreenshots/Elf-Ranger.png",
     "art_type": "PURCHASED_ASSET",
     "commissioned": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Beasts",
       "Starter Military"
@@ -1819,7 +1819,7 @@
     "art": "CardScreenshots/Goblin-Firebow.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": []
   },
   {
@@ -3934,8 +3934,8 @@
     "patron": "Neutral",
     "faction": "neutral",
     "art": "CardScreenshots/Runic-Knight.png",
-    "art_type": "AI_GENERATED",
-    "commissioned": false,
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
     "has_animation": false,
     "starter_decks": [
       "Starter Mage"
@@ -4252,7 +4252,7 @@
     "art": "CardScreenshots/Spiderling-Rider.png",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": []
   },
   {
