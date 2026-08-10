@@ -100,9 +100,15 @@
       'Ironbark Defender':  { cost: 4, type: 'minion', faction: 'grenalia' },
       'Flame Burst':        { cost: 2, type: 'spell',  faction: 'skaal' },
       'Deep Sea Leviathan': { cost: 8, type: 'minion', faction: 'archaeon' },
+      'Pixie Pikeman':      { cost: 2, type: 'minion', faction: 'adora' },
+      'Hover Tank':         { cost: 5, type: 'minion', faction: 'mechanus' },
+      'War Chest':          { cost: 0, type: 'spell',  faction: 'treasure' },
     };
 
     const LAZIM_NAME = 'Lazim, Thief of Gods';
+    const LAZIM_FACTIONS = new Set([
+      'skaal', 'grenalia', 'lucia', 'archaeon', 'mechanus', 'shadis', 'adora',
+    ]);
 
     const mockCommanderMap = {
       'Elber, Jungle Emissary': { faction: 'Shadis' },
@@ -119,7 +125,7 @@
       if (!cmdData) return true;
       const cmdFaction = (cmdData.faction || '').toLowerCase();
       const cardFaction = (mockCardInfoMap[cardName]?.faction || '').toLowerCase();
-      if (commanderName === LAZIM_NAME) return cardFaction !== 'neutral';
+      if (commanderName === LAZIM_NAME) return LAZIM_FACTIONS.has(cardFaction);
       if (cmdFaction === 'neutral') return cardFaction === 'neutral';
       return cardFaction === 'neutral' || cardFaction === cmdFaction;
     }
@@ -188,6 +194,30 @@
     test('Lazim cannot use neutral cards', () => {
       assert(!testIsCompat('Stone Sentinel', LAZIM_NAME),
         'Lazim should NOT be compatible with neutral cards');
+    });
+
+    test('minor patron cards are not neutral fallers-through', () => {
+      // Adora, Mechanus and Treasure are their own patrons — they must not be
+      // treated as neutral, so no faction commander may run them.
+      assert(!testIsCompat('Pixie Pikeman', 'Elber, Jungle Emissary'),
+        'Adora card should NOT be compatible with a Shadis commander');
+      assert(!testIsCompat('Hover Tank', 'Kira, Grenalia Lead'),
+        'Mechanus card should NOT be compatible with a Grenalia commander');
+      assert(!testIsCompat('War Chest', 'Kira, Grenalia Lead'),
+        'Treasure card should NOT be compatible with a Grenalia commander');
+      assert(!testIsCompat('Pixie Pikeman', 'Newhaven Township'),
+        'Adora card should NOT be compatible with a neutral commander');
+    });
+
+    test('Lazim sees Adora and Mechanus but not Treasure', () => {
+      // Lazim's in-game Patrons list covers every god including Adora and
+      // Mechanus; Treasure belongs to no commander.
+      assert(testIsCompat('Pixie Pikeman', LAZIM_NAME),
+        'Lazim should see Adora cards');
+      assert(testIsCompat('Hover Tank', LAZIM_NAME),
+        'Lazim should see Mechanus cards');
+      assert(!testIsCompat('War Chest', LAZIM_NAME),
+        'Lazim should NOT see Treasure cards');
     });
 
     test('switching commander can make cards incompatible', () => {

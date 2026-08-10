@@ -36,6 +36,17 @@
 | `--shadis` | `#7B7B8E` | Shadis (Slate) |
 | `--archaeon` | `#0072B2` | Archaeon (Blue) |
 
+### Minor Patron Accents
+Adora, Mechanus and Treasure each have only a card or two, but they are distinct
+patrons — not Neutral. Treasure sits deliberately lighter than Lucia's saturated
+amber so the two read apart when charted side by side.
+
+| Token | Value | Patron |
+|-------|-------|--------|
+| `--adora` | `#CC79A7` | Adora (Reddish Purple) |
+| `--mechanus` | `#A9714B` | Mechanus (Copper) |
+| `--treasure` | `#EDD9A0` | Treasure (Pale Gold) |
+
 ### Semantic
 | Token | Value | Usage |
 |-------|-------|-------|

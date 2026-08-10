@@ -61,7 +61,7 @@ See [ARCHITECTURE.md](docs/ARCHITECTURE.md) for the full system design.
 
 - **No build step** for the frontend. Plain HTML/CSS/JS. Keep it simple.
 - **Data flows one direction**: AWS → JSON → Site. The site never writes to AWS.
-- **Faction colors** (colorblind-safe Okabe-Ito palette): Skaal = `#D55E00`, Grenalia = `#009E73`, Lucia = `#E8B630`, Neutral = `#A89078`, Shadis = `#7B7B8E`, Archaeon = `#0072B2`.
+- **Faction colors** (colorblind-safe Okabe-Ito palette): Skaal = `#D55E00`, Grenalia = `#009E73`, Lucia = `#E8B630`, Neutral = `#A89078`, Shadis = `#7B7B8E`, Archaeon = `#0072B2`. Minor patrons: Adora = `#CC79A7`, Mechanus = `#A9714B`, Treasure = `#EDD9A0`.
 - **Static JSON files** in `site/data/` are the contract between pipeline and frontend. All stats files are nested `data[period][map]` where period is `all|6m|3m|1m` and map is `all|Dunes|Snowmelt|Tropics`.
 - **Python 3.10+** for scripts. Use `boto3` for AWS access. Virtual env at `venv/`.
 - **Dependencies**: `scripts/requirements.txt` is what CI installs — keep it to what the pipeline and tests need. Local-only tooling goes in `scripts/requirements-dev.txt`.
@@ -73,7 +73,7 @@ See [ARCHITECTURE.md](docs/ARCHITECTURE.md) for the full system design.
 - **Commanders** have an **intellect** stat (6-10) that determines how many cards they see in their opening hand mulligan.
 - **Mulligan**: players see `intellect` cards, keep exactly 3 (going first) or 4 (going second), return the rest to their deck.
 - **Turn order**: first player (`first_player` field) — historical data has `"99"` for corrupt entries. Mulligan data can infer turn order from kept count.
-- **6 factions**: Skaal, Grenalia, Lucia, Neutral, Shadis, Archaeon.
+- **6 factions**: Skaal, Grenalia, Lucia, Neutral, Shadis, Archaeon. Plus 3 **minor patrons** with a card or two each — Adora, Mechanus, Treasure. They are not Neutral; only Lazim can build Adora/Mechanus cards and Treasure belongs to no commander.
 - **3 maps**: Dunes, Snowmelt, Tropics.
 
 ## AWS Configuration

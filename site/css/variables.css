@@ -25,6 +25,13 @@
   --shadis: #7B7B8E;
   --archaeon: #0072B2;
 
+  /* Minor patrons — a card or two each. Adora takes the remaining Okabe-Ito
+     hue (reddish purple); Mechanus is copper; Treasure is a pale metallic gold
+     kept lighter than Lucia so the two stay distinguishable side by side. */
+  --adora: #CC79A7;
+  --mechanus: #A9714B;
+  --treasure: #EDD9A0;
+
   /* Semantic */
   --positive: #3fb950;
   --negative: #f85149;

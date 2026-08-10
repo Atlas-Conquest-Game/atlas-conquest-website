@@ -31,13 +31,20 @@ const supportsHover = window.matchMedia('(hover: hover) and (pointer: fine)').ma
 const FACTION_COLORS = {
   skaal: '#D55E00', grenalia: '#009E73', lucia: '#E8B630',
   neutral: '#A89078', shadis: '#7B7B8E', archaeon: '#0072B2',
+  adora: '#CC79A7', mechanus: '#A9714B', treasure: '#EDD9A0',
 };
 
 const MINION_COLOR = 'var(--lucia)';
 const SPELL_COLOR  = '#7C9EFF';
 
-// Lazim has a unique rule: all non-neutral faction cards, but no neutral cards
+// Lazim has a unique rule: cards from any god, but no neutral cards. Mirrors
+// his Patrons list in the game (Assets/Resources/Commanders/lazim-thief-of-gods
+// .asset) — every patron except Neutral and Treasure, which is a token-only
+// category belonging to no commander.
 const LAZIM_NAME = 'Lazim, Thief of Gods';
+const LAZIM_FACTIONS = new Set([
+  'skaal', 'grenalia', 'lucia', 'archaeon', 'mechanus', 'shadis', 'adora',
+]);
 
 // ─── Data Loading ──────────────────────────────────────────
 
@@ -102,13 +109,14 @@ function isCardCompatible(cardName, commanderName) {
 
   if (commanderName === LAZIM_NAME) {
     // Lazim: "cards from any god, but not neutral cards"
-    return cardFaction !== 'neutral';
+    return LAZIM_FACTIONS.has(cardFaction);
   }
   if (cmdFaction === 'neutral') {
     // Other neutral commanders: neutral cards only
     return cardFaction === 'neutral';
   }
-  // Faction commander: own faction + neutral
+  // Faction commander: own faction + neutral. Minor patrons (Adora, Mechanus,
+  // Treasure) are on no commander's patron list, so they fall out here.
   return cardFaction === 'neutral' || cardFaction === cmdFaction;
 }
 
@@ -241,7 +249,7 @@ function getCardPool() {
     if (!selectedCommander) return true; // no commander: show all playable cards
 
     const cf = (cardInfoMap[c.name]?.faction || '').toLowerCase();
-    if (selectedCommander === LAZIM_NAME) return cf !== 'neutral';
+    if (selectedCommander === LAZIM_NAME) return LAZIM_FACTIONS.has(cf);
     if (cmdFaction === 'neutral') return cf === 'neutral';
     if (cmdFaction) return cf === 'neutral' || cf === cmdFaction;
     return true;
@@ -646,7 +654,7 @@ function updateFilterHint(commanderName) {
   const faction = cmdData.faction || 'Neutral';
   let text;
   if (commanderName === LAZIM_NAME) {
-    text = 'Showing all non-neutral faction cards';
+    text = 'Showing cards from every god — no Neutral';
   } else if (faction.toLowerCase() === 'neutral') {
     text = 'Showing neutral cards only';
   } else {

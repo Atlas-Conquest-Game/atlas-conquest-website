@@ -56,7 +56,10 @@ PERIODS = {"all": None, "6m": 180, "3m": 90, "1m": 30}
 # Maps for aggregation: "all" includes every game
 MAPS = ["all", "Dunes", "Snowmelt", "Tropics"]
 
-# Patron (faction) color mapping
+# Patron (faction) color mapping. Mirrors the Patron enum in the game repo
+# (Assets/Code/Scripts/Card/Patron.cs). Adora, Mechanus and Treasure are minor
+# patrons with only a card or two each — they are NOT neutral, and were
+# previously falling through to "neutral" via the .get() default.
 PATRON_MAP = {
     "Skaal": "skaal",
     "Grenalia": "grenalia",
@@ -64,4 +67,7 @@ PATRON_MAP = {
     "Neutral": "neutral",
     "Shadis": "shadis",
     "Archaeon": "archaeon",
+    "Adora": "adora",
+    "Mechanus": "mechanus",
+    "Treasure": "treasure",
 }
