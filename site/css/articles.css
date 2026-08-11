@@ -515,13 +515,26 @@ a.article-tag:hover {
    multiple shortcodes on one source line lay out side-by-side, wrapping on
    narrow viewports. Flex wins over the global `.article-prose img { display: block }`
    because flex items get their own layout context regardless of display. */
-.article-prose p:has(> .card-art-inline) {
+.article-prose p:has(.card-art-inline) {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
   gap: 12px;
   margin: 1.4em 0;
+}
+
+/* A card that creates other cards ships as a group: the card itself plus the
+   cards it makes, kept together so a paragraph with several shortcodes doesn't
+   interleave them. */
+.article-prose .card-art-group {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.article-prose .card-art-group .card-art-mention {
+  max-width: 150px;
 }
 
 .article-prose .card-art-inline {
@@ -543,6 +556,9 @@ a.article-tag:hover {
   }
   .article-prose .card-art-inline:only-child {
     max-width: 240px;
+  }
+  .article-prose .card-art-group .card-art-mention {
+    max-width: 110px;
   }
 }
 

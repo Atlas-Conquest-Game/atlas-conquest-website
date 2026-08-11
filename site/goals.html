@@ -72,6 +72,8 @@
       <div class="hero-meta">
         <span class="hero-stat" id="hero-card-count">-- cards</span>
         <span class="hero-divider"></span>
+        <span class="hero-stat" id="hero-token-count">-- tokens</span>
+        <span class="hero-divider"></span>
         <span class="hero-stat" id="hero-commander-count">-- commanders</span>
       </div>
     </div>
@@ -99,9 +101,34 @@
   <section class="section">
     <div class="container">
       <h2 class="section-title">Overall Progress</h2>
-      <p class="section-subtitle">Overall commission &amp; animation rates across the whole card pool, broken down by patron.</p>
+      <p class="section-subtitle">Overall commission &amp; animation rates across everything that needs artwork. Tokens have no goal of their own, but they count toward the combined totals below.</p>
 
       <div class="card-grid" id="overall-kpis"></div>
+
+      <h3 class="goal-group-title">Art Source</h3>
+      <p class="section-subtitle">Where each pool's artwork comes from. "Commissioned" and "Purchased" both count as non-AI toward the goals above.</p>
+
+      <div class="table-wrapper">
+        <table class="data-table" id="art-source-table">
+          <thead>
+            <tr>
+              <th>Pool</th>
+              <th>Total</th>
+              <th>Commissioned <span class="tooltip-icon" data-tooltip="Artwork commissioned from an artist (ARTIST_COMMISSIONED).">?</span></th>
+              <th>Purchased <span class="tooltip-icon" data-tooltip="Bought asset-pack artwork (PURCHASED_ASSET). Counts as non-AI.">?</span></th>
+              <th>AI <span class="tooltip-icon" data-tooltip="AI-generated artwork — the pool the goals are working to replace.">?</span></th>
+              <th class="col-other">Other <span class="tooltip-icon" data-tooltip="Artwork with an unrecognised or missing ArtType in the source CSV.">?</span></th>
+              <th>Animated <span class="tooltip-icon" data-tooltip="Share of this pool that has an in-game animation.">?</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="placeholder-row"><td colspan="7">Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="goal-group-title">By Patron</h3>
+      <p class="section-subtitle">Buildable cards only — tokens are excluded here.</p>
 
       <div class="table-wrapper">
         <table class="data-table" id="patron-table">
@@ -132,6 +159,7 @@
     </div>
   </footer>
 
+  <script src="js/cardpreview.js"></script>
   <script src="js/shared.js"></script>
   <script src="js/goals.js"></script>
 </body>

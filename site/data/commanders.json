@@ -12,7 +12,8 @@
     "art": "assets/commanders/captain-greenbeard.jpg",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": true
+    "has_animation": true,
+    "mentions": []
   },
   {
     "name": "Elber, Jungle Emissary",
@@ -27,7 +28,8 @@
     "art": "assets/commanders/elber-jungle-emissary.jpg",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false
+    "has_animation": false,
+    "mentions": []
   },
   {
     "name": "Elyse of the Order",
@@ -42,7 +44,10 @@
     "art": "assets/commanders/elyse-of-the-order.jpg",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false
+    "has_animation": false,
+    "mentions": [
+      "Lucian Soldier"
+    ]
   },
   {
     "name": "Executor Ginn",
@@ -57,7 +62,8 @@
     "art": "assets/commanders/executor-ginn.jpg",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false
+    "has_animation": false,
+    "mentions": []
   },
   {
     "name": "Fael Spiritwalker",
@@ -72,7 +78,10 @@
     "art": "assets/commanders/fael-spiritwalker.jpg",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": true
+    "has_animation": true,
+    "mentions": [
+      "Daemon Familiar"
+    ]
   },
   {
     "name": "It That Weaves",
@@ -87,7 +96,8 @@
     "art": "assets/commanders/it-that-weaves.jpg",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false
+    "has_animation": false,
+    "mentions": []
   },
   {
     "name": "Jagris, the Huntsman",
@@ -102,7 +112,8 @@
     "art": "assets/commanders/jagris-the-huntsman.jpg",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false
+    "has_animation": false,
+    "mentions": []
   },
   {
     "name": "Kai, Longcount Shaman",
@@ -117,7 +128,8 @@
     "art": "assets/commanders/kai-longcount-shaman.jpg",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false
+    "has_animation": false,
+    "mentions": []
   },
   {
     "name": "Lazim, Thief of Gods",
@@ -132,7 +144,8 @@
     "art": "assets/commanders/lazim-thief-of-gods.jpg",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false
+    "has_animation": false,
+    "mentions": []
   },
   {
     "name": "Lubela, Tender of the Wilds",
@@ -147,7 +160,8 @@
     "art": "assets/commanders/lubela-tender-of-the-wilds.jpg",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false
+    "has_animation": false,
+    "mentions": []
   },
   {
     "name": "Macks Speed",
@@ -162,7 +176,8 @@
     "art": "assets/commanders/macks-speed.jpg",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false
+    "has_animation": false,
+    "mentions": []
   },
   {
     "name": "Milo Sunstone",
@@ -177,7 +192,8 @@
     "art": "assets/commanders/milo-sunstone.jpg",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": true
+    "has_animation": true,
+    "mentions": []
   },
   {
     "name": "Newhaven Township",
@@ -192,7 +208,8 @@
     "art": "assets/commanders/newhaven-township.jpg",
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false
+    "has_animation": false,
+    "mentions": []
   },
   {
     "name": "Rosirix the Witch",
@@ -207,7 +224,8 @@
     "art": "assets/commanders/rosirix-the-witch.jpg",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false
+    "has_animation": false,
+    "mentions": []
   },
   {
     "name": "Soultaker Viessa",
@@ -222,7 +240,8 @@
     "art": "assets/commanders/soultaker-viessa.jpg",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false
+    "has_animation": false,
+    "mentions": []
   },
   {
     "name": "Starwise Luna",
@@ -237,6 +256,7 @@
     "art": "assets/commanders/starwise-luna.jpg",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": true
+    "has_animation": true,
+    "mentions": []
   }
 ]

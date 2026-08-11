@@ -644,16 +644,18 @@ function initModal() {
 // Every card in CardScreenshots/ is PNG today so the popup is guaranteed to
 // resolve; if a future asset is added without a matching PNG the popup just
 // hides via the onerror handler.
+//
+// Contents and placement come from site/js/cardpreview.js, which also pulls in
+// any cards this one creates so they render side-by-side.
 function initCardPreview() {
   let preview = document.getElementById('card-preview');
   if (!preview) {
     preview = document.createElement('div');
     preview.id = 'card-preview';
     preview.className = 'card-preview';
-    preview.innerHTML = '<img id="card-preview-img" src="" alt="">';
     document.body.appendChild(preview);
   }
-  const img = document.getElementById('card-preview-img');
+  const srcFor = slug => `/assets/card-art-png/${slug}.png`;
 
   function slugFor(target) {
     if (!target || target.nodeType !== 1) return null;
@@ -678,17 +680,13 @@ function initCardPreview() {
   document.addEventListener('mouseover', e => {
     const slug = slugFor(e.target);
     if (!slug) { preview.classList.remove('visible'); return; }
-    img.src = `/assets/card-art-png/${slug}.png`;
-    img.onerror = () => { preview.classList.remove('visible'); };
+    renderCardPreview(preview, slug, srcFor);
     preview.classList.add('visible');
   });
 
   document.addEventListener('mousemove', e => {
     if (!preview.classList.contains('visible')) return;
-    const x = e.clientX + 24;
-    const flip = x + 220 > window.innerWidth;
-    preview.style.left = flip ? `${e.clientX - 224}px` : `${x}px`;
-    preview.style.top = `${Math.max(8, e.clientY - 120)}px`;
+    positionCardPreview(preview, e);
   });
 
   document.addEventListener('mouseout', e => {
@@ -696,6 +694,110 @@ function initCardPreview() {
       preview.classList.remove('visible');
     }
   });
+}
+
+// ─── Sticky Table Header ────────────────────────────────────
+
+/**
+ * Pin a long table's column headers under the sticky nav stack.
+ *
+ * The Cards and Mulligan tables run several hundred rows — tall enough that the
+ * header, which carries the sort indicator, scrolls out of reach within one
+ * screen and leaves you staring at columns of near-identical percentages.
+ *
+ * This clones the header row into a fixed-position element rather than making
+ * the real `thead` sticky, because sticky can't work here: `.table-wrapper` sets
+ * `overflow-x: auto`, which per spec makes it a scroll container on both axes,
+ * so a sticky `thead` inside it sticks to the wrapper's scrollport — which is as
+ * tall as the table and never scrolls. See the note on .sticky-table-header in
+ * components.css for why capping the wrapper's height isn't the answer either.
+ *
+ * The clone is inert to assistive tech (the real header is still in the tree);
+ * clicks on it are forwarded to the matching real header so sorting works.
+ */
+function initStickyTableHeader(table) {
+  const wrapper = table && table.closest('.table-wrapper');
+  if (!table || !wrapper || !table.tHead) return;
+
+  const holder = document.createElement('div');
+  holder.className = 'sticky-table-header';
+  holder.setAttribute('aria-hidden', 'true');
+  const clone = document.createElement('table');
+  clone.className = table.className;
+  holder.appendChild(clone);
+  document.body.appendChild(holder);
+
+  // Content (column widths, sort arrows) only needs rebuilding when the table
+  // re-renders or the viewport changes — not on every scroll frame.
+  let dirty = true;
+  let queued = false;
+
+  function stickyStack() {
+    const raw = getComputedStyle(document.documentElement).getPropertyValue('--sticky-stack');
+    return parseFloat(raw) || 0;
+  }
+
+  function rebuild() {
+    clone.innerHTML = table.tHead.outerHTML;
+    // Auto table layout sizes columns to content, and the clone has only the
+    // header's short strings to go on — so copy the real widths across.
+    const real = table.tHead.rows[0].cells;
+    const copy = clone.rows[0].cells;
+    for (let i = 0; i < copy.length && i < real.length; i++) {
+      copy[i].style.width = `${real[i].getBoundingClientRect().width}px`;
+    }
+    clone.style.width = `${table.getBoundingClientRect().width}px`;
+    dirty = false;
+  }
+
+  function update() {
+    const head = table.tHead;
+    const tableRect = table.getBoundingClientRect();
+    const headHeight = head.getBoundingClientRect().height;
+    const top = stickyStack();
+    // Show it only once the real header has scrolled past, and hide it again
+    // when the table's last rows go by — no floating header over the footer.
+    const show = tableRect.top < top && tableRect.bottom > top + headHeight;
+    holder.classList.toggle('visible', show);
+    if (!show) return;
+
+    if (dirty) rebuild();
+    const wrapRect = wrapper.getBoundingClientRect();
+    holder.style.left = `${wrapRect.left}px`;
+    holder.style.width = `${wrapper.clientWidth}px`;
+    // Follow the wrapper's horizontal scroll so columns stay aligned.
+    clone.style.marginLeft = `${-wrapper.scrollLeft}px`;
+  }
+
+  function schedule() {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(() => { queued = false; update(); });
+  }
+
+  function invalidate() {
+    dirty = true;
+    schedule();
+  }
+
+  holder.addEventListener('click', e => {
+    const th = e.target.closest('th');
+    if (!th) return;
+    const index = [...th.parentNode.cells].indexOf(th);
+    const realTh = table.tHead.rows[0].cells[index];
+    if (realTh) realTh.click();
+  });
+
+  window.addEventListener('scroll', schedule, { passive: true });
+  wrapper.addEventListener('scroll', schedule, { passive: true });
+  window.addEventListener('resize', invalidate);
+  // Re-sort swaps header classes; re-filter changes the longest cell in a
+  // column, and with auto layout that moves the column widths.
+  new MutationObserver(invalidate).observe(table, {
+    childList: true, subtree: true, attributes: true, attributeFilter: ['class'],
+  });
+
+  schedule();
 }
 
 // ─── Tooltip System ─────────────────────────────────────────

@@ -27,22 +27,33 @@ from pipeline.aggregation import (
 
 # ─── Goals fixtures ──────────────────────────────────────────────
 
+def _art_type(art_type, commissioned):
+    """Default the raw ArtType to something consistent with `commissioned`
+    (the non-AI flag), so callers only spell it out when the distinction
+    between commissioned and purchased art matters."""
+    if art_type is not None:
+        return art_type
+    return "ARTIST_COMMISSIONED" if commissioned else "AI_GENERATED"
+
+
 def _card(name, *, type="Minion", legendary=False, commissioned=False,
           has_animation=False, patron="Neutral", faction="neutral",
-          starter_decks=None):
+          starter_decks=None, art_type=None):
     return {
         "name": name, "type": type, "legendary": legendary,
         "commissioned": commissioned, "has_animation": has_animation,
         "patron": patron, "faction": faction,
         "starter_decks": starter_decks or [],
+        "art_type": _art_type(art_type, commissioned),
     }
 
 
 def _commander(name, *, commissioned=False, has_animation=False,
-               patron="Neutral", faction="neutral"):
+               patron="Neutral", faction="neutral", art_type=None):
     return {
         "name": name, "commissioned": commissioned,
         "has_animation": has_animation, "patron": patron, "faction": faction,
+        "art_type": _art_type(art_type, commissioned),
     }
 
 
@@ -798,3 +809,89 @@ class TestGoals_Aggregation:
         for stats in (result["overall"]["cards"], result["overall"]["commanders"]):
             assert 0.0 <= stats["commissioned_rate"] <= 1.0
             assert 0.0 <= stats["animated_rate"] <= 1.0
+
+
+# ─── B-Goals: tokens and the art-source breakdown ────────────────
+
+class TestGoals_TokensAndArtSources:
+    """Tokens have no goal of their own — they only reach the overall
+    breakdown — and every pool reports where its artwork came from."""
+
+    def _goal(self, result, section, gid):
+        return next(g for g in result[section] if g["id"] == gid)
+
+    def test_tokens_do_not_move_any_goal(self):
+        cards = [_card("a", commissioned=True), _card("b", commissioned=True)]
+        tokens = [_card("t1"), _card("t2"), _card("t3")]  # all AI, no animation
+        without = aggregate_goals(cards, [])
+        with_tokens = aggregate_goals(cards, [], tokens)
+        assert with_tokens["art_goals"] == without["art_goals"]
+        assert with_tokens["animation_goals"] == without["animation_goals"]
+
+    def test_tokens_excluded_from_card_totals_and_patron_table(self):
+        cards = [_card("a", patron="Skaal", faction="skaal")]
+        tokens = [_card("t", patron="Skaal", faction="skaal")]
+        result = aggregate_goals(cards, [], tokens)
+        assert result["overall"]["cards"]["total"] == 1
+        assert result["overall"]["tokens"]["total"] == 1
+        patrons = {p["patron"]: p for p in result["by_patron"]}
+        assert patrons["Skaal"]["cards"]["total"] == 1
+
+    def test_all_row_sums_every_pool(self):
+        cards = [_card("a", commissioned=True, has_animation=True), _card("b")]
+        tokens = [_card("t", has_animation=True)]
+        commanders = [_commander("X", commissioned=True)]
+        result = aggregate_goals(cards, commanders, tokens)
+        combined = result["overall"]["all"]
+        assert combined["total"] == 4
+        assert combined["commissioned"] == 2
+        assert combined["animated"] == 2
+        assert combined["commissioned_rate"] == 0.5
+
+    def test_tokens_default_to_empty_pool(self):
+        """Callers that don't pass tokens still get a well-formed payload."""
+        result = aggregate_goals([_card("a")], [])
+        assert result["overall"]["tokens"]["total"] == 0
+        assert result["overall"]["tokens"]["commissioned_rate"] == 0.0
+        assert result["overall"]["all"]["total"] == 1
+
+    def test_art_types_split_commissioned_from_purchased(self):
+        cards = [
+            _card("a", commissioned=True, art_type="ARTIST_COMMISSIONED"),
+            _card("b", commissioned=True, art_type="PURCHASED_ASSET"),
+            _card("c", art_type="AI_GENERATED"),
+            _card("d", art_type="AI_GENERATED"),
+        ]
+        buckets = aggregate_goals(cards, [])["overall"]["cards"]["art_types"]
+        assert buckets["commissioned"] == {"count": 1, "rate": 0.25}
+        assert buckets["purchased"] == {"count": 1, "rate": 0.25}
+        assert buckets["ai"] == {"count": 2, "rate": 0.5}
+        assert buckets["other"]["count"] == 0
+
+    def test_art_type_buckets_sum_to_total(self):
+        cards = [
+            _card("a", art_type="ARTIST_COMMISSIONED"),
+            _card("b", art_type="PURCHASED_ASSET"),
+            _card("c", art_type="AI_GENERATED"),
+            _card("d", art_type=""),          # missing ArtType in the CSV
+            _card("e", art_type="SOMETHING"),  # value the pipeline doesn't know
+        ]
+        stats = aggregate_goals(cards, [])["overall"]["cards"]
+        assert sum(b["count"] for b in stats["art_types"].values()) == stats["total"]
+        assert stats["art_types"]["other"]["count"] == 2
+
+    def test_non_ai_flag_equals_commissioned_plus_purchased(self):
+        cards = [
+            _card("a", commissioned=True, art_type="ARTIST_COMMISSIONED"),
+            _card("b", commissioned=True, art_type="PURCHASED_ASSET"),
+            _card("c", art_type="AI_GENERATED"),
+        ]
+        stats = aggregate_goals(cards, [])["overall"]["cards"]
+        buckets = stats["art_types"]
+        assert stats["commissioned"] == buckets["commissioned"]["count"] + buckets["purchased"]["count"]
+
+    def test_empty_pool_rates_are_zero(self):
+        stats = aggregate_goals([], [])["overall"]["cards"]
+        assert stats["total"] == 0
+        for bucket in stats["art_types"].values():
+            assert bucket == {"count": 0, "rate": 0.0}

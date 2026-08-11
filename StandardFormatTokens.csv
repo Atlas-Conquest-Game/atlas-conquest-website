@@ -1,0 +1,10 @@
+Name,Type,TextBox,Subtype,Cost,Attack,Speed,Health,Legendary,Patron,VersionAdded,ArtType,ArtCredit,HasAnimation,AnimationCount,AnimationTypes,StarterDecks,MentionedCards
+Artifact of the End,Minion,Legendary. Haste. Deploy. Arrival: enemy commanders are Doomed. Postmortem: return this to your hand.,Mech,3,3,2,1,True,Treasure,0.4.19,AI_GENERATED,Midjourney,True,1,SingleSoundFXAnimation,,
+Daemon Familiar,Minion,"Legendary. Arrival: Choose to gain either Haste and Flying OR Lifelink and <sprite name=""power_1""><sprite name=""speed_1""><sprite name=""health_1"">.",Daemon,5,4,3,4,True,Shadis,0.4.27,ARTIST_COMMISSIONED,Tomas Vinco,True,3,ParticleDisplayFXAnimation;SingleSoundFXAnimation,,
+Daemon Knight,Minion,"Trample.  (When battling and killing an enemy, regain an Attack.)",Daemon,5,4,4,4,,Shadis,0.4.38,AI_GENERATED,DALL-E,False,0,,,
+Dark Offering,Spell,"Your commander loses 3 life. Draw 2 cards. Gain <sprite name=""mana_2""> this turn.",None,0,,,,,Shadis,0.4.25,AI_GENERATED,DALL-E,False,0,,,
+Dragon,Minion,Flying.  (Can occupy non-traversable tiles.),Dragon,5,4,4,4,,Neutral,0.4.16,AI_GENERATED,DALL-E,False,0,,,
+Durka Spawn,Minion,,Beast,0,1,2,1,,Neutral,0.4.8,AI_GENERATED,Meta AI,False,0,,,
+Illusion,Minion,Frail.  (Destroy this minion after taking any damage.),Psychic,2,3,2,3,,Archaeon,0.4.25,AI_GENERATED,DALL-E,False,0,,,
+Lucian Soldier,Minion,"Commander-Deploy.  (Can be played outside of your territory, if next to your commander.)",Human,0,1,3,1,,Lucia,0.1.16,AI_GENERATED,Midjourney,False,0,,,
+Zombie,Minion,,Undead,2,2,2,2,,Shadis,0.4.18,AI_GENERATED,DALL-E,False,0,,,

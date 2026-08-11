@@ -32,6 +32,11 @@
   --mechanus: #A9714B;
   --treasure: #EDD9A0;
 
+  /* Tokens — generated cards, not deck-buildable. The remaining Okabe-Ito hue
+     (sky blue), so a token name reads as "different kind of thing" without
+     colliding with any patron accent. */
+  --token: #56B4E9;
+
   /* Semantic */
   --positive: #3fb950;
   --negative: #f85149;
@@ -39,6 +44,12 @@
   /* Layout */
   --max-width: 1200px;
   --nav-height: 56px;
+  /* Bottom edge of the sticky stack on an analytics page: nav + sub-nav +
+     time-filter bar. Measured rather than summed, because the bars overlap
+     slightly (see .has-sub-nav .time-filter-bar in layout.css). Used by
+     .table-sticky to size a table pane against the space actually left over.
+     Overridden at the 768px breakpoint in responsive.css. */
+  --sticky-stack: 141px;
   --radius: 8px;
   --radius-lg: 12px;
 

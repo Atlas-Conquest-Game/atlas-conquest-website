@@ -15,7 +15,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Acrid Potion",
@@ -33,7 +35,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Action Surge",
@@ -47,13 +51,15 @@
     "legendary": false,
     "patron": "Skaal",
     "faction": "skaal",
-    "art": null,
+    "art": "CardScreenshots/Action-Surge.png",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": false,
     "starter_decks": [
       "Starter Deploy"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Alchemist",
@@ -71,7 +77,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Ancient Golem",
@@ -89,7 +97,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Angelic Captain",
@@ -107,7 +117,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Angel's Grace",
@@ -125,7 +137,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Apothecary",
@@ -143,7 +157,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Apprentice Mage",
@@ -161,7 +177,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Archpaladin Erix",
@@ -175,11 +193,13 @@
     "legendary": true,
     "patron": "Lucia",
     "faction": "lucia",
-    "art": null,
+    "art": "CardScreenshots/Archpaladin-Erix.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Asera",
@@ -197,7 +217,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Assistant Chemist",
@@ -215,7 +237,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Atlas, First to Walk",
@@ -233,7 +257,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Baby Raptor",
@@ -253,7 +279,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Beasts"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Badland Mercenary",
@@ -271,7 +299,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Battlefield Savior",
@@ -289,7 +319,11 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [
+      "Guiding Light"
+    ],
+    "token": false
   },
   {
     "name": "Battlefield Webspinner",
@@ -307,7 +341,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Beast Trainer",
@@ -325,7 +361,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Big Game Hunter",
@@ -343,7 +381,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Black Dragon",
@@ -361,7 +401,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Black Scorpion",
@@ -381,7 +423,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Death"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Blessed Force",
@@ -399,7 +443,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Blinkshot",
@@ -419,7 +465,9 @@
     "has_animation": true,
     "starter_decks": [
       "Starter Mage"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Bloodrush",
@@ -437,7 +485,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Blue Dragon",
@@ -455,7 +505,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Bramble",
@@ -473,7 +525,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Brash Outfitter",
@@ -491,7 +545,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Burgeon",
@@ -509,7 +565,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Call of the Jungle",
@@ -529,7 +587,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Beasts"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Champion of the Wilds",
@@ -547,7 +607,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Chant of the Old Ones",
@@ -565,7 +627,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Charge Up",
@@ -583,7 +647,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Charger",
@@ -601,7 +667,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Citadel Lord",
@@ -619,7 +687,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "City Planning",
@@ -633,11 +703,13 @@
     "legendary": false,
     "patron": "Lucia",
     "faction": "lucia",
-    "art": null,
+    "art": "CardScreenshots/City-Planning.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Cloning Magic",
@@ -655,7 +727,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Combust",
@@ -673,7 +747,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Cone of Cold",
@@ -690,10 +766,12 @@
     "art": "CardScreenshots/Cone-of-Cold.png",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Mage"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Conscription",
@@ -711,7 +789,11 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [
+      "Lucian Soldier"
+    ],
+    "token": false
   },
   {
     "name": "Crippling Tax",
@@ -729,7 +811,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Daemonic Summoning",
@@ -747,7 +831,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Daemonprince Grizlocke",
@@ -765,7 +851,11 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [
+      "Daemon Knight"
+    ],
+    "token": false
   },
   {
     "name": "Danrir, Omenhound",
@@ -785,7 +875,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Beasts"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Darkroot Ooze",
@@ -803,7 +895,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Darkroot Witch",
@@ -821,7 +915,11 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [
+      "Poison Sting"
+    ],
+    "token": false
   },
   {
     "name": "Darkwing",
@@ -839,7 +937,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Deathquill",
@@ -857,7 +957,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Demilich",
@@ -877,7 +979,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Mage"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Devout Caretaker",
@@ -895,7 +999,11 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [
+      "Lucian Soldier"
+    ],
+    "token": false
   },
   {
     "name": "Diplomatic Envoy",
@@ -909,11 +1017,13 @@
     "legendary": false,
     "patron": "Neutral",
     "faction": "neutral",
-    "art": null,
+    "art": "CardScreenshots/Diplomatic-Envoy.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Domination",
@@ -931,7 +1041,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Draconic Mage",
@@ -945,11 +1057,13 @@
     "legendary": false,
     "patron": "Neutral",
     "faction": "neutral",
-    "art": null,
+    "art": "CardScreenshots/Draconic-Mage.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Dragon Egg",
@@ -967,7 +1081,11 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [
+      "Dragon"
+    ],
+    "token": false
   },
   {
     "name": "Dragon Tamer",
@@ -985,7 +1103,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Dragonkin Evoker",
@@ -1003,7 +1123,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Dragon's Breath",
@@ -1017,11 +1139,13 @@
     "legendary": false,
     "patron": "Skaal",
     "faction": "skaal",
-    "art": null,
+    "art": "CardScreenshots/Dragons-Breath.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Drain Energy",
@@ -1041,7 +1165,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Death"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Drakemire Shaman",
@@ -1059,7 +1185,11 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [
+      "Poison Sting"
+    ],
+    "token": false
   },
   {
     "name": "Dread Knight",
@@ -1080,7 +1210,9 @@
     "starter_decks": [
       "Starter Death",
       "Starter Deploy"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Dread Proclamation",
@@ -1098,7 +1230,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Dreadlord Cyrion",
@@ -1116,7 +1250,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Drowsy Lizard",
@@ -1134,7 +1270,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Durka Wurm",
@@ -1152,7 +1290,11 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [
+      "Durka Spawn"
+    ],
+    "token": false
   },
   {
     "name": "Dwarven Battlepriest",
@@ -1172,7 +1314,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Military"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Dwarven Stout",
@@ -1190,7 +1334,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Dyana, Prime Huntress",
@@ -1208,7 +1354,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Eagle King",
@@ -1228,7 +1376,11 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Beasts"
-    ]
+    ],
+    "mentions": [
+      "Giant Eagle"
+    ],
+    "token": false
   },
   {
     "name": "Elf Ranger",
@@ -1245,11 +1397,13 @@
     "art": "CardScreenshots/Elf-Ranger.png",
     "art_type": "PURCHASED_ASSET",
     "commissioned": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Beasts",
       "Starter Military"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Elite Mercenary",
@@ -1267,7 +1421,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Elixirist",
@@ -1281,14 +1437,18 @@
     "legendary": false,
     "patron": "Neutral",
     "faction": "neutral",
-    "art": null,
+    "art": "CardScreenshots/Elixirist.png",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": true,
     "starter_decks": [
       "Starter Beasts",
       "Starter Mage"
-    ]
+    ],
+    "mentions": [
+      "Growth Potion"
+    ],
+    "token": false
   },
   {
     "name": "Elven Spellblade",
@@ -1302,13 +1462,15 @@
     "legendary": false,
     "patron": "Neutral",
     "faction": "neutral",
-    "art": null,
+    "art": "CardScreenshots/Elven-Spellblade.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
     "starter_decks": [
       "Starter Deploy"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Ember",
@@ -1326,7 +1488,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Emerald Asp",
@@ -1344,7 +1508,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Energy Potion",
@@ -1362,7 +1528,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Enigmatic Golem",
@@ -1380,7 +1548,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Ereloth",
@@ -1394,11 +1564,13 @@
     "legendary": false,
     "patron": "Shadis",
     "faction": "shadis",
-    "art": null,
+    "art": "CardScreenshots/Ereloth.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Eternal Wall",
@@ -1416,7 +1588,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Expand the Wilds",
@@ -1434,7 +1608,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Explosive Potion",
@@ -1454,7 +1630,9 @@
     "has_animation": true,
     "starter_decks": [
       "Starter Deploy"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Expropriation",
@@ -1472,7 +1650,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Fade to Mists",
@@ -1486,11 +1666,13 @@
     "legendary": false,
     "patron": "Archaeon",
     "faction": "archaeon",
-    "art": null,
+    "art": "CardScreenshots/Fade-to-Mists.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Feeblemind",
@@ -1508,7 +1690,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Feral Vampire",
@@ -1528,7 +1712,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Death"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Finishing Strike",
@@ -1542,11 +1728,13 @@
     "legendary": false,
     "patron": "Skaal",
     "faction": "skaal",
-    "art": null,
+    "art": "CardScreenshots/Finishing-Strike.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Fireball",
@@ -1564,7 +1752,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Firebolt",
@@ -1582,7 +1772,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "First Experiment",
@@ -1600,7 +1792,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Flame Acolyte",
@@ -1618,7 +1812,11 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [
+      "Flamelash"
+    ],
+    "token": false
   },
   {
     "name": "Flamelash",
@@ -1636,7 +1834,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Found City",
@@ -1650,11 +1850,15 @@
     "legendary": false,
     "patron": "Neutral",
     "faction": "neutral",
-    "art": null,
+    "art": "CardScreenshots/Found-City.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [
+      "Settle Village"
+    ],
+    "token": false
   },
   {
     "name": "Fourth Experiment",
@@ -1672,7 +1876,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Frostblade",
@@ -1692,7 +1898,9 @@
     "has_animation": true,
     "starter_decks": [
       "Starter Mage"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Fungal Explosion",
@@ -1710,7 +1918,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Ghast",
@@ -1728,7 +1938,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Giant Eagle",
@@ -1748,7 +1960,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Mage"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Giant River Snapper",
@@ -1766,7 +1980,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Gilded Defender",
@@ -1784,7 +2000,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Goblin Duo",
@@ -1802,7 +2020,11 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [
+      "Goblin Scamp"
+    ],
+    "token": false
   },
   {
     "name": "Goblin Firebow",
@@ -1819,8 +2041,10 @@
     "art": "CardScreenshots/Goblin-Firebow.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
-    "starter_decks": []
+    "has_animation": true,
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Goblin Infantry",
@@ -1838,7 +2062,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Goblin Infiltrator",
@@ -1859,7 +2085,9 @@
     "starter_decks": [
       "Starter Death",
       "Starter Deploy"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Goblin King",
@@ -1877,7 +2105,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Goblin Lorespeaker",
@@ -1895,7 +2125,11 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [
+      "Thunder Jolt"
+    ],
+    "token": false
   },
   {
     "name": "Goblin Musclejuice",
@@ -1913,7 +2147,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Goblin Paratrooper",
@@ -1933,7 +2169,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Deploy"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Goblin Recruitment",
@@ -1951,7 +2189,11 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [
+      "Goblin Scamp"
+    ],
+    "token": false
   },
   {
     "name": "Goblin Scamp",
@@ -1969,7 +2211,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Goblin Scout",
@@ -1987,7 +2231,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Goblin Shaman",
@@ -2007,7 +2253,9 @@
     "has_animation": true,
     "starter_decks": [
       "Starter Deploy"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Goblin Skirmisher",
@@ -2025,7 +2273,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Gold Dragon",
@@ -2043,7 +2293,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Grand Illusion",
@@ -2061,7 +2313,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Gravehand",
@@ -2079,7 +2333,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Greater Healing Potion",
@@ -2097,7 +2353,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Green Dragon",
@@ -2115,7 +2373,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Grey Wastes Shade",
@@ -2133,7 +2393,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Growth",
@@ -2151,7 +2413,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Growth Potion",
@@ -2169,7 +2433,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Grutali",
@@ -2187,7 +2453,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Gruth, Ogre Champion",
@@ -2205,7 +2473,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Guardian Ent",
@@ -2219,11 +2489,13 @@
     "legendary": false,
     "patron": "Grenalia",
     "faction": "grenalia",
-    "art": null,
+    "art": "CardScreenshots/Guardian-Ent.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Guerilla Gorilla",
@@ -2241,7 +2513,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Guide to Heavens",
@@ -2259,7 +2533,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Guiding Light",
@@ -2277,7 +2553,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Heaven's Legion",
@@ -2295,7 +2573,11 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [
+      "Lucian Soldier"
+    ],
+    "token": false
   },
   {
     "name": "Heavy Cavalry",
@@ -2316,7 +2598,9 @@
     "starter_decks": [
       "Starter Deploy",
       "Starter Military"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "High Elf Mage",
@@ -2334,7 +2618,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Holy Fervor",
@@ -2352,7 +2638,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Homesong Minstrel",
@@ -2370,7 +2658,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Hoplite Vanguard",
@@ -2391,7 +2681,9 @@
     "starter_decks": [
       "Starter Beasts",
       "Starter Deploy"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Horde Leader",
@@ -2409,7 +2701,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Hover Tank",
@@ -2423,11 +2717,13 @@
     "legendary": false,
     "patron": "Mechanus",
     "faction": "mechanus",
-    "art": null,
+    "art": "CardScreenshots/Hover-Tank.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Illusory Legion",
@@ -2445,7 +2741,11 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [
+      "Illusion"
+    ],
+    "token": false
   },
   {
     "name": "Imp",
@@ -2463,7 +2763,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Infected Dreg",
@@ -2483,7 +2785,9 @@
     "has_animation": true,
     "starter_decks": [
       "Starter Beasts"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Khazgar, Flame Emperor",
@@ -2501,7 +2805,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Killing Hex",
@@ -2521,7 +2827,9 @@
     "has_animation": true,
     "starter_decks": [
       "Starter Death"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Kindle",
@@ -2535,11 +2843,13 @@
     "legendary": false,
     "patron": "Skaal",
     "faction": "skaal",
-    "art": null,
+    "art": "CardScreenshots/Kindle.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "King Darian",
@@ -2557,7 +2867,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Knife Sharpener",
@@ -2575,7 +2887,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Lay Claim",
@@ -2593,7 +2907,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Lifeweaver",
@@ -2611,7 +2927,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Light Elemental",
@@ -2625,11 +2943,13 @@
     "legendary": false,
     "patron": "Lucia",
     "faction": "lucia",
-    "art": null,
+    "art": "CardScreenshots/Light-Elemental.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Lightbound Martyr",
@@ -2643,11 +2963,13 @@
     "legendary": false,
     "patron": "Lucia",
     "faction": "lucia",
-    "art": null,
+    "art": "CardScreenshots/Lightbound-Martyr.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Lightning Bolt",
@@ -2667,7 +2989,9 @@
     "has_animation": true,
     "starter_decks": [
       "Starter Deploy"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Limmick, Goblin Hedonist",
@@ -2687,7 +3011,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Deploy"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Live off the Land",
@@ -2705,7 +3031,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Local Trader",
@@ -2723,7 +3051,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Longleg Dorathru",
@@ -2737,11 +3067,13 @@
     "legendary": true,
     "patron": "Archaeon",
     "faction": "archaeon",
-    "art": null,
+    "art": "CardScreenshots/Longleg-Dorathru.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Lord of Casterhorn",
@@ -2761,7 +3093,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Deploy"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Lord of Heavenspire",
@@ -2779,7 +3113,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Lorecaller Gazan",
@@ -2797,7 +3133,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Lucian Battalion",
@@ -2815,7 +3153,11 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [
+      "Lucian Soldier"
+    ],
+    "token": false
   },
   {
     "name": "Lucian Squire",
@@ -2829,11 +3171,13 @@
     "legendary": false,
     "patron": "Lucia",
     "faction": "lucia",
-    "art": null,
+    "art": "CardScreenshots/Lucian-Squire.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Lucian Zealot",
@@ -2851,7 +3195,11 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [
+      "Lucian Soldier"
+    ],
+    "token": false
   },
   {
     "name": "Lumbering Ogre",
@@ -2869,7 +3217,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Mad Warlock",
@@ -2890,7 +3240,9 @@
     "starter_decks": [
       "Starter Death",
       "Starter Mage"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Mage Slayer",
@@ -2904,11 +3256,13 @@
     "legendary": false,
     "patron": "Neutral",
     "faction": "neutral",
-    "art": null,
+    "art": "CardScreenshots/Mage-Slayer.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Mana Bloom",
@@ -2926,7 +3280,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Manaphant",
@@ -2944,7 +3300,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Master Craftsman",
@@ -2962,7 +3320,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Memory Theft",
@@ -2976,11 +3336,13 @@
     "legendary": false,
     "patron": "Archaeon",
     "faction": "archaeon",
-    "art": null,
+    "art": "CardScreenshots/Memory-Theft.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Mind Blast",
@@ -2994,11 +3356,13 @@
     "legendary": false,
     "patron": "Archaeon",
     "faction": "archaeon",
-    "art": null,
+    "art": "CardScreenshots/Mind-Blast.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Mindstone Servant",
@@ -3012,11 +3376,13 @@
     "legendary": false,
     "patron": "Neutral",
     "faction": "neutral",
-    "art": null,
+    "art": "CardScreenshots/Mindstone-Servant.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Minor Priest",
@@ -3034,7 +3400,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Moonlight Seraph",
@@ -3052,7 +3420,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Mother of Beasts",
@@ -3070,7 +3440,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Mummified Warrior",
@@ -3090,7 +3462,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Death"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Nevisha Ascendant",
@@ -3108,7 +3482,11 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [
+      "Lucian Soldier"
+    ],
+    "token": false
   },
   {
     "name": "Nexus Operative",
@@ -3126,7 +3504,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Nexus Recruit",
@@ -3144,7 +3524,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Nilo of One Thousand Cuts",
@@ -3162,7 +3544,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Nobleman of the Order",
@@ -3182,7 +3566,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Military"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Oathbroken Apprentice",
@@ -3196,11 +3582,13 @@
     "legendary": false,
     "patron": "Neutral",
     "faction": "neutral",
-    "art": null,
+    "art": "CardScreenshots/Oathbroken-Apprentice.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Oathsworn Champion",
@@ -3220,7 +3608,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Military"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Oldsteel Guard",
@@ -3234,11 +3624,13 @@
     "legendary": false,
     "patron": "Neutral",
     "faction": "neutral",
-    "art": null,
+    "art": "CardScreenshots/Oldsteel-Guard.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Outflank",
@@ -3256,7 +3648,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Outland Berserker",
@@ -3276,7 +3670,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Military"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Outland Village",
@@ -3294,7 +3690,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Owl Familiar",
@@ -3314,7 +3712,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Mage"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Pack Wolf",
@@ -3332,7 +3732,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Paladin Initiate",
@@ -3352,7 +3754,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Military"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Paladin of Eos",
@@ -3370,7 +3774,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Paladin Proselyte",
@@ -3390,7 +3796,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Military"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Peer",
@@ -3408,7 +3816,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Pit Lord",
@@ -3426,7 +3836,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Pixie Pikeman",
@@ -3440,11 +3852,13 @@
     "legendary": false,
     "patron": "Adora",
     "faction": "adora",
-    "art": null,
+    "art": "CardScreenshots/Pixie-Pikeman.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Poison Spray",
@@ -3464,7 +3878,9 @@
     "has_animation": true,
     "starter_decks": [
       "Starter Beasts"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Poison Sting",
@@ -3484,7 +3900,9 @@
     "has_animation": true,
     "starter_decks": [
       "Starter Beasts"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Pond Hopper",
@@ -3502,7 +3920,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Ponder",
@@ -3522,7 +3942,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Mage"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Potion of Healing",
@@ -3540,7 +3962,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Power Potion",
@@ -3562,7 +3986,9 @@
       "Starter Death",
       "Starter Deploy",
       "Starter Military"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Prideplain Enforcer",
@@ -3582,7 +4008,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Beasts"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Prideplain Queen",
@@ -3602,7 +4030,9 @@
     "has_animation": true,
     "starter_decks": [
       "Starter Beasts"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Primordial Storm",
@@ -3616,11 +4046,13 @@
     "legendary": false,
     "patron": "Skaal",
     "faction": "skaal",
-    "art": null,
+    "art": "CardScreenshots/Primordial-Storm.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Prince Xerxes",
@@ -3638,7 +4070,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Purifier Euron",
@@ -3656,7 +4090,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Pyromancer Apprentice",
@@ -3674,7 +4110,11 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [
+      "Flamelash"
+    ],
+    "token": false
   },
   {
     "name": "Pyromaniac",
@@ -3692,7 +4132,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Quell the Weak",
@@ -3712,7 +4154,9 @@
     "has_animation": true,
     "starter_decks": [
       "Starter Military"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Quickling",
@@ -3732,7 +4176,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Beasts"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Ravenous Wolf",
@@ -3752,7 +4198,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Beasts"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Red Dragon",
@@ -3770,7 +4218,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Regeneration Potion",
@@ -3788,7 +4238,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Reileigh, Brewpatron",
@@ -3806,7 +4258,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Remit",
@@ -3826,7 +4280,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Mage"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Revoke the Living",
@@ -3844,7 +4300,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Rhea, Morning Saint",
@@ -3858,11 +4316,13 @@
     "legendary": true,
     "patron": "Lucia",
     "faction": "lucia",
-    "art": null,
+    "art": "CardScreenshots/Rhea-Morning-Saint.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Ritual of Shadows",
@@ -3880,7 +4340,11 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [
+      "Dark Offering"
+    ],
+    "token": false
   },
   {
     "name": "Royal Commander",
@@ -3901,7 +4365,9 @@
     "starter_decks": [
       "Starter Death",
       "Starter Military"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Rule the Hinterlands",
@@ -3919,7 +4385,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Runic Knight",
@@ -3934,12 +4402,14 @@
     "patron": "Neutral",
     "faction": "neutral",
     "art": "CardScreenshots/Runic-Knight.png",
-    "art_type": "AI_GENERATED",
-    "commissioned": false,
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
     "has_animation": false,
     "starter_decks": [
       "Starter Mage"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Sacrificial Offering",
@@ -3959,7 +4429,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Death"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Sage Potion",
@@ -3977,7 +4449,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Sanguine Baroness",
@@ -3995,7 +4469,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Scout Hunter",
@@ -4015,7 +4491,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Mage"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Second Experiment",
@@ -4033,7 +4511,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Sentinel of Light",
@@ -4053,7 +4533,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Military"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Settle Village",
@@ -4071,7 +4553,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Shield Potion",
@@ -4089,7 +4573,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Shock Nova",
@@ -4107,7 +4593,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Silence",
@@ -4121,11 +4609,13 @@
     "legendary": false,
     "patron": "Lucia",
     "faction": "lucia",
-    "art": null,
+    "art": "CardScreenshots/Silence.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Silver Dragon",
@@ -4143,7 +4633,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Skerr'drix",
@@ -4161,7 +4653,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Slash and Burn",
@@ -4179,7 +4673,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Slay the Mighty",
@@ -4199,7 +4695,9 @@
     "has_animation": true,
     "starter_decks": [
       "Starter Military"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Soul Sale",
@@ -4213,11 +4711,15 @@
     "legendary": false,
     "patron": "Shadis",
     "faction": "shadis",
-    "art": null,
+    "art": "CardScreenshots/Soul-Sale.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [
+      "Imp"
+    ],
+    "token": false
   },
   {
     "name": "Soulreap",
@@ -4235,7 +4737,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Spiderling Rider",
@@ -4252,8 +4756,10 @@
     "art": "CardScreenshots/Spiderling-Rider.png",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false,
-    "starter_decks": []
+    "has_animation": true,
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Spoils of War",
@@ -4271,7 +4777,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Spore Thresher",
@@ -4289,7 +4797,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Stagasus",
@@ -4309,7 +4819,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Deploy"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Stalking Hippo",
@@ -4329,7 +4841,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Beasts"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Stalwart Tarantula",
@@ -4349,7 +4863,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Death"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Stampede",
@@ -4367,7 +4883,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Steel Lancer",
@@ -4387,7 +4905,9 @@
     "has_animation": true,
     "starter_decks": [
       "Starter Death"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Stormrider Zurn",
@@ -4405,7 +4925,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Stout Knight",
@@ -4423,7 +4945,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Strategic Reserves",
@@ -4441,7 +4965,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Stumbling Ghoul",
@@ -4459,7 +4985,11 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [
+      "Zombie"
+    ],
+    "token": false
   },
   {
     "name": "Styrian Infantry",
@@ -4477,7 +5007,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Supercharger",
@@ -4497,7 +5029,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Mage"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Swiftfoot Goblin",
@@ -4518,7 +5052,9 @@
     "starter_decks": [
       "Starter Death",
       "Starter Deploy"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Swiftness Potion",
@@ -4536,7 +5072,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Tadpole",
@@ -4556,7 +5094,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Mage"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Tax Collector",
@@ -4570,11 +5110,13 @@
     "legendary": false,
     "patron": "Neutral",
     "faction": "neutral",
-    "art": null,
+    "art": "CardScreenshots/Tax-Collector.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Throne Guardian",
@@ -4592,7 +5134,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Thunder Jolt",
@@ -4610,7 +5154,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Thunder Skywhale",
@@ -4628,7 +5174,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Thunder Step",
@@ -4646,7 +5194,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Thunderous Warbeast",
@@ -4664,7 +5214,11 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [
+      "Thunder Jolt"
+    ],
+    "token": false
   },
   {
     "name": "Titan Herald",
@@ -4682,7 +5236,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Toxic Watering",
@@ -4700,7 +5256,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Toxicologist",
@@ -4718,7 +5276,11 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [
+      "Poison Sting"
+    ],
+    "token": false
   },
   {
     "name": "Toxicologist's Vial",
@@ -4736,7 +5298,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Tree of Life",
@@ -4754,7 +5318,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Tyrannic Ideal",
@@ -4768,11 +5334,13 @@
     "legendary": false,
     "patron": "Archaeon",
     "faction": "archaeon",
-    "art": null,
+    "art": "CardScreenshots/Tyrannic-Ideal.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Undying Behemoth",
@@ -4790,7 +5358,11 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [
+      "Zombie"
+    ],
+    "token": false
   },
   {
     "name": "Ursine Blade Trio",
@@ -4808,7 +5380,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Vergis, Doomed Archaeologist",
@@ -4826,7 +5400,11 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": true,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [
+      "Artifact of the End"
+    ],
+    "token": false
   },
   {
     "name": "Viridian War Beast",
@@ -4844,7 +5422,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Vyre Aristocrat",
@@ -4862,7 +5442,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Wandering Ancient",
@@ -4880,7 +5462,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "War Banner",
@@ -4898,7 +5482,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "War Chest",
@@ -4912,11 +5498,13 @@
     "legendary": false,
     "patron": "Treasure",
     "faction": "treasure",
-    "art": null,
+    "art": "CardScreenshots/War-Chest.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Warcry",
@@ -4934,7 +5522,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Warscarred Rhino",
@@ -4954,7 +5544,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Military"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Warscarred Soldier",
@@ -4974,7 +5566,9 @@
     "has_animation": false,
     "starter_decks": [
       "Starter Military"
-    ]
+    ],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Wise Elder",
@@ -4992,7 +5586,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Zealous Captain",
@@ -5010,7 +5606,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Zealous Strength",
@@ -5028,7 +5626,9 @@
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Zoghn, Eye of Treason",
@@ -5046,7 +5646,9 @@
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [],
+    "token": false
   },
   {
     "name": "Zoloth the Butcher",
@@ -5060,10 +5662,194 @@
     "legendary": true,
     "patron": "Shadis",
     "faction": "shadis",
-    "art": null,
+    "art": "CardScreenshots/Zoloth-the-Butcher.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
     "has_animation": false,
-    "starter_decks": []
+    "starter_decks": [],
+    "mentions": [
+      "Zombie"
+    ],
+    "token": false
+  },
+  {
+    "name": "Artifact of the End",
+    "type": "Minion",
+    "text": "Legendary. Haste. Deploy. Arrival: enemy commanders are Doomed. Postmortem: return this to your hand.",
+    "subtype": "Mech",
+    "cost": 3,
+    "attack": 3,
+    "speed": 2,
+    "health": 1,
+    "legendary": true,
+    "patron": "Treasure",
+    "faction": "treasure",
+    "art": "CardScreenshots/Artifact-of-the-End.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": true,
+    "starter_decks": [],
+    "mentions": [],
+    "token": true
+  },
+  {
+    "name": "Daemon Familiar",
+    "type": "Minion",
+    "text": "Legendary. Arrival: Choose to gain either Haste and Flying OR Lifelink and <sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\">.",
+    "subtype": "Daemon",
+    "cost": 5,
+    "attack": 4,
+    "speed": 3,
+    "health": 4,
+    "legendary": true,
+    "patron": "Shadis",
+    "faction": "shadis",
+    "art": "CardScreenshots/Daemon-Familiar.png",
+    "art_type": "ARTIST_COMMISSIONED",
+    "commissioned": true,
+    "has_animation": true,
+    "starter_decks": [],
+    "mentions": [],
+    "token": true
+  },
+  {
+    "name": "Daemon Knight",
+    "type": "Minion",
+    "text": "Trample.  (When battling and killing an enemy, regain an Attack.)",
+    "subtype": "Daemon",
+    "cost": 5,
+    "attack": 4,
+    "speed": 4,
+    "health": 4,
+    "legendary": false,
+    "patron": "Shadis",
+    "faction": "shadis",
+    "art": "CardScreenshots/Daemon-Knight.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [],
+    "mentions": [],
+    "token": true
+  },
+  {
+    "name": "Dark Offering",
+    "type": "Spell",
+    "text": "Your commander loses 3 life. Draw 2 cards. Gain <sprite name=\"mana_2\"> this turn.",
+    "subtype": "",
+    "cost": 0,
+    "attack": null,
+    "speed": null,
+    "health": null,
+    "legendary": false,
+    "patron": "Shadis",
+    "faction": "shadis",
+    "art": "CardScreenshots/Dark-Offering.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [],
+    "mentions": [],
+    "token": true
+  },
+  {
+    "name": "Dragon",
+    "type": "Minion",
+    "text": "Flying.  (Can occupy non-traversable tiles.)",
+    "subtype": "Dragon",
+    "cost": 5,
+    "attack": 4,
+    "speed": 4,
+    "health": 4,
+    "legendary": false,
+    "patron": "Neutral",
+    "faction": "neutral",
+    "art": "CardScreenshots/Dragon.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [],
+    "mentions": [],
+    "token": true
+  },
+  {
+    "name": "Durka Spawn",
+    "type": "Minion",
+    "text": "",
+    "subtype": "Beast",
+    "cost": 0,
+    "attack": 1,
+    "speed": 2,
+    "health": 1,
+    "legendary": false,
+    "patron": "Neutral",
+    "faction": "neutral",
+    "art": "CardScreenshots/Durka-Spawn.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [],
+    "mentions": [],
+    "token": true
+  },
+  {
+    "name": "Illusion",
+    "type": "Minion",
+    "text": "Frail.  (Destroy this minion after taking any damage.)",
+    "subtype": "Psychic",
+    "cost": 2,
+    "attack": 3,
+    "speed": 2,
+    "health": 3,
+    "legendary": false,
+    "patron": "Archaeon",
+    "faction": "archaeon",
+    "art": "CardScreenshots/Illusion.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [],
+    "mentions": [],
+    "token": true
+  },
+  {
+    "name": "Lucian Soldier",
+    "type": "Minion",
+    "text": "Commander-Deploy.  (Can be played outside of your territory, if next to your commander.)",
+    "subtype": "Human",
+    "cost": 0,
+    "attack": 1,
+    "speed": 3,
+    "health": 1,
+    "legendary": false,
+    "patron": "Lucia",
+    "faction": "lucia",
+    "art": "CardScreenshots/Lucian-Soldier.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [],
+    "mentions": [],
+    "token": true
+  },
+  {
+    "name": "Zombie",
+    "type": "Minion",
+    "text": "",
+    "subtype": "Undead",
+    "cost": 2,
+    "attack": 2,
+    "speed": 2,
+    "health": 2,
+    "legendary": false,
+    "patron": "Shadis",
+    "faction": "shadis",
+    "art": "CardScreenshots/Zombie.png",
+    "art_type": "AI_GENERATED",
+    "commissioned": false,
+    "has_animation": false,
+    "starter_decks": [],
+    "mentions": [],
+    "token": true
   }
 ]

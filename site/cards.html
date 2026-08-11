@@ -114,6 +114,11 @@
         <select id="commander-filter" class="commander-select">
           <option value="all">All Commanders</option>
         </select>
+        <label class="filter-check" for="show-tokens">
+          <input type="checkbox" id="show-tokens">
+          <span>Show tokens</span>
+          <span class="tooltip-icon" data-tooltip="Tokens are cards generated during play (Zombie, Lucian Soldier, …). They have draw and play stats but can't be built into a deck.">?</span>
+        </label>
       </div>
 
       <div class="card-search-bar">
@@ -144,10 +149,8 @@
     </div>
   </section>
 
-  <!-- Card Preview (hover) -->
-  <div class="card-preview" id="card-preview">
-    <img id="card-preview-img" src="" alt="">
-  </div>
+  <!-- Card Preview (hover) — filled by site/js/cardpreview.js -->
+  <div class="card-preview" id="card-preview"></div>
 
   <!-- Footer -->
   <footer class="footer">
@@ -157,6 +160,7 @@
     </div>
   </footer>
 
+  <script src="js/cardpreview.js"></script>
   <script src="js/shared.js"></script>
   <script src="js/cards.js"></script>
 </body>

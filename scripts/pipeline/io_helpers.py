@@ -3,13 +3,14 @@
 import csv
 import hashlib
 import json
+import re
 import subprocess
 import sys
 import time
 
 from pipeline.constants import (
     DATA_DIR, ASSETS_DIR, CARD_ASSETS_DIR, CARD_PNG_ASSETS_DIR, ARTWORK_DIR, CARD_SCREENSHOTS_DIR,
-    RAW_CACHE, CARDS_CSV, COMMANDERS_CSV, CARDLIST_ASSET,
+    RAW_CACHE, CARDS_CSV, COMMANDERS_CSV, TOKENS_CSV, CARDLIST_ASSET,
     DYNAMO_TABLE, DYNAMO_REGION, PATRON_MAP, COMMANDER_RENAMES,
 )
 from pipeline.cleaning import normalize_commander
@@ -296,14 +297,38 @@ def scan_all_games(table, cached_game_ids=None):
 
 # ─── Reference Data (CSVs) ──────────────────────────────────────
 
-def load_cards_csv():
-    """Load card definitions from intern's CSV."""
+def parse_mentioned_cards(row):
+    """Parse the MentionedCards column into a list of card names.
+
+    The column lists cards this one creates or otherwise refers to (the token a
+    minion spawns, the spell a commander adds to your hand). It's usually a
+    single name today, but accept ';' and ',' separated lists so extra entries
+    don't need a pipeline change. Names are not resolved here — the frontend
+    matches them against cards.json by slug.
+    """
+    raw = (row.get("MentionedCards") or "").strip()
+    if not raw:
+        return []
+    parts = [p.strip() for chunk in raw.split(";") for p in chunk.split(",")]
+    # dict.fromkeys de-dupes while preserving CSV order
+    return list(dict.fromkeys(p for p in parts if p))
+
+
+def load_cards_csv(path=None, token=False):
+    """Load card definitions from intern's CSV.
+
+    ``path`` defaults to the standard-format card list; pass TOKENS_CSV with
+    ``token=True`` to load generated cards instead (same columns). Token records
+    carry ``"token": True`` so consumers can hide them — they're real cards with
+    real stats, but no deck can contain one.
+    """
+    path = path or CARDS_CSV
     cards = []
-    if not CARDS_CSV.exists():
-        print(f"  Warning: {CARDS_CSV} not found, skipping card definitions")
+    if not path.exists():
+        print(f"  Warning: {path} not found, skipping card definitions")
         return cards
 
-    with open(CARDS_CSV, "r", encoding="utf-8") as f:
+    with open(path, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
             name = row.get("Name", "").strip()
@@ -343,10 +368,56 @@ def load_cards_csv():
                 "commissioned": art_type in ("ARTIST_COMMISSIONED", "PURCHASED_ASSET"),
                 "has_animation": row.get("HasAnimation", "").strip().lower() == "true",
                 "starter_decks": starter_decks,
+                "mentions": parse_mentioned_cards(row),
+                "token": token,
             })
 
-    print(f"  Loaded {len(cards)} cards from CSV")
+    label = "tokens" if token else "cards"
+    print(f"  Loaded {len(cards)} {label} from CSV")
     return cards
+
+
+def load_tokens_csv():
+    """Load generated (token) card definitions."""
+    return load_cards_csv(TOKENS_CSV, token=True)
+
+
+def mention_slug(name):
+    """Slug used as the key of mentions.json.
+
+    Must stay byte-identical to cardArtSlug() in site/js/shared.js and
+    site/js/cardpreview.js — the frontend looks cards up by this slug, which is
+    also the /assets/cards/<slug>.jpg filename.
+    """
+    return re.sub(r"\s+", "-", re.sub(r"[,.']", "", (name or "").lower())).strip("-")
+
+
+def build_mentions_index(*record_groups):
+    """Build the mentions.json payload: slug → [{name, slug}, …].
+
+    Keyed by slug rather than name so callers holding only a slug (the Cards
+    table rows, archetype tables) can look up without the canonical name. Only
+    cards that actually mention something get an entry, keeping the file tiny.
+    Mentioned names that resolve to nothing known are dropped — a typo in the
+    CSV shouldn't render a broken image on every page.
+    """
+    known = {}
+    for group in record_groups:
+        for rec in group:
+            known.setdefault(mention_slug(rec["name"]), rec["name"])
+
+    index = {}
+    for group in record_groups:
+        for rec in group:
+            entries = []
+            for raw in rec.get("mentions", []):
+                slug = mention_slug(raw)
+                if slug not in known or slug == mention_slug(rec["name"]):
+                    continue
+                entries.append({"name": known[slug], "slug": slug})
+            if entries:
+                index[mention_slug(rec["name"])] = entries
+    return index
 
 
 def load_commanders_csv():
@@ -386,6 +457,7 @@ def load_commanders_csv():
                 "art_type": art_type,
                 "commissioned": art_type in ("ARTIST_COMMISSIONED", "PURCHASED_ASSET"),
                 "has_animation": row.get("HasAnimation", "").strip().lower() == "true",
+                "mentions": parse_mentioned_cards(row),
             })
 
     print(f"  Loaded {len(commanders)} commanders from CSV")

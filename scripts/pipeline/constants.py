@@ -20,6 +20,9 @@ RAW_CACHE = DATA_DIR / "raw_games.json"
 # Reference CSVs — project root is the source of truth
 CARDS_CSV = PROJECT_DIR / "StandardFormatCards.csv"
 COMMANDERS_CSV = PROJECT_DIR / "StandardFormatCommanders.csv"
+# Generated cards (Zombie, Lucian Soldier, …) that no deck can contain but that
+# still show up in match data. Same column layout as CARDS_CSV.
+TOKENS_CSV = PROJECT_DIR / "StandardFormatTokens.csv"
 
 # Game format assets (exported by Matan before playtests)
 FORMATS_DIR    = PROJECT_DIR / "Formats"

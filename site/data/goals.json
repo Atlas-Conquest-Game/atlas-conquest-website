@@ -4,7 +4,7 @@
       "id": "art_count",
       "label": "100 Cards Commissioned",
       "kind": "count",
-      "current": 77,
+      "current": 78,
       "target": 100,
       "met": false
     },
@@ -62,8 +62,8 @@
         {
           "deck": "Starter Mage",
           "total": 14,
-          "met_count": 7,
-          "rate": 0.5,
+          "met_count": 8,
+          "rate": 0.5714,
           "met": false
         },
         {
@@ -81,9 +81,9 @@
       "id": "anim_all",
       "label": "20% of all Cards have an animation",
       "kind": "percent",
-      "numerator": 66,
+      "numerator": 70,
       "denominator": 274,
-      "current": 0.2409,
+      "current": 0.2555,
       "target": 0.2,
       "met": true
     },
@@ -120,8 +120,8 @@
         {
           "deck": "Starter Beasts",
           "total": 15,
-          "met_count": 5,
-          "rate": 0.3333,
+          "met_count": 6,
+          "rate": 0.4,
           "met": false
         },
         {
@@ -141,15 +141,15 @@
         {
           "deck": "Starter Mage",
           "total": 14,
-          "met_count": 3,
-          "rate": 0.2143,
+          "met_count": 4,
+          "rate": 0.2857,
           "met": false
         },
         {
           "deck": "Starter Military",
           "total": 15,
-          "met_count": 3,
-          "rate": 0.2,
+          "met_count": 4,
+          "rate": 0.2667,
           "met": false
         }
       ]
@@ -158,17 +158,103 @@
   "overall": {
     "cards": {
       "total": 274,
-      "commissioned": 77,
-      "commissioned_rate": 0.281,
-      "animated": 66,
-      "animated_rate": 0.2409
+      "commissioned": 78,
+      "commissioned_rate": 0.2847,
+      "animated": 70,
+      "animated_rate": 0.2555,
+      "art_types": {
+        "commissioned": {
+          "count": 76,
+          "rate": 0.2774
+        },
+        "purchased": {
+          "count": 2,
+          "rate": 0.0073
+        },
+        "ai": {
+          "count": 196,
+          "rate": 0.7153
+        },
+        "other": {
+          "count": 0,
+          "rate": 0.0
+        }
+      }
+    },
+    "tokens": {
+      "total": 9,
+      "commissioned": 1,
+      "commissioned_rate": 0.1111,
+      "animated": 2,
+      "animated_rate": 0.2222,
+      "art_types": {
+        "commissioned": {
+          "count": 1,
+          "rate": 0.1111
+        },
+        "purchased": {
+          "count": 0,
+          "rate": 0.0
+        },
+        "ai": {
+          "count": 8,
+          "rate": 0.8889
+        },
+        "other": {
+          "count": 0,
+          "rate": 0.0
+        }
+      }
     },
     "commanders": {
       "total": 16,
       "commissioned": 15,
       "commissioned_rate": 0.9375,
       "animated": 4,
-      "animated_rate": 0.25
+      "animated_rate": 0.25,
+      "art_types": {
+        "commissioned": {
+          "count": 15,
+          "rate": 0.9375
+        },
+        "purchased": {
+          "count": 0,
+          "rate": 0.0
+        },
+        "ai": {
+          "count": 1,
+          "rate": 0.0625
+        },
+        "other": {
+          "count": 0,
+          "rate": 0.0
+        }
+      }
+    },
+    "all": {
+      "total": 299,
+      "commissioned": 94,
+      "commissioned_rate": 0.3144,
+      "animated": 76,
+      "animated_rate": 0.2542,
+      "art_types": {
+        "commissioned": {
+          "count": 92,
+          "rate": 0.3077
+        },
+        "purchased": {
+          "count": 2,
+          "rate": 0.0067
+        },
+        "ai": {
+          "count": 205,
+          "rate": 0.6856
+        },
+        "other": {
+          "count": 0,
+          "rate": 0.0
+        }
+      }
     }
   },
   "by_patron": [
@@ -180,14 +266,50 @@
         "commissioned": 0,
         "commissioned_rate": 0.0,
         "animated": 0,
-        "animated_rate": 0.0
+        "animated_rate": 0.0,
+        "art_types": {
+          "commissioned": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "purchased": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "ai": {
+            "count": 1,
+            "rate": 1.0
+          },
+          "other": {
+            "count": 0,
+            "rate": 0.0
+          }
+        }
       },
       "commanders": {
         "total": 0,
         "commissioned": 0,
         "commissioned_rate": 0.0,
         "animated": 0,
-        "animated_rate": 0.0
+        "animated_rate": 0.0,
+        "art_types": {
+          "commissioned": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "purchased": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "ai": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "other": {
+            "count": 0,
+            "rate": 0.0
+          }
+        }
       }
     },
     {
@@ -197,15 +319,51 @@
         "total": 26,
         "commissioned": 9,
         "commissioned_rate": 0.3462,
-        "animated": 3,
-        "animated_rate": 0.1154
+        "animated": 4,
+        "animated_rate": 0.1538,
+        "art_types": {
+          "commissioned": {
+            "count": 9,
+            "rate": 0.3462
+          },
+          "purchased": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "ai": {
+            "count": 17,
+            "rate": 0.6538
+          },
+          "other": {
+            "count": 0,
+            "rate": 0.0
+          }
+        }
       },
       "commanders": {
         "total": 3,
         "commissioned": 3,
         "commissioned_rate": 1.0,
         "animated": 1,
-        "animated_rate": 0.3333
+        "animated_rate": 0.3333,
+        "art_types": {
+          "commissioned": {
+            "count": 3,
+            "rate": 1.0
+          },
+          "purchased": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "ai": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "other": {
+            "count": 0,
+            "rate": 0.0
+          }
+        }
       }
     },
     {
@@ -216,14 +374,50 @@
         "commissioned": 13,
         "commissioned_rate": 0.3939,
         "animated": 18,
-        "animated_rate": 0.5455
+        "animated_rate": 0.5455,
+        "art_types": {
+          "commissioned": {
+            "count": 13,
+            "rate": 0.3939
+          },
+          "purchased": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "ai": {
+            "count": 20,
+            "rate": 0.6061
+          },
+          "other": {
+            "count": 0,
+            "rate": 0.0
+          }
+        }
       },
       "commanders": {
         "total": 3,
         "commissioned": 3,
         "commissioned_rate": 1.0,
         "animated": 0,
-        "animated_rate": 0.0
+        "animated_rate": 0.0,
+        "art_types": {
+          "commissioned": {
+            "count": 3,
+            "rate": 1.0
+          },
+          "purchased": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "ai": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "other": {
+            "count": 0,
+            "rate": 0.0
+          }
+        }
       }
     },
     {
@@ -234,14 +428,50 @@
         "commissioned": 5,
         "commissioned_rate": 0.1389,
         "animated": 6,
-        "animated_rate": 0.1667
+        "animated_rate": 0.1667,
+        "art_types": {
+          "commissioned": {
+            "count": 5,
+            "rate": 0.1389
+          },
+          "purchased": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "ai": {
+            "count": 31,
+            "rate": 0.8611
+          },
+          "other": {
+            "count": 0,
+            "rate": 0.0
+          }
+        }
       },
       "commanders": {
         "total": 3,
         "commissioned": 3,
         "commissioned_rate": 1.0,
         "animated": 1,
-        "animated_rate": 0.3333
+        "animated_rate": 0.3333,
+        "art_types": {
+          "commissioned": {
+            "count": 3,
+            "rate": 1.0
+          },
+          "purchased": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "ai": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "other": {
+            "count": 0,
+            "rate": 0.0
+          }
+        }
       }
     },
     {
@@ -252,14 +482,50 @@
         "commissioned": 0,
         "commissioned_rate": 0.0,
         "animated": 0,
-        "animated_rate": 0.0
+        "animated_rate": 0.0,
+        "art_types": {
+          "commissioned": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "purchased": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "ai": {
+            "count": 1,
+            "rate": 1.0
+          },
+          "other": {
+            "count": 0,
+            "rate": 0.0
+          }
+        }
       },
       "commanders": {
         "total": 0,
         "commissioned": 0,
         "commissioned_rate": 0.0,
         "animated": 0,
-        "animated_rate": 0.0
+        "animated_rate": 0.0,
+        "art_types": {
+          "commissioned": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "purchased": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "ai": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "other": {
+            "count": 0,
+            "rate": 0.0
+          }
+        }
       }
     },
     {
@@ -267,17 +533,53 @@
       "faction": "neutral",
       "cards": {
         "total": 119,
-        "commissioned": 36,
-        "commissioned_rate": 0.3025,
-        "animated": 21,
-        "animated_rate": 0.1765
+        "commissioned": 37,
+        "commissioned_rate": 0.3109,
+        "animated": 24,
+        "animated_rate": 0.2017,
+        "art_types": {
+          "commissioned": {
+            "count": 35,
+            "rate": 0.2941
+          },
+          "purchased": {
+            "count": 2,
+            "rate": 0.0168
+          },
+          "ai": {
+            "count": 82,
+            "rate": 0.6891
+          },
+          "other": {
+            "count": 0,
+            "rate": 0.0
+          }
+        }
       },
       "commanders": {
         "total": 2,
         "commissioned": 1,
         "commissioned_rate": 0.5,
         "animated": 0,
-        "animated_rate": 0.0
+        "animated_rate": 0.0,
+        "art_types": {
+          "commissioned": {
+            "count": 1,
+            "rate": 0.5
+          },
+          "purchased": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "ai": {
+            "count": 1,
+            "rate": 0.5
+          },
+          "other": {
+            "count": 0,
+            "rate": 0.0
+          }
+        }
       }
     },
     {
@@ -288,14 +590,50 @@
         "commissioned": 4,
         "commissioned_rate": 0.1739,
         "animated": 5,
-        "animated_rate": 0.2174
+        "animated_rate": 0.2174,
+        "art_types": {
+          "commissioned": {
+            "count": 4,
+            "rate": 0.1739
+          },
+          "purchased": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "ai": {
+            "count": 19,
+            "rate": 0.8261
+          },
+          "other": {
+            "count": 0,
+            "rate": 0.0
+          }
+        }
       },
       "commanders": {
         "total": 2,
         "commissioned": 2,
         "commissioned_rate": 1.0,
         "animated": 1,
-        "animated_rate": 0.5
+        "animated_rate": 0.5,
+        "art_types": {
+          "commissioned": {
+            "count": 2,
+            "rate": 1.0
+          },
+          "purchased": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "ai": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "other": {
+            "count": 0,
+            "rate": 0.0
+          }
+        }
       }
     },
     {
@@ -306,14 +644,50 @@
         "commissioned": 10,
         "commissioned_rate": 0.2941,
         "animated": 13,
-        "animated_rate": 0.3824
+        "animated_rate": 0.3824,
+        "art_types": {
+          "commissioned": {
+            "count": 10,
+            "rate": 0.2941
+          },
+          "purchased": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "ai": {
+            "count": 24,
+            "rate": 0.7059
+          },
+          "other": {
+            "count": 0,
+            "rate": 0.0
+          }
+        }
       },
       "commanders": {
         "total": 3,
         "commissioned": 3,
         "commissioned_rate": 1.0,
         "animated": 1,
-        "animated_rate": 0.3333
+        "animated_rate": 0.3333,
+        "art_types": {
+          "commissioned": {
+            "count": 3,
+            "rate": 1.0
+          },
+          "purchased": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "ai": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "other": {
+            "count": 0,
+            "rate": 0.0
+          }
+        }
       }
     },
     {
@@ -324,14 +698,50 @@
         "commissioned": 0,
         "commissioned_rate": 0.0,
         "animated": 0,
-        "animated_rate": 0.0
+        "animated_rate": 0.0,
+        "art_types": {
+          "commissioned": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "purchased": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "ai": {
+            "count": 1,
+            "rate": 1.0
+          },
+          "other": {
+            "count": 0,
+            "rate": 0.0
+          }
+        }
       },
       "commanders": {
         "total": 0,
         "commissioned": 0,
         "commissioned_rate": 0.0,
         "animated": 0,
-        "animated_rate": 0.0
+        "animated_rate": 0.0,
+        "art_types": {
+          "commissioned": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "purchased": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "ai": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "other": {
+            "count": 0,
+            "rate": 0.0
+          }
+        }
       }
     }
   ]

@@ -62,6 +62,12 @@
 
 /* === Responsive === */
 @media (max-width: 768px) {
+  /* The nav collapses to a burger and the filter bar reflows below this
+     breakpoint, so the sticky stack above a table pane gets shorter. */
+  :root {
+    --sticky-stack: 122px;
+  }
+
   .hero-title {
     font-size: 2rem;
   }

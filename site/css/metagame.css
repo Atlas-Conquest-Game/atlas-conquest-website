@@ -332,6 +332,10 @@
   opacity: 0;
   transition: opacity 0.12s ease;
   filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.6));
+  /* Row, because a card that creates a token previews next to it. */
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
 }
 
 .card-preview.visible {
@@ -343,6 +347,11 @@
   width: 250px;
   border-radius: 8px;
   background: var(--bg-elevated);
+}
+
+/* Mentioned cards are supporting context — smaller than the hovered card. */
+.card-preview .card-preview-mention {
+  width: 190px;
 }
 
 .metagame-empty {
