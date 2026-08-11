@@ -10,8 +10,8 @@
  * `activate` handler evicts the old cache and clients pick up fresh files.
  */
 
-const CACHE_NAME = 'ac-decks-v1';
-const DATA_CACHE = 'ac-decks-data-v1';
+const CACHE_NAME = 'ac-decks-v3';
+const DATA_CACHE = 'ac-decks-data-v2';
 // Bumped to v2 to flush art cached under the old cache-first strategy, which
 // pinned every viewed card JPG permanently and hid updated screenshots.
 const ART_CACHE = 'ac-decks-art-v2';
@@ -27,8 +27,13 @@ const SHELL_URLS = [
   '/css/responsive.css',
   '/css/tooltips.css',
   '/css/decks.css',
+  '/js/cardpreview.js',
   '/js/deckcode.js',
   '/js/decks.js',
+  // UI chrome. Small and used on every decklist row, and it falls outside
+  // isArtRequest() (which only covers /assets/cards/ and /assets/commanders/),
+  // so without this the compact view loses its cost gems offline.
+  '/assets/ui/cost-gem.webp',
   '/assets/logo/icon-192.png',
   '/assets/logo/icon-512.png',
   '/assets/logo/apple-touch-icon.png',
@@ -38,6 +43,7 @@ const DATA_URLS = [
   '/data/cardlist.json',
   '/data/cards.json',
   '/data/commanders.json',
+  '/data/mentions.json',
 ];
 
 // Matches commanderArtPath()/cardArtSlug() in site/js/decks.js.
