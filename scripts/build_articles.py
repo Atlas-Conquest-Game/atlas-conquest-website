@@ -241,6 +241,34 @@ class CardIndex:
     def card_type(self, name: str) -> str:
         return (self.by_name[name].get("type") or "").upper()
 
+    def mentions_for(self, name: str, kind: str) -> list[str]:
+        """Canonical names of the cards `name` creates or references.
+
+        Comes from the MentionedCards column of the reference CSVs. Entries that
+        don't resolve are dropped — a stale name in the CSV shouldn't break the
+        article build.
+        """
+        source = self.by_name if kind == "card" else self.commanders_by_name
+        raw = (source.get(name) or {}).get("mentions") or []
+        resolved = []
+        for entry in raw:
+            canonical, _ = self.resolve_any(entry)
+            if canonical and canonical != name:
+                resolved.append(canonical)
+        return resolved
+
+    def card_img_src(self, name: str, kind: str) -> str:
+        """Image URL for an inline card image.
+
+        Cards have an RGBA source — point at the transparent PNG produced by the
+        pipeline's generate_thumbnails(). Commanders don't have an RGBA source
+        today, so they fall back to the framed JPG.
+        """
+        slug = slugify(name)
+        if kind == "card" and self.card_art_source(name):
+            return f"/assets/card-art-png/{slug}.png"
+        return f"/assets/cards/{slug}.jpg"
+
 
 # ─── Custom Markdown extensions ────────────────────────────
 
@@ -281,27 +309,36 @@ class CardImgInlineProcessor(InlineProcessor):
         self._cards = cards
         self._source = source
 
+    def _img(self, name: str, kind: str, mention: bool = False) -> ET.Element:
+        el = ET.Element("img")
+        el.set("class", "card-art-inline card-art-mention" if mention else "card-art-inline")
+        el.set("data-card", name)
+        el.set("src", self._cards.card_img_src(name, kind))
+        el.set("alt", name)
+        # loading=lazy keeps multi-card paragraphs from blocking initial paint.
+        el.set("loading", "lazy")
+        return el
+
     def handleMatch(self, m, data):
         raw = m.group(1).strip()
         canonical, kind = self._cards.resolve_any(raw)
         if canonical is None:
             raise BuildError(f"Unknown card or commander in [[card-img:{raw}]]", self._source)
-        slug = slugify(canonical)
-        # Cards have an RGBA source — point at the transparent PNG produced by
-        # the pipeline's generate_thumbnails(). Commanders don't have an RGBA
-        # source today, so they fall back to the framed JPG.
-        if kind == "card" and self._cards.card_art_source(canonical):
-            src = f"/assets/card-art-png/{slug}.png"
-        else:
-            src = f"/assets/cards/{slug}.jpg"
-        el = ET.Element("img")
-        el.set("class", "card-art-inline")
-        el.set("data-card", canonical)
-        el.set("src", src)
-        el.set("alt", canonical)
-        # loading=lazy keeps multi-card paragraphs from blocking initial paint.
-        el.set("loading", "lazy")
-        return el, m.start(0), m.end(0)
+
+        mentions = self._cards.mentions_for(canonical, kind)
+        if not mentions:
+            return self._img(canonical, kind), m.start(0), m.end(0)
+
+        # A card that creates other cards renders side-by-side with them, the
+        # same way the hover preview does. The wrapper keeps the group together
+        # when a paragraph holds several shortcodes.
+        group = ET.Element("span")
+        group.set("class", "card-art-group")
+        group.append(self._img(canonical, kind))
+        for mentioned in mentions:
+            _, mentioned_kind = self._cards.resolve_any(mentioned)
+            group.append(self._img(mentioned, mentioned_kind or "card", mention=True))
+        return group, m.start(0), m.end(0)
 
 
 # [[deck:CODE]] — splits on the FIRST colon only, since codes contain ":".

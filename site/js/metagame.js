@@ -303,11 +303,14 @@ function bindArchetypeToggles() {
   });
 }
 
+// Contents and placement come from site/js/cardpreview.js — hovering a card
+// also previews any tokens it creates, side by side.
 function initCardPreview() {
   const preview = document.getElementById('card-preview');
-  const previewImg = document.getElementById('card-preview-img');
   const list = document.getElementById('archetype-list');
-  if (!preview || !previewImg || !list) return;
+  if (!preview || !list) return;
+
+  const srcFor = slug => `assets/cards/${slug}.jpg`;
 
   list.addEventListener('mouseover', e => {
     const cell = e.target.closest('.metagame-card-name');
@@ -315,17 +318,13 @@ function initCardPreview() {
     const row = cell.closest('tr[data-card-slug]');
     if (!row) return;
 
-    previewImg.src = `assets/cards/${row.dataset.cardSlug}.jpg`;
+    renderCardPreview(preview, row.dataset.cardSlug, srcFor);
     preview.classList.add('visible');
   });
 
   list.addEventListener('mousemove', e => {
     if (!preview.classList.contains('visible')) return;
-    const x = e.clientX + 20;
-    const y = e.clientY - 100;
-    const flipX = x + 260 > window.innerWidth;
-    preview.style.left = flipX ? `${e.clientX - 270}px` : `${x}px`;
-    preview.style.top = `${Math.max(8, y)}px`;
+    positionCardPreview(preview, e);
   });
 
   list.addEventListener('mouseout', e => {
@@ -333,10 +332,6 @@ function initCardPreview() {
     if (!cell) return;
     const related = e.relatedTarget;
     if (related && cell.contains(related)) return;
-    preview.classList.remove('visible');
-  });
-
-  previewImg.addEventListener('error', () => {
     preview.classList.remove('visible');
   });
 }

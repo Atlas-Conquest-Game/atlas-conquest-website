@@ -59,6 +59,38 @@
   border-color: #388bfd;
 }
 
+/* Checkbox filter in the filter bar (e.g. "Show tokens"). Sized to sit level
+   with .filter-btn / .commander-select. */
+.filter-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  user-select: none;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.filter-check:hover {
+  border-color: #388bfd;
+  color: var(--text);
+}
+
+.filter-check input {
+  accent-color: var(--token);
+  cursor: pointer;
+  margin: 0;
+}
+
+.filter-check:has(input:checked) {
+  color: var(--text);
+  border-color: var(--token);
+}
+
 /* === Stacked sub-line in table cells === */
 
 .cell-sub {
@@ -103,6 +135,10 @@
   opacity: 0;
   transition: opacity 0.12s ease;
   filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.6));
+  /* Row, because a card that creates a token previews next to it. */
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
 }
 
 .card-preview.visible {
@@ -113,4 +149,16 @@
   display: block;
   width: 250px;
   /* No background/border-radius — the source PNG has transparent corners. */
+}
+
+/* Mentioned cards are supporting context — rendered smaller than the card
+   actually being hovered. */
+.card-preview .card-preview-mention {
+  width: 190px;
+}
+
+/* Token card names in the table. Tokens are generated in play rather than
+   built, so their names take the token accent (see --token). */
+.card-name-token {
+  color: var(--token);
 }

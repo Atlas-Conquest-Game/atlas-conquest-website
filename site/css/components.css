@@ -365,6 +365,36 @@
   border-radius: var(--radius-lg);
 }
 
+/* Floating copy of a long table's header row, pinned under the sticky nav
+   stack while the table body is on screen. Built and positioned by
+   initStickyTableHeader() in site/js/shared.js.
+
+   Why a clone rather than `position: sticky` on the real thead: .table-wrapper
+   sets `overflow-x: auto`, and per spec a non-`visible` overflow on one axis
+   computes the other axis to `auto` too — so the wrapper is already a scroll
+   container on both axes, and a sticky thead inside it can only stick to the
+   wrapper's own scrollport. That scrollport is as tall as the table and never
+   scrolls, so nothing sticks. Capping the wrapper's height would give it
+   somewhere to scroll, but then a wheel over the table scrolls the table while
+   the page is still showing the hero — the header pins mid-screen and rows
+   read in a letterbox. Cloning keeps the page's scroll model untouched. */
+.sticky-table-header {
+  position: fixed;
+  top: var(--sticky-stack);
+  /* Below .nav (300), .sub-nav (290) and .time-filter-bar (250), above content. */
+  z-index: 200;
+  display: none;
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  box-shadow: var(--shadow-md);
+}
+
+.sticky-table-header.visible {
+  display: block;
+}
+
 .data-table {
   width: 100%;
   border-collapse: collapse;
@@ -829,4 +859,18 @@
   color: var(--text-muted);
   font-size: 0.8125rem;
   font-variant-numeric: tabular-nums;
+}
+
+/* Combined row of the art-source table (cards + tokens + commanders). */
+.goal-total-row td {
+  font-weight: 600;
+  color: var(--text);
+  border-top: 1px solid var(--border);
+}
+
+/* "Other" only means an ArtType the pipeline doesn't recognise — normally
+   nothing lands there, so the column is dropped rather than shown as zeros.
+   See renderArtSourceTable() in site/js/goals.js. */
+#art-source-table.hide-other .col-other {
+  display: none;
 }

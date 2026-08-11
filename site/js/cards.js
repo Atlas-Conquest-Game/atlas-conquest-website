@@ -12,6 +12,10 @@ let cardSortDir = 'desc';
 let currentFaction = 'all';
 let currentCommander = 'all';
 let searchQuery = '';
+// Tokens (Zombie, Lucian Soldier, …) are generated cards: they have real draw
+// and play stats but no deck can contain one, so they'd skew a scan of the
+// table. Hidden until asked for — see the "Show tokens" checkbox.
+let showTokens = false;
 
 // ─── Card Table ─────────────────────────────────────────────
 
@@ -58,6 +62,8 @@ function renderCardTable(stats) {
     const metadata = getPeriodData(appData.metadata, currentPeriod);
     totalGames = metadata ? metadata.total_matches * 2 : 0;
   }
+
+  if (!showTokens) merged = merged.filter(c => !c.token);
 
   let filtered = currentFaction === 'all'
     ? merged
@@ -117,7 +123,7 @@ function renderCardTable(stats) {
     const playedCount = c.played_count || 0;
     return `
     <tr data-card-slug="${slug}" class="card-row">
-      <td><strong>${c.name}</strong></td>
+      <td><strong${c.token ? ' class="card-name-token" title="Token — generated in play, not deck-buildable"' : ''}>${c.name}</strong></td>
       <td>${factionBadge(c.faction)}</td>
       <td>${c.type || '--'}</td>
       <td>${pctCell(c.deck_rate || 0)}<div class="cell-sub">${deckCount} of ${totalGames}</div></td>
@@ -178,6 +184,18 @@ function initFactionFilters() {
   });
 }
 
+// ─── Token Toggle ───────────────────────────────────────────
+
+function initTokenToggle() {
+  const box = document.getElementById('show-tokens');
+  if (!box) return;
+  box.checked = showTokens;
+  box.addEventListener('change', () => {
+    showTokens = box.checked;
+    renderCardTable(getPeriodData(appData.cardStats, currentPeriod));
+  });
+}
+
 // ─── Search ─────────────────────────────────────────────────
 
 function initSearch() {
@@ -197,12 +215,14 @@ function initSearch() {
 
 // ─── Card Preview on Hover ──────────────────────────────────
 
+// Contents and placement come from site/js/cardpreview.js — hovering a card
+// also previews any tokens it creates, side by side.
 function initCardPreview() {
   const preview = document.getElementById('card-preview');
-  const previewImg = document.getElementById('card-preview-img');
-  if (!preview || !previewImg) return;
+  if (!preview) return;
 
   const tbody = document.querySelector('#card-table tbody');
+  const srcFor = slug => `assets/cards/${slug}.jpg`;
 
   tbody.addEventListener('mouseover', e => {
     const cell = e.target.closest('td');
@@ -210,17 +230,13 @@ function initCardPreview() {
     const row = cell.closest('tr[data-card-slug]');
     if (!row || cell !== row.cells[0]) return;
 
-    const slug = row.dataset.cardSlug;
-    previewImg.src = `assets/cards/${slug}.jpg`;
+    renderCardPreview(preview, row.dataset.cardSlug, srcFor);
     preview.classList.add('visible');
   });
 
   tbody.addEventListener('mousemove', e => {
-    const x = e.clientX + 20;
-    const y = e.clientY - 100;
-    const flipX = x + 260 > window.innerWidth;
-    preview.style.left = flipX ? (e.clientX - 270) + 'px' : x + 'px';
-    preview.style.top = Math.max(8, y) + 'px';
+    if (!preview.classList.contains('visible')) return;
+    positionCardPreview(preview, e);
   });
 
   tbody.addEventListener('mouseout', e => {
@@ -230,11 +246,6 @@ function initCardPreview() {
     if (!row || cell !== row.cells[0]) return;
     const related = e.relatedTarget;
     if (related && cell.contains(related)) return;
-    preview.classList.remove('visible');
-  });
-
-  // Handle image load errors (card art missing)
-  previewImg.addEventListener('error', () => {
     preview.classList.remove('visible');
   });
 }
@@ -298,8 +309,10 @@ async function init() {
   initFactionFilters();
   initCommanderFilter();
   initCardTableSorting();
+  initTokenToggle();
   initSearch();
   initCardPreview();
+  initStickyTableHeader(document.getElementById('card-table'));
   initTimeFilters(renderAll);
   initMapFilters(renderAll);
   initNavActiveState();

@@ -210,6 +210,37 @@ def test_card_img_shortcode(codec, cards_index):
     assert 'loading="lazy"' in a.body_html
 
 
+def test_card_img_renders_mentioned_cards_side_by_side(codec, cards_index):
+    """Conscription creates Lucian Soldier (MentionedCards in the card CSV), so
+    both images ship in one group."""
+    a = _render("[[card-img:Conscription]]", "x", codec, cards_index)
+    assert 'class="card-art-group"' in a.body_html
+    assert 'data-card="Conscription"' in a.body_html
+    assert 'class="card-art-inline card-art-mention"' in a.body_html
+    assert 'data-card="Lucian Soldier"' in a.body_html
+    # The card itself comes first.
+    assert a.body_html.index("Conscription") < a.body_html.index("Lucian Soldier")
+
+
+def test_card_img_without_mentions_has_no_group_wrapper(codec, cards_index):
+    a = _render("[[card-img:Acid Rain]]", "x", codec, cards_index)
+    assert "card-art-group" not in a.body_html
+
+
+def test_commander_img_renders_mentioned_cards(codec, cards_index):
+    """Commanders carry MentionedCards too — Elyse of the Order makes Lucian
+    Soldiers."""
+    a = _render("[[card-img:Elyse of the Order]]", "x", codec, cards_index)
+    assert 'class="card-art-group"' in a.body_html
+    assert 'data-card="Lucian Soldier"' in a.body_html
+
+
+def test_token_resolves_as_a_card(cards_index):
+    """Tokens live in cards.json now, so [[card:Zombie]] resolves instead of
+    failing the build."""
+    assert cards_index.resolve_card("Zombie") == "Zombie"
+
+
 def test_unknown_card_img_raises(codec, cards_index):
     with pytest.raises(ba.BuildError, match="Unknown card"):
         _render("[[card-img:Not A Real Card 9000]]", "x", codec, cards_index)

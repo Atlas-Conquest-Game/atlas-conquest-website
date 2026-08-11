@@ -270,6 +270,7 @@ async function init() {
   initCommanderFilter();
   initTableSorting();
   initSearch();
+  initStickyTableHeader(document.getElementById('mulligan-table'));
   initTimeFilters(renderAll);
   initMapFilters(renderAll);
   initNavActiveState();

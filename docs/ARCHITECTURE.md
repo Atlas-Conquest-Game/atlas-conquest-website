@@ -27,7 +27,7 @@
 - Runs in GitHub Actions on a schedule (daily) or manual trigger.
 - Incremental fetching: caches raw games in `raw_games.json`, only pulls new games from DynamoDB.
 - Computes per-period aggregations (all / 6m / 3m / 1m) crossed with per-map breakdowns (All Maps / Dunes / Snowmelt / Tropics): commander stats, matchups, card stats, meta trends, game distribution histograms, per-commander deck composition breakdowns, and first-turn advantage stats.
-- Output nesting: `data[period][map]` for all stat files; flat arrays for reference files (`cards.json`, `commanders.json`).
+- Output nesting: `data[period][map]` for all stat files; flat arrays for reference files (`cards.json`, `commanders.json`) and a flat object for `mentions.json`.
 - Output: static JSON files committed to `site/data/`.
 
 #### Pipeline Modules
@@ -45,8 +45,8 @@
 ### 3. Data Contract (`site/data/`)
 - Static JSON files are the interface between the pipeline and the frontend.
 - Each file has a defined schema documented in [DATA_MODEL.md](DATA_MODEL.md).
-- Stats files are doubly nested (`data[period][map]`); reference files (`cards.json`, `commanders.json`) are flat arrays.
-- Files: `metadata.json`, `commander_stats.json`, `matchups.json`, `card_stats.json`, `commander_card_stats.json`, `trends.json`, `commander_trends.json`, `commander_winrate_trends.json`, `game_distributions.json`, `deck_composition.json`, `duration_winrates.json`, `action_winrates.json`, `turn_winrates.json`, `first_turn.json`, `mulligan_stats.json`, `commander_mulligan_stats.json`, `cards.json`, `commanders.json`, `cardlist.json`.
+- Stats files are doubly nested (`data[period][map]`); reference files (`cards.json`, `commanders.json`) are flat arrays and `mentions.json` is a flat slug→cards object.
+- Files: `metadata.json`, `commander_stats.json`, `matchups.json`, `card_stats.json`, `commander_card_stats.json`, `trends.json`, `commander_trends.json`, `commander_winrate_trends.json`, `game_distributions.json`, `deck_composition.json`, `duration_winrates.json`, `action_winrates.json`, `turn_winrates.json`, `first_turn.json`, `mulligan_stats.json`, `commander_mulligan_stats.json`, `cards.json`, `commanders.json`, `mentions.json`, `goals.json`, `cardlist.json`.
 - The site reads only from these files — no runtime API calls.
 
 ### 4. Frontend (`site/`)
@@ -120,7 +120,8 @@ Each page loads `shared.js` first (globals, not ES modules), then its page-speci
 2. Pipeline scans DynamoDB for new games, cleans and caches them.
 3. Thumbnails regenerated from `Artwork/` and `CardScreenshots/` into `site/assets/`.
 4. `cardlist.json` regenerated from `Formats/FullCardList.asset`.
-5. `cards.json` and `commanders.json` regenerated from CSVs.
+5. `cards.json` (cards + tokens), `commanders.json` and `mentions.json` regenerated from CSVs
+   (`StandardFormatCards.csv`, `StandardFormatCommanders.csv`, `StandardFormatTokens.csv`).
 6. All stats files aggregated and written to `site/data/`.
 7. Changes committed (`site/data/` + `site/assets/`) and pushed, triggering a GitHub Pages deploy.
 8. `scripts/daily_summary.py` posts yesterday's game stats to Discord via webhook.

@@ -31,28 +31,48 @@ from pipeline.io_helpers import (
     load_cache, save_cache, write_json,
     get_dynamo_table, scan_all_games,
     generate_thumbnails, write_cardlist,
-    load_cards_csv, load_commanders_csv,
+    load_cards_csv, load_commanders_csv, load_tokens_csv,
+    build_mentions_index,
 )
 
 
-def build_and_write_all(games, cards_csv, commanders_csv):
+def build_and_write_all(games, cards_csv, commanders_csv, tokens_csv=()):
     """Run all aggregations for each time period × map and write JSON files.
 
     Output nesting: data[period][map] for all stats files.
     """
 
+    # Tokens are generated cards — they never sit in a deck list, but they are
+    # drawn and played, so they show up in match data and need type/faction like
+    # any other card. They ride along in cards.json flagged `token: true`;
+    # consumers that only care about buildable cards filter on that flag.
+    tokens_csv = list(tokens_csv)
+    all_cards = list(cards_csv) + tokens_csv
+
     # Build lookups (period-independent)
     faction_lookup = {c["name"]: c["faction"] for c in commanders_csv}
-    card_info = {c["name"]: {"faction": c["faction"], "type": c["type"], "cost": c.get("cost")} for c in cards_csv}
+    card_info = {
+        c["name"]: {
+            "faction": c["faction"], "type": c["type"], "cost": c.get("cost"),
+            "token": c.get("token", False),
+        }
+        for c in all_cards
+    }
     cmd_faction = {c["name"]: c["faction"] for c in commanders_csv}
     intellect_lookup = {c["name"]: c["intellect"] for c in commanders_csv}
 
     # Reference data (no time/map filtering)
-    write_json("cards.json", cards_csv)
+    write_json("cards.json", all_cards)
     write_json("commanders.json", commanders_csv)
 
-    # Goals tracker (static card-pool metadata, not period/map nested)
-    write_json("goals.json", aggregate_goals(cards_csv, commanders_csv))
+    # Card → cards it creates/references, keyed by art slug. Small enough that
+    # every page can load it for the side-by-side card previews.
+    write_json("mentions.json", build_mentions_index(all_cards, commanders_csv))
+
+    # Goals tracker (static card-pool metadata, not period/map nested). Tokens
+    # are passed separately: no alpha goal targets them, so they stay out of
+    # every goal percentage and only appear in the overall breakdown.
+    write_json("goals.json", aggregate_goals(cards_csv, commanders_csv, tokens_csv))
 
     # Deck codec for archetype decklists. Missing/invalid cardlist degrades
     # gracefully: rows just won't include a deck_code (no link).
@@ -166,6 +186,7 @@ def build_and_write_all(games, cards_csv, commanders_csv):
                     "name": name,
                     "faction": info["faction"],
                     "type": info["type"],
+                    "token": info.get("token", False),
                     "deck_count": data["deck_count"],
                     "deck_rate": round(data["deck_count"] / total_player_games, 4) if total_player_games > 0 else 0,
                     "deck_winrate": round(deck_wr, 4),
@@ -354,9 +375,10 @@ def main():
     print("\n[7/7] Loading reference data...")
     cards_csv = load_cards_csv()
     commanders_csv = load_commanders_csv()
+    tokens_csv = load_tokens_csv()
 
     # Aggregate and write JSONs (per time period)
     print("\nAggregating and writing data files...")
-    build_and_write_all(all_games, cards_csv, commanders_csv)
+    build_and_write_all(all_games, cards_csv, commanders_csv, tokens_csv)
 
     print(f"\nDone! {len(all_games)} games processed -> site/data/")

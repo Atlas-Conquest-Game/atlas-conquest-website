@@ -1437,7 +1437,7 @@ def aggregate_commander_mulligan_stats(games, intellect_lookup=None):
     return result
 
 
-def aggregate_goals(cards, commanders):
+def aggregate_goals(cards, commanders, tokens=()):
     """Build the Goals page payload from card/commander art metadata.
 
     Static (not period/map nested). Mirrors the two Trello "target" cards:
@@ -1446,7 +1446,13 @@ def aggregate_goals(cards, commanders):
 
     "Commissioned" means non-AI art (ARTIST_COMMISSIONED or PURCHASED_ASSET),
     captured upstream in each record's ``commissioned`` flag.
+
+    ``tokens`` are generated cards. No alpha goal targets them, so they stay out
+    of every goal and out of the per-patron card table — but they need art all
+    the same, so they get their own row in the art-source breakdown and count
+    toward the combined total at the end.
     """
+    tokens = list(tokens)
 
     def rate(num, den):
         return round(num / den, 4) if den else 0.0
@@ -1514,6 +1520,25 @@ def aggregate_goals(cards, commanders):
                    "has_animation", 0.50),
     ]
 
+    # Raw ArtType value → art-source bucket. `commissioned` above is the union
+    # of the first two (i.e. "not AI"); this splits them apart for the
+    # breakdown table. Anything unrecognised (or a blank ArtType) lands in
+    # "other" so each row still sums to its total.
+    ART_TYPE_BUCKETS = {
+        "ARTIST_COMMISSIONED": "commissioned",
+        "PURCHASED_ASSET": "purchased",
+        "AI_GENERATED": "ai",
+    }
+
+    def art_types(records):
+        counts = {"commissioned": 0, "purchased": 0, "ai": 0, "other": 0}
+        for r in records:
+            counts[ART_TYPE_BUCKETS.get(r.get("art_type") or "", "other")] += 1
+        return {
+            bucket: {"count": count, "rate": rate(count, len(records))}
+            for bucket, count in counts.items()
+        }
+
     def totals(records):
         commissioned = sum(1 for r in records if r["commissioned"])
         animated = sum(1 for r in records if r["has_animation"])
@@ -1523,6 +1548,7 @@ def aggregate_goals(cards, commanders):
             "commissioned_rate": rate(commissioned, len(records)),
             "animated": animated,
             "animated_rate": rate(animated, len(records)),
+            "art_types": art_types(records),
         }
 
     # Per-patron breakdown (raw patron values, kept separate).
@@ -1543,7 +1569,10 @@ def aggregate_goals(cards, commanders):
         "animation_goals": animation_goals,
         "overall": {
             "cards": totals(cards),
+            "tokens": totals(tokens),
             "commanders": totals(commanders),
+            # Everything that needs artwork, tokens included — the final count.
+            "all": totals(list(cards) + tokens + list(commanders)),
         },
         "by_patron": by_patron,
     }
