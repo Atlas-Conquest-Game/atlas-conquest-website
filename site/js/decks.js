@@ -19,6 +19,11 @@ let currentDeck = null;
 let deckSource = null;
 let currentMode = 'import';
 let buildSortMode = 'cost';
+// Decklist presentation — 'grid' (art tiles) or 'compact' (in-game style
+// one-line rows). Persisted so the choice survives reloads; read lazily in
+// initViewSwitch() because private-mode Safari throws on localStorage access.
+let deckView = 'grid';
+const DECK_VIEW_KEY = 'ac-deck-view';
 const activeCostChips = new Set(); // cost bucket strings, e.g. '0'..'6', '7' (= "7+")
 
 // True on devices with a real mouse (hover + precise pointer). Gates which
@@ -72,6 +77,7 @@ async function loadCardlist() {
       cost: c.cost != null ? c.cost : '?',
       type: c.type || '',
       faction: c.faction || 'neutral',
+      token: !!c.token,
     };
   });
   cardsData = cards;
@@ -86,6 +92,19 @@ function commanderArtPath(name) {
 
 function cardArtSlug(name) {
   return name.toLowerCase().replace(/[,.']/g, '').replace(/\s+/g, '-');
+}
+
+// The game's cost gem (art in /assets/ui/) with the numeral as live text.
+// Callers size it by setting --gem-size in CSS; see .mana-gem in decks.css.
+// Two-digit costs — Atlas, First to Walk is a 15 — step the numeral down so
+// it stays inside the gem's jade well.
+// Pass ariaLabel where the gem is the only thing stating the cost; leave it
+// null (the default) where the container already announces it, as the compact
+// rows do, so it isn't read twice.
+function manaGemHtml(cost, cls = '', ariaLabel = null) {
+  const wide = String(cost).length > 1 ? ' wide' : '';
+  const a11y = ariaLabel ? ` role="img" aria-label="${ariaLabel}"` : ' aria-hidden="true"';
+  return `<span class="mana-gem${cls ? ' ' + cls : ''}"${a11y}><span class="mana-gem-value${wide}">${cost}</span></span>`;
 }
 
 function factionColor(faction) {
@@ -188,46 +207,43 @@ function initCardPreview() {
   if (!supportsHover) return;
 
   const preview = document.getElementById('card-preview');
-  const img = document.getElementById('card-preview-img');
 
-  // Returns the image src for whatever the cursor is over, or null if nothing
+  // Returns the card/commander name the cursor is over, or null if nothing is
   // previewable. Both cards AND commanders live under /assets/cards/<slug>.jpg
   // (the framed card with name banner + text box). /assets/commanders/ holds
   // just the cropped art and is used for thumbnails / OG hero panels — not here.
-  function previewSrcFor(target) {
+  function previewNameFor(target) {
     const cmd = target.closest('.deck-commander-section[data-commander]');
-    if (cmd) {
-      const name = cmd.dataset.commander;
-      return name ? `/assets/cards/${cardArtSlug(name)}.jpg` : null;
-    }
+    if (cmd) return cmd.dataset.commander || null;
     const cmdTile = target.closest('.commander-picker-tile');
-    if (cmdTile) return `/assets/cards/${cardArtSlug(cmdTile.dataset.name || '')}.jpg`;
+    if (cmdTile) return cmdTile.dataset.name || null;
     const artWrap = target.closest('.card-tile-art-wrap');
-    if (artWrap) {
-      const name = artWrap.closest('.card-tile')?.dataset.name || '';
-      return `/assets/cards/${cardArtSlug(name)}.jpg`;
-    }
+    if (artWrap) return artWrap.closest('.card-tile')?.dataset.name || null;
+    // Compact rows show only a sliver of art, so the whole row is the hover
+    // target — the preview is how you see the actual card from this view.
+    const compactRow = target.closest('.deck-compact-row');
+    if (compactRow) return compactRow.dataset.name || null;
     return null;
   }
 
+  // Contents and placement come from /js/cardpreview.js — a card that creates a
+  // token previews side-by-side with it.
+  const srcFor = slug => `/assets/cards/${slug}.jpg`;
+
   document.addEventListener('mouseover', e => {
-    const src = previewSrcFor(e.target);
-    if (!src) { preview.classList.remove('visible'); return; }
-    img.src = src;
-    img.onerror = () => { preview.classList.remove('visible'); };
+    const name = previewNameFor(e.target);
+    if (!name) { preview.classList.remove('visible'); return; }
+    renderCardPreview(preview, name, srcFor);
     preview.classList.add('visible');
   });
 
   document.addEventListener('mousemove', e => {
     if (!preview.classList.contains('visible')) return;
-    const x = e.clientX + 24;
-    const flip = x + 220 > window.innerWidth;
-    preview.style.left = flip ? `${e.clientX - 224}px` : `${x}px`;
-    preview.style.top = `${Math.max(8, e.clientY - 120)}px`;
+    positionCardPreview(preview, e);
   });
 
   document.addEventListener('mouseout', e => {
-    if (!previewSrcFor(e.target)) {
+    if (!previewNameFor(e.target)) {
       preview.classList.remove('visible');
     }
   });
@@ -244,8 +260,10 @@ function getCardPool() {
 
   return cardlistData.cards.filter(c => {
     if (commanderSet.has(c.name)) return false;
-    // Only show cards tracked in cards.json — filters tokens, placeholders, etc.
-    if (!cardInfoMap[c.name]) return false;
+    // Only show cards tracked in cards.json — filters placeholders, retired
+    // names, etc. Tokens are tracked there too (they need type/faction for the
+    // Cards page), but they're generated in play and can't be built.
+    if (!cardInfoMap[c.name] || cardInfoMap[c.name].token) return false;
     if (!selectedCommander) return true; // no commander: show all playable cards
 
     const cf = (cardInfoMap[c.name]?.faction || '').toLowerCase();
@@ -346,15 +364,28 @@ function openCardDetailSheet(name) {
   art.onload = art.onerror = () => { art.style.visibility = ''; };
   art.src = `/assets/cards/${cardArtSlug(name)}.jpg`;
   art.alt = name;
+  // Touch has no hover preview, so the cards this one creates are shown beside
+  // its art here instead.
+  renderMentionStrip(
+    document.getElementById('card-detail-mentions'),
+    name,
+    s => `/assets/cards/${s}.jpg`,
+  );
   document.getElementById('card-detail-name').textContent = name;
   document.getElementById('card-detail-badges').innerHTML = `
-    <span class="card-detail-badge-cost">${cost}</span>
+    ${manaGemHtml(cost, 'card-detail-badge-cost', `Cost ${cost}`)}
     ${typeLabel ? `<span class="card-detail-badge-type">${typeLabel}</span>` : ''}
     <span class="card-detail-badge-faction" style="color:${fc};border:1px solid ${fc}40">${fLabel}</span>`;
   document.getElementById('card-detail-count').textContent = count;
 
   const sheet = document.getElementById('card-detail-sheet');
   const backdrop = document.getElementById('card-detail-backdrop');
+  // Import mode is a viewer, not an editor: the sheet is reachable from the
+  // decklist there too (it's the only way to see a full card on touch), but
+  // its +/- must not run — addCardToBuild() would call ensureBuildDeck(),
+  // which discards the imported deck for a fresh empty build one.
+  sheet.querySelector('.card-detail-stepper')
+    .classList.toggle('hidden', currentMode !== 'build');
   sheet.dataset.card = name;
   sheet.classList.remove('hidden');
   backdrop.classList.remove('hidden');
@@ -378,7 +409,7 @@ function initCardDetailSheet() {
 
   document.getElementById('card-detail-plus').addEventListener('click', () => {
     const name = document.getElementById('card-detail-sheet').dataset.card;
-    if (!name) return;
+    if (!name || currentMode !== 'build') return;
     const count = currentDeck ? (currentDeck.cards.find(c => c.name === name)?.count || 0) : 0;
     if (count >= 3) return;
     addCardToBuild(name);
@@ -387,7 +418,7 @@ function initCardDetailSheet() {
 
   document.getElementById('card-detail-minus').addEventListener('click', () => {
     const name = document.getElementById('card-detail-sheet').dataset.card;
-    if (!name) return;
+    if (!name || currentMode !== 'build') return;
     removeOneFromBuild(name);
     const count = currentDeck ? (currentDeck.cards.find(c => c.name === name)?.count || 0) : 0;
     document.getElementById('card-detail-count').textContent = count;
@@ -440,6 +471,72 @@ function initCostChips() {
   });
 }
 
+// ─── Compact Decklist View ─────────────────────────────────
+// One row per card, mirroring the in-game decklist: cost gem on the left,
+// name, copy count on the right, over a right-to-left fade of the card's own
+// artwork, applied as a `--art` custom property so the whole row is one
+// background layer. The cost gem comes from manaGemHtml().
+
+function compactRowHtml(c, deck, isBuild) {
+  const info = cardInfoMap[c.name] || {};
+  const cost = info.cost != null ? info.cost : '?';
+  const slug = cardArtSlug(c.name);
+  const compatible = isCardCompatible(c.name, deck.commander);
+  const fc = factionColor(info.faction);
+
+  // The row's own aria-label carries name/cost/count, so the gem, name and
+  // count are hidden from the a11y tree to avoid reading each twice. The
+  // stepper buttons stay exposed — they carry their own labels.
+  const right = isBuild
+    ? `<span class="deck-compact-stepper">
+         <button type="button" class="deck-compact-btn minus" data-name="${c.name}" aria-label="Remove one ${c.name}">−</button>
+         <span class="deck-compact-stepper-count" aria-hidden="true">${c.count}</span>
+         <button type="button" class="deck-compact-btn plus" data-name="${c.name}" aria-label="Add one ${c.name}"${c.count >= 3 ? ' disabled' : ''}>+</button>
+       </span>`
+    : `<span class="deck-compact-count" aria-hidden="true"><span class="deck-compact-count-x">×</span>${c.count}</span>`;
+
+  const label = `${c.name}, cost ${cost}, ${c.count} ${c.count === 1 ? 'copy' : 'copies'}` +
+    (compatible ? '' : ' — incompatible with this commander');
+
+  return `<li class="deck-compact-row${compatible ? '' : ' incompatible'}" data-name="${c.name}"
+      aria-label="${label}"
+      style="--art:url('/assets/cards/${slug}.jpg');--fc:${fc}">
+      ${manaGemHtml(cost)}
+      <span class="deck-compact-name" aria-hidden="true">${c.name}</span>
+      ${right}
+    </li>`;
+}
+
+function renderCompactList(sorted, deck, isBuild) {
+  return `<ol class="deck-compact-list">${
+    sorted.map(c => compactRowHtml(c, deck, isBuild)).join('')
+  }</ol>`;
+}
+
+function applyDeckView(view) {
+  deckView = view === 'compact' ? 'compact' : 'grid';
+  document.querySelectorAll('.view-switch-btn').forEach(btn => {
+    const on = btn.dataset.view === deckView;
+    btn.classList.toggle('active', on);
+    btn.setAttribute('aria-pressed', String(on));
+  });
+  try { localStorage.setItem(DECK_VIEW_KEY, deckView); } catch { /* private mode */ }
+}
+
+function initViewSwitch() {
+  let saved = null;
+  try { saved = localStorage.getItem(DECK_VIEW_KEY); } catch { /* private mode */ }
+  applyDeckView(saved || 'grid');
+
+  document.querySelectorAll('.view-switch-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (btn.dataset.view === deckView) return;
+      applyDeckView(btn.dataset.view);
+      if (currentDeck) renderDeck(currentDeck);
+    });
+  });
+}
+
 // ─── Render Deck ───────────────────────────────────────────
 
 function renderDeck(deck) {
@@ -448,6 +545,7 @@ function renderDeck(deck) {
   document.getElementById('deck-sidebar').classList.remove('hidden');
   document.getElementById('deck-card-list').classList.remove('hidden');
   document.getElementById('deck-empty-state').classList.add('hidden');
+  setDeckListHeaderVisible(deck.cards.length > 0);
 
   const cmdData = commanderMap[deck.commander];
   const faction = cmdData ? (cmdData.faction || 'Neutral') : 'Neutral';
@@ -499,6 +597,11 @@ function renderDeck(deck) {
   document.getElementById('stat-unique-cards').textContent = uniqueCards;
   document.getElementById('stat-avg-cost').textContent = costCount > 0 ? (totalCost / costCount).toFixed(1) : '?';
 
+  const headerCount = document.getElementById('deck-list-header-count');
+  if (headerCount) {
+    headerCount.textContent = `· ${totalCards} card${totalCards === 1 ? '' : 's'}, ${uniqueCards} unique`;
+  }
+
   // Mobile deck drawer pill — Import mode only. Build mode uses the
   // Add Cards / My Deck tabs instead (see setBuildMobileView()).
   const pill = document.getElementById('deck-drawer-pill');
@@ -531,10 +634,11 @@ function renderDeck(deck) {
     }
   }
 
-  // Card list grouped by cost — rendered as the same art-forward tiles used
-  // in the Add Cards browser (not a plain text list), so you can recognize
-  // cards by art here too. Import mode gets a read-only ×N badge instead of
-  // the +/- stepper.
+  // Card list. Grid view groups by cost and renders the same art-forward
+  // tiles as the Add Cards browser; compact view is a flat, cost-sorted list
+  // of one-line rows (the gems already make the cost grouping obvious, so it
+  // drops the group headers). Import mode gets a read-only ×N count in both,
+  // build mode a +/- stepper.
   const listEl = document.getElementById('deck-card-list');
   const sorted = [...deck.cards].sort((a, b) => {
     const ca = parseInt((cardInfoMap[a.name] || {}).cost) || 0;
@@ -543,56 +647,66 @@ function renderDeck(deck) {
     return a.name.localeCompare(b.name);
   });
 
-  const groups = {};
-  sorted.forEach(c => {
-    const cost = parseInt((cardInfoMap[c.name] || {}).cost) || 0;
-    if (!groups[cost]) groups[cost] = [];
-    groups[cost].push(c);
-  });
-
   const isBuild = currentMode === 'build';
   let html = '';
-  if (sorted.length === 0 && isBuild) {
+  if (sorted.length === 0) {
     // The "My Deck" tab otherwise just shows blank stat cards with nothing
     // telling you where to go — nudge back to the card browser.
-    html = `<div class="deck-list-empty-hint">
-      <p>Your deck doesn't have any cards yet.</p>
-      <button type="button" class="btn btn-primary" id="deck-list-empty-add-btn">Add Cards</button>
-    </div>`;
-  }
-  for (const cost of Object.keys(groups).sort((a, b) => a - b)) {
-    const cards = groups[cost];
-    html += `<div class="deck-cost-group">`;
-    html += `<div class="deck-cost-group-label">${cost} Cost (${cards.reduce((s, c) => s + c.count, 0)} cards)</div>`;
-    html += `<div class="deck-card-grid">`;
-    cards.forEach(c => {
-      const info = cardInfoMap[c.name] || {};
-      const tileCost = info.cost != null ? info.cost : '?';
-      const slug = cardArtSlug(c.name);
-      const compatible = isCardCompatible(c.name, deck.commander);
-      html += `<div class="card-tile${compatible ? '' : ' incompatible'}" data-name="${c.name}">
-        <div class="card-tile-art-wrap">
-          <img class="card-tile-art" src="/assets/cards/${slug}.jpg" alt="" loading="lazy" onerror="this.style.visibility='hidden'">
-          <div class="card-tile-cost-badge">${tileCost}</div>
-        </div>
-        <div class="card-tile-name">${c.name}</div>
-        <div class="card-tile-controls">
-          ${isBuild
-            ? `<button class="card-tile-btn minus" data-name="${c.name}">−</button>
-               <span class="card-tile-count active">${c.count}</span>
-               <button class="card-tile-btn plus" data-name="${c.name}"${c.count >= 3 ? ' disabled' : ''}>+</button>`
-            : `<span class="card-tile-count active">&times;${c.count}</span>`}
-        </div>
+    if (isBuild) {
+      html = `<div class="deck-list-empty-hint">
+        <p>Your deck doesn't have any cards yet.</p>
+        <button type="button" class="btn btn-primary" id="deck-list-empty-add-btn">Add Cards</button>
       </div>`;
+    }
+  } else if (deckView === 'compact') {
+    html = renderCompactList(sorted, deck, isBuild);
+  } else {
+    const groups = {};
+    sorted.forEach(c => {
+      const cost = parseInt((cardInfoMap[c.name] || {}).cost) || 0;
+      if (!groups[cost]) groups[cost] = [];
+      groups[cost].push(c);
     });
-    html += `</div></div>`;
+    for (const cost of Object.keys(groups).sort((a, b) => a - b)) {
+      const cards = groups[cost];
+      html += `<div class="deck-cost-group">`;
+      html += `<div class="deck-cost-group-label">${cost} Cost (${cards.reduce((s, c) => s + c.count, 0)} cards)</div>`;
+      html += `<div class="deck-card-grid">`;
+      cards.forEach(c => {
+        const info = cardInfoMap[c.name] || {};
+        const tileCost = info.cost != null ? info.cost : '?';
+        const slug = cardArtSlug(c.name);
+        const compatible = isCardCompatible(c.name, deck.commander);
+        html += `<div class="card-tile${compatible ? '' : ' incompatible'}" data-name="${c.name}">
+          <div class="card-tile-art-wrap">
+            <img class="card-tile-art" src="/assets/cards/${slug}.jpg" alt="" loading="lazy" onerror="this.style.visibility='hidden'">
+            <div class="card-tile-cost-badge">${tileCost}</div>
+          </div>
+          <div class="card-tile-name">${c.name}</div>
+          <div class="card-tile-controls">
+            ${isBuild
+              ? `<button class="card-tile-btn minus" data-name="${c.name}">−</button>
+                 <span class="card-tile-count active">${c.count}</span>
+                 <button class="card-tile-btn plus" data-name="${c.name}"${c.count >= 3 ? ' disabled' : ''}>+</button>`
+              : `<span class="card-tile-count active">&times;${c.count}</span>`}
+          </div>
+        </div>`;
+      });
+      html += `</div></div>`;
+    }
   }
   listEl.innerHTML = html;
+  // Wired in both modes: the +/- buttons only exist in build, but tapping a
+  // row/tile to open the detail sheet is the only way to see a full card on
+  // touch, and import mode needs that too.
+  wireDeckListTiles();
 
   const buildNote = document.getElementById('build-note');
   if (currentMode === 'build') {
+    buildNote.textContent = deckView === 'compact'
+      ? "Use +/− to adjust a card's count, or tap a row for details."
+      : "Use +/− to adjust a card's count, or tap its art for details.";
     buildNote.classList.remove('hidden');
-    wireDeckListTiles();
     // Refresh card browser counts
     const searchInput = document.getElementById('build-card-input');
     renderCardBrowser(searchInput?.value.trim().toLowerCase() || '');
@@ -601,9 +715,15 @@ function renderDeck(deck) {
   }
 }
 
-// ─── Build Mode: Deck List Tile Buttons ─────────────────────
+// Header carries the view switch, so it hides and shows with the list itself.
+function setDeckListHeaderVisible(visible) {
+  document.getElementById('deck-list-header')?.classList.toggle('hidden', !visible);
+}
+
+// ─── Deck List Tile / Row Buttons ───────────────────────────
 // Same interaction pattern as the browser grid's delegated click handler:
-// +/- adjust the count, tapping the art opens the card detail sheet.
+// +/- adjust the count, tapping the art (grid) or the row body (compact)
+// opens the card detail sheet.
 
 function wireDeckListTiles() {
   const listEl = document.getElementById('deck-card-list');
@@ -612,17 +732,24 @@ function wireDeckListTiles() {
       setBuildMobileView('browse');
       return;
     }
-    const plusBtn  = e.target.closest('.card-tile-btn.plus');
-    const minusBtn = e.target.closest('.card-tile-btn.minus');
-    const artWrap  = e.target.closest('.card-tile-art-wrap');
-    const tile     = e.target.closest('.card-tile');
+    const plusBtn  = e.target.closest('.card-tile-btn.plus, .deck-compact-btn.plus');
+    const minusBtn = e.target.closest('.card-tile-btn.minus, .deck-compact-btn.minus');
     if (plusBtn && !plusBtn.disabled) {
       addCardToBuild(plusBtn.dataset.name);
-    } else if (minusBtn) {
+      return;
+    }
+    if (minusBtn && !minusBtn.disabled) {
       removeOneFromBuild(minusBtn.dataset.name);
-    } else if (artWrap && tile && !supportsHover) {
-      // Touch-only, same reasoning as the browser grid above — desktop
-      // already has hover preview for these tiles, no click action needed.
+      return;
+    }
+    // Touch-only, same reasoning as the browser grid above — desktop already
+    // has hover preview for these, so a click needs no action there. The
+    // compact row has no separate art element, so the whole row opens it.
+    if (supportsHover) return;
+    const row = e.target.closest('.deck-compact-row');
+    if (row) { openCardDetailSheet(row.dataset.name); return; }
+    const tile = e.target.closest('.card-tile');
+    if (tile && e.target.closest('.card-tile-art-wrap')) {
       openCardDetailSheet(tile.dataset.name);
     }
   };
@@ -811,6 +938,11 @@ function openCommanderDetail(name) {
   art.onload = art.onerror = () => { art.style.visibility = ''; };
   art.src = `/assets/cards/${cardArtSlug(name)}.jpg`;
   art.alt = name;
+  renderMentionStrip(
+    document.getElementById('commander-detail-mentions'),
+    name,
+    s => `/assets/cards/${s}.jpg`,
+  );
 
   const sheet = document.getElementById('commander-detail-sheet');
   sheet.dataset.name = name;
@@ -977,6 +1109,7 @@ function initTabs() {
         // keeps deckSource === 'import', so it correctly stays visible here.)
         if (deckSource !== 'import') {
           document.getElementById('deck-card-list').classList.add('hidden');
+          setDeckListHeaderVisible(false);
           document.getElementById('deck-sidebar').classList.add('hidden');
           document.getElementById('deck-warning').classList.add('hidden');
           document.getElementById('deck-empty-state').classList.remove('hidden');
@@ -1085,6 +1218,7 @@ async function init() {
   initCommanderDetail();
   initBuildMobileTabs();
   initCardPreview();
+  initViewSwitch();
   initCostChips();
   initCardDetailSheet();
   initDeckDrawer();

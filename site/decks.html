@@ -168,6 +168,35 @@
           <!-- Incompatible card warning -->
           <div class="deck-warning hidden" id="deck-warning"></div>
 
+          <!-- Decklist header — card count + grid/compact view switch. The
+               compact view mirrors the in-game decklist: one row per card with
+               a mana gem, the name, and the copy count over a fade of the
+               card's own artwork. Preference persists in localStorage. -->
+          <div class="deck-list-header hidden" id="deck-list-header">
+            <div class="deck-list-header-title">
+              Decklist <span class="deck-list-header-count" id="deck-list-header-count"></span>
+            </div>
+            <div class="view-switch" role="group" aria-label="Decklist view">
+              <button type="button" class="view-switch-btn active" data-view="grid" aria-pressed="true" title="Card grid view">
+                <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true" focusable="false">
+                  <rect x="1" y="1" width="6" height="6" rx="1.5"/>
+                  <rect x="9" y="1" width="6" height="6" rx="1.5"/>
+                  <rect x="1" y="9" width="6" height="6" rx="1.5"/>
+                  <rect x="9" y="9" width="6" height="6" rx="1.5"/>
+                </svg>
+                <span>Grid</span>
+              </button>
+              <button type="button" class="view-switch-btn" data-view="compact" aria-pressed="false" title="Compact list view">
+                <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true" focusable="false">
+                  <rect x="1" y="2" width="14" height="3" rx="1.5"/>
+                  <rect x="1" y="6.5" width="14" height="3" rx="1.5"/>
+                  <rect x="1" y="11" width="14" height="3" rx="1.5"/>
+                </svg>
+                <span>Compact</span>
+              </button>
+            </div>
+          </div>
+
           <!-- Card List -->
           <div class="deck-card-list hidden" id="deck-card-list"></div>
 
@@ -263,10 +292,9 @@
     </div>
   </footer>
 
-  <!-- Card art hover preview (fixed, follows cursor) -->
-  <div class="card-preview" id="card-preview">
-    <img id="card-preview-img" src="" alt="">
-  </div>
+  <!-- Card art hover preview (fixed, follows cursor) — filled by
+       /js/cardpreview.js, which also pulls in any cards this one creates. -->
+  <div class="card-preview" id="card-preview"></div>
 
   <!-- Commander picker — visual replacement for the plain <select>, tap the
        commander field to open. -->
@@ -288,7 +316,10 @@
     <div class="card-detail-handle"></div>
     <button class="card-detail-close" id="commander-detail-close" aria-label="Close">&times;</button>
     <div class="commander-detail-body">
-      <img class="commander-detail-art" id="commander-detail-art" src="" alt="">
+      <div class="card-detail-art-row">
+        <img class="commander-detail-art" id="commander-detail-art" src="" alt="">
+        <div class="mention-strip" id="commander-detail-mentions" hidden></div>
+      </div>
       <button class="btn btn-primary commander-detail-select-btn" id="commander-detail-select-btn">Select Commander</button>
     </div>
   </div>
@@ -301,7 +332,12 @@
     <div class="card-detail-handle"></div>
     <button class="card-detail-close" id="card-detail-close" aria-label="Close">&times;</button>
     <div class="card-detail-body">
-      <img class="card-detail-art" id="card-detail-art" src="" alt="">
+      <div class="card-detail-art-row">
+        <img class="card-detail-art" id="card-detail-art" src="" alt="">
+        <!-- Cards this one creates or references, rendered beside it. Filled by
+             renderMentionStrip() in /js/cardpreview.js. -->
+        <div class="mention-strip" id="card-detail-mentions" hidden></div>
+      </div>
       <div class="card-detail-info">
         <div class="card-detail-name" id="card-detail-name"></div>
         <div class="card-detail-badges" id="card-detail-badges"></div>
@@ -314,6 +350,7 @@
     </div>
   </div>
 
+  <script src="/js/cardpreview.js"></script>
   <script src="/js/deckcode.js"></script>
   <script src="/js/decks.js"></script>
 </body>

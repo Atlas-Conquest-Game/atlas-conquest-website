@@ -235,6 +235,10 @@
   display: block;
 }
 
+/* Deliberately NOT the .mana-gem cost gem: the tile shows the whole card,
+   whose own gem is already visible ~40px away, and two of them at the same
+   size reads as a duplicated element. This stays a plain UI chip so it's
+   legible at 100px tile width without competing with the art. */
 .card-tile-cost-badge {
   position: absolute;
   top: 4px;
@@ -456,6 +460,290 @@
   font-size: 0.8rem;
   color: var(--text-muted);
   text-align: center;
+}
+
+/* ── Decklist header + grid/compact view switch ────────── */
+
+.deck-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 4px 0 12px;
+}
+
+.deck-list-header-title {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-secondary);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.deck-list-header-count {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.view-switch {
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+  background: var(--bg-inset);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.view-switch-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border: none;
+  border-radius: 999px;
+  background: none;
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+}
+
+.view-switch-btn svg {
+  display: block;
+  fill: currentColor;
+}
+
+.view-switch-btn:hover { color: var(--text); }
+
+.view-switch-btn.active {
+  background: rgba(232, 182, 48, 0.14);
+  color: var(--lucia);
+  box-shadow: inset 0 0 0 1px rgba(232, 182, 48, 0.35);
+}
+
+.view-switch-btn:focus-visible {
+  outline: 2px solid var(--lucia);
+  outline-offset: 1px;
+}
+
+/* ── Compact decklist (in-game style rows) ─────────────── */
+/* Multi-column rather than a grid so reading order runs top-to-bottom down
+   each column — the way a decklist is actually read — instead of wrapping
+   across. Collapses to one column below ~640px of available width. */
+
+.deck-compact-list {
+  columns: 300px 2;
+  column-gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.deck-compact-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  height: 38px;
+  padding: 0 6px 0 6px;
+  margin-bottom: 4px;
+  border-left: 3px solid var(--fc, transparent);
+  border-radius: 6px;
+  overflow: hidden;
+  break-inside: avoid;
+  cursor: pointer;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0) 55%),
+    var(--bg-elevated);
+  box-shadow: inset 0 0 0 1px var(--border-subtle);
+  transition: box-shadow 0.15s, background 0.15s;
+}
+
+/* The card's own artwork, fading in from the right. background-size/position
+   are tuned to frame the art panel of the 600x840 card template (source box
+   x 100-500, y 145-365) regardless of how wide the row ends up. */
+.deck-compact-row::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--art);
+  background-size: 150% auto;
+  background-position: 50% 29%;
+  background-repeat: no-repeat;
+  opacity: 0.85;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent 30%, rgba(0, 0, 0, 0.18) 55%, rgba(0, 0, 0, 0.6) 78%, #000 100%);
+  mask-image: linear-gradient(90deg, transparent 30%, rgba(0, 0, 0, 0.18) 55%, rgba(0, 0, 0, 0.6) 78%, #000 100%);
+  transition: opacity 0.15s;
+}
+
+.deck-compact-row:hover {
+  box-shadow: inset 0 0 0 1px rgba(232, 182, 48, 0.45), 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+.deck-compact-row:hover::before { opacity: 1; }
+
+/* ── Mana gem ──────────────────────────────────────────── */
+/* The game's own cost gem art (see site/assets/ui/README.md), with the
+   numeral kept as live text so one sprite covers every cost — including the
+   15-drops — and stays selectable and legible to screen readers.
+   Size it by setting --gem-size on the element; everything scales from that.
+   The sprite's circle is inscribed exactly in its square canvas, so
+   `contain` maps the gem to the element box 1:1. The gem's jade well is 77%
+   of its diameter, which is what the numeral ratios below are tuned against. */
+
+.mana-gem {
+  --gem-size: 26px;
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  width: var(--gem-size);
+  height: var(--gem-size);
+  display: grid;
+  place-items: center;
+  background: url('/assets/ui/cost-gem.webp') center / contain no-repeat;
+  /* drop-shadow, not box-shadow: the element is square, the art is a circle */
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
+}
+
+.mana-gem-value {
+  position: relative;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: calc(var(--gem-size) * 0.52);
+  font-weight: 700;
+  line-height: 1;
+  color: #14503b;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.mana-gem-value.wide {
+  font-size: calc(var(--gem-size) * 0.4);
+  letter-spacing: -0.03em;
+}
+
+/* ── Compact row: name + copy count ────────────────────── */
+
+.deck-compact-name {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  min-width: 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: #f2ecdf;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9), 0 0 8px rgba(0, 0, 0, 0.65);
+}
+
+.deck-compact-count {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  min-width: 30px;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--lucia);
+  background: rgba(10, 12, 16, 0.72);
+  box-shadow: inset 0 0 0 1px rgba(232, 182, 48, 0.35);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+
+.deck-compact-count-x {
+  font-size: 0.62rem;
+  font-weight: 600;
+  opacity: 0.55;
+}
+
+/* ── Compact row: build-mode stepper ───────────────────── */
+
+.deck-compact-stepper {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  border-radius: 999px;
+  background: rgba(10, 12, 16, 0.7);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+
+.deck-compact-btn {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background 0.12s, color 0.12s;
+}
+
+.deck-compact-btn:hover:not(:disabled) {
+  background: rgba(232, 182, 48, 0.22);
+  color: var(--lucia);
+}
+
+.deck-compact-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.deck-compact-stepper-count {
+  min-width: 16px;
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--lucia);
+}
+
+/* ── Compact row: incompatible card ────────────────────── */
+
+.deck-compact-row.incompatible {
+  border-left-color: var(--negative);
+  background:
+    linear-gradient(90deg, rgba(248, 81, 73, 0.16), rgba(248, 81, 73, 0) 60%),
+    var(--bg-elevated);
+}
+
+.deck-compact-row.incompatible .deck-compact-name { color: #ffb0aa; }
+
+@media (prefers-reduced-motion: reduce) {
+  .deck-compact-row,
+  .deck-compact-row::before,
+  .deck-compact-btn,
+  .view-switch-btn {
+    transition: none;
+  }
 }
 
 /* ── Error / message ───────────────────────────────────── */
@@ -692,6 +980,10 @@
   opacity: 0;
   transition: opacity 0.12s;
   filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.8));
+  /* Row, because a card that creates a token previews next to it. */
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
 }
 
 .card-preview.visible { opacity: 1; }
@@ -700,6 +992,37 @@
   width: 200px;
   display: block;
   /* No background/border-radius — the source PNG has transparent corners. */
+}
+
+/* Mentioned cards are supporting context — smaller than the hovered card. */
+.card-preview .card-preview-mention { width: 150px; }
+
+/* ── Mentioned cards beside a detail sheet's art ────────── */
+/* Touch has no hover preview, so the cards a card/commander creates are shown
+   next to its art in the detail sheets instead. */
+
+.card-detail-art-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+  max-width: 100%;
+}
+
+/* The main art keeps its own width but is allowed to shrink (default
+   flex-shrink) so art + strip always fit the sheet on a narrow phone. */
+.mention-strip {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 0 0 auto;
+}
+
+.mention-card-art {
+  width: 72px;
+  height: auto;
+  display: block;
+  border-radius: 4px;
 }
 
 /* ── Deck code help tooltip ────────────────────────────── */
@@ -1085,18 +1408,7 @@
 }
 
 .card-detail-badge-cost {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--lucia);
-  flex-shrink: 0;
+  --gem-size: 30px;
 }
 
 .card-detail-badge-type {
@@ -1321,6 +1633,7 @@
   /* "Add Cards" tab (default): hide deck content, show the browser */
   .deck-layout.build-view-browse #deck-sidebar,
   .deck-layout.build-view-browse #deck-card-list,
+  .deck-layout.build-view-browse #deck-list-header,
   .deck-layout.build-view-browse #deck-warning,
   .deck-layout.build-view-browse #build-note {
     display: none;
@@ -1410,4 +1723,45 @@
   .deck-copy-row {
     flex-direction: column;
   }
+
+  /* Compact rows: single column, taller rows and larger hit targets — the
+     22px stepper buttons that read fine under a mouse are below the ~44px
+     touch minimum. */
+  .deck-compact-list {
+    columns: auto;
+  }
+
+  .deck-compact-row {
+    height: 46px;
+    gap: 10px;
+  }
+
+  /* Scoped to the row: the grid tiles' cost badge shares .mana-gem but sits
+     on a ~96px tile, where a 30px gem would swamp the art. */
+  .deck-compact-row .mana-gem { --gem-size: 30px; }
+
+  .deck-compact-name { font-size: 0.875rem; }
+
+  .deck-compact-count {
+    min-width: 34px;
+    height: 26px;
+    font-size: 0.8rem;
+  }
+
+  .deck-compact-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 1.05rem;
+  }
+
+  .deck-compact-stepper-count {
+    min-width: 20px;
+    font-size: 0.85rem;
+  }
+
+  /* The switch labels are the first thing to give up when the header can't
+     fit on a narrow screen — the icons carry the meaning. */
+  .view-switch-btn { padding: 6px 10px; }
+  .view-switch-btn span { display: none; }
+  .view-switch-btn svg { width: 15px; height: 15px; }
 }
