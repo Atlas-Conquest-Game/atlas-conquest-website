@@ -96,7 +96,7 @@
     "art": "CardScreenshots/Ancient-Golem.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -116,7 +116,7 @@
     "art": "CardScreenshots/Angelic-Captain.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -196,7 +196,7 @@
     "art": null,
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -400,7 +400,7 @@
     "art": "CardScreenshots/Black-Dragon.png",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -420,7 +420,7 @@
     "art": "CardScreenshots/Black-Scorpion.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Death"
     ],
@@ -524,7 +524,7 @@
     "art": "CardScreenshots/Bramble.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -564,7 +564,7 @@
     "art": "CardScreenshots/Burgeon.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -850,7 +850,7 @@
     "art": "CardScreenshots/Daemonprince-Grizlocke.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [
       "Daemon Knight"
@@ -872,7 +872,7 @@
     "art": "CardScreenshots/Danrir-Omenhound.png",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Beasts"
     ],
@@ -976,7 +976,7 @@
     "art": "CardScreenshots/Demilich.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Mage"
     ],
@@ -1060,7 +1060,7 @@
     "art": null,
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -1092,8 +1092,8 @@
     "type": "Minion",
     "text": "Realmbound. Dragons in your hand cost <sprite name=\"mana_2\"> less.",
     "subtype": "Human",
-    "cost": 2,
-    "attack": 2,
+    "cost": 3,
+    "attack": 3,
     "speed": 3,
     "health": 2,
     "legendary": false,
@@ -1206,7 +1206,7 @@
     "art": "CardScreenshots/Dread-Knight.png",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Death",
       "Starter Deploy"
@@ -1249,7 +1249,7 @@
     "art": "CardScreenshots/Dreadlord-Cyrion.png",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -1277,7 +1277,7 @@
   {
     "name": "Durka Wurm",
     "type": "Minion",
-    "text": "Postmortem: Summon a <sprite name=\"power_1\"><sprite name=\"speed_2\"><sprite name=\"health_1\"> Spawn token in every unoccupied tile within Range 1.",
+    "text": "Postmortem: Summon a <sprite name=\"power_1\"><sprite name=\"speed_3\"><sprite name=\"health_1\"> Spawn token in every unoccupied tile within Range 1.",
     "subtype": "Beast",
     "cost": 8,
     "attack": 7,
@@ -1547,7 +1547,7 @@
     "art": "CardScreenshots/Enigmatic-Golem.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -1567,7 +1567,7 @@
     "art": null,
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -1587,7 +1587,7 @@
     "art": "CardScreenshots/Eternal-Wall.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -1721,7 +1721,7 @@
     "type": "Spell",
     "text": "[Range 4]: Destroy a damaged minion.",
     "subtype": "",
-    "cost": 2,
+    "cost": 1,
     "attack": null,
     "speed": null,
     "health": null,
@@ -1937,7 +1937,7 @@
     "art": "CardScreenshots/Ghast.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -1979,7 +1979,7 @@
     "art": "CardScreenshots/Giant-River-Snapper.png",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -1999,7 +1999,7 @@
     "art": "CardScreenshots/Gilded-Defender.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -2104,7 +2104,7 @@
     "art": "CardScreenshots/Goblin-King.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -2392,7 +2392,7 @@
     "art": "CardScreenshots/Grey-Wastes-Shade.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -2452,7 +2452,7 @@
     "art": "CardScreenshots/Grutali.png",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -2492,7 +2492,7 @@
     "art": null,
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -2594,7 +2594,7 @@
     "art": "CardScreenshots/Heavy-Cavalry.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Deploy",
       "Starter Military"
@@ -2720,7 +2720,7 @@
     "art": null,
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -2740,7 +2740,7 @@
     "art": "CardScreenshots/Illusory-Legion.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [
       "Illusion"
@@ -2896,7 +2896,7 @@
     "type": "Spell",
     "text": "[Range 0]: Claim a territory an opponent controls. Gain <sprite name=\"dominion_1\"> Dominion.",
     "subtype": "",
-    "cost": 2,
+    "cost": 4,
     "attack": null,
     "speed": null,
     "health": null,
@@ -3090,7 +3090,7 @@
     "art": "CardScreenshots/Lord-of-Casterhorn.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Deploy"
     ],
@@ -3174,7 +3174,7 @@
     "art": null,
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -3216,7 +3216,7 @@
     "art": "CardScreenshots/Lumbering-Ogre.png",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -3419,7 +3419,7 @@
     "art": "CardScreenshots/Moonlight-Seraph.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -3439,7 +3439,7 @@
     "art": "CardScreenshots/Mother-of-Beasts.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -3481,7 +3481,7 @@
     "art": "CardScreenshots/Nevisha-Ascendant.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [
       "Lucian Soldier"
@@ -4319,7 +4319,7 @@
     "art": null,
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -4361,7 +4361,7 @@
     "art": "CardScreenshots/Royal-Commander.png",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Death",
       "Starter Military"
@@ -4488,7 +4488,7 @@
     "art": "CardScreenshots/Scout-Hunter.png",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Mage"
     ],
@@ -4652,7 +4652,7 @@
     "art": "CardScreenshots/Skerrdrix.png",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -4714,7 +4714,7 @@
     "art": null,
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [
       "Imp"
@@ -4860,7 +4860,7 @@
     "art": "CardScreenshots/Stalwart-Tarantula.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Death"
     ],
@@ -5026,7 +5026,7 @@
     "art": "CardScreenshots/Supercharger.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Mage"
     ],
@@ -5173,7 +5173,7 @@
     "art": "CardScreenshots/Thunder-Skywhale.png",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -5327,7 +5327,7 @@
     "type": "Spell",
     "text": "Convert your excess Intellect into Dominion.",
     "subtype": "Psychic",
-    "cost": 3,
+    "cost": 2,
     "attack": null,
     "speed": null,
     "health": null,
@@ -5357,7 +5357,7 @@
     "art": "CardScreenshots/Undying-Behemoth.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [
       "Zombie"
@@ -5421,7 +5421,7 @@
     "art": "CardScreenshots/Viridian-War-Beast.png",
     "art_type": "ARTIST_COMMISSIONED",
     "commissioned": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -5461,7 +5461,7 @@
     "art": "CardScreenshots/Wandering-Ancient.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -5481,7 +5481,7 @@
     "art": "CardScreenshots/War-Banner.png",
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -5665,7 +5665,7 @@
     "art": null,
     "art_type": "AI_GENERATED",
     "commissioned": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [
       "Zombie"
