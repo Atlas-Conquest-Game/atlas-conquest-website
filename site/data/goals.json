@@ -81,9 +81,9 @@
       "id": "anim_all",
       "label": "20% of all Cards have an animation",
       "kind": "percent",
-      "numerator": 70,
+      "numerator": 115,
       "denominator": 274,
-      "current": 0.2555,
+      "current": 0.4197,
       "target": 0.2,
       "met": true
     },
@@ -101,11 +101,11 @@
       "id": "anim_legendary",
       "label": "50% of Legendary Minions have an animation",
       "kind": "percent",
-      "numerator": 8,
+      "numerator": 18,
       "denominator": 27,
-      "current": 0.2963,
+      "current": 0.6667,
       "target": 0.5,
-      "met": false
+      "met": true
     },
     {
       "id": "anim_starters",
@@ -113,43 +113,43 @@
       "kind": "decks",
       "threshold": 0.5,
       "metric": "has_animation",
-      "current": 0,
+      "current": 3,
       "target": 5,
       "met": false,
       "detail": [
         {
           "deck": "Starter Beasts",
           "total": 15,
-          "met_count": 6,
-          "rate": 0.4,
+          "met_count": 7,
+          "rate": 0.4667,
           "met": false
         },
         {
           "deck": "Starter Death",
           "total": 14,
-          "met_count": 4,
-          "rate": 0.2857,
-          "met": false
+          "met_count": 8,
+          "rate": 0.5714,
+          "met": true
         },
         {
           "deck": "Starter Deploy",
           "total": 15,
-          "met_count": 5,
-          "rate": 0.3333,
-          "met": false
+          "met_count": 8,
+          "rate": 0.5333,
+          "met": true
         },
         {
           "deck": "Starter Mage",
           "total": 14,
-          "met_count": 4,
-          "rate": 0.2857,
-          "met": false
+          "met_count": 7,
+          "rate": 0.5,
+          "met": true
         },
         {
           "deck": "Starter Military",
           "total": 15,
-          "met_count": 4,
-          "rate": 0.2667,
+          "met_count": 6,
+          "rate": 0.4,
           "met": false
         }
       ]
@@ -160,8 +160,8 @@
       "total": 274,
       "commissioned": 78,
       "commissioned_rate": 0.2847,
-      "animated": 70,
-      "animated_rate": 0.2555,
+      "animated": 115,
+      "animated_rate": 0.4197,
       "art_types": {
         "commissioned": {
           "count": 76,
@@ -235,8 +235,8 @@
       "total": 299,
       "commissioned": 94,
       "commissioned_rate": 0.3144,
-      "animated": 76,
-      "animated_rate": 0.2542,
+      "animated": 121,
+      "animated_rate": 0.4047,
       "art_types": {
         "commissioned": {
           "count": 92,
@@ -319,8 +319,8 @@
         "total": 26,
         "commissioned": 9,
         "commissioned_rate": 0.3462,
-        "animated": 4,
-        "animated_rate": 0.1538,
+        "animated": 7,
+        "animated_rate": 0.2692,
         "art_types": {
           "commissioned": {
             "count": 9,
@@ -373,8 +373,8 @@
         "total": 33,
         "commissioned": 13,
         "commissioned_rate": 0.3939,
-        "animated": 18,
-        "animated_rate": 0.5455,
+        "animated": 23,
+        "animated_rate": 0.697,
         "art_types": {
           "commissioned": {
             "count": 13,
@@ -427,8 +427,8 @@
         "total": 36,
         "commissioned": 5,
         "commissioned_rate": 0.1389,
-        "animated": 6,
-        "animated_rate": 0.1667,
+        "animated": 13,
+        "animated_rate": 0.3611,
         "art_types": {
           "commissioned": {
             "count": 5,
@@ -481,8 +481,8 @@
         "total": 1,
         "commissioned": 0,
         "commissioned_rate": 0.0,
-        "animated": 0,
-        "animated_rate": 0.0,
+        "animated": 1,
+        "animated_rate": 1.0,
         "art_types": {
           "commissioned": {
             "count": 0,
@@ -535,8 +535,8 @@
         "total": 119,
         "commissioned": 37,
         "commissioned_rate": 0.3109,
-        "animated": 24,
-        "animated_rate": 0.2017,
+        "animated": 45,
+        "animated_rate": 0.3782,
         "art_types": {
           "commissioned": {
             "count": 35,
@@ -589,8 +589,8 @@
         "total": 23,
         "commissioned": 4,
         "commissioned_rate": 0.1739,
-        "animated": 5,
-        "animated_rate": 0.2174,
+        "animated": 12,
+        "animated_rate": 0.5217,
         "art_types": {
           "commissioned": {
             "count": 4,
@@ -643,8 +643,8 @@
         "total": 34,
         "commissioned": 10,
         "commissioned_rate": 0.2941,
-        "animated": 13,
-        "animated_rate": 0.3824,
+        "animated": 14,
+        "animated_rate": 0.4118,
         "art_types": {
           "commissioned": {
             "count": 10,
