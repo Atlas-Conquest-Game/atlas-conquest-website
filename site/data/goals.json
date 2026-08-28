@@ -4,7 +4,7 @@
       "id": "art_count",
       "label": "100 Cards Commissioned",
       "kind": "count",
-      "current": 80,
+      "current": 82,
       "target": 100,
       "met": false
     },
@@ -69,8 +69,8 @@
         {
           "deck": "Starter Military",
           "total": 15,
-          "met_count": 5,
-          "rate": 0.3333,
+          "met_count": 6,
+          "rate": 0.4,
           "met": false
         }
       ]
@@ -81,9 +81,9 @@
       "id": "anim_all",
       "label": "20% of all Cards have an animation",
       "kind": "percent",
-      "numerator": 115,
-      "denominator": 279,
-      "current": 0.4122,
+      "numerator": 120,
+      "denominator": 286,
+      "current": 0.4196,
       "target": 0.2,
       "met": true
     },
@@ -157,22 +157,22 @@
   ],
   "overall": {
     "cards": {
-      "total": 279,
-      "commissioned": 80,
+      "total": 286,
+      "commissioned": 82,
       "commissioned_rate": 0.2867,
-      "animated": 115,
-      "animated_rate": 0.4122,
+      "animated": 120,
+      "animated_rate": 0.4196,
       "art_types": {
         "commissioned": {
-          "count": 78,
-          "rate": 0.2796
+          "count": 80,
+          "rate": 0.2797
         },
         "purchased": {
           "count": 2,
-          "rate": 0.0072
+          "rate": 0.007
         },
         "ai": {
-          "count": 199,
+          "count": 204,
           "rate": 0.7133
         },
         "other": {
@@ -232,23 +232,23 @@
       }
     },
     "all": {
-      "total": 304,
-      "commissioned": 96,
-      "commissioned_rate": 0.3158,
-      "animated": 121,
-      "animated_rate": 0.398,
+      "total": 311,
+      "commissioned": 98,
+      "commissioned_rate": 0.3151,
+      "animated": 126,
+      "animated_rate": 0.4051,
       "art_types": {
         "commissioned": {
-          "count": 94,
-          "rate": 0.3092
+          "count": 96,
+          "rate": 0.3087
         },
         "purchased": {
           "count": 2,
-          "rate": 0.0066
+          "rate": 0.0064
         },
         "ai": {
-          "count": 208,
-          "rate": 0.6842
+          "count": 213,
+          "rate": 0.6849
         },
         "other": {
           "count": 0,
@@ -370,23 +370,23 @@
       "patron": "Grenalia",
       "faction": "grenalia",
       "cards": {
-        "total": 33,
+        "total": 34,
         "commissioned": 13,
-        "commissioned_rate": 0.3939,
-        "animated": 23,
-        "animated_rate": 0.697,
+        "commissioned_rate": 0.3824,
+        "animated": 24,
+        "animated_rate": 0.7059,
         "art_types": {
           "commissioned": {
             "count": 13,
-            "rate": 0.3939
+            "rate": 0.3824
           },
           "purchased": {
             "count": 0,
             "rate": 0.0
           },
           "ai": {
-            "count": 20,
-            "rate": 0.6061
+            "count": 21,
+            "rate": 0.6176
           },
           "other": {
             "count": 0,
@@ -424,23 +424,23 @@
       "patron": "Lucia",
       "faction": "lucia",
       "cards": {
-        "total": 35,
-        "commissioned": 6,
-        "commissioned_rate": 0.1714,
-        "animated": 13,
-        "animated_rate": 0.3714,
+        "total": 37,
+        "commissioned": 7,
+        "commissioned_rate": 0.1892,
+        "animated": 14,
+        "animated_rate": 0.3784,
         "art_types": {
           "commissioned": {
-            "count": 6,
-            "rate": 0.1714
+            "count": 7,
+            "rate": 0.1892
           },
           "purchased": {
             "count": 0,
             "rate": 0.0
           },
           "ai": {
-            "count": 29,
-            "rate": 0.8286
+            "count": 30,
+            "rate": 0.8108
           },
           "other": {
             "count": 0,
@@ -532,23 +532,23 @@
       "patron": "Neutral",
       "faction": "neutral",
       "cards": {
-        "total": 125,
+        "total": 126,
         "commissioned": 37,
-        "commissioned_rate": 0.296,
-        "animated": 45,
-        "animated_rate": 0.36,
+        "commissioned_rate": 0.2937,
+        "animated": 46,
+        "animated_rate": 0.3651,
         "art_types": {
           "commissioned": {
             "count": 35,
-            "rate": 0.28
+            "rate": 0.2778
           },
           "purchased": {
             "count": 2,
-            "rate": 0.016
+            "rate": 0.0159
           },
           "ai": {
-            "count": 88,
-            "rate": 0.704
+            "count": 89,
+            "rate": 0.7063
           },
           "other": {
             "count": 0,
@@ -586,15 +586,15 @@
       "patron": "Shadis",
       "faction": "shadis",
       "cards": {
-        "total": 23,
-        "commissioned": 5,
-        "commissioned_rate": 0.2174,
-        "animated": 12,
-        "animated_rate": 0.5217,
+        "total": 24,
+        "commissioned": 6,
+        "commissioned_rate": 0.25,
+        "animated": 13,
+        "animated_rate": 0.5417,
         "art_types": {
           "commissioned": {
-            "count": 5,
-            "rate": 0.2174
+            "count": 6,
+            "rate": 0.25
           },
           "purchased": {
             "count": 0,
@@ -602,7 +602,7 @@
           },
           "ai": {
             "count": 18,
-            "rate": 0.7826
+            "rate": 0.75
           },
           "other": {
             "count": 0,
@@ -640,23 +640,23 @@
       "patron": "Skaal",
       "faction": "skaal",
       "cards": {
-        "total": 34,
+        "total": 36,
         "commissioned": 10,
-        "commissioned_rate": 0.2941,
-        "animated": 14,
-        "animated_rate": 0.4118,
+        "commissioned_rate": 0.2778,
+        "animated": 15,
+        "animated_rate": 0.4167,
         "art_types": {
           "commissioned": {
             "count": 10,
-            "rate": 0.2941
+            "rate": 0.2778
           },
           "purchased": {
             "count": 0,
             "rate": 0.0
           },
           "ai": {
-            "count": 24,
-            "rate": 0.7059
+            "count": 26,
+            "rate": 0.7222
           },
           "other": {
             "count": 0,
