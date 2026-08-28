@@ -920,9 +920,9 @@
       {
         "name": "Lazim, Thief of Gods",
         "faction": "neutral",
-        "matches": 400,
-        "wins": 165,
-        "winrate": 0.4125
+        "matches": 388,
+        "wins": 160,
+        "winrate": 0.4124
       },
       {
         "name": "Macks Speed",
@@ -934,37 +934,37 @@
       {
         "name": "Elyse of the Order",
         "faction": "lucia",
-        "matches": 195,
-        "wins": 115,
-        "winrate": 0.5897
+        "matches": 191,
+        "wins": 112,
+        "winrate": 0.5864
       },
       {
         "name": "Jagris, the Huntsman",
         "faction": "grenalia",
-        "matches": 188,
-        "wins": 88,
-        "winrate": 0.4681
+        "matches": 183,
+        "wins": 84,
+        "winrate": 0.459
       },
       {
         "name": "Executor Ginn",
         "faction": "lucia",
-        "matches": 160,
-        "wins": 82,
-        "winrate": 0.5125
+        "matches": 156,
+        "wins": 80,
+        "winrate": 0.5128
       },
       {
         "name": "Soultaker Viessa",
         "faction": "shadis",
-        "matches": 154,
+        "matches": 150,
         "wins": 72,
-        "winrate": 0.4675
+        "winrate": 0.48
       },
       {
         "name": "Captain Greenbeard",
         "faction": "skaal",
-        "matches": 135,
-        "wins": 79,
-        "winrate": 0.5852
+        "matches": 134,
+        "wins": 78,
+        "winrate": 0.5821
       },
       {
         "name": "Starwise Luna",
@@ -1018,32 +1018,32 @@
       {
         "name": "Fael Spiritwalker",
         "faction": "shadis",
-        "matches": 43,
+        "matches": 42,
         "wins": 30,
-        "winrate": 0.6977
+        "winrate": 0.7143
       },
       {
         "name": "Elber, Jungle Emissary",
         "faction": "grenalia",
-        "matches": 36,
-        "wins": 16,
-        "winrate": 0.4444
+        "matches": 35,
+        "wins": 15,
+        "winrate": 0.4286
       }
     ],
     "Dunes": [
       {
         "name": "Lazim, Thief of Gods",
         "faction": "neutral",
-        "matches": 145,
-        "wins": 66,
-        "winrate": 0.4552
+        "matches": 139,
+        "wins": 62,
+        "winrate": 0.446
       },
       {
         "name": "Elyse of the Order",
         "faction": "lucia",
-        "matches": 79,
+        "matches": 78,
         "wins": 49,
-        "winrate": 0.6203
+        "winrate": 0.6282
       },
       {
         "name": "Macks Speed",
@@ -1055,30 +1055,23 @@
       {
         "name": "Jagris, the Huntsman",
         "faction": "grenalia",
-        "matches": 60,
-        "wins": 21,
-        "winrate": 0.35
+        "matches": 57,
+        "wins": 19,
+        "winrate": 0.3333
       },
       {
         "name": "Executor Ginn",
         "faction": "lucia",
-        "matches": 55,
-        "wins": 22,
-        "winrate": 0.4
+        "matches": 52,
+        "wins": 20,
+        "winrate": 0.3846
       },
       {
         "name": "Soultaker Viessa",
         "faction": "shadis",
-        "matches": 54,
+        "matches": 50,
         "wins": 24,
-        "winrate": 0.4444
-      },
-      {
-        "name": "Captain Greenbeard",
-        "faction": "skaal",
-        "matches": 47,
-        "wins": 25,
-        "winrate": 0.5319
+        "winrate": 0.48
       },
       {
         "name": "Kai, Longcount Shaman",
@@ -1086,6 +1079,13 @@
         "matches": 47,
         "wins": 24,
         "winrate": 0.5106
+      },
+      {
+        "name": "Captain Greenbeard",
+        "faction": "skaal",
+        "matches": 46,
+        "wins": 24,
+        "winrate": 0.5217
       },
       {
         "name": "Starwise Luna",
@@ -1123,13 +1123,6 @@
         "winrate": 0.5385
       },
       {
-        "name": "Fael Spiritwalker",
-        "faction": "shadis",
-        "matches": 19,
-        "wins": 16,
-        "winrate": 0.8421
-      },
-      {
         "name": "It That Weaves",
         "faction": "archaeon",
         "matches": 18,
@@ -1137,20 +1130,27 @@
         "winrate": 0.5556
       },
       {
+        "name": "Fael Spiritwalker",
+        "faction": "shadis",
+        "matches": 18,
+        "wins": 16,
+        "winrate": 0.8889
+      },
+      {
         "name": "Elber, Jungle Emissary",
         "faction": "grenalia",
-        "matches": 15,
-        "wins": 5,
-        "winrate": 0.3333
+        "matches": 14,
+        "wins": 4,
+        "winrate": 0.2857
       }
     ],
     "Snowmelt": [
       {
         "name": "Lazim, Thief of Gods",
         "faction": "neutral",
-        "matches": 120,
-        "wins": 50,
-        "winrate": 0.4167
+        "matches": 117,
+        "wins": 49,
+        "winrate": 0.4188
       },
       {
         "name": "Macks Speed",
@@ -1169,9 +1169,9 @@
       {
         "name": "Elyse of the Order",
         "faction": "lucia",
-        "matches": 58,
-        "wins": 33,
-        "winrate": 0.569
+        "matches": 56,
+        "wins": 31,
+        "winrate": 0.5536
       },
       {
         "name": "Soultaker Viessa",
@@ -1183,9 +1183,9 @@
       {
         "name": "Executor Ginn",
         "faction": "lucia",
-        "matches": 52,
+        "matches": 51,
         "wins": 26,
-        "winrate": 0.5
+        "winrate": 0.5098
       },
       {
         "name": "Captain Greenbeard",
@@ -1262,9 +1262,9 @@
       {
         "name": "Lazim, Thief of Gods",
         "faction": "neutral",
-        "matches": 135,
+        "matches": 132,
         "wins": 49,
-        "winrate": 0.363
+        "winrate": 0.3712
       },
       {
         "name": "Macks Speed",
@@ -1276,16 +1276,16 @@
       {
         "name": "Jagris, the Huntsman",
         "faction": "grenalia",
-        "matches": 65,
-        "wins": 33,
-        "winrate": 0.5077
+        "matches": 63,
+        "wins": 31,
+        "winrate": 0.4921
       },
       {
         "name": "Elyse of the Order",
         "faction": "lucia",
-        "matches": 58,
-        "wins": 33,
-        "winrate": 0.569
+        "matches": 57,
+        "wins": 32,
+        "winrate": 0.5614
       },
       {
         "name": "Executor Ginn",
