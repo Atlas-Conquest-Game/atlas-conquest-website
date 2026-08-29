@@ -1085,9 +1085,9 @@
   },
   "3m": {
     "all": {
-      "total_games": 1055,
-      "first_player_wins": 520,
-      "first_player_winrate": 0.4929,
+      "total_games": 1045,
+      "first_player_wins": 514,
+      "first_player_winrate": 0.4919,
       "per_commander": {
         "Captain Greenbeard": {
           "first_games": 69,
@@ -1098,44 +1098,44 @@
           "second_winrate": 0.5538
         },
         "Lazim, Thief of Gods": {
-          "first_games": 197,
+          "first_games": 196,
           "first_wins": 79,
-          "first_winrate": 0.401,
-          "second_games": 191,
-          "second_wins": 81,
-          "second_winrate": 0.4241
+          "first_winrate": 0.4031,
+          "second_games": 190,
+          "second_wins": 80,
+          "second_winrate": 0.4211
         },
         "Rosirix the Witch": {
-          "first_games": 45,
-          "first_wins": 25,
-          "first_winrate": 0.5556,
-          "second_games": 44,
-          "second_wins": 21,
-          "second_winrate": 0.4773
+          "first_games": 43,
+          "first_wins": 24,
+          "first_winrate": 0.5581,
+          "second_games": 41,
+          "second_wins": 19,
+          "second_winrate": 0.4634
         },
         "Soultaker Viessa": {
-          "first_games": 68,
-          "first_wins": 30,
-          "first_winrate": 0.4412,
-          "second_games": 82,
+          "first_games": 64,
+          "first_wins": 27,
+          "first_winrate": 0.4219,
+          "second_games": 80,
           "second_wins": 42,
-          "second_winrate": 0.5122
+          "second_winrate": 0.525
         },
         "Milo Sunstone": {
-          "first_games": 47,
-          "first_wins": 23,
-          "first_winrate": 0.4894,
+          "first_games": 46,
+          "first_wins": 22,
+          "first_winrate": 0.4783,
           "second_games": 42,
           "second_wins": 17,
           "second_winrate": 0.4048
         },
         "Executor Ginn": {
-          "first_games": 77,
+          "first_games": 76,
           "first_wins": 40,
-          "first_winrate": 0.5195,
-          "second_games": 79,
-          "second_wins": 40,
-          "second_winrate": 0.5063
+          "first_winrate": 0.5263,
+          "second_games": 78,
+          "second_wins": 39,
+          "second_winrate": 0.5
         },
         "Elyse of the Order": {
           "first_games": 91,
@@ -1157,25 +1157,25 @@
           "first_games": 57,
           "first_wins": 25,
           "first_winrate": 0.4386,
-          "second_games": 55,
+          "second_games": 54,
           "second_wins": 25,
-          "second_winrate": 0.4545
+          "second_winrate": 0.463
         },
         "Jagris, the Huntsman": {
           "first_games": 89,
           "first_wins": 40,
           "first_winrate": 0.4494,
-          "second_games": 94,
+          "second_games": 93,
           "second_wins": 44,
-          "second_winrate": 0.4681
+          "second_winrate": 0.4731
         },
         "Lubela, Tender of the Wilds": {
-          "first_games": 34,
-          "first_wins": 17,
-          "first_winrate": 0.5,
-          "second_games": 40,
+          "first_games": 33,
+          "first_wins": 16,
+          "first_winrate": 0.4848,
+          "second_games": 39,
           "second_wins": 18,
-          "second_winrate": 0.45
+          "second_winrate": 0.4615
         },
         "Newhaven Township": {
           "first_games": 43,
@@ -1220,25 +1220,25 @@
       }
     },
     "Dunes": {
-      "total_games": 377,
-      "first_player_wins": 186,
-      "first_player_winrate": 0.4934,
+      "total_games": 374,
+      "first_player_wins": 185,
+      "first_player_winrate": 0.4947,
       "per_commander": {
         "Rosirix the Witch": {
-          "first_games": 16,
+          "first_games": 15,
           "first_wins": 10,
-          "first_winrate": 0.625,
-          "second_games": 15,
-          "second_wins": 10,
-          "second_winrate": 0.6667
+          "first_winrate": 0.6667,
+          "second_games": 14,
+          "second_wins": 9,
+          "second_winrate": 0.6429
         },
         "Lazim, Thief of Gods": {
-          "first_games": 67,
+          "first_games": 66,
           "first_wins": 30,
-          "first_winrate": 0.4478,
-          "second_games": 72,
-          "second_wins": 32,
-          "second_winrate": 0.4444
+          "first_winrate": 0.4545,
+          "second_games": 71,
+          "second_wins": 31,
+          "second_winrate": 0.4366
         },
         "Elyse of the Order": {
           "first_games": 33,
@@ -1257,12 +1257,12 @@
           "second_winrate": 0.5
         },
         "Soultaker Viessa": {
-          "first_games": 22,
-          "first_wins": 10,
-          "first_winrate": 0.4545,
-          "second_games": 28,
+          "first_games": 21,
+          "first_wins": 9,
+          "first_winrate": 0.4286,
+          "second_games": 27,
           "second_wins": 14,
-          "second_winrate": 0.5
+          "second_winrate": 0.5185
         },
         "Executor Ginn": {
           "first_games": 30,
@@ -1355,17 +1355,17 @@
       }
     },
     "Snowmelt": {
-      "total_games": 336,
-      "first_player_wins": 165,
-      "first_player_winrate": 0.4911,
+      "total_games": 332,
+      "first_player_wins": 162,
+      "first_player_winrate": 0.488,
       "per_commander": {
         "Executor Ginn": {
-          "first_games": 23,
+          "first_games": 22,
           "first_wins": 11,
-          "first_winrate": 0.4783,
-          "second_games": 28,
-          "second_wins": 15,
-          "second_winrate": 0.5357
+          "first_winrate": 0.5,
+          "second_games": 27,
+          "second_wins": 14,
+          "second_winrate": 0.5185
         },
         "Elyse of the Order": {
           "first_games": 27,
@@ -1392,12 +1392,12 @@
           "second_winrate": 0.6389
         },
         "Soultaker Viessa": {
-          "first_games": 23,
-          "first_wins": 10,
-          "first_winrate": 0.4348,
-          "second_games": 30,
+          "first_games": 22,
+          "first_wins": 9,
+          "first_winrate": 0.4091,
+          "second_games": 29,
           "second_wins": 14,
-          "second_winrate": 0.4667
+          "second_winrate": 0.4828
         },
         "Captain Greenbeard": {
           "first_games": 19,
@@ -1416,9 +1416,9 @@
           "second_winrate": 0.6
         },
         "Milo Sunstone": {
-          "first_games": 15,
-          "first_wins": 6,
-          "first_winrate": 0.4,
+          "first_games": 14,
+          "first_wins": 5,
+          "first_winrate": 0.3571,
           "second_games": 15,
           "second_wins": 8,
           "second_winrate": 0.5333
@@ -1443,9 +1443,9 @@
           "first_games": 15,
           "first_wins": 6,
           "first_winrate": 0.4,
-          "second_games": 13,
+          "second_games": 12,
           "second_wins": 3,
-          "second_winrate": 0.2308
+          "second_winrate": 0.25
         },
         "Fael Spiritwalker": {
           "first_games": 8,
@@ -1467,9 +1467,9 @@
           "first_games": 17,
           "first_wins": 10,
           "first_winrate": 0.5882,
-          "second_games": 19,
+          "second_games": 18,
           "second_wins": 7,
-          "second_winrate": 0.3684
+          "second_winrate": 0.3889
         },
         "Kai, Longcount Shaman": {
           "first_games": 14,
@@ -1480,9 +1480,9 @@
           "second_winrate": 0.4545
         },
         "Lubela, Tender of the Wilds": {
-          "first_games": 16,
-          "first_wins": 9,
-          "first_winrate": 0.5625,
+          "first_games": 15,
+          "first_wins": 8,
+          "first_winrate": 0.5333,
           "second_games": 13,
           "second_wins": 5,
           "second_winrate": 0.3846
@@ -1490,9 +1490,9 @@
       }
     },
     "Tropics": {
-      "total_games": 342,
-      "first_player_wins": 169,
-      "first_player_winrate": 0.4942,
+      "total_games": 339,
+      "first_player_wins": 167,
+      "first_player_winrate": 0.4926,
       "per_commander": {
         "Captain Greenbeard": {
           "first_games": 24,
@@ -1511,9 +1511,9 @@
           "second_winrate": 0.3731
         },
         "Soultaker Viessa": {
-          "first_games": 23,
-          "first_wins": 10,
-          "first_winrate": 0.4348,
+          "first_games": 21,
+          "first_wins": 9,
+          "first_winrate": 0.4286,
           "second_games": 24,
           "second_wins": 14,
           "second_winrate": 0.5833
@@ -1542,14 +1542,6 @@
           "second_wins": 19,
           "second_winrate": 0.6552
         },
-        "Jagris, the Huntsman": {
-          "first_games": 32,
-          "first_wins": 17,
-          "first_winrate": 0.5312,
-          "second_games": 31,
-          "second_wins": 14,
-          "second_winrate": 0.4516
-        },
         "Starwise Luna": {
           "first_games": 16,
           "first_wins": 8,
@@ -1557,6 +1549,14 @@
           "second_games": 18,
           "second_wins": 8,
           "second_winrate": 0.4444
+        },
+        "Jagris, the Huntsman": {
+          "first_games": 32,
+          "first_wins": 17,
+          "first_winrate": 0.5312,
+          "second_games": 30,
+          "second_wins": 14,
+          "second_winrate": 0.4667
         },
         "Newhaven Township": {
           "first_games": 18,
@@ -1583,12 +1583,12 @@
           "second_winrate": 0.5714
         },
         "Rosirix the Witch": {
-          "first_games": 14,
-          "first_wins": 9,
-          "first_winrate": 0.6429,
-          "second_games": 16,
-          "second_wins": 8,
-          "second_winrate": 0.5
+          "first_games": 13,
+          "first_wins": 8,
+          "first_winrate": 0.6154,
+          "second_games": 15,
+          "second_wins": 7,
+          "second_winrate": 0.4667
         },
         "Kai, Longcount Shaman": {
           "first_games": 15,
@@ -1602,9 +1602,9 @@
           "first_games": 7,
           "first_wins": 2,
           "first_winrate": 0.2857,
-          "second_games": 12,
+          "second_games": 11,
           "second_wins": 5,
-          "second_winrate": 0.4167
+          "second_winrate": 0.4545
         },
         "It That Weaves": {
           "first_games": 13,
