@@ -1,0 +1,63 @@
+/*
+ * Legal pages: privacy policy and terms.
+ *
+ * These are read once, under mild duress, by someone checking a specific claim.
+ * So the priority is scanning rather than beauty -- a narrow measure, generous
+ * spacing between headings, and enough contrast to read a paragraph without
+ * effort. Nothing here is reused elsewhere.
+ */
+
+.legal {
+  /* ~70 characters at this size. Wider is measurably harder to scan back to the
+     start of the next line, which is the whole activity on a page like this. */
+  max-width: 46rem;
+  padding-top: 2.5rem;
+  padding-bottom: 5rem;
+  line-height: 1.7;
+}
+
+.legal-lead {
+  font-size: 1.0625rem;
+  opacity: 0.9;
+  margin-bottom: 2.5rem;
+}
+
+.legal h2 {
+  font-family: "Cinzel", Georgia, serif;
+  font-size: 1.375rem;
+  margin-top: 3rem;
+  margin-bottom: 0.75rem;
+}
+
+.legal h3 {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.legal p,
+.legal li {
+  margin-bottom: 1rem;
+}
+
+.legal ul {
+  padding-left: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.legal li {
+  margin-bottom: 0.5rem;
+}
+
+.legal code {
+  font-size: 0.9em;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.legal a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
