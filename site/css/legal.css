@@ -61,3 +61,20 @@
   text-decoration: underline;
   text-underline-offset: 2px;
 }
+
+/*
+ * Cross-link between the game and extension versions of each document.
+ *
+ * Sits above the lead paragraph because the first question a reader has is
+ * "am I even on the right page" -- answering it after they have read the intro
+ * wastes the intro.
+ */
+.legal-switch {
+  margin: 0 0 2rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
