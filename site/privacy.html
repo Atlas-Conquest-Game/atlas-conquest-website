@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Atlas Conquest</title>
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Atlas Conquest">
+  <meta property="og:title" content="Privacy Policy — Atlas Conquest">
+  <meta property="og:description" content="What Atlas Conquest and its Twitch extension collect, why, and how to opt out.">
+  <meta property="og:url" content="https://atlas-conquest.com/privacy.html">
+  <link rel="icon" type="image/png" href="assets/logo/atlas-conquest-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/landing.css">
+  <link rel="stylesheet" href="css/legal.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo/atlas-conquest-icon.png" alt="" width="24" height="24" class="nav-logo-icon" aria-hidden="true">
+        Atlas Conquest
+      </a>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+      <label for="nav-toggle" class="nav-burger" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link" data-nav="home">Home</a>
+        <a href="analytics.html" class="nav-link" data-nav="analytics">Analytics</a>
+        <a href="metagame.html" class="nav-link" data-nav="metagame">Metagame</a>
+        <a href="decks.html" class="nav-link" data-nav="decks">Decks</a>
+        <a href="articles/" class="nav-link" data-nav="articles">Articles</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero hero-compact">
+    <div class="container">
+      <h1 class="hero-title">Privacy Policy</h1>
+      <p class="hero-subtitle">Last updated 2 September 2026</p>
+    </div>
+  </header>
+
+  <main class="legal container">
+
+    <p class="legal-lead">
+      Atlas Conquest is a multiplayer card game, and this policy covers both the
+      game and the Atlas Conquest Twitch extension. It describes what is
+      collected, why, and how to stop it.
+    </p>
+
+    <h2>The short version</h2>
+    <ul>
+      <li>The Twitch extension collects <strong>nothing</strong> from viewers. No accounts, no cookies, no tracking.</li>
+      <li>The game collects gameplay statistics, and you can switch that off in <em>Settings</em>.</li>
+      <li>Nothing is sold, and nothing is shared with advertisers.</li>
+    </ul>
+
+    <h2>The Twitch extension</h2>
+
+    <p>
+      If you are watching a stream, the extension collects no information about
+      you at all. It has no account, sets no cookies, and stores nothing about
+      who you are or what you hover.
+    </p>
+
+    <p>
+      What it does is receive a description of the streamer's game board so it
+      can show you the cards. That description contains only what is already
+      visible on the stream: which cards are on the board, where they are, and
+      their current health. It is sent by the streamer's own game.
+    </p>
+
+    <p>
+      Card images and card text are downloaded from
+      <code>cdn.atlas-conquest.com</code>, which is static file hosting. Those
+      requests carry the usual information any web request does, such as your IP
+      address, and are not used to build a profile of you.
+    </p>
+
+    <h3>If you are a streamer</h3>
+
+    <p>
+      When you link your Twitch channel in the game, we receive your Twitch
+      channel name and numeric channel id, and store a token that lets the game
+      publish to that one channel. We do not receive your Twitch password, your
+      email address, or access to your account beyond identifying which channel
+      authorised the link.
+    </p>
+
+    <p>
+      While you play, the game sends your board state so viewers can hover it.
+      This happens only while your channel is live and only while the feature is
+      switched on. Your opponent's hidden information is never included, because
+      the game itself never receives it. You can stop publishing at any time in
+      <em>Settings &rarr; Twitch</em>, and unlinking removes the stored token.
+    </p>
+
+    <p>
+      Board state is relayed, not stored. It passes through our service to
+      Twitch and is not written to a database or retained afterwards.
+    </p>
+
+    <h2>The game</h2>
+
+    <h3>Accounts</h3>
+    <p>
+      Signing in uses Google or Discord through Unity Authentication. We receive
+      an identifier for your account, not your password. Sign-in is used to save
+      your decks and match your games.
+    </p>
+
+    <h3>Gameplay analytics</h3>
+    <p>
+      With your consent, the game records gameplay events through Unity Gaming
+      Services: matches started and finished, their length and outcome, the
+      commander and deck used, menus opened, and any feedback you choose to
+      submit. This exists to balance cards and find where the game confuses
+      people. It does not include chat, personal messages, or anything you type
+      other than feedback you deliberately send.
+    </p>
+
+    <h3>Consent, and how to turn it off</h3>
+    <p>
+      In the EU, EEA and UK, analytics are <strong>off</strong> until you opt in.
+      Elsewhere they are on by default and you may opt out at any time. Either
+      way the control is the same: <em>Settings &rarr; Analytics</em>. Turning it
+      off stops collection and deletes what was previously collected.
+    </p>
+
+    <p>
+      To apply that rule we need to know which country you are in, so on first
+      launch the game looks up the country associated with your IP address using
+      <a href="https://ipapi.co/" target="_blank" rel="noopener">ipapi.co</a>.
+      Only the two-letter country code is kept, stored locally on your machine,
+      and the lookup is not repeated.
+    </p>
+
+    <h2>Who else is involved</h2>
+    <ul>
+      <li><strong>Unity Gaming Services</strong> — accounts, multiplayer, and analytics.</li>
+      <li><strong>Twitch</strong> — delivers extension messages to viewers and stores streamer settings.</li>
+      <li><strong>Cloudflare</strong> — runs the service that relays board state to Twitch.</li>
+      <li><strong>GitHub Pages</strong> — serves card images and this website.</li>
+      <li><strong>ipapi.co</strong> — one country lookup on first launch.</li>
+    </ul>
+
+    <h2>Children</h2>
+    <p>
+      Atlas Conquest is not directed at children under 13, and we do not
+      knowingly collect information from them. If you believe a child has
+      provided information, contact us and it will be removed.
+    </p>
+
+    <h2>Your choices</h2>
+    <ul>
+      <li>Turn analytics off in <em>Settings &rarr; Analytics</em>, which also deletes what was collected.</li>
+      <li>Unlink Twitch in <em>Settings &rarr; Twitch</em>, which stops publishing and removes the token.</li>
+      <li>Ask for a copy of your data, or its deletion, using the contact address below.</li>
+    </ul>
+
+    <h2>Changes</h2>
+    <p>
+      If this policy changes materially, the date at the top will change and the
+      game will say so on next launch.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      <a href="mailto:support@atlas-conquest.com">support@atlas-conquest.com</a>
+    </p>
+
+  </main>
+
+  <footer class="landing-footer">
+    <div class="container">
+      <div class="landing-footer-inner">
+        <div class="landing-footer-brand">Atlas Conquest</div>
+        <p class="landing-footer-text">A competitive hex-grid deck builder.</p>
+        <div class="landing-footer-links">
+          <a href="https://discord.gg/7QaEY4yJH5" target="_blank" rel="noopener">Discord</a>
+          <span class="landing-footer-dot"></span>
+          <a href="privacy.html">Privacy</a>
+          <span class="landing-footer-dot"></span>
+          <a href="terms.html">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
