@@ -160,6 +160,8 @@
       "total": 287,
       "commissioned": 84,
       "commissioned_rate": 0.2927,
+      "non_ai": 146,
+      "non_ai_rate": 0.5087,
       "animated": 121,
       "animated_rate": 0.4216,
       "art_types": {
@@ -171,13 +173,17 @@
           "count": 2,
           "rate": 0.007
         },
+        "placeholder": {
+          "count": 62,
+          "rate": 0.216
+        },
         "ai": {
           "count": 141,
           "rate": 0.4913
         },
         "other": {
-          "count": 62,
-          "rate": 0.216
+          "count": 0,
+          "rate": 0.0
         }
       }
     },
@@ -185,6 +191,8 @@
       "total": 9,
       "commissioned": 1,
       "commissioned_rate": 0.1111,
+      "non_ai": 4,
+      "non_ai_rate": 0.4444,
       "animated": 2,
       "animated_rate": 0.2222,
       "art_types": {
@@ -196,13 +204,17 @@
           "count": 0,
           "rate": 0.0
         },
+        "placeholder": {
+          "count": 3,
+          "rate": 0.3333
+        },
         "ai": {
           "count": 5,
           "rate": 0.5556
         },
         "other": {
-          "count": 3,
-          "rate": 0.3333
+          "count": 0,
+          "rate": 0.0
         }
       }
     },
@@ -210,6 +222,8 @@
       "total": 16,
       "commissioned": 15,
       "commissioned_rate": 0.9375,
+      "non_ai": 15,
+      "non_ai_rate": 0.9375,
       "animated": 4,
       "animated_rate": 0.25,
       "art_types": {
@@ -218,6 +232,10 @@
           "rate": 0.9375
         },
         "purchased": {
+          "count": 0,
+          "rate": 0.0
+        },
+        "placeholder": {
           "count": 0,
           "rate": 0.0
         },
@@ -235,6 +253,8 @@
       "total": 312,
       "commissioned": 100,
       "commissioned_rate": 0.3205,
+      "non_ai": 165,
+      "non_ai_rate": 0.5288,
       "animated": 127,
       "animated_rate": 0.4071,
       "art_types": {
@@ -246,13 +266,17 @@
           "count": 2,
           "rate": 0.0064
         },
+        "placeholder": {
+          "count": 65,
+          "rate": 0.2083
+        },
         "ai": {
           "count": 147,
           "rate": 0.4712
         },
         "other": {
-          "count": 65,
-          "rate": 0.2083
+          "count": 0,
+          "rate": 0.0
         }
       }
     }
@@ -265,6 +289,8 @@
         "total": 1,
         "commissioned": 0,
         "commissioned_rate": 0.0,
+        "non_ai": 0,
+        "non_ai_rate": 0.0,
         "animated": 0,
         "animated_rate": 0.0,
         "art_types": {
@@ -273,6 +299,10 @@
             "rate": 0.0
           },
           "purchased": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "placeholder": {
             "count": 0,
             "rate": 0.0
           },
@@ -290,6 +320,8 @@
         "total": 0,
         "commissioned": 0,
         "commissioned_rate": 0.0,
+        "non_ai": 0,
+        "non_ai_rate": 0.0,
         "animated": 0,
         "animated_rate": 0.0,
         "art_types": {
@@ -298,6 +330,10 @@
             "rate": 0.0
           },
           "purchased": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "placeholder": {
             "count": 0,
             "rate": 0.0
           },
@@ -319,6 +355,8 @@
         "total": 27,
         "commissioned": 9,
         "commissioned_rate": 0.3333,
+        "non_ai": 23,
+        "non_ai_rate": 0.8519,
         "animated": 8,
         "animated_rate": 0.2963,
         "art_types": {
@@ -330,13 +368,17 @@
             "count": 0,
             "rate": 0.0
           },
+          "placeholder": {
+            "count": 14,
+            "rate": 0.5185
+          },
           "ai": {
             "count": 4,
             "rate": 0.1481
           },
           "other": {
-            "count": 14,
-            "rate": 0.5185
+            "count": 0,
+            "rate": 0.0
           }
         }
       },
@@ -344,6 +386,8 @@
         "total": 3,
         "commissioned": 3,
         "commissioned_rate": 1.0,
+        "non_ai": 3,
+        "non_ai_rate": 1.0,
         "animated": 1,
         "animated_rate": 0.3333,
         "art_types": {
@@ -352,6 +396,10 @@
             "rate": 1.0
           },
           "purchased": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "placeholder": {
             "count": 0,
             "rate": 0.0
           },
@@ -373,6 +421,8 @@
         "total": 34,
         "commissioned": 13,
         "commissioned_rate": 0.3824,
+        "non_ai": 15,
+        "non_ai_rate": 0.4412,
         "animated": 24,
         "animated_rate": 0.7059,
         "art_types": {
@@ -384,13 +434,17 @@
             "count": 0,
             "rate": 0.0
           },
+          "placeholder": {
+            "count": 2,
+            "rate": 0.0588
+          },
           "ai": {
             "count": 19,
             "rate": 0.5588
           },
           "other": {
-            "count": 2,
-            "rate": 0.0588
+            "count": 0,
+            "rate": 0.0
           }
         }
       },
@@ -398,6 +452,8 @@
         "total": 3,
         "commissioned": 3,
         "commissioned_rate": 1.0,
+        "non_ai": 3,
+        "non_ai_rate": 1.0,
         "animated": 0,
         "animated_rate": 0.0,
         "art_types": {
@@ -406,6 +462,10 @@
             "rate": 1.0
           },
           "purchased": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "placeholder": {
             "count": 0,
             "rate": 0.0
           },
@@ -427,6 +487,8 @@
         "total": 36,
         "commissioned": 7,
         "commissioned_rate": 0.1944,
+        "non_ai": 8,
+        "non_ai_rate": 0.2222,
         "animated": 14,
         "animated_rate": 0.3889,
         "art_types": {
@@ -438,13 +500,17 @@
             "count": 0,
             "rate": 0.0
           },
+          "placeholder": {
+            "count": 1,
+            "rate": 0.0278
+          },
           "ai": {
             "count": 28,
             "rate": 0.7778
           },
           "other": {
-            "count": 1,
-            "rate": 0.0278
+            "count": 0,
+            "rate": 0.0
           }
         }
       },
@@ -452,6 +518,8 @@
         "total": 3,
         "commissioned": 3,
         "commissioned_rate": 1.0,
+        "non_ai": 3,
+        "non_ai_rate": 1.0,
         "animated": 1,
         "animated_rate": 0.3333,
         "art_types": {
@@ -460,6 +528,10 @@
             "rate": 1.0
           },
           "purchased": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "placeholder": {
             "count": 0,
             "rate": 0.0
           },
@@ -481,6 +553,8 @@
         "total": 1,
         "commissioned": 0,
         "commissioned_rate": 0.0,
+        "non_ai": 1,
+        "non_ai_rate": 1.0,
         "animated": 1,
         "animated_rate": 1.0,
         "art_types": {
@@ -492,13 +566,17 @@
             "count": 0,
             "rate": 0.0
           },
+          "placeholder": {
+            "count": 1,
+            "rate": 1.0
+          },
           "ai": {
             "count": 0,
             "rate": 0.0
           },
           "other": {
-            "count": 1,
-            "rate": 1.0
+            "count": 0,
+            "rate": 0.0
           }
         }
       },
@@ -506,6 +584,8 @@
         "total": 0,
         "commissioned": 0,
         "commissioned_rate": 0.0,
+        "non_ai": 0,
+        "non_ai_rate": 0.0,
         "animated": 0,
         "animated_rate": 0.0,
         "art_types": {
@@ -514,6 +594,10 @@
             "rate": 0.0
           },
           "purchased": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "placeholder": {
             "count": 0,
             "rate": 0.0
           },
@@ -535,6 +619,8 @@
         "total": 127,
         "commissioned": 39,
         "commissioned_rate": 0.3071,
+        "non_ai": 73,
+        "non_ai_rate": 0.5748,
         "animated": 46,
         "animated_rate": 0.3622,
         "art_types": {
@@ -546,13 +632,17 @@
             "count": 2,
             "rate": 0.0157
           },
+          "placeholder": {
+            "count": 34,
+            "rate": 0.2677
+          },
           "ai": {
             "count": 54,
             "rate": 0.4252
           },
           "other": {
-            "count": 34,
-            "rate": 0.2677
+            "count": 0,
+            "rate": 0.0
           }
         }
       },
@@ -560,6 +650,8 @@
         "total": 2,
         "commissioned": 1,
         "commissioned_rate": 0.5,
+        "non_ai": 1,
+        "non_ai_rate": 0.5,
         "animated": 0,
         "animated_rate": 0.0,
         "art_types": {
@@ -568,6 +660,10 @@
             "rate": 0.5
           },
           "purchased": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "placeholder": {
             "count": 0,
             "rate": 0.0
           },
@@ -589,6 +685,8 @@
         "total": 24,
         "commissioned": 6,
         "commissioned_rate": 0.25,
+        "non_ai": 15,
+        "non_ai_rate": 0.625,
         "animated": 13,
         "animated_rate": 0.5417,
         "art_types": {
@@ -600,13 +698,17 @@
             "count": 0,
             "rate": 0.0
           },
+          "placeholder": {
+            "count": 9,
+            "rate": 0.375
+          },
           "ai": {
             "count": 9,
             "rate": 0.375
           },
           "other": {
-            "count": 9,
-            "rate": 0.375
+            "count": 0,
+            "rate": 0.0
           }
         }
       },
@@ -614,6 +716,8 @@
         "total": 2,
         "commissioned": 2,
         "commissioned_rate": 1.0,
+        "non_ai": 2,
+        "non_ai_rate": 1.0,
         "animated": 1,
         "animated_rate": 0.5,
         "art_types": {
@@ -622,6 +726,10 @@
             "rate": 1.0
           },
           "purchased": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "placeholder": {
             "count": 0,
             "rate": 0.0
           },
@@ -643,6 +751,8 @@
         "total": 36,
         "commissioned": 10,
         "commissioned_rate": 0.2778,
+        "non_ai": 11,
+        "non_ai_rate": 0.3056,
         "animated": 15,
         "animated_rate": 0.4167,
         "art_types": {
@@ -654,13 +764,17 @@
             "count": 0,
             "rate": 0.0
           },
+          "placeholder": {
+            "count": 1,
+            "rate": 0.0278
+          },
           "ai": {
             "count": 25,
             "rate": 0.6944
           },
           "other": {
-            "count": 1,
-            "rate": 0.0278
+            "count": 0,
+            "rate": 0.0
           }
         }
       },
@@ -668,6 +782,8 @@
         "total": 3,
         "commissioned": 3,
         "commissioned_rate": 1.0,
+        "non_ai": 3,
+        "non_ai_rate": 1.0,
         "animated": 1,
         "animated_rate": 0.3333,
         "art_types": {
@@ -676,6 +792,10 @@
             "rate": 1.0
           },
           "purchased": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "placeholder": {
             "count": 0,
             "rate": 0.0
           },
@@ -697,6 +817,8 @@
         "total": 1,
         "commissioned": 0,
         "commissioned_rate": 0.0,
+        "non_ai": 0,
+        "non_ai_rate": 0.0,
         "animated": 0,
         "animated_rate": 0.0,
         "art_types": {
@@ -705,6 +827,10 @@
             "rate": 0.0
           },
           "purchased": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "placeholder": {
             "count": 0,
             "rate": 0.0
           },
@@ -722,6 +848,8 @@
         "total": 0,
         "commissioned": 0,
         "commissioned_rate": 0.0,
+        "non_ai": 0,
+        "non_ai_rate": 0.0,
         "animated": 0,
         "animated_rate": 0.0,
         "art_types": {
@@ -730,6 +858,10 @@
             "rate": 0.0
           },
           "purchased": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "placeholder": {
             "count": 0,
             "rate": 0.0
           },
