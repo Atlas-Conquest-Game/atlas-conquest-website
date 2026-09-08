@@ -23,37 +23,40 @@ from pipeline.aggregation import (
     aggregate_archetypes,
     aggregate_goals,
 )
+from pipeline.constants import HUMAN_ART_TYPES
 
 
 # ─── Goals fixtures ──────────────────────────────────────────────
 
-def _art_type(art_type, commissioned):
-    """Default the raw ArtType to something consistent with `commissioned`
-    (the non-AI flag), so callers only spell it out when the distinction
-    between commissioned and purchased art matters."""
-    if art_type is not None:
-        return art_type
-    return "ARTIST_COMMISSIONED" if commissioned else "AI_GENERATED"
+def _art_fields(art_type, human_art):
+    """Raw ArtType plus the derived human_art flag, kept consistent the way the
+    CSV loader keeps them: give either one and the other follows. Spell out
+    art_type only when the split between the human-made sources matters."""
+    if art_type is None:
+        art_type = "ARTIST_COMMISSIONED" if human_art else "AI_GENERATED"
+    if human_art is None:
+        human_art = art_type in HUMAN_ART_TYPES
+    return {"art_type": art_type, "human_art": human_art}
 
 
-def _card(name, *, type="Minion", legendary=False, commissioned=False,
+def _card(name, *, type="Minion", legendary=False, human_art=None,
           has_animation=False, patron="Neutral", faction="neutral",
           starter_decks=None, art_type=None):
     return {
         "name": name, "type": type, "legendary": legendary,
-        "commissioned": commissioned, "has_animation": has_animation,
+        "has_animation": has_animation,
         "patron": patron, "faction": faction,
         "starter_decks": starter_decks or [],
-        "art_type": _art_type(art_type, commissioned),
+        **_art_fields(art_type, human_art),
     }
 
 
-def _commander(name, *, commissioned=False, has_animation=False,
+def _commander(name, *, human_art=None, has_animation=False,
                patron="Neutral", faction="neutral", art_type=None):
     return {
-        "name": name, "commissioned": commissioned,
-        "has_animation": has_animation, "patron": patron, "faction": faction,
-        "art_type": _art_type(art_type, commissioned),
+        "name": name, "has_animation": has_animation,
+        "patron": patron, "faction": faction,
+        **_art_fields(art_type, human_art),
     }
 
 
@@ -716,11 +719,11 @@ class TestGoals_Aggregation:
     def _goal(self, result, section, gid):
         return next(g for g in result[section] if g["id"] == gid)
 
-    def test_art_count_counts_commissioned_cards(self):
+    def test_art_count_counts_human_art_cards(self):
         cards = [
-            _card("A", commissioned=True),
-            _card("B", commissioned=True),
-            _card("C", commissioned=False),
+            _card("A", human_art=True),
+            _card("B", human_art=True),
+            _card("C", human_art=False),
         ]
         result = aggregate_goals(cards, [])
         g = self._goal(result, "art_goals", "art_count")
@@ -731,8 +734,8 @@ class TestGoals_Aggregation:
 
     def test_commander_commission_percent_and_met(self):
         commanders = [
-            _commander("X", commissioned=True),
-            _commander("Y", commissioned=True),
+            _commander("X", human_art=True),
+            _commander("Y", human_art=True),
         ]
         result = aggregate_goals([], commanders)
         g = self._goal(result, "art_goals", "art_commanders")
@@ -742,27 +745,27 @@ class TestGoals_Aggregation:
 
     def test_legendary_minion_filter(self):
         cards = [
-            _card("Leg1", type="Minion", legendary=True, commissioned=True),
-            _card("Leg2", type="Minion", legendary=True, commissioned=False),
-            _card("LegSpell", type="Spell", legendary=True, commissioned=True),  # excluded
-            _card("Plain", type="Minion", legendary=False, commissioned=True),   # excluded
+            _card("Leg1", type="Minion", legendary=True, human_art=True),
+            _card("Leg2", type="Minion", legendary=True, human_art=False),
+            _card("LegSpell", type="Spell", legendary=True, human_art=True),  # excluded
+            _card("Plain", type="Minion", legendary=False, human_art=True),   # excluded
         ]
         result = aggregate_goals(cards, [])
         g = self._goal(result, "art_goals", "art_legendary")
-        # Only the two legendary minions count; 1 of 2 commissioned.
+        # Only the two legendary minions count; 1 of 2 with human art.
         assert g["denominator"] == 2
         assert g["numerator"] == 1
         assert g["current"] == 0.5
         assert g["met"] is False  # below 0.75
 
     def test_starter_decks_per_deck_rollup(self):
-        # Deck Alpha: 2/2 commissioned (meets 0.75). Deck Beta: 1/3 (fails).
+        # Deck Alpha: 2/2 human art (meets 0.75). Deck Beta: 1/3 (fails).
         cards = [
-            _card("a1", commissioned=True, starter_decks=["Starter Alpha"]),
-            _card("a2", commissioned=True, starter_decks=["Starter Alpha"]),
-            _card("b1", commissioned=True, starter_decks=["Starter Beta"]),
-            _card("b2", commissioned=False, starter_decks=["Starter Beta"]),
-            _card("b3", commissioned=False, starter_decks=["Starter Beta"]),
+            _card("a1", human_art=True, starter_decks=["Starter Alpha"]),
+            _card("a2", human_art=True, starter_decks=["Starter Alpha"]),
+            _card("b1", human_art=True, starter_decks=["Starter Beta"]),
+            _card("b2", human_art=False, starter_decks=["Starter Beta"]),
+            _card("b3", human_art=False, starter_decks=["Starter Beta"]),
         ]
         result = aggregate_goals(cards, [])
         g = self._goal(result, "art_goals", "art_starters")
@@ -784,7 +787,7 @@ class TestGoals_Aggregation:
 
     def test_by_patron_keeps_raw_patrons_separate(self):
         cards = [
-            _card("a", patron="Skaal", faction="skaal", commissioned=True),
+            _card("a", patron="Skaal", faction="skaal", human_art=True),
             _card("b", patron="Mechanus", faction="neutral", has_animation=True),
             _card("c", patron="Neutral", faction="neutral"),
         ]
@@ -798,16 +801,16 @@ class TestGoals_Aggregation:
 
     def test_overall_totals_match_inputs(self):
         cards = [
-            _card("a", commissioned=True, has_animation=True),
-            _card("b", commissioned=False, has_animation=False),
+            _card("a", human_art=True, has_animation=True),
+            _card("b", human_art=False, has_animation=False),
         ]
         result = aggregate_goals(cards, [])
         assert result["overall"]["cards"]["total"] == 2
-        assert result["overall"]["cards"]["commissioned"] == 1
+        assert result["overall"]["cards"]["human"] == 1
         assert result["overall"]["cards"]["animated"] == 1
         # rates within [0,1]
         for stats in (result["overall"]["cards"], result["overall"]["commanders"]):
-            assert 0.0 <= stats["commissioned_rate"] <= 1.0
+            assert 0.0 <= stats["human_rate"] <= 1.0
             assert 0.0 <= stats["animated_rate"] <= 1.0
 
 
@@ -821,7 +824,7 @@ class TestGoals_TokensAndArtSources:
         return next(g for g in result[section] if g["id"] == gid)
 
     def test_tokens_do_not_move_any_goal(self):
-        cards = [_card("a", commissioned=True), _card("b", commissioned=True)]
+        cards = [_card("a", human_art=True), _card("b", human_art=True)]
         tokens = [_card("t1"), _card("t2"), _card("t3")]  # all AI, no animation
         without = aggregate_goals(cards, [])
         with_tokens = aggregate_goals(cards, [], tokens)
@@ -838,27 +841,27 @@ class TestGoals_TokensAndArtSources:
         assert patrons["Skaal"]["cards"]["total"] == 1
 
     def test_all_row_sums_every_pool(self):
-        cards = [_card("a", commissioned=True, has_animation=True), _card("b")]
+        cards = [_card("a", human_art=True, has_animation=True), _card("b")]
         tokens = [_card("t", has_animation=True)]
-        commanders = [_commander("X", commissioned=True)]
+        commanders = [_commander("X", human_art=True)]
         result = aggregate_goals(cards, commanders, tokens)
         combined = result["overall"]["all"]
         assert combined["total"] == 4
-        assert combined["commissioned"] == 2
+        assert combined["human"] == 2
         assert combined["animated"] == 2
-        assert combined["commissioned_rate"] == 0.5
+        assert combined["human_rate"] == 0.5
 
     def test_tokens_default_to_empty_pool(self):
         """Callers that don't pass tokens still get a well-formed payload."""
         result = aggregate_goals([_card("a")], [])
         assert result["overall"]["tokens"]["total"] == 0
-        assert result["overall"]["tokens"]["commissioned_rate"] == 0.0
+        assert result["overall"]["tokens"]["human_rate"] == 0.0
         assert result["overall"]["all"]["total"] == 1
 
     def test_art_types_split_commissioned_from_purchased(self):
         cards = [
-            _card("a", commissioned=True, art_type="ARTIST_COMMISSIONED"),
-            _card("b", commissioned=True, art_type="PURCHASED_ASSET"),
+            _card("a", human_art=True, art_type="ARTIST_COMMISSIONED"),
+            _card("b", human_art=True, art_type="PURCHASED_ASSET"),
             _card("c", art_type="AI_GENERATED"),
             _card("d", art_type="AI_GENERATED"),
         ]
@@ -880,15 +883,20 @@ class TestGoals_TokensAndArtSources:
         assert sum(b["count"] for b in stats["art_types"].values()) == stats["total"]
         assert stats["art_types"]["other"]["count"] == 2
 
-    def test_non_ai_flag_equals_commissioned_plus_purchased(self):
+    def test_human_flag_equals_every_bucket_except_ai(self):
         cards = [
-            _card("a", commissioned=True, art_type="ARTIST_COMMISSIONED"),
-            _card("b", commissioned=True, art_type="PURCHASED_ASSET"),
-            _card("c", art_type="AI_GENERATED"),
+            _card("a", art_type="ARTIST_COMMISSIONED"),
+            _card("b", art_type="PURCHASED_ASSET"),
+            _card("c", art_type="COMMISSIONED_PLACEHOLDER"),
+            _card("d", art_type="AI_GENERATED"),
         ]
         stats = aggregate_goals(cards, [])["overall"]["cards"]
         buckets = stats["art_types"]
-        assert stats["commissioned"] == buckets["commissioned"]["count"] + buckets["purchased"]["count"]
+        assert stats["human"] == (buckets["commissioned"]["count"]
+                                  + buckets["purchased"]["count"]
+                                  + buckets["placeholder"]["count"])
+        assert stats["human"] == 3
+        assert stats["human_rate"] == 0.75
 
     def test_empty_pool_rates_are_zero(self):
         stats = aggregate_goals([], [])["overall"]["cards"]
@@ -896,9 +904,9 @@ class TestGoals_TokensAndArtSources:
         for bucket in stats["art_types"].values():
             assert bucket == {"count": 0, "rate": 0.0}
 
-    def test_placeholder_is_its_own_bucket_not_ai_not_commissioned(self):
+    def test_placeholder_is_its_own_bucket_and_counts_as_human_art(self):
         cards = [
-            _card("a", commissioned=True, art_type="ARTIST_COMMISSIONED"),
+            _card("a", art_type="ARTIST_COMMISSIONED"),
             _card("b", art_type="COMMISSIONED_PLACEHOLDER"),
             _card("c", art_type="COMMISSIONED_PLACEHOLDER"),
             _card("d", art_type="AI_GENERATED"),
@@ -907,22 +915,22 @@ class TestGoals_TokensAndArtSources:
         stats = result["overall"]["cards"]
         buckets = stats["art_types"]
         assert buckets["placeholder"] == {"count": 2, "rate": 0.5}
+        assert buckets["commissioned"] == {"count": 1, "rate": 0.25}
         assert buckets["ai"] == {"count": 1, "rate": 0.25}
         assert buckets["other"]["count"] == 0
-        # Placeholders do not advance the commission goals...
-        assert stats["commissioned"] == 1
-        assert self._goal(result, "art_goals", "art_count")["current"] == 1
-        # ...but they are human-made, so they count as non-AI.
-        assert stats["non_ai"] == 3
-        assert stats["non_ai_rate"] == 0.75
+        # Placeholders are human-made, so they advance the art goals...
+        assert stats["human"] == 3
+        assert self._goal(result, "art_goals", "art_count")["current"] == 3
+        # ...while staying visible as their own slice of the breakdown.
+        assert buckets["placeholder"]["count"] + buckets["commissioned"]["count"] == stats["human"]
 
-    def test_non_ai_excludes_unknown_art_types(self):
+    def test_human_art_excludes_unknown_art_types(self):
         cards = [
-            _card("a", commissioned=True, art_type="PURCHASED_ASSET"),
+            _card("a", art_type="PURCHASED_ASSET"),
             _card("b", art_type="COMMISSIONED_PLACEHOLDER"),
             _card("c", art_type=""),
             _card("d", art_type="SOMETHING"),
         ]
         stats = aggregate_goals(cards, [])["overall"]["cards"]
-        assert stats["non_ai"] == 2
+        assert stats["human"] == 2
         assert stats["art_types"]["other"]["count"] == 2

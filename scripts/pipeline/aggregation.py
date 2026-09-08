@@ -9,7 +9,7 @@ from collections import Counter, defaultdict
 from datetime import datetime
 from itertools import combinations
 
-from pipeline.constants import ART_TYPE_BUCKETS, NON_AI_ART_TYPES
+from pipeline.constants import ART_TYPE_BUCKETS
 from pipeline.deckcode_py import DeckCodecError
 
 
@@ -1445,12 +1445,11 @@ def aggregate_goals(cards, commanders, tokens=()):
     an Alpha Goals section (the 8 verbatim goals) and an Overall Progress
     section (overall commission/animation rates, broken down by raw patron).
 
-    "Commissioned" means finished non-AI art (ARTIST_COMMISSIONED or
-    PURCHASED_ASSET), captured upstream in each record's ``commissioned``
-    flag. COMMISSIONED_PLACEHOLDER art is human-made but stands in for a
-    commission that is not done yet: it is not AI, but it does not count
-    toward any goal. It gets its own bucket in the art-source breakdown and
-    is included in the ``non_ai`` totals.
+    "Human art" means anything not AI-generated (ARTIST_COMMISSIONED,
+    PURCHASED_ASSET or COMMISSIONED_PLACEHOLDER), captured upstream in each
+    record's ``human_art`` flag. Every goal counts it. The art-source
+    breakdown still splits the three apart so placeholder art, which stands
+    in for a commission that is not finished, stays visible on its own.
 
     ``tokens`` are generated cards. No alpha goal targets them, so they stay out
     of every goal and out of the per-patron card table — but they need art all
@@ -1479,7 +1478,7 @@ def aggregate_goals(cards, commanders, tokens=()):
     deck_names = sorted({d for c in starter_cards for d in c["starter_decks"]})
 
     def deck_detail(attr):
-        """Per-deck rate of ``attr`` (commissioned/has_animation)."""
+        """Per-deck rate of ``attr`` (human_art/has_animation)."""
         detail = []
         for deck in deck_names:
             deck_cards = [c for c in cards if deck in c["starter_decks"]]
@@ -1504,14 +1503,14 @@ def aggregate_goals(cards, commanders, tokens=()):
                 "detail": detail}
 
     art_goals = [
-        count_goal("art_count", "100 Cards Commissioned",
-                   sum(1 for c in cards if c["commissioned"]), 100),
-        percent_goal("art_commanders", "100% of Commanders Commissioned",
-                     commanders, "commissioned", 1.0),
-        percent_goal("art_legendary", "75% of Legendary Minions Commissioned",
-                     leg_minions, "commissioned", 0.75),
-        decks_goal("art_starters", "75% of Starter Decks Commissioned",
-                   "commissioned", 0.75),
+        count_goal("art_count", "100 Cards with Human Art",
+                   sum(1 for c in cards if c["human_art"]), 100),
+        percent_goal("art_commanders", "100% of Commanders with Human Art",
+                     commanders, "human_art", 1.0),
+        percent_goal("art_legendary", "75% of Legendary Minions with Human Art",
+                     leg_minions, "human_art", 0.75),
+        decks_goal("art_starters", "75% of Starter Decks with Human Art",
+                   "human_art", 0.75),
     ]
 
     animation_goals = [
@@ -1526,10 +1525,10 @@ def aggregate_goals(cards, commanders, tokens=()):
     ]
 
     # Raw ArtType value → art-source bucket (see constants.ART_TYPE_BUCKETS).
-    # `commissioned` above is commissioned + purchased; this splits them
-    # apart for the breakdown table and gives placeholder art its own
-    # column. Anything unrecognised (or a blank ArtType) lands in "other" so
-    # each row still sums to its total.
+    # `human_art` above is every bucket except "ai"; this splits them apart
+    # for the breakdown so placeholder art stays visible on its own.
+    # Anything unrecognised (or a blank ArtType) lands in "other" so each
+    # pool still sums to its total.
     buckets = ["commissioned", "purchased", "placeholder", "ai", "other"]
 
     def art_types(records):
@@ -1542,17 +1541,12 @@ def aggregate_goals(cards, commanders, tokens=()):
         }
 
     def totals(records):
-        commissioned = sum(1 for r in records if r["commissioned"])
-        # Human-made whether finished or not. Excludes "other": an unknown
-        # ArtType is not evidence either way.
-        non_ai = sum(1 for r in records if (r.get("art_type") or "") in NON_AI_ART_TYPES)
+        human = sum(1 for r in records if r["human_art"])
         animated = sum(1 for r in records if r["has_animation"])
         return {
             "total": len(records),
-            "commissioned": commissioned,
-            "commissioned_rate": rate(commissioned, len(records)),
-            "non_ai": non_ai,
-            "non_ai_rate": rate(non_ai, len(records)),
+            "human": human,
+            "human_rate": rate(human, len(records)),
             "animated": animated,
             "animated_rate": rate(animated, len(records)),
             "art_types": art_types(records),

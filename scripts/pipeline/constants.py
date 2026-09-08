@@ -43,17 +43,14 @@ ART_TYPE_BUCKETS = {
     "PURCHASED_ASSET": "purchased",
     "AI_GENERATED": "ai",
     # Placeholder art standing in for a commission that is not finished yet.
-    # Not AI, but not delivered either, so it is tracked on its own and does
-    # not count toward the "commissioned" goals.
+    # Human-made, so it counts as human art for the goals; it keeps its own
+    # bucket so the in-progress share stays visible in the breakdown.
     "COMMISSIONED_PLACEHOLDER": "placeholder",
 }
 
-# Finished non-AI art. This is the `commissioned` flag that every alpha goal
-# and the per-patron table count.
-COMMISSIONED_ART_TYPES = frozenset({"ARTIST_COMMISSIONED", "PURCHASED_ASSET"})
-
-# Everything human-made, finished or not: commissioned + purchased + placeholder.
-NON_AI_ART_TYPES = frozenset(
+# Human-made art, finished or not: every bucket except "ai". This is the
+# `human_art` flag that every alpha goal and the per-patron table count.
+HUMAN_ART_TYPES = frozenset(
     t for t, bucket in ART_TYPE_BUCKETS.items() if bucket != "ai"
 )
 

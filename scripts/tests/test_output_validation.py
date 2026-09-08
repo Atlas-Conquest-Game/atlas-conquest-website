@@ -417,18 +417,18 @@ class TestC11_GoalsStructure:
         for group in ("cards", "commanders"):
             stats = data["overall"][group]
             assert stats["total"] >= 0
-            assert 0 <= stats["commissioned"] <= stats["total"]
+            assert 0 <= stats["human"] <= stats["total"]
             assert 0 <= stats["animated"] <= stats["total"]
-            assert 0.0 <= stats["commissioned_rate"] <= 1.0
+            assert 0.0 <= stats["human_rate"] <= 1.0
             assert 0.0 <= stats["animated_rate"] <= 1.0
 
     def test_by_patron_totals_reconcile_with_overall(self):
         data = self._load()
         card_total = sum(p["cards"]["total"] for p in data["by_patron"])
-        card_comm = sum(p["cards"]["commissioned"] for p in data["by_patron"])
+        card_human = sum(p["cards"]["human"] for p in data["by_patron"])
         cmd_total = sum(p["commanders"]["total"] for p in data["by_patron"])
         assert card_total == data["overall"]["cards"]["total"]
-        assert card_comm == data["overall"]["cards"]["commissioned"]
+        assert card_human == data["overall"]["cards"]["human"]
         assert cmd_total == data["overall"]["commanders"]["total"]
 
 

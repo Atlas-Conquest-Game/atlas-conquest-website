@@ -83,9 +83,9 @@
   <section class="section">
     <div class="container">
       <h2 class="section-title">Alpha Goals</h2>
-      <p class="section-subtitle">Goals for non-AI artwork commissions and in-game animations for the Alpha development stage. Long term goal is 100% human artwork before release, and a majority of cards having in-game animations.</p>
+      <p class="section-subtitle">Goals for human-made artwork and in-game animations for the Alpha development stage. "Human art" is everything that is not AI-generated: finished commissions, purchased assets, and placeholder art for commissions still in progress. Long term goal is 100% human artwork before release, and a majority of cards having in-game animations.</p>
 
-      <h3 class="goal-group-title">Art Commission Target</h3>
+      <h3 class="goal-group-title">Human Art Target</h3>
       <div class="goals-grid" id="art-goals">
         <p class="placeholder-text">Loading…</p>
       </div>
@@ -101,32 +101,40 @@
   <section class="section">
     <div class="container">
       <h2 class="section-title">Overall Progress</h2>
-      <p class="section-subtitle">Overall commission &amp; animation rates across everything that needs artwork. Tokens have no goal of their own, but they count toward the combined totals below.</p>
+      <p class="section-subtitle">Overall human-art &amp; animation rates across everything that needs artwork. Tokens have no goal of their own, but they count toward the combined totals below.</p>
 
       <div class="card-grid" id="overall-kpis"></div>
 
       <h3 class="goal-group-title">Art Source</h3>
-      <p class="section-subtitle">Where each pool's artwork comes from. "Commissioned" and "Purchased" are finished non-AI art and count toward the goals above. "Placeholder" is human-made art standing in for a commission that is not finished yet: not AI, but not counted as commissioned either.</p>
+      <p class="section-subtitle">Where each pool's artwork comes from. Commissioned, Purchased and Placeholder are all human-made and count toward the goals above; the centre of each ring is that pool's human-art share.</p>
 
-      <div class="table-wrapper">
-        <table class="data-table" id="art-source-table">
-          <thead>
-            <tr>
-              <th>Pool</th>
-              <th>Total</th>
-              <th>Commissioned <span class="tooltip-icon" data-tooltip="Artwork commissioned from an artist (ARTIST_COMMISSIONED).">?</span></th>
-              <th>Purchased <span class="tooltip-icon" data-tooltip="Bought asset-pack artwork (PURCHASED_ASSET). Counts as non-AI.">?</span></th>
-              <th>Placeholder <span class="tooltip-icon" data-tooltip="Placeholder art for a commission still in progress (COMMISSIONED_PLACEHOLDER). Human-made, so not AI — but not finished, so it does not count as commissioned.">?</span></th>
-              <th>AI <span class="tooltip-icon" data-tooltip="AI-generated artwork — the pool the goals are working to replace.">?</span></th>
-              <th class="col-other">Other <span class="tooltip-icon" data-tooltip="Artwork with an unrecognised or missing ArtType in the source CSV.">?</span></th>
-              <th>Animated <span class="tooltip-icon" data-tooltip="Share of this pool that has an in-game animation.">?</span></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="placeholder-row"><td colspan="8">Loading…</td></tr>
-          </tbody>
-        </table>
+      <div class="art-source-legend" id="art-source-legend" aria-hidden="true"></div>
+      <div class="art-source-grid" id="art-source-charts">
+        <p class="placeholder-text">Loading…</p>
       </div>
+
+      <details class="art-source-details">
+        <summary>Show as table</summary>
+        <div class="table-wrapper">
+          <table class="data-table" id="art-source-table">
+            <thead>
+              <tr>
+                <th>Pool</th>
+                <th>Total</th>
+                <th>Commissioned <span class="tooltip-icon" data-tooltip="Finished artwork commissioned from an artist (ARTIST_COMMISSIONED).">?</span></th>
+                <th>Purchased <span class="tooltip-icon" data-tooltip="Bought asset-pack artwork (PURCHASED_ASSET). Human-made, counts toward the goals.">?</span></th>
+                <th>Placeholder <span class="tooltip-icon" data-tooltip="Placeholder art for a commission still in progress (COMMISSIONED_PLACEHOLDER). Human-made, counts toward the goals; tracked separately so the in-progress share stays visible.">?</span></th>
+                <th>AI <span class="tooltip-icon" data-tooltip="AI-generated artwork — the pool the goals are working to replace.">?</span></th>
+                <th class="col-other">Other <span class="tooltip-icon" data-tooltip="Artwork with an unrecognised or missing ArtType in the source CSV.">?</span></th>
+                <th>Animated <span class="tooltip-icon" data-tooltip="Share of this pool that has an in-game animation.">?</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="placeholder-row"><td colspan="8">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
 
       <h3 class="goal-group-title">By Patron</h3>
       <p class="section-subtitle">Buildable cards only — tokens are excluded here.</p>
@@ -137,10 +145,10 @@
             <tr>
               <th>Patron</th>
               <th>Cards</th>
-              <th>Commissioned <span class="tooltip-icon" data-tooltip="Share of this patron's cards with finished non-AI artwork (commissioned or purchased). Placeholders are not counted.">?</span></th>
+              <th>Human Art <span class="tooltip-icon" data-tooltip="Share of this patron's cards with human-made artwork (commissioned, purchased, or placeholder).">?</span></th>
               <th>Animated <span class="tooltip-icon" data-tooltip="Share of this patron's cards that have an animation.">?</span></th>
               <th>Commanders</th>
-              <th>Commissioned</th>
+              <th>Human Art</th>
               <th>Animated</th>
             </tr>
           </thead>

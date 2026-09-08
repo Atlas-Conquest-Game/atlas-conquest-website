@@ -421,16 +421,14 @@ and (server-rendered by `build_articles.py`) in articles.
 ### goals.json (flat — no period nesting)
 ```json
 {
-  "art_goals": [ { "id": "art_count", "label": "100 Cards Commissioned", "kind": "count",
+  "art_goals": [ { "id": "art_count", "label": "100 Cards with Human Art", "kind": "count",
                    "current": 78, "target": 100, "met": false } ],
   "animation_goals": [ "…same shape…" ],
   "overall": {
     "cards": {
       "total": 274,
-      "commissioned": 78,
-      "commissioned_rate": 0.2847,
-      "non_ai": 140,
-      "non_ai_rate": 0.5109,
+      "human": 140,
+      "human_rate": 0.5109,
       "animated": 70,
       "animated_rate": 0.2555,
       "art_types": {
@@ -450,14 +448,16 @@ and (server-rendered by `build_articles.py`) in articles.
 }
 ```
 
-`commissioned` is finished non-AI art: it equals `art_types.commissioned +
-art_types.purchased`, and it is what every goal counts. `placeholder` is
-`COMMISSIONED_PLACEHOLDER` art — human-made, standing in for a commission that
-is not finished — so it is not AI but not commissioned either; `non_ai` is
-`commissioned + purchased + placeholder`. The `art_types` buckets always sum
-to `total`; `other` catches any `ArtType` the pipeline doesn't recognise
-(normally zero, and the Goals page hides that column when it is). The raw
-value → bucket map lives in `scripts/pipeline/constants.py`.
+`human` is human-made art of any kind — it equals `art_types.commissioned +
+art_types.purchased + art_types.placeholder` — and it is what every goal
+counts. `placeholder` is `COMMISSIONED_PLACEHOLDER` art: human-made, standing
+in for a commission that is not finished, kept as its own bucket so the
+in-progress share stays visible. The `art_types` buckets always sum to
+`total`; `other` catches any `ArtType` the pipeline doesn't recognise
+(normally zero, and the Goals page hides it when it is). The raw value →
+bucket map lives in `scripts/pipeline/constants.py`. Card and commander
+records in `cards.json` / `commanders.json` carry the same flag as
+`human_art`.
 
 **Tokens**: no alpha goal targets them, so they're excluded from every entry in
 `art_goals` / `animation_goals` and from `by_patron`. They appear only as

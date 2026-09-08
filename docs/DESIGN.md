@@ -109,6 +109,7 @@ amber so the two read apart when charted side by side.
 - Faction colors for series. Grid lines: `#21262d`. Labels: `--text-secondary`.
 - Tooltip: `--bg-elevated` background, `--border` border, 6px corner radius.
 - Chart types used: bar, stacked bar, line (stacked area), doughnut.
+- Goals art-source donuts use a fixed segment palette validated for colour-vision deficiency on `--bg-card`: Commissioned `#238636`, Purchased `#1f6feb`, Placeholder `#bf8700`, AI `#6e7681` (recessive gray — the pool being replaced), Other `#da3633`. Segments are separated by a 2px `--bg-card` border. See `ART_SOURCES` in `site/js/goals.js`.
 
 ### Distribution Charts (small)
 - 3-column grid in Overview section. `.chart-sm` container with `--bg-card` background.

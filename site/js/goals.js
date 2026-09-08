@@ -95,29 +95,123 @@ function renderOverall(overall) {
   // goal of their own, so they only show up in these combined numbers and in
   // the art-source table below.
   const a = overall.all;
-  // "Commissioned" is finished non-AI art (what the goals count). "Non-AI"
-  // also includes commissioned placeholders: human-made, not finished yet.
-  // Ordered so the four art KPIs fill the first row of the grid and the two
-  // animation KPIs sit together on the second.
+  // "Human-made" is every art type except AI_GENERATED: finished commissions,
+  // purchased assets, and placeholders for commissions still in progress.
   kpis.innerHTML = [
-    kpiCard('All Art Commissioned', a.commissioned_rate, a.commissioned, a.total),
-    kpiCard('All Art Non-AI', a.non_ai_rate, a.non_ai, a.total),
-    kpiCard('Cards Commissioned', c.commissioned_rate, c.commissioned, c.total),
-    kpiCard('Cards Non-AI', c.non_ai_rate, c.non_ai, c.total),
+    kpiCard('All Art Human-Made', a.human_rate, a.human, a.total),
     kpiCard('All Art Animated', a.animated_rate, a.animated, a.total),
+    kpiCard('Cards Human-Made', c.human_rate, c.human, c.total),
     kpiCard('Cards Animated', c.animated_rate, c.animated, c.total),
   ].join('');
 }
 
 // ─── Art source breakdown ───────────────────────────────────
 
-// Rows of the art-source table: which pool, and where its artwork came from.
-const ART_SOURCE_ROWS = [
+// Segments of the art-source donuts, in a fixed order. The three human-made
+// sources carry the saturated hues (validated for colour-vision deficiency on
+// the --bg-card surface); AI is the pool the goals are working to replace, so
+// it sits in a recessive gray. "Other" only exists when some record has an
+// ArtType the pipeline doesn't recognise, and is dropped when every pool is 0.
+const ART_SOURCES = [
+  { key: 'commissioned', label: 'Commissioned', color: '#238636' },
+  { key: 'purchased',    label: 'Purchased',    color: '#1f6feb' },
+  { key: 'placeholder',  label: 'Placeholder',  color: '#bf8700' },
+  { key: 'ai',           label: 'AI',           color: '#6e7681' },
+  { key: 'other',        label: 'Other',        color: '#da3633' },
+];
+
+// Pools that get a donut (and a row in the table view): which set of records,
+// and where its artwork came from. `all` is cards + tokens + commanders.
+const ART_SOURCE_POOLS = [
   { key: 'cards', label: 'Cards' },
   { key: 'tokens', label: 'Tokens' },
   { key: 'commanders', label: 'Commanders' },
+  { key: 'all', label: 'All' },
 ];
 
+let artSourceCharts = [];
+
+function activeArtSources(overall) {
+  const hasOther = ART_SOURCE_POOLS
+    .some(p => ((overall[p.key] || {}).art_types || {}).other?.count > 0);
+  return ART_SOURCES.filter(s => s.key !== 'other' || hasOther);
+}
+
+function renderArtSourceCharts(overall) {
+  const grid = document.getElementById('art-source-charts');
+  const legend = document.getElementById('art-source-legend');
+  if (!grid || !legend) return;
+  const sources = activeArtSources(overall);
+
+  // One legend for all four donuts — they share segments, order, and colours.
+  legend.innerHTML = sources.map(s => `
+    <span class="art-legend-item"><span class="art-legend-swatch" style="background:${s.color}"></span>${s.label}</span>`).join('');
+
+  artSourceCharts.forEach(c => c.destroy());
+  artSourceCharts = [];
+
+  grid.innerHTML = ART_SOURCE_POOLS.map(p => {
+    const stats = overall[p.key];
+    const total = stats ? stats.total : 0;
+    const summary = total
+      ? sources.map(s => `${s.label} ${stats.art_types[s.key].count}`).join(', ')
+      : 'no records';
+    return `
+    <div class="chart-sm art-source-chart">
+      <div class="chart-sm-title">${p.label}</div>
+      <div class="art-source-donut">
+        <canvas id="art-source-${p.key}" role="img"
+                aria-label="${p.label}: ${total} total — ${summary}"></canvas>
+        <div class="art-source-center" aria-hidden="true">
+          <span class="art-source-center-value">${total ? fmtPct(stats.human_rate, 0) : '—'}</span>
+          <span class="art-source-center-label">human art</span>
+        </div>
+      </div>
+      <div class="art-source-caption">${total
+        ? `${total} total · ${fmtPct(stats.animated_rate, 0)} animated`
+        : 'No records'}</div>
+    </div>`;
+  }).join('');
+
+  if (typeof Chart === 'undefined') return;
+  for (const p of ART_SOURCE_POOLS) {
+    const stats = overall[p.key];
+    const canvas = document.getElementById(`art-source-${p.key}`);
+    if (!stats || !stats.total || !canvas) continue;
+    artSourceCharts.push(new Chart(canvas, {
+      type: 'doughnut',
+      data: {
+        labels: sources.map(s => s.label),
+        datasets: [{
+          data: sources.map(s => stats.art_types[s.key].count),
+          backgroundColor: sources.map(s => s.color),
+          // 2px gap of surface colour between segments so adjacent hues never touch.
+          borderColor: '#1c2128',
+          borderWidth: 2,
+          hoverOffset: 4,
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        cutout: '68%',
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            ...CHART_TOOLTIP,
+            callbacks: {
+              label: ctx => ` ${ctx.label}: ${ctx.parsed} (${fmtPct(ctx.parsed / stats.total)})`,
+            },
+          },
+        },
+      },
+    }));
+  }
+}
+
+// Table view of the same numbers, behind a <details> under the donuts. It is
+// the accessible/printable form and the only place the per-pool animated
+// share is listed alongside the art sources.
 function artTypeCell(bucket, total) {
   if (!total) return '<td class="goal-na">—</td>';
   return `<td>${fmtPct(bucket.rate)} <span class="goal-count">(${bucket.count})</span></td>`;
@@ -128,14 +222,7 @@ function renderArtSourceTable(overall) {
   const tbody = table && table.querySelector('tbody');
   if (!tbody) return;
 
-  const rows = ART_SOURCE_ROWS
-    .map(r => ({ ...r, stats: overall[r.key] }))
-    .filter(r => r.stats);
-
-  // "Other" only exists if some record has an ArtType the pipeline doesn't
-  // recognise. Normally every row is zero, so drop the column entirely.
-  const hasOther = [...rows, { stats: overall.all }]
-    .some(r => (r.stats.art_types.other || {}).count > 0);
+  const hasOther = activeArtSources(overall).some(s => s.key === 'other');
   table.classList.toggle('hide-other', !hasOther);
 
   const cells = stats => [
@@ -148,15 +235,13 @@ function renderArtSourceTable(overall) {
     rateCountCell(stats.animated_rate, stats.animated, stats.total),
   ].join('');
 
-  tbody.innerHTML = rows.map(r => `
-    <tr>
-      <td>${r.label}</td>
-      ${cells(r.stats)}
-    </tr>`).join('') + `
-    <tr class="goal-total-row">
-      <td>All</td>
-      ${cells(overall.all)}
-    </tr>`;
+  tbody.innerHTML = ART_SOURCE_POOLS
+    .filter(p => overall[p.key])
+    .map(p => `
+    <tr class="${p.key === 'all' ? 'goal-total-row' : ''}">
+      <td>${p.label}</td>
+      ${cells(overall[p.key])}
+    </tr>`).join('');
 }
 
 function rateCountCell(rate, num, den) {
@@ -165,7 +250,7 @@ function rateCountCell(rate, num, den) {
 }
 
 function rateCell(stats) {
-  return rateCountCell(stats.commissioned_rate, stats.commissioned, stats.total);
+  return rateCountCell(stats.human_rate, stats.human, stats.total);
 }
 
 function animCell(stats) {
@@ -198,6 +283,7 @@ function renderAll() {
   renderGoalGroup('art-goals', data.art_goals);
   renderGoalGroup('animation-goals', data.animation_goals);
   renderOverall(data.overall);
+  renderArtSourceCharts(data.overall);
   renderArtSourceTable(data.overall);
   renderPatronTable(data.by_patron);
 }

@@ -12,7 +12,7 @@ from pipeline.constants import (
     DATA_DIR, ASSETS_DIR, CARD_ASSETS_DIR, CARD_PNG_ASSETS_DIR, ARTWORK_DIR, CARD_SCREENSHOTS_DIR,
     RAW_CACHE, CARDS_CSV, COMMANDERS_CSV, TOKENS_CSV, CARDLIST_ASSET,
     DYNAMO_TABLE, DYNAMO_REGION, PATRON_MAP, COMMANDER_RENAMES,
-    COMMISSIONED_ART_TYPES,
+    HUMAN_ART_TYPES,
 )
 from pipeline.cleaning import normalize_commander
 
@@ -387,9 +387,9 @@ def load_cards_csv(path=None, token=False):
             art_file = f"{art_slug}.png"
             has_art = (CARD_SCREENSHOTS_DIR / art_file).exists() if CARD_SCREENSHOTS_DIR.exists() else False
 
-            # Art/animation metadata for goal tracking. "Commissioned" is finished
-            # non-AI art (artist commissions plus the handful of purchased
-            # assets); a COMMISSIONED_PLACEHOLDER is not finished, so it is not.
+            # Art/animation metadata for goal tracking. "Human art" is anything
+            # not AI-generated: artist commissions, the handful of purchased
+            # assets, and placeholders for commissions still in progress.
             art_type = row.get("ArtType", "").strip()
             starter_decks = [d.strip() for d in row.get("StarterDecks", "").split(",") if d.strip()]
 
@@ -407,7 +407,7 @@ def load_cards_csv(path=None, token=False):
                 "faction": PATRON_MAP.get(patron, "neutral"),
                 "art": f"CardScreenshots/{art_file}" if has_art else None,
                 "art_type": art_type,
-                "commissioned": art_type in COMMISSIONED_ART_TYPES,
+                "human_art": art_type in HUMAN_ART_TYPES,
                 "has_animation": row.get("HasAnimation", "").strip().lower() == "true",
                 "starter_decks": starter_decks,
                 "mentions": parse_mentioned_cards(row),
@@ -497,7 +497,7 @@ def load_commanders_csv():
                 "faction": PATRON_MAP.get(patron, "neutral"),
                 "art": f"assets/commanders/{art_file}" if has_art else None,
                 "art_type": art_type,
-                "commissioned": art_type in COMMISSIONED_ART_TYPES,
+                "human_art": art_type in HUMAN_ART_TYPES,
                 "has_animation": row.get("HasAnimation", "").strip().lower() == "true",
                 "mentions": parse_mentioned_cards(row),
             })
