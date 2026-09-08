@@ -4,7 +4,7 @@
       "id": "art_count",
       "label": "100 Cards Commissioned",
       "kind": "count",
-      "current": 82,
+      "current": 84,
       "target": 100,
       "met": false
     },
@@ -23,8 +23,8 @@
       "label": "75% of Legendary Minions Commissioned",
       "kind": "percent",
       "numerator": 14,
-      "denominator": 27,
-      "current": 0.5185,
+      "denominator": 29,
+      "current": 0.4828,
       "target": 0.75,
       "met": false
     },
@@ -41,8 +41,8 @@
         {
           "deck": "Starter Beasts",
           "total": 15,
-          "met_count": 6,
-          "rate": 0.4,
+          "met_count": 7,
+          "rate": 0.4667,
           "met": false
         },
         {
@@ -81,9 +81,9 @@
       "id": "anim_all",
       "label": "20% of all Cards have an animation",
       "kind": "percent",
-      "numerator": 120,
-      "denominator": 286,
-      "current": 0.4196,
+      "numerator": 121,
+      "denominator": 287,
+      "current": 0.4216,
       "target": 0.2,
       "met": true
     },
@@ -101,9 +101,9 @@
       "id": "anim_legendary",
       "label": "50% of Legendary Minions have an animation",
       "kind": "percent",
-      "numerator": 18,
-      "denominator": 27,
-      "current": 0.6667,
+      "numerator": 19,
+      "denominator": 29,
+      "current": 0.6552,
       "target": 0.5,
       "met": true
     },
@@ -157,27 +157,27 @@
   ],
   "overall": {
     "cards": {
-      "total": 286,
-      "commissioned": 82,
-      "commissioned_rate": 0.2867,
-      "animated": 120,
-      "animated_rate": 0.4196,
+      "total": 287,
+      "commissioned": 84,
+      "commissioned_rate": 0.2927,
+      "animated": 121,
+      "animated_rate": 0.4216,
       "art_types": {
         "commissioned": {
-          "count": 80,
-          "rate": 0.2797
+          "count": 82,
+          "rate": 0.2857
         },
         "purchased": {
           "count": 2,
           "rate": 0.007
         },
         "ai": {
-          "count": 204,
-          "rate": 0.7133
+          "count": 141,
+          "rate": 0.4913
         },
         "other": {
-          "count": 0,
-          "rate": 0.0
+          "count": 62,
+          "rate": 0.216
         }
       }
     },
@@ -197,12 +197,12 @@
           "rate": 0.0
         },
         "ai": {
-          "count": 8,
-          "rate": 0.8889
+          "count": 5,
+          "rate": 0.5556
         },
         "other": {
-          "count": 0,
-          "rate": 0.0
+          "count": 3,
+          "rate": 0.3333
         }
       }
     },
@@ -232,27 +232,27 @@
       }
     },
     "all": {
-      "total": 311,
-      "commissioned": 98,
-      "commissioned_rate": 0.3151,
-      "animated": 126,
-      "animated_rate": 0.4051,
+      "total": 312,
+      "commissioned": 100,
+      "commissioned_rate": 0.3205,
+      "animated": 127,
+      "animated_rate": 0.4071,
       "art_types": {
         "commissioned": {
-          "count": 96,
-          "rate": 0.3087
+          "count": 98,
+          "rate": 0.3141
         },
         "purchased": {
           "count": 2,
           "rate": 0.0064
         },
         "ai": {
-          "count": 213,
-          "rate": 0.6849
+          "count": 147,
+          "rate": 0.4712
         },
         "other": {
-          "count": 0,
-          "rate": 0.0
+          "count": 65,
+          "rate": 0.2083
         }
       }
     }
@@ -316,27 +316,27 @@
       "patron": "Archaeon",
       "faction": "archaeon",
       "cards": {
-        "total": 26,
+        "total": 27,
         "commissioned": 9,
-        "commissioned_rate": 0.3462,
-        "animated": 7,
-        "animated_rate": 0.2692,
+        "commissioned_rate": 0.3333,
+        "animated": 8,
+        "animated_rate": 0.2963,
         "art_types": {
           "commissioned": {
             "count": 9,
-            "rate": 0.3462
+            "rate": 0.3333
           },
           "purchased": {
             "count": 0,
             "rate": 0.0
           },
           "ai": {
-            "count": 17,
-            "rate": 0.6538
+            "count": 4,
+            "rate": 0.1481
           },
           "other": {
-            "count": 0,
-            "rate": 0.0
+            "count": 14,
+            "rate": 0.5185
           }
         }
       },
@@ -385,12 +385,12 @@
             "rate": 0.0
           },
           "ai": {
-            "count": 21,
-            "rate": 0.6176
+            "count": 19,
+            "rate": 0.5588
           },
           "other": {
-            "count": 0,
-            "rate": 0.0
+            "count": 2,
+            "rate": 0.0588
           }
         }
       },
@@ -424,27 +424,27 @@
       "patron": "Lucia",
       "faction": "lucia",
       "cards": {
-        "total": 37,
+        "total": 36,
         "commissioned": 7,
-        "commissioned_rate": 0.1892,
+        "commissioned_rate": 0.1944,
         "animated": 14,
-        "animated_rate": 0.3784,
+        "animated_rate": 0.3889,
         "art_types": {
           "commissioned": {
             "count": 7,
-            "rate": 0.1892
+            "rate": 0.1944
           },
           "purchased": {
             "count": 0,
             "rate": 0.0
           },
           "ai": {
-            "count": 30,
-            "rate": 0.8108
+            "count": 28,
+            "rate": 0.7778
           },
           "other": {
-            "count": 0,
-            "rate": 0.0
+            "count": 1,
+            "rate": 0.0278
           }
         }
       },
@@ -493,12 +493,12 @@
             "rate": 0.0
           },
           "ai": {
-            "count": 1,
-            "rate": 1.0
-          },
-          "other": {
             "count": 0,
             "rate": 0.0
+          },
+          "other": {
+            "count": 1,
+            "rate": 1.0
           }
         }
       },
@@ -532,27 +532,27 @@
       "patron": "Neutral",
       "faction": "neutral",
       "cards": {
-        "total": 126,
-        "commissioned": 37,
-        "commissioned_rate": 0.2937,
+        "total": 127,
+        "commissioned": 39,
+        "commissioned_rate": 0.3071,
         "animated": 46,
-        "animated_rate": 0.3651,
+        "animated_rate": 0.3622,
         "art_types": {
           "commissioned": {
-            "count": 35,
-            "rate": 0.2778
+            "count": 37,
+            "rate": 0.2913
           },
           "purchased": {
             "count": 2,
-            "rate": 0.0159
+            "rate": 0.0157
           },
           "ai": {
-            "count": 89,
-            "rate": 0.7063
+            "count": 54,
+            "rate": 0.4252
           },
           "other": {
-            "count": 0,
-            "rate": 0.0
+            "count": 34,
+            "rate": 0.2677
           }
         }
       },
@@ -601,12 +601,12 @@
             "rate": 0.0
           },
           "ai": {
-            "count": 18,
-            "rate": 0.75
+            "count": 9,
+            "rate": 0.375
           },
           "other": {
-            "count": 0,
-            "rate": 0.0
+            "count": 9,
+            "rate": 0.375
           }
         }
       },
@@ -655,12 +655,12 @@
             "rate": 0.0
           },
           "ai": {
-            "count": 26,
-            "rate": 0.7222
+            "count": 25,
+            "rate": 0.6944
           },
           "other": {
-            "count": 0,
-            "rate": 0.0
+            "count": 1,
+            "rate": 0.0278
           }
         }
       },
