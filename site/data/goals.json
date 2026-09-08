@@ -2,15 +2,15 @@
   "art_goals": [
     {
       "id": "art_count",
-      "label": "100 Cards Commissioned",
+      "label": "100 Cards with Human Art",
       "kind": "count",
-      "current": 84,
+      "current": 146,
       "target": 100,
-      "met": false
+      "met": true
     },
     {
       "id": "art_commanders",
-      "label": "100% of Commanders Commissioned",
+      "label": "100% of Commanders with Human Art",
       "kind": "percent",
       "numerator": 15,
       "denominator": 16,
@@ -20,57 +20,57 @@
     },
     {
       "id": "art_legendary",
-      "label": "75% of Legendary Minions Commissioned",
+      "label": "75% of Legendary Minions with Human Art",
       "kind": "percent",
-      "numerator": 14,
+      "numerator": 20,
       "denominator": 29,
-      "current": 0.4828,
+      "current": 0.6897,
       "target": 0.75,
       "met": false
     },
     {
       "id": "art_starters",
-      "label": "75% of Starter Decks Commissioned",
+      "label": "75% of Starter Decks with Human Art",
       "kind": "decks",
       "threshold": 0.75,
-      "metric": "commissioned",
-      "current": 0,
+      "metric": "human_art",
+      "current": 1,
       "target": 5,
       "met": false,
       "detail": [
         {
           "deck": "Starter Beasts",
           "total": 15,
-          "met_count": 7,
-          "rate": 0.4667,
+          "met_count": 10,
+          "rate": 0.6667,
           "met": false
         },
         {
           "deck": "Starter Death",
           "total": 14,
-          "met_count": 4,
-          "rate": 0.2857,
-          "met": false
+          "met_count": 11,
+          "rate": 0.7857,
+          "met": true
         },
         {
           "deck": "Starter Deploy",
           "total": 15,
-          "met_count": 6,
-          "rate": 0.4,
+          "met_count": 9,
+          "rate": 0.6,
           "met": false
         },
         {
           "deck": "Starter Mage",
           "total": 14,
-          "met_count": 8,
-          "rate": 0.5714,
+          "met_count": 10,
+          "rate": 0.7143,
           "met": false
         },
         {
           "deck": "Starter Military",
           "total": 15,
-          "met_count": 6,
-          "rate": 0.4,
+          "met_count": 9,
+          "rate": 0.6,
           "met": false
         }
       ]
@@ -158,10 +158,8 @@
   "overall": {
     "cards": {
       "total": 287,
-      "commissioned": 84,
-      "commissioned_rate": 0.2927,
-      "non_ai": 146,
-      "non_ai_rate": 0.5087,
+      "human": 146,
+      "human_rate": 0.5087,
       "animated": 121,
       "animated_rate": 0.4216,
       "art_types": {
@@ -189,10 +187,8 @@
     },
     "tokens": {
       "total": 9,
-      "commissioned": 1,
-      "commissioned_rate": 0.1111,
-      "non_ai": 4,
-      "non_ai_rate": 0.4444,
+      "human": 4,
+      "human_rate": 0.4444,
       "animated": 2,
       "animated_rate": 0.2222,
       "art_types": {
@@ -220,10 +216,8 @@
     },
     "commanders": {
       "total": 16,
-      "commissioned": 15,
-      "commissioned_rate": 0.9375,
-      "non_ai": 15,
-      "non_ai_rate": 0.9375,
+      "human": 15,
+      "human_rate": 0.9375,
       "animated": 4,
       "animated_rate": 0.25,
       "art_types": {
@@ -251,10 +245,8 @@
     },
     "all": {
       "total": 312,
-      "commissioned": 100,
-      "commissioned_rate": 0.3205,
-      "non_ai": 165,
-      "non_ai_rate": 0.5288,
+      "human": 165,
+      "human_rate": 0.5288,
       "animated": 127,
       "animated_rate": 0.4071,
       "art_types": {
@@ -287,10 +279,8 @@
       "faction": "adora",
       "cards": {
         "total": 1,
-        "commissioned": 0,
-        "commissioned_rate": 0.0,
-        "non_ai": 0,
-        "non_ai_rate": 0.0,
+        "human": 0,
+        "human_rate": 0.0,
         "animated": 0,
         "animated_rate": 0.0,
         "art_types": {
@@ -318,10 +308,8 @@
       },
       "commanders": {
         "total": 0,
-        "commissioned": 0,
-        "commissioned_rate": 0.0,
-        "non_ai": 0,
-        "non_ai_rate": 0.0,
+        "human": 0,
+        "human_rate": 0.0,
         "animated": 0,
         "animated_rate": 0.0,
         "art_types": {
@@ -353,10 +341,8 @@
       "faction": "archaeon",
       "cards": {
         "total": 27,
-        "commissioned": 9,
-        "commissioned_rate": 0.3333,
-        "non_ai": 23,
-        "non_ai_rate": 0.8519,
+        "human": 23,
+        "human_rate": 0.8519,
         "animated": 8,
         "animated_rate": 0.2963,
         "art_types": {
@@ -384,10 +370,8 @@
       },
       "commanders": {
         "total": 3,
-        "commissioned": 3,
-        "commissioned_rate": 1.0,
-        "non_ai": 3,
-        "non_ai_rate": 1.0,
+        "human": 3,
+        "human_rate": 1.0,
         "animated": 1,
         "animated_rate": 0.3333,
         "art_types": {
@@ -419,10 +403,8 @@
       "faction": "grenalia",
       "cards": {
         "total": 34,
-        "commissioned": 13,
-        "commissioned_rate": 0.3824,
-        "non_ai": 15,
-        "non_ai_rate": 0.4412,
+        "human": 15,
+        "human_rate": 0.4412,
         "animated": 24,
         "animated_rate": 0.7059,
         "art_types": {
@@ -450,10 +432,8 @@
       },
       "commanders": {
         "total": 3,
-        "commissioned": 3,
-        "commissioned_rate": 1.0,
-        "non_ai": 3,
-        "non_ai_rate": 1.0,
+        "human": 3,
+        "human_rate": 1.0,
         "animated": 0,
         "animated_rate": 0.0,
         "art_types": {
@@ -485,10 +465,8 @@
       "faction": "lucia",
       "cards": {
         "total": 36,
-        "commissioned": 7,
-        "commissioned_rate": 0.1944,
-        "non_ai": 8,
-        "non_ai_rate": 0.2222,
+        "human": 8,
+        "human_rate": 0.2222,
         "animated": 14,
         "animated_rate": 0.3889,
         "art_types": {
@@ -516,10 +494,8 @@
       },
       "commanders": {
         "total": 3,
-        "commissioned": 3,
-        "commissioned_rate": 1.0,
-        "non_ai": 3,
-        "non_ai_rate": 1.0,
+        "human": 3,
+        "human_rate": 1.0,
         "animated": 1,
         "animated_rate": 0.3333,
         "art_types": {
@@ -551,10 +527,8 @@
       "faction": "mechanus",
       "cards": {
         "total": 1,
-        "commissioned": 0,
-        "commissioned_rate": 0.0,
-        "non_ai": 1,
-        "non_ai_rate": 1.0,
+        "human": 1,
+        "human_rate": 1.0,
         "animated": 1,
         "animated_rate": 1.0,
         "art_types": {
@@ -582,10 +556,8 @@
       },
       "commanders": {
         "total": 0,
-        "commissioned": 0,
-        "commissioned_rate": 0.0,
-        "non_ai": 0,
-        "non_ai_rate": 0.0,
+        "human": 0,
+        "human_rate": 0.0,
         "animated": 0,
         "animated_rate": 0.0,
         "art_types": {
@@ -617,10 +589,8 @@
       "faction": "neutral",
       "cards": {
         "total": 127,
-        "commissioned": 39,
-        "commissioned_rate": 0.3071,
-        "non_ai": 73,
-        "non_ai_rate": 0.5748,
+        "human": 73,
+        "human_rate": 0.5748,
         "animated": 46,
         "animated_rate": 0.3622,
         "art_types": {
@@ -648,10 +618,8 @@
       },
       "commanders": {
         "total": 2,
-        "commissioned": 1,
-        "commissioned_rate": 0.5,
-        "non_ai": 1,
-        "non_ai_rate": 0.5,
+        "human": 1,
+        "human_rate": 0.5,
         "animated": 0,
         "animated_rate": 0.0,
         "art_types": {
@@ -683,10 +651,8 @@
       "faction": "shadis",
       "cards": {
         "total": 24,
-        "commissioned": 6,
-        "commissioned_rate": 0.25,
-        "non_ai": 15,
-        "non_ai_rate": 0.625,
+        "human": 15,
+        "human_rate": 0.625,
         "animated": 13,
         "animated_rate": 0.5417,
         "art_types": {
@@ -714,10 +680,8 @@
       },
       "commanders": {
         "total": 2,
-        "commissioned": 2,
-        "commissioned_rate": 1.0,
-        "non_ai": 2,
-        "non_ai_rate": 1.0,
+        "human": 2,
+        "human_rate": 1.0,
         "animated": 1,
         "animated_rate": 0.5,
         "art_types": {
@@ -749,10 +713,8 @@
       "faction": "skaal",
       "cards": {
         "total": 36,
-        "commissioned": 10,
-        "commissioned_rate": 0.2778,
-        "non_ai": 11,
-        "non_ai_rate": 0.3056,
+        "human": 11,
+        "human_rate": 0.3056,
         "animated": 15,
         "animated_rate": 0.4167,
         "art_types": {
@@ -780,10 +742,8 @@
       },
       "commanders": {
         "total": 3,
-        "commissioned": 3,
-        "commissioned_rate": 1.0,
-        "non_ai": 3,
-        "non_ai_rate": 1.0,
+        "human": 3,
+        "human_rate": 1.0,
         "animated": 1,
         "animated_rate": 0.3333,
         "art_types": {
@@ -815,10 +775,8 @@
       "faction": "treasure",
       "cards": {
         "total": 1,
-        "commissioned": 0,
-        "commissioned_rate": 0.0,
-        "non_ai": 0,
-        "non_ai_rate": 0.0,
+        "human": 0,
+        "human_rate": 0.0,
         "animated": 0,
         "animated_rate": 0.0,
         "art_types": {
@@ -846,10 +804,8 @@
       },
       "commanders": {
         "total": 0,
-        "commissioned": 0,
-        "commissioned_rate": 0.0,
-        "non_ai": 0,
-        "non_ai_rate": 0.0,
+        "human": 0,
+        "human_rate": 0.0,
         "animated": 0,
         "animated_rate": 0.0,
         "art_types": {
