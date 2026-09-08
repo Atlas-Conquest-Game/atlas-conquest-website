@@ -221,6 +221,7 @@ def write_cardlist():
                     break
 
     output_path = DATA_DIR / "cardlist.json"
+    _check_cardlist_ids_stable(output_path, names)
     output = {
         "version": date.today().isoformat(),
         "total": len(names),
@@ -233,6 +234,45 @@ def write_cardlist():
 
     size_kb = output_path.stat().st_size / 1024
     print(f"  Updated cardlist.json: {len(names)} cards ({size_kb:.1f} KB)")
+
+
+def _check_cardlist_ids_stable(previous_path, names):
+    """Fail loudly if an existing card id now points at a different name.
+
+    A card's id is its position in FullCardList.asset's _cardNameOrderedList,
+    and deck codes store those ids. The list is therefore append-only: deleting
+    or reordering an entry silently re-points every later id at a different
+    card, and every deck code minted before the change decodes to the wrong
+    deck. A retired card keeps its entry as a placeholder (the Decks page
+    already hides names that are not in cards.json). A renamed commander is
+    fine as long as the rename is recorded in COMMANDER_RENAMES.
+    """
+    if not previous_path.exists():
+        return
+    try:
+        with open(previous_path, "r") as f:
+            previous = json.load(f)["cards"]
+    except (OSError, ValueError, KeyError):
+        return
+
+    problems = []
+    for prev in previous:
+        pid, old_name = prev["id"], prev["name"]
+        if pid >= len(names):
+            problems.append(f"  id {pid}: '{old_name}' is gone (list shrank to {len(names)})")
+        elif names[pid] != old_name and COMMANDER_RENAMES.get(old_name) != names[pid]:
+            problems.append(f"  id {pid}: was '{old_name}', now '{names[pid]}'")
+    if problems:
+        shown = "\n".join(problems[:5])
+        more = f"\n  ... and {len(problems) - 5} more" if len(problems) > 5 else ""
+        raise SystemExit(
+            "cardlist: Formats/FullCardList.asset re-points existing card ids, which "
+            "would break every deck code minted before this change:\n"
+            f"{shown}{more}\n"
+            "The _cardNameOrderedList is append-only. Restore the removed entry at its "
+            "original position (keep it as a placeholder for a retired card), or add "
+            "the rename to COMMANDER_RENAMES."
+        )
 
 
 # ─── AWS / DynamoDB ─────────────────────────────────────────────
