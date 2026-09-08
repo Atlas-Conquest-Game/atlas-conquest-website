@@ -429,12 +429,15 @@ and (server-rendered by `build_articles.py`) in articles.
       "total": 274,
       "commissioned": 78,
       "commissioned_rate": 0.2847,
+      "non_ai": 140,
+      "non_ai_rate": 0.5109,
       "animated": 70,
       "animated_rate": 0.2555,
       "art_types": {
         "commissioned": { "count": 76, "rate": 0.2774 },
         "purchased":    { "count": 2,  "rate": 0.0073 },
-        "ai":           { "count": 196, "rate": 0.7153 },
+        "placeholder":  { "count": 62, "rate": 0.2263 },
+        "ai":           { "count": 134, "rate": 0.4891 },
         "other":        { "count": 0,  "rate": 0.0 }
       }
     },
@@ -447,10 +450,14 @@ and (server-rendered by `build_articles.py`) in articles.
 }
 ```
 
-`commissioned` is the non-AI flag: it equals `art_types.commissioned +
-art_types.purchased`. The `art_types` buckets always sum to `total`; `other`
-catches any `ArtType` the pipeline doesn't recognise (normally zero, and the
-Goals page hides that column when it is).
+`commissioned` is finished non-AI art: it equals `art_types.commissioned +
+art_types.purchased`, and it is what every goal counts. `placeholder` is
+`COMMISSIONED_PLACEHOLDER` art — human-made, standing in for a commission that
+is not finished — so it is not AI but not commissioned either; `non_ai` is
+`commissioned + purchased + placeholder`. The `art_types` buckets always sum
+to `total`; `other` catches any `ArtType` the pipeline doesn't recognise
+(normally zero, and the Goals page hides that column when it is). The raw
+value → bucket map lives in `scripts/pipeline/constants.py`.
 
 **Tokens**: no alpha goal targets them, so they're excluded from every entry in
 `art_goals` / `animation_goals` and from `by_patron`. They appear only as

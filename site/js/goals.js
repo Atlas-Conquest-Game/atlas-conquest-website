@@ -95,10 +95,16 @@ function renderOverall(overall) {
   // goal of their own, so they only show up in these combined numbers and in
   // the art-source table below.
   const a = overall.all;
+  // "Commissioned" is finished non-AI art (what the goals count). "Non-AI"
+  // also includes commissioned placeholders: human-made, not finished yet.
+  // Ordered so the four art KPIs fill the first row of the grid and the two
+  // animation KPIs sit together on the second.
   kpis.innerHTML = [
     kpiCard('All Art Commissioned', a.commissioned_rate, a.commissioned, a.total),
-    kpiCard('All Art Animated', a.animated_rate, a.animated, a.total),
+    kpiCard('All Art Non-AI', a.non_ai_rate, a.non_ai, a.total),
     kpiCard('Cards Commissioned', c.commissioned_rate, c.commissioned, c.total),
+    kpiCard('Cards Non-AI', c.non_ai_rate, c.non_ai, c.total),
+    kpiCard('All Art Animated', a.animated_rate, a.animated, a.total),
     kpiCard('Cards Animated', c.animated_rate, c.animated, c.total),
   ].join('');
 }
@@ -136,6 +142,7 @@ function renderArtSourceTable(overall) {
     `<td>${stats.total}</td>`,
     artTypeCell(stats.art_types.commissioned, stats.total),
     artTypeCell(stats.art_types.purchased, stats.total),
+    artTypeCell(stats.art_types.placeholder, stats.total),
     artTypeCell(stats.art_types.ai, stats.total),
     `<td class="col-other">${stats.total ? `${fmtPct(stats.art_types.other.rate)} <span class="goal-count">(${stats.art_types.other.count})</span>` : '—'}</td>`,
     rateCountCell(stats.animated_rate, stats.animated, stats.total),

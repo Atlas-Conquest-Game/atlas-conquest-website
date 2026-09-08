@@ -33,6 +33,30 @@ CARDLIST_ASSET = FORMATS_DIR / "FullCardList.asset"
 DYNAMO_TABLE = "games"
 DYNAMO_REGION = os.environ.get("AWS_DEFAULT_REGION", "us-east-2")
 
+# ─── Art types ──────────────────────────────────────────────────
+
+# Raw ArtType values from the game's ArtType enum (Card/Component/ArtType.cs),
+# bucketed for the Goals page. Each value lands in exactly one bucket; anything
+# else (or a blank ArtType) is reported as "other".
+ART_TYPE_BUCKETS = {
+    "ARTIST_COMMISSIONED": "commissioned",
+    "PURCHASED_ASSET": "purchased",
+    "AI_GENERATED": "ai",
+    # Placeholder art standing in for a commission that is not finished yet.
+    # Not AI, but not delivered either, so it is tracked on its own and does
+    # not count toward the "commissioned" goals.
+    "COMMISSIONED_PLACEHOLDER": "placeholder",
+}
+
+# Finished non-AI art. This is the `commissioned` flag that every alpha goal
+# and the per-patron table count.
+COMMISSIONED_ART_TYPES = frozenset({"ARTIST_COMMISSIONED", "PURCHASED_ASSET"})
+
+# Everything human-made, finished or not: commissioned + purchased + placeholder.
+NON_AI_ART_TYPES = frozenset(
+    t for t, bucket in ART_TYPE_BUCKETS.items() if bucket != "ai"
+)
+
 # ─── Normalization Maps ─────────────────────────────────────────
 
 # Commander name normalization map (old DB names → canonical)

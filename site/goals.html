@@ -106,7 +106,7 @@
       <div class="card-grid" id="overall-kpis"></div>
 
       <h3 class="goal-group-title">Art Source</h3>
-      <p class="section-subtitle">Where each pool's artwork comes from. "Commissioned" and "Purchased" both count as non-AI toward the goals above.</p>
+      <p class="section-subtitle">Where each pool's artwork comes from. "Commissioned" and "Purchased" are finished non-AI art and count toward the goals above. "Placeholder" is human-made art standing in for a commission that is not finished yet: not AI, but not counted as commissioned either.</p>
 
       <div class="table-wrapper">
         <table class="data-table" id="art-source-table">
@@ -116,13 +116,14 @@
               <th>Total</th>
               <th>Commissioned <span class="tooltip-icon" data-tooltip="Artwork commissioned from an artist (ARTIST_COMMISSIONED).">?</span></th>
               <th>Purchased <span class="tooltip-icon" data-tooltip="Bought asset-pack artwork (PURCHASED_ASSET). Counts as non-AI.">?</span></th>
+              <th>Placeholder <span class="tooltip-icon" data-tooltip="Placeholder art for a commission still in progress (COMMISSIONED_PLACEHOLDER). Human-made, so not AI — but not finished, so it does not count as commissioned.">?</span></th>
               <th>AI <span class="tooltip-icon" data-tooltip="AI-generated artwork — the pool the goals are working to replace.">?</span></th>
               <th class="col-other">Other <span class="tooltip-icon" data-tooltip="Artwork with an unrecognised or missing ArtType in the source CSV.">?</span></th>
               <th>Animated <span class="tooltip-icon" data-tooltip="Share of this pool that has an in-game animation.">?</span></th>
             </tr>
           </thead>
           <tbody>
-            <tr class="placeholder-row"><td colspan="7">Loading…</td></tr>
+            <tr class="placeholder-row"><td colspan="8">Loading…</td></tr>
           </tbody>
         </table>
       </div>
@@ -136,7 +137,7 @@
             <tr>
               <th>Patron</th>
               <th>Cards</th>
-              <th>Commissioned <span class="tooltip-icon" data-tooltip="Share of this patron's cards with non-AI artwork (commissioned or purchased).">?</span></th>
+              <th>Commissioned <span class="tooltip-icon" data-tooltip="Share of this patron's cards with finished non-AI artwork (commissioned or purchased). Placeholders are not counted.">?</span></th>
               <th>Animated <span class="tooltip-icon" data-tooltip="Share of this patron's cards that have an animation.">?</span></th>
               <th>Commanders</th>
               <th>Commissioned</th>

@@ -9,6 +9,7 @@ from collections import Counter, defaultdict
 from datetime import datetime
 from itertools import combinations
 
+from pipeline.constants import ART_TYPE_BUCKETS, NON_AI_ART_TYPES
 from pipeline.deckcode_py import DeckCodecError
 
 
@@ -1444,8 +1445,12 @@ def aggregate_goals(cards, commanders, tokens=()):
     an Alpha Goals section (the 8 verbatim goals) and an Overall Progress
     section (overall commission/animation rates, broken down by raw patron).
 
-    "Commissioned" means non-AI art (ARTIST_COMMISSIONED or PURCHASED_ASSET),
-    captured upstream in each record's ``commissioned`` flag.
+    "Commissioned" means finished non-AI art (ARTIST_COMMISSIONED or
+    PURCHASED_ASSET), captured upstream in each record's ``commissioned``
+    flag. COMMISSIONED_PLACEHOLDER art is human-made but stands in for a
+    commission that is not done yet: it is not AI, but it does not count
+    toward any goal. It gets its own bucket in the art-source breakdown and
+    is included in the ``non_ai`` totals.
 
     ``tokens`` are generated cards. No alpha goal targets them, so they stay out
     of every goal and out of the per-patron card table — but they need art all
@@ -1520,18 +1525,15 @@ def aggregate_goals(cards, commanders, tokens=()):
                    "has_animation", 0.50),
     ]
 
-    # Raw ArtType value → art-source bucket. `commissioned` above is the union
-    # of the first two (i.e. "not AI"); this splits them apart for the
-    # breakdown table. Anything unrecognised (or a blank ArtType) lands in
-    # "other" so each row still sums to its total.
-    ART_TYPE_BUCKETS = {
-        "ARTIST_COMMISSIONED": "commissioned",
-        "PURCHASED_ASSET": "purchased",
-        "AI_GENERATED": "ai",
-    }
+    # Raw ArtType value → art-source bucket (see constants.ART_TYPE_BUCKETS).
+    # `commissioned` above is commissioned + purchased; this splits them
+    # apart for the breakdown table and gives placeholder art its own
+    # column. Anything unrecognised (or a blank ArtType) lands in "other" so
+    # each row still sums to its total.
+    buckets = ["commissioned", "purchased", "placeholder", "ai", "other"]
 
     def art_types(records):
-        counts = {"commissioned": 0, "purchased": 0, "ai": 0, "other": 0}
+        counts = dict.fromkeys(buckets, 0)
         for r in records:
             counts[ART_TYPE_BUCKETS.get(r.get("art_type") or "", "other")] += 1
         return {
@@ -1541,11 +1543,16 @@ def aggregate_goals(cards, commanders, tokens=()):
 
     def totals(records):
         commissioned = sum(1 for r in records if r["commissioned"])
+        # Human-made whether finished or not. Excludes "other": an unknown
+        # ArtType is not evidence either way.
+        non_ai = sum(1 for r in records if (r.get("art_type") or "") in NON_AI_ART_TYPES)
         animated = sum(1 for r in records if r["has_animation"])
         return {
             "total": len(records),
             "commissioned": commissioned,
             "commissioned_rate": rate(commissioned, len(records)),
+            "non_ai": non_ai,
+            "non_ai_rate": rate(non_ai, len(records)),
             "animated": animated,
             "animated_rate": rate(animated, len(records)),
             "art_types": art_types(records),

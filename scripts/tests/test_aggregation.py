@@ -895,3 +895,34 @@ class TestGoals_TokensAndArtSources:
         assert stats["total"] == 0
         for bucket in stats["art_types"].values():
             assert bucket == {"count": 0, "rate": 0.0}
+
+    def test_placeholder_is_its_own_bucket_not_ai_not_commissioned(self):
+        cards = [
+            _card("a", commissioned=True, art_type="ARTIST_COMMISSIONED"),
+            _card("b", art_type="COMMISSIONED_PLACEHOLDER"),
+            _card("c", art_type="COMMISSIONED_PLACEHOLDER"),
+            _card("d", art_type="AI_GENERATED"),
+        ]
+        result = aggregate_goals(cards, [])
+        stats = result["overall"]["cards"]
+        buckets = stats["art_types"]
+        assert buckets["placeholder"] == {"count": 2, "rate": 0.5}
+        assert buckets["ai"] == {"count": 1, "rate": 0.25}
+        assert buckets["other"]["count"] == 0
+        # Placeholders do not advance the commission goals...
+        assert stats["commissioned"] == 1
+        assert self._goal(result, "art_goals", "art_count")["current"] == 1
+        # ...but they are human-made, so they count as non-AI.
+        assert stats["non_ai"] == 3
+        assert stats["non_ai_rate"] == 0.75
+
+    def test_non_ai_excludes_unknown_art_types(self):
+        cards = [
+            _card("a", commissioned=True, art_type="PURCHASED_ASSET"),
+            _card("b", art_type="COMMISSIONED_PLACEHOLDER"),
+            _card("c", art_type=""),
+            _card("d", art_type="SOMETHING"),
+        ]
+        stats = aggregate_goals(cards, [])["overall"]["cards"]
+        assert stats["non_ai"] == 2
+        assert stats["art_types"]["other"]["count"] == 2
