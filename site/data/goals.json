@@ -4,7 +4,7 @@
       "id": "art_count",
       "label": "100 Cards with Human Art",
       "kind": "count",
-      "current": 272,
+      "current": 274,
       "target": 100,
       "met": true
     },
@@ -22,9 +22,9 @@
       "id": "art_legendary",
       "label": "75% of Legendary Minions with Human Art",
       "kind": "percent",
-      "numerator": 28,
+      "numerator": 29,
       "denominator": 29,
-      "current": 0.9655,
+      "current": 1.0,
       "target": 0.75,
       "met": true
     },
@@ -48,8 +48,8 @@
         {
           "deck": "Starter Death",
           "total": 14,
-          "met_count": 13,
-          "rate": 0.9286,
+          "met_count": 14,
+          "rate": 1.0,
           "met": true
         },
         {
@@ -62,8 +62,8 @@
         {
           "deck": "Starter Mage",
           "total": 14,
-          "met_count": 11,
-          "rate": 0.7857,
+          "met_count": 12,
+          "rate": 0.8571,
           "met": true
         },
         {
@@ -158,26 +158,26 @@
   "overall": {
     "cards": {
       "total": 287,
-      "human": 272,
-      "human_rate": 0.9477,
+      "human": 274,
+      "human_rate": 0.9547,
       "animated": 121,
       "animated_rate": 0.4216,
       "art_types": {
         "commissioned": {
-          "count": 83,
-          "rate": 0.2892
+          "count": 89,
+          "rate": 0.3101
         },
         "purchased": {
           "count": 2,
           "rate": 0.007
         },
         "placeholder": {
-          "count": 187,
-          "rate": 0.6516
+          "count": 183,
+          "rate": 0.6376
         },
         "ai": {
-          "count": 15,
-          "rate": 0.0523
+          "count": 13,
+          "rate": 0.0453
         },
         "other": {
           "count": 0,
@@ -245,26 +245,26 @@
     },
     "all": {
       "total": 312,
-      "human": 296,
-      "human_rate": 0.9487,
+      "human": 298,
+      "human_rate": 0.9551,
       "animated": 127,
       "animated_rate": 0.4071,
       "art_types": {
         "commissioned": {
-          "count": 100,
-          "rate": 0.3205
+          "count": 106,
+          "rate": 0.3397
         },
         "purchased": {
           "count": 2,
           "rate": 0.0064
         },
         "placeholder": {
-          "count": 194,
-          "rate": 0.6218
+          "count": 190,
+          "rate": 0.609
         },
         "ai": {
-          "count": 16,
-          "rate": 0.0513
+          "count": 14,
+          "rate": 0.0449
         },
         "other": {
           "count": 0,
@@ -347,16 +347,16 @@
         "animated_rate": 0.2963,
         "art_types": {
           "commissioned": {
-            "count": 9,
-            "rate": 0.3333
+            "count": 10,
+            "rate": 0.3704
           },
           "purchased": {
             "count": 0,
             "rate": 0.0
           },
           "placeholder": {
-            "count": 17,
-            "rate": 0.6296
+            "count": 16,
+            "rate": 0.5926
           },
           "ai": {
             "count": 1,
@@ -589,26 +589,26 @@
       "faction": "neutral",
       "cards": {
         "total": 127,
-        "human": 117,
-        "human_rate": 0.9213,
+        "human": 118,
+        "human_rate": 0.9291,
         "animated": 46,
         "animated_rate": 0.3622,
         "art_types": {
           "commissioned": {
-            "count": 38,
-            "rate": 0.2992
+            "count": 40,
+            "rate": 0.315
           },
           "purchased": {
             "count": 2,
             "rate": 0.0157
           },
           "placeholder": {
-            "count": 77,
-            "rate": 0.6063
+            "count": 76,
+            "rate": 0.5984
           },
           "ai": {
-            "count": 10,
-            "rate": 0.0787
+            "count": 9,
+            "rate": 0.0709
           },
           "other": {
             "count": 0,
@@ -651,14 +651,14 @@
       "faction": "shadis",
       "cards": {
         "total": 24,
-        "human": 22,
-        "human_rate": 0.9167,
+        "human": 23,
+        "human_rate": 0.9583,
         "animated": 13,
         "animated_rate": 0.5417,
         "art_types": {
           "commissioned": {
-            "count": 6,
-            "rate": 0.25
+            "count": 7,
+            "rate": 0.2917
           },
           "purchased": {
             "count": 0,
@@ -669,8 +669,8 @@
             "rate": 0.6667
           },
           "ai": {
-            "count": 2,
-            "rate": 0.0833
+            "count": 1,
+            "rate": 0.0417
           },
           "other": {
             "count": 0,
@@ -719,16 +719,16 @@
         "animated_rate": 0.4167,
         "art_types": {
           "commissioned": {
-            "count": 10,
-            "rate": 0.2778
+            "count": 12,
+            "rate": 0.3333
           },
           "purchased": {
             "count": 0,
             "rate": 0.0
           },
           "placeholder": {
-            "count": 26,
-            "rate": 0.7222
+            "count": 24,
+            "rate": 0.6667
           },
           "ai": {
             "count": 0,

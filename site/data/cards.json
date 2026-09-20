@@ -2,7 +2,7 @@
   {
     "name": "Acid Rain",
     "type": "Spell",
-    "text": "[Range 4]: Convert a tile to a Toxic Swamp, that adds 1 Poison to characters on it. Destroy the enemy commander's weapon.",
+    "text": "[Range 4]: Convert a tile to a Toxic Swamp, that adds 1 Poison to characters on it. Destroy the enemy commander's Weapon.",
     "subtype": "",
     "cost": 1,
     "attack": null,
@@ -346,7 +346,7 @@
   {
     "name": "Beast Trainer",
     "type": "Minion",
-    "text": "[Arrival, Range 1]: Deploy two Beasts from your deck that cost 2 or less.",
+    "text": "[Arrival, Range 1]: Summon two Beasts from your deck that cost 2 or less. They have Deploy.",
     "subtype": "Human",
     "cost": 4,
     "attack": 2,
@@ -632,7 +632,7 @@
   {
     "name": "Charge Up",
     "type": "Spell",
-    "text": "Your commander permanently gains Spell Damage +2.",
+    "text": "Your commander permanently gains Spell-Damage +2.",
     "subtype": "Lightning",
     "cost": 6,
     "attack": null,
@@ -752,7 +752,7 @@
   {
     "name": "Cone of Cold",
     "type": "Spell",
-    "text": "[Range 2]: Deal 2 damage to all characters in 1 Radius and stun any minions.",
+    "text": "[Range 2]: Deal 2 damage to all characters in 1 Radius and Stun any minions.",
     "subtype": "Frost",
     "cost": 5,
     "attack": null,
@@ -836,7 +836,7 @@
   {
     "name": "Cursed Deathspear",
     "type": "Spell",
-    "text": "Weapon Lifelink. When your commander loses life, give your weapon +<sprite name=\"power_1\">.",
+    "text": "Weapon Lifelink. When your commander loses life, give your Weapon +<sprite name=\"power_1\">.",
     "subtype": "",
     "cost": 3,
     "attack": null,
@@ -886,8 +886,8 @@
     "patron": "Shadis",
     "faction": "shadis",
     "art": "CardScreenshots/Daemonprince-Grizlocke.png",
-    "art_type": "AI_GENERATED",
-    "human_art": false,
+    "art_type": "ARTIST_COMMISSIONED",
+    "human_art": true,
     "has_animation": true,
     "starter_decks": [],
     "mentions": [
@@ -920,7 +920,7 @@
   {
     "name": "Darkroot Ooze",
     "type": "Minion",
-    "text": "When Darkroot Ooze battles, double the enemy's poison.",
+    "text": "When Darkroot Ooze battles, double the enemy's Poison.",
     "subtype": "",
     "cost": 2,
     "attack": 1,
@@ -1941,7 +1941,7 @@
   {
     "name": "Frostblade",
     "type": "Spell",
-    "text": "[Range 1]: Deal 2 damage. If targeting a minion, stun it.",
+    "text": "[Range 1]: Deal 2 damage. If targeting a minion, Stun it.",
     "subtype": "Frost",
     "cost": 1,
     "attack": null,
@@ -2478,7 +2478,7 @@
   {
     "name": "Green Dragon",
     "type": "Minion",
-    "text": "Flying. Trample. [Warmup 3, Range 2]: Add 3 poison to all characters within 1 Radius.",
+    "text": "Flying. Trample. [Warmup 3, Range 2]: Add 3 Poison to all characters within 1 Radius.",
     "subtype": "Dragon",
     "cost": 7,
     "attack": 6,
@@ -3248,7 +3248,7 @@
     "patron": "Archaeon",
     "faction": "archaeon",
     "art": "CardScreenshots/Lorecaller-Gazan.png",
-    "art_type": "COMMISSIONED_PLACEHOLDER",
+    "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
     "has_animation": false,
     "starter_decks": [],
@@ -3322,7 +3322,7 @@
   {
     "name": "Lumbering Ogre",
     "type": "Minion",
-    "text": "Trample.  (When battling and killing an enemy, regain an Attack.)",
+    "text": "Trample.  (When attacking and killing an enemy, regain an Attack.)",
     "subtype": "Ogre",
     "cost": 4,
     "attack": 6,
@@ -3352,8 +3352,8 @@
     "patron": "Neutral",
     "faction": "neutral",
     "art": "CardScreenshots/Mad-Warlock.png",
-    "art_type": "AI_GENERATED",
-    "human_art": false,
+    "art_type": "ARTIST_COMMISSIONED",
+    "human_art": true,
     "has_animation": false,
     "starter_decks": [
       "Starter Death",
@@ -3723,7 +3723,7 @@
     "patron": "Neutral",
     "faction": "neutral",
     "art": null,
-    "art_type": "COMMISSIONED_PLACEHOLDER",
+    "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
     "has_animation": false,
     "starter_decks": [],
@@ -4405,7 +4405,7 @@
   {
     "name": "Regeneration Potion",
     "type": "Spell",
-    "text": "[Range 2]: Give a minion Regeneration 3.",
+    "text": "[Range 2]: Give a minion Regenerate 3.",
     "subtype": "Potion",
     "cost": 1,
     "attack": null,
@@ -4467,7 +4467,7 @@
   {
     "name": "Revoke the Living",
     "type": "Spell",
-    "text": "Add 2 poison to all enemies within Range 1 of your territory. Gain <sprite name=\"dominion_1\"> Dominion.",
+    "text": "Add 2 Poison to all enemies within Range 1 of your territory. Gain <sprite name=\"dominion_1\"> Dominion.",
     "subtype": "",
     "cost": 4,
     "attack": null,
@@ -4840,7 +4840,7 @@
   {
     "name": "Skerr'drix",
     "type": "Minion",
-    "text": "Legendary. Spellcaster. When you play a non-ethereal spell, add an ethereal copy to your hand that costs zero mana.",
+    "text": "Legendary. Spellcaster. When you play a non-Ethereal spell, add an Ethereal copy to your hand that costs zero mana.",
     "subtype": "Dragon",
     "cost": 8,
     "attack": 6,
@@ -5162,7 +5162,7 @@
     "patron": "Skaal",
     "faction": "skaal",
     "art": "CardScreenshots/Strategic-Reserves.png",
-    "art_type": "COMMISSIONED_PLACEHOLDER",
+    "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
     "has_animation": false,
     "starter_decks": [],
@@ -5485,7 +5485,7 @@
   {
     "name": "Toxicologist's Vial",
     "type": "Spell",
-    "text": "[Range 2]: Double a character's poison.",
+    "text": "[Range 2]: Double a character's Poison.",
     "subtype": "Potion",
     "cost": 4,
     "attack": null,
@@ -5525,7 +5525,7 @@
   {
     "name": "Trinket Trasher",
     "type": "Minion",
-    "text": "Goblin-Deploy. Arrival: Destroy the enemy commander's weapon.",
+    "text": "Goblin-Deploy. Arrival: Destroy the enemy commander's Weapon.",
     "subtype": "Goblin",
     "cost": 2,
     "attack": 3,
@@ -5629,7 +5629,7 @@
   {
     "name": "Viridian War Beast",
     "type": "Minion",
-    "text": "Trample.  (When battling and killing an enemy, regain an Attack.)",
+    "text": "Trample.  (When attacking and killing an enemy, regain an Attack.)",
     "subtype": "Beast",
     "cost": 8,
     "attack": 7,
@@ -5699,7 +5699,7 @@
     "patron": "Skaal",
     "faction": "skaal",
     "art": "CardScreenshots/War-Banner.png",
-    "art_type": "COMMISSIONED_PLACEHOLDER",
+    "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
     "has_animation": true,
     "starter_decks": [],
@@ -5833,7 +5833,7 @@
   {
     "name": "Yorefell, Blade of Lusheim",
     "type": "Spell",
-    "text": "Weapon Lifelink. Does not lose durability when you attack.",
+    "text": "Weapon Lifelink. Does not lose Durability when you attack.",
     "subtype": "",
     "cost": 8,
     "attack": null,
@@ -5975,7 +5975,7 @@
   {
     "name": "Daemon Knight",
     "type": "Minion",
-    "text": "Trample.  (When battling and killing an enemy, regain an Attack.)",
+    "text": "Trample.  (When attacking and killing an enemy, regain an Attack.)",
     "subtype": "Daemon",
     "cost": 5,
     "attack": 4,
