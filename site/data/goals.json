@@ -4,7 +4,7 @@
       "id": "art_count",
       "label": "100 Cards with Human Art",
       "kind": "count",
-      "current": 274,
+      "current": 275,
       "target": 100,
       "met": true
     },
@@ -62,8 +62,8 @@
         {
           "deck": "Starter Mage",
           "total": 14,
-          "met_count": 12,
-          "rate": 0.8571,
+          "met_count": 13,
+          "rate": 0.9286,
           "met": true
         },
         {
@@ -158,8 +158,8 @@
   "overall": {
     "cards": {
       "total": 287,
-      "human": 274,
-      "human_rate": 0.9547,
+      "human": 275,
+      "human_rate": 0.9582,
       "animated": 121,
       "animated_rate": 0.4216,
       "art_types": {
@@ -172,12 +172,12 @@
           "rate": 0.007
         },
         "placeholder": {
-          "count": 183,
-          "rate": 0.6376
+          "count": 184,
+          "rate": 0.6411
         },
         "ai": {
-          "count": 13,
-          "rate": 0.0453
+          "count": 12,
+          "rate": 0.0418
         },
         "other": {
           "count": 0,
@@ -245,8 +245,8 @@
     },
     "all": {
       "total": 312,
-      "human": 298,
-      "human_rate": 0.9551,
+      "human": 299,
+      "human_rate": 0.9583,
       "animated": 127,
       "animated_rate": 0.4071,
       "art_types": {
@@ -259,12 +259,12 @@
           "rate": 0.0064
         },
         "placeholder": {
-          "count": 190,
-          "rate": 0.609
+          "count": 191,
+          "rate": 0.6122
         },
         "ai": {
-          "count": 14,
-          "rate": 0.0449
+          "count": 13,
+          "rate": 0.0417
         },
         "other": {
           "count": 0,
@@ -589,8 +589,8 @@
       "faction": "neutral",
       "cards": {
         "total": 127,
-        "human": 118,
-        "human_rate": 0.9291,
+        "human": 119,
+        "human_rate": 0.937,
         "animated": 46,
         "animated_rate": 0.3622,
         "art_types": {
@@ -603,12 +603,12 @@
             "rate": 0.0157
           },
           "placeholder": {
-            "count": 76,
-            "rate": 0.5984
+            "count": 77,
+            "rate": 0.6063
           },
           "ai": {
-            "count": 9,
-            "rate": 0.0709
+            "count": 8,
+            "rate": 0.063
           },
           "other": {
             "count": 0,
