@@ -4,7 +4,7 @@
       "id": "art_count",
       "label": "100 Cards with Human Art",
       "kind": "count",
-      "current": 275,
+      "current": 281,
       "target": 100,
       "met": true
     },
@@ -41,8 +41,8 @@
         {
           "deck": "Starter Beasts",
           "total": 15,
-          "met_count": 12,
-          "rate": 0.8,
+          "met_count": 14,
+          "rate": 0.9333,
           "met": true
         },
         {
@@ -69,8 +69,8 @@
         {
           "deck": "Starter Military",
           "total": 15,
-          "met_count": 14,
-          "rate": 0.9333,
+          "met_count": 15,
+          "rate": 1.0,
           "met": true
         }
       ]
@@ -158,8 +158,8 @@
   "overall": {
     "cards": {
       "total": 287,
-      "human": 275,
-      "human_rate": 0.9582,
+      "human": 281,
+      "human_rate": 0.9791,
       "animated": 121,
       "animated_rate": 0.4216,
       "art_types": {
@@ -172,12 +172,12 @@
           "rate": 0.007
         },
         "placeholder": {
-          "count": 182,
-          "rate": 0.6341
+          "count": 188,
+          "rate": 0.6551
         },
         "ai": {
-          "count": 12,
-          "rate": 0.0418
+          "count": 6,
+          "rate": 0.0209
         },
         "other": {
           "count": 0,
@@ -245,8 +245,8 @@
     },
     "all": {
       "total": 312,
-      "human": 299,
-      "human_rate": 0.9583,
+      "human": 305,
+      "human_rate": 0.9776,
       "animated": 127,
       "animated_rate": 0.4071,
       "art_types": {
@@ -259,12 +259,12 @@
           "rate": 0.0064
         },
         "placeholder": {
-          "count": 189,
-          "rate": 0.6058
+          "count": 195,
+          "rate": 0.625
         },
         "ai": {
-          "count": 13,
-          "rate": 0.0417
+          "count": 7,
+          "rate": 0.0224
         },
         "other": {
           "count": 0,
@@ -403,8 +403,8 @@
       "faction": "grenalia",
       "cards": {
         "total": 34,
-        "human": 32,
-        "human_rate": 0.9412,
+        "human": 33,
+        "human_rate": 0.9706,
         "animated": 24,
         "animated_rate": 0.7059,
         "art_types": {
@@ -417,12 +417,12 @@
             "rate": 0.0
           },
           "placeholder": {
-            "count": 19,
-            "rate": 0.5588
+            "count": 20,
+            "rate": 0.5882
           },
           "ai": {
-            "count": 2,
-            "rate": 0.0588
+            "count": 1,
+            "rate": 0.0294
           },
           "other": {
             "count": 0,
@@ -589,8 +589,8 @@
       "faction": "neutral",
       "cards": {
         "total": 127,
-        "human": 119,
-        "human_rate": 0.937,
+        "human": 124,
+        "human_rate": 0.9764,
         "animated": 46,
         "animated_rate": 0.3622,
         "art_types": {
@@ -603,12 +603,12 @@
             "rate": 0.0157
           },
           "placeholder": {
-            "count": 77,
-            "rate": 0.6063
+            "count": 82,
+            "rate": 0.6457
           },
           "ai": {
-            "count": 8,
-            "rate": 0.063
+            "count": 3,
+            "rate": 0.0236
           },
           "other": {
             "count": 0,
