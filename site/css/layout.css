@@ -33,10 +33,12 @@
   gap: 0.5rem;
 }
 
-.nav-logo-icon {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
+/* Wide wordmark (icon + "ATLAS CONQUEST"); the image is 3x for retina.
+   Height-driven so the width follows the artwork's aspect ratio. */
+.nav-logo-wordmark {
+  display: block;
+  height: 28px;
+  width: auto;
   flex-shrink: 0;
 }
 

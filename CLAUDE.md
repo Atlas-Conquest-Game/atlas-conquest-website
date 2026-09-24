@@ -64,6 +64,7 @@ See [ARCHITECTURE.md](docs/ARCHITECTURE.md) for the full system design.
 - **Data flows one direction**: AWS → JSON → Site. The site never writes to AWS.
 - **Faction colors** (colorblind-safe Okabe-Ito palette): Skaal = `#D55E00`, Grenalia = `#009E73`, Lucia = `#E8B630`, Neutral = `#A89078`, Shadis = `#7B7B8E`, Archaeon = `#0072B2`. Minor patrons: Adora = `#CC79A7`, Mechanus = `#A9714B`, Treasure = `#EDD9A0`.
 - **Static JSON files** in `site/data/` are the contract between pipeline and frontend. All stats files are nested `data[period][map]` where period is `all|6m|3m|1m` and map is `all|Dunes|Snowmelt|Tropics`. Analytics pages default to the `3m` period (`currentPeriod` in `shared.js` + the `active` time button in each page's HTML).
+- **Logo**: masters live in `scripts/assets/logo/` (imported from the Unity project's `Assets/Resources/Images/Logo`). `python scripts/generate_pwa_icons.py [--from-unity <dir>]` regenerates the favicon (`site/favicon.ico` + `atlas-conquest-icon.png`), PWA icons, and the nav wordmark (`atlas-conquest-logo.png`). Then re-run `generate_conquest_diagrams.py` + `build_articles.py` and bump `CACHE_NAME` in `site/service-worker.js`.
 - **Python 3.10+** for scripts. Use `boto3` for AWS access. Virtual env at `venv/`.
 - **Dependencies**: `scripts/requirements.txt` is what CI installs — keep it to what the pipeline and tests need. Local-only tooling goes in `scripts/requirements-dev.txt`.
 - **Tests**: `pytest scripts/tests/ -v` — cleaning, aggregation, and output validation tests.
