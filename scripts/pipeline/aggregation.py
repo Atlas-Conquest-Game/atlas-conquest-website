@@ -1350,6 +1350,115 @@ def aggregate_mulligan_stats(games, intellect_lookup=None):
     return card_data, total_mulligan_games
 
 
+def _feedback_tally():
+    return {
+        "any_pos": 0, "any_neg": 0,
+        "played_pos": 0, "played_neg": 0,
+        "opp_pos": 0, "opp_neg": 0,
+    }
+
+
+def _feedback_rows(tallies):
+    """Turn {card: tally} into output rows, most-rated first.
+
+    Each scope (any / played / opp) gets its rating count plus positive and
+    negative ratios. The two ratios of a scope sum to 1 — both are published
+    so the frontend can sort on either. None when the scope has no ratings.
+    """
+    def ratio(n, d):
+        return round(n / d, 4) if d else None
+
+    rows = []
+    for name, t in tallies.items():
+        row = {"name": name}
+        for scope in ("any", "played", "opp"):
+            pos, neg = t[f"{scope}_pos"], t[f"{scope}_neg"]
+            total = pos + neg
+            row[f"{scope}_ratings"] = total
+            row[f"{scope}_pos_rate"] = ratio(pos, total)
+            row[f"{scope}_neg_rate"] = ratio(neg, total)
+        rows.append(row)
+    rows.sort(key=lambda r: (-r["any_ratings"], r["name"]))
+    return rows
+
+
+def aggregate_card_feedback(games):
+    """Per-card post-match feedback ("did you have fun?") ratios.
+
+    Unit is one player's answer for one game. For a card C in a rated game:
+      any    — every answer in the game counts if either player played C
+      played — the answer of a player who played C themselves
+      opp    — the answer of a player whose opponent played C
+    One answer can land in both played and opp when both players played C.
+
+    by_commander scopes the same three buckets to games where a player on that
+    commander played C: played = that player's answer, opp = their opponent's,
+    any = every answer in the game.
+
+    Returns {"total_ratings", "fun_rate", "cards": [...], "by_commander": {cmd: [...]}}.
+    """
+    cards = defaultdict(_feedback_tally)
+    by_cmd = defaultdict(lambda: defaultdict(_feedback_tally))
+    total_pos = total_neg = 0
+
+    for game in games:
+        players = game["players"]
+        answers = [p.get("feedback") for p in players]
+        if not any(answers):
+            continue
+        played = [{c["name"] for c in p.get("cards_played", [])} for p in players]
+
+        for a in answers:
+            if a == "fun":
+                total_pos += 1
+            elif a == "not_fun":
+                total_neg += 1
+
+        def add(tally, scope, answer):
+            if answer == "fun":
+                tally[f"{scope}_pos"] += 1
+            elif answer == "not_fun":
+                tally[f"{scope}_neg"] += 1
+
+        # Global: each (card, answer) pair counted once per game per scope.
+        for card in set().union(*played):
+            t = cards[card]
+            for i, answer in enumerate(answers):
+                if not answer:
+                    continue
+                add(t, "any", answer)
+                if card in played[i]:
+                    add(t, "played", answer)
+                if any(card in played[j] for j in range(len(players)) if j != i):
+                    add(t, "opp", answer)
+
+        # Per commander of the player who played the card. Mirrors (both seats
+        # on one commander) still count each answer once per scope.
+        pairs = {(players[i]["commander"], card)
+                 for i in range(len(players)) if players[i]["commander"]
+                 for card in played[i]}
+        for cmd, card in pairs:
+            t = by_cmd[cmd][card]
+            pilots = [i for i in range(len(players))
+                      if players[i]["commander"] == cmd and card in played[i]]
+            for i, answer in enumerate(answers):
+                if not answer:
+                    continue
+                add(t, "any", answer)
+                if i in pilots:
+                    add(t, "played", answer)
+                if any(j != i for j in pilots):
+                    add(t, "opp", answer)
+
+    total = total_pos + total_neg
+    return {
+        "total_ratings": total,
+        "fun_rate": round(total_pos / total, 4) if total else None,
+        "cards": _feedback_rows(cards),
+        "by_commander": {cmd: _feedback_rows(t) for cmd, t in sorted(by_cmd.items())},
+    }
+
+
 def aggregate_commander_mulligan_stats(games, intellect_lookup=None):
     """Compute per-commander per-card mulligan stats.
 

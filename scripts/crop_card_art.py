@@ -1,38 +1,27 @@
 """
-Crops card images to the artwork panel only (removes frame, name, text box).
-Art panel crop box for 600x840 card images: left=75, top=35, right=525, bottom=445.
-Output saved to site/assets/art/<slug>.jpg.
+Re-crop every card image to its artwork panel (removes frame, name, text box).
+
+The daily pipeline already does this incrementally — new or updated cards get a
+panel in generate_thumbnails() — so this is only for a full rebuild, e.g. after
+changing ART_PANEL_CROP_BOX.
+Input:  site/assets/cards/<slug>.jpg
+Output: site/assets/art/<slug>.jpg
 """
 
-import os
+import sys
 from pathlib import Path
-from PIL import Image
 
-CARDS_DIR = Path(__file__).parent.parent / "site" / "assets" / "cards"
-ART_DIR = Path(__file__).parent.parent / "site" / "assets" / "art"
-CROP_BOX = (75, 35, 525, 445)  # left, top, right, bottom
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-ART_DIR.mkdir(parents=True, exist_ok=True)
+from pipeline.constants import CARD_ASSETS_DIR, CARD_ART_PANEL_DIR
+from pipeline.io_helpers import crop_art_panel
 
-card_files = sorted(CARDS_DIR.glob("*.jpg"))
+CARD_ART_PANEL_DIR.mkdir(parents=True, exist_ok=True)
+
+card_files = sorted(CARD_ASSETS_DIR.glob("*.jpg"))
 print(f"Processing {len(card_files)} card images...")
 
 for src in card_files:
-    dst = ART_DIR / src.name
-    with Image.open(src) as img:
-        w, h = img.size
-        if w == 600 and h == 840:
-            cropped = img.crop(CROP_BOX)
-        else:
-            # Scale crop box proportionally if image is a different size
-            sx, sy = w / 600, h / 840
-            box = (
-                int(CROP_BOX[0] * sx),
-                int(CROP_BOX[1] * sy),
-                int(CROP_BOX[2] * sx),
-                int(CROP_BOX[3] * sy),
-            )
-            cropped = img.crop(box)
-        cropped.save(dst, "JPEG", quality=90)
+    crop_art_panel(src, CARD_ART_PANEL_DIR / src.name)
 
-print(f"Done. Art images saved to {ART_DIR}")
+print(f"Done. Art images saved to {CARD_ART_PANEL_DIR}")

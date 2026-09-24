@@ -25,6 +25,7 @@ from pipeline.aggregation import (
     aggregate_commander_winrate_trends,
     aggregate_mulligan_stats,
     aggregate_commander_mulligan_stats,
+    aggregate_card_feedback,
     aggregate_goals,
 )
 from pipeline.io_helpers import (
@@ -102,6 +103,7 @@ def build_and_write_all(games, cards_csv, commanders_csv, tokens_csv=()):
         "cmd_wr_trends": {},
         "mulligan_stats": {},
         "cmd_mulligan_stats": {},
+        "feedback_stats": {},
     }
 
     for period_key, days in PERIODS.items():
@@ -294,6 +296,9 @@ def build_and_write_all(games, cards_csv, commanders_csv, tokens_csv=()):
             # ── per-commander mulligan stats ──
             out["cmd_mulligan_stats"][period_key][map_name] = aggregate_commander_mulligan_stats(map_games, intellect_lookup)
 
+            # ── post-match feedback per card (global + per commander) ──
+            out["feedback_stats"][period_key][map_name] = aggregate_card_feedback(map_games)
+
     # Write all period×map-nested files
     write_json("metadata.json", out["metadata"])
     write_json("commander_stats.json", out["commander_stats"])
@@ -313,6 +318,7 @@ def build_and_write_all(games, cards_csv, commanders_csv, tokens_csv=()):
     write_json("commander_winrate_trends.json", out["cmd_wr_trends"])
     write_json("mulligan_stats.json", out["mulligan_stats"])
     write_json("commander_mulligan_stats.json", out["cmd_mulligan_stats"])
+    write_json("feedback_stats.json", out["feedback_stats"], compact=True)
 
 
 def main():
@@ -338,7 +344,7 @@ def main():
         print("\n[2/7] Scanning DynamoDB...")
         table = get_dynamo_table()
         raw_items = scan_all_games(table, cached_ids)
-        print(f"  Found {len(raw_items)} new items from DynamoDB")
+        print(f"  Found {len(raw_items)} new or feedback-updated items from DynamoDB")
 
         # Step 3: Clean new games
         print("\n[3/7] Cleaning data...")
@@ -356,8 +362,10 @@ def main():
             for reason, count in sorted(skip_counts.items(), key=lambda x: -x[1]):
                 print(f"    {reason}: {count}")
 
-        # Merge with cache
-        all_games = cached_games + new_games
+        # Merge with cache. Re-scanned rows (feedback added after the game was
+        # cached — see scan_all_games) replace their stale cached copy.
+        refreshed = {g["game_id"] for g in new_games}
+        all_games = [g for g in cached_games if g["game_id"] not in refreshed] + new_games
         print(f"  Total games: {len(all_games)}")
 
         # Step 4: Save updated cache

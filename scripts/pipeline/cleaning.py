@@ -38,6 +38,43 @@ def parse_players_json(raw):
             return None
 
 
+# Post-match feedback answers the game client stores ("did you have fun?").
+FEEDBACK_FEELINGS = {"fun", "not_fun"}
+
+
+def parse_feedback(raw):
+    """Map seat (playerid) -> feeling from the game's `feedback` attribute.
+
+    The client writes a JSON blob {"numEntries": N, "entries": [{"playerid",
+    "datetime", "feeling", "comment"}]} — one entry per seat that answered the
+    post-match prompt. Rows from before the prompt existed have no attribute.
+    Free-text comments are deliberately dropped: only the feeling is used.
+    """
+    data = raw
+    if isinstance(raw, str):
+        # Plain JSON first: parse_players_json's ""-unescaping would mangle the
+        # empty "comment": "" strings that feedback entries usually carry.
+        try:
+            data = json.loads(raw)
+        except json.JSONDecodeError:
+            data = parse_players_json(raw)
+    if not isinstance(data, dict):
+        return {}
+    feelings = {}
+    for entry in data.get("entries") or []:
+        if not isinstance(entry, dict):
+            continue
+        feeling = entry.get("feeling")
+        seat = entry.get("playerid")
+        if feeling not in FEEDBACK_FEELINGS or seat is None:
+            continue
+        try:
+            feelings[int(seat)] = feeling
+        except (TypeError, ValueError):
+            continue
+    return feelings
+
+
 def normalize_commander(name):
     """Apply commander name fixes."""
     if not name:
@@ -50,6 +87,17 @@ def normalize_card(name):
     if not name:
         return name
     return CARD_RENAMES.get(name, name)
+
+
+def _seat_feedback(raw_player, feedback_by_seat):
+    """Look up a raw player's feedback by their per-match seat (playerid)."""
+    seat = raw_player.get("playerid")
+    if seat is None or not feedback_by_seat:
+        return None
+    try:
+        return feedback_by_seat.get(int(seat))
+    except (TypeError, ValueError):
+        return None
 
 
 def clean_game(raw_item, skip_log=None):
@@ -102,6 +150,8 @@ def clean_game(raw_item, skip_log=None):
             if skip_log is not None:
                 skip_log.append("low_turns")
             return None
+
+    feedback_by_seat = parse_feedback(raw_item.get("feedback"))
 
     # Build clean player records
     clean_players = []
@@ -178,6 +228,9 @@ def clean_game(raw_item, skip_log=None):
             "cards_played": cards_played,
             "mulligan_kept": mulligan_kept,
             "mulligan_returned": mulligan_returned,
+            # "fun" / "not_fun" from the post-match prompt, None if this seat
+            # didn't answer (or the row predates feedback).
+            "feedback": _seat_feedback(p, feedback_by_seat),
         })
 
     # Compute duration in minutes

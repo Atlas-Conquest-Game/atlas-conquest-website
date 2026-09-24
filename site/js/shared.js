@@ -56,7 +56,9 @@ const CHART_TOOLTIP = {
 // ─── Shared State ───────────────────────────────────────────
 
 let appData = {};
-let currentPeriod = 'all';
+// Default window is the last 3 months — recent enough to reflect the current
+// card pool and balance, long enough for usable sample sizes.
+let currentPeriod = '3m';
 let currentMap = 'all';
 
 // ─── Data Loading ───────────────────────────────────────────
@@ -87,6 +89,7 @@ const DATA_FILES = {
   turnWinrates: 'data/turn_winrates.json',
   commanderWinrateTrends: 'data/commander_winrate_trends.json',
   mulliganStats: 'data/mulligan_stats.json',
+  feedbackStats: 'data/feedback_stats.json',
   archetypes: 'data/archetypes.json',
   goals: 'data/goals.json',
 };
@@ -288,7 +291,7 @@ function initNavActiveState() {
   const currentPage = pageName === '' ? 'index.html' : pageName;
 
   // Primary nav: highlight based on data-nav attribute
-  const analyticsPages = ['analytics.html', 'commanders.html', 'cards.html', 'meta.html', 'mulligan.html', 'goals.html'];
+  const analyticsPages = ['analytics.html', 'commanders.html', 'cards.html', 'meta.html', 'goals.html'];
   const path = window.location.pathname;
   const isArticles = currentPage === 'articles.html' || path.startsWith('/articles/') || path.includes('/articles/');
   const isDecks = currentPage === 'decks.html' || path.startsWith('/decks/') || path.includes('/decks/');
@@ -701,7 +704,7 @@ function initCardPreview() {
 /**
  * Pin a long table's column headers under the sticky nav stack.
  *
- * The Cards and Mulligan tables run several hundred rows — tall enough that the
+ * The Cards table runs several hundred rows — tall enough that the
  * header, which carries the sort indicator, scrolls out of reach within one
  * screen and leaves you staring at columns of near-identical percentages.
  *

@@ -24,15 +24,14 @@ See [ARCHITECTURE.md](docs/ARCHITECTURE.md) for the full system design.
 
 | Page | File | JS | Description |
 |------|------|----|-------------|
-| Home | `site/index.html` | (inline) | Game landing page — hero, factions, starter decks, explore links |
+| Home | `site/index.html` | `landing.js` | Game landing page — hero stats (live from `commanders.json`/`cards.json`/`metadata.json`), draggable commander wheel with card reveal, factions, starter decks, explore links |
 | Overview | `site/analytics.html` | `home.js` | Analytics dashboard with KPIs, game distributions, commander overview |
 | Commanders | `site/commanders.html` | `commanders.js` | Winrates, deck composition, winrate by turns/actions/duration, detail modal |
-| Cards | `site/cards.html` | `cards.js` | Card stats (deck/draw/play rates and winrates), per-commander breakdown |
+| Cards | `site/cards.html` | `cards.js` | Card stats (deck/draw/play rates and winrates) plus optional mulligan and post-match feedback columns, viewer-selectable columns, per-commander breakdown |
 | Meta | `site/meta.html` | `meta.js` | Matchup heatmap, faction/commander popularity and winrate trends, first-turn advantage |
-| Mulligan | `site/mulligan.html` | `mulligan.js` | Opening hand keep rates, normalized keep preference, per-commander mulligan stats |
 | Decks | `site/decks.html` | `decks.js` + `deckcode.js` | Import (decode) and build (encode) deck codes, shareable via URL. Installable PWA with full offline support — see `site/manifest.webmanifest` + `site/service-worker.js`. |
 
-**Navigation**: Primary nav (Home, Analytics, Decks) on all pages. Analytics pages also have a sub-nav (Overview, Commanders, Cards, Meta, Mulligan). Analytics pages share `site/js/shared.js` (data loading, filters, helper functions). The Home and Decks pages are standalone.
+**Navigation**: Primary nav (Home, Analytics, Decks) on all pages. Analytics pages also have a sub-nav (Overview, Commanders, Cards, Meta, Metagame, Goals). Analytics pages share `site/js/shared.js` (data loading, filters, helper functions). The Home and Decks pages are standalone.
 
 **Card previews**: `site/js/cardpreview.js` is loaded by every page that shows card art. It owns the `#card-preview` hover popup's contents and placement, and pulls `site/data/mentions.json` so a card renders side-by-side with the cards it creates (tokens). Articles get the same treatment server-side via `scripts/build_articles.py`.
 
@@ -64,7 +63,7 @@ See [ARCHITECTURE.md](docs/ARCHITECTURE.md) for the full system design.
 - **No build step** for the frontend. Plain HTML/CSS/JS. Keep it simple.
 - **Data flows one direction**: AWS → JSON → Site. The site never writes to AWS.
 - **Faction colors** (colorblind-safe Okabe-Ito palette): Skaal = `#D55E00`, Grenalia = `#009E73`, Lucia = `#E8B630`, Neutral = `#A89078`, Shadis = `#7B7B8E`, Archaeon = `#0072B2`. Minor patrons: Adora = `#CC79A7`, Mechanus = `#A9714B`, Treasure = `#EDD9A0`.
-- **Static JSON files** in `site/data/` are the contract between pipeline and frontend. All stats files are nested `data[period][map]` where period is `all|6m|3m|1m` and map is `all|Dunes|Snowmelt|Tropics`.
+- **Static JSON files** in `site/data/` are the contract between pipeline and frontend. All stats files are nested `data[period][map]` where period is `all|6m|3m|1m` and map is `all|Dunes|Snowmelt|Tropics`. Analytics pages default to the `3m` period (`currentPeriod` in `shared.js` + the `active` time button in each page's HTML).
 - **Python 3.10+** for scripts. Use `boto3` for AWS access. Virtual env at `venv/`.
 - **Dependencies**: `scripts/requirements.txt` is what CI installs — keep it to what the pipeline and tests need. Local-only tooling goes in `scripts/requirements-dev.txt`.
 - **Tests**: `pytest scripts/tests/ -v` — cleaning, aggregation, and output validation tests.
@@ -78,6 +77,7 @@ See [ARCHITECTURE.md](docs/ARCHITECTURE.md) for the full system design.
 - **6 factions**: Skaal, Grenalia, Lucia, Neutral, Shadis, Archaeon. Plus 3 **minor patrons** with a card or two each — Adora, Mechanus, Treasure. They are not Neutral; only Lazim can build Adora/Mechanus cards and Treasure belongs to no commander.
 - **3 maps**: Dunes, Snowmelt, Tropics.
 - **Tokens**: generated cards (Zombie, Lucian Soldier, …) from `StandardFormatTokens.csv`. They appear in match data but no deck can contain one — published in `cards.json`/`card_stats.json` with `token: true`, hidden by default on the Cards page, and excluded from the deck builder pool. On the Goals page they have no goal of their own but count toward the combined totals and get their own row in the art-source breakdown.
+- **Post-match feedback**: players answer "did you have fun?" after a match (`fun` / `not_fun`). The game server re-saves the game row with a `feedback` blob *after* the game-end save, so the fetch re-pulls cached rows that carry feedback. Free-text comments are dropped in cleaning.
 - **MentionedCards**: CSV column listing the cards a card or commander creates/references. Published as `site/data/mentions.json` and rendered beside the card everywhere it's shown as art.
 
 ## AWS Configuration
