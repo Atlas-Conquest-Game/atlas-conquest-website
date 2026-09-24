@@ -13,6 +13,9 @@ CARD_ASSETS_DIR = PROJECT_DIR / "site" / "assets" / "cards"
 # RGBA card art — same images as CARD_ASSETS_DIR but PNG with transparent
 # corners, used for hover popups and inline article images.
 CARD_PNG_ASSETS_DIR = PROJECT_DIR / "site" / "assets" / "card-art-png"
+# Illustration-only panels cropped from the CARD_ASSETS_DIR JPGs (no frame, name
+# banner or text box) — the Metagame page's archetype tab backgrounds.
+CARD_ART_PANEL_DIR = PROJECT_DIR / "site" / "assets" / "art"
 ARTWORK_DIR = PROJECT_DIR / "Artwork"
 CARD_SCREENSHOTS_DIR = PROJECT_DIR / "CardScreenshots"
 RAW_CACHE = DATA_DIR / "raw_games.json"

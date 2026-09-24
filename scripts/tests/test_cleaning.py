@@ -321,7 +321,7 @@ class TestA10_OutputShape:
 
         player_keys = {"name", "winner", "commander", "deck_name", "turns", "actions",
                        "cards_in_deck", "cards_drawn", "cards_played",
-                       "mulligan_kept", "mulligan_returned"}
+                       "mulligan_kept", "mulligan_returned", "feedback"}
         for p in result["players"]:
             assert set(p.keys()) == player_keys
 
@@ -441,3 +441,48 @@ class TestNormalizeCommander:
 
     def test_none_returns_none(self):
         assert normalize_commander(None) is None
+
+
+# ─── A12: Post-match feedback ─────────────────────────────────────
+
+def _feedback_blob(*entries):
+    return json.dumps({"numEntries": len(entries), "entries": [
+        {"playerid": seat, "datetime": "01/15/2025 14:31:00", "feeling": feeling, "comment": ""}
+        for seat, feeling in entries
+    ]})
+
+
+class TestA12_Feedback:
+    """Feedback entries join to players by seat (playerid)."""
+
+    def _seated_item(self, **overrides):
+        return make_raw_item(
+            player1_overrides={"playerid": 0},
+            player2_overrides={"playerid": 1},
+            **overrides,
+        )
+
+    def test_feelings_attach_by_seat(self):
+        result = clean_game(self._seated_item(feedback=_feedback_blob((1, "not_fun"), (0, "fun"))))
+        assert [p["feedback"] for p in result["players"]] == ["fun", "not_fun"]
+
+    def test_unanswered_seat_is_none(self):
+        result = clean_game(self._seated_item(feedback=_feedback_blob((1, "fun"))))
+        assert [p["feedback"] for p in result["players"]] == [None, "fun"]
+
+    def test_missing_attribute_is_none(self):
+        result = clean_game(self._seated_item())
+        assert [p["feedback"] for p in result["players"]] == [None, None]
+
+    def test_unknown_feeling_ignored(self):
+        result = clean_game(self._seated_item(feedback=_feedback_blob((0, "meh"))))
+        assert result["players"][0]["feedback"] is None
+
+    def test_malformed_blob_ignored(self):
+        result = clean_game(self._seated_item(feedback="{not json"))
+        assert [p["feedback"] for p in result["players"]] == [None, None]
+
+    def test_players_without_seat_get_none(self):
+        # Older rows have no playerid on the player blob.
+        result = clean_game(make_raw_item(feedback=_feedback_blob((0, "fun"))))
+        assert [p["feedback"] for p in result["players"]] == [None, None]

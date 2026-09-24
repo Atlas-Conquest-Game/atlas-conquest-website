@@ -22,6 +22,7 @@ from pipeline.aggregation import (
     aggregate_game_distributions,
     aggregate_archetypes,
     aggregate_goals,
+    aggregate_card_feedback,
 )
 from pipeline.constants import HUMAN_ART_TYPES
 
@@ -934,3 +935,56 @@ class TestGoals_TokensAndArtSources:
         stats = aggregate_goals(cards, [])["overall"]["cards"]
         assert stats["human"] == 2
         assert stats["art_types"]["other"]["count"] == 2
+
+
+# ─── B-feedback: Post-match feedback per card ─────────────────────
+
+def _fb_game(p1_played, p2_played, p1_fb, p2_fb, cmd1="Captain Greenbeard", cmd2="Elber, Jungle Emissary"):
+    return make_clean_game(players_overrides=[
+        {"commander": cmd1, "cards_played": [{"name": n, "count": 1} for n in p1_played], "feedback": p1_fb},
+        {"commander": cmd2, "cards_played": [{"name": n, "count": 1} for n in p2_played], "feedback": p2_fb},
+    ])
+
+
+def _row(rows, name):
+    return next(r for r in rows if r["name"] == name)
+
+
+class TestCardFeedback:
+
+    def test_scopes_split_by_who_played(self):
+        # Alice plays Fire Bolt and had fun; Bob didn't.
+        out = aggregate_card_feedback([_fb_game(["Fire Bolt"], ["Ice Shard"], "fun", "not_fun")])
+        fb = _row(out["cards"], "Fire Bolt")
+        assert fb["any_ratings"] == 2 and fb["any_pos_rate"] == 0.5 and fb["any_neg_rate"] == 0.5
+        assert fb["played_ratings"] == 1 and fb["played_pos_rate"] == 1.0
+        assert fb["opp_ratings"] == 1 and fb["opp_neg_rate"] == 1.0
+        assert out["total_ratings"] == 2 and out["fun_rate"] == 0.5
+
+    def test_unanswered_games_ignored(self):
+        out = aggregate_card_feedback([_fb_game(["Fire Bolt"], [], None, None)])
+        assert out["cards"] == [] and out["total_ratings"] == 0 and out["fun_rate"] is None
+
+    def test_only_one_seat_answered(self):
+        out = aggregate_card_feedback([_fb_game(["Fire Bolt"], [], None, "not_fun")])
+        fb = _row(out["cards"], "Fire Bolt")
+        assert fb["any_ratings"] == 1 and fb["any_neg_rate"] == 1.0
+        assert fb["played_ratings"] == 0 and fb["played_pos_rate"] is None
+        assert fb["opp_ratings"] == 1
+
+    def test_both_played_counts_answer_once_per_scope(self):
+        out = aggregate_card_feedback([_fb_game(["Heal"], ["Heal"], "fun", "fun")])
+        h = _row(out["cards"], "Heal")
+        assert h["any_ratings"] == 2 and h["played_ratings"] == 2 and h["opp_ratings"] == 2
+
+    def test_by_commander_scopes_to_pilot(self):
+        out = aggregate_card_feedback([_fb_game(["Heal"], ["Ice Shard"], "fun", "not_fun")])
+        green = _row(out["by_commander"]["Captain Greenbeard"], "Heal")
+        assert green["played_pos_rate"] == 1.0 and green["opp_neg_rate"] == 1.0
+        assert "Heal" not in {r["name"] for r in out["by_commander"]["Elber, Jungle Emissary"]}
+
+    def test_by_commander_mirror(self):
+        out = aggregate_card_feedback([_fb_game(["Heal"], ["Heal"], "fun", "not_fun",
+                                                cmd1="Captain Greenbeard", cmd2="Captain Greenbeard")])
+        h = _row(out["by_commander"]["Captain Greenbeard"], "Heal")
+        assert h["any_ratings"] == 2 and h["played_ratings"] == 2 and h["opp_ratings"] == 2

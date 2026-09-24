@@ -9,7 +9,8 @@ import sys
 import time
 
 from pipeline.constants import (
-    DATA_DIR, ASSETS_DIR, CARD_ASSETS_DIR, CARD_PNG_ASSETS_DIR, ARTWORK_DIR, CARD_SCREENSHOTS_DIR,
+    DATA_DIR, ASSETS_DIR, CARD_ASSETS_DIR, CARD_PNG_ASSETS_DIR, CARD_ART_PANEL_DIR,
+    ARTWORK_DIR, CARD_SCREENSHOTS_DIR,
     RAW_CACHE, CARDS_CSV, COMMANDERS_CSV, TOKENS_CSV, CARDLIST_ASSET,
     DYNAMO_TABLE, DYNAMO_REGION, PATRON_MAP, COMMANDER_RENAMES,
     HUMAN_ART_TYPES,
@@ -63,6 +64,26 @@ def _resize_png_rgba(source, target, max_width):
     return True
 
 
+# Art panel crop box on a 600x840 card image: left, top, right, bottom.
+ART_PANEL_CROP_BOX = (75, 35, 525, 445)
+
+
+def crop_art_panel(card_jpg, target):
+    """Crop a framed card JPG down to its illustration panel. Returns True on
+    success; False if PIL is unavailable (the Metagame page hides a missing
+    background image, so this degrades gracefully)."""
+    try:
+        from PIL import Image
+    except ImportError:
+        return False
+    with Image.open(card_jpg) as img:
+        # Card JPGs are 600px wide but not guaranteed 840 tall — scale the box.
+        sx, sy = img.width / 600, img.height / 840
+        box = tuple(int(v * s) for v, s in zip(ART_PANEL_CROP_BOX, (sx, sy, sx, sy)))
+        img.crop(box).convert("RGB").save(target, "JPEG", quality=90)
+    return True
+
+
 def _art_slug(name):
     """Convert a name like 'Elber, Jungle Emissary' to 'elber-jungle-emissary'."""
     return name.lower().replace(" ", "-").replace(",", "").replace("'", "")
@@ -89,6 +110,7 @@ def generate_thumbnails():
     Commander art:  Artwork/<slug>.png → site/assets/commanders/<slug>.jpg  (400px wide)
                     Only processes files whose slug matches a commander in the CSV.
     Card previews:  CardScreenshots/*.png → site/assets/cards/*.jpg  (600px wide)
+    Art panels:     site/assets/cards/*.jpg → site/assets/art/*.jpg  (illustration crop)
 
     Regenerates a thumbnail when its target is missing or the source art's
     content has changed. Change is detected by hashing the source bytes and
@@ -100,6 +122,7 @@ def generate_thumbnails():
     ASSETS_DIR.mkdir(parents=True, exist_ok=True)
     CARD_ASSETS_DIR.mkdir(parents=True, exist_ok=True)
     CARD_PNG_ASSETS_DIR.mkdir(parents=True, exist_ok=True)
+    CARD_ART_PANEL_DIR.mkdir(parents=True, exist_ok=True)
 
     # Manifest of source-art hashes, keyed by "<kind>:<slug>". Lives under
     # site/assets/ so the daily pipeline's `git add site/assets/` commits it and
@@ -120,6 +143,8 @@ def generate_thumbnails():
     cmd_count = 0
     card_count = 0
     card_png_count = 0
+    art_panel_count = 0
+    regenerated_card_jpgs = set()
 
     # Build set of valid commander slugs from CSV
     commander_slugs = set()
@@ -176,6 +201,7 @@ def generate_thumbnails():
                 if _resize_image(source, jpg_target, 600):
                     manifest[jpg_key] = src_hash
                     card_count += 1
+                    regenerated_card_jpgs.add(slug)
             # PNG with alpha — only meaningful if source has alpha (RGBA PNGs in
             # CardScreenshots/). _resize_png_rgba auto-converts otherwise.
             if source.suffix.lower() == ".png":
@@ -186,11 +212,23 @@ def generate_thumbnails():
                         manifest[png_key] = src_hash
                         card_png_count += 1
 
+    # Art panels derive from the card JPGs, so they're (re)cropped whenever that
+    # JPG was regenerated above or the panel doesn't exist yet. No manifest
+    # entry: the card JPG's own entry already tracks source changes.
+    for card_jpg in CARD_ASSETS_DIR.glob("*.jpg"):
+        slug = card_jpg.stem
+        panel = CARD_ART_PANEL_DIR / f"{slug}.jpg"
+        if panel.exists() and slug not in regenerated_card_jpgs:
+            continue
+        if crop_art_panel(card_jpg, panel):
+            art_panel_count += 1
+
     with open(manifest_path, "w", encoding="utf-8") as f:
         json.dump(manifest, f, indent=2, sort_keys=True)
 
-    print(f"  Thumbnails: {cmd_count} commander + {card_count} card JPGs + {card_png_count} card PNGs generated")
-    if cmd_count == 0 and card_count == 0 and card_png_count == 0:
+    print(f"  Thumbnails: {cmd_count} commander + {card_count} card JPGs + {card_png_count} card PNGs"
+          f" + {art_panel_count} art panels generated")
+    if cmd_count == 0 and card_count == 0 and card_png_count == 0 and art_panel_count == 0:
         print("  (all thumbnails up to date)")
 
 
@@ -300,7 +338,11 @@ def scan_all_games(table, cached_game_ids=None):
     """Scan DynamoDB table for all games. Returns list of raw items.
 
     If cached_game_ids is provided, we still do a full scan (DynamoDB has no
-    GSI on datetime), but skip items we've already processed.
+    GSI on datetime), but skip items we've already processed — except rows
+    carrying post-match feedback, which the game server writes by re-saving the
+    row *after* the game-end save. Those are always returned so a game cached
+    before its players answered picks the answers up; the caller replaces the
+    cached copy.
     """
     cached_game_ids = cached_game_ids or set()
     items = []
@@ -325,6 +367,8 @@ def scan_all_games(table, cached_game_ids=None):
             if gid not in cached_game_ids:
                 items.append(item)
                 new_count += 1
+            elif item.get("feedback"):
+                items.append(item)
 
         scanned = response.get("ScannedCount", 0)
         print(f"    Page {page}: scanned {scanned} items, {new_count} new so far")

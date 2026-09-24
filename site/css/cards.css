@@ -91,6 +91,121 @@
   border-color: var(--token);
 }
 
+/* === Column picker (Cards table "Columns" menu) === */
+
+.column-picker {
+  position: relative;
+}
+
+.column-picker > summary {
+  list-style: none;
+}
+
+.column-picker > summary::-webkit-details-marker {
+  display: none;
+}
+
+.column-picker > summary::after {
+  font-size: 0.6875rem;
+  content: "\25BE";
+}
+
+.column-picker[open] > summary {
+  color: var(--text);
+  border-color: #388bfd;
+}
+
+.column-picker-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 190px;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 0.75rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+}
+
+.column-picker-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.column-picker-group-label,
+.column-picker-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.column-picker-group-label {
+  font-weight: 600;
+  color: var(--text);
+  padding-bottom: 0.25rem;
+  margin-bottom: 0.125rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.column-picker-option {
+  color: var(--text-secondary);
+  padding-left: 1.25rem;
+}
+
+.column-picker-option:hover {
+  color: var(--text);
+}
+
+.column-picker-option.is-locked {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.column-picker-menu input {
+  accent-color: #388bfd;
+  margin: 0;
+  cursor: inherit;
+}
+
+.column-picker-reset {
+  align-self: flex-start;
+  padding: 0;
+  background: none;
+  border: 0;
+  font-family: inherit;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.column-picker-reset:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
+
+/* Optional column groups: a thin accent over the header marks each as its own
+   group when shown alongside the card stats. */
+th.col-mulligan {
+  box-shadow: inset 0 2px 0 var(--token);
+}
+
+th.col-feedback {
+  box-shadow: inset 0 2px 0 var(--adora);
+}
+
 /* === Stacked sub-line in table cells === */
 
 .cell-sub {
