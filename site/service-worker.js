@@ -10,7 +10,8 @@
  * `activate` handler evicts the old cache and clients pick up fresh files.
  */
 
-const CACHE_NAME = 'ac-decks-v3';
+// v4: new logo — same icon file names, new pixels.
+const CACHE_NAME = 'ac-decks-v4';
 const DATA_CACHE = 'ac-decks-data-v2';
 // Bumped to v2 to flush art cached under the old cache-first strategy, which
 // pinned every viewed card JPG permanently and hid updated screenshots.
@@ -34,6 +35,8 @@ const SHELL_URLS = [
   // isArtRequest() (which only covers /assets/cards/ and /assets/commanders/),
   // so without this the compact view loses its cost gems offline.
   '/assets/ui/cost-gem.webp',
+  // Nav wordmark, so the offline deck builder keeps its header logo.
+  '/assets/logo/atlas-conquest-logo.png',
   '/assets/logo/icon-192.png',
   '/assets/logo/icon-512.png',
   '/assets/logo/apple-touch-icon.png',
