@@ -30,3 +30,12 @@ site/data/raw_games.json
 
 # Generated artifacts
 scripts/daily_summary.txt
+
+# Google OAuth — these normally live in ~/.atlas-conquest/, outside the repo.
+# Listed here as a backstop in case a downloaded client secret lands in the
+# working tree by mistake.
+google_oauth_client.json
+google_token.json
+client_secret*.json
+credentials.json
+token.json
