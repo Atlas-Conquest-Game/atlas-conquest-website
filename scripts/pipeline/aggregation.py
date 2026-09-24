@@ -226,6 +226,97 @@ def aggregate_matchup_details(games):
     return result
 
 
+def _card_baselines(games):
+    """Per-scope baselines the advanced card metrics are measured against.
+
+    Returns (cmd_wr, avg_turns, cmd_avg_turns): each commander's winrate and
+    average turns taken across these games, and the overall average turns.
+    """
+    cmd_n, cmd_w, cmd_t = defaultdict(int), defaultdict(int), defaultdict(int)
+    for game in games:
+        for p in game["players"]:
+            cmd = p.get("commander")
+            cmd_n[cmd] += 1
+            cmd_t[cmd] += p.get("turns", 0)
+            if p["winner"]:
+                cmd_w[cmd] += 1
+    total_n = sum(cmd_n.values())
+    cmd_wr = {c: cmd_w[c] / n for c, n in cmd_n.items() if n}
+    cmd_avg_turns = {c: cmd_t[c] / n for c, n in cmd_n.items() if n}
+    avg_turns = sum(cmd_t.values()) / total_n if total_n else 0
+    return cmd_wr, avg_turns, cmd_avg_turns
+
+
+def _new_advanced_tally():
+    return {
+        "nd_count": 0, "nd_wins": 0,          # in deck, not drawn
+        "drawn_played": 0,                    # drawn and played in the same game
+        "expected_sum": 0.0,                  # sum of pilot-commander winrate over played games
+        "first_n": 0, "first_w": 0,           # played while going first
+        "second_n": 0, "second_w": 0,         # played while going second
+        "turns_sum": 0, "turns_delta_sum": 0.0,
+    }
+
+
+def _tally_advanced(card_data, p, won, went_first, cmd_wr, turns_baseline):
+    """Accumulate the advanced metrics for one player-game into card_data
+    (name -> tally dict holding at least _new_advanced_tally's keys)."""
+    drawn = {c["name"] for c in p["cards_drawn"]}
+    played = {c["name"] for c in p["cards_played"]}
+    expected = cmd_wr.get(p.get("commander"), 0.5)
+    turns = p.get("turns", 0)
+
+    for c in p["cards_in_deck"]:
+        if c["name"] not in drawn:
+            d = card_data[c["name"]]
+            d["nd_count"] += 1
+            if won:
+                d["nd_wins"] += 1
+    for name in drawn & played:
+        card_data[name]["drawn_played"] += 1
+    for name in played:
+        d = card_data[name]
+        d["expected_sum"] += expected
+        d["turns_sum"] += turns
+        d["turns_delta_sum"] += turns - turns_baseline
+        if went_first is True:
+            d["first_n"] += 1
+            d["first_w"] += int(won)
+        elif went_first is False:
+            d["second_n"] += 1
+            d["second_w"] += int(won)
+
+
+def advanced_card_fields(d, drawn_count, drawn_wins, played_count, played_wins):
+    """Output fields for the advanced card metrics. None where undefined.
+
+    iwd              drawn WR minus WR when in the deck but not drawn
+                     (17lands' "improvement when drawn")
+    play_when_drawn  share of drawn games where the card was also played
+    wr_vs_expected   played WR minus the average winrate of the commanders
+                     that played it — card quality net of commander strength
+    played_turns_delta  avg turns when played minus the scope's average
+    """
+    def rate(n, total):
+        return round(n / total, 4) if total else None
+
+    drawn_wr = drawn_wins / drawn_count if drawn_count else None
+    nd_wr = d["nd_wins"] / d["nd_count"] if d["nd_count"] else None
+    return {
+        "not_drawn_count": d["nd_count"],
+        "not_drawn_winrate": rate(d["nd_wins"], d["nd_count"]),
+        "iwd": round(drawn_wr - nd_wr, 4) if drawn_wr is not None and nd_wr is not None else None,
+        "play_when_drawn": rate(d["drawn_played"], drawn_count),
+        "wr_vs_expected": round((played_wins - d["expected_sum"]) / played_count, 4) if played_count else None,
+        "first_played_count": d["first_n"],
+        "first_played_winrate": rate(d["first_w"], d["first_n"]),
+        "second_played_count": d["second_n"],
+        "second_played_winrate": rate(d["second_w"], d["second_n"]),
+        "played_avg_turns": round(d["turns_sum"] / played_count, 2) if played_count else None,
+        "played_turns_delta": round(d["turns_delta_sum"] / played_count, 2) if played_count else None,
+    }
+
+
 def aggregate_card_stats(games):
     """Compute per-card play rate, drawn rate, deck inclusion rate, and winrates."""
     total_games = len(games)
@@ -240,11 +331,15 @@ def aggregate_card_stats(games):
         "total_copies": 0,
         "drawn_instances": 0,
         "played_instances": 0,
+        **_new_advanced_tally(),
     })
+    cmd_wr, avg_turns, _ = _card_baselines(games)
 
     for game in games:
-        for p in game["players"]:
+        fp = first_player_index(game)
+        for i, p in enumerate(game["players"]):
             won = p["winner"]
+            _tally_advanced(card_data, p, won, None if fp is None else fp == i, cmd_wr, avg_turns)
 
             # Cards in deck
             for c in p["cards_in_deck"]:
@@ -609,16 +704,24 @@ def aggregate_commander_card_stats(games):
         "played": 0, "played_wins": 0,
         "total_copies": 0,
         "drawn_instances": 0, "played_instances": 0,
+        **_new_advanced_tally(),
     }))
     cmd_games = defaultdict(int)
+    # Within one commander the pilot is always that commander, so
+    # wr_vs_expected here is played WR minus the commander's own WR, and the
+    # turns baseline is that commander's average game.
+    cmd_wr, _, cmd_avg_turns = _card_baselines(games)
 
     for game in games:
-        for p in game["players"]:
+        fp = first_player_index(game)
+        for i, p in enumerate(game["players"]):
             cmd = p["commander"]
             if not cmd:
                 continue
             won = p["winner"]
             cmd_games[cmd] += 1
+            _tally_advanced(stats[cmd], p, won, None if fp is None else fp == i,
+                            cmd_wr, cmd_avg_turns.get(cmd, 0))
 
             for c in p["cards_in_deck"]:
                 stats[cmd][c["name"]]["deck"] += 1
@@ -658,7 +761,9 @@ def aggregate_commander_card_stats(games):
                 "played_instances": d["played_instances"],
                 "avg_copies": round(d["total_copies"] / d["deck"], 2) if d["deck"] > 0 else 0,
                 "deck_count": d["deck"],
+                "deck_winrate": round(d["deck_wins"] / d["deck"], 4) if d["deck"] > 0 else None,
                 "games": total,
+                **advanced_card_fields(d, d["drawn"], d["drawn_wins"], d["played"], d["played_wins"]),
             })
         card_list.sort(key=lambda x: x["inclusion_rate"], reverse=True)
         result[cmd] = card_list
