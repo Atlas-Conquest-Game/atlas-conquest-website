@@ -18,3 +18,10 @@
 #
 # Only run `playwright install chromium` if you want its bundled browser.
 playwright>=1.61.0
+
+# Google Sheets read/write for the league decklist sheet — see
+# scripts/sheets_auth.py. Desktop OAuth, so it needs a browser for the one-time
+# consent and is local-only by nature; if this ever moves into CI it wants a
+# service account instead, and these move to requirements.txt.
+gspread>=6.1.0
+google-auth-oauthlib>=1.2.0
