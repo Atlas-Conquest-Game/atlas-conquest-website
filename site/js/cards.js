@@ -32,18 +32,20 @@ const FEEDBACK_MIN = 5;
 
 // Each column:
 //   key      sort key, also the id stored in the visible-columns preference
-//   group    'card' or 'mulligan' — grouping in the Columns menu
+//   group    'card', 'mulligan' or 'feedback' — grouping in the Columns menu
 //   value    row -> sort value
 //   na       row -> true when the cell renders `--`. Keeps sort order in sync
 //            with what the user sees: NA rows always sink to the bottom.
 //   render   (row, ctx) -> cell HTML
 //   locked   always shown (the name column anchors the row and the hover preview)
+//   optional off by default even though its group ('card') is on by default
 //   deemph   de-emphasized styling
 //   string   sort alphabetically (ascending first)
 //
 // Mulligan fields live under row.mull (null when the card was never seen in an
 // opening hand) and feedback fields under row.fb (null when no rated game had the
-// card played), since each comes from a separate data file.
+// card played), since each comes from a separate data file. Inclusion trend
+// is computed at render time from the 1M and 3M periods (row.trend).
 const CARD_COLUMNS = [
   {
     key: 'name', label: 'Card', group: 'card', locked: true, string: true,
@@ -61,10 +63,31 @@ const CARD_COLUMNS = [
     render: c => c.type || '--',
   },
   {
+    key: 'cost', label: 'Cost', group: 'card', optional: true,
+    tooltip: 'Mana cost.',
+    value: c => c.cost,
+    render: c => (c.cost == null ? NA : c.cost),
+  },
+  {
     key: 'deck_rate', label: 'Included', group: 'card',
     tooltip: '% of decks that include this card. Sub-line shows deck count of total games.',
     value: c => c.deck_rate,
     render: (c, ctx) => `${pctCell(c.deck_rate || 0)}<div class="cell-sub">${c.deck_count || 0} of ${ctx.totalGames}</div>`,
+  },
+  {
+    key: 'inclusion_trend', label: 'Inclusion Trend', group: 'card', optional: true,
+    tooltip: 'Last month\'s inclusion rate minus the last 3 months\' — is the card rising or falling in the meta? Always 1M vs 3M, whatever period is selected; follows the map and commander filters. Sub-line shows 3M → 1M.',
+    value: c => c.trend && c.trend.delta,
+    render: c => c.trend
+      ? `${ppDeltaCell(c.trend.delta, 0.01)}<div class="cell-sub">${pctCell(c.trend.r3m)} → ${pctCell(c.trend.r1m)}</div>`
+      : NA,
+  },
+  {
+    key: 'deck_winrate', label: 'Deck WR', group: 'card', optional: true,
+    tooltip: 'Win rate of decks that include this card, whether or not it was drawn. Sub-line shows sample size.',
+    value: c => c.deck_winrate,
+    na: c => (c.deck_count || 0) < 5,
+    render: c => `${winrateCell(c.deck_winrate, c.deck_count || 0)}<div class="cell-sub">${c.deck_count || 0} decks</div>`,
   },
   {
     key: 'drawn_winrate', label: 'Drawn WR', group: 'card',
@@ -81,6 +104,38 @@ const CARD_COLUMNS = [
     render: c => `${winrateCell(c.played_winrate, c.played_count || 0)}<div class="cell-sub">${c.played_count || 0} games</div>`,
   },
   {
+    key: 'iwd', label: 'Improvement When Drawn', group: 'card', optional: true,
+    tooltip: 'Drawn WR minus the win rate when this card was in the deck but never drawn. Positive = drawing it actually helps, rather than it just sitting in strong decks. Needs 5+ games on each side. Sub-line shows the not-drawn WR.',
+    value: c => c.iwd,
+    na: c => (c.drawn_count || 0) < 5 || (c.not_drawn_count || 0) < 5,
+    render: c => ((c.drawn_count || 0) < 5 || (c.not_drawn_count || 0) < 5 || c.iwd == null)
+      ? `${NA}<div class="cell-sub">low sample</div>`
+      : `${winrateDeltaCell(c.iwd)}<div class="cell-sub">${pctCell(c.not_drawn_winrate)} not drawn (${c.not_drawn_count})</div>`,
+  },
+  {
+    key: 'wr_vs_expected', label: 'WR vs Commander', group: 'card', optional: true,
+    tooltip: 'Played WR minus the overall win rate of the commanders that played it — card strength with commander strength taken out. With a commander selected, it is Played WR minus that commander\'s win rate.',
+    value: c => c.wr_vs_expected,
+    na: c => (c.played_count || 0) < 5,
+    render: c => ((c.played_count || 0) < 5 || c.wr_vs_expected == null)
+      ? NA
+      : `${winrateDeltaCell(c.wr_vs_expected)}<div class="cell-sub">${c.played_count} games</div>`,
+  },
+  {
+    key: 'first_played_winrate', label: 'Played WR (1st)', group: 'card', optional: true,
+    tooltip: 'Win rate when this card was played by the player going first. Turn order is recorded or inferred from the mulligan; games where it cannot be determined are left out.',
+    value: c => c.first_played_winrate,
+    na: c => (c.first_played_count || 0) < 5,
+    render: c => `${c.first_played_winrate == null ? NA : winrateCell(c.first_played_winrate, c.first_played_count || 0)}<div class="cell-sub">${c.first_played_count || 0} games</div>`,
+  },
+  {
+    key: 'second_played_winrate', label: 'Played WR (2nd)', group: 'card', optional: true,
+    tooltip: 'Win rate when this card was played by the player going second. Turn order is recorded or inferred from the mulligan; games where it cannot be determined are left out.',
+    value: c => c.second_played_winrate,
+    na: c => (c.second_played_count || 0) < 5,
+    render: c => `${c.second_played_winrate == null ? NA : winrateCell(c.second_played_winrate, c.second_played_count || 0)}<div class="cell-sub">${c.second_played_count || 0} games</div>`,
+  },
+  {
     key: 'drawn_rate', label: 'Drawn Rate', group: 'card', deemph: true,
     tooltip: '% of games where this card was drawn. Sub-line shows game count of total.',
     value: c => c.drawn_rate,
@@ -93,10 +148,32 @@ const CARD_COLUMNS = [
     render: (c, ctx) => `${pctCell(c.played_rate)}<div class="cell-sub">${c.played_count || 0} of ${ctx.totalGames}</div>`,
   },
   {
+    key: 'play_when_drawn', label: 'Played When Drawn', group: 'card', optional: true,
+    tooltip: '% of games where this card was drawn that it was also played. Low = often stuck in hand (too expensive or too situational).',
+    value: c => c.play_when_drawn,
+    na: c => (c.drawn_count || 0) < 5,
+    render: c => `${(c.drawn_count || 0) < 5 || c.play_when_drawn == null ? NA : pctCell(c.play_when_drawn)}<div class="cell-sub">${c.drawn_count || 0} drawn</div>`,
+  },
+  {
     key: 'avg_copies', label: 'Avg Copies', group: 'card',
     tooltip: 'Average number of copies of this card per deck that includes it. Max 3.',
     value: c => c.avg_copies,
     render: c => (c.avg_copies || 0).toFixed(1),
+  },
+  {
+    key: 'copies_played', label: 'Copies Played', group: 'card', optional: true,
+    tooltip: 'Average copies of this card played per game in which it was played at least once.',
+    value: c => copiesPlayed(c),
+    render: c => copiesPlayed(c) == null ? NA : copiesPlayed(c).toFixed(2),
+  },
+  {
+    key: 'played_avg_turns', label: 'Avg Turns (Played)', group: 'card', optional: true,
+    tooltip: 'Average turns the player took in games where this card was played. Sub-line compares to the average game (that commander\'s average when one is selected). Longer = the card tends to show up in long games.',
+    value: c => c.played_avg_turns,
+    na: c => (c.played_count || 0) < 5,
+    render: c => ((c.played_count || 0) < 5 || c.played_avg_turns == null)
+      ? NA
+      : `${c.played_avg_turns.toFixed(1)}<div class="cell-sub">${c.played_turns_delta >= 0 ? '+' : ''}${c.played_turns_delta.toFixed(1)} vs avg</div>`,
   },
 
   // Mulligan — sample gates match the former Mulligan page.
@@ -191,8 +268,59 @@ const COLUMN_GROUPS = [
   { key: 'feedback', label: 'Feedback' },
 ];
 
-const DEFAULT_VISIBLE = CARD_COLUMNS.filter(col => col.group === 'card').map(col => col.key);
+const DEFAULT_VISIBLE = CARD_COLUMNS
+  .filter(col => col.group === 'card' && !col.optional)
+  .map(col => col.key);
 const COLUMNS_STORAGE_KEY = 'cards.visibleColumns';
+
+function copiesPlayed(c) {
+  return c.played_count ? (c.played_instances || 0) / c.played_count : null;
+}
+
+// Percentage-point change, colored beyond ±threshold (a fraction, 0.01 = 1pp).
+function ppDeltaCell(delta, threshold) {
+  if (delta == null) return NA;
+  const pp = (delta * 100).toFixed(1);
+  let cls = 'winrate-neutral';
+  if (delta > threshold) cls = 'winrate-positive';
+  else if (delta < -threshold) cls = 'winrate-negative';
+  return `<span class="${cls}">${delta > 0 ? '+' : ''}${pp}pp</span>`;
+}
+
+// Fields that take their per-commander value when a commander is selected.
+// Listed explicitly so a field missing from commander_card_stats.json shows as
+// '--' instead of silently falling back to the all-commanders value.
+const COMMANDER_SCOPED_FIELDS = [
+  'deck_count', 'deck_winrate', 'drawn_rate', 'drawn_winrate', 'played_rate',
+  'played_winrate', 'drawn_count', 'played_count', 'drawn_instances',
+  'played_instances', 'avg_copies', 'not_drawn_count', 'not_drawn_winrate', 'iwd',
+  'play_when_drawn', 'wr_vs_expected', 'first_played_count', 'first_played_winrate',
+  'second_played_count', 'second_played_winrate', 'played_avg_turns',
+  'played_turns_delta',
+];
+
+// Inclusion trend: 1M minus 3M inclusion for the current map (and commander).
+function inclusionTrendLookup() {
+  if (!visibleColumns.has('inclusion_trend')) return null;
+  const rates = period => {
+    const out = {};
+    if (currentCommander === 'all') {
+      (getPeriodData(appData.cardStats, period) || []).forEach(c => { out[c.name] = c.deck_rate; });
+    } else {
+      const data = getPeriodData(appData.commanderCardStats, period);
+      ((data && data[currentCommander]) || []).forEach(c => { out[c.name] = c.inclusion_rate; });
+    }
+    return out;
+  };
+  const r1m = rates('1m');
+  const r3m = rates('3m');
+  const trend = {};
+  Object.keys(r3m).forEach(name => {
+    const now = r1m[name] || 0;
+    trend[name] = { r1m: now, r3m: r3m[name], delta: now - r3m[name] };
+  });
+  return trend;
+}
 
 function mullCount(c, field) {
   return (c.mull && c.mull[field]) || 0;
@@ -353,18 +481,9 @@ function renderCardTable(stats) {
         .map(c => {
           const cc = cmdLookup[c.name];
           if (!cc) return null;
-          return {
-            ...c,
-            deck_rate: cc.inclusion_rate,
-            deck_count: cc.deck_count,
-            drawn_rate: cc.drawn_rate,
-            drawn_winrate: cc.drawn_winrate,
-            played_rate: cc.played_rate,
-            played_winrate: cc.played_winrate,
-            drawn_count: cc.drawn_count,
-            played_count: cc.played_count,
-            avg_copies: cc.avg_copies,
-          };
+          const row = { ...c, deck_rate: cc.inclusion_rate };
+          COMMANDER_SCOPED_FIELDS.forEach(f => { row[f] = cc[f]; });
+          return row;
         })
         .filter(Boolean);
     } else {
@@ -374,6 +493,9 @@ function renderCardTable(stats) {
     const metadata = getPeriodData(appData.metadata, currentPeriod);
     totalGames = metadata ? metadata.total_matches * 2 : 0;
   }
+
+  const trend = inclusionTrendLookup();
+  if (trend) merged = merged.map(c => ({ ...c, trend: trend[c.name] || null }));
 
   const mull = mulliganLookup();
   if (mull) merged = merged.map(c => ({ ...c, mull: mull[c.name] || null }));

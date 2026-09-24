@@ -96,6 +96,20 @@ Table with stacked sub-line counts. Every column except Card can be hidden from 
 | Played Rate | `played_rate` | `card_stats.json` | "N of Y" (played_count of total_games) | De-emphasized |
 | Avg Copies | `avg_copies` | `card_stats.json` | — | Normal |
 
+Optional card columns — part of the Card stats group but **off by default**; turn them on from the Columns menu:
+
+| Column | Sort Key | Source | Sub-line | Style |
+|--------|----------|--------|----------|-------|
+| Cost | `cost` | `card_stats.json` | — | Normal |
+| Inclusion Trend | `inclusion_trend` | 1M `deck_rate` − 3M `deck_rate` (frontend) | "3M% → 1M%" | Green > +1pp, red < −1pp. Always 1M vs 3M regardless of the period filter; follows map + commander |
+| Deck WR | `deck_winrate` | `card_stats.json` | "N decks" | Colored like winrates. "--" below 5 decks |
+| Improvement When Drawn | `iwd` | `card_stats.json` | not-drawn WR (count) | Green > +2pp, red < −2pp. "--" unless 5+ drawn and 5+ not-drawn games |
+| WR vs Commander | `wr_vs_expected` | `card_stats.json` | "N games" | Green > +2pp, red < −2pp. "--" below 5 played |
+| Played WR (1st) / (2nd) | `first_played_winrate` / `second_played_winrate` | `card_stats.json` | "N games" | Colored like winrates. "--" below 5 |
+| Played When Drawn | `play_when_drawn` | `card_stats.json` | "N drawn" | Normal. "--" below 5 drawn |
+| Copies Played | `copies_played` | `played_instances / played_count` (frontend) | — | Normal |
+| Avg Turns (Played) | `played_avg_turns` | `card_stats.json` | "±N vs avg" (`played_turns_delta`) | Normal. "--" below 5 played |
+
 ### Stat Definitions
 
 | Stat | Calculation | Min Sample | Caveats |
@@ -106,6 +120,11 @@ Table with stacked sub-line counts. Every column except Card can be hidden from 
 | Drawn Rate | `games_where_drawn / total_games` | 1 | De-emphasized. |
 | Played Rate | `games_where_played / total_games` | 1 | De-emphasized. A card can be drawn but not played. |
 | Avg Copies | `total_copies / deck_count` | 1 | Average copies per deck that includes this card. Max 3. |
+| Improvement When Drawn | `drawn_WR - WR(in deck, not drawn)` | 5 each side | 17lands-style. Separates "drawing it helps" from "it sits in strong decks". |
+| WR vs Commander | `(played_wins - Σ commander_WR) / played_count` | 5 | Commander WR from the same period × map. With a commander selected: played WR − that commander's WR. |
+| Played WR (1st/2nd) | played wins / played games, split by turn order | 5 | Turn order from `first_player`, else inferred from mulligan; undetermined games excluded. |
+| Played When Drawn | games drawn *and* played / games drawn | 5 | Low = often stuck in hand. |
+| Avg Turns (Played) | mean player turns in games where played | 5 | Delta vs average player-game (commander's average when one is selected). |
 
 ### Per-Commander View
 

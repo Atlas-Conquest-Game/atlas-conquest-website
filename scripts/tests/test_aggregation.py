@@ -988,3 +988,62 @@ class TestCardFeedback:
                                                 cmd1="Captain Greenbeard", cmd2="Captain Greenbeard")])
         h = _row(out["by_commander"]["Captain Greenbeard"], "Heal")
         assert h["any_ratings"] == 2 and h["played_ratings"] == 2 and h["opp_ratings"] == 2
+
+
+# ─── B-advanced: Advanced card metrics ────────────────────────────
+
+def _advanced_games():
+    """Game A: Alice (Greenbeard, going first) draws + plays Fire Bolt, draws
+    Shield Wall without playing it, takes 9 turns and wins. Game B: Alice has
+    Fire Bolt in deck, never draws it, and loses (Bob goes first)."""
+    a = make_clean_game(players_overrides=[{"turns": 9}])
+    b = make_clean_game(first_player="2", players_overrides=[
+        {"winner": False, "cards_drawn": [{"name": "Shield Wall", "count": 1}], "cards_played": []},
+        {"winner": True},
+    ])
+    return [a, b]
+
+
+def _advanced_row(games, name):
+    from pipeline.aggregation import advanced_card_fields
+    card_data, _ = aggregate_card_stats(games)
+    d = card_data[name]
+    return advanced_card_fields(d, d["drawn_count"], d["drawn_wins"], d["played_count"], d["played_wins"])
+
+
+class TestAdvancedCardMetrics:
+
+    def test_improvement_when_drawn(self):
+        fb = _advanced_row(_advanced_games(), "Fire Bolt")
+        assert fb["not_drawn_count"] == 1 and fb["not_drawn_winrate"] == 0.0
+        assert fb["iwd"] == 1.0  # drawn WR 100% vs not-drawn WR 0%
+
+    def test_iwd_none_without_not_drawn_games(self):
+        assert _advanced_row(_advanced_games(), "Ice Shard")["iwd"] is None
+
+    def test_play_when_drawn(self):
+        games = _advanced_games()
+        assert _advanced_row(games, "Fire Bolt")["play_when_drawn"] == 1.0
+        assert _advanced_row(games, "Shield Wall")["play_when_drawn"] == 0.0
+
+    def test_wr_vs_commander_baseline(self):
+        # Greenbeard wins 1 of 2 (baseline 0.5); Fire Bolt played once, won.
+        assert _advanced_row(_advanced_games(), "Fire Bolt")["wr_vs_expected"] == 0.5
+
+    def test_turn_order_split(self):
+        fb = _advanced_row(_advanced_games(), "Fire Bolt")
+        assert fb["first_played_count"] == 1 and fb["first_played_winrate"] == 1.0
+        assert fb["second_played_count"] == 0 and fb["second_played_winrate"] is None
+
+    def test_avg_turns_when_played(self):
+        # Player-game turns: 9, 5, 5, 5 -> average 6. Fire Bolt played at 9.
+        fb = _advanced_row(_advanced_games(), "Fire Bolt")
+        assert fb["played_avg_turns"] == 9 and fb["played_turns_delta"] == 3
+
+    def test_commander_scope(self):
+        rows = aggregate_commander_card_stats(_advanced_games())["Captain Greenbeard"]
+        fb = next(r for r in rows if r["name"] == "Fire Bolt")
+        assert fb["iwd"] == 1.0 and fb["wr_vs_expected"] == 0.5
+        assert fb["deck_winrate"] == 0.5
+        # Greenbeard's own average is (9 + 5) / 2 = 7.
+        assert fb["played_turns_delta"] == 2

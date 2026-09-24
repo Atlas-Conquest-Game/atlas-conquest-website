@@ -12,6 +12,7 @@ from pipeline.aggregation import (
     aggregate_matchups,
     aggregate_matchup_details,
     aggregate_card_stats,
+    advanced_card_fields,
     aggregate_trends,
     aggregate_first_turn,
     aggregate_commander_trends,
@@ -201,6 +202,9 @@ def build_and_write_all(games, cards_csv, commanders_csv, tokens_csv=()):
                     "avg_copies": round(data["total_copies"] / data["deck_count"], 2) if data["deck_count"] > 0 else 0,
                     "drawn_instances": data["drawn_instances"],
                     "played_instances": data["played_instances"],
+                    "cost": info.get("cost"),
+                    **advanced_card_fields(data, data["drawn_count"], data["drawn_wins"],
+                                           data["played_count"], data["played_wins"]),
                 })
             out["card_stats"][period_key][map_name] = card_stats
 
@@ -314,7 +318,8 @@ def build_and_write_all(games, cards_csv, commanders_csv, tokens_csv=()):
     write_json("duration_winrates.json", out["duration_wr"])
     write_json("action_winrates.json", out["action_wr"])
     write_json("turn_winrates.json", out["turn_wr"])
-    write_json("commander_card_stats.json", out["cmd_card_stats"])
+    # Compact: ~10 MB pretty-printed before the advanced card metrics.
+    write_json("commander_card_stats.json", out["cmd_card_stats"], compact=True)
     write_json("commander_winrate_trends.json", out["cmd_wr_trends"])
     write_json("mulligan_stats.json", out["mulligan_stats"])
     write_json("commander_mulligan_stats.json", out["cmd_mulligan_stats"])

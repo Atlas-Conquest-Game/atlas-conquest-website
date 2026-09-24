@@ -145,6 +145,15 @@ Reference files (`cards.json`, `commanders.json`) are flat arrays — no period/
 | `played_count` | int | Number of games where this card was played |
 | `played_instances` | int | Total copies played (counts each copy separately) |
 | `avg_copies` | float | `total_copies / deck_count` — average copies per deck that includes it |
+| `cost` | int | Mana cost from the card CSV (`null` if unknown) |
+| `not_drawn_count` / `not_drawn_winrate` | int / float | Games where the card was in the deck but never drawn, and the winrate in them |
+| `iwd` | float | Improvement when drawn: `drawn_winrate - not_drawn_winrate`. `null` if either side has no games |
+| `play_when_drawn` | float | Games where the card was drawn *and* played / games where it was drawn |
+| `wr_vs_expected` | float | `(played_wins - Σ pilot commander winrate) / played_count` — played WR net of commander strength. Commander winrates are from the same period × map |
+| `first_played_count` / `first_played_winrate` | int / float | Played by the player going first (turn order from `first_player`, else mulligan inference; undetermined games excluded) |
+| `second_played_count` / `second_played_winrate` | int / float | Same, going second |
+| `played_avg_turns` | float | Average turns the player took in games where the card was played |
+| `played_turns_delta` | float | `played_avg_turns` minus the average turns across all player-games in scope |
 
 ### commander_card_stats.json
 
@@ -182,6 +191,10 @@ Lazy-loaded on first commander selection. Nested `data[period][map][commander_na
 | `games` | int | Total games played with this commander (denominator for all rates) |
 | `deck_count` | int | Number of this commander's decks containing the card |
 | `avg_copies` | float | Average copies in decks that include it |
+| `deck_winrate` | float | Winrate of this commander's decks that include the card |
+| Advanced fields | | `not_drawn_*`, `iwd`, `play_when_drawn`, `wr_vs_expected`, `first_played_*`, `second_played_*`, `played_avg_turns`, `played_turns_delta` — as in `card_stats.json`, scoped to this commander. `wr_vs_expected` is played WR minus the commander's own winrate; `played_turns_delta` compares to the commander's average game. |
+
+Written compact (no indentation) — the file is several MB.
 
 ### trends.json
 ```json
