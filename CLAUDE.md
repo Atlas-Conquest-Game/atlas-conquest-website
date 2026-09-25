@@ -30,8 +30,9 @@ See [ARCHITECTURE.md](docs/ARCHITECTURE.md) for the full system design.
 | Cards | `site/cards.html` | `cards.js` | Card stats (deck/draw/play rates and winrates) plus optional mulligan and post-match feedback columns, viewer-selectable columns, per-commander breakdown |
 | Meta | `site/meta.html` | `meta.js` | Matchup heatmap, faction/commander popularity and winrate trends, first-turn advantage |
 | Decks | `site/decks.html` | `decks.js` + `deckcode.js` | Import (decode) and build (encode) deck codes, shareable via URL. Installable PWA with full offline support — see `site/manifest.webmanifest` + `site/service-worker.js`. |
+| Press | `site/press.html` | `press.js` | Press contact (press@atlas-conquest.com) and press kit. Assets live in a public Google Drive folder; `site/data/press_kit.json` lists each file's Drive id, and `python scripts/build_press_kit.py` downloads them to build previews (`site/assets/press/`) plus sizes/dimensions. Assets without an id are hidden. |
 
-**Navigation**: Primary nav (Home, Analytics, Decks) on all pages. Analytics pages also have a sub-nav (Overview, Commanders, Cards, Meta, Metagame, Goals). Analytics pages share `site/js/shared.js` (data loading, filters, helper functions). The Home and Decks pages are standalone.
+**Navigation**: Primary nav (Home, Analytics, Metagame, Decks, Articles, Press) on all pages. Analytics pages also have a sub-nav (Overview, Commanders, Cards, Meta, Metagame, Goals). Analytics pages share `site/js/shared.js` (data loading, filters, helper functions). The Home and Decks pages are standalone.
 
 **Card previews**: `site/js/cardpreview.js` is loaded by every page that shows card art. It owns the `#card-preview` hover popup's contents and placement, and pulls `site/data/mentions.json` so a card renders side-by-side with the cards it creates (tokens). Articles get the same treatment server-side via `scripts/build_articles.py`.
 

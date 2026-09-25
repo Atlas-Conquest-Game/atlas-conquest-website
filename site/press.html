@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Press — Atlas Conquest</title>
+  <meta name="description" content="Press contact and downloadable press kit for Atlas Conquest: Steam capsules, key art backgrounds, and logos.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Atlas Conquest">
+  <meta property="og:title" content="Press — Atlas Conquest">
+  <meta property="og:description" content="Press contact and downloadable press kit for Atlas Conquest.">
+  <meta property="og:image" content="https://atlas-conquest.com/assets/logo/atlas-conquest-icon.png">
+  <meta property="og:url" content="https://atlas-conquest.com/press.html">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/png" href="assets/logo/atlas-conquest-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/landing.css">
+  <link rel="stylesheet" href="css/press.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo/atlas-conquest-logo.png" alt="Atlas Conquest" width="178" height="28" class="nav-logo-wordmark">
+      </a>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+      <label for="nav-toggle" class="nav-burger" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link" data-nav="home">Home</a>
+        <a href="analytics.html" class="nav-link" data-nav="analytics">Analytics</a>
+        <a href="metagame.html" class="nav-link" data-nav="metagame">Metagame</a>
+        <a href="decks.html" class="nav-link" data-nav="decks">Decks</a>
+        <a href="articles/" class="nav-link" data-nav="articles">Articles</a>
+        <a href="press.html" class="nav-link active" data-nav="press" aria-current="page">Press</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero hero-compact">
+    <div class="container">
+      <h1 class="hero-title">Press</h1>
+      <p class="hero-subtitle">Contact and assets for coverage of Atlas Conquest, a competitive hex-grid deck builder.</p>
+    </div>
+  </header>
+
+  <main class="press container">
+
+    <section class="press-section" id="contact" aria-labelledby="contact-title">
+      <h2 class="press-heading" id="contact-title">Contact</h2>
+      <div class="press-contact">
+        <div class="press-contact-main">
+          <p class="press-contact-label">Press, interviews, and review keys</p>
+          <a class="press-email" href="mailto:press@atlas-conquest.com">press@atlas-conquest.com</a>
+          <div class="press-contact-actions">
+            <a class="btn btn-primary" href="mailto:press@atlas-conquest.com?subject=Atlas%20Conquest%20press%20inquiry">Email us</a>
+            <button type="button" class="btn btn-ghost" id="copy-email" data-email="press@atlas-conquest.com">Copy address</button>
+          </div>
+        </div>
+        <p class="press-contact-alt">
+          Prefer chat? The team is also on the
+          <a href="https://discord.gg/7QaEY4yJH5" target="_blank" rel="noopener">Atlas Conquest Discord</a>.
+        </p>
+      </div>
+    </section>
+
+    <section class="press-section" id="press-kit" aria-labelledby="kit-title">
+      <div class="press-kit-head">
+        <div>
+          <h2 class="press-heading" id="kit-title">Press kit</h2>
+          <p class="press-kit-lead">
+            Steam capsules, key art, and logos, free to use in coverage of Atlas Conquest.
+            Please don't alter the logo.
+          </p>
+        </div>
+        <a class="btn btn-primary press-kit-all" id="press-kit-folder" href="https://drive.google.com/drive/folders/1owXOd8_Qr3nCKfaCAkCle9-4bRnG-O62" target="_blank" rel="noopener">
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+          Download full press kit
+        </a>
+      </div>
+
+      <!-- Filled from data/press_kit.json by js/press.js -->
+      <div id="press-kit-groups" class="press-kit-groups">
+        <p class="press-kit-empty">Loading assets…</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="landing-footer">
+    <div class="container">
+      <div class="landing-footer-inner">
+        <div class="landing-footer-brand">Atlas Conquest</div>
+        <p class="landing-footer-text">A competitive hex-grid deck builder.</p>
+        <div class="landing-footer-links">
+          <a href="https://discord.gg/7QaEY4yJH5" target="_blank" rel="noopener">Discord</a>
+          <span class="landing-footer-dot"></span>
+          <a href="press.html">Press</a>
+          <span class="landing-footer-dot"></span>
+          <a href="privacy.html">Privacy</a>
+          <span class="landing-footer-dot"></span>
+          <a href="terms.html">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/press.js"></script>
+</body>
+</html>
