@@ -57,16 +57,23 @@ async function renderPressKit() {
   }
   if (kit.folder_url) document.getElementById('press-kit-folder').href = kit.folder_url;
   // Only list assets that are actually downloadable and have a built preview;
-  // anything else is still reachable through the full-kit folder link.
+  // anything else is still reachable through the full-kit folder link. A group
+  // flagged `coming_soon` in the manifest shows a placeholder until it has
+  // ready items of its own.
   const ready = item => item.preview && (item.files || []).some(f => f.id);
   const groups = (kit.groups || [])
     .map(g => ({ ...g, items: (g.items || []).filter(ready) }))
-    .filter(g => g.items.length);
+    .filter(g => g.items.length || g.coming_soon);
+  const comingSoon = title => `
+    <div class="press-coming-soon" role="note">
+      <span class="press-coming-soon-label">Coming soon</span>
+      <span class="press-coming-soon-text">${escapeHTML(title)} will be added here shortly.</span>
+    </div>`;
   root.innerHTML = groups.length
     ? groups.map(g => `
       <section class="press-group">
         <h3 class="press-group-title">${escapeHTML(g.title)}</h3>
-        <div class="press-grid">${g.items.map(renderItem).join('')}</div>
+        ${g.items.length ? `<div class="press-grid">${g.items.map(renderItem).join('')}</div>` : comingSoon(g.title)}
       </section>`).join('')
     : '<p class="press-kit-empty">Individual files are coming soon — the full press kit is available above.</p>';
 }
