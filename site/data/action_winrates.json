@@ -2945,16 +2945,16 @@
             "games": 42
           },
           {
-            "winrate": 0.3636,
-            "games": 110
+            "winrate": 0.3611,
+            "games": 108
           },
           {
             "winrate": 0.6038,
             "games": 53
           },
           {
-            "winrate": 0.7241,
-            "games": 29
+            "winrate": 0.75,
+            "games": 28
           },
           {
             "winrate": 0.5,
@@ -3015,16 +3015,16 @@
             "games": 27
           },
           {
-            "winrate": 0.6667,
-            "games": 39
+            "winrate": 0.6579,
+            "games": 38
           },
           {
-            "winrate": 0.4706,
-            "games": 17
+            "winrate": 0.5,
+            "games": 16
           },
           {
-            "winrate": 0.4667,
-            "games": 15
+            "winrate": 0.5,
+            "games": 12
           }
         ],
         "Macks Speed": [
@@ -3051,24 +3051,24 @@
         ],
         "Executor Ginn": [
           {
-            "winrate": 0.1,
-            "games": 10
+            "winrate": 0.0,
+            "games": 8
           },
           {
-            "winrate": 0.2,
-            "games": 25
+            "winrate": 0.2083,
+            "games": 24
           },
           {
-            "winrate": 0.7222,
-            "games": 18
-          },
-          {
-            "winrate": 0.9091,
-            "games": 11
+            "winrate": 0.75,
+            "games": 16
           },
           {
             "winrate": 0.9,
             "games": 10
+          },
+          {
+            "winrate": 0.875,
+            "games": 8
           }
         ],
         "Starwise Luna": [
@@ -3316,8 +3316,8 @@
             "games": 22
           },
           {
-            "winrate": 0.5,
-            "games": 6
+            "winrate": 0.6,
+            "games": 5
           },
           {
             "winrate": 0.5,
@@ -3334,16 +3334,16 @@
             "games": 11
           },
           {
-            "winrate": 0.6875,
-            "games": 16
+            "winrate": 0.6667,
+            "games": 15
           },
           {
-            "winrate": 0.4444,
-            "games": 9
+            "winrate": 0.5,
+            "games": 8
           },
           {
-            "winrate": 0.7143,
-            "games": 7
+            "winrate": 0.6667,
+            "games": 6
           }
         ],
         "Starwise Luna": [
@@ -3484,12 +3484,12 @@
             "games": 4
           },
           {
-            "winrate": 0.125,
-            "games": 8
+            "winrate": 0.1429,
+            "games": 7
           },
           {
-            "winrate": 0.6667,
-            "games": 6
+            "winrate": 0.75,
+            "games": 4
           },
           {
             "winrate": 1.0,
@@ -3497,7 +3497,7 @@
           },
           {
             "winrate": 1.0,
-            "games": 2
+            "games": 1
           }
         ],
         "Lubela, Tender of the Wilds": [
@@ -3715,8 +3715,8 @@
             "games": 14
           },
           {
-            "winrate": 0.4333,
-            "games": 30
+            "winrate": 0.4138,
+            "games": 29
           },
           {
             "winrate": 0.7059,
@@ -3885,50 +3885,6 @@
             "games": 0
           }
         ],
-        "Elyse of the Order": [
-          {
-            "winrate": 0.0,
-            "games": 3
-          },
-          {
-            "winrate": 0.5,
-            "games": 8
-          },
-          {
-            "winrate": 0.6667,
-            "games": 12
-          },
-          {
-            "winrate": 0.3333,
-            "games": 3
-          },
-          {
-            "winrate": 0.2,
-            "games": 5
-          }
-        ],
-        "Executor Ginn": [
-          {
-            "winrate": 0.0,
-            "games": 4
-          },
-          {
-            "winrate": 0.3333,
-            "games": 9
-          },
-          {
-            "winrate": 0.6667,
-            "games": 3
-          },
-          {
-            "winrate": 1.0,
-            "games": 4
-          },
-          {
-            "winrate": 1.0,
-            "games": 3
-          }
-        ],
         "Kai, Longcount Shaman": [
           {
             "winrate": 0.3333,
@@ -3951,6 +3907,28 @@
             "games": 0
           }
         ],
+        "Executor Ginn": [
+          {
+            "winrate": 0.0,
+            "games": 3
+          },
+          {
+            "winrate": 0.3333,
+            "games": 9
+          },
+          {
+            "winrate": 0.6667,
+            "games": 3
+          },
+          {
+            "winrate": 1.0,
+            "games": 3
+          },
+          {
+            "winrate": 1.0,
+            "games": 3
+          }
+        ],
         "Starwise Luna": [
           {
             "winrate": 0.0,
@@ -3971,6 +3949,28 @@
           {
             "winrate": 1.0,
             "games": 5
+          }
+        ],
+        "Elyse of the Order": [
+          {
+            "winrate": 0.0,
+            "games": 3
+          },
+          {
+            "winrate": 0.5,
+            "games": 8
+          },
+          {
+            "winrate": 0.6667,
+            "games": 12
+          },
+          {
+            "winrate": 0.3333,
+            "games": 3
+          },
+          {
+            "winrate": 0.25,
+            "games": 4
           }
         ],
         "Lubela, Tender of the Wilds": [
@@ -4056,8 +4056,8 @@
             "games": 13
           },
           {
-            "winrate": 0.2162,
-            "games": 37
+            "winrate": 0.2222,
+            "games": 36
           },
           {
             "winrate": 0.7143,
@@ -4074,8 +4074,8 @@
         ],
         "Executor Ginn": [
           {
-            "winrate": 0.5,
-            "games": 2
+            "winrate": 0.0,
+            "games": 1
           },
           {
             "winrate": 0.125,
@@ -4090,8 +4090,8 @@
             "games": 3
           },
           {
-            "winrate": 0.8,
-            "games": 5
+            "winrate": 0.75,
+            "games": 4
           }
         ],
         "Macks Speed": [
@@ -4244,8 +4244,8 @@
             "games": 5
           },
           {
-            "winrate": 0.3333,
-            "games": 3
+            "winrate": 0.5,
+            "games": 2
           }
         ],
         "Rosirix the Witch": [
