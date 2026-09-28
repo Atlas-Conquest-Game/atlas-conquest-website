@@ -1,7 +1,7 @@
 [
   {
     "name": "Captain Greenbeard",
-    "text": "[Cooldown 2]: Your minions in enemy territory have Haste this turn.",
+    "text": "[Cooldown 2]: Minions you control in enemy territory have Haste until end of the turn.",
     "subtype": "Goblin",
     "dominion": 5,
     "intellect": 7,
@@ -17,7 +17,7 @@
   },
   {
     "name": "Elber, Jungle Emissary",
-    "text": "When you play a card that costs 8 or more, heal for 4.",
+    "text": "When you play a card that costs 8 or more, Elber, Jungle Emissary heals <sprite name=\"health_4\">.",
     "subtype": "Beast",
     "dominion": 7,
     "intellect": 7,
@@ -28,12 +28,12 @@
     "art": "assets/commanders/elber-jungle-emissary.jpg",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "mentions": []
   },
   {
     "name": "Elyse of the Order",
-    "text": "[Warmup 6]: Summon a Lucian Soldier. Warmup is reduced by 1 whenever you play a minion.",
+    "text": "[Warmup 6]: Summon a Lucian Soldier. When you play a minion, reduce Warmup by 1.",
     "subtype": "Human",
     "dominion": 6,
     "intellect": 8,
@@ -44,14 +44,14 @@
     "art": "assets/commanders/elyse-of-the-order.jpg",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "mentions": [
       "Lucian Soldier"
     ]
   },
   {
     "name": "Executor Ginn",
-    "text": "[<sprite name=\"mana_2\">, Cooldown 1]: Destroy an ally minion and convert the tile it occupied to a village.",
+    "text": "[Pay <sprite name=\"mana_2\">, Cooldown 1]: Sacrifice target minion and convert the tile it occupied to a Village.",
     "subtype": "Human",
     "dominion": 6,
     "intellect": 7,
@@ -62,7 +62,7 @@
     "art": "assets/commanders/executor-ginn.jpg",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "mentions": []
   },
   {
@@ -85,7 +85,7 @@
   },
   {
     "name": "It That Weaves",
-    "text": "[Range 4, Cooldown 2]: Pull a minion in a straight line to It That Weaves. It has -<sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\"> until the end of its turn.",
+    "text": "[Cooldown 2, Range 4]: Pull target minion in a straight line to It That Weaves. It has -<sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\"> until the end of its controller's turn.",
     "subtype": "Arachnid",
     "dominion": 5,
     "intellect": 7,
@@ -96,12 +96,12 @@
     "art": "assets/commanders/it-that-weaves.jpg",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "mentions": []
   },
   {
     "name": "Jagris, the Huntsman",
-    "text": "[Range 2, Cooldown 3]: A minion gains <sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\">.",
+    "text": "[Cooldown 3, Range 2]: Target minion gains +<sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\">.",
     "subtype": "Human",
     "dominion": 5,
     "intellect": 8,
@@ -112,12 +112,12 @@
     "art": "assets/commanders/jagris-the-huntsman.jpg",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "mentions": []
   },
   {
     "name": "Kai, Longcount Shaman",
-    "text": "[Warmup 25]: An enemy commander gains \"At the start of turn, take 5 Damage\". When you cast a Spell, reduce Warmup by 1.",
+    "text": "[Warmup 25]: Enemy commanders gain 5 Doom. When you play a spell, reduce Warmup by 1.",
     "subtype": "Human",
     "dominion": 6,
     "intellect": 10,
@@ -128,12 +128,12 @@
     "art": "assets/commanders/kai-longcount-shaman.jpg",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "mentions": []
   },
   {
     "name": "Lazim, Thief of Gods",
-    "text": "Your deck may contain cards from any god, but not neutral cards.",
+    "text": "Your deck may contain cards from any Patron, but not Neutral cards.",
     "subtype": "Human",
     "dominion": 6,
     "intellect": 8,
@@ -144,12 +144,12 @@
     "art": "assets/commanders/lazim-thief-of-gods.jpg",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "mentions": []
   },
   {
     "name": "Lubela, Tender of the Wilds",
-    "text": "When you play a minion in your territory, it gains <sprite name=\"health_2\"> until the start of your next turn.",
+    "text": "When you play a minion in your territory, it gains +<sprite name=\"health_2\"> until the start of your next turn.",
     "subtype": "Human",
     "dominion": 6,
     "intellect": 8,
@@ -160,12 +160,12 @@
     "art": "assets/commanders/lubela-tender-of-the-wilds.jpg",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "mentions": []
   },
   {
     "name": "Macks Speed",
-    "text": "[Cooldown 3, Range 2]: Target character gains <sprite name=\"speed_2\"> and Trample until end of turn.",
+    "text": "[Cooldown 3, Range 2]: Target character gains +<sprite name=\"speed_2\"> and Trample until end of the turn.",
     "subtype": "Human",
     "dominion": 5,
     "intellect": 7,
@@ -176,15 +176,15 @@
     "art": "assets/commanders/macks-speed.jpg",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "mentions": []
   },
   {
     "name": "Milo Sunstone",
-    "text": "[Cooldown 2, Range 3]: Heal a character for 3.",
+    "text": "[Cooldown 2, Range 3]: Target character heals <sprite name=\"health_3\">.",
     "subtype": "Dwarf",
     "dominion": 6,
-    "intellect": 9,
+    "intellect": 7,
     "speed": 1,
     "health": 32,
     "patron": "Lucia",
@@ -197,7 +197,7 @@
   },
   {
     "name": "Newhaven Township",
-    "text": "Realmbound. Your Village tiles produce an additional mana. You may claim uncontested tiles at a distance.",
+    "text": "Realmbound. Your Village tiles produce an additional Mana. You may claim uncontested tiles at a distance.",
     "subtype": "Village",
     "dominion": 5,
     "intellect": 7,
@@ -208,7 +208,7 @@
     "art": "assets/commanders/newhaven-township.jpg",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "mentions": []
   },
   {
@@ -224,12 +224,12 @@
     "art": "assets/commanders/rosirix-the-witch.jpg",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "mentions": []
   },
   {
     "name": "Soultaker Viessa",
-    "text": "[Warmup 3, Range 2]: Deal 2 Damage to a Character and heal 2 Health to Soultaker Viessa.",
+    "text": "[Warmup 3, Range 2]: Deal 2 damage to target character and Soultaker Viessa heals <sprite name=\"health_2\">.",
     "subtype": "Vampire",
     "dominion": 6,
     "intellect": 8,
@@ -240,7 +240,7 @@
     "art": "assets/commanders/soultaker-viessa.jpg",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "mentions": []
   },
   {
