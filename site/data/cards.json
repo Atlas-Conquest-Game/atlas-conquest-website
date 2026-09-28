@@ -2,7 +2,7 @@
   {
     "name": "Acid Rain",
     "type": "Spell",
-    "text": "[Range 4]: Convert a tile to a Toxic Swamp, that adds 1 Poison to characters on it. Destroy the enemy commander's Weapon.",
+    "text": "[Range 4]: Convert target tile to a Toxic Swamp, where characters gain 1 Poison. Destroy enemy commanders' Weapons.",
     "subtype": "",
     "cost": 1,
     "attack": null,
@@ -22,7 +22,7 @@
   {
     "name": "Acrid Potion",
     "type": "Spell",
-    "text": "[Range 2]: Target minion gains <sprite name=\"power_1\">, Fatal, and Lifelink.",
+    "text": "[Range 2]: Target minion gains +<sprite name=\"power_1\">, Fatal, and Lifelink.",
     "subtype": "Potion",
     "cost": 2,
     "attack": null,
@@ -42,7 +42,7 @@
   {
     "name": "Action Surge",
     "type": "Spell",
-    "text": "A friendly character gains +1 movement, and regains their Attack. Draw a card.",
+    "text": "Target character you control gains +1 Movement and regains an Attack. Draw a card.",
     "subtype": "",
     "cost": 2,
     "attack": null,
@@ -54,7 +54,7 @@
     "art": null,
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Deploy"
     ],
@@ -76,7 +76,7 @@
     "art": "CardScreenshots/Alchemist.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -84,7 +84,7 @@
   {
     "name": "Ancient Golem",
     "type": "Minion",
-    "text": "Costs <sprite name=\"mana_1\"> less to play for each card in your hand.",
+    "text": "Costs <sprite name=\"mana_1\"> less per card in your hand.",
     "subtype": "Mech",
     "cost": 11,
     "attack": 9,
@@ -104,7 +104,7 @@
   {
     "name": "Angelic Captain",
     "type": "Minion",
-    "text": "Flying. Arrival AND at the beginning of your turn: ally minions within Range 4 gain +1 Movement this turn.",
+    "text": "Flying. Arrival AND at the start of your turn: Ally minions within Range 4 gain +1 Movement until end of the turn.",
     "subtype": "Angel",
     "cost": 4,
     "attack": 4,
@@ -124,7 +124,7 @@
   {
     "name": "Angel's Grace",
     "type": "Spell",
-    "text": "[Range 4]: A character gains +4 movement this turn. If it's a minion, it gains Flying this turn.",
+    "text": "[Range 4]: Target character gains +4 Movement until end of the turn. If it's a minion, it gains Flying until end of the turn.",
     "subtype": "",
     "cost": 1,
     "attack": null,
@@ -136,7 +136,7 @@
     "art": "CardScreenshots/Angels-Grace.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -144,7 +144,7 @@
   {
     "name": "Apothecary",
     "type": "Minion",
-    "text": "Realmbound. Whenever you play a Potion, draw a card.",
+    "text": "Realmbound. When you play a Potion, draw a card.",
     "subtype": "Human",
     "cost": 3,
     "attack": 2,
@@ -156,7 +156,7 @@
     "art": "CardScreenshots/Apothecary.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -176,7 +176,7 @@
     "art": "CardScreenshots/Apprentice-Mage.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -184,7 +184,7 @@
   {
     "name": "Archpaladin Erix",
     "type": "Minion",
-    "text": "Legendary. Sentinel. Flying. Arrival: Set the power of ALL minions equal to their health.",
+    "text": "Legendary. Flying. Sentinel. Arrival: Set the Power of ALL minions equal to their Health.",
     "subtype": "Dwarf",
     "cost": 6,
     "attack": 2,
@@ -204,7 +204,7 @@
   {
     "name": "Asera",
     "type": "Minion",
-    "text": "Legendary. [<sprite name=\"mana_1\">]: Draw a card, deal 2 damage to Asera.",
+    "text": "Legendary. [Pay <sprite name=\"mana_1\">]: Draw a card, deal 2 damage to Asera.",
     "subtype": "Dragon",
     "cost": 10,
     "attack": 5,
@@ -216,7 +216,7 @@
     "art": "CardScreenshots/Asera.png",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -236,7 +236,7 @@
     "art": "CardScreenshots/Assistant-Chemist.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -244,7 +244,7 @@
   {
     "name": "Atlas, First to Walk",
     "type": "Minion",
-    "text": "Legendary. Trample. Haste. Atlas gains <sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\"> when a tile is unclaimed. Arrival: Unclaim ALL tiles within Range 2.",
+    "text": "Legendary. Trample. Haste. Atlas gains +<sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\"> when a tile is unclaimed. Arrival: Unclaim ALL tiles within Range 2.",
     "subtype": "Titan",
     "cost": 15,
     "attack": 10,
@@ -264,7 +264,7 @@
   {
     "name": "Baby Raptor",
     "type": "Minion",
-    "text": "Has +<sprite name=\"power_2\"> and +<sprite name=\"speed_2\"> if you control at least two other Beasts.",
+    "text": "Has +<sprite name=\"power_2\"> and +<sprite name=\"speed_2\"> if you control at least 2 other Beasts.",
     "subtype": "Beast",
     "cost": 1,
     "attack": 1,
@@ -276,7 +276,7 @@
     "art": "CardScreenshots/Baby-Raptor.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Beasts"
     ],
@@ -286,7 +286,7 @@
   {
     "name": "Badland Mercenary",
     "type": "Minion",
-    "text": "[Cooldown 2, Range 1]: Deal 1 damage to an ally minion and give it <sprite name=\"power_2\">.",
+    "text": "[Cooldown 2, Range 1]: Deal 1 damage to target ally minion and give it +<sprite name=\"power_2\">.",
     "subtype": "Human",
     "cost": 1,
     "attack": 2,
@@ -298,7 +298,7 @@
     "art": "CardScreenshots/Badland-Mercenary.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -306,7 +306,7 @@
   {
     "name": "Battlefield Savior",
     "type": "Minion",
-    "text": "Sentinel. [Arrival, Range 3]: Heal a character for 5.",
+    "text": "Sentinel. [Arrival, Range 3]: Target character heals <sprite name=\"health_5\">.",
     "subtype": "Human",
     "cost": 3,
     "attack": 3,
@@ -318,7 +318,7 @@
     "art": "CardScreenshots/Battlefield-Savior.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -326,7 +326,7 @@
   {
     "name": "Battlefield Webspinner",
     "type": "Minion",
-    "text": "Deploy. [Arrival, Pay <sprite name=\"mana_1\">]: Stun an adjacent minion.",
+    "text": "Deploy. [Arrival, Pay <sprite name=\"mana_1\">]: Stun target adjacent minion.",
     "subtype": "Arachnid",
     "cost": 3,
     "attack": 2,
@@ -338,7 +338,7 @@
     "art": "CardScreenshots/Battlefield-Webspinner.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -346,7 +346,7 @@
   {
     "name": "Beast Trainer",
     "type": "Minion",
-    "text": "[Arrival, Range 1]: Summon two Beasts from your deck that cost 2 or less. They have Deploy.",
+    "text": "[Arrival, Range 1]: Summon 2 Beasts from your deck that cost 2 or less. They have Deploy.",
     "subtype": "Human",
     "cost": 4,
     "attack": 2,
@@ -358,7 +358,7 @@
     "art": "CardScreenshots/Beast-Trainer.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -366,7 +366,7 @@
   {
     "name": "Big Game Hunter",
     "type": "Minion",
-    "text": "[Arrival, Range 3]: Destroy an enemy minion with Power <sprite name=\"power_5\"> or more.",
+    "text": "[Arrival, Range 3]: Destroy target enemy minion with Power <sprite name=\"power_5\"> or more.",
     "subtype": "Dwarf",
     "cost": 4,
     "attack": 4,
@@ -378,7 +378,7 @@
     "art": "CardScreenshots/Big-Game-Hunter.png",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -386,7 +386,7 @@
   {
     "name": "Black Dragon",
     "type": "Minion",
-    "text": "Flying. Fatal. [Warmup 3, Range 2]: Destroy a Minion.",
+    "text": "Flying. Fatal. [Warmup 3, Range 2]: Destroy target minion.",
     "subtype": "Dragon",
     "cost": 5,
     "attack": 7,
@@ -428,7 +428,7 @@
   {
     "name": "Blessed Force",
     "type": "Spell",
-    "text": "Destroy all minions with Power <sprite name=\"power_3\"> or less within Range 3.",
+    "text": "Destroy ALL minions with Power <sprite name=\"power_3\"> or less within Range 3.",
     "subtype": "",
     "cost": 5,
     "attack": null,
@@ -440,7 +440,7 @@
     "art": "CardScreenshots/Blessed-Force.png",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -448,7 +448,7 @@
   {
     "name": "Blinkshot",
     "type": "Minion",
-    "text": "[Cooldown 2, Range 2]: Deal 4 damage. [Cooldown 2, Range 2]: Teleport.",
+    "text": "[Cooldown 2, Range 2]: Deal 4 damage to target character. [Cooldown 2, Range 2]: Teleport.",
     "subtype": "Arachnid",
     "cost": 6,
     "attack": 4,
@@ -470,7 +470,7 @@
   {
     "name": "Bloodrush",
     "type": "Spell",
-    "text": "Your characters gain 2 Movement. Your commander loses 2 life. Draw a card.",
+    "text": "Your characters gain +2 Movement. Your commander takes 2 damage. Draw a card.",
     "subtype": "",
     "cost": 1,
     "attack": null,
@@ -482,7 +482,7 @@
     "art": "CardScreenshots/Bloodrush.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -490,7 +490,7 @@
   {
     "name": "Blue Dragon",
     "type": "Minion",
-    "text": "Flying. Spellcaster. [Warmup 3, Range 2]: Deal 2 damage to all characters within 1 Radius and Stun any minions.",
+    "text": "Flying. Spellcaster. [Warmup 3, Range 2]: Deal 2 damage to ALL characters within 1 Radius and Stun any minions.",
     "subtype": "Dragon",
     "cost": 4,
     "attack": 4,
@@ -502,7 +502,7 @@
     "art": "CardScreenshots/Blue-Dragon.png",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -530,7 +530,7 @@
   {
     "name": "Brash Outfitter",
     "type": "Minion",
-    "text": "Minions in your hand cost <sprite name=\"mana_1\"> less. When you play a Minion whose card costs 3 or more, deal 1 damage to it.",
+    "text": "Minions in your hand cost <sprite name=\"mana_1\"> less. When you play a minion whose card costs 3 or more, deal 1 damage to it.",
     "subtype": "Goblin",
     "cost": 2,
     "attack": 3,
@@ -542,7 +542,7 @@
     "art": "CardScreenshots/Brash-Outfitter.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -550,7 +550,7 @@
   {
     "name": "Burgeon",
     "type": "Spell",
-    "text": "Claim an uncontested tile adjacent to your territory. Add a copy of this to your hand with Ethereal.",
+    "text": "Claim target uncontested tile adjacent to your territory. Add a copy of this to your hand with Ethereal.",
     "subtype": "",
     "cost": 2,
     "attack": null,
@@ -570,7 +570,7 @@
   {
     "name": "Call of the Jungle",
     "type": "Spell",
-    "text": "[Range 3]: An ally beast gains <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> and gains Trample.",
+    "text": "[Range 3]: Target ally Beast gains +<sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> and Trample.",
     "subtype": "",
     "cost": 3,
     "attack": null,
@@ -582,7 +582,7 @@
     "art": "CardScreenshots/Call-of-the-Jungle.png",
     "art_type": "AI_GENERATED",
     "human_art": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Beasts"
     ],
@@ -592,7 +592,7 @@
   {
     "name": "Champion of the Wilds",
     "type": "Minion",
-    "text": "[Cooldown 1]: Claim the current tile, if it's adjacent to your territory. (Can claim enemy tiles)",
+    "text": "[Cooldown 1]: Claim the current tile if it's adjacent to your territory. (Can claim enemy tiles)",
     "subtype": "Beast",
     "cost": 5,
     "attack": 3,
@@ -604,7 +604,7 @@
     "art": "CardScreenshots/Champion-of-the-Wilds.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -612,7 +612,7 @@
   {
     "name": "Chant of the Old Ones",
     "type": "Spell",
-    "text": "[Range 3]: Add 3 Poison to a character. Your commander heals 3. Draw 3 minions from your deck, they cost 3 less.",
+    "text": "[Range 3]: Target character gains 3 Poison. Your commander heals <sprite name=\"health_3\">. Draw 3 minions from your deck, they cost <sprite name=\"mana_3\"> less.",
     "subtype": "",
     "cost": 9,
     "attack": null,
@@ -644,7 +644,7 @@
     "art": "CardScreenshots/Charge-Up.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -652,7 +652,7 @@
   {
     "name": "Charger",
     "type": "Minion",
-    "text": "[Warmup 1]: An adjacent ally gains +1 movement and regains their Attack.",
+    "text": "[Warmup 1]: Target adjacent ally gains +1 Movement and regains an Attack.",
     "subtype": "Mech",
     "cost": 2,
     "attack": 2,
@@ -664,7 +664,7 @@
     "art": "CardScreenshots/Charger.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -672,7 +672,7 @@
   {
     "name": "Citadel Lord",
     "type": "Minion",
-    "text": "Arrival: Gain <sprite name=\"power_2\"> and <sprite name=\"health_2\"> for each ally minion within Range 4.",
+    "text": "Arrival: Gain +<sprite name=\"power_2\"> and +<sprite name=\"health_2\"> per ally minion within Range 4.",
     "subtype": "Giant",
     "cost": 5,
     "attack": 3,
@@ -684,7 +684,7 @@
     "art": "CardScreenshots/Citadel-Lord.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -704,7 +704,7 @@
     "art": null,
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -712,7 +712,7 @@
   {
     "name": "Cloning Magic",
     "type": "Spell",
-    "text": "[Range 2]: Shuffle three copies of target minion into your deck.",
+    "text": "[Range 2]: Shuffle 3 copies of target minion into your deck.",
     "subtype": "Psychic",
     "cost": 1,
     "attack": null,
@@ -724,7 +724,7 @@
     "art": "CardScreenshots/Cloning-Magic.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -732,7 +732,7 @@
   {
     "name": "Combust",
     "type": "Spell",
-    "text": "An ally minion deals damage equal to its power to adjacent characters, then dies.",
+    "text": "Target ally minion deals damage equal to its Power to adjacent characters, then dies.",
     "subtype": "Fire",
     "cost": 2,
     "attack": null,
@@ -744,7 +744,7 @@
     "art": "CardScreenshots/Combust.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -752,7 +752,7 @@
   {
     "name": "Cone of Cold",
     "type": "Spell",
-    "text": "[Range 2]: Deal 2 damage to all characters in 1 Radius and Stun any minions.",
+    "text": "[Range 2]: Deal 2 damage to ALL characters within 1 Radius and Stun any minions.",
     "subtype": "Frost",
     "cost": 5,
     "attack": null,
@@ -774,7 +774,7 @@
   {
     "name": "Conscription",
     "type": "Spell",
-    "text": "Add 3 Lucian Soldiers to your hand. They gain Ethereal.",
+    "text": "Add 3 Lucian Soldiers to your hand with Ethereal.",
     "subtype": "",
     "cost": 3,
     "attack": null,
@@ -816,7 +816,7 @@
   {
     "name": "Crippling Tax",
     "type": "Spell",
-    "text": "Destroy a friendly village. Draw 3 cards. Gain <sprite name=\"dominion_3\"> Dominion.",
+    "text": "Destroy target Village you own. Draw 3 cards. Gain <sprite name=\"dominion_3\"> Dominion.",
     "subtype": "",
     "cost": 4,
     "attack": null,
@@ -828,7 +828,7 @@
     "art": "CardScreenshots/Crippling-Tax.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -836,7 +836,7 @@
   {
     "name": "Cursed Deathspear",
     "type": "Spell",
-    "text": "Weapon Lifelink. When your commander loses life, give your Weapon +<sprite name=\"power_1\">.",
+    "text": "Weapon Lifelink. When your commander takes damage, give your Weapon +<sprite name=\"power_1\">.",
     "subtype": "",
     "cost": 3,
     "attack": null,
@@ -868,7 +868,7 @@
     "art": "CardScreenshots/Daemonic-Summoning.png",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -876,7 +876,7 @@
   {
     "name": "Daemonprince Grizlocke",
     "type": "Minion",
-    "text": "Legendary. Flying. Trample. [Cooldown 1, Range 1]: Claim ANY unoccupied tile, gain <sprite name=\"dominion_1\"> Dominion, and summon a Daemon Knight.",
+    "text": "Legendary. Flying. Trample. [Cooldown 1, Range 1]: Claim target unoccupied tile, gain <sprite name=\"dominion_1\"> Dominion, and summon a Daemon Knight.",
     "subtype": "Daemon",
     "cost": 12,
     "attack": 13,
@@ -898,7 +898,7 @@
   {
     "name": "Danrir, Omenhound",
     "type": "Minion",
-    "text": "Legendary. When Danrir attacks and kills an enemy minion, he gains <sprite name=\"power_2\"> and <sprite name=\"health_2\">.",
+    "text": "Legendary. When Danrir attacks and kills an enemy minion, Danrir gains +<sprite name=\"power_2\"> and +<sprite name=\"health_2\">.",
     "subtype": "Beast",
     "cost": 4,
     "attack": 4,
@@ -940,7 +940,7 @@
   {
     "name": "Darkroot Shiv",
     "type": "Spell",
-    "text": "Weapon When you attack, add 2 Poison to the defender.",
+    "text": "Weapon When you attack, the defender gains 2 Poison.",
     "subtype": "",
     "cost": 1,
     "attack": null,
@@ -982,7 +982,7 @@
   {
     "name": "Darkwing",
     "type": "Minion",
-    "text": "Flying. Commander-Deploy. Arrival: Deal 2 damage to all non-daemon characters.",
+    "text": "Commander-Deploy. Flying. Arrival: Deal 2 damage to ALL non-Daemon characters.",
     "subtype": "Daemon",
     "cost": 7,
     "attack": 7,
@@ -1002,7 +1002,7 @@
   {
     "name": "Deathquill",
     "type": "Minion",
-    "text": "[Cooldown 1, Range 2]: Deal 1 damage and add 1 Poison to an enemy.",
+    "text": "[Cooldown 1, Range 2]: Deal 1 damage to target enemy and it gains 1 Poison.",
     "subtype": "Beast",
     "cost": 4,
     "attack": 3,
@@ -1044,7 +1044,7 @@
   {
     "name": "Devout Caretaker",
     "type": "Minion",
-    "text": "Sentinel. Arrival: add 2 Lucian Soldiers to hand.",
+    "text": "Sentinel. Arrival: Add 2 Lucian Soldiers to your hand.",
     "subtype": "Human",
     "cost": 4,
     "attack": 1,
@@ -1056,7 +1056,7 @@
     "art": "CardScreenshots/Devout-Caretaker.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [
       "Lucian Soldier"
@@ -1078,7 +1078,7 @@
     "art": null,
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -1086,7 +1086,7 @@
   {
     "name": "Domination",
     "type": "Spell",
-    "text": "Gain control of an enemy minion.",
+    "text": "Gain control of target enemy minion.",
     "subtype": "Psychic",
     "cost": 9,
     "attack": null,
@@ -1098,7 +1098,7 @@
     "art": "CardScreenshots/Domination.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -1106,7 +1106,7 @@
   {
     "name": "Draconic Mage",
     "type": "Minion",
-    "text": "Flying. Spellcaster. Spell-Damage +2. Arrival: Draw a spell from your deck and add two extra copies of it to your hand.",
+    "text": "Flying. Spellcaster. Spell-Damage +2. Arrival: Draw a spell from your deck and add 2 extra copies of it to your hand.",
     "subtype": "Dragon",
     "cost": 10,
     "attack": 10,
@@ -1138,7 +1138,7 @@
     "art": "CardScreenshots/Dragon-Egg.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [
       "Dragon"
@@ -1160,7 +1160,7 @@
     "art": "CardScreenshots/Dragon-Tamer.png",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -1168,7 +1168,7 @@
   {
     "name": "Dragonkin Evoker",
     "type": "Minion",
-    "text": "Realmbound. Spell-Damage +1. When ANY spell is played, deal 1 damage to the enemy commander.",
+    "text": "Realmbound. Spell-Damage +1. When ANY spell is played, deal 1 damage to enemy commanders.",
     "subtype": "Dragon",
     "cost": 1,
     "attack": 0,
@@ -1180,7 +1180,7 @@
     "art": "CardScreenshots/Dragonkin-Evoker.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -1188,7 +1188,7 @@
   {
     "name": "Dragon's Breath",
     "type": "Spell",
-    "text": "[Range 4]: Deal 5 damage to target minion. Play this only if you control a Dragon or have a Dragon card in your hand.",
+    "text": "[Range 4]: Deal 5 damage to target minion. You can't play Dragon's Breath unless you control a Dragon or have a Dragon card in your hand.",
     "subtype": "Fire",
     "cost": 2,
     "attack": null,
@@ -1200,7 +1200,7 @@
     "art": null,
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -1208,7 +1208,7 @@
   {
     "name": "Drain Energy",
     "type": "Spell",
-    "text": "An enemy minion loses <sprite name=\"power_3\"> and <sprite name=\"health_3\"> until end of turn. Your commander heals 3 life.",
+    "text": "Target enemy minion loses <sprite name=\"power_3\"> and <sprite name=\"health_3\"> until end of the turn. Your commander heals <sprite name=\"health_3\">.",
     "subtype": "",
     "cost": 2,
     "attack": null,
@@ -1220,7 +1220,7 @@
     "art": "CardScreenshots/Drain-Energy.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Death"
     ],
@@ -1230,7 +1230,7 @@
   {
     "name": "Drakemire Shaman",
     "type": "Minion",
-    "text": "Spellcaster. Arrival: Draw a Dragon. Whenever an ally Dragon in Range 2 attacks, add a Poison Sting to your hand.",
+    "text": "Spellcaster. Arrival: Draw a Dragon. When an ally Dragon within Range 2 attacks, add a Poison Sting to your hand.",
     "subtype": "Elf",
     "cost": 4,
     "attack": 3,
@@ -1275,7 +1275,7 @@
   {
     "name": "Dread Proclamation",
     "type": "Spell",
-    "text": "Until the end of the turn, all enemy minions lose <sprite name=\"power_1\"> and <sprite name=\"health_1\">. When an enemy dies this turn, gain <sprite name=\"dominion_1\"> Dominion.",
+    "text": "Until end of the turn, all enemy minions lose <sprite name=\"power_1\"> and <sprite name=\"health_1\">. When an enemy dies this turn, gain <sprite name=\"dominion_1\"> Dominion.",
     "subtype": "Psychic",
     "cost": 3,
     "attack": null,
@@ -1287,7 +1287,7 @@
     "art": "CardScreenshots/Dread-Proclamation.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -1315,7 +1315,7 @@
   {
     "name": "Drowsy Lizard",
     "type": "Minion",
-    "text": "[Arrival, Range 4]: Silence a minion.",
+    "text": "[Arrival, Range 4]: Silence target minion.",
     "subtype": "Beast",
     "cost": 2,
     "attack": 2,
@@ -1327,7 +1327,7 @@
     "art": "CardScreenshots/Drowsy-Lizard.png",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -1335,7 +1335,7 @@
   {
     "name": "Durka Wurm",
     "type": "Minion",
-    "text": "Postmortem: Summon a <sprite name=\"power_1\"><sprite name=\"speed_3\"><sprite name=\"health_1\"> Spawn token in every unoccupied tile within Range 1.",
+    "text": "Postmortem: Summon a <sprite name=\"power_1\"><sprite name=\"speed_3\"><sprite name=\"health_1\"> Durka Spawn in every unoccupied tile within Range 1.",
     "subtype": "Beast",
     "cost": 8,
     "attack": 7,
@@ -1347,7 +1347,7 @@
     "art": "CardScreenshots/Durka-Wurm.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [
       "Durka Spawn"
@@ -1357,7 +1357,7 @@
   {
     "name": "Dwarven Battlepriest",
     "type": "Minion",
-    "text": "Spellcaster. [Arrival, Range 4]: An ally minion gains <sprite name=\"health_3\">.",
+    "text": "Spellcaster. [Arrival, Range 4]: Target ally minion gains +<sprite name=\"health_3\">.",
     "subtype": "Dwarf",
     "cost": 2,
     "attack": 2,
@@ -1369,7 +1369,7 @@
     "art": "CardScreenshots/Dwarven-Battlepriest.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Military"
     ],
@@ -1379,7 +1379,7 @@
   {
     "name": "Dwarven Stout",
     "type": "Spell",
-    "text": "[Range 2]: A Dwarf minion gains <sprite name=\"power_4\"> and <sprite name=\"health_4\"> and \"At the end of your turns, deal 1 damage to all adjacent characters.\"",
+    "text": "[Range 2]: Target Dwarf minion gains +<sprite name=\"power_4\"> and +<sprite name=\"health_4\"> and \"At the end of each of your turns, deal 1 damage to all adjacent characters.\"",
     "subtype": "Potion",
     "cost": 4,
     "attack": null,
@@ -1399,7 +1399,7 @@
   {
     "name": "Dyana, Prime Huntress",
     "type": "Minion",
-    "text": "Legendary. You can't play Dyana unless you control 3 Beasts. [Range 5 Attack]: Deal 7 damage to an enemy.",
+    "text": "Legendary. You can't play Dyana unless you control 3 Beasts. [Range 5 Attack]: Deal 7 damage to target enemy.",
     "subtype": "Demigod",
     "cost": 5,
     "attack": 5,
@@ -1419,7 +1419,7 @@
   {
     "name": "Eagle King",
     "type": "Minion",
-    "text": "Flying. When your characters attack, your Commander heals 1. [Arrival]: Summon a Giant Eagle.",
+    "text": "Flying. When your characters attack, your commander heals <sprite name=\"health_1\">. [Arrival]: Summon a Giant Eagle.",
     "subtype": "Beast",
     "cost": 6,
     "attack": 3,
@@ -1431,7 +1431,7 @@
     "art": "CardScreenshots/Eagle-King.png",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Beasts"
     ],
@@ -1443,7 +1443,7 @@
   {
     "name": "Elf Ranger",
     "type": "Minion",
-    "text": "[Range 2 Attack]: Deal 2 damage to an enemy.",
+    "text": "[Range 2 Attack]: Deal 2 damage to target enemy.",
     "subtype": "Elf",
     "cost": 2,
     "attack": 1,
@@ -1466,7 +1466,7 @@
   {
     "name": "Elite Mercenary",
     "type": "Minion",
-    "text": "Commander-Deploy. Sentinel. Lifelink. Shield. Costs <sprite name=\"mana_3\"> less if your opponent controls 4 or more minions.",
+    "text": "Commander-Deploy. Sentinel. Lifelink. Shield. Costs <sprite name=\"mana_3\"> less if the enemy controls 4 or more minions.",
     "subtype": "Human",
     "cost": 7,
     "attack": 4,
@@ -1478,7 +1478,7 @@
     "art": "CardScreenshots/Elite-Mercenary.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -1486,7 +1486,7 @@
   {
     "name": "Elixirist",
     "type": "Minion",
-    "text": "Arrival: add a Growth Potion to your hand.",
+    "text": "Arrival: Add a Growth Potion to your hand.",
     "subtype": "Elf",
     "cost": 3,
     "attack": 4,
@@ -1511,7 +1511,7 @@
   {
     "name": "Elven Spellblade",
     "type": "Minion",
-    "text": "Arrival: Deal 3 damage to the enemy commander.",
+    "text": "Arrival: Deal 3 damage to enemy commanders.",
     "subtype": "Elf",
     "cost": 5,
     "attack": 5,
@@ -1523,7 +1523,7 @@
     "art": null,
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Deploy"
     ],
@@ -1533,7 +1533,7 @@
   {
     "name": "Ember",
     "type": "Minion",
-    "text": "When you play a Fire card, gain <sprite name=\"mana_2\"> this turn and gain <sprite name=\"power_2\"> and deal 1 damage to Ember.",
+    "text": "When you play a Fire card, gain <sprite name=\"mana_2\"> this turn, gain +<sprite name=\"power_2\">, and deal 1 damage to Ember.",
     "subtype": "Fire",
     "cost": 1,
     "attack": 0,
@@ -1545,7 +1545,7 @@
     "art": "CardScreenshots/Ember.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -1553,7 +1553,7 @@
   {
     "name": "Emerald Asp",
     "type": "Minion",
-    "text": "When Emerald Asp attacks, apply Poison to the enemy equal to Emerald Asp's power.",
+    "text": "When Emerald Asp attacks, the enemy gains Poison equal to Emerald Asp's Power.",
     "subtype": "Beast",
     "cost": 2,
     "attack": 2,
@@ -1573,7 +1573,7 @@
   {
     "name": "Energy Potion",
     "type": "Spell",
-    "text": "[Range 2]: A minion gains Haste, regains their movement, and regains an Attack.",
+    "text": "[Range 2]: Target minion gains Haste, regains its Movement, and regains an Attack.",
     "subtype": "Potion",
     "cost": 2,
     "attack": null,
@@ -1593,7 +1593,7 @@
   {
     "name": "Enigmatic Golem",
     "type": "Minion",
-    "text": "Costs <sprite name=\"mana_X\"> less to play where X is your commander's missing Health.",
+    "text": "Costs <sprite name=\"mana_X\"> less where X is your commander's missing Health.",
     "subtype": "Mech",
     "cost": 20,
     "attack": 9,
@@ -1613,7 +1613,7 @@
   {
     "name": "Ereloth",
     "type": "Minion",
-    "text": "Lifelink. Arrival: all minion cards in your opponent\u2019s hand lose <sprite name=\"power_1\"> and <sprite name=\"health_1\">.",
+    "text": "Lifelink. Arrival: All minion cards in the enemy's hand lose <sprite name=\"power_1\"> and <sprite name=\"health_1\">.",
     "subtype": "Daemon",
     "cost": 4,
     "attack": 3,
@@ -1653,7 +1653,7 @@
   {
     "name": "Expand the Wilds",
     "type": "Spell",
-    "text": "Claim an uncontested tile adjacent to your territory.",
+    "text": "Claim target uncontested tile adjacent to your territory.",
     "subtype": "",
     "cost": 1,
     "attack": null,
@@ -1665,7 +1665,7 @@
     "art": "CardScreenshots/Expand-the-Wilds.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -1673,7 +1673,7 @@
   {
     "name": "Explosive Potion",
     "type": "Spell",
-    "text": "[Range 2]: Deal 2 damage to all characters in 1 Radius.",
+    "text": "[Range 2]: Deal 2 damage to ALL characters within 1 Radius.",
     "subtype": "Potion",
     "cost": 4,
     "attack": null,
@@ -1695,7 +1695,7 @@
   {
     "name": "Expropriation",
     "type": "Spell",
-    "text": "[Range 2] Return ANY minion to YOUR hand.",
+    "text": "[Range 2]: Return ANY target minion to YOUR hand.",
     "subtype": "Psychic",
     "cost": 7,
     "attack": null,
@@ -1707,7 +1707,7 @@
     "art": "CardScreenshots/Expropriation.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -1715,7 +1715,7 @@
   {
     "name": "Fade to Mists",
     "type": "Spell",
-    "text": "[Range 2]: Return a minion you control to your hand. It costs <sprite name=\"mana_3\"> less.",
+    "text": "[Range 2]: Return target minion you control to your hand. It costs <sprite name=\"mana_3\"> less.",
     "subtype": "Psychic",
     "cost": 1,
     "attack": null,
@@ -1727,7 +1727,7 @@
     "art": null,
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -1735,7 +1735,7 @@
   {
     "name": "Feeblemind",
     "type": "Spell",
-    "text": "[Range 2]: Stun an enemy commander. Their Intellect becomes 1.",
+    "text": "[Range 2]: Stun target enemy commander. Their Intellect becomes 1.",
     "subtype": "Psychic",
     "cost": 9,
     "attack": null,
@@ -1747,7 +1747,7 @@
     "art": "CardScreenshots/Feeblemind.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -1755,7 +1755,7 @@
   {
     "name": "Feral Vampire",
     "type": "Minion",
-    "text": "Lifelink.  (When battling, your commander heals equal to this character's power.)",
+    "text": "Lifelink.  (When battling, your commander heals equal to this character's Power.)",
     "subtype": "Vampire",
     "cost": 3,
     "attack": 4,
@@ -1767,7 +1767,7 @@
     "art": "CardScreenshots/Feral-Vampire.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Death"
     ],
@@ -1777,7 +1777,7 @@
   {
     "name": "Finishing Strike",
     "type": "Spell",
-    "text": "[Range 4]: Destroy a damaged minion.",
+    "text": "[Range 4]: Destroy target damaged minion.",
     "subtype": "",
     "cost": 1,
     "attack": null,
@@ -1789,7 +1789,7 @@
     "art": null,
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -1797,7 +1797,7 @@
   {
     "name": "Fireball",
     "type": "Spell",
-    "text": "[Range 4]: Deal 3 damage to all characters in 1 Radius.",
+    "text": "[Range 4]: Deal 3 damage to ALL characters within 1 Radius.",
     "subtype": "Fire",
     "cost": 5,
     "attack": null,
@@ -1817,7 +1817,7 @@
   {
     "name": "Firebolt",
     "type": "Spell",
-    "text": "[Range 4]: Deal 3 Damage to a character. If this kills them, gain <sprite name=\"dominion_1\"> Dominion.",
+    "text": "[Range 4]: Deal 3 damage to target character. If this kills it, gain <sprite name=\"dominion_1\"> Dominion.",
     "subtype": "Fire",
     "cost": 3,
     "attack": null,
@@ -1837,7 +1837,7 @@
   {
     "name": "First Experiment",
     "type": "Minion",
-    "text": "Spellcaster. Whenever you play a Potion on an ally Experiment, gain <sprite name=\"power_2\">.",
+    "text": "Spellcaster. When you play a Potion on an ally Experiment, gain +<sprite name=\"power_2\">.",
     "subtype": "Experiment",
     "cost": 1,
     "attack": 1,
@@ -1849,7 +1849,7 @@
     "art": "CardScreenshots/First-Experiment.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -1857,7 +1857,7 @@
   {
     "name": "Flame Acolyte",
     "type": "Minion",
-    "text": "Spellcaster. Arrival: add 2 copies of Flamelash to your hand.",
+    "text": "Spellcaster. Arrival: Add 2 copies of Flamelash to your hand.",
     "subtype": "Human",
     "cost": 5,
     "attack": 6,
@@ -1879,7 +1879,7 @@
   {
     "name": "Flamelash",
     "type": "Spell",
-    "text": "[Range 2]: Deal 3 damage to a character.",
+    "text": "[Range 2]: Deal 3 damage to target character.",
     "subtype": "Fire",
     "cost": 1,
     "attack": null,
@@ -1899,7 +1899,7 @@
   {
     "name": "Found City",
     "type": "Spell",
-    "text": "Convert a tile you own to a village. Add a copy of Settle Village to your hand.",
+    "text": "Convert target tile you own to a Village. Add a copy of Settle Village to your hand.",
     "subtype": "Village",
     "cost": 5,
     "attack": null,
@@ -1921,7 +1921,7 @@
   {
     "name": "Fourth Experiment",
     "type": "Minion",
-    "text": "Whenever you play a Potion on an ally Experiment, gain <sprite name=\"power_2\"><sprite name=\"speed_1\"><sprite name=\"health_2\">.",
+    "text": "When you play a Potion on an ally Experiment, gain +<sprite name=\"power_2\"><sprite name=\"speed_1\"><sprite name=\"health_2\">.",
     "subtype": "Experiment",
     "cost": 4,
     "attack": 3,
@@ -1933,7 +1933,7 @@
     "art": "CardScreenshots/Fourth-Experiment.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -1941,7 +1941,7 @@
   {
     "name": "Frostblade",
     "type": "Spell",
-    "text": "[Range 1]: Deal 2 damage. If targeting a minion, Stun it.",
+    "text": "[Range 1]: Deal 2 damage to target character. If it's a minion, Stun it.",
     "subtype": "Frost",
     "cost": 1,
     "attack": null,
@@ -1963,7 +1963,7 @@
   {
     "name": "Fungal Explosion",
     "type": "Spell",
-    "text": "[Range 3]: Add 4 Poison to all characters in 1 Radius.",
+    "text": "[Range 3]: ALL characters within 1 Radius gain 4 Poison.",
     "subtype": "",
     "cost": 7,
     "attack": null,
@@ -2015,7 +2015,7 @@
     "art": "CardScreenshots/Giant-Eagle.png",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Mage"
     ],
@@ -2025,7 +2025,7 @@
   {
     "name": "Giant River Snapper",
     "type": "Minion",
-    "text": "Sentinel. Arrival: Your commander heals 8 health.",
+    "text": "Sentinel. Arrival: Your commander heals <sprite name=\"health_8\">.",
     "subtype": "Beast",
     "cost": 8,
     "attack": 8,
@@ -2065,7 +2065,7 @@
   {
     "name": "Goblin Duo",
     "type": "Minion",
-    "text": "Goblin-Deploy. Arrival: add a goblin scamp to hand.",
+    "text": "Goblin-Deploy. Arrival: Add a Goblin Scamp to your hand.",
     "subtype": "Goblin",
     "cost": 2,
     "attack": 1,
@@ -2077,7 +2077,7 @@
     "art": "CardScreenshots/Goblin-Duo.png",
     "art_type": "AI_GENERATED",
     "human_art": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [
       "Goblin Scamp"
@@ -2087,7 +2087,7 @@
   {
     "name": "Goblin Firebow",
     "type": "Minion",
-    "text": "Goblin-Deploy. [Range 2 Attack]: Deal 2 damage. Deal 1 damage to Goblin Firebow",
+    "text": "Goblin-Deploy. [Range 2 Attack]: Deal 2 damage to target enemy. Deal 1 damage to Goblin Firebow.",
     "subtype": "Goblin",
     "cost": 1,
     "attack": 1,
@@ -2107,7 +2107,7 @@
   {
     "name": "Goblin Infantry",
     "type": "Minion",
-    "text": "Gain <sprite name=\"power_1\"> whenever you play a Goblin card.",
+    "text": "When you play a Goblin card, gain +<sprite name=\"power_1\">.",
     "subtype": "Goblin",
     "cost": 1,
     "attack": 1,
@@ -2119,7 +2119,7 @@
     "art": "CardScreenshots/Goblin-Infantry.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -2127,7 +2127,7 @@
   {
     "name": "Goblin Infiltrator",
     "type": "Minion",
-    "text": "Trample. Deploy.",
+    "text": "Deploy. Trample.",
     "subtype": "Goblin",
     "cost": 5,
     "attack": 5,
@@ -2139,7 +2139,7 @@
     "art": "CardScreenshots/Goblin-Infiltrator.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Death",
       "Starter Deploy"
@@ -2150,7 +2150,7 @@
   {
     "name": "Goblin King",
     "type": "Minion",
-    "text": "Allied Goblin minions within Range 3 have +<sprite name=\"power_2\">.",
+    "text": "Goblin minions you control within Range 3 have +<sprite name=\"power_2\">.",
     "subtype": "Goblin",
     "cost": 3,
     "attack": 3,
@@ -2170,7 +2170,7 @@
   {
     "name": "Goblin Lorespeaker",
     "type": "Minion",
-    "text": "Spellcaster. Spell-Damage +1. Whenever a Goblin you control within Range 3 dies, add a Thunderjolt to your hand.",
+    "text": "Spellcaster. Spell-Damage +1. When a Goblin you control within Range 3 dies, add a Thunder Jolt to your hand.",
     "subtype": "Goblin",
     "cost": 4,
     "attack": 3,
@@ -2192,7 +2192,7 @@
   {
     "name": "Goblin Musclejuice",
     "type": "Spell",
-    "text": "[Range 2]: A Goblin minion gains <sprite name=\"power_3\"><sprite name=\"speed_2\"><sprite name=\"health_3\">.",
+    "text": "[Range 2]: Target Goblin minion gains +<sprite name=\"power_3\"><sprite name=\"speed_2\"><sprite name=\"health_3\">.",
     "subtype": "Potion",
     "cost": 3,
     "attack": null,
@@ -2224,7 +2224,7 @@
     "art": "CardScreenshots/Goblin-Paratrooper.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Deploy"
     ],
@@ -2246,7 +2246,7 @@
     "art": "CardScreenshots/Goblin-Recruitment.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [
       "Goblin Scamp"
@@ -2256,7 +2256,7 @@
   {
     "name": "Goblin Scamp",
     "type": "Minion",
-    "text": "Goblin-Deploy.  (Can be played outside of your territory, if next to an ally goblin.)",
+    "text": "Goblin-Deploy.  (Can be played outside of your territory, if next to an ally Goblin.)",
     "subtype": "Goblin",
     "cost": 0,
     "attack": 1,
@@ -2268,7 +2268,7 @@
     "art": "CardScreenshots/Goblin-Scamp.png",
     "art_type": "AI_GENERATED",
     "human_art": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -2288,7 +2288,7 @@
     "art": "CardScreenshots/Goblin-Scout.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -2296,7 +2296,7 @@
   {
     "name": "Goblin Shaman",
     "type": "Minion",
-    "text": "Spellcaster. [Arrival, Range 4]: Deal 1 Damage.",
+    "text": "Spellcaster. [Arrival, Range 4]: Deal 1 damage to target character.",
     "subtype": "Goblin",
     "cost": 1,
     "attack": 2,
@@ -2338,7 +2338,7 @@
   {
     "name": "Gold Dragon",
     "type": "Minion",
-    "text": "Flying. Lifelink. [Warmup 3]: Fully heal all allies.",
+    "text": "Flying. Lifelink. [Warmup 3]: All allies fully heal.",
     "subtype": "Dragon",
     "cost": 8,
     "attack": 7,
@@ -2350,7 +2350,7 @@
     "art": "CardScreenshots/Gold-Dragon.png",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -2358,7 +2358,7 @@
   {
     "name": "Grand Illusion",
     "type": "Spell",
-    "text": "[Range 2]: Swap an ally minion with a non-Titan minion from your deck.",
+    "text": "[Range 2]: Swap target ally minion with a non-Titan minion from your deck.",
     "subtype": "Psychic",
     "cost": 6,
     "attack": null,
@@ -2370,7 +2370,7 @@
     "art": "CardScreenshots/Grand-Illusion.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -2390,7 +2390,7 @@
     "art": null,
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -2410,7 +2410,7 @@
     "art": null,
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -2418,7 +2418,7 @@
   {
     "name": "Gravehand",
     "type": "Minion",
-    "text": "Whenever another minion you control within Range 2 dies, draw a card.",
+    "text": "When another minion you control within Range 2 dies, draw a card.",
     "subtype": "Human",
     "cost": 4,
     "attack": 1,
@@ -2430,7 +2430,7 @@
     "art": "CardScreenshots/Gravehand.png",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -2450,7 +2450,7 @@
     "art": null,
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -2458,7 +2458,7 @@
   {
     "name": "Greater Healing Potion",
     "type": "Spell",
-    "text": "[Range 2]: Heal a character for 8.",
+    "text": "[Range 2]: Target character heals <sprite name=\"health_8\">.",
     "subtype": "Potion",
     "cost": 3,
     "attack": null,
@@ -2478,7 +2478,7 @@
   {
     "name": "Green Dragon",
     "type": "Minion",
-    "text": "Flying. Trample. [Warmup 3, Range 2]: Add 3 Poison to all characters within 1 Radius.",
+    "text": "Flying. Trample. [Warmup 3, Range 2]: ALL characters within 1 Radius gain 3 Poison.",
     "subtype": "Dragon",
     "cost": 7,
     "attack": 6,
@@ -2498,7 +2498,7 @@
   {
     "name": "Grey Wastes Shade",
     "type": "Minion",
-    "text": "Lifelink. Postmortem: the enemy commander heals 6.",
+    "text": "Lifelink. Postmortem: Enemy commanders heal <sprite name=\"health_6\">.",
     "subtype": "Undead",
     "cost": 1,
     "attack": 2,
@@ -2530,7 +2530,7 @@
     "art": "CardScreenshots/Growth.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -2538,7 +2538,7 @@
   {
     "name": "Growth Potion",
     "type": "Spell",
-    "text": "[Range 2]: A minion gains <sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\">.",
+    "text": "[Range 2]: Target minion gains +<sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\">.",
     "subtype": "Potion",
     "cost": 1,
     "attack": null,
@@ -2578,7 +2578,7 @@
   {
     "name": "Gruth, Ogre Champion",
     "type": "Minion",
-    "text": "Legendary. Haste. Deploy.",
+    "text": "Legendary. Deploy. Haste.",
     "subtype": "Ogre",
     "cost": 7,
     "attack": 6,
@@ -2598,7 +2598,7 @@
   {
     "name": "Guardian Ent",
     "type": "Minion",
-    "text": "Regenerate 3. Trample. Costs <sprite name=\"mana_3\"> less for each Plant you control.",
+    "text": "Regenerate 3. Trample. Costs <sprite name=\"mana_3\"> less per Plant you control.",
     "subtype": "Plant",
     "cost": 11,
     "attack": 7,
@@ -2618,7 +2618,7 @@
   {
     "name": "Guerilla Gorilla",
     "type": "Minion",
-    "text": "Regenerate 3.  (Heals for 3 at the end of your turn.)",
+    "text": "Regenerate 3.  (Heals <sprite name=\"health_3\"> at the end of your turn.)",
     "subtype": "Beast",
     "cost": 3,
     "attack": 3,
@@ -2630,7 +2630,7 @@
     "art": "CardScreenshots/Guerilla-Gorilla.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -2638,7 +2638,7 @@
   {
     "name": "Guide to Heavens",
     "type": "Spell",
-    "text": "[Range 4]: Destroy a minion. Its commander gains life equal to its Health.",
+    "text": "[Range 4]: Destroy target minion. Its commander heals equal to its Health.",
     "subtype": "",
     "cost": 4,
     "attack": null,
@@ -2650,7 +2650,7 @@
     "art": "CardScreenshots/Guide-to-Heavens.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -2670,7 +2670,7 @@
     "art": "CardScreenshots/Heavens-Legion.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [
       "Lucian Soldier"
@@ -2715,7 +2715,7 @@
     "art": "CardScreenshots/High-Elf-Mage.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -2723,7 +2723,7 @@
   {
     "name": "Holy Fervor",
     "type": "Spell",
-    "text": "Ally Human minions within Range 3 gain <sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\">.",
+    "text": "Ally Human minions within Range 3 gain +<sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\">.",
     "subtype": "",
     "cost": 2,
     "attack": null,
@@ -2735,7 +2735,7 @@
     "art": "CardScreenshots/Holy-Fervor.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -2743,7 +2743,7 @@
   {
     "name": "Homesong Minstrel",
     "type": "Minion",
-    "text": "[Arrival]: Return a friendly minion to your hand.",
+    "text": "[Arrival]: Return target ally minion to your hand.",
     "subtype": "Elf",
     "cost": 2,
     "attack": 3,
@@ -2755,7 +2755,7 @@
     "art": "CardScreenshots/Homesong-Minstrel.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -2775,7 +2775,7 @@
     "art": "CardScreenshots/Hoplite-Vanguard.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Beasts",
       "Starter Deploy"
@@ -2786,7 +2786,7 @@
   {
     "name": "Horde Leader",
     "type": "Minion",
-    "text": "Ally Undead within Range 3 have +<sprite name=\"power_1\"> and Postmortem: the enemy commander gains 2 Poison.",
+    "text": "Ally Undead within Range 3 have +<sprite name=\"power_1\"> and Postmortem: Enemy commanders gain 2 Poison.",
     "subtype": "Undead",
     "cost": 3,
     "attack": 4,
@@ -2806,7 +2806,7 @@
   {
     "name": "Hover Tank",
     "type": "Minion",
-    "text": "Flying. Shield. [Warmup 2, Range 4]: Deal 6 damage to an enemy.",
+    "text": "Flying. Shield. [Warmup 2, Range 4]: Deal 6 damage to target enemy.",
     "subtype": "Mech",
     "cost": 5,
     "attack": 4,
@@ -2848,7 +2848,7 @@
   {
     "name": "Imp",
     "type": "Minion",
-    "text": "Flying. Commander-Deploy. Arrival: Your commander takes 3 damage.",
+    "text": "Commander-Deploy. Flying. Arrival: Your commander takes 3 damage.",
     "subtype": "Daemon",
     "cost": 1,
     "attack": 3,
@@ -2860,7 +2860,7 @@
     "art": "CardScreenshots/Imp.png",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -2868,7 +2868,7 @@
   {
     "name": "Infected Dreg",
     "type": "Minion",
-    "text": "Postmortem: the enemy commander gains 2 Poison.",
+    "text": "Postmortem: Enemy commanders gain 2 Poison.",
     "subtype": "Undead",
     "cost": 1,
     "attack": 2,
@@ -2902,7 +2902,7 @@
     "art": null,
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -2910,7 +2910,7 @@
   {
     "name": "Khazgar, Flame Emperor",
     "type": "Minion",
-    "text": "Legendary. Tiles within Range 1 become Lava. Heals from Fire damage.  Costs <sprite name=\"mana_1\"> less per Fire card you play.",
+    "text": "Legendary. Tiles within Range 1 become Lava. Heals from Fire damage. Costs <sprite name=\"mana_1\"> less per Fire card you play.",
     "subtype": "Titan",
     "cost": 13,
     "attack": 12,
@@ -2930,7 +2930,7 @@
   {
     "name": "Killing Hex",
     "type": "Spell",
-    "text": "Destroy a minion.",
+    "text": "Destroy target minion.",
     "subtype": "",
     "cost": 5,
     "attack": null,
@@ -2964,7 +2964,7 @@
     "art": null,
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -2984,7 +2984,7 @@
     "art": "CardScreenshots/King-Darian.png",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -2992,7 +2992,7 @@
   {
     "name": "Knife Sharpener",
     "type": "Minion",
-    "text": "When you play a Minion or Weapon within Range 2, give it <sprite name=\"power_1\">.",
+    "text": "When you play a minion or Weapon within Range 2, give it +<sprite name=\"power_1\">.",
     "subtype": "Dwarf",
     "cost": 1,
     "attack": 2,
@@ -3002,9 +3002,9 @@
     "patron": "Neutral",
     "faction": "neutral",
     "art": "CardScreenshots/Knife-Sharpener.png",
-    "art_type": "AI_GENERATED",
-    "human_art": false,
-    "has_animation": false,
+    "art_type": "ARTIST_COMMISSIONED",
+    "human_art": true,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -3012,7 +3012,7 @@
   {
     "name": "Lay Claim",
     "type": "Spell",
-    "text": "[Range 0]: Claim a territory an opponent controls. Gain <sprite name=\"dominion_1\"> Dominion.",
+    "text": "[Range 0]: Claim target tile an enemy owns. Gain <sprite name=\"dominion_1\"> Dominion.",
     "subtype": "",
     "cost": 4,
     "attack": null,
@@ -3024,7 +3024,7 @@
     "art": "CardScreenshots/Lay-Claim.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -3032,7 +3032,7 @@
   {
     "name": "Lifeweaver",
     "type": "Minion",
-    "text": "Spellcaster. When ANY spell is played, your commander heals 2 life.",
+    "text": "Spellcaster. When ANY spell is played, your commander heals <sprite name=\"health_2\">.",
     "subtype": "Elf",
     "cost": 1,
     "attack": 1,
@@ -3044,7 +3044,7 @@
     "art": "CardScreenshots/Lifeweaver.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -3064,7 +3064,7 @@
     "art": null,
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -3072,7 +3072,7 @@
   {
     "name": "Lightbound Martyr",
     "type": "Minion",
-    "text": "Postmortem: give the leftmost Minion in your hand <sprite name=\"power_2\"><sprite name=\"speed_1\"><sprite name=\"health_2\">.",
+    "text": "Postmortem: Give the leftmost minion card in your hand +<sprite name=\"power_2\"><sprite name=\"speed_1\"><sprite name=\"health_2\">.",
     "subtype": "Human",
     "cost": 3,
     "attack": 3,
@@ -3084,7 +3084,7 @@
     "art": null,
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -3092,7 +3092,7 @@
   {
     "name": "Lightning Bolt",
     "type": "Spell",
-    "text": "[Range 4]: Deal 6 damage.",
+    "text": "[Range 4]: Deal 6 damage to target character.",
     "subtype": "Lightning",
     "cost": 4,
     "attack": null,
@@ -3126,7 +3126,7 @@
     "art": "CardScreenshots/Limmick-Goblin-Hedonist.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Deploy"
     ],
@@ -3136,7 +3136,7 @@
   {
     "name": "Live off the Land",
     "type": "Spell",
-    "text": "Gain <sprite name=\"dominion_1\"> Dominion. Heal your commander for 4.",
+    "text": "Gain <sprite name=\"dominion_1\"> Dominion. Your commander heals <sprite name=\"health_4\">.",
     "subtype": "",
     "cost": 1,
     "attack": null,
@@ -3148,7 +3148,7 @@
     "art": "CardScreenshots/Live-off-the-Land.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -3168,7 +3168,7 @@
     "art": "CardScreenshots/Local-Trader.png",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -3176,7 +3176,7 @@
   {
     "name": "Longleg Dorathru",
     "type": "Minion",
-    "text": "Legendary. Commander-Deploy. Arrival: Gain <sprite name=\"power_2\"> and <sprite name=\"health_2\"> for each card you've played this turn.",
+    "text": "Legendary. Commander-Deploy. Arrival: Gain +<sprite name=\"power_2\"> and +<sprite name=\"health_2\"> per card you've played this turn.",
     "subtype": "Arachnid",
     "cost": 4,
     "attack": 3,
@@ -3188,7 +3188,7 @@
     "art": null,
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -3230,7 +3230,7 @@
     "art": "CardScreenshots/Lord-of-Heavenspire.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -3250,7 +3250,7 @@
     "art": "CardScreenshots/Lorecaller-Gazan.png",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -3258,7 +3258,7 @@
   {
     "name": "Lucian Battalion",
     "type": "Minion",
-    "text": "Arrival: add a Lucian Soldier to hand.",
+    "text": "Arrival: Add a Lucian Soldier to your hand.",
     "subtype": "Human",
     "cost": 2,
     "attack": 2,
@@ -3270,7 +3270,7 @@
     "art": "CardScreenshots/Lucian-Battalion.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [
       "Lucian Soldier"
@@ -3280,7 +3280,7 @@
   {
     "name": "Lucian Squire",
     "type": "Minion",
-    "text": "Arrival: give the leftmost minion card in your hand <sprite name=\"power_1\"> and <sprite name=\"health_1\">.",
+    "text": "Arrival: Give the leftmost minion card in your hand +<sprite name=\"power_1\"> and +<sprite name=\"health_1\">.",
     "subtype": "Human",
     "cost": 1,
     "attack": 1,
@@ -3312,7 +3312,7 @@
     "art": "CardScreenshots/Lucian-Zealot.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [
       "Lucian Soldier"
@@ -3354,7 +3354,7 @@
     "art": "CardScreenshots/Mad-Warlock.png",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Death",
       "Starter Mage"
@@ -3365,7 +3365,7 @@
   {
     "name": "Mage Slayer",
     "type": "Minion",
-    "text": "Veiled.  (Cannot be the direct target of enemy Spells or Abilities.)",
+    "text": "Veiled.  (Cannot be the direct target of enemy spells or abilities.)",
     "subtype": "Dwarf",
     "cost": 3,
     "attack": 3,
@@ -3377,7 +3377,7 @@
     "art": null,
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -3397,7 +3397,7 @@
     "art": "CardScreenshots/Mana-Bloom.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -3417,7 +3417,7 @@
     "art": "CardScreenshots/Manaphant.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -3425,7 +3425,7 @@
   {
     "name": "Master Craftsman",
     "type": "Minion",
-    "text": "[<sprite name=\"mana_1\">, Warmup 2]: Convert the occupied tile to a village.",
+    "text": "[Pay <sprite name=\"mana_1\">, Warmup 2]: Convert the current tile to a Village.",
     "subtype": "Dwarf",
     "cost": 1,
     "attack": 0,
@@ -3445,12 +3445,12 @@
   {
     "name": "Matrix, Mad Weaver",
     "type": "Minion",
-    "text": "Legendary. Commander-Deploy. Arrival: Unclaim the current tile. If it's a village, destroy it and gain a War Chest.",
+    "text": "Legendary. Commander-Deploy. Arrival: Unclaim the current tile. If it's a Village, destroy it and gain a War Chest.",
     "subtype": "Arachnid",
     "cost": 5,
-    "attack": 5,
+    "attack": 4,
     "speed": 3,
-    "health": 5,
+    "health": 4,
     "legendary": true,
     "patron": "Archaeon",
     "faction": "archaeon",
@@ -3467,7 +3467,7 @@
   {
     "name": "Memory Theft",
     "type": "Spell",
-    "text": "[Range 2]: Deal 1 damage to a character. If it dies, draw a card from their deck.",
+    "text": "[Range 2]: Deal 1 damage to target character. If it dies, draw a card from its controller's deck.",
     "subtype": "Psychic",
     "cost": 1,
     "attack": null,
@@ -3479,7 +3479,7 @@
     "art": null,
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -3499,7 +3499,7 @@
     "art": null,
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -3507,7 +3507,7 @@
   {
     "name": "Mindstone Servant",
     "type": "Minion",
-    "text": "Whenever Mindstone Servant takes damage, draw a card and gain <sprite name=\"intellect_1\"> Intellect. Spellcaster.",
+    "text": "Spellcaster. When Mindstone Servant takes damage, draw a card and gain <sprite name=\"intellect_1\"> Intellect.",
     "subtype": "Mech",
     "cost": 5,
     "attack": 3,
@@ -3519,7 +3519,7 @@
     "art": null,
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -3527,7 +3527,7 @@
   {
     "name": "Minor Priest",
     "type": "Minion",
-    "text": "Spellcaster. [Range 2, Cooldown 1]: A character you control heals 1.",
+    "text": "Spellcaster. [Cooldown 1, Range 2]: Target character you control heals <sprite name=\"health_1\">.",
     "subtype": "Human",
     "cost": 1,
     "attack": 1,
@@ -3539,7 +3539,7 @@
     "art": "CardScreenshots/Minor-Priest.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -3599,7 +3599,7 @@
     "art": "CardScreenshots/Mummified-Warrior.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Death"
     ],
@@ -3609,7 +3609,7 @@
   {
     "name": "Nevisha Ascendant",
     "type": "Minion",
-    "text": "Legendary. Flying. Arrival AND at the beginning of your turn: add a Lucian Soldier to your hand and ally minions in Range 3 gain <sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\">.",
+    "text": "Legendary. Flying. Arrival AND at the start of your turn: Add a Lucian Soldier to your hand and ally minions within Range 3 gain +<sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\">.",
     "subtype": "Angel",
     "cost": 7,
     "attack": 6,
@@ -3631,7 +3631,7 @@
   {
     "name": "Nexus Operative",
     "type": "Minion",
-    "text": "Spellcaster. Whenever you play a spell, your other Spellcasters gain <sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\"> until end of turn.",
+    "text": "Spellcaster. When you play a spell, your other Spellcasters gain +<sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\"> until end of the turn.",
     "subtype": "Elf",
     "cost": 3,
     "attack": 3,
@@ -3643,7 +3643,7 @@
     "art": "CardScreenshots/Nexus-Operative.png",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -3651,7 +3651,7 @@
   {
     "name": "Nexus Recruit",
     "type": "Minion",
-    "text": "Spellcaster. Whenever you draw a card, gain <sprite name=\"power_1\"><sprite name=\"health_1\"> until end of turn.",
+    "text": "Spellcaster. When you draw a card, gain +<sprite name=\"power_1\"> and +<sprite name=\"health_1\"> until end of the turn.",
     "subtype": "Elf",
     "cost": 1,
     "attack": 1,
@@ -3663,7 +3663,7 @@
     "art": "CardScreenshots/Nexus-Recruit.png",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -3691,7 +3691,7 @@
   {
     "name": "Nobleman of the Order",
     "type": "Minion",
-    "text": "Whenever a minion is healed within Range 3, draw a card.",
+    "text": "When a minion within Range 3 is healed, draw a card.",
     "subtype": "Human",
     "cost": 4,
     "attack": 3,
@@ -3703,7 +3703,7 @@
     "art": "CardScreenshots/Nobleman-of-the-Order.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Military"
     ],
@@ -3713,7 +3713,7 @@
   {
     "name": "Oathbroken Apprentice",
     "type": "Minion",
-    "text": "Commander-Deploy. Whenever your commander loses life on your turn, gain <sprite name=\"power_1\">.",
+    "text": "Commander-Deploy. When your commander takes damage on your turn, gain +<sprite name=\"power_1\">.",
     "subtype": "Human",
     "cost": 1,
     "attack": 1,
@@ -3725,7 +3725,7 @@
     "art": null,
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -3733,7 +3733,7 @@
   {
     "name": "Oathsworn Champion",
     "type": "Minion",
-    "text": "Arrival: Heal all allies for 2.",
+    "text": "Arrival: All allies heal <sprite name=\"health_2\">.",
     "subtype": "Human",
     "cost": 5,
     "attack": 5,
@@ -3745,7 +3745,7 @@
     "art": "CardScreenshots/Oathsworn-Champion.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Military"
     ],
@@ -3755,7 +3755,7 @@
   {
     "name": "Oldsteel Guard",
     "type": "Minion",
-    "text": "Has +<sprite name=\"power_1\"> for each territory you control.",
+    "text": "Has +<sprite name=\"power_1\"> per tile you own.",
     "subtype": "Dwarf",
     "cost": 2,
     "attack": 0,
@@ -3767,7 +3767,7 @@
     "art": null,
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -3775,7 +3775,7 @@
   {
     "name": "Outflank",
     "type": "Spell",
-    "text": "[Range 3]: Target enemy minion takes damage equal to the number of humans you control.",
+    "text": "[Range 3]: Target enemy minion takes damage equal to the number of Humans you control.",
     "subtype": "",
     "cost": 1,
     "attack": null,
@@ -3787,7 +3787,7 @@
     "art": "CardScreenshots/Outflank.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -3795,7 +3795,7 @@
   {
     "name": "Outland Berserker",
     "type": "Minion",
-    "text": "Commander-Deploy. Whenever Outland Berserker takes damage, it gains <sprite name=\"power_2\">.",
+    "text": "Commander-Deploy. When Outland Berserker takes damage, Outland Berserker gains +<sprite name=\"power_2\">.",
     "subtype": "Human",
     "cost": 5,
     "attack": 3,
@@ -3807,7 +3807,7 @@
     "art": "CardScreenshots/Outland-Berserker.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Military"
     ],
@@ -3817,7 +3817,7 @@
   {
     "name": "Outland Village",
     "type": "Spell",
-    "text": "[Range 3]: Claim an unclaimed, uncontested tile. Convert the tile to a village.",
+    "text": "[Range 3]: Claim target unclaimed, uncontested tile. Convert it to a Village.",
     "subtype": "Village",
     "cost": 4,
     "attack": null,
@@ -3849,7 +3849,7 @@
     "art": "CardScreenshots/Owl-Familiar.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Mage"
     ],
@@ -3859,7 +3859,7 @@
   {
     "name": "Pack Wolf",
     "type": "Minion",
-    "text": "Has +<sprite name=\"power_2\"> for each adjacent ally Beast.",
+    "text": "Has +<sprite name=\"power_2\"> per adjacent ally Beast.",
     "subtype": "Beast",
     "cost": 2,
     "attack": 2,
@@ -3871,7 +3871,7 @@
     "art": "CardScreenshots/Pack-Wolf.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -3879,7 +3879,7 @@
   {
     "name": "Paladin Initiate",
     "type": "Minion",
-    "text": "Commander-Deploy. Sentinel. Whenever a character you own is healed, gain <sprite name=\"power_1\">.",
+    "text": "Commander-Deploy. Sentinel. When a character you control is healed, gain +<sprite name=\"power_1\">.",
     "subtype": "Human",
     "cost": 1,
     "attack": 1,
@@ -3891,7 +3891,7 @@
     "art": "CardScreenshots/Paladin-Initiate.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Military"
     ],
@@ -3901,7 +3901,7 @@
   {
     "name": "Paladin of Eos",
     "type": "Minion",
-    "text": "[Range 2, Cooldown 1]: Heal a character for 2.",
+    "text": "[Cooldown 1, Range 2]: Target character heals <sprite name=\"health_2\">.",
     "subtype": "Human",
     "cost": 3,
     "attack": 2,
@@ -3913,7 +3913,7 @@
     "art": "CardScreenshots/Paladin-of-Eos.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -3921,7 +3921,7 @@
   {
     "name": "Paladin Proselyte",
     "type": "Minion",
-    "text": "Commander-Deploy. Sentinel. Whenever a character you own is healed, gain <sprite name=\"power_1\"> and <sprite name=\"health_1\">.",
+    "text": "Commander-Deploy. Sentinel. When a character you control is healed, gain +<sprite name=\"power_1\"> and +<sprite name=\"health_1\">.",
     "subtype": "Human",
     "cost": 3,
     "attack": 3,
@@ -3933,7 +3933,7 @@
     "art": "CardScreenshots/Paladin-Proselyte.png",
     "art_type": "PURCHASED_ASSET",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Military"
     ],
@@ -3963,7 +3963,7 @@
   {
     "name": "Peer",
     "type": "Spell",
-    "text": "[Range 2]: Draw a card, then Reveal the leftmost card from a commander's hand.",
+    "text": "[Range 2]: Draw a card, then Reveal the leftmost card in target commander's hand.",
     "subtype": "Psychic",
     "cost": 0,
     "attack": null,
@@ -3975,7 +3975,7 @@
     "art": "CardScreenshots/Peer.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -3983,7 +3983,7 @@
   {
     "name": "Pit Lord",
     "type": "Minion",
-    "text": "Flying. Trample. Commander-Deploy. At the beginning of your turn: your commander loses 4 life.",
+    "text": "Commander-Deploy. Flying. Trample. At the start of your turn: Your commander takes 4 damage.",
     "subtype": "Daemon",
     "cost": 5,
     "attack": 6,
@@ -3995,7 +3995,7 @@
     "art": "CardScreenshots/Pit-Lord.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -4003,7 +4003,7 @@
   {
     "name": "Pixie Pikeman",
     "type": "Minion",
-    "text": "Flying. Arrival: discard the leftmost card in your hand, then draw a card.",
+    "text": "Flying. Arrival: Discard the leftmost card in your hand, then draw a card.",
     "subtype": "Fae",
     "cost": 2,
     "attack": 3,
@@ -4015,7 +4015,7 @@
     "art": null,
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -4023,7 +4023,7 @@
   {
     "name": "Poison Spray",
     "type": "Spell",
-    "text": "[Range 3]: Add 4 Poison to a character.",
+    "text": "[Range 3]: Target character gains 4 Poison.",
     "subtype": "",
     "cost": 3,
     "attack": null,
@@ -4045,7 +4045,7 @@
   {
     "name": "Poison Sting",
     "type": "Spell",
-    "text": "[Range 3]: Add 2 Poison to a character.",
+    "text": "[Range 3]: Target character gains 2 Poison.",
     "subtype": "",
     "cost": 1,
     "attack": null,
@@ -4067,7 +4067,7 @@
   {
     "name": "Pond Hopper",
     "type": "Minion",
-    "text": "[Range 4, Cooldown 1]: Pull a minion in a straight line to Pond Hopper.",
+    "text": "[Cooldown 1, Range 4]: Pull target minion in a straight line to Pond Hopper.",
     "subtype": "Beast",
     "cost": 2,
     "attack": 2,
@@ -4079,7 +4079,7 @@
     "art": "CardScreenshots/Pond-Hopper.png",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -4109,7 +4109,7 @@
   {
     "name": "Potion of Healing",
     "type": "Spell",
-    "text": "[Range 2]: Heal a character for 4.",
+    "text": "[Range 2]: Target character heals <sprite name=\"health_4\">.",
     "subtype": "Potion",
     "cost": 1,
     "attack": null,
@@ -4129,7 +4129,7 @@
   {
     "name": "Power Potion",
     "type": "Spell",
-    "text": "[Range 2]: A minion gains <sprite name=\"power_3\"> and <sprite name=\"health_3\">.",
+    "text": "[Range 2]: Target minion gains +<sprite name=\"power_3\"> and +<sprite name=\"health_3\">.",
     "subtype": "Potion",
     "cost": 3,
     "attack": null,
@@ -4165,7 +4165,7 @@
     "art": "CardScreenshots/Prideplain-Enforcer.png",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Beasts"
     ],
@@ -4209,7 +4209,7 @@
     "art": null,
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -4229,7 +4229,7 @@
     "art": "CardScreenshots/Prince-Xerxes.png",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -4237,7 +4237,7 @@
   {
     "name": "Purifier Euron",
     "type": "Minion",
-    "text": "Legendary. [Once Per Game]: Destroy the current tile if it's a village to destroy ALL other minions.",
+    "text": "Legendary. [Once Per Game]: Destroy the current tile if it's a Village to destroy ALL other minions.",
     "subtype": "Demigod",
     "cost": 9,
     "attack": 8,
@@ -4269,7 +4269,7 @@
     "art": null,
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -4277,7 +4277,7 @@
   {
     "name": "Pyromancer Apprentice",
     "type": "Minion",
-    "text": "Realmbound. Spellcaster. Whenever you play a Spell with cost 3 or greater, add a Flamelash to your hand.",
+    "text": "Realmbound. Spellcaster. When you play a spell with cost 3 or greater, add a Flamelash to your hand.",
     "subtype": "Human",
     "cost": 2,
     "attack": 2,
@@ -4299,7 +4299,7 @@
   {
     "name": "Pyromaniac",
     "type": "Minion",
-    "text": "Spellcaster. Arrival: Draw a fire card from your deck.",
+    "text": "Spellcaster. Arrival: Draw a Fire card from your deck.",
     "subtype": "Human",
     "cost": 3,
     "attack": 3,
@@ -4311,7 +4311,7 @@
     "art": "CardScreenshots/Pyromaniac.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -4319,7 +4319,7 @@
   {
     "name": "Quell the Weak",
     "type": "Spell",
-    "text": "[Range 4]: Destroy a minion with Power <sprite name=\"power_3\"> or less.",
+    "text": "[Range 4]: Destroy target minion with Power <sprite name=\"power_3\"> or less.",
     "subtype": "",
     "cost": 2,
     "attack": null,
@@ -4344,7 +4344,7 @@
     "text": "(Quicklings move faster than mortal eyes can follow.)",
     "subtype": "Beast",
     "cost": 5,
-    "attack": 3,
+    "attack": 4,
     "speed": 9,
     "health": 6,
     "legendary": false,
@@ -4353,7 +4353,7 @@
     "art": "CardScreenshots/Quickling.png",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Beasts"
     ],
@@ -4375,7 +4375,7 @@
     "art": "CardScreenshots/Ravenous-Wolf.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Beasts"
     ],
@@ -4385,7 +4385,7 @@
   {
     "name": "Red Dragon",
     "type": "Minion",
-    "text": "Flying. Haste. [Warmup 3, Range 2]: Deal 3 damage to all characters within 1 Radius.",
+    "text": "Flying. Haste. [Warmup 3, Range 2]: Deal 3 damage to ALL characters within 1 Radius.",
     "subtype": "Dragon",
     "cost": 6,
     "attack": 5,
@@ -4405,7 +4405,7 @@
   {
     "name": "Regeneration Potion",
     "type": "Spell",
-    "text": "[Range 2]: Give a minion Regenerate 3.",
+    "text": "[Range 2]: Target minion gains Regenerate 3.",
     "subtype": "Potion",
     "cost": 1,
     "attack": null,
@@ -4437,7 +4437,7 @@
     "art": "CardScreenshots/Reileigh-Brewpatron.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -4445,7 +4445,7 @@
   {
     "name": "Remit",
     "type": "Spell",
-    "text": "[Range 2] Return a minion to their controller's hand.",
+    "text": "[Range 2]: Return target minion to its controller's hand.",
     "subtype": "Psychic",
     "cost": 1,
     "attack": null,
@@ -4457,7 +4457,7 @@
     "art": "CardScreenshots/Remit.png",
     "art_type": "AI_GENERATED",
     "human_art": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Mage"
     ],
@@ -4467,7 +4467,7 @@
   {
     "name": "Revoke the Living",
     "type": "Spell",
-    "text": "Add 2 Poison to all enemies within Range 1 of your territory. Gain <sprite name=\"dominion_1\"> Dominion.",
+    "text": "All enemies within Range 1 of your territory gain 2 Poison. Gain <sprite name=\"dominion_1\"> Dominion.",
     "subtype": "",
     "cost": 4,
     "attack": null,
@@ -4487,7 +4487,7 @@
   {
     "name": "Rhea, Morning Saint",
     "type": "Minion",
-    "text": "Legendary. Shield. Arrival: if your other minions have 7 or more total Health, give the leftmost minion in your hand <sprite name=\"power_5\"><sprite name=\"speed_1\"><sprite name=\"health_5\"> and Shield.",
+    "text": "Legendary. Shield. Arrival: If your other minions' total Health is at least 7, give the leftmost minion card in your hand +<sprite name=\"power_5\"><sprite name=\"speed_1\"><sprite name=\"health_5\"> and Shield.",
     "subtype": "Human",
     "cost": 5,
     "attack": 6,
@@ -4507,7 +4507,7 @@
   {
     "name": "Ritual of Shadows",
     "type": "Spell",
-    "text": "Shuffle three Dark Offerings into your deck.",
+    "text": "Shuffle 3 Dark Offerings into your deck.",
     "subtype": "",
     "cost": 1,
     "attack": null,
@@ -4519,7 +4519,7 @@
     "art": "CardScreenshots/Ritual-of-Shadows.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [
       "Dark Offering"
@@ -4552,7 +4552,7 @@
   {
     "name": "Rule the Hinterlands",
     "type": "Spell",
-    "text": "Claim an uncontested tile adjacent to your territory. Gain <sprite name=\"dominion_2\"> Dominion.",
+    "text": "Claim target uncontested tile adjacent to your territory. Gain <sprite name=\"dominion_2\"> Dominion.",
     "subtype": "",
     "cost": 3,
     "attack": null,
@@ -4564,7 +4564,7 @@
     "art": "CardScreenshots/Rule-the-Hinterlands.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -4584,7 +4584,7 @@
     "art": "CardScreenshots/Runic-Knight.png",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Mage"
     ],
@@ -4594,7 +4594,7 @@
   {
     "name": "Sacrificial Offering",
     "type": "Spell",
-    "text": "Destroy an ally minion. Draw 2 cards.",
+    "text": "Sacrifice target minion. Draw 2 cards.",
     "subtype": "",
     "cost": 1,
     "attack": null,
@@ -4606,7 +4606,7 @@
     "art": "CardScreenshots/Sacrificial-Offering.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Death"
     ],
@@ -4616,7 +4616,7 @@
   {
     "name": "Sage Potion",
     "type": "Spell",
-    "text": "[Range 2]: A minion gains \"Whenever you draw a card, gain <sprite name=\"power_1\"> and <sprite name=\"health_1\">\".",
+    "text": "[Range 2]: Target minion gains \"When you draw a card, gain +<sprite name=\"power_1\"> and +<sprite name=\"health_1\">.\"",
     "subtype": "Potion",
     "cost": 2,
     "attack": null,
@@ -4636,7 +4636,7 @@
   {
     "name": "Sanguine Baroness",
     "type": "Minion",
-    "text": "Fatal. Arrival: Draw 2 cards and your commander heals 2.",
+    "text": "Fatal. Arrival: Draw 2 cards and your commander heals <sprite name=\"health_2\">.",
     "subtype": "Vampire",
     "cost": 7,
     "attack": 3,
@@ -4648,7 +4648,7 @@
     "art": "CardScreenshots/Sanguine-Baroness.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -4678,7 +4678,7 @@
   {
     "name": "Second Experiment",
     "type": "Minion",
-    "text": "Whenever you play a Potion on an ally Experiment, gain <sprite name=\"power_1\"> and <sprite name=\"speed_1\">.",
+    "text": "When you play a Potion on an ally Experiment, gain +<sprite name=\"power_1\"> and +<sprite name=\"speed_1\">.",
     "subtype": "Experiment",
     "cost": 2,
     "attack": 3,
@@ -4690,7 +4690,7 @@
     "art": "CardScreenshots/Second-Experiment.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -4710,7 +4710,7 @@
     "art": "CardScreenshots/Sentinel-of-Light.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Military"
     ],
@@ -4720,7 +4720,7 @@
   {
     "name": "Settle Village",
     "type": "Spell",
-    "text": "Convert a tile you own to a village.",
+    "text": "Convert target tile you own to a Village.",
     "subtype": "Village",
     "cost": 3,
     "attack": null,
@@ -4740,7 +4740,7 @@
   {
     "name": "Shield Potion",
     "type": "Spell",
-    "text": "[Range 2]: A character gains Shield.",
+    "text": "[Range 2]: Target character gains Shield.",
     "subtype": "Potion",
     "cost": 1,
     "attack": null,
@@ -4772,7 +4772,7 @@
     "art": "CardScreenshots/Shock-Nova.png",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -4792,7 +4792,7 @@
     "art": null,
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -4812,7 +4812,7 @@
     "art": "CardScreenshots/Silver-Dragon.png",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -4832,7 +4832,7 @@
     "art": null,
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -4840,7 +4840,7 @@
   {
     "name": "Skerr'drix",
     "type": "Minion",
-    "text": "Legendary. Spellcaster. When you play a non-Ethereal spell, add an Ethereal copy to your hand that costs zero mana.",
+    "text": "Legendary. Spellcaster. When you play a non-Ethereal spell, add an Ethereal copy to your hand that costs <sprite name=\"mana_0\">.",
     "subtype": "Dragon",
     "cost": 8,
     "attack": 6,
@@ -4860,7 +4860,7 @@
   {
     "name": "Slash and Burn",
     "type": "Spell",
-    "text": "Unclaim a tile you control. Gain <sprite name=\"dominion_2\"> Dominion.",
+    "text": "Unclaim target tile you own. Gain <sprite name=\"dominion_2\"> Dominion.",
     "subtype": "Fire",
     "cost": 1,
     "attack": null,
@@ -4872,7 +4872,7 @@
     "art": "CardScreenshots/Slash-and-Burn.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -4880,7 +4880,7 @@
   {
     "name": "Slay the Mighty",
     "type": "Spell",
-    "text": "[Range 4]: Destroy a minion with Power <sprite name=\"power_5\"> or more.",
+    "text": "[Range 4]: Destroy target minion with Power <sprite name=\"power_5\"> or more.",
     "subtype": "",
     "cost": 3,
     "attack": null,
@@ -4902,7 +4902,7 @@
   {
     "name": "Soul Sale",
     "type": "Spell",
-    "text": "Add 3 Imps to your hand. They cost <sprite name=\"mana_0\"> and have Ethereal.",
+    "text": "Add 3 Imps to your hand with Ethereal. They cost <sprite name=\"mana_0\">.",
     "subtype": "",
     "cost": 4,
     "attack": null,
@@ -4924,7 +4924,7 @@
   {
     "name": "Soulreap",
     "type": "Spell",
-    "text": "An enemy minion loses <sprite name=\"power_6\"> and <sprite name=\"health_6\">. Your commander heals 6 life. Costs <sprite name=\"mana_5\"> less if you control a Daemon.",
+    "text": "Target enemy minion loses <sprite name=\"power_6\"> and <sprite name=\"health_6\">. Your commander heals <sprite name=\"health_6\">. Costs <sprite name=\"mana_5\"> less if you control a Daemon.",
     "subtype": "",
     "cost": 8,
     "attack": null,
@@ -4936,7 +4936,7 @@
     "art": "CardScreenshots/Soulreap.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -4944,7 +4944,7 @@
   {
     "name": "Spiderling Rider",
     "type": "Minion",
-    "text": "Trample. [Range 2 Attack]: Deal 2 damage to an enemy if you control another Arachnid.",
+    "text": "Trample. [Range 2 Attack]: Deal 2 damage to target enemy if you control another Arachnid.",
     "subtype": "Arachnid",
     "cost": 3,
     "attack": 3,
@@ -4964,7 +4964,7 @@
   {
     "name": "Spoils of War",
     "type": "Spell",
-    "text": "Discard your hand. Draw cards equal to the number of territories you control.",
+    "text": "Discard your hand. Draw cards equal to the number of tiles you own.",
     "subtype": "",
     "cost": 5,
     "attack": null,
@@ -4976,7 +4976,7 @@
     "art": "CardScreenshots/Spoils-of-War.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -4984,7 +4984,7 @@
   {
     "name": "Spore Thresher",
     "type": "Minion",
-    "text": "At the end of your turn, add 2 Poison to enemies and heal 2 for allies within Range 2.",
+    "text": "At the end of your turn, enemies within Range 2 gain 2 Poison and allies within Range 2 heal <sprite name=\"health_2\">.",
     "subtype": "Plant",
     "cost": 6,
     "attack": 1,
@@ -5004,7 +5004,7 @@
   {
     "name": "Stagasus",
     "type": "Minion",
-    "text": "Flying. [<sprite name=\"mana_1\">, Warmup 1, Range 2]: Give an ally +4 movement.",
+    "text": "Flying. [Pay <sprite name=\"mana_1\">, Warmup 1, Range 2]: Target ally gains +4 Movement.",
     "subtype": "Beast",
     "cost": 2,
     "attack": 2,
@@ -5016,7 +5016,7 @@
     "art": "CardScreenshots/Stagasus.png",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Deploy"
     ],
@@ -5026,7 +5026,7 @@
   {
     "name": "Stalking Hippo",
     "type": "Minion",
-    "text": "Regenerate 5.  (Heals for 5 at the end of your turn.)",
+    "text": "Regenerate 5.  (Heals <sprite name=\"health_5\"> at the end of your turn.)",
     "subtype": "Beast",
     "cost": 5,
     "attack": 4,
@@ -5038,7 +5038,7 @@
     "art": "CardScreenshots/Stalking-Hippo.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Beasts"
     ],
@@ -5070,7 +5070,7 @@
   {
     "name": "Stampede",
     "type": "Spell",
-    "text": "Beasts you control within Range 3 gain <sprite name=\"power_3\"><sprite name=\"speed_2\"><sprite name=\"health_3\"> and gain Trample until the end of the turn.",
+    "text": "Beasts you control within Range 3 gain +<sprite name=\"power_3\"><sprite name=\"speed_2\"><sprite name=\"health_3\"> and Trample until end of the turn.",
     "subtype": "",
     "cost": 6,
     "attack": null,
@@ -5082,7 +5082,7 @@
     "art": "CardScreenshots/Stampede.png",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -5112,7 +5112,7 @@
   {
     "name": "Stormrider Zurn",
     "type": "Minion",
-    "text": "Legendary. Spellcaster. Haste. When you play a Lightning spell, gain <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> until end of turn.",
+    "text": "Legendary. Spellcaster. Haste. When you play a Lightning spell, gain +<sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> until end of the turn.",
     "subtype": "Demigod",
     "cost": 4,
     "attack": 6,
@@ -5144,7 +5144,7 @@
     "art": "CardScreenshots/Stout-Knight.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -5164,7 +5164,7 @@
     "art": "CardScreenshots/Strategic-Reserves.png",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -5172,7 +5172,7 @@
   {
     "name": "Stumbling Ghoul",
     "type": "Minion",
-    "text": "Postmortem: Summon a <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> Undead Zombie.",
+    "text": "Postmortem: Summon a <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> Zombie.",
     "subtype": "Undead",
     "cost": 1,
     "attack": 1,
@@ -5184,7 +5184,7 @@
     "art": "CardScreenshots/Stumbling-Ghoul.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [
       "Zombie"
@@ -5194,7 +5194,7 @@
   {
     "name": "Styrian Infantry",
     "type": "Minion",
-    "text": "Arrival: draw a card if you have 3 or less maximum mana.",
+    "text": "Arrival: Draw a card if you have 3 or less maximum Mana.",
     "subtype": "Human",
     "cost": 1,
     "attack": 2,
@@ -5206,7 +5206,7 @@
     "art": "CardScreenshots/Styrian-Infantry.png",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -5214,7 +5214,7 @@
   {
     "name": "Supercharger",
     "type": "Minion",
-    "text": "[Warmup 1]: All adjacent allies gain +1 movement and regain their Attacks.",
+    "text": "[Warmup 1]: All adjacent allies gain +1 Movement and regain an Attack.",
     "subtype": "Mech",
     "cost": 5,
     "attack": 6,
@@ -5259,7 +5259,7 @@
   {
     "name": "Swiftness Potion",
     "type": "Spell",
-    "text": "[Range 2]: A minion gains <sprite name=\"speed_3\">.",
+    "text": "[Range 2]: Target minion gains +<sprite name=\"speed_3\">.",
     "subtype": "Potion",
     "cost": 2,
     "attack": null,
@@ -5279,7 +5279,7 @@
   {
     "name": "Tadpole",
     "type": "Minion",
-    "text": "Whenever you play a Spell, Tadpole gains <sprite name=\"power_1\"> and <sprite name=\"health_1\">.",
+    "text": "When you play a spell, Tadpole gains +<sprite name=\"power_1\"> and +<sprite name=\"health_1\">.",
     "subtype": "Beast",
     "cost": 1,
     "attack": 1,
@@ -5291,7 +5291,7 @@
     "art": "CardScreenshots/Tadpole.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Mage"
     ],
@@ -5313,7 +5313,7 @@
     "art": null,
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -5321,7 +5321,7 @@
   {
     "name": "Throne Guardian",
     "type": "Minion",
-    "text": "Flying. Arrival: Gain <sprite name=\"dominion_1\"> Dominion, Gain <sprite name=\"intellect_1\"> Intellect, Draw 1 Card.",
+    "text": "Flying. Arrival: Gain <sprite name=\"dominion_1\"> Dominion, Gain <sprite name=\"intellect_1\"> Intellect, Draw 1 card.",
     "subtype": "Dragon",
     "cost": 5,
     "attack": 4,
@@ -5333,7 +5333,7 @@
     "art": "CardScreenshots/Throne-Guardian.png",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -5341,7 +5341,7 @@
   {
     "name": "Thunder Jolt",
     "type": "Spell",
-    "text": "[Range 4]: Deal 1 damage.",
+    "text": "[Range 4]: Deal 1 damage to target character.",
     "subtype": "Lightning",
     "cost": 0,
     "attack": null,
@@ -5361,7 +5361,7 @@
   {
     "name": "Thunder Skywhale",
     "type": "Minion",
-    "text": "Flying. Deploy. [Arrival]: Return all enemy minions within Range 2 that have Health less than the number of tiles in your territory.",
+    "text": "Deploy. Flying. Arrival: Return all enemy minions within Range 2 that have Health less than the number of tiles in your territory.",
     "subtype": "Beast",
     "cost": 8,
     "attack": 6,
@@ -5381,7 +5381,7 @@
   {
     "name": "Thunder Step",
     "type": "Spell",
-    "text": "A friendly character may Teleport up to 2 tiles this turn. Before it does, Stun all adjacent minions.",
+    "text": "Target character you control may Teleport up to 2 tiles this turn. Before it does, Stun all adjacent minions.",
     "subtype": "Lightning",
     "cost": 3,
     "attack": null,
@@ -5393,7 +5393,7 @@
     "art": "CardScreenshots/Thunder-Step.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -5401,7 +5401,7 @@
   {
     "name": "Thunderous Warbeast",
     "type": "Minion",
-    "text": "Arrival: Add two Thunder Jolts to your hand. When you play a Lightning spell, your commander heals 2.",
+    "text": "Arrival: Add 2 Thunder Jolts to your hand. When you play a Lightning spell, your commander heals <sprite name=\"health_2\">.",
     "subtype": "Beast",
     "cost": 5,
     "attack": 4,
@@ -5435,7 +5435,7 @@
     "art": "CardScreenshots/Titan-Herald.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -5443,7 +5443,7 @@
   {
     "name": "Toxic Watering",
     "type": "Spell",
-    "text": "Your plants gain \"At the end of each of your turns, enemy commanders gain 1 Poison.\"",
+    "text": "Your Plants gain \"At the end of each of your turns, enemy commanders gain 1 Poison.\"",
     "subtype": "",
     "cost": 1,
     "attack": null,
@@ -5463,7 +5463,7 @@
   {
     "name": "Toxicologist",
     "type": "Minion",
-    "text": "Realmbound. At the beginning of your turn: add a Poison Sting to your hand. If Toxicologist is poisoned, add two.",
+    "text": "Realmbound. At the start of your turn: Add a Poison Sting to your hand. If Toxicologist has Poison, add 2.",
     "subtype": "Human",
     "cost": 3,
     "attack": 1,
@@ -5485,7 +5485,7 @@
   {
     "name": "Toxicologist's Vial",
     "type": "Spell",
-    "text": "[Range 2]: Double a character's Poison.",
+    "text": "[Range 2]: Double target character's Poison.",
     "subtype": "Potion",
     "cost": 4,
     "attack": null,
@@ -5505,7 +5505,7 @@
   {
     "name": "Tree of Life",
     "type": "Minion",
-    "text": "Legendary. At the end of your turn, your commander and plants you control gain <sprite name=\"health_2\"> (increases Max Health).",
+    "text": "Legendary. At the end of your turn, your commander and Plants you control gain +<sprite name=\"health_2\"> (increases Max Health).",
     "subtype": "Plant",
     "cost": 7,
     "attack": 2,
@@ -5517,7 +5517,7 @@
     "art": "CardScreenshots/Tree-of-Life.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -5525,7 +5525,7 @@
   {
     "name": "Trinket Trasher",
     "type": "Minion",
-    "text": "Goblin-Deploy. Arrival: Destroy the enemy commander's Weapon.",
+    "text": "Goblin-Deploy. Arrival: Destroy enemy commanders' Weapons.",
     "subtype": "Goblin",
     "cost": 2,
     "attack": 3,
@@ -5537,7 +5537,7 @@
     "art": null,
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -5557,7 +5557,7 @@
     "art": null,
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -5565,10 +5565,10 @@
   {
     "name": "Undying Behemoth",
     "type": "Minion",
-    "text": "Sentinel. Postmortem: Summon a <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> Undead Zombie that has: \u201cPostmortem: Summon a <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> Undead Zombie.\u201d",
+    "text": "Sentinel. Postmortem: Summon a <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> Zombie that has \"Postmortem: Summon a <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> Zombie.\"",
     "subtype": "Undead",
     "cost": 6,
-    "attack": 4,
+    "attack": 5,
     "speed": 2,
     "health": 5,
     "legendary": false,
@@ -5587,7 +5587,7 @@
   {
     "name": "Ursine Blade Trio",
     "type": "Minion",
-    "text": "Commander-Deploy. Arrival: draw another Ursine Blade Trio from your deck.",
+    "text": "Commander-Deploy. Arrival: Draw another Ursine Blade Trio from your deck.",
     "subtype": "Beast",
     "cost": 3,
     "attack": 3,
@@ -5599,7 +5599,7 @@
     "art": "CardScreenshots/Ursine-Blade-Trio.png",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -5607,7 +5607,7 @@
   {
     "name": "Vergis, Doomed Archaeologist",
     "type": "Minion",
-    "text": "Legendary. Arrival: shuffle Artifact of the End into your deck",
+    "text": "Legendary. Arrival: Shuffle Artifact of the End into your deck.",
     "subtype": "Dwarf",
     "cost": 6,
     "attack": 4,
@@ -5649,7 +5649,7 @@
   {
     "name": "Vyre Aristocrat",
     "type": "Minion",
-    "text": "Lifelink. [<sprite name=\"mana_1\">]: Sacrifice an adjacent Minion to gain <sprite name=\"power_2\"> and <sprite name=\"health_2\">.",
+    "text": "Lifelink. [Pay <sprite name=\"mana_1\">]: Sacrifice target adjacent minion to gain +<sprite name=\"power_2\"> and +<sprite name=\"health_2\">.",
     "subtype": "Vampire",
     "cost": 2,
     "attack": 2,
@@ -5661,7 +5661,7 @@
     "art": "CardScreenshots/Vyre-Aristocrat.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -5689,7 +5689,7 @@
   {
     "name": "War Banner",
     "type": "Minion",
-    "text": "Deploy. Adjacent ally Minions have +<sprite name=\"power_2\">.",
+    "text": "Deploy. Adjacent ally minions have +<sprite name=\"power_2\">.",
     "subtype": "",
     "cost": 1,
     "attack": 0,
@@ -5721,7 +5721,7 @@
     "art": null,
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -5729,7 +5729,7 @@
   {
     "name": "Warcry",
     "type": "Spell",
-    "text": "Your characters within Range 3 gain <sprite name=\"power_2\"> and <sprite name=\"speed_2\"> until end of turn.",
+    "text": "Your characters within Range 3 gain +<sprite name=\"power_2\"> and +<sprite name=\"speed_2\"> until end of the turn.",
     "subtype": "",
     "cost": 3,
     "attack": null,
@@ -5741,7 +5741,7 @@
     "art": "CardScreenshots/Warcry.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -5761,7 +5761,7 @@
     "art": null,
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -5781,7 +5781,7 @@
     "art": "CardScreenshots/Warscarred-Rhino.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Military"
     ],
@@ -5803,7 +5803,7 @@
     "art": "CardScreenshots/Warscarred-Soldier.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [
       "Starter Military"
     ],
@@ -5825,7 +5825,7 @@
     "art": "CardScreenshots/Wise-Elder.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -5853,7 +5853,7 @@
   {
     "name": "Zealous Captain",
     "type": "Minion",
-    "text": "Whenever a character you own is healed, adjacent ally minions gain <sprite name=\"power_1\"> and <sprite name=\"health_1\">.",
+    "text": "When a character you control is healed, adjacent ally minions gain +<sprite name=\"power_1\"> and +<sprite name=\"health_1\">.",
     "subtype": "Human",
     "cost": 5,
     "attack": 4,
@@ -5865,7 +5865,7 @@
     "art": "CardScreenshots/Zealous-Captain.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -5873,7 +5873,7 @@
   {
     "name": "Zealous Strength",
     "type": "Spell",
-    "text": "Ally minions within Range 3 gain <sprite name=\"power_2\"> and <sprite name=\"health_2\">. They also gain +1 Movement this turn only.",
+    "text": "Ally minions within Range 3 gain +<sprite name=\"power_2\"> and +<sprite name=\"health_2\">. They also gain +1 Movement until end of the turn.",
     "subtype": "",
     "cost": 4,
     "attack": null,
@@ -5885,7 +5885,7 @@
     "art": "CardScreenshots/Zealous-Strength.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -5905,7 +5905,7 @@
     "art": "CardScreenshots/Zoghn-Eye-of-Treason.png",
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": false
@@ -5913,7 +5913,7 @@
   {
     "name": "Zoloth the Butcher",
     "type": "Minion",
-    "text": "Legendary. [Arrival]: Sacrifice a Minion to add three <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> Zombies to your hand with Ethereal that cost <sprite name=\"mana_0\">.",
+    "text": "Legendary. Arrival: Sacrifice target minion to add 3 <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> Zombies to your hand with Ethereal that cost <sprite name=\"mana_0\">.",
     "subtype": "Undead",
     "cost": 5,
     "attack": 6,
@@ -5935,7 +5935,7 @@
   {
     "name": "Artifact of the End",
     "type": "Minion",
-    "text": "Legendary. Haste. Lifelink. Arrival: enemy commanders are Doomed 3x. Postmortem: shuffle this into your deck.",
+    "text": "Legendary. Haste. Lifelink. Arrival: Enemy commanders gain 3 Doom. Postmortem: Shuffle this into your deck.",
     "subtype": "Mech",
     "cost": 3,
     "attack": 5,
@@ -5987,7 +5987,7 @@
     "art": "CardScreenshots/Daemon-Knight.png",
     "art_type": "AI_GENERATED",
     "human_art": false,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": true
@@ -5995,7 +5995,7 @@
   {
     "name": "Dark Offering",
     "type": "Spell",
-    "text": "Your commander loses 3 life. Draw 2 cards. Gain <sprite name=\"mana_2\"> this turn.",
+    "text": "Your commander takes 3 damage. Draw 2 cards. Gain <sprite name=\"mana_2\"> this turn.",
     "subtype": "",
     "cost": 0,
     "attack": null,
@@ -6007,7 +6007,7 @@
     "art": "CardScreenshots/Dark-Offering.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": true
@@ -6027,7 +6027,7 @@
     "art": "CardScreenshots/Dragon.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": true
@@ -6047,7 +6047,7 @@
     "art": "CardScreenshots/Durka-Spawn.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": true
@@ -6067,7 +6067,7 @@
     "art": "CardScreenshots/Illusion.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": true
@@ -6087,7 +6087,7 @@
     "art": "CardScreenshots/Lucian-Soldier.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": true
@@ -6107,7 +6107,7 @@
     "art": "CardScreenshots/Zombie.png",
     "art_type": "COMMISSIONED_PLACEHOLDER",
     "human_art": true,
-    "has_animation": false,
+    "has_animation": true,
     "starter_decks": [],
     "mentions": [],
     "token": true
