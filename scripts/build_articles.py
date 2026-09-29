@@ -8,6 +8,7 @@ Inputs:
   site/data/cardlist.json       — card id ↔ name (used by the Python deck codec)
   site/data/cards.json          — full card metadata (cost, faction, type)
   site/data/commanders.json     — commander metadata (faction, art)
+  site/assets/icons/text/icons.json — inline stat icons (scripts/import_text_icons.py)
 
 Outputs:
   site/articles/index.html              — index page with all published articles
@@ -20,6 +21,10 @@ shape for consistency):
   [[card:Acid Rain]]      — inline card link with hover preview
   [[card-img:Acid Rain]]  — inline card image
   [[deck:<DECKCODE>]]     — embedded deck listing (block form when on its own line)
+  [[video:clip.mp4|Description]] — silent looping clip; lines after it in the
+                            same paragraph become its caption (block form only)
+Plus the game's own inline stat-icon tokens, written exactly as in card text:
+  {power_3} {health} {mana_X} — inline icon from the CardTextIcons sprite sheet
 
 CLI:
   python scripts/build_articles.py                # build all non-draft, non-future articles
@@ -44,6 +49,7 @@ import urllib.parse
 
 import yaml
 import markdown
+from markdown.blockprocessors import BlockProcessor
 from markdown.extensions import Extension
 from markdown.inlinepatterns import InlineProcessor
 from markdown.preprocessors import Preprocessor
@@ -69,6 +75,8 @@ CARDLIST_JSON = DATA_DIR / "cardlist.json"
 CARDS_JSON = DATA_DIR / "cards.json"
 COMMANDERS_JSON = DATA_DIR / "commanders.json"
 ARTICLES_INDEX_JSON = DATA_DIR / "articles.json"
+TEXT_ICONS_DIR = SITE_DIR / "assets" / "icons" / "text"
+TEXT_ICONS_JSON = TEXT_ICONS_DIR / "icons.json"
 
 SITE_ROOT_URL = "https://atlas-conquest.com"
 
@@ -341,6 +349,51 @@ class CardImgInlineProcessor(InlineProcessor):
         return group, m.start(0), m.end(0)
 
 
+# {power_3} — inline stat icon, same token syntax as in-game card text
+# (Util.ReplaceIconTokens). The family list mirrors the game's IconTokenRegex.
+TEXT_ICON_TOKEN = r"\{(?:mana|power|speed|health|durability|intellect|dominion)(?:_(?:\d+|X))?\}"
+TEXT_ICON_PARTS_RE = re.compile(r"\{((mana|power|speed|health|durability|intellect|dominion)(?:_(\d+|X))?)\}")
+
+
+class TextIconInlineProcessor(InlineProcessor):
+    # A run of adjacent tokens with an optional sign, like card text's
+    # "+{power_1}{speed_1}{health_1}", is matched whole so it can't wrap apart.
+    PATTERN = rf"([+\-−]?)((?:{TEXT_ICON_TOKEN})+)"
+
+    def __init__(self, source: Path):
+        super().__init__(self.PATTERN)
+        self._source = source
+        self._icons = json.loads(TEXT_ICONS_JSON.read_text(encoding="utf-8"))
+
+    def _img(self, m: re.Match) -> ET.Element:
+        name, family, amount = m.group(1), m.group(2), m.group(3)
+        icon = self._icons.get(name)
+        if icon is None:
+            raise BuildError(f"No inline icon for {{{name}}} (see {TEXT_ICONS_JSON.name})", self._source)
+        label = f"{amount} {family}" if amount else family
+        el = ET.Element("img")
+        el.set("class", "text-icon")
+        el.set("src", f"/assets/icons/text/{name}.png")
+        el.set("alt", label)
+        el.set("title", label.capitalize())
+        el.set("width", str(icon["w"]))
+        el.set("height", str(icon["h"]))
+        # How far the glyph hangs below the baseline, from its TMP bearing.
+        el.set("style", f"--drop: {icon['drop']}")
+        return el
+
+    def handleMatch(self, m, data):
+        sign = m.group(1)
+        imgs = [self._img(t) for t in TEXT_ICON_PARTS_RE.finditer(m.group(2))]
+        if not sign and len(imgs) == 1:
+            return imgs[0], m.start(0), m.end(0)
+        run = ET.Element("span")
+        run.set("class", "text-icon-run")
+        run.text = sign
+        run.extend(imgs)
+        return run, m.start(0), m.end(0)
+
+
 # [[deck:CODE]] — splits on the FIRST colon only, since codes contain ":".
 DECK_INLINE_PATTERN = r"\[\[deck:([^\]]+)\]\]"
 DECK_PARA_RE = re.compile(rf"^\s*{DECK_INLINE_PATTERN}\s*$")
@@ -449,7 +502,8 @@ class ArticleImageTreeprocessor(Treeprocessor):
         self._copied = copied_images
 
     def run(self, root):
-        for img in root.iter("img"):
+        parents = {child: parent for parent in root.iter() for child in parent}
+        for img in list(root.iter("img")):
             src = img.get("src") or ""
             if not src:
                 continue
@@ -457,6 +511,77 @@ class ArticleImageTreeprocessor(Treeprocessor):
                 continue
             self._copied.add(src)
             img.set("src", f"/assets/articles/{self._slug}/{src}")
+            # A same-named .webp next to a .jpg/.png is served first, with the
+            # original as the fallback.
+            webp = Path(src).with_suffix(".webp").as_posix()
+            if webp != src and (ARTICLES_IMG_SRC / self._slug / webp).exists():
+                self._copied.add(webp)
+                self._wrap_picture(img, parents[img], f"/assets/articles/{self._slug}/{webp}")
+        return None
+
+    @staticmethod
+    def _wrap_picture(img: ET.Element, parent: ET.Element, webp_url: str) -> None:
+        picture = ET.Element("picture")
+        picture.tail, img.tail = img.tail, None
+        ET.SubElement(picture, "source", {"srcset": webp_url, "type": "image/webp"})
+        parent.insert(list(parent).index(img), picture)
+        parent.remove(img)
+        picture.append(img)
+
+
+# [[video:clip.mp4|Description]] — a silent, looping clip (autoplay needs
+# muted + playsinline). The description is the video's accessible label, so it
+# should say only what the clip shows; any following lines in the paragraph
+# become a Markdown caption, which can explain more (e.g. card text).
+class VideoBlockProcessor(BlockProcessor):
+    RE = re.compile(r"^\[\[video:([^\]|]+?)\s*(?:\|\s*([^\]]*?)\s*)?\]\][ \t]*(?:\n|$)")
+
+    def __init__(self, parser, article_slug: str, copied_images: set[str], source: Path):
+        super().__init__(parser)
+        self._slug = article_slug
+        self._copied = copied_images
+        self._source = source
+
+    def test(self, parent, block):
+        return bool(self.RE.match(block))
+
+    def run(self, parent, blocks):
+        block = blocks.pop(0)
+        m = self.RE.match(block)
+        name, label = m.group(1).strip(), (m.group(2) or "").strip()
+        if not name.endswith(".mp4") or "/" in name:
+            raise BuildError(f"[[video:{name}]] must name an .mp4 in articles/images/{self._slug}/", self._source)
+        if not label:
+            raise BuildError(f"[[video:{name}]] needs a description: [[video:{name}|What the clip shows]]", self._source)
+        self._copied.add(name)
+
+        figure = ET.SubElement(parent, "figure", {"class": "article-video"})
+        ET.SubElement(figure, "video", {
+            "src": f"/assets/articles/{self._slug}/{name}",
+            "autoplay": "autoplay", "loop": "loop", "muted": "muted",
+            "playsinline": "playsinline", "preload": "auto",
+            "aria-label": label,
+        })
+        caption = block[m.end():].strip()
+        if caption:
+            ET.SubElement(figure, "figcaption").text = caption
+        return True
+
+
+class IconListItemTreeprocessor(Treeprocessor):
+    """Mark list items that open with a stat icon ("- {power} **Power**: ...").
+
+    articles.css drops their bullet and centers the icon in a fixed-width slot,
+    so the text after icons of different widths lines up.
+    """
+
+    def run(self, root):
+        for li in root.iter("li"):
+            if (li.text or "").strip() or not len(li):
+                continue
+            first = li[0]
+            if first.tag == "img" and first.get("class") == "text-icon":
+                li.set("class", "icon-item")
         return None
 
 
@@ -490,12 +615,22 @@ class ArticleExtension(Extension):
         md.inlinePatterns.register(
             DeckInlineProcessor(self._codec, self._cards, self._source), "ac_deck_inline", 174
         )
+        md.inlinePatterns.register(
+            TextIconInlineProcessor(self._source), "ac_text_icon", 173
+        )
+        md.parser.blockprocessors.register(
+            VideoBlockProcessor(md.parser, self._slug, self._copied, self._source),
+            "ac_video",
+            100,  # ahead of paragraphs so the whole block is claimed
+        )
         # Treeprocessor: rewrite relative <img src> paths to /assets/articles/<slug>/.
         md.treeprocessors.register(
             ArticleImageTreeprocessor(md, self._slug, self._copied),
             "ac_article_images",
             5,
         )
+        # Runs after inline patterns (priority 20), once icons are <img>s.
+        md.treeprocessors.register(IconListItemTreeprocessor(md), "ac_icon_items", 4)
 
 
 # ─── Deck embed HTML ───────────────────────────────────────

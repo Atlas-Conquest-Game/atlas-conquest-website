@@ -29,6 +29,16 @@ Multiple cards can sit alongside each other: [[card:Action Surge]] and
 The image above is rendered via the `[[card-img:Name]]` shortcode and lives at
 `/assets/cards/acid-rain.jpg`.
 
+## Inline stat icons
+
+The game's card-text icon tokens work in prose: a 3-cost {mana_3} minion with
+{power_2} {speed_1} {health_4}, an {mana_X} cost, or the bare stat names —
+{power}, {speed}, {health}, {durability}, {intellect}, {dominion}. They also
+work in lists and headings:
+
+- **Dominion {dominion}** — the maximum number of tiles you can claim.
+- **Intellect {intellect}** — your maximum hand size.
+
 ## Embedded deck
 
 A `[[deck:...]]` on its own line expands to a full deck card with commander

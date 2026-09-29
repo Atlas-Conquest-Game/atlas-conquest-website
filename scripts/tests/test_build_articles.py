@@ -265,6 +265,91 @@ def test_card_shortcode_in_fenced_code_not_expanded(codec, cards_index):
     assert 'class="card-link"' not in a.body_html
 
 
+def test_text_icon_token(codec, cards_index):
+    a = _render("Gains {power_2} and {health}.", "x", codec, cards_index)
+    assert 'class="text-icon"' in a.body_html
+    assert 'src="/assets/icons/text/power_2.png"' in a.body_html
+    assert 'alt="2 power"' in a.body_html
+    assert 'src="/assets/icons/text/health.png"' in a.body_html
+    assert "{" not in a.body_html
+
+
+def test_every_game_icon_family_renders(codec, cards_index):
+    tokens = ["mana_X", "power_1", "speed_2", "health_3", "durability_4",
+              "intellect_5", "intellect", "dominion_6", "dominion"]
+    a = _render(" ".join(f"{{{t}}}" for t in tokens), "x", codec, cards_index)
+    for t in tokens:
+        assert f'src="/assets/icons/text/{t}.png"' in a.body_html
+
+
+def test_text_icon_run_kept_together(codec, cards_index):
+    a = _render("Gains +{power_1}{speed_1}{health_1} and {mana_2}.", "x", codec, cards_index)
+    assert a.body_html.count('class="text-icon-run"') == 1
+    assert '<span class="text-icon-run">+<img' in a.body_html
+    assert a.body_html.count('class="text-icon"') == 4
+
+
+def test_unknown_text_icon_raises(codec, cards_index):
+    with pytest.raises(ba.BuildError, match="power_12"):
+        _render("Way too strong: {power_12}", "x", codec, cards_index)
+
+
+def test_non_icon_braces_left_alone(codec, cards_index):
+    a = _render("A {curly} aside and {mana-ish}.", "x", codec, cards_index)
+    assert "{curly}" in a.body_html
+    assert "text-icon" not in a.body_html
+
+
+def test_text_icon_in_code_not_expanded(codec, cards_index):
+    a = _render("Write `{power_3}` in Markdown.", "x", codec, cards_index)
+    assert "{power_3}" in a.body_html
+    assert "text-icon" not in a.body_html
+
+
+def test_video_block_with_caption(codec, cards_index):
+    body = "[[video:battle.mp4|Two minions battle]]\n[[card:Acid Rain]] deals {power_2}.\n\nAfter."
+    a = _render(body, "detailed-rules", codec, cards_index)
+    assert '<figure class="article-video">' in a.body_html
+    assert 'src="/assets/articles/detailed-rules/battle.mp4"' in a.body_html
+    for attr in ("autoplay", "loop", "muted", "playsinline"):
+        assert f" {attr}" in a.body_html
+    assert 'aria-label="Two minions battle"' in a.body_html
+    # The caption is Markdown: card links and icons render inside it.
+    assert '<figcaption><a class="card-link"' in a.body_html
+    assert 'class="text-icon"' in a.body_html
+    assert "<p>After.</p>" in a.body_html
+    assert "battle.mp4" in a.referenced_images
+
+
+def test_video_without_caption(codec, cards_index):
+    a = _render("[[video:battle.mp4|Two minions battle]]", "x", codec, cards_index)
+    assert "<figcaption>" not in a.body_html
+
+
+def test_video_requires_description(codec, cards_index):
+    with pytest.raises(ba.BuildError, match="needs a description"):
+        _render("[[video:battle.mp4]]", "x", codec, cards_index)
+
+
+def test_video_must_be_mp4(codec, cards_index):
+    with pytest.raises(ba.BuildError, match=".mp4"):
+        _render("[[video:battle.gif|Clip]]", "x", codec, cards_index)
+
+
+def test_webp_sibling_wraps_image_in_picture(codec, cards_index, tmp_path, monkeypatch):
+    img_dir = tmp_path / "article"
+    img_dir.mkdir()
+    (img_dir / "map.jpg").write_bytes(b"")
+    (img_dir / "map.webp").write_bytes(b"")
+    (img_dir / "plain.png").write_bytes(b"")
+    monkeypatch.setattr(ba, "ARTICLES_IMG_SRC", tmp_path)
+    a = _render("![A map](map.jpg)\n\n![Plain](plain.png)", "article", codec, cards_index)
+    assert ('<picture><source srcset="/assets/articles/article/map.webp" type="image/webp">'
+            '<img alt="A map" src="/assets/articles/article/map.jpg"></picture>') in a.body_html
+    assert a.body_html.count("<picture>") == 1
+    assert a.referenced_images == {"map.jpg", "map.webp", "plain.png"}
+
+
 def test_deck_block_renders(codec, cards_index):
     # Build a real deck code from cards we know exist.
     deck = {
@@ -410,3 +495,10 @@ def test_end_to_end_build(tmp_path, monkeypatch, article_factory):
     index_json = json.loads((out_data / "articles.json").read_text(encoding="utf-8"))
     assert len(index_json["articles"]) == 1
     assert index_json["articles"][0]["slug"] == "end-to-end"
+
+
+def test_list_items_opening_with_an_icon_are_marked(codec, cards_index):
+    body = "- {power} **Power**: damage.\n- Gain {mana_2} this turn.\n- Plain item."
+    a = _render(body, "x", codec, cards_index)
+    assert a.body_html.count('<li class="icon-item">') == 1
+    assert '<li class="icon-item"><img alt="power"' in a.body_html

@@ -3,102 +3,158 @@ title: "Detailed Rules"
 slug: detailed-rules
 author: "Atlas Conquest Team"
 date: 2026-05-24
-summary: "The full rulebook for Atlas Conquest — the map, characters, movement and battle, abilities, card keywords, unclaiming, and commanders."
+summary: "The full rulebook for Atlas Conquest, from the basics of a turn to territory, battle, abilities, keywords, commanders, and setting up a game."
 hero_image: map.png
 tags: [rules, reference]
 ---
 
-Welcome to Atlas Conquest: a grid-based strategy game that combines the very best of both board and card games!
+Atlas Conquest is a two-player competitive card battler played on a hex-grid board. This page starts with the basics and adds detail as it goes, so you can stop reading whenever you're ready to play.
 
 ## Overview
 
-Each player builds and plays a deck of at least 40 cards. Each player also selects a commander to helm their strategy. The goal of the game is to reduce the opposing commander's health to 0 before they can do the same to you.
+Each player leads an army with a **commander**. Your goal is to reduce the enemy commander's {health} Health to 0 before they do the same to you.
+
+Players take turns. On your turn you can:
+
+- **Play cards** from your hand, paying for them with mana.
+- **Move** your characters around the map.
+- **Battle** enemy characters.
+- **Claim** tiles with your commander to grow your territory, and with it your mana.
+
+The rest of this page explains each of these.
 
 ## The Map
 
-The map is a hexagonal grid. Commanders start in the same two positions each game, at opposite sides of the map. Initially only each commander's starting tile is claimed.
+Each player's **territory** is the tiles they own: yours is outlined in green, your opponent's in red. A game starts with each commander on its starting tile, which is the only tile its player owns.
 
-![The Dunes map, one of Atlas Conquest's battle maps](map.png)
+![The Dunes map at the start of a game: your commander's starting tile at the bottom left (green outline), your opponent's at the top right (red outline), and two villages in the middle](map-dunes.jpg){: .wide }
 
-Tiles present on the map at the start of the game fall into a few types:
+The map has three kinds of tile. Everything else, like desert, snow, or jungle, is just scenery.
 
-- **Normal tiles** — can be occupied by any character, and grant 1 mana each turn if claimed.
-- **Villages** — can be occupied by any character, and grant 2 mana each turn if claimed.
-- **Mountains** — normal tile that can't be occupied by characters without Flying.
+- **Normal tiles** give {mana_1} each turn while you own them.
+- **Villages** give {mana_2} each turn while you own them.
+- **Mountains** can only be entered by characters with Flying.
 
-There is no functional difference between the different normal tiles on the map such as the deserts, rocks, cacti, or oasis. Claiming a tile does not immediately grant its mana — you will receive the increased mana at the start of subsequent turns.
+Each game is played on one of three maps: Dunes (above), Snowmelt, and Tropics.
 
-You can right-click on a tile to display details of the tile, including its type, as well as the option to unclaim the tile, for when you need to make shifts in your territory once your maximum dominion has been reached.
+![The Snowmelt map at the start of a game: starting tiles on the left (green outline) and right (red outline), around a center of villages and a lake ringed by snowy mountains](map-snowmelt.jpg){: .pair }
+![The Tropics map at the start of a game: starting tiles on the left (green outline) and right (red outline), three central villages between two mountains, and volcanoes in the corners](map-tropics.jpg){: .pair }
 
-Cards may also create special tiles with unique abilities not present on the starting map.
+## Mana and Cards
 
-There are currently three maps in the game. Each one brings with it its own gameplay dynamics, so be sure to check out them all!
+At the start of each of your turns, you draw a card and your mana refills to what your territory gives. Mana you don't spend is lost when your turn ends. You begin the game owning a single tile, so claiming more land is how you afford bigger cards.
 
-![The Snowmelt map](map-snowmelt.png)
+Every card costs mana to play. There are two kinds:
 
-![The Tropics map](map-tropics.png)
+- **Minions** join the board as characters. Play one onto an empty tile in your territory. A minion can't move or battle on the turn you play it.
+- **Spells** have a one-time effect.
+
+![Anatomy of a card — a minion and a spell side by side, labelling mana cost, patron color, name, text, subtype, and the minion's power, speed and health](card-anatomy.png){: .wide }
 
 ## Characters
 
-Commanders and minions are both **characters**. Characters occupy tiles and can move and battle each turn. Characters have three stats:
+Commanders and minions are both **characters**. Characters stand on tiles, and each has three stats:
 
-- **Power**: how much damage they deal.
-- **Speed**: the number of tiles they may move each turn.
-- **Health**: how much damage they can take before they are permanently destroyed.
+- {power} **Power**: the damage it deals in battle.
+- {speed} **Speed**: how many tiles it can move each turn.
+- {health} **Health**: the damage it can take before it's destroyed.
 
 ## Movement and Battle
 
-You can move each character you control up to their speed each turn. Dragging a minion onto a tile controlled by an enemy character will initiate a **battle**: both characters will deal damage equal to their power to each other.[^1] If a minion's health is reduced to zero or below, that minion dies. Damage persists between turns.
+Each turn, each of your characters can move up to its {speed} Speed in tiles. Drag it to where you want it to go.
 
-Each character gets one **attack** every turn. Battling an enemy uses the character's attack, meaning you typically can't battle multiple times a turn with the same minion. Battling also uses one movement, and if the defender is destroyed in battle, the attacker will take their place.
+[[video:movement.mp4|A minion with 3 Speed is dragged along a three-tile route and walks it, its Speed badge counting down from 3 to 0]]
+A minion with {speed_3} is dragged along a three-tile route. The tiles it can reach are outlined, and its Speed badge counts down to {speed_0} as it moves.
 
-[^1]: Commanders typically have zero power and thus won't deal damage when defending in combat.
+Characters can pass through tiles held by your other characters, but not through enemies, and must end their move on an empty tile.
+
+To **battle**, drag a character onto an enemy next to it. Both deal damage equal to their {power} Power to each other at the same time. A character whose {health} Health reaches 0 is destroyed. If the defender is destroyed, the attacker moves into its tile.
+
+[[video:battle.mp4|Heavy Cavalry attacks Guerilla Gorilla. Both take damage at once, the Gorilla dies, and the Cavalry moves into its tile with 5 Health left]]
+[[card:Heavy Cavalry]] ({power_5}{health_8}) attacks a [[card:Guerilla Gorilla]] ({power_3}{health_4}). Both deal damage at the same time: the Gorilla is destroyed, and the Cavalry, down to {health_5}, moves into its tile.
+
+A few more details:
+
+- Each character can battle once per turn.
+- Battling uses 1 movement, so a character needs at least 1 movement left to attack.
+- Damage stays between turns. Characters don't heal unless a card heals them.
+- Commanders have no Power. They can't start a battle and deal no damage when attacked, unless a card gives them Power.
+
+## Claiming Territory
+
+Once per turn, your commander can **claim** the tile it's standing on, if that tile is unclaimed and next to your territory. Claiming is free: it doesn't use the commander's movement or attack. A newly claimed tile starts giving mana at the start of your next turn.
+
+Your territory can only grow as large as your commander's {dominion} Dominion. When you reach that limit, you have to **unclaim** a tile before you can claim another: right-click a tile you own and choose to unclaim it. Right-clicking any tile also shows its details.
+
+You can't claim tiles your opponent owns, though some cards can.
 
 ## Abilities
 
-Some characters have special abilities. These can be passive (**triggered** or **static**) abilities that continuously affect the game, or an **activated** ability which must be used manually by clicking or dragging the ability to a target.
+Some characters have abilities, shown as circles along the top of their token. Hover over one to read it. There are three kinds:
 
-Abilities are represented by circles on the top of each character, with activated abilities in the top-left and top-right corners and passive abilities in the top-center. Mouse over an ability to see the details.
+- **Static** abilities are always on, like Flying.
+- **Triggered** abilities happen by themselves when something occurs. For example, an **Arrival** ability happens when its minion is played.
+- **Activated** abilities are ones you choose to use: click the ability, or drag it onto a target.
 
-## Card Text
+Activated abilities sit in the top-left and top-right circles; static and triggered abilities sit in the top-center.
 
-![Example card showing the text box and keyword callouts](card-text.png)
+[[video:ability-activated.mp4|Blinkshot's activated ability lights up its range, targets an enemy Runic Knight two tiles away, and the shot destroys it]]
+An **activated** ability: [[card:Blinkshot]] uses *[Cooldown 2, Range 2]: Deal 4 damage to target character.* Its range lights up, it targets an enemy [[card:Runic Knight]] two tiles away, and the shot destroys it.
 
-Cards can have a variety of text. Sometimes text is abbreviated, in which case hovering over the card will show the definition of any keywords present in the text box.
+[[video:ability-arrival.mp4|Darkwing is played next to its commander. A blast hits the board: the enemy Owl Familiar dies, the enemy Gorilla and the player's commander take 2 damage, and Darkwing is unharmed]]
+A **triggered** ability: [[card:Darkwing]] is played next to its commander (Commander-Deploy), and its Arrival fires: *Deal 2 damage to ALL non-Daemon characters.* The enemy [[card:Owl Familiar]] is destroyed, the enemy [[card:Guerilla Gorilla]] and your own commander take 2 damage, and Darkwing, a Daemon, is unharmed.
 
-Some common keywords:
+## Reading Card Text
 
-- **Arrival** — An effect that happens when the card is played.
-- **Trample** — On battling and killing an enemy, regains an attack (can battle again).
-- **Haste** — When played, has full movement and an attack.
-- **Deploy** — Can be played outside your territory.
-    - **X-Deploy** — can be played outside your territory adjacent to X (e.g. *Commander-Deploy* means can be played outside your territory if next to your commander).
-- **Legendary** — Cannot play another copy while you already own one on the board.
-- **Range N** — A distance, *N*, in tiles from the *source* that an effect reaches.
-- **Splash N** — A distance, *N*, in tiles from the *target* that an effect reaches.
-- **Cooldown N** — The ability can only be used again after waiting *N* turns.
+Hover over a card to see what each keyword in its text means.
+
+Card text uses the stat icons in place of numbers. A number inside an icon is an amount of that stat: "Gain {mana_2} this turn" gives you 2 extra mana, and "Target minion gains +{power_1}{speed_1}{health_1}" gives it +1 Power, +1 Speed, and +1 Health.
+
+Common keywords:
+
+- **Arrival**: happens when the card is played.
+- **Flying**: can enter mountains.
+- **Haste**: can move and battle on the turn it's played.
+- **Trample**: after destroying an enemy in battle, can battle again that turn.
+- **Deploy**: can be played outside your territory.
+    - ***X*-Deploy**: can be played outside your territory, next to *X*. For example, *Commander-Deploy* means next to your commander.
+- **Legendary**: you can't play it while you control a copy of it.
+- **Range *N***: the effect reaches up to *N* tiles from its source. For spells, the source is your commander.
+- **Splash *N***: the effect also reaches up to *N* tiles around its target.
+- **Cooldown *N***: after use, the ability can't be used again for *N* of your turns.
 
 ## Commanders
 
-Your commander is a special card chosen to lead your deck in each game. You start with your commander on the board and defeat the enemy commander to win the game.
+Your commander is on the board from the start, and when it falls, you lose.
 
-Commanders have 4 attributes:
+![Anatomy of a commander — patron color, activated ability, text, subtype, and the dominion, intellect, speed and health stats](commander-anatomy.png){: .wide }
 
-- **Dominion** — The maximum number of tiles you can have claimed at once.
-- **Intellect** — Your maximum hand size, and the number of cards you choose from for your starting hand.
-- **Speed** — Number of tiles they can move each turn.
-- **Health** — Amount of damage they can take before losing the game.
+Like other characters, commanders have {speed} Speed and {health} Health. They also have two stats of their own:
 
-Commanders also have a text box which can have static bonuses and/or activated abilities that will influence the game. All commanders also have access to a special **claim** ability that lets them claim a tile they are occupying once per turn.
+- {dominion} **Dominion**: the most tiles you can own at once.
+- {intellect} **Intellect**: your maximum hand size. If you have more cards than this when your turn ends, you choose which to discard.
 
-Finally, commanders have a **patron god** which is represented by the color of the card. You can only play cards in your deck which match your commander's patron, or neutral (beige) cards.
+Each commander also has its own text, with bonuses and abilities such as Claim.
 
-The current main patrons and their themes are:
+### Patrons
 
-- **Skaal (Red Card Border)** — *Goddess of War*. Strong, aggressive minions, destructive magic.
-- **Grenalia (Green Card Border)** — *Goddess of Nature*. Mana growth, poisons, big minions.
-- **Lucia (White Card Border)** — *Goddess of Light*. Unified armies, healing, villages.
-- **Shadis (Black Card Border)** — *god of death.* Unrelenting, powerful removal, death synergies.
-- **Archaeon (Blue Card Border)** — *knowledge and information.* Efficient card draw, spellcasters, tempo plays.
+Every commander serves a **patron god**, shown by the color of the card. Your deck can only contain cards of your commander's patron, plus neutral (beige) cards.
+
+- **Skaal** (red): war. Strong, aggressive minions and destructive magic.
+- **Grenalia** (green): nature. Mana growth, poisons, and big minions.
+- **Lucia** (white): light. Unified armies, healing, and villages.
+- **Shadis** (black): death. Relentless minions, powerful removal, and death synergies.
+- **Archaeon** (blue): knowledge. Efficient card draw, spellcasters, and tempo plays.
 
 ![The current patron gods](patron-gods.png)
+
+## Setting Up a Game
+
+- **Your deck** has 40 to 60 cards, with no more than 3 copies of any card.
+- **The first player** is chosen at random.
+- **Your opening hand**: you look at as many cards as your commander's {intellect} Intellect and keep 3 if you're going first, or 4 if you're going second. The rest are shuffled back into your deck.
+- **Going second**, you also get a [[card:War Chest]]: a free spell that gives you {mana_1} that turn and again at the start of your next turn.
+
+## How a Game Ends
+
+You win when the enemy commander's {health} Health reaches 0. You also lose if you have to draw a card from an empty deck, or if you concede.

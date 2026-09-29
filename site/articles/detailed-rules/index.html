@@ -8,14 +8,14 @@
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Atlas Conquest">
   <meta property="og:title" content="Detailed Rules">
-  <meta property="og:description" content="The full rulebook for Atlas Conquest — the map, characters, movement and battle, abilities, card keywords, unclaiming, and commanders.">
+  <meta property="og:description" content="The full rulebook for Atlas Conquest, from the basics of a turn to territory, battle, abilities, keywords, commanders, and setting up a game.">
   <meta property="og:image" content="https://atlas-conquest.com/assets/articles/detailed-rules/map.png">
   <meta property="og:url" content="https://atlas-conquest.com/articles/detailed-rules/">
   <meta property="article:published_time" content="2026-05-24">
   <meta property="article:author" content="Atlas Conquest Team">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Detailed Rules">
-  <meta name="twitter:description" content="The full rulebook for Atlas Conquest — the map, characters, movement and battle, abilities, card keywords, unclaiming, and commanders.">
+  <meta name="twitter:description" content="The full rulebook for Atlas Conquest, from the basics of a turn to territory, battle, abilities, keywords, commanders, and setting up a game.">
   <meta name="twitter:image" content="https://atlas-conquest.com/assets/articles/detailed-rules/map.png">
   <link rel="icon" type="image/png" href="/assets/logo/atlas-conquest-icon.png">
   <!-- GEN:META:END -->
@@ -62,86 +62,133 @@
     <div class="article-tags"><a class="article-tag" href="/articles/?tag=rules">rules</a><a class="article-tag" href="/articles/?tag=reference">reference</a></div>
     <h1 class="article-title">Detailed Rules</h1>
     <div class="article-byline">By Atlas Conquest Team · <time datetime="2026-05-24">May 24, 2026</time></div>
-    <p class="article-summary">The full rulebook for Atlas Conquest — the map, characters, movement and battle, abilities, card keywords, unclaiming, and commanders.</p>
+    <p class="article-summary">The full rulebook for Atlas Conquest, from the basics of a turn to territory, battle, abilities, keywords, commanders, and setting up a game.</p>
   </div>
 </header>
 <div class="container article-prose">
-<p>Welcome to Atlas Conquest: a grid-based strategy game that combines the very best of both board and card games!</p>
+<p>Atlas Conquest is a two-player competitive card battler played on a hex-grid board. This page starts with the basics and adds detail as it goes, so you can stop reading whenever you&rsquo;re ready to play.</p>
 <h2>Overview</h2>
-<p>Each player builds and plays a deck of at least 40 cards. Each player also selects a commander to helm their strategy. The goal of the game is to reduce the opposing commander&rsquo;s health to 0 before they can do the same to you.</p>
-<h2>The Map</h2>
-<p>The map is a hexagonal grid. Commanders start in the same two positions each game, at opposite sides of the map. Initially only each commander&rsquo;s starting tile is claimed.</p>
-<p><img alt="The Dunes map, one of Atlas Conquest's battle maps" src="/assets/articles/detailed-rules/map.png"></p>
-<p>Tiles present on the map at the start of the game fall into a few types:</p>
+<p>Each player leads an army with a <strong>commander</strong>. Your goal is to reduce the enemy commander&rsquo;s <img alt="health" class="text-icon" height="72" src="/assets/icons/text/health.png" style="--drop: 0.262" title="Health" width="76"> Health to 0 before they do the same to you.</p>
+<p>Players take turns. On your turn you can:</p>
 <ul>
-<li><strong>Normal tiles</strong> — can be occupied by any character, and grant 1 mana each turn if claimed.</li>
-<li><strong>Villages</strong> — can be occupied by any character, and grant 2 mana each turn if claimed.</li>
-<li><strong>Mountains</strong> — normal tile that can&rsquo;t be occupied by characters without Flying.</li>
+<li><strong>Play cards</strong> from your hand, paying for them with mana.</li>
+<li><strong>Move</strong> your characters around the map.</li>
+<li><strong>Battle</strong> enemy characters.</li>
+<li><strong>Claim</strong> tiles with your commander to grow your territory, and with it your mana.</li>
 </ul>
-<p>There is no functional difference between the different normal tiles on the map such as the deserts, rocks, cacti, or oasis. Claiming a tile does not immediately grant its mana — you will receive the increased mana at the start of subsequent turns.</p>
-<p>You can right-click on a tile to display details of the tile, including its type, as well as the option to unclaim the tile, for when you need to make shifts in your territory once your maximum dominion has been reached.</p>
-<p>Cards may also create special tiles with unique abilities not present on the starting map.</p>
-<p>There are currently three maps in the game. Each one brings with it its own gameplay dynamics, so be sure to check out them all!</p>
-<p><img alt="The Snowmelt map" src="/assets/articles/detailed-rules/map-snowmelt.png"></p>
-<p><img alt="The Tropics map" src="/assets/articles/detailed-rules/map-tropics.png"></p>
-<h2>Characters</h2>
-<p>Commanders and minions are both <strong>characters</strong>. Characters occupy tiles and can move and battle each turn. Characters have three stats:</p>
+<p>The rest of this page explains each of these.</p>
+<h2>The Map</h2>
+<p>Each player&rsquo;s <strong>territory</strong> is the tiles they own: yours is outlined in green, your opponent&rsquo;s in red. A game starts with each commander on its starting tile, which is the only tile its player owns.</p>
+<p><picture><source srcset="/assets/articles/detailed-rules/map-dunes.webp" type="image/webp"><img alt="The Dunes map at the start of a game: your commander's starting tile at the bottom left (green outline), your opponent's at the top right (red outline), and two villages in the middle" class="wide" src="/assets/articles/detailed-rules/map-dunes.jpg"></picture></p>
+<p>The map has three kinds of tile. Everything else, like desert, snow, or jungle, is just scenery.</p>
 <ul>
-<li><strong>Power</strong>: how much damage they deal.</li>
-<li><strong>Speed</strong>: the number of tiles they may move each turn.</li>
-<li><strong>Health</strong>: how much damage they can take before they are permanently destroyed.</li>
+<li><strong>Normal tiles</strong> give <img alt="1 mana" class="text-icon" height="72" src="/assets/icons/text/mana_1.png" style="--drop: 0.262" title="1 mana" width="66"> each turn while you own them.</li>
+<li><strong>Villages</strong> give <img alt="2 mana" class="text-icon" height="72" src="/assets/icons/text/mana_2.png" style="--drop: 0.262" title="2 mana" width="66"> each turn while you own them.</li>
+<li><strong>Mountains</strong> can only be entered by characters with Flying.</li>
+</ul>
+<p>Each game is played on one of three maps: Dunes (above), Snowmelt, and Tropics.</p>
+<p><picture><source srcset="/assets/articles/detailed-rules/map-snowmelt.webp" type="image/webp"><img alt="The Snowmelt map at the start of a game: starting tiles on the left (green outline) and right (red outline), around a center of villages and a lake ringed by snowy mountains" class="pair" src="/assets/articles/detailed-rules/map-snowmelt.jpg"></picture>
+<picture><source srcset="/assets/articles/detailed-rules/map-tropics.webp" type="image/webp"><img alt="The Tropics map at the start of a game: starting tiles on the left (green outline) and right (red outline), three central villages between two mountains, and volcanoes in the corners" class="pair" src="/assets/articles/detailed-rules/map-tropics.jpg"></picture></p>
+<h2>Mana and Cards</h2>
+<p>At the start of each of your turns, you draw a card and your mana refills to what your territory gives. Mana you don&rsquo;t spend is lost when your turn ends. You begin the game owning a single tile, so claiming more land is how you afford bigger cards.</p>
+<p>Every card costs mana to play. There are two kinds:</p>
+<ul>
+<li><strong>Minions</strong> join the board as characters. Play one onto an empty tile in your territory. A minion can&rsquo;t move or battle on the turn you play it.</li>
+<li><strong>Spells</strong> have a one-time effect.</li>
+</ul>
+<p><img alt="Anatomy of a card — a minion and a spell side by side, labelling mana cost, patron color, name, text, subtype, and the minion's power, speed and health" class="wide" src="/assets/articles/detailed-rules/card-anatomy.png"></p>
+<h2>Characters</h2>
+<p>Commanders and minions are both <strong>characters</strong>. Characters stand on tiles, and each has three stats:</p>
+<ul>
+<li class="icon-item"><img alt="power" class="text-icon" height="72" src="/assets/icons/text/power.png" style="--drop: 0.262" title="Power" width="106"> <strong>Power</strong>: the damage it deals in battle.</li>
+<li class="icon-item"><img alt="speed" class="text-icon" height="72" src="/assets/icons/text/speed.png" style="--drop: 0.262" title="Speed" width="99"> <strong>Speed</strong>: how many tiles it can move each turn.</li>
+<li class="icon-item"><img alt="health" class="text-icon" height="72" src="/assets/icons/text/health.png" style="--drop: 0.262" title="Health" width="76"> <strong>Health</strong>: the damage it can take before it&rsquo;s destroyed.</li>
 </ul>
 <h2>Movement and Battle</h2>
-<p>You can move each character you control up to their speed each turn. Dragging a minion onto a tile controlled by an enemy character will initiate a <strong>battle</strong>: both characters will deal damage equal to their power to each other.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> If a minion&rsquo;s health is reduced to zero or below, that minion dies. Damage persists between turns.</p>
-<p>Each character gets one <strong>attack</strong> every turn. Battling an enemy uses the character&rsquo;s attack, meaning you typically can&rsquo;t battle multiple times a turn with the same minion. Battling also uses one movement, and if the defender is destroyed in battle, the attacker will take their place.</p>
-<h2>Abilities</h2>
-<p>Some characters have special abilities. These can be passive (<strong>triggered</strong> or <strong>static</strong>) abilities that continuously affect the game, or an <strong>activated</strong> ability which must be used manually by clicking or dragging the ability to a target.</p>
-<p>Abilities are represented by circles on the top of each character, with activated abilities in the top-left and top-right corners and passive abilities in the top-center. Mouse over an ability to see the details.</p>
-<h2>Card Text</h2>
-<p><img alt="Example card showing the text box and keyword callouts" src="/assets/articles/detailed-rules/card-text.png"></p>
-<p>Cards can have a variety of text. Sometimes text is abbreviated, in which case hovering over the card will show the definition of any keywords present in the text box.</p>
-<p>Some common keywords:</p>
+<p>Each turn, each of your characters can move up to its <img alt="speed" class="text-icon" height="72" src="/assets/icons/text/speed.png" style="--drop: 0.262" title="Speed" width="99"> Speed in tiles. Drag it to where you want it to go.</p>
+<figure class="article-video">
+<video aria-label="A minion with 3 Speed is dragged along a three-tile route and walks it, its Speed badge counting down from 3 to 0" autoplay loop muted playsinline preload="auto" src="/assets/articles/detailed-rules/movement.mp4"></video>
+<figcaption>A minion with <img alt="3 speed" class="text-icon" height="72" src="/assets/icons/text/speed_3.png" style="--drop: 0.262" title="3 speed" width="99"> is dragged along a three-tile route. The tiles it can reach are outlined, and its Speed badge counts down to <img alt="0 speed" class="text-icon" height="72" src="/assets/icons/text/speed_0.png" style="--drop: 0.262" title="0 speed" width="99"> as it moves.</figcaption>
+</figure>
+<p>Characters can pass through tiles held by your other characters, but not through enemies, and must end their move on an empty tile.</p>
+<p>To <strong>battle</strong>, drag a character onto an enemy next to it. Both deal damage equal to their <img alt="power" class="text-icon" height="72" src="/assets/icons/text/power.png" style="--drop: 0.262" title="Power" width="106"> Power to each other at the same time. A character whose <img alt="health" class="text-icon" height="72" src="/assets/icons/text/health.png" style="--drop: 0.262" title="Health" width="76"> Health reaches 0 is destroyed. If the defender is destroyed, the attacker moves into its tile.</p>
+<figure class="article-video">
+<video aria-label="Heavy Cavalry attacks Guerilla Gorilla. Both take damage at once, the Gorilla dies, and the Cavalry moves into its tile with 5 Health left" autoplay loop muted playsinline preload="auto" src="/assets/articles/detailed-rules/battle.mp4"></video>
+<figcaption><a class="card-link" data-card="Heavy Cavalry" href="/cards.html#heavy-cavalry">Heavy Cavalry</a> (<span class="text-icon-run"><img alt="5 power" class="text-icon" height="72" src="/assets/icons/text/power_5.png" style="--drop: 0.262" title="5 power" width="106"><img alt="8 health" class="text-icon" height="72" src="/assets/icons/text/health_8.png" style="--drop: 0.262" title="8 health" width="76"></span>) attacks a <a class="card-link" data-card="Guerilla Gorilla" href="/cards.html#guerilla-gorilla">Guerilla Gorilla</a> (<span class="text-icon-run"><img alt="3 power" class="text-icon" height="72" src="/assets/icons/text/power_3.png" style="--drop: 0.262" title="3 power" width="106"><img alt="4 health" class="text-icon" height="72" src="/assets/icons/text/health_4.png" style="--drop: 0.262" title="4 health" width="76"></span>). Both deal damage at the same time: the Gorilla is destroyed, and the Cavalry, down to <img alt="5 health" class="text-icon" height="72" src="/assets/icons/text/health_5.png" style="--drop: 0.262" title="5 health" width="76">, moves into its tile.</figcaption>
+</figure>
+<p>A few more details:</p>
 <ul>
-<li><strong>Arrival</strong> — An effect that happens when the card is played.</li>
-<li><strong>Trample</strong> — On battling and killing an enemy, regains an attack (can battle again).</li>
-<li><strong>Haste</strong> — When played, has full movement and an attack.</li>
-<li><strong>Deploy</strong> — Can be played outside your territory.<ul>
-<li><strong>X-Deploy</strong> — can be played outside your territory adjacent to X (e.g. <em>Commander-Deploy</em> means can be played outside your territory if next to your commander).</li>
+<li>Each character can battle once per turn.</li>
+<li>Battling uses 1 movement, so a character needs at least 1 movement left to attack.</li>
+<li>Damage stays between turns. Characters don&rsquo;t heal unless a card heals them.</li>
+<li>Commanders have no Power. They can&rsquo;t start a battle and deal no damage when attacked, unless a card gives them Power.</li>
+</ul>
+<h2>Claiming Territory</h2>
+<p>Once per turn, your commander can <strong>claim</strong> the tile it&rsquo;s standing on, if that tile is unclaimed and next to your territory. Claiming is free: it doesn&rsquo;t use the commander&rsquo;s movement or attack. A newly claimed tile starts giving mana at the start of your next turn.</p>
+<p>Your territory can only grow as large as your commander&rsquo;s <img alt="dominion" class="text-icon" height="72" src="/assets/icons/text/dominion.png" style="--drop: 0.177" title="Dominion" width="65"> Dominion. When you reach that limit, you have to <strong>unclaim</strong> a tile before you can claim another: right-click a tile you own and choose to unclaim it. Right-clicking any tile also shows its details.</p>
+<p>You can&rsquo;t claim tiles your opponent owns, though some cards can.</p>
+<h2>Abilities</h2>
+<p>Some characters have abilities, shown as circles along the top of their token. Hover over one to read it. There are three kinds:</p>
+<ul>
+<li><strong>Static</strong> abilities are always on, like Flying.</li>
+<li><strong>Triggered</strong> abilities happen by themselves when something occurs. For example, an <strong>Arrival</strong> ability happens when its minion is played.</li>
+<li><strong>Activated</strong> abilities are ones you choose to use: click the ability, or drag it onto a target.</li>
+</ul>
+<p>Activated abilities sit in the top-left and top-right circles; static and triggered abilities sit in the top-center.</p>
+<figure class="article-video">
+<video aria-label="Blinkshot's activated ability lights up its range, targets an enemy Runic Knight two tiles away, and the shot destroys it" autoplay loop muted playsinline preload="auto" src="/assets/articles/detailed-rules/ability-activated.mp4"></video>
+<figcaption>An <strong>activated</strong> ability: <a class="card-link" data-card="Blinkshot" href="/cards.html#blinkshot">Blinkshot</a> uses <em>[Cooldown 2, Range 2]: Deal 4 damage to target character.</em> Its range lights up, it targets an enemy <a class="card-link" data-card="Runic Knight" href="/cards.html#runic-knight">Runic Knight</a> two tiles away, and the shot destroys it.</figcaption>
+</figure>
+<figure class="article-video">
+<video aria-label="Darkwing is played next to its commander. A blast hits the board: the enemy Owl Familiar dies, the enemy Gorilla and the player's commander take 2 damage, and Darkwing is unharmed" autoplay loop muted playsinline preload="auto" src="/assets/articles/detailed-rules/ability-arrival.mp4"></video>
+<figcaption>A <strong>triggered</strong> ability: <a class="card-link" data-card="Darkwing" href="/cards.html#darkwing">Darkwing</a> is played next to its commander (Commander-Deploy), and its Arrival fires: <em>Deal 2 damage to ALL non-Daemon characters.</em> The enemy <a class="card-link" data-card="Owl Familiar" href="/cards.html#owl-familiar">Owl Familiar</a> is destroyed, the enemy <a class="card-link" data-card="Guerilla Gorilla" href="/cards.html#guerilla-gorilla">Guerilla Gorilla</a> and your own commander take 2 damage, and Darkwing, a Daemon, is unharmed.</figcaption>
+</figure>
+<h2>Reading Card Text</h2>
+<p>Hover over a card to see what each keyword in its text means.</p>
+<p>Card text uses the stat icons in place of numbers. A number inside an icon is an amount of that stat: &ldquo;Gain <img alt="2 mana" class="text-icon" height="72" src="/assets/icons/text/mana_2.png" style="--drop: 0.262" title="2 mana" width="66"> this turn&rdquo; gives you 2 extra mana, and &ldquo;Target minion gains <span class="text-icon-run">+<img alt="1 power" class="text-icon" height="72" src="/assets/icons/text/power_1.png" style="--drop: 0.262" title="1 power" width="106"><img alt="1 speed" class="text-icon" height="72" src="/assets/icons/text/speed_1.png" style="--drop: 0.262" title="1 speed" width="99"><img alt="1 health" class="text-icon" height="72" src="/assets/icons/text/health_1.png" style="--drop: 0.262" title="1 health" width="76"></span>&rdquo; gives it +1 Power, +1 Speed, and +1 Health.</p>
+<p>Common keywords:</p>
+<ul>
+<li><strong>Arrival</strong>: happens when the card is played.</li>
+<li><strong>Flying</strong>: can enter mountains.</li>
+<li><strong>Haste</strong>: can move and battle on the turn it&rsquo;s played.</li>
+<li><strong>Trample</strong>: after destroying an enemy in battle, can battle again that turn.</li>
+<li><strong>Deploy</strong>: can be played outside your territory.<ul>
+<li><strong><em>X</em>-Deploy</strong>: can be played outside your territory, next to <em>X</em>. For example, <em>Commander-Deploy</em> means next to your commander.</li>
 </ul>
 </li>
-<li><strong>Legendary</strong> — Cannot play another copy while you already own one on the board.</li>
-<li><strong>Range N</strong> — A distance, <em>N</em>, in tiles from the <em>source</em> that an effect reaches.</li>
-<li><strong>Splash N</strong> — A distance, <em>N</em>, in tiles from the <em>target</em> that an effect reaches.</li>
-<li><strong>Cooldown N</strong> — The ability can only be used again after waiting <em>N</em> turns.</li>
+<li><strong>Legendary</strong>: you can&rsquo;t play it while you control a copy of it.</li>
+<li><strong>Range <em>N</em></strong>: the effect reaches up to <em>N</em> tiles from its source. For spells, the source is your commander.</li>
+<li><strong>Splash <em>N</em></strong>: the effect also reaches up to <em>N</em> tiles around its target.</li>
+<li><strong>Cooldown <em>N</em></strong>: after use, the ability can&rsquo;t be used again for <em>N</em> of your turns.</li>
 </ul>
 <h2>Commanders</h2>
-<p>Your commander is a special card chosen to lead your deck in each game. You start with your commander on the board and defeat the enemy commander to win the game.</p>
-<p>Commanders have 4 attributes:</p>
+<p>Your commander is on the board from the start, and when it falls, you lose.</p>
+<p><img alt="Anatomy of a commander — patron color, activated ability, text, subtype, and the dominion, intellect, speed and health stats" class="wide" src="/assets/articles/detailed-rules/commander-anatomy.png"></p>
+<p>Like other characters, commanders have <img alt="speed" class="text-icon" height="72" src="/assets/icons/text/speed.png" style="--drop: 0.262" title="Speed" width="99"> Speed and <img alt="health" class="text-icon" height="72" src="/assets/icons/text/health.png" style="--drop: 0.262" title="Health" width="76"> Health. They also have two stats of their own:</p>
 <ul>
-<li><strong>Dominion</strong> — The maximum number of tiles you can have claimed at once.</li>
-<li><strong>Intellect</strong> — Your maximum hand size, and the number of cards you choose from for your starting hand.</li>
-<li><strong>Speed</strong> — Number of tiles they can move each turn.</li>
-<li><strong>Health</strong> — Amount of damage they can take before losing the game.</li>
+<li class="icon-item"><img alt="dominion" class="text-icon" height="72" src="/assets/icons/text/dominion.png" style="--drop: 0.177" title="Dominion" width="65"> <strong>Dominion</strong>: the most tiles you can own at once.</li>
+<li class="icon-item"><img alt="intellect" class="text-icon" height="72" src="/assets/icons/text/intellect.png" style="--drop: 0.262" title="Intellect" width="67"> <strong>Intellect</strong>: your maximum hand size. If you have more cards than this when your turn ends, you choose which to discard.</li>
 </ul>
-<p>Commanders also have a text box which can have static bonuses and/or activated abilities that will influence the game. All commanders also have access to a special <strong>claim</strong> ability that lets them claim a tile they are occupying once per turn.</p>
-<p>Finally, commanders have a <strong>patron god</strong> which is represented by the color of the card. You can only play cards in your deck which match your commander&rsquo;s patron, or neutral (beige) cards.</p>
-<p>The current main patrons and their themes are:</p>
+<p>Each commander also has its own text, with bonuses and abilities such as Claim.</p>
+<h3>Patrons</h3>
+<p>Every commander serves a <strong>patron god</strong>, shown by the color of the card. Your deck can only contain cards of your commander&rsquo;s patron, plus neutral (beige) cards.</p>
 <ul>
-<li><strong>Skaal (Red Card Border)</strong> — <em>Goddess of War</em>. Strong, aggressive minions, destructive magic.</li>
-<li><strong>Grenalia (Green Card Border)</strong> — <em>Goddess of Nature</em>. Mana growth, poisons, big minions.</li>
-<li><strong>Lucia (White Card Border)</strong> — <em>Goddess of Light</em>. Unified armies, healing, villages.</li>
-<li><strong>Shadis (Black Card Border)</strong> — <em>god of death.</em> Unrelenting, powerful removal, death synergies.</li>
-<li><strong>Archaeon (Blue Card Border)</strong> — <em>knowledge and information.</em> Efficient card draw, spellcasters, tempo plays.</li>
+<li><strong>Skaal</strong> (red): war. Strong, aggressive minions and destructive magic.</li>
+<li><strong>Grenalia</strong> (green): nature. Mana growth, poisons, and big minions.</li>
+<li><strong>Lucia</strong> (white): light. Unified armies, healing, and villages.</li>
+<li><strong>Shadis</strong> (black): death. Relentless minions, powerful removal, and death synergies.</li>
+<li><strong>Archaeon</strong> (blue): knowledge. Efficient card draw, spellcasters, and tempo plays.</li>
 </ul>
 <p><img alt="The current patron gods" src="/assets/articles/detailed-rules/patron-gods.png"></p>
-<div class="footnote">
-<hr>
-<ol>
-<li id="fn:1">
-<p>Commanders typically have zero power and thus won&rsquo;t deal damage when defending in combat.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div>
+<h2>Setting Up a Game</h2>
+<ul>
+<li><strong>Your deck</strong> has 40 to 60 cards, with no more than 3 copies of any card.</li>
+<li><strong>The first player</strong> is chosen at random.</li>
+<li><strong>Your opening hand</strong>: you look at as many cards as your commander&rsquo;s <img alt="intellect" class="text-icon" height="72" src="/assets/icons/text/intellect.png" style="--drop: 0.262" title="Intellect" width="67"> Intellect and keep 3 if you&rsquo;re going first, or 4 if you&rsquo;re going second. The rest are shuffled back into your deck.</li>
+<li><strong>Going second</strong>, you also get a <a class="card-link" data-card="War Chest" href="/cards.html#war-chest">War Chest</a>: a free spell that gives you <img alt="1 mana" class="text-icon" height="72" src="/assets/icons/text/mana_1.png" style="--drop: 0.262" title="1 mana" width="66"> that turn and again at the start of your next turn.</li>
+</ul>
+<h2>How a Game Ends</h2>
+<p>You win when the enemy commander&rsquo;s <img alt="health" class="text-icon" height="72" src="/assets/icons/text/health.png" style="--drop: 0.262" title="Health" width="76"> Health reaches 0. You also lose if you have to draw a card from an empty deck, or if you concede.</p>
 </div>
 <!-- GEN:ARTICLE:END -->
   </article>
