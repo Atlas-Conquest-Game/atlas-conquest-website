@@ -7,14 +7,14 @@
  */
 
 /**
- * Make wide figures (diagrams marked `{: .wide }` in the article Markdown)
+ * Make wide and paired figures (`{: .wide }` / `{: .pair }` in the article Markdown)
  * click-to-expand.
  *
  * The wrapper and lightbox are built here rather than at build time so that
  * with JS disabled the image still renders as a plain wide figure.
  */
 function initImageLightbox() {
-  const figures = document.querySelectorAll('.article-prose img.wide');
+  const figures = document.querySelectorAll('.article-prose img.wide, .article-prose img.pair');
   if (!figures.length) return;
 
   const box = document.createElement('div');
@@ -70,8 +70,11 @@ function initImageLightbox() {
     wrap.setAttribute('role', 'button');
     wrap.setAttribute('tabindex', '0');
     wrap.setAttribute('aria-label', `Expand figure: ${el.alt || 'diagram'}`);
-    el.parentNode.insertBefore(wrap, el);
-    wrap.appendChild(el);
+    // Wrap the whole <picture> when there is one: its <source> must stay a
+    // sibling of the <img> or the browser stops choosing between them.
+    const target = el.closest('picture') || el;
+    target.parentNode.insertBefore(wrap, target);
+    wrap.appendChild(target);
 
     const hint = document.createElement('span');
     hint.className = 'article-zoom-hint';
@@ -107,8 +110,22 @@ function initImageLightbox() {
   });
 }
 
+/**
+ * Article clips ([[video:...]]) autoplay on a silent loop. For readers who ask
+ * for reduced motion, stop them and hand over the controls instead.
+ */
+function initReducedMotionVideos() {
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.querySelectorAll('.article-video video').forEach((video) => {
+    video.removeAttribute('autoplay');
+    video.pause();
+    video.controls = true;
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   if (typeof initNavActiveState === 'function') initNavActiveState();
   if (typeof initCardPreview === 'function') initCardPreview();
   initImageLightbox();
+  initReducedMotionVideos();
 });
