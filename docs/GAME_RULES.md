@@ -35,7 +35,7 @@ Decks may only contain cards matching the commander's patron, or neutral (beige)
 | X-Deploy | Can play outside territory if adjacent to X |
 | Legendary | Only one copy on board at a time |
 | Range N | Effect reaches N tiles from source |
-| Splash N | Effect reaches N tiles from target |
+| Radius N | Effect hits everything within N tiles of target |
 | Cooldown N | Ability reusable after N turns |
 
 ## Commanders

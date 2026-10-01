@@ -120,7 +120,7 @@ Common keywords:
     - ***X*-Deploy**: can be played outside your territory, next to *X*. For example, *Commander-Deploy* means next to your commander.
 - **Legendary**: you can't play it while you control a copy of it.
 - **Range *N***: the effect reaches up to *N* tiles from its source. For spells, the source is your commander.
-- **Splash *N***: the effect also reaches up to *N* tiles around its target.
+- **Radius *N***: the effect hits everything within *N* tiles of its target.
 - **Cooldown *N***: after use, the ability can't be used again for *N* of your turns.
 
 ## Commanders
