@@ -2,7 +2,7 @@
   {
     "name": "Acid Rain",
     "type": "Spell",
-    "text": "[Range 4]: Convert target tile to a Toxic Swamp, where characters gain 1 Poison. Destroy enemy commanders' Weapons.",
+    "text": "[Range 4]: Convert target tile to a Toxic Swamp, where characters gain 1 Poison. Destroy the enemy commander's Weapon.",
     "subtype": "",
     "cost": 1,
     "attack": null,
@@ -1168,7 +1168,7 @@
   {
     "name": "Dragonkin Evoker",
     "type": "Minion",
-    "text": "Realmbound. Spell-Damage +1. When ANY spell is played, deal 1 damage to enemy commanders.",
+    "text": "Realmbound. Spell-Damage +1. When ANY spell is played, deal 1 damage to the enemy commander.",
     "subtype": "Dragon",
     "cost": 1,
     "attack": 0,
@@ -1335,7 +1335,7 @@
   {
     "name": "Durka Wurm",
     "type": "Minion",
-    "text": "Postmortem: Summon a <sprite name=\"power_1\"><sprite name=\"speed_3\"><sprite name=\"health_1\"> Durka Spawn in every unoccupied tile within Range 1.",
+    "text": "Postmortem: Summon a <sprite name=\"power_1\"><sprite name=\"speed_3\"><sprite name=\"health_1\"> Durka Spawn on each unoccupied tile within Range 1.",
     "subtype": "Beast",
     "cost": 8,
     "attack": 7,
@@ -1511,7 +1511,7 @@
   {
     "name": "Elven Spellblade",
     "type": "Minion",
-    "text": "Arrival: Deal 3 damage to enemy commanders.",
+    "text": "Arrival: Deal 3 damage to the enemy commander.",
     "subtype": "Elf",
     "cost": 5,
     "attack": 5,
@@ -2498,7 +2498,7 @@
   {
     "name": "Grey Wastes Shade",
     "type": "Minion",
-    "text": "Lifelink. Postmortem: Enemy commanders heal <sprite name=\"health_6\">.",
+    "text": "Lifelink. Postmortem: The enemy commander heals <sprite name=\"health_6\">.",
     "subtype": "Undead",
     "cost": 1,
     "attack": 2,
@@ -2658,7 +2658,7 @@
   {
     "name": "Heaven's Legion",
     "type": "Spell",
-    "text": "Summon a Lucian Soldier on each tile you own.",
+    "text": "Summon a Lucian Soldier on each unoccupied tile you own.",
     "subtype": "",
     "cost": 7,
     "attack": null,
@@ -2786,7 +2786,7 @@
   {
     "name": "Horde Leader",
     "type": "Minion",
-    "text": "Ally Undead within Range 3 have +<sprite name=\"power_1\"> and Postmortem: Enemy commanders gain 2 Poison.",
+    "text": "Ally Undead within Range 3 have +<sprite name=\"power_1\"> and Postmortem: The enemy commander gains 2 Poison.",
     "subtype": "Undead",
     "cost": 3,
     "attack": 4,
@@ -2868,7 +2868,7 @@
   {
     "name": "Infected Dreg",
     "type": "Minion",
-    "text": "Postmortem: Enemy commanders gain 2 Poison.",
+    "text": "Postmortem: The enemy commander gains 2 Poison.",
     "subtype": "Undead",
     "cost": 1,
     "attack": 2,
@@ -4527,7 +4527,7 @@
     "token": false
   },
   {
-    "name": "Royal Commander",
+    "name": "Royal Commandant",
     "type": "Minion",
     "text": "Ally minions within Range 3 have +<sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\">.",
     "subtype": "Human",
@@ -4538,7 +4538,7 @@
     "legendary": false,
     "patron": "Neutral",
     "faction": "neutral",
-    "art": "CardScreenshots/Royal-Commander.png",
+    "art": null,
     "art_type": "ARTIST_COMMISSIONED",
     "human_art": true,
     "has_animation": true,
@@ -5443,7 +5443,7 @@
   {
     "name": "Toxic Watering",
     "type": "Spell",
-    "text": "Your Plants gain \"At the end of each of your turns, enemy commanders gain 1 Poison.\"",
+    "text": "Your Plants gain \"At the end of each of your turns, the enemy commander gains 1 Poison.\"",
     "subtype": "",
     "cost": 1,
     "attack": null,
@@ -5525,7 +5525,7 @@
   {
     "name": "Trinket Trasher",
     "type": "Minion",
-    "text": "Goblin-Deploy. Arrival: Destroy enemy commanders' Weapons.",
+    "text": "Goblin-Deploy. Arrival: Destroy the enemy commander's Weapon.",
     "subtype": "Goblin",
     "cost": 2,
     "attack": 3,
@@ -5893,7 +5893,7 @@
   {
     "name": "Zoghn, Eye of Treason",
     "type": "Minion",
-    "text": "Legendary. Arrival: Destroy half your deck. [Cooldown 1]: Draw a card from an enemy deck.",
+    "text": "Legendary. Arrival: Destroy half your deck. [Cooldown 1]: Draw a card from the enemy deck.",
     "subtype": "Demigod",
     "cost": 5,
     "attack": 2,
@@ -5935,7 +5935,7 @@
   {
     "name": "Artifact of the End",
     "type": "Minion",
-    "text": "Legendary. Haste. Lifelink. Arrival: Enemy commanders gain 3 Doom. Postmortem: Shuffle this into your deck.",
+    "text": "Legendary. Haste. Lifelink. Arrival: The enemy commander gains 3 Doom. Postmortem: Shuffle this into your deck.",
     "subtype": "Mech",
     "cost": 3,
     "attack": 5,
