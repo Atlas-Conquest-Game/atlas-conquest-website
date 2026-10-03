@@ -68,8 +68,7 @@ COMMANDER_RENAMES = {
 
 # Card name normalization map (old DB names → canonical)
 CARD_RENAMES = {
-    # Add any card renames here as the game evolves
-    # "Old Card Name": "New Card Name",
+    "Royal Commander": "Royal Commandant",
 }
 
 # ─── Thresholds & Configuration ─────────────────────────────────

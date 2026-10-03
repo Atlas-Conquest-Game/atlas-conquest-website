@@ -12,7 +12,7 @@ from pipeline.constants import (
     DATA_DIR, ASSETS_DIR, CARD_ASSETS_DIR, CARD_PNG_ASSETS_DIR, CARD_ART_PANEL_DIR,
     ARTWORK_DIR, CARD_SCREENSHOTS_DIR,
     RAW_CACHE, CARDS_CSV, COMMANDERS_CSV, TOKENS_CSV, CARDLIST_ASSET,
-    DYNAMO_TABLE, DYNAMO_REGION, PATRON_MAP, COMMANDER_RENAMES,
+    DYNAMO_TABLE, DYNAMO_REGION, PATRON_MAP, COMMANDER_RENAMES, CARD_RENAMES,
     HUMAN_ART_TYPES,
 )
 from pipeline.cleaning import normalize_commander
@@ -265,7 +265,7 @@ def write_cardlist():
         "version": date.today().isoformat(),
         "total": len(names),
         "cards": [{"id": i, "name": name} for i, name in enumerate(names)],
-        "legacy_names": COMMANDER_RENAMES,
+        "legacy_names": {**COMMANDER_RENAMES, **CARD_RENAMES},
     }
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, "w") as f:
@@ -284,7 +284,7 @@ def _check_cardlist_ids_stable(previous_path, names):
     card, and every deck code minted before the change decodes to the wrong
     deck. A retired card keeps its entry as a placeholder (the Decks page
     already hides names that are not in cards.json). A renamed commander is
-    fine as long as the rename is recorded in COMMANDER_RENAMES.
+    fine as long as the rename is recorded in COMMANDER_RENAMES or CARD_RENAMES.
     """
     if not previous_path.exists():
         return
@@ -299,7 +299,7 @@ def _check_cardlist_ids_stable(previous_path, names):
         pid, old_name = prev["id"], prev["name"]
         if pid >= len(names):
             problems.append(f"  id {pid}: '{old_name}' is gone (list shrank to {len(names)})")
-        elif names[pid] != old_name and COMMANDER_RENAMES.get(old_name) != names[pid]:
+        elif names[pid] != old_name and {**COMMANDER_RENAMES, **CARD_RENAMES}.get(old_name) != names[pid]:
             problems.append(f"  id {pid}: was '{old_name}', now '{names[pid]}'")
     if problems:
         shown = "\n".join(problems[:5])
@@ -310,7 +310,7 @@ def _check_cardlist_ids_stable(previous_path, names):
             f"{shown}{more}\n"
             "The _cardNameOrderedList is append-only. Restore the removed entry at its "
             "original position (keep it as a placeholder for a retired card), or add "
-            "the rename to COMMANDER_RENAMES."
+            "the rename to COMMANDER_RENAMES or CARD_RENAMES."
         )
 
 
