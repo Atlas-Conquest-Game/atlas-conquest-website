@@ -1,7 +1,7 @@
 [
   {
     "name": "Captain Greenbeard",
-    "text": "[Cooldown 2]: Minions you control in enemy territory have Haste until end of the turn.",
+    "text": "[Cooldown 2]: Until end of the turn, minions you control in enemy territory have Haste.",
     "subtype": "Goblin",
     "dominion": 5,
     "intellect": 7,
@@ -117,7 +117,7 @@
   },
   {
     "name": "Kai, Longcount Shaman",
-    "text": "[Warmup 25]: Enemy commanders gain 5 Doom. When you play a spell, reduce Warmup by 1.",
+    "text": "[Warmup 25]: The enemy commander gains 5 Doom. When you play a spell, reduce Warmup by 1.",
     "subtype": "Human",
     "dominion": 6,
     "intellect": 10,
