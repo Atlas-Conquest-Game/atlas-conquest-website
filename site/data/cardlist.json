@@ -1,6 +1,6 @@
 {
-  "version": "2026-10-02",
-  "total": 320,
+  "version": "2026-10-03",
+  "total": 321,
   "cards": [
     {
       "id": 0,
@@ -1281,11 +1281,16 @@
     {
       "id": 319,
       "name": "Pyr, Mortal Shepherd"
+    },
+    {
+      "id": 320,
+      "name": "Royal Commandant"
     }
   ],
   "legacy_names": {
     "Elber, Jungle Emmisary": "Elber, Jungle Emissary",
     "Layna, Soulcatcher": "Soultaker Viessa",
-    "Lyre, Tactician of the Order": "Elyse of the Order"
+    "Lyre, Tactician of the Order": "Elyse of the Order",
+    "Royal Commander": "Royal Commandant"
   }
 }
