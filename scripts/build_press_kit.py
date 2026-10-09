@@ -7,13 +7,20 @@ formats; this script downloads each file through Drive's public download URL
 
   - a small WebP preview per asset -> site/assets/press/<slug>.webp
     (from the item's first JPG/PNG, or its PSD's flattened composite)
+  - a larger one for the click-to-enlarge view -> site/assets/press/large/<slug>.webp
   - each file's download size, and the asset's pixel dimensions
 
 To add or replace an asset: put the file in the Drive folder, add/update its
 id in press_kit.json (Drive "Share -> Copy link" contains it), then run:
     python scripts/build_press_kit.py
 and commit press_kit.json + site/assets/press/.
+
+  --only slug,slug   rebuild just these assets
+  --local DIR        read a file from DIR (by its filename in the manifest) instead of
+                     downloading it, to build the previews of a re-shot asset before it
+                     is uploaded over the old one in Drive
 """
+import argparse
 import io
 import json
 import sys
@@ -27,6 +34,7 @@ MANIFEST = REPO_ROOT / "site" / "data" / "press_kit.json"
 PREVIEW_DIR = REPO_ROOT / "site" / "assets" / "press"
 PREVIEW_URL_PREFIX = "assets/press"
 PREVIEW_BOX = (720, 400)  # 2x the card's preview stage
+LARGE_BOX = (1920, 1920)  # what the page's lightbox shows
 DOWNLOAD_URL = "https://drive.google.com/uc?export=download&id={id}"
 IMAGE_FORMATS = ("JPG", "PNG")
 
@@ -49,7 +57,14 @@ def human_size(n):
         n /= 1024
 
 
-def build_item(item):
+def save_webp(img, box, path, quality):
+    img = img.copy()
+    img.thumbnail(box, Image.LANCZOS)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    img.save(path, "WEBP", quality=quality, method=6)
+
+
+def build_item(item, local_dir=None):
     files = [f for f in item.get("files", []) if f.get("id")]
     if not files:
         print(f"  {item['slug']}: no Drive ids yet — skipped")
@@ -58,7 +73,8 @@ def build_item(item):
     ordered = sorted(files, key=lambda f: f["format"] not in IMAGE_FORMATS)
     preview_img = None
     for f in ordered:
-        data = download(f["id"])
+        local = local_dir / f["filename"] if local_dir and f.get("filename") else None
+        data = local.read_bytes() if local and local.is_file() else download(f["id"])
         f["size"] = human_size(len(data))
         if preview_img is None:
             try:
@@ -74,20 +90,28 @@ def build_item(item):
     item["dimensions"] = f"{preview_img.width} × {preview_img.height}"
     has_alpha = preview_img.mode in ("RGBA", "LA", "P")
     img = preview_img.convert("RGBA" if has_alpha else "RGB")
-    img.thumbnail(PREVIEW_BOX, Image.LANCZOS)
-    PREVIEW_DIR.mkdir(parents=True, exist_ok=True)
-    img.save(PREVIEW_DIR / f"{item['slug']}.webp", "WEBP", quality=82, method=6)
+    save_webp(img, PREVIEW_BOX, PREVIEW_DIR / f"{item['slug']}.webp", 82)
+    save_webp(img, LARGE_BOX, PREVIEW_DIR / "large" / f"{item['slug']}.webp", 84)
     item["preview"] = f"{PREVIEW_URL_PREFIX}/{item['slug']}.webp"
+    item["large"] = f"{PREVIEW_URL_PREFIX}/large/{item['slug']}.webp"
     print(f"  {item['slug']}: {item['dimensions']}, " + ", ".join(f"{f['format']} {f['size']}" for f in files))
 
 
 def main():
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--only", default="", help="comma list of slugs to rebuild")
+    ap.add_argument("--local", type=Path, help="folder of files to use in place of their Drive copies")
+    args = ap.parse_args()
+    only = {slug for slug in args.only.split(",") if slug}
+
     kit = json.loads(MANIFEST.read_text(encoding="utf-8"))
     failures = 0
     for group in kit["groups"]:
         for item in group["items"]:
+            if only and item["slug"] not in only:
+                continue
             try:
-                build_item(item)
+                build_item(item, args.local)
             except Exception as exc:
                 failures += 1
                 print(f"  {item['slug']}: FAILED — {exc}", file=sys.stderr)
