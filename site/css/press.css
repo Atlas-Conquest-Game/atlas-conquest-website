@@ -175,6 +175,69 @@
   border-radius: 4px;
 }
 
+/* A preview with a larger copy is a button that opens it in the lightbox. */
+.press-preview-zoom {
+  position: relative;
+  width: 100%;
+  border-width: 0 0 1px;
+  font: inherit;
+  color: inherit;
+  cursor: zoom-in;
+}
+
+.press-preview-zoom::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(88, 166, 255, 0);
+  transition: background 0.15s ease;
+  pointer-events: none;
+}
+
+.press-preview-zoom:hover::after,
+.press-preview-zoom:focus-visible::after {
+  background: rgba(88, 166, 255, 0.07);
+}
+
+.press-preview-zoom:focus-visible {
+  outline: 2px solid #58a6ff;
+  outline-offset: -2px;
+}
+
+.press-zoom-hint {
+  position: absolute;
+  z-index: 1;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.55rem;
+  background: rgba(14, 17, 23, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  pointer-events: none;
+}
+
+.press-preview-zoom:hover .press-zoom-hint,
+.press-preview-zoom:focus-visible .press-zoom-hint {
+  opacity: 1;
+}
+
+/* Touch devices have no hover, and the whole preview is the tap target there. */
+@media (hover: none) {
+  .press-zoom-hint { display: none; }
+}
+
 .press-card-body {
   display: flex;
   flex-direction: column;
@@ -223,4 +286,95 @@
 .press-dl-view {
   color: var(--text-secondary);
   font-weight: 500;
+}
+
+/* ─── Lightbox ────────────────────────────────────────────
+   The larger copy of a preview. Mirrors the figure lightbox on article pages
+   (css/articles.css). */
+
+.press-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem 3.5rem;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.press-lightbox.open { display: flex; }
+
+/* The checkerboard only shows through a transparent logo. */
+.press-lightbox-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: var(--radius);
+  background-color: var(--bg-inset);
+  background-image:
+    linear-gradient(45deg, rgba(255, 255, 255, 0.03) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(255, 255, 255, 0.03) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.03) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.03) 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+  cursor: zoom-in;
+}
+
+/* Zoomed: natural size, and the overlay scrolls. */
+.press-lightbox.zoomed {
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0;
+  overflow: auto;
+  cursor: zoom-out;
+}
+
+.press-lightbox.zoomed .press-lightbox-img {
+  max-width: none;
+  max-height: none;
+  border-radius: 0;
+  cursor: zoom-out;
+}
+
+.press-lightbox-caption {
+  position: fixed;
+  left: 50%;
+  bottom: 0.85rem;
+  transform: translateX(-50%);
+  max-width: min(860px, 92vw);
+  text-align: center;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--text-secondary);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.9);
+  pointer-events: none;
+}
+
+.press-lightbox-close {
+  position: fixed;
+  top: 0.75rem;
+  right: 0.9rem;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(28, 33, 40, 0.85);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+
+.press-lightbox-close:hover {
+  background: var(--bg-elevated);
+  color: var(--text);
+  border-color: var(--text-muted);
 }
