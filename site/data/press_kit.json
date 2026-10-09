@@ -5,44 +5,44 @@
       "title": "Screenshots",
       "items": [
         {
-          "slug": "screenshot-01-viridian-war-beast",
-          "title": "Playing a minion",
-          "files": [
-            {
-              "format": "JPG",
-              "filename": "AtlasConquest-Screenshot-01-ViridianWarBeast.jpg",
-              "id": "1ttOA_uucX3ca53SlY6_xEUuITAaL6B1Q",
-              "size": "1.8 MB"
-            },
-            {
-              "format": "PNG",
-              "filename": "AtlasConquest-Screenshot-01-ViridianWarBeast.png",
-              "id": "1_P6YGO8wSQbO3E_JInDYVPsBD2xqvXI0",
-              "size": "8.9 MB"
-            }
-          ],
-          "dimensions": "3840 × 2160",
-          "preview": "assets/press/screenshot-01-viridian-war-beast.webp"
-        },
-        {
-          "slug": "screenshot-02-explosive-potion",
+          "slug": "screenshot-01-explosive-potion",
           "title": "Casting a spell",
           "files": [
             {
               "format": "JPG",
-              "filename": "AtlasConquest-Screenshot-02-ExplosivePotion.jpg",
-              "id": "1A5HilwqxEk9B_BLpdsoxmbGFnEHehAP1",
+              "filename": "AtlasConquest-Screenshot-01-ExplosivePotion.jpg",
+              "id": "1uqkTovGKfMXe2p3RpRXRvBFNltGRsPTK",
               "size": "1.8 MB"
             },
             {
               "format": "PNG",
-              "filename": "AtlasConquest-Screenshot-02-ExplosivePotion.png",
-              "id": "1KGtHYhfE6KX3p9tIOeE6N_OrPMzyQQS_",
+              "filename": "AtlasConquest-Screenshot-01-ExplosivePotion.png",
+              "id": "1ZzBNZpsewzNSO21dNC62HZ_xhs9uX23H",
               "size": "9.3 MB"
             }
           ],
           "dimensions": "3840 × 2160",
-          "preview": "assets/press/screenshot-02-explosive-potion.webp"
+          "preview": "assets/press/screenshot-01-explosive-potion.webp"
+        },
+        {
+          "slug": "screenshot-02-khazgar-flame-emperor",
+          "title": "An explosive arrival",
+          "files": [
+            {
+              "format": "JPG",
+              "filename": "AtlasConquest-Screenshot-02-KhazgarFlameEmperor.jpg",
+              "id": "1KptcEoZF__cuIQqG92ywg4JokHDo3ggJ",
+              "size": "2.4 MB"
+            },
+            {
+              "format": "PNG",
+              "filename": "AtlasConquest-Screenshot-02-KhazgarFlameEmperor.png",
+              "id": "1t6EBc9eQsWQZZ5RQNkytC0Bb-zgCOuY0",
+              "size": "10.1 MB"
+            }
+          ],
+          "dimensions": "3840 × 2160",
+          "preview": "assets/press/screenshot-02-khazgar-flame-emperor.webp"
         },
         {
           "slug": "screenshot-03-milo-sunstone",
@@ -52,13 +52,13 @@
               "format": "JPG",
               "filename": "AtlasConquest-Screenshot-03-MiloSunstone.jpg",
               "id": "1RvSepGtr74V6lZQiWnC-Exfj9whp1LBf",
-              "size": "1.8 MB"
+              "size": "1.7 MB"
             },
             {
               "format": "PNG",
               "filename": "AtlasConquest-Screenshot-03-MiloSunstone.png",
               "id": "1ImaDI5H4zj4l6WzH01JAlPTZPFB9Fk3P",
-              "size": "8.8 MB"
+              "size": "8.5 MB"
             }
           ],
           "dimensions": "3840 × 2160",
@@ -132,17 +132,162 @@
               "format": "JPG",
               "filename": "AtlasConquest-Screenshot-07-DyanaPrimeHuntress.jpg",
               "id": "1H5LelJFz4IToH2nBdWKMTTxs4SRR8R3-",
-              "size": "2.3 MB"
+              "size": "2.1 MB"
             },
             {
               "format": "PNG",
               "filename": "AtlasConquest-Screenshot-07-DyanaPrimeHuntress.png",
               "id": "1LPTaQ7reRUKzo1EkLwbvMZbdTWQDAj_Y",
-              "size": "10.5 MB"
+              "size": "9.5 MB"
             }
           ],
           "dimensions": "3840 × 2160",
           "preview": "assets/press/screenshot-07-dyana-prime-huntress.webp"
+        },
+        {
+          "slug": "screenshot-08-darkwing",
+          "title": "Playing a minion",
+          "files": [
+            {
+              "format": "JPG",
+              "filename": "AtlasConquest-Screenshot-08-Darkwing.jpg",
+              "id": "1SV5D6lVZrYSAqBBZBnTI5q97VZcJjnxr",
+              "size": "1.9 MB"
+            },
+            {
+              "format": "PNG",
+              "filename": "AtlasConquest-Screenshot-08-Darkwing.png",
+              "id": "1SdZl5FW5itPZCWe2IVmPIRJkx6T3S83q",
+              "size": "9.3 MB"
+            }
+          ],
+          "dimensions": "3840 × 2160",
+          "preview": "assets/press/screenshot-08-darkwing.webp"
+        }
+      ]
+    },
+    {
+      "title": "Maps",
+      "items": [
+        {
+          "slug": "map-dunes-medium",
+          "title": "Dunes — close",
+          "files": [
+            {
+              "format": "JPG",
+              "filename": "AtlasConquest-Map-Dunes-Medium.jpg",
+              "id": "1Ys7JS9E5vPvhwiJoEZCS9fsG-_rVR6H6",
+              "size": "2.7 MB"
+            },
+            {
+              "format": "PNG",
+              "filename": "AtlasConquest-Map-Dunes-Medium.png",
+              "id": "1eG-hl5-aTQeA_OoRkhWK3bZkB_UEQGi7",
+              "size": "15.3 MB"
+            }
+          ],
+          "dimensions": "5120 × 2880",
+          "preview": "assets/press/map-dunes-medium.webp"
+        },
+        {
+          "slug": "map-dunes-far",
+          "title": "Dunes — full map",
+          "files": [
+            {
+              "format": "JPG",
+              "filename": "AtlasConquest-Map-Dunes-Far.jpg",
+              "id": "14mcTDeKX1KX66YHV_UO4CF4BW_9S7kMJ",
+              "size": "2.4 MB"
+            },
+            {
+              "format": "PNG",
+              "filename": "AtlasConquest-Map-Dunes-Far.png",
+              "id": "191XHlxcPSb6NiG_p1-5Pn0Rro7q8W3YU",
+              "size": "16.6 MB"
+            }
+          ],
+          "dimensions": "5120 × 2880",
+          "preview": "assets/press/map-dunes-far.webp"
+        },
+        {
+          "slug": "map-snowmelt-medium",
+          "title": "Snowmelt — close",
+          "files": [
+            {
+              "format": "JPG",
+              "filename": "AtlasConquest-Map-Snowmelt-Medium.jpg",
+              "id": "1vmDWBhrI1M96_vPcPEV8ACclR-YbikV8",
+              "size": "3.6 MB"
+            },
+            {
+              "format": "PNG",
+              "filename": "AtlasConquest-Map-Snowmelt-Medium.png",
+              "id": "1-sy8TcItOZhDDwxsbD3l63LXBJdiVqJ-",
+              "size": "17.7 MB"
+            }
+          ],
+          "dimensions": "5120 × 2880",
+          "preview": "assets/press/map-snowmelt-medium.webp"
+        },
+        {
+          "slug": "map-snowmelt-far",
+          "title": "Snowmelt — full map",
+          "files": [
+            {
+              "format": "JPG",
+              "filename": "AtlasConquest-Map-Snowmelt-Far.jpg",
+              "id": "13VRtTUHavhhLkyDImwefw1p3DRwFKAEa",
+              "size": "3.6 MB"
+            },
+            {
+              "format": "PNG",
+              "filename": "AtlasConquest-Map-Snowmelt-Far.png",
+              "id": "1MO4N2-FABRwonPlxPK-PCDCwHS-seBUI",
+              "size": "20.2 MB"
+            }
+          ],
+          "dimensions": "5120 × 2880",
+          "preview": "assets/press/map-snowmelt-far.webp"
+        },
+        {
+          "slug": "map-tropics-medium",
+          "title": "Tropics — close",
+          "files": [
+            {
+              "format": "JPG",
+              "filename": "AtlasConquest-Map-Tropics-Medium.jpg",
+              "id": "187kvfLxBMyr2eLOf7SV5CAu8Ute7J6vf",
+              "size": "3.7 MB"
+            },
+            {
+              "format": "PNG",
+              "filename": "AtlasConquest-Map-Tropics-Medium.png",
+              "id": "1JL75Np7YyXFw437t2XjRDG3mzERTHZyy",
+              "size": "18.0 MB"
+            }
+          ],
+          "dimensions": "5120 × 2880",
+          "preview": "assets/press/map-tropics-medium.webp"
+        },
+        {
+          "slug": "map-tropics-far",
+          "title": "Tropics — full map",
+          "files": [
+            {
+              "format": "JPG",
+              "filename": "AtlasConquest-Map-Tropics-Far.jpg",
+              "id": "1nfPyQfokGxk53WP5e6ec0TgvGMgoUVTf",
+              "size": "3.4 MB"
+            },
+            {
+              "format": "PNG",
+              "filename": "AtlasConquest-Map-Tropics-Far.png",
+              "id": "1JpDj91h0EW95cMH_4A09NqbBur7Zl7hB",
+              "size": "17.9 MB"
+            }
+          ],
+          "dimensions": "5120 × 2880",
+          "preview": "assets/press/map-tropics-far.webp"
         }
       ]
     },
