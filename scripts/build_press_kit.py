@@ -18,7 +18,8 @@ and commit press_kit.json + site/assets/press/.
   --only slug,slug   rebuild just these assets
   --local DIR        read a file from DIR (by its filename in the manifest) instead of
                      downloading it, to build the previews of a re-shot asset before it
-                     is uploaded over the old one in Drive
+                     is uploaded over the old one in Drive, or of a new one that has
+                     no id yet (it stays hidden on the page until its id is filled in)
 """
 import argparse
 import io
@@ -65,7 +66,13 @@ def save_webp(img, box, path, quality):
 
 
 def build_item(item, local_dir=None):
-    files = [f for f in item.get("files", []) if f.get("id")]
+    def local_file(f):
+        path = local_dir / f["filename"] if local_dir and f.get("filename") else None
+        return path if path and path.is_file() else None
+
+    # A file with no Drive id yet still counts when --local has it, so a new
+    # asset's previews can be built before it is uploaded.
+    files = [f for f in item.get("files", []) if f.get("id") or local_file(f)]
     if not files:
         print(f"  {item['slug']}: no Drive ids yet — skipped")
         return
@@ -73,8 +80,8 @@ def build_item(item, local_dir=None):
     ordered = sorted(files, key=lambda f: f["format"] not in IMAGE_FORMATS)
     preview_img = None
     for f in ordered:
-        local = local_dir / f["filename"] if local_dir and f.get("filename") else None
-        data = local.read_bytes() if local and local.is_file() else download(f["id"])
+        local = local_file(f)
+        data = local.read_bytes() if local else download(f["id"])
         f["size"] = human_size(len(data))
         if preview_img is None:
             try:
