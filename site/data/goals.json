@@ -4,7 +4,7 @@
       "id": "art_count",
       "label": "100 Cards with Human Art",
       "kind": "count",
-      "current": 282,
+      "current": 286,
       "target": 100,
       "met": true
     },
@@ -62,8 +62,8 @@
         {
           "deck": "Starter Mage",
           "total": 14,
-          "met_count": 13,
-          "rate": 0.9286,
+          "met_count": 14,
+          "rate": 1.0,
           "met": true
         },
         {
@@ -158,26 +158,26 @@
   "overall": {
     "cards": {
       "total": 287,
-      "human": 282,
-      "human_rate": 0.9826,
+      "human": 286,
+      "human_rate": 0.9965,
       "animated": 286,
       "animated_rate": 0.9965,
       "art_types": {
         "commissioned": {
-          "count": 92,
-          "rate": 0.3206
+          "count": 94,
+          "rate": 0.3275
         },
         "purchased": {
           "count": 2,
           "rate": 0.007
         },
         "placeholder": {
-          "count": 188,
-          "rate": 0.6551
+          "count": 190,
+          "rate": 0.662
         },
         "ai": {
-          "count": 5,
-          "rate": 0.0174
+          "count": 1,
+          "rate": 0.0035
         },
         "other": {
           "count": 0,
@@ -187,14 +187,14 @@
     },
     "tokens": {
       "total": 9,
-      "human": 8,
-      "human_rate": 0.8889,
+      "human": 9,
+      "human_rate": 1.0,
       "animated": 9,
       "animated_rate": 1.0,
       "art_types": {
         "commissioned": {
-          "count": 1,
-          "rate": 0.1111
+          "count": 2,
+          "rate": 0.2222
         },
         "purchased": {
           "count": 0,
@@ -205,8 +205,8 @@
           "rate": 0.7778
         },
         "ai": {
-          "count": 1,
-          "rate": 0.1111
+          "count": 0,
+          "rate": 0.0
         },
         "other": {
           "count": 0,
@@ -245,26 +245,26 @@
     },
     "all": {
       "total": 312,
-      "human": 306,
-      "human_rate": 0.9808,
+      "human": 311,
+      "human_rate": 0.9968,
       "animated": 311,
       "animated_rate": 0.9968,
       "art_types": {
         "commissioned": {
-          "count": 109,
-          "rate": 0.3494
+          "count": 112,
+          "rate": 0.359
         },
         "purchased": {
           "count": 2,
           "rate": 0.0064
         },
         "placeholder": {
-          "count": 195,
-          "rate": 0.625
+          "count": 197,
+          "rate": 0.6314
         },
         "ai": {
-          "count": 6,
-          "rate": 0.0192
+          "count": 1,
+          "rate": 0.0032
         },
         "other": {
           "count": 0,
@@ -341,14 +341,14 @@
       "faction": "archaeon",
       "cards": {
         "total": 27,
-        "human": 26,
-        "human_rate": 0.963,
+        "human": 27,
+        "human_rate": 1.0,
         "animated": 26,
         "animated_rate": 0.963,
         "art_types": {
           "commissioned": {
-            "count": 12,
-            "rate": 0.4444
+            "count": 13,
+            "rate": 0.4815
           },
           "purchased": {
             "count": 0,
@@ -359,8 +359,8 @@
             "rate": 0.5185
           },
           "ai": {
-            "count": 1,
-            "rate": 0.037
+            "count": 0,
+            "rate": 0.0
           },
           "other": {
             "count": 0,
@@ -589,8 +589,8 @@
       "faction": "neutral",
       "cards": {
         "total": 127,
-        "human": 125,
-        "human_rate": 0.9843,
+        "human": 127,
+        "human_rate": 1.0,
         "animated": 127,
         "animated_rate": 1.0,
         "art_types": {
@@ -603,12 +603,12 @@
             "rate": 0.0157
           },
           "placeholder": {
-            "count": 82,
-            "rate": 0.6457
+            "count": 84,
+            "rate": 0.6614
           },
           "ai": {
-            "count": 2,
-            "rate": 0.0157
+            "count": 0,
+            "rate": 0.0
           },
           "other": {
             "count": 0,
@@ -651,14 +651,14 @@
       "faction": "shadis",
       "cards": {
         "total": 24,
-        "human": 23,
-        "human_rate": 0.9583,
+        "human": 24,
+        "human_rate": 1.0,
         "animated": 24,
         "animated_rate": 1.0,
         "art_types": {
           "commissioned": {
-            "count": 7,
-            "rate": 0.2917
+            "count": 8,
+            "rate": 0.3333
           },
           "purchased": {
             "count": 0,
@@ -669,8 +669,8 @@
             "rate": 0.6667
           },
           "ai": {
-            "count": 1,
-            "rate": 0.0417
+            "count": 0,
+            "rate": 0.0
           },
           "other": {
             "count": 0,
