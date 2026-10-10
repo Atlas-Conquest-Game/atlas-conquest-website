@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base href="../">
+  <meta name="robots" content="noindex">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Classic · Meta Trends — Atlas Conquest Analytics</title>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Atlas Conquest">
+  <meta property="og:title" content="Meta Trends — Atlas Conquest Analytics">
+  <meta property="og:description" content="Matchup heatmap, faction winrates, and commander popularity trends for Atlas Conquest.">
+  <meta property="og:image" content="https://atlas-conquest.com/assets/logo/atlas-conquest-icon.png">
+  <meta property="og:url" content="https://atlas-conquest.com/meta.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Meta Trends — Atlas Conquest Analytics">
+  <meta name="twitter:description" content="Matchup heatmap, faction winrates, and commander popularity trends for Atlas Conquest.">
+  <meta name="twitter:image" content="https://atlas-conquest.com/assets/logo/atlas-conquest-icon.png">
+  <link rel="icon" type="image/png" href="assets/logo/atlas-conquest-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="classic/css/variables.css">
+  <link rel="stylesheet" href="classic/css/base.css">
+  <link rel="stylesheet" href="classic/css/layout.css">
+  <link rel="stylesheet" href="classic/css/components.css">
+  <link rel="stylesheet" href="classic/css/modals.css">
+  <link rel="stylesheet" href="classic/css/responsive.css">
+  <link rel="stylesheet" href="classic/css/tooltips.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+</head>
+<body class="has-sub-nav">
+<div class="classic-banner" role="note" style="position:relative;z-index:2000;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;justify-content:center;padding:9px 16px;background:#2a1a0e;border-bottom:1px solid #8a5a24;color:#f2dca8;font:500 14px/1.4 Inter,system-ui,sans-serif;text-align:center">
+  <span><strong style="color:#ffd27a">Classic site</strong> &middot; archived October 6, 2026 for comparison (live data, original design)</span>
+  <a href="index.html" style="color:#ffd27a;text-decoration:underline">View the new site &rarr;</a>
+</div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="classic/index.html" class="nav-logo">
+        <img src="assets/logo/atlas-conquest-logo.png" alt="Atlas Conquest" width="178" height="28" class="nav-logo-wordmark">
+      </a>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+      <label for="nav-toggle" class="nav-burger" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+      <div class="nav-links">
+        <a href="classic/index.html" class="nav-link" data-nav="home">Home</a>
+        <a href="classic/analytics.html" class="nav-link" data-nav="analytics">Analytics</a>
+        <a href="classic/metagame.html" class="nav-link" data-nav="metagame">Metagame</a>
+        <a href="decks.html" class="nav-link" data-nav="decks">Decks</a>
+        <a href="articles/" class="nav-link" data-nav="articles">Articles</a>
+        <a href="press.html" class="nav-link" data-nav="press">Press</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Analytics Sub-Navigation -->
+  <div class="sub-nav">
+    <div class="container sub-nav-inner">
+      <a href="classic/analytics.html" class="sub-nav-link">Overview</a>
+      <a href="classic/commanders.html" class="sub-nav-link">Commanders</a>
+      <a href="classic/cards.html" class="sub-nav-link">Cards</a>
+      <a href="classic/meta.html" class="sub-nav-link">Meta</a>
+      <a href="classic/metagame.html" class="sub-nav-link">Metagame</a>
+      <a href="classic/goals.html" class="sub-nav-link">Goals</a>
+    </div>
+  </div>
+
+  <!-- Hero (compact) -->
+  <header class="hero hero-compact">
+    <div class="container">
+      <h1 class="hero-title">Meta Trends</h1>
+      <p class="hero-subtitle">Faction popularity, head-to-head matchups, and metagame shifts.</p>
+      <div class="hero-meta">
+        <span class="hero-stat" id="hero-matches">-- matches</span>
+        <span class="hero-divider"></span>
+        <span class="hero-stat" id="hero-updated">Last updated: --</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Time Filter -->
+  <div class="time-filter-bar" id="time-filter-bar">
+    <div class="container time-filter-inner">
+      <span class="filter-label">Period</span>
+      <button class="time-btn" data-period="1m">1M</button>
+      <button class="time-btn active" data-period="3m">3M</button>
+      <button class="time-btn" data-period="6m">6M</button>
+      <button class="time-btn" data-period="all">All</button>
+      <span class="filter-divider"></span>
+      <span class="filter-label">Map</span>
+      <button class="map-btn active" data-map="all">All Maps</button>
+      <button class="map-btn" data-map="Dunes">Dunes</button>
+      <button class="map-btn" data-map="Snowmelt">Snowmelt</button>
+      <button class="map-btn" data-map="Tropics">Tropics</button>
+    </div>
+  </div>
+
+  <!-- Commander Matchups -->
+  <section id="matchups" class="section">
+    <div class="container">
+      <h2 class="section-title collapsible">Commander Matchups <span class="tooltip-icon" data-tooltip="Row commander's win rate vs column commander. Green >55%, red <45%. Gray = fewer than 5 games. Click a cell for details.">?</span> <span class="chevron">&#9662;</span></h2>
+      <div class="section-body">
+        <p class="section-desc">Head-to-head winrates. Read rows as "Row commander's winrate vs Column commander." Click any cell for detailed breakdown.</p>
+        <div class="matchup-wrapper">
+          <table class="matchup-table" id="matchup-table">
+            <thead><tr><th></th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="matchup-legend">
+          <span class="legend-item"><span class="legend-swatch legend-favored"></span> &gt;55%</span>
+          <span class="legend-item"><span class="legend-swatch legend-even"></span> 45-55%</span>
+          <span class="legend-item"><span class="legend-swatch legend-unfavored"></span> &lt;45%</span>
+          <span class="legend-item"><span class="legend-swatch legend-nodata"></span> &lt;5 games</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Matchup Tooltip -->
+  <div class="matchup-tooltip" id="matchup-tooltip">
+    <div class="matchup-tooltip-title" id="tooltip-title"></div>
+    <div class="matchup-tooltip-wr" id="tooltip-wr"></div>
+    <div class="matchup-tooltip-games" id="tooltip-games"></div>
+  </div>
+
+  <!-- Commander Winrate Over Time -->
+  <section id="commander-winrate-trends" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title collapsible">Commander Winrate Over Time <span class="tooltip-icon" data-tooltip="Per-commander win rate over time. Toggle commanders and switch between weekly/monthly views.">?</span> <span class="chevron">&#9662;</span></h2>
+      <div class="section-body collapsed">
+        <p class="section-desc">Per-commander win rate by week. Click commanders to toggle visibility.</p>
+        <div class="chart-controls">
+          <div id="cmd-wr-toggles" class="filter-bar"></div>
+          <div class="bin-toggle">
+            <button class="bin-btn active" data-bin="week" data-target="cmd-wr">Week</button>
+            <button class="bin-btn" data-bin="month" data-target="cmd-wr">Month</button>
+          </div>
+          <label class="mirror-toggle"><input type="checkbox" id="cmd-wr-no-mirror" checked> Exclude mirror matches <span class="tooltip-icon" data-tooltip="Remove games where both players picked the same commander, so winrates reflect cross-commander performance only.">?</span></label>
+        </div>
+        <div class="chart-container">
+          <canvas id="commander-winrate-chart"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Faction Popularity Over Time -->
+  <section id="meta" class="section">
+    <div class="container">
+      <h2 class="section-title collapsible">Faction Popularity Over Time <span class="tooltip-icon" data-tooltip="Faction popularity as % of all decks played. Shows how the metagame shifts over time.">?</span> <span class="chevron">&#9662;</span></h2>
+      <div class="section-body collapsed">
+        <p class="section-desc">Stacked area chart showing each faction's share of the metagame.</p>
+        <div class="chart-controls">
+          <div class="bin-toggle">
+            <button class="bin-btn active" data-bin="week" data-target="faction">Week</button>
+            <button class="bin-btn" data-bin="month" data-target="faction">Month</button>
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas id="meta-chart"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Commander Popularity Over Time -->
+  <section id="commander-trends" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title collapsible">Commander Popularity Over Time <span class="tooltip-icon" data-tooltip="Commander pick rate as % of all games played. Shows which commanders are trending up or down.">?</span> <span class="chevron">&#9662;</span></h2>
+      <div class="section-body collapsed">
+        <p class="section-desc">Per-commander usage share. Click commanders to toggle visibility.</p>
+        <div class="chart-controls">
+          <div id="cmd-trend-toggles" class="filter-bar"></div>
+          <div class="bin-toggle">
+            <button class="bin-btn active" data-bin="week" data-target="cmd-trend">Week</button>
+            <button class="bin-btn" data-bin="month" data-target="cmd-trend">Month</button>
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas id="commander-trends-chart"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- First-Turn Advantage -->
+  <section id="first-turn-section" class="section">
+    <div class="container">
+      <h2 class="section-title collapsible">First-Turn Advantage <span class="tooltip-icon" data-tooltip="How much each commander benefits from going first. Turn order is taken from the recorded first player, or inferred from mulligan kept count (3 = went first, 4 = went second) for games after first-player tracking stopped.">?</span> <span class="chevron">&#9662;</span></h2>
+      <div class="section-body collapsed">
+        <p class="section-desc">
+          Going first: <strong id="ft-going-first">--</strong>
+          <span style="color: var(--text-muted); margin: 0 0.5rem;">&middot;</span>
+          Going second: <strong id="ft-going-second">--</strong>
+          <span style="color: var(--text-muted); margin: 0 0.5rem;">&middot;</span>
+          <span id="ft-overall-games">--</span>
+        </p>
+        <div class="chart-container">
+          <canvas id="first-turn-chart"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Faction Loyalty Trends (placeholder) -->
+  <section id="patron-trends" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title collapsible">Faction Loyalty Trends <span class="chevron">&#9662;</span></h2>
+      <div class="section-body collapsed">
+        <div class="placeholder-card">
+          <p class="placeholder-text">Coming soon — tracking how deck faction loyalty (patron vs neutral vs off-faction card ratios) shifts over time across the meta.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Matchup Detail Modal -->
+  <div class="modal-overlay" id="matchup-modal">
+    <div class="modal-content matchup-modal-content">
+      <button class="modal-close" id="matchup-modal-close">&times;</button>
+
+      <div class="matchup-modal-header">
+        <div class="matchup-modal-commander">
+          <img class="matchup-modal-art" id="matchup-cmd1-art" src="" alt="">
+          <div class="matchup-modal-cmd-name" id="matchup-cmd1-name"></div>
+          <span id="matchup-cmd1-faction"></span>
+        </div>
+        <div class="matchup-modal-vs">
+          <span class="matchup-modal-vs-label">VS</span>
+        </div>
+        <div class="matchup-modal-commander">
+          <img class="matchup-modal-art" id="matchup-cmd2-art" src="" alt="">
+          <div class="matchup-modal-cmd-name" id="matchup-cmd2-name"></div>
+          <span id="matchup-cmd2-faction"></span>
+        </div>
+      </div>
+
+      <!-- Modal filter bar -->
+      <div class="modal-filter-bar" id="modal-filter-bar">
+        <span class="filter-label">Period</span>
+        <button class="time-btn modal-time-btn" data-period="1m">1M</button>
+        <button class="time-btn modal-time-btn active" data-period="3m">3M</button>
+        <button class="time-btn modal-time-btn" data-period="6m">6M</button>
+        <button class="time-btn modal-time-btn" data-period="all">All</button>
+        <span class="filter-divider"></span>
+        <span class="filter-label">Map</span>
+        <button class="map-btn modal-map-btn active" data-map="all">All</button>
+        <button class="map-btn modal-map-btn" data-map="Dunes">Dunes</button>
+        <button class="map-btn modal-map-btn" data-map="Snowmelt">Snowmelt</button>
+        <button class="map-btn modal-map-btn" data-map="Tropics">Tropics</button>
+      </div>
+
+      <div class="matchup-modal-stats" id="matchup-modal-stats"></div>
+
+      <div class="matchup-modal-body">
+        <div class="matchup-modal-cards-row">
+          <div class="matchup-modal-cards-col">
+            <h3 class="matchup-cards-title" id="matchup-cards-title-1">Top Cards</h3>
+            <div class="matchup-cards-list" id="matchup-cards-list-1"></div>
+          </div>
+          <div class="matchup-modal-cards-col">
+            <h3 class="matchup-cards-title" id="matchup-cards-title-2">Top Cards</h3>
+            <div class="matchup-cards-list" id="matchup-cards-list-2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-text">Atlas Conquest Analytics &mdash; Updated daily from game data.</p>
+      <p class="footer-text footer-muted">Built for the community. Not affiliated with the Atlas Conquest development team.</p>
+    </div>
+  </footer>
+
+  <script src="classic/js/cardpreview.js"></script>
+  <script src="classic/js/shared.js"></script>
+  <script src="classic/js/meta.js"></script>
+</body>
+</html>

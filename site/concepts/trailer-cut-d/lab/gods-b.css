@@ -1,0 +1,353 @@
+/* ==========================================================================
+   Patron Gods — option B "Six gods"
+   A row of six tall god panels (key art washed in the faction colour, emblem,
+   gold name, title, commander faces). Selecting one cross-fades the single
+   detail strip under the row. No widening, no zoom, no hover motion: hover
+   only brightens the art. Phones/tablets: the row becomes a swipe rail.
+   Everything is scoped under .gb.
+   ========================================================================== */
+
+.gb { --gb-gap: 22px; }
+
+/* ---------- the row ---------- */
+.gb .gb__row {
+  margin-top: clamp(22px, 2.4vw, 34px);
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 12px;
+  padding-bottom: var(--gb-gap); /* the selected panel's gem sits in this gap */
+}
+
+.gb .gb__god {
+  --fcr: 232, 162, 69;
+  --fx: 50%;
+  --tint: .34;
+  --sat-off: .8;
+  --sat-on: 1;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: clamp(380px, calc(100svh - 390px), 540px);
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  background: var(--ink-0);
+  color: var(--text);
+  text-align: center;
+  cursor: pointer;
+  isolation: isolate;
+  -webkit-tap-highlight-color: transparent;
+  transition: box-shadow .4s ease;
+}
+.gb .gb__frame {
+  position: absolute; inset: 0; z-index: 0;
+  border-radius: inherit; overflow: hidden;
+}
+.gb .gb__art {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: var(--fx) 30%;
+  filter: brightness(.66) saturate(var(--sat-off));
+  transition: filter .45s ease;
+}
+/* the faction wash: hue from the faction colour, light from the art */
+.gb .gb__tint {
+  position: absolute; inset: 0;
+  background: rgb(var(--fcr));
+  mix-blend-mode: color;
+  opacity: var(--tint);
+}
+.gb .gb__shade {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(6, 8, 13, .45) 0%, rgba(6, 8, 13, 0) 20%),
+    linear-gradient(0deg, rgba(6, 8, 13, .98) 0%, rgba(6, 8, 13, .9) 20%, rgba(6, 8, 13, .55) 38%, rgba(var(--fcr), .14) 56%, rgba(6, 8, 13, 0) 72%);
+}
+/* hairline frame (selected: faction ring) */
+.gb .gb__god::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 2;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 1px rgba(247, 220, 154, .16);
+  transition: box-shadow .4s ease;
+}
+/* the gem that points at the detail strip */
+.gb .gb__god::after {
+  content: '';
+  position: absolute; left: 50%; z-index: 2;
+  bottom: calc(var(--gb-gap) / -2 - 5px);
+  width: 10px; height: 10px; margin-left: -5px;
+  transform: rotate(45deg);
+  border: 1px solid rgba(255, 255, 255, .55);
+  background: rgb(var(--fcr));
+  box-shadow: 0 0 14px rgba(var(--fcr), .95);
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+
+.gb .gb__body {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 1;
+  display: flex; flex-direction: column; align-items: center;
+  padding: 0 10px 20px;
+}
+.gb .gb__emblem {
+  width: 54px; height: 54px; border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .14), 0 0 28px -4px rgba(var(--fcr), .9);
+}
+.gb .gb__name {
+  margin-top: 12px;
+  font-family: var(--display);
+  font-size: clamp(22px, 1.95vw, 28px);
+  line-height: 1.05;
+  letter-spacing: .02em;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, .8));
+}
+.gb .gb__title {
+  margin-top: 6px;
+  font-family: var(--sc); font-weight: 700;
+  font-size: 12.5px; line-height: 1.3;
+  letter-spacing: .16em; text-transform: lowercase;
+  color: var(--text-2);
+  text-wrap: balance;
+}
+.gb .gb__faces { display: flex; justify-content: center; margin-top: 16px; }
+.gb .gb__faces img {
+  width: 32px; height: 32px; border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--ink-0), 0 0 0 3px rgba(var(--fcr), .85);
+}
+.gb .gb__faces img + img { margin-left: -4px; }
+
+/* states: fades only */
+.gb .gb__god:hover .gb__art,
+.gb .gb__god:focus-visible .gb__art { filter: brightness(.86) saturate(var(--sat-on)); }
+.gb .gb__god[aria-selected="true"] { box-shadow: 0 26px 60px -30px rgba(var(--fcr), .95); }
+.gb .gb__god[aria-selected="true"] .gb__art { filter: brightness(.98) saturate(var(--sat-on)); }
+.gb .gb__god[aria-selected="true"]::before {
+  box-shadow: inset 0 0 0 2px rgb(var(--fcr)), inset 0 0 46px -12px rgba(var(--fcr), .85);
+}
+.gb .gb__god[aria-selected="true"]::after { opacity: 1; }
+.gb .gb__god:focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 3px; border-radius: 10px; }
+
+/* ---------- the detail strip ---------- */
+.gb .gb__detail { display: grid; }
+.gb .gb__panel {
+  --fcr: 232, 162, 69;
+  grid-area: 1 / 1;
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "line cards" "cmdrs cards";
+  align-items: center;
+  column-gap: clamp(28px, 4vw, 56px);
+  row-gap: 22px;
+  padding: 24px clamp(24px, 3.2vw, 44px);
+  border-radius: 10px;
+  border: 1px solid var(--line-soft);
+  background:
+    radial-gradient(ellipse 55% 130% at 0% 0%, rgba(var(--fcr), .17), transparent 72%),
+    radial-gradient(ellipse 40% 90% at 100% 100%, rgba(var(--fcr), .08), transparent 70%),
+    linear-gradient(180deg, rgba(19, 25, 36, .9), rgba(11, 15, 23, .9));
+  box-shadow: 0 30px 60px -36px rgba(0, 0, 0, .9);
+  transition: opacity .4s ease, visibility 0s;
+}
+.gb .gb__panel::before { /* faction hairline along the top */
+  content: '';
+  position: absolute; left: 0; right: 0; top: -1px; height: 2px;
+  background: linear-gradient(90deg, transparent 4%, rgba(var(--fcr), .9) 50%, transparent 96%);
+  border-radius: 2px;
+}
+.gb .gb__panel:not(.is-active) {
+  opacity: 0; visibility: hidden;
+  transition: opacity .4s ease, visibility 0s .4s;
+}
+
+.gb .gb__ph { display: none; } /* phones/tablets only: the rail can scroll the panel away */
+
+.gb .gb__line {
+  grid-area: line;
+  align-self: end;
+  max-width: 44ch;
+  font-size: clamp(19px, 1.6vw, 23px);
+  line-height: 1.45;
+  color: var(--text-2);
+  text-wrap: pretty;
+}
+.gb .gb__line b { display: block; font-weight: 500; color: var(--text); }
+
+.gb .gb__cmdrs { grid-area: cmdrs; align-self: start; display: flex; flex-wrap: wrap; gap: 10px; }
+.gb .gb__cmdrs li { flex: 1 1 0; min-width: 0; max-width: 236px; }
+.gb .gb__cmdr {
+  display: flex; align-items: center; gap: 12px;
+  height: 100%;
+  padding: 6px 16px 6px 6px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(6, 8, 13, .45);
+  text-decoration: none;
+  transition: border-color .25s ease, background-color .25s ease;
+}
+.gb .gb__cmdr img {
+  width: 46px; height: 46px; border-radius: 50%; flex: none;
+  box-shadow: 0 0 0 2px rgba(var(--fcr), .9), 0 0 16px -4px rgba(var(--fcr), .8);
+}
+.gb .gb__ct { display: flex; flex-direction: column; min-width: 0; }
+.gb .gb__cname { font-size: 15px; font-weight: 500; line-height: 1.2; color: var(--text); text-wrap: balance; }
+.gb .gb__go {
+  margin-top: 3px;
+  font-family: var(--sc); font-weight: 700;
+  font-size: 12.5px; line-height: 1.2; letter-spacing: .12em; text-transform: lowercase;
+  color: var(--gold);
+  white-space: nowrap;
+}
+.gb .gb__go::after { content: ' \2192'; letter-spacing: 0; }
+.gb .gb__cmdr:hover { border-color: rgba(247, 220, 154, .6); background: rgba(232, 162, 69, .1); }
+.gb .gb__cmdr:hover .gb__go { color: var(--gold-hi); }
+
+.gb .gb__cards { grid-area: cards; display: flex; gap: 14px; }
+.gb .gb__cards li { width: clamp(124px, 11vw, 150px); }
+.gb .gb__card {
+  position: relative; display: block; width: 100%;
+  padding: 0; border: 0; background: none;
+  border-radius: 9px;
+  cursor: zoom-in;
+}
+.gb .gb__card img {
+  width: 100%;
+  filter: drop-shadow(0 14px 18px rgba(0, 0, 0, .6));
+  transition: filter .3s ease;
+}
+.gb .gb__card:hover img,
+.gb .gb__card:focus-visible img {
+  filter: drop-shadow(0 14px 18px rgba(0, 0, 0, .6)) drop-shadow(0 0 14px rgba(var(--fcr), .55)) brightness(1.06);
+}
+.gb .gb__card .expand-hint {
+  top: 6px; right: 6px; bottom: auto;
+  width: 28px; height: 28px;
+  opacity: 0;
+}
+.gb .gb__card .expand-hint .icon { width: 13px; height: 13px; }
+.gb .gb__card:hover .expand-hint,
+.gb .gb__card:focus-visible .expand-hint { opacity: 1; }
+@media (hover: none) {
+  .gb .gb__card .expand-hint { opacity: .85; }
+}
+
+/* ---------- small laptops: narrower panels, commanders as a short list ---------- */
+@media (min-width: 1001px) and (max-width: 1200px) {
+  .gb .gb__body { padding-inline: 6px; }
+  .gb .gb__title { font-size: 11.5px; letter-spacing: .1em; }
+}
+@media (min-width: 861px) and (max-width: 1200px) {
+  .gb .gb__cmdrs { flex-direction: column; flex-wrap: nowrap; gap: 8px; }
+  .gb .gb__cmdrs li { flex: none; max-width: 340px; }
+  .gb .gb__cmdr img { width: 40px; height: 40px; }
+}
+
+/* ---------- tablets & phones: the row becomes a swipe rail ---------- */
+@media (max-width: 1000px) {
+  .gb .gb__row {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: clamp(150px, 27vw, 220px);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    margin-inline: calc(-1 * var(--gutter));
+    padding-inline: var(--gutter);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(232, 162, 69, .35) transparent;
+  }
+  .gb .gb__god { height: clamp(340px, 50vw, 460px); scroll-snap-align: start; }
+  .gb .gb__ph {
+    grid-area: head;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .gb .gb__ph img { width: 34px; height: 34px; border-radius: 50%; box-shadow: 0 0 18px -4px rgba(var(--fcr), .9); }
+  .gb .gb__phn { font-family: var(--display); font-size: 22px; line-height: 1; letter-spacing: .02em; }
+  .gb .gb__pht {
+    font-family: var(--sc); font-weight: 700; font-size: 12.5px; letter-spacing: .16em; text-transform: lowercase;
+    color: var(--text-3);
+  }
+  .gb .gb__panel { grid-template-areas: "head cards" "line cards" "cmdrs cards"; row-gap: 16px; align-content: start; }
+  .gb .gb__line { align-self: start; }
+}
+@media (max-width: 1000px) and (hover: none) {
+  .gb .gb__row { scrollbar-width: none; }
+  .gb .gb__row::-webkit-scrollbar { display: none; }
+}
+
+@media (max-width: 860px) {
+  .gb .gb__panel {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "head" "line" "cards" "cmdrs";
+    padding: 20px 20px 22px;
+    row-gap: 16px;
+  }
+  .gb .gb__line { max-width: none; font-size: 18px; }
+  /* the cards fill the strip (centred) instead of hugging the left edge */
+  .gb .gb__cards { gap: 12px; justify-content: center; }
+  .gb .gb__cards li { flex: 1 1 0; width: auto; max-width: 196px; }
+  .gb .gb__cmdrs li { max-width: none; }
+}
+@media (max-width: 700px) {
+  .gb .gb__cmdrs { flex-direction: column; flex-wrap: nowrap; gap: 8px; }
+  .gb .gb__cmdrs li { flex: none; max-width: none; }
+}
+
+@media (max-width: 600px) {
+  .gb { --gb-gap: 18px; }
+  .gb .gb__row {
+    margin-top: 20px;
+    gap: 10px;
+    grid-auto-columns: calc((100vw - var(--gutter) - 20px) / 2.2);
+  }
+  .gb .gb__god { height: 352px; }
+  .gb .gb__art { filter: brightness(.74) saturate(var(--sat-off)); }
+  .gb .gb__body { padding: 0 8px 16px; }
+  .gb .gb__emblem { width: 44px; height: 44px; }
+  .gb .gb__name { margin-top: 10px; font-size: 22px; }
+  .gb .gb__title { margin-top: 5px; font-size: 11.5px; letter-spacing: .12em; }
+  .gb .gb__faces { margin-top: 12px; }
+  .gb .gb__faces img { width: 28px; height: 28px; }
+
+  .gb .gb__panel { padding: 16px 16px 18px; row-gap: 14px; }
+  .gb .gb__ph { gap: 10px; }
+  .gb .gb__ph img { width: 30px; height: 30px; }
+  .gb .gb__phn { font-size: 20px; }
+  .gb .gb__pht { font-size: 12px; }
+  .gb .gb__line { font-size: 16.5px; line-height: 1.45; }
+  .gb .gb__cards { gap: 10px; }
+  .gb .gb__cmdrs { flex-direction: column; flex-wrap: nowrap; gap: 8px; }
+  .gb .gb__cmdrs li { flex: none; max-width: none; }
+  .gb .gb__cmdr { padding: 4px 16px 4px 4px; gap: 12px; }
+  .gb .gb__cmdr img { width: 42px; height: 42px; }
+  .gb .gb__cname { font-size: 15.5px; }
+  .gb .gb__go { margin-top: 2px; font-size: 12px; }
+  .gb .gb__card .expand-hint { width: 24px; height: 24px; top: 4px; right: 4px; }
+  .gb .gb__card .expand-hint .icon { width: 11px; height: 11px; }
+}
+
+/* ---------- a card opened in the shared viewer gets a portrait stage ----------
+   (this stylesheet only loads on this page; the viewer itself is unchanged).
+   The enlarged cards are transparent 500x700 renders (lab/media/gods-b-card-*),
+   so the card floats on the backdrop with its own shadow: no plate, no frame. */
+.viewer:has(.viewer__stage > img[src*="gods-b-card-"]) {
+  width: min(100vw - 32px, calc((100dvh - 150px) * 5 / 7), 520px);
+}
+.viewer:has(.viewer__stage > img[src*="gods-b-card-"]) .viewer__stage {
+  width: 100%;
+  aspect-ratio: 5 / 7;
+  background: transparent;
+  border-radius: 0;
+  overflow: visible;
+  box-shadow: none;
+}
+.viewer:has(.viewer__stage > img[src*="gods-b-card-"]) .viewer__stage img {
+  background: transparent;
+  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, .75));
+}
+@media (max-width: 600px) {
+  .viewer:has(.viewer__stage > img[src*="gods-b-card-"]) .viewer__bar { padding-inline: 0; }
+}

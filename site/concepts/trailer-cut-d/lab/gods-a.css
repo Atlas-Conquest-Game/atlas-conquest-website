@@ -1,0 +1,327 @@
+/* ==========================================================================
+   Lab option gods-a: "Choose Your Commander" — the commander roster.
+   Sixteen portrait tiles grouped by patron, patron chips that dim the rest,
+   and a small sheet per commander. Everything is scoped under .roster.
+   Motion: fades only (chip dimming, sheet open). Nothing scales, nothing moves on its own.
+   ========================================================================== */
+
+@property --roster-glow {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgba(232, 140, 50, .07);
+}
+
+.roster {
+  --fc: 232, 162, 69;
+  --roster-glow: rgba(232, 140, 50, .07);
+  background: var(--ink-1);
+  transition: --roster-glow .6s ease;
+}
+.roster__glow {
+  position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(ellipse 55% 45% at 50% 66%, var(--roster-glow), transparent 72%);
+}
+
+/* ---------- patron chips ---------- */
+.roster__chips {
+  margin-top: clamp(22px, 2.4vw, 32px);
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 8px;
+}
+html:not(.js) .roster__chips { display: none; }
+.roster__chip {
+  --fc: 232, 162, 69;
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 48px;
+  padding: 5px 18px 5px 6px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(11, 15, 23, .55);
+  cursor: pointer;
+  font-family: var(--sc); font-weight: 700;
+  font-size: 15px; letter-spacing: .13em; text-transform: lowercase;
+  color: var(--text-2);
+  transition: color .25s ease, border-color .25s ease, background-color .25s ease, box-shadow .25s ease;
+}
+.roster__chip img {
+  width: 36px; height: 36px; border-radius: 50%; flex: none;
+  opacity: .82; filter: saturate(.75);
+  transition: opacity .25s ease, filter .25s ease, box-shadow .25s ease;
+}
+.roster__chip--all { padding-inline: 22px; color: var(--text); }
+.roster__chip:hover { color: var(--text); border-color: rgba(var(--fc), .7); }
+.roster__chip:hover img { opacity: .95; filter: none; }
+.roster__chip[aria-pressed="true"] {
+  color: var(--text);
+  border-color: rgb(var(--fc));
+  background: rgba(var(--fc), .16);
+  box-shadow: 0 0 24px -8px rgba(var(--fc), .9);
+}
+.roster__chip[aria-pressed="true"] img { opacity: 1; filter: none; box-shadow: 0 0 0 2px rgb(var(--fc)); }
+.roster__chip--all[aria-pressed="true"] { color: var(--gold-hi); }
+
+/* ---------- god title + playstyle: all lines share one grid cell (no reflow) ---------- */
+.roster__abouts {
+  display: grid;
+  margin: clamp(14px, 1.6vw, 20px) auto 0;
+  max-width: 900px;
+  text-align: center;
+}
+.roster__about {
+  --fc: 232, 162, 69;
+  grid-area: 1 / 1;
+  align-self: center;
+  font-size: 18px; line-height: 1.5;
+  color: var(--text-2);
+  opacity: 0; visibility: hidden;
+  transition: opacity .3s ease, visibility 0s linear .3s;
+}
+.roster__about.is-on { opacity: 1; visibility: visible; transition: opacity .3s ease .05s, visibility 0s; }
+.roster__about-god {
+  font-family: var(--display);
+  font-size: 19px; letter-spacing: .03em;
+  color: color-mix(in srgb, rgb(var(--fc)) 72%, #fff);
+  margin-right: .45em;
+  white-space: nowrap;
+}
+.roster__about[data-about="all"] .roster__about-god { color: var(--gold-hi); }
+
+/* ---------- the grid: 8 × 2 on desktop ---------- */
+.roster__grid {
+  margin-top: clamp(18px, 2vw, 28px);
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: clamp(8px, 1vw, 14px);
+}
+.roster__item {
+  --fc: 232, 162, 69;
+  --fx: 50%;
+  position: relative;
+  min-width: 0;
+  transition: opacity .4s ease, filter .4s ease;
+}
+.roster__item.is-dim { opacity: .3; filter: grayscale(.85) brightness(.75); }
+.roster__item.is-dim:hover, .roster__item.is-dim:focus-within { opacity: .6; }
+
+.roster__tile {
+  position: relative; display: block;
+  aspect-ratio: 3 / 4;
+  border-radius: 6px; overflow: hidden;
+  background: var(--ink-0);
+  color: var(--text); text-decoration: none;
+  box-shadow: 0 20px 40px -26px rgba(0, 0, 0, .95);
+  transition: box-shadow .3s ease;
+  -webkit-tap-highlight-color: transparent;
+  container-type: inline-size; /* the name scales with the tile */
+}
+.roster__tile img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: var(--fx) 50%;
+  transition: filter .3s ease;
+}
+/* thin faction edge: a hairline all round and a slightly thicker foot */
+.roster__tile::after {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  box-shadow: inset 0 0 0 1px rgba(var(--fc), .5), inset 0 -3px 0 rgb(var(--fc));
+  transition: box-shadow .3s ease;
+}
+.roster__cap {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  display: flex; flex-direction: column; gap: 3px;
+  padding: 40px 10px 13px;
+  background: linear-gradient(0deg, rgba(6, 8, 13, .96) 0%, rgba(6, 8, 13, .78) 42%, rgba(6, 8, 13, 0) 100%);
+  text-align: center;
+}
+.roster__name {
+  font-family: var(--display);
+  font-size: clamp(12.5px, 11.5cqi, 16.5px); line-height: 1.12; letter-spacing: .02em;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, .8);
+  text-wrap: balance;
+}
+.roster__short { display: none; }
+.roster__epithet {
+  font-family: var(--sc); font-weight: 500;
+  font-size: 12.5px; line-height: 1.2; letter-spacing: .08em; text-transform: lowercase;
+  color: var(--text-2);
+  text-wrap: balance;
+}
+
+.roster__tile:hover img, .roster__tile:focus-visible img { filter: brightness(1.12) saturate(1.05); }
+.roster__tile:hover::after, .roster__tile:focus-visible::after {
+  box-shadow: inset 0 0 0 1px rgba(247, 220, 154, .8), inset 0 -3px 0 rgb(var(--fc));
+}
+.roster__tile:hover { box-shadow: 0 20px 40px -26px rgba(0, 0, 0, .95), 0 0 30px -12px rgba(var(--fc), .9); }
+.roster__tile:focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 3px; }
+
+/* the chosen patron's commanders get a fuller edge and a soft glow (no movement) */
+.roster.is-filtered .roster__item:not(.is-dim) .roster__tile { box-shadow: 0 20px 40px -26px rgba(0, 0, 0, .95), 0 0 34px -12px rgba(var(--fc), .95); }
+.roster.is-filtered .roster__item:not(.is-dim) .roster__tile::after { box-shadow: inset 0 0 0 1px rgb(var(--fc)), inset 0 -3px 0 rgb(var(--fc)); }
+
+/* ---------- the commander sheet ---------- */
+.roster__sheet {
+  --fc: 232, 162, 69;
+  --fx: 50%;
+  width: min(780px, 100vw - 32px);
+  max-width: none; max-height: calc(100dvh - 32px);
+  padding: 0; border: 0; border-radius: 10px;
+  background: linear-gradient(180deg, var(--ink-2), var(--ink-1));
+  color: var(--text);
+  overflow: auto; overscroll-behavior: contain;
+  box-shadow: 0 0 0 1px rgba(var(--fc), .55), 0 40px 120px -20px rgba(0, 0, 0, .95), 0 0 140px -40px rgba(var(--fc), .55);
+}
+.roster__sheet::backdrop { background: rgba(3, 4, 8, .8); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.roster__sheet[open] { animation: roster-in .32s var(--ease-out); }
+.roster__sheet[open]::backdrop { animation: roster-fade .32s ease; }
+@keyframes roster-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes roster-fade { from { opacity: 0; } to { opacity: 1; } }
+
+.roster__sheet-in {
+  position: relative;
+  display: grid; grid-template-columns: 300px minmax(0, 1fr);
+  min-height: 400px; /* JS raises this to the longest commander's height */
+}
+.roster__sheet-art { position: relative; background: var(--ink-0); touch-action: pan-y; }
+.roster__sheet-art img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: var(--fx) 50%;
+}
+.roster__sheet-art::after { /* faction foot, like the tile */
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  box-shadow: inset -1px 0 0 rgba(var(--fc), .6);
+  background: linear-gradient(90deg, transparent 78%, rgba(19, 25, 36, .55));
+}
+.roster__sheet-body {
+  display: flex; flex-direction: column; align-items: flex-start;
+  padding: 34px 34px 26px 32px;
+  min-width: 0;
+}
+.roster__sheet-name {
+  padding-right: 52px; /* clear the close button */
+  font-family: var(--display); font-weight: 400;
+  font-size: clamp(28px, 3vw, 36px); line-height: 1.06; letter-spacing: .01em;
+  text-wrap: balance;
+}
+.roster__sheet-patron {
+  display: flex; align-items: center; gap: 10px;
+  margin-top: 12px;
+  font-family: var(--sc); font-weight: 700;
+  font-size: 15px; letter-spacing: .14em; text-transform: lowercase;
+  color: color-mix(in srgb, rgb(var(--fc)) 72%, #fff);
+}
+.roster__sheet-patron img { width: 32px; height: 32px; border-radius: 50%; box-shadow: 0 0 0 1px rgba(var(--fc), .8), 0 0 18px -4px rgba(var(--fc), .9); }
+.roster__stats { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 18px; }
+.roster__stats li {
+  display: flex; align-items: center; gap: 9px;
+  font-family: var(--sc); font-weight: 500;
+  font-size: 14px; letter-spacing: .12em; text-transform: lowercase;
+  color: var(--text-2);
+}
+/* the in-game stat glyphs (blank), with the number set on top */
+.roster__stat {
+  display: grid; place-items: center;
+  width: 36px; height: 36px;
+  background: center / contain no-repeat;
+  font-family: Georgia, 'Times New Roman', serif; font-weight: 700;
+  font-size: 18px; line-height: 1; color: #fff;
+  -webkit-text-stroke: .6px rgba(0, 0, 0, .7);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .9);
+}
+.roster__stat--int { background-image: url('../../../assets/icons/text/intellect.png'); width: 34px; }
+.roster__stat--hp { background-image: url('../../../assets/icons/text/health.png'); width: 38px; font-size: 16px; padding-bottom: 3px; }
+.roster__ability {
+  margin-top: 18px;
+  font-size: 18px; line-height: 1.55;
+  color: var(--text);
+  max-width: 44ch;
+}
+.roster__ability b { color: var(--gold-hi); font-weight: 700; }
+.roster__ti { display: inline-block; height: 1.3em; width: auto; vertical-align: -.32em; margin: 0 .04em; }
+.roster__sheet-foot {
+  margin-top: auto; padding-top: 24px;
+  width: 100%;
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+}
+.roster__deck .icon { width: 18px; height: 18px; }
+.roster__sheet-nav { display: flex; gap: 8px; }
+.roster__sheet-nav .round-btn { width: 44px; height: 44px; }
+.roster__prev .icon { transform: scaleX(-1); }
+.roster__close { position: absolute; z-index: 2; top: 14px; right: 14px; width: 44px; height: 44px; } /* first in the DOM (tab order), so it needs to sit above the art */
+
+/* ---------- tablet ---------- */
+@media (max-width: 1100px) {
+  .roster__epithet { display: none; }
+  .roster__chip { padding: 4px 14px 4px 5px; gap: 8px; font-size: 14px; letter-spacing: .1em; }
+  .roster__chip img { width: 32px; height: 32px; }
+}
+/* below 1024: short names on the tiles (the sheet shows the full name) */
+@media (max-width: 1023px) {
+  .roster__full { display: none; }
+  .roster__short { display: inline; }
+  .roster__cap { padding: 26px 3px 9px; }
+  .roster__name { font-size: clamp(10px, 14.5cqi, 14px); letter-spacing: 0; }
+}
+/* small tablets: emblem-only chips (the line below names the god) */
+@media (max-width: 960px) {
+  .roster__chips { gap: 10px; }
+  .roster__chip {
+    width: 48px; height: 48px; min-height: 0; padding: 0;
+    border-radius: 50%;
+  }
+  .roster__chip img { width: 42px; height: 42px; }
+  .roster__chip:not(.roster__chip--all) .roster__chip-name {
+    position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+  }
+  .roster__chip--all { padding: 0; font-size: 14px; letter-spacing: .06em; }
+  .roster__chip--all .roster__chip-name { padding-left: .06em; }
+}
+
+/* ---------- phones: emblem-only chips, a 4 × 4 roster, a bottom sheet ---------- */
+@media (max-width: 640px) {
+  .roster__chips {
+    margin: 18px auto 0; max-width: 420px;
+    flex-wrap: nowrap; justify-content: space-between; gap: 4px;
+  }
+  .roster__chip { flex: 0 1 46px; min-width: 0; width: 46px; height: 46px; }
+  .roster__chip img { width: 40px; height: 40px; }
+
+  .roster__abouts { margin-top: 14px; }
+  .roster__about { font-size: 16px; line-height: 1.45; }
+  .roster__about-god { display: block; font-size: 18px; margin: 0 0 2px; }
+
+  .roster__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 7px; margin-top: 16px; max-width: 460px; margin-inline: auto; }
+  .roster__tile { border-radius: 5px; }
+  .roster__cap { padding-bottom: 8px; }
+  .roster__tile::after { box-shadow: inset 0 0 0 1px rgba(var(--fc), .5), inset 0 -2px 0 rgb(var(--fc)); }
+
+  /* bottom sheet */
+  .roster__sheet {
+    inset: auto 0 0 0; margin: 0;
+    width: 100%; max-height: 90dvh;
+    border-radius: 14px 14px 0 0;
+    box-shadow: 0 -1px 0 rgba(var(--fc), .6), 0 -30px 80px -20px rgba(0, 0, 0, .9);
+  }
+  @keyframes roster-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  /* extra height (JS evens it out across commanders) goes to the text row, never the art */
+  .roster__sheet-in { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr; min-height: 0; }
+  .roster__sheet-art { aspect-ratio: 16 / 10; min-width: 0; }
+  .roster__sheet-art img { object-position: 50% 16%; }
+  .roster__sheet-art::after { box-shadow: none; background: linear-gradient(180deg, transparent 60%, rgba(19, 25, 36, .9)); }
+  .roster__sheet-body { padding: 4px 18px calc(18px + env(safe-area-inset-bottom)); margin-top: -18px; position: relative; }
+  .roster__sheet-name { font-size: 27px; padding-right: 0; }
+  .roster__sheet-patron { margin-top: 8px; font-size: 14px; }
+  .roster__sheet-patron img { width: 28px; height: 28px; }
+  .roster__stats { margin-top: 12px; }
+  .roster__ability { margin-top: 12px; font-size: 16.5px; line-height: 1.5; }
+  .roster__sheet-foot { padding-top: 18px; }
+  .roster__close { top: 10px; right: 10px; background: rgba(6, 8, 13, .7); }
+}
+@media (max-width: 360px) {
+  .roster__chip { width: 42px; height: 42px; flex-basis: 42px; }
+  .roster__chip img { width: 36px; height: 36px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .roster { transition: none; }
+  .roster__sheet[open], .roster__sheet[open]::backdrop { animation: none; }
+}

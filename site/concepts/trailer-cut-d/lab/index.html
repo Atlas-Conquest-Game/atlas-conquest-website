@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Section options — Atlas Conquest homepage</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@400;500;700&family=Alegreya+Sans+SC:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<style>
+body { background: var(--ink-1); }
+.lab { max-width: 1240px; margin: 0 auto; padding: 48px var(--gutter) 80px; }
+.lab h1 { font-family: var(--display); font-weight: 400; color: var(--gold-hi); font-size: clamp(32px, 4.4vw, 52px); margin: 0 0 10px; line-height: 1.05; }
+.lab > p { color: var(--text-2); max-width: 70ch; margin: 0 0 8px; }
+.row { border-top: 1px solid var(--line-soft); margin-top: 36px; padding-top: 26px; }
+.row h2 { font-family: var(--display); font-weight: 400; color: var(--gold-hi); font-size: 26px; margin: 0 0 6px; }
+.row header p { margin: 0 0 4px; color: var(--text-2); max-width: 80ch; font-size: 16px; }
+.row .q { font-style: italic; color: var(--text); }
+.opts { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; margin-top: 18px; }
+.opt { display: block; background: var(--ink-2); border: 1px solid var(--line-soft); border-radius: 8px; overflow: hidden; text-decoration: none; color: var(--text); position: relative; }
+.opt:hover, .opt:focus-visible { border-color: var(--line); background: var(--ink-3); }
+.opt img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: 50% 0; }
+.opt__tag { position: absolute; left: 8px; top: 8px; padding: 3px 8px; border-radius: 4px; background: rgba(6,8,13,.8); color: var(--gold-hi); font: 700 12px/1.3 var(--sc); letter-spacing: .1em; }
+.opt h3 { margin: 12px 14px 4px; font-size: 18px; }
+.opt p { margin: 0 14px 14px; color: var(--text-2); font-size: 15px; line-height: 1.45; }
+</style>
+</head>
+<body>
+<main class="lab">
+  <h1>Homepage Section Options</h1>
+  <p>Round four. Each option is the full Layout D homepage with only that one section swapped, so you can judge it in context. Look at each on your phone too. Votes and notes go on the team&rsquo;s feedback board.</p>
+  <p><a href="../">Layout D as it stands</a> &middot; <a href="/">Preview hub</a></p>
+  <section class="row"><header><h2>Gameplay</h2><p class="q">&ldquo;gameplay section is mid… reshowing trailer is mid… it is sort of wall like especially on mobile and slightly annoying videos don't expand&rdquo;</p><p>Three new takes that use footage the trailer never showed, drop the trailer button, and let every clip open big. Or cut the section and let Three Battlefields carry the gameplay.</p></header><div class="opts"><a class="opt" href="..//#how"><img src="media/thumbs/gameplay-current.webp" alt="" loading="lazy" width="960" height="600"><span class="opt__tag">Now</span><h3>Current: four clip cards</h3><p>The four hover-to-play cards with the trailer button, as you saw them.</p></a>
+<a class="opt" href="../gameplay-a.html#how"><img src="media/thumbs/gameplay-a.webp" alt="" loading="lazy" width="960" height="600"><span class="opt__tag">Option A</span><h3>A · Media viewer</h3><p>One big stage with six picks beside it: four clips the trailer never showed, a real match screen with cards in hand, and the deck editor. Nothing plays until you pick one, and the corner button opens them full screen.</p></a>
+<a class="opt" href="../gameplay-b.html#how"><img src="media/thumbs/gameplay-b.webp" alt="" loading="lazy" width="960" height="600"><span class="opt__tag">Option B</span><h3>B · Four beats, one stage</h3><p>The four beats (Play, Expand, Command, Conquer) as a short list beside one big player, each with its own clip. On phones the beats become chips under the player.</p></a>
+<a class="opt" href="../gameplay-c.html#how"><img src="media/thumbs/gameplay-c.webp" alt="" loading="lazy" width="960" height="600"><span class="opt__tag">Option C</span><h3>C · Read the board</h3><p>One real match screenshot with five gold markers: your hand, land and mana, attacking, your commander, your opponent. Each explains a rule in two sentences and opens a clip.</p></a>
+<a class="opt" href="../gameplay-none.html"><img src="media/thumbs/gameplay-none.webp" alt="" loading="lazy" width="960" height="600"><span class="opt__tag">Cut</span><h3>Cut the section</h3><p>No Gameplay section: the hero goes straight to Three Battlefields. Shorter page, less to scroll.</p></a>
+</div></section>
+<section class="row"><header><h2>Three Battlefields</h2><p class="q">&ldquo;my only gripe about three battlefields is i find the motion to be a bit nauseating&rdquo;</p><p>Now calm: each panel is Matan's new whole-map still and nothing moves on hover. Click a map to open its fly-over big, at normal speed, with arrows between the three maps.</p></header><div class="opts"><a class="opt" href="..//#battlefields"><img src="media/thumbs/battlefields-calm.webp" alt="" loading="lazy" width="960" height="600"><span class="opt__tag">Now live</span><h3>Calm panels + click to expand</h3><p>Pick if the motion is fixed for you; No if it still needs work (say why).</p></a>
+</div></section>
+<section class="row"><header><h2>Patron Gods &amp; Commanders</h2><p class="q">&ldquo;patron gods and commanders are mid&rdquo;</p><p>Two art-first takes with less text: a commander roster, or six god panels built from signature card art.</p></header><div class="opts"><a class="opt" href="..//#gods"><img src="media/thumbs/gods-current.webp" alt="" loading="lazy" width="960" height="600"><span class="opt__tag">Now</span><h3>Current: god tabs</h3><p>Six god tabs; each shows the god, a line of playstyle, three cards and its commanders.</p></a>
+<a class="opt" href="../gods-a.html#gods"><img src="media/thumbs/gods-a.webp" alt="" loading="lazy" width="960" height="600"><span class="opt__tag">Option A</span><h3>A · Commander roster</h3><p>Choose Your Commander: all 16 commanders as big art tiles. A god chip dims everyone else; tap a commander for its ability and a Build a deck link.</p></a>
+<a class="opt" href="../gods-b.html#gods"><img src="media/thumbs/gods-b.webp" alt="" loading="lazy" width="960" height="600"><span class="opt__tag">Option B</span><h3>B · Six gods</h3><p>Six tall god panels in faction colours, made from each faction's legendary key art. Pick one to see its playstyle, three cards and its commanders.</p></a>
+</div></section>
+<section class="row"><header><h2>Wishlist on Steam (finale)</h2><p class="q">&ldquo;we like wishlist on steam (computer version leaves a bit to be desired tbh)&rdquo;</p><p>A desktop-only pass. Mobile stays exactly as it is.</p></header><div class="opts"><a class="opt" href="..//#wishlist"><img src="media/thumbs/finale-current.webp" alt="" loading="lazy" width="960" height="600"><span class="opt__tag">Now</span><h3>Current finale</h3><p>The coverflow as you saw it on desktop.</p></a>
+<a class="opt" href="../finale-a.html#wishlist"><img src="media/thumbs/finale-a.webp" alt="" loading="lazy" width="960" height="600"><span class="opt__tag">Option A</span><h3>A · Desktop end slide</h3><p>Fits one desktop screen. Cards fade out at the edges instead of being cut off, a warm glow sits behind the centre card, and dim Khazgar key art fills the background. Mobile is unchanged.</p></a>
+</div></section>
+
+</main>
+</body>
+</html>

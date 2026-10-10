@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base href="../">
+  <meta name="robots" content="noindex">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Classic · Goals — Atlas Conquest Analytics</title>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Atlas Conquest">
+  <meta property="og:title" content="Goals — Atlas Conquest Analytics">
+  <meta property="og:description" content="Art commission and animation progress toward the Atlas Conquest alpha roadmap goals.">
+  <meta property="og:image" content="https://atlas-conquest.com/assets/logo/atlas-conquest-icon.png">
+  <meta property="og:url" content="https://atlas-conquest.com/goals.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Goals — Atlas Conquest Analytics">
+  <meta name="twitter:description" content="Art commission and animation progress toward the Atlas Conquest alpha roadmap goals.">
+  <meta name="twitter:image" content="https://atlas-conquest.com/assets/logo/atlas-conquest-icon.png">
+  <link rel="icon" type="image/png" href="assets/logo/atlas-conquest-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="classic/css/variables.css">
+  <link rel="stylesheet" href="classic/css/base.css">
+  <link rel="stylesheet" href="classic/css/layout.css">
+  <link rel="stylesheet" href="classic/css/components.css">
+  <link rel="stylesheet" href="classic/css/responsive.css">
+  <link rel="stylesheet" href="classic/css/tooltips.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+</head>
+<body class="has-sub-nav">
+<div class="classic-banner" role="note" style="position:relative;z-index:2000;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;justify-content:center;padding:9px 16px;background:#2a1a0e;border-bottom:1px solid #8a5a24;color:#f2dca8;font:500 14px/1.4 Inter,system-ui,sans-serif;text-align:center">
+  <span><strong style="color:#ffd27a">Classic site</strong> &middot; archived October 6, 2026 for comparison (live data, original design)</span>
+  <a href="index.html" style="color:#ffd27a;text-decoration:underline">View the new site &rarr;</a>
+</div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="classic/index.html" class="nav-logo">
+        <img src="assets/logo/atlas-conquest-logo.png" alt="Atlas Conquest" width="178" height="28" class="nav-logo-wordmark">
+      </a>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+      <label for="nav-toggle" class="nav-burger" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+      <div class="nav-links">
+        <a href="classic/index.html" class="nav-link" data-nav="home">Home</a>
+        <a href="classic/analytics.html" class="nav-link" data-nav="analytics">Analytics</a>
+        <a href="classic/metagame.html" class="nav-link" data-nav="metagame">Metagame</a>
+        <a href="decks.html" class="nav-link" data-nav="decks">Decks</a>
+        <a href="articles/" class="nav-link" data-nav="articles">Articles</a>
+        <a href="press.html" class="nav-link" data-nav="press">Press</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Analytics Sub-Navigation -->
+  <div class="sub-nav">
+    <div class="container sub-nav-inner">
+      <a href="classic/analytics.html" class="sub-nav-link">Overview</a>
+      <a href="classic/commanders.html" class="sub-nav-link">Commanders</a>
+      <a href="classic/cards.html" class="sub-nav-link">Cards</a>
+      <a href="classic/meta.html" class="sub-nav-link">Meta</a>
+      <a href="classic/metagame.html" class="sub-nav-link">Metagame</a>
+      <a href="classic/goals.html" class="sub-nav-link">Goals</a>
+    </div>
+  </div>
+
+  <!-- Hero (compact) -->
+  <header class="hero hero-compact">
+    <div class="container">
+      <h1 class="hero-title">Goals</h1>
+      <p class="hero-subtitle">Progress toward the alpha roadmap art &amp; animation targets.</p>
+      <div class="hero-meta">
+        <span class="hero-stat" id="hero-card-count">-- cards</span>
+        <span class="hero-divider"></span>
+        <span class="hero-stat" id="hero-token-count">-- tokens</span>
+        <span class="hero-divider"></span>
+        <span class="hero-stat" id="hero-commander-count">-- commanders</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Alpha Goals -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Alpha Goals</h2>
+      <p class="section-subtitle">Goals for human-made artwork and in-game animations for the Alpha development stage. "Human art" is everything that is not AI-generated: finished commissions, purchased assets, and placeholder art for commissions still in progress. Long term goal is 100% human artwork before release, and a majority of cards having in-game animations.</p>
+
+      <h3 class="goal-group-title">Human Art Target</h3>
+      <div class="goals-grid" id="art-goals">
+        <p class="placeholder-text">Loading…</p>
+      </div>
+
+      <h3 class="goal-group-title">Animations Target</h3>
+      <div class="goals-grid" id="animation-goals">
+        <p class="placeholder-text">Loading…</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overall Progress -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Overall Progress</h2>
+      <p class="section-subtitle">Overall human-art &amp; animation rates across everything that needs artwork. Tokens have no goal of their own, but they count toward the combined totals below.</p>
+
+      <div class="card-grid" id="overall-kpis"></div>
+
+      <h3 class="goal-group-title">Art Source</h3>
+      <p class="section-subtitle">Where each pool's artwork comes from. Commissioned, Purchased and Placeholder are all human-made and count toward the goals above; the centre of each ring is that pool's human-art share.</p>
+
+      <div class="art-source-legend" id="art-source-legend" aria-hidden="true"></div>
+      <div class="art-source-grid" id="art-source-charts">
+        <p class="placeholder-text">Loading…</p>
+      </div>
+
+      <details class="art-source-details">
+        <summary>Show as table</summary>
+        <div class="table-wrapper">
+          <table class="data-table" id="art-source-table">
+            <thead>
+              <tr>
+                <th>Pool</th>
+                <th>Total</th>
+                <th>Commissioned <span class="tooltip-icon" data-tooltip="Finished artwork commissioned from an artist (ARTIST_COMMISSIONED).">?</span></th>
+                <th>Purchased <span class="tooltip-icon" data-tooltip="Bought asset-pack artwork (PURCHASED_ASSET). Human-made, counts toward the goals.">?</span></th>
+                <th>Placeholder <span class="tooltip-icon" data-tooltip="Placeholder art for a commission still in progress (COMMISSIONED_PLACEHOLDER). Human-made, counts toward the goals; tracked separately so the in-progress share stays visible.">?</span></th>
+                <th>AI <span class="tooltip-icon" data-tooltip="AI-generated artwork — the pool the goals are working to replace.">?</span></th>
+                <th class="col-other">Other <span class="tooltip-icon" data-tooltip="Artwork with an unrecognised or missing ArtType in the source CSV.">?</span></th>
+                <th>Animated <span class="tooltip-icon" data-tooltip="Share of this pool that has an in-game animation.">?</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="placeholder-row"><td colspan="8">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <h3 class="goal-group-title">By Patron</h3>
+      <p class="section-subtitle">Buildable cards only — tokens are excluded here.</p>
+
+      <div class="table-wrapper">
+        <table class="data-table" id="patron-table">
+          <thead>
+            <tr>
+              <th>Patron</th>
+              <th>Cards</th>
+              <th>Human Art <span class="tooltip-icon" data-tooltip="Share of this patron's cards with human-made artwork (commissioned, purchased, or placeholder).">?</span></th>
+              <th>Animated <span class="tooltip-icon" data-tooltip="Share of this patron's cards that have an animation.">?</span></th>
+              <th>Commanders</th>
+              <th>Human Art</th>
+              <th>Animated</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="placeholder-row"><td colspan="7">Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-text">Atlas Conquest Analytics &mdash; Updated daily from game data.</p>
+      <p class="footer-text footer-muted">Built for the community. Not affiliated with the Atlas Conquest development team.</p>
+    </div>
+  </footer>
+
+  <script src="classic/js/cardpreview.js"></script>
+  <script src="classic/js/shared.js"></script>
+  <script src="classic/js/goals.js"></script>
+</body>
+</html>

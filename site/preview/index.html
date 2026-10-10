@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Website Refresh — Team Preview · Atlas Conquest</title>
+  <meta name="description" content="Team preview of the Atlas Conquest website refresh: homepage concepts, the rebranded site, and the classic site for comparison.">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'OptimusPrinceps';
+      src: url('/assets/media/fonts/OptimusPrincepsSemiBold.woff') format('woff'),
+           url('/assets/media/fonts/OptimusPrincepsSemiBold.ttf') format('truetype');
+      font-display: swap;
+    }
+    :root {
+      --bg: #0b0f17; --panel: #121823; --panel-2: #0f141d; --line: #263042;
+      --text: #e8e4dc; --muted: #9aa3b2;
+      --gold-1: #f7dc9a; --gold-2: #e8a245; --gold-3: #c96f22;
+      --discord: #5865f2;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; color: var(--text); font: 16px/1.6 Inter, system-ui, sans-serif;
+      background: radial-gradient(ellipse 80% 40% at 50% 0%, #2a1a10 0%, var(--bg) 60%) no-repeat, var(--bg);
+    }
+    a { color: var(--gold-1); }
+    main { max-width: 1180px; margin: 0 auto; padding: 48px 20px 80px; }
+    header.top { text-align: center; margin-bottom: 40px; }
+    header.top img { width: min(520px, 88%); height: auto; }
+    .eyebrow { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-2); font-weight: 600; }
+    h1, h2, h3 {
+      font-family: 'OptimusPrinceps', Georgia, serif; font-weight: 400; margin: 0;
+      background: linear-gradient(180deg, var(--gold-1), var(--gold-2) 55%, var(--gold-3));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    h1 { font-size: clamp(30px, 4.4vw, 46px); margin-top: 18px; }
+    h2 { font-size: clamp(24px, 3vw, 32px); }
+    h3 { font-size: 21px; }
+    .ornament { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 12px 0 14px; color: var(--gold-2); }
+    .ornament::before, .ornament::after { content: ''; width: 64px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-2)); }
+    .ornament::after { transform: scaleX(-1); }
+    .ornament span { width: 6px; height: 6px; transform: rotate(45deg); border: 1px solid currentColor; }
+    .lede { color: var(--muted); max-width: 680px; margin: 0 auto; }
+    .status { display: inline-flex; gap: 8px; align-items: center; margin-top: 16px; padding: 6px 14px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-size: 14px; background: rgba(18,24,35,.7); }
+    .status b { color: var(--text); font-weight: 600; }
+    .jump { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 22px; }
+    .jump a { text-decoration: none; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(247,220,154,.35); color: var(--gold-1); font-size: 14px; }
+    .jump a:hover { background: rgba(232,162,69,.12); }
+    section { margin-top: 64px; }
+    .sec-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; margin-bottom: 18px; }
+    .sec-head p { margin: 6px 0 0; color: var(--muted); max-width: 720px; }
+    .grid { display: grid; gap: 18px; }
+    .g3 { grid-template-columns: repeat(3, 1fr); }
+    .g4 { grid-template-columns: repeat(4, 1fr); }
+    .tile { display: flex; flex-direction: column; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; text-decoration: none; color: inherit; transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
+    .tile:hover, .tile:focus-visible { transform: translateY(-3px); border-color: var(--gold-2); box-shadow: 0 16px 36px rgba(0,0,0,.45); outline: none; }
+    .tile img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; border-bottom: 1px solid var(--line); background: #070a10; }
+    .tile .b { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+    .tile .b p { margin: 0; color: var(--muted); font-size: 14px; }
+    .tag { align-self: flex-start; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; padding: 3px 8px; border-radius: 6px; background: rgba(232,162,69,.14); color: var(--gold-1); }
+    .tag.muted { background: rgba(154,163,178,.14); color: var(--muted); }
+    .tag.old { background: rgba(88,101,242,.16); color: #c3c9ff; }
+    .tile .go { margin-top: auto; padding-top: 6px; font-size: 14px; font-weight: 600; color: var(--gold-1); }
+    .tile--feature { flex-direction: row; margin-bottom: 4px; }
+    .tile--feature img { width: 52%; aspect-ratio: 16 / 10; border-bottom: 0; border-right: 1px solid var(--line); }
+    @media (max-width: 760px) { .tile--feature { flex-direction: column; } .tile--feature img { width: 100%; border-right: 0; border-bottom: 1px solid var(--line); } }
+    .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 22px 24px; }
+    .two { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    ul.clean { margin: 10px 0 0; padding-left: 20px; }
+    ul.clean li { margin: 6px 0; }
+    ul.clean li::marker { color: var(--gold-2); }
+    .compare { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    footer { margin-top: 64px; text-align: center; color: var(--muted); font-size: 14px; }
+    code { color: var(--gold-1); font-size: .92em; }
+    @media (max-width: 980px) { .g4 { grid-template-columns: repeat(2, 1fr); } .g3, .compare { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 640px) { .g3, .g4, .compare, .two { grid-template-columns: 1fr; } main { padding-top: 32px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="top">
+      <img src="/assets/media/logo/wordmark-1200.webp" alt="Atlas Conquest" width="1200" height="189">
+      <h1>Website Refresh &mdash; Team Preview</h1>
+      <div class="ornament" aria-hidden="true"><span></span></div>
+      <p class="lede">A work-in-progress look at the new atlas-conquest.com, built for the Steam page and public beta. Nothing here is live yet. Click around, try it on your phone, and drop feedback in Discord.</p>
+      <p class="status"><b>Preview build 11</b> &middot; October 10, 2026</p>
+      <nav class="jump" aria-label="Jump to">
+        <a href="#home">1 &middot; Pick a layout</a>
+        <a href="#site">2 &middot; The rebranded site</a>
+        <a href="#compare">3 &middot; Old vs new</a>
+        <a href="#changes">4 &middot; What changed</a>
+        <a href="#next">5 &middot; Coming next</a>
+      </nav>
+    </header>
+
+    <section id="home">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow">Step 1</span>
+          <h2>The homepage: Layout D</h2>
+          <p>Layout D is the pick, now rebuilt for someone new to the game: the pitch beside the Atlas card art, then three new in-game clips that show what the board adds with three new in-game clips (minions, spells, land), then Three Battlefields and the Wishlist finale. Earlier section options are still linked.</p>
+        </div>
+        <a href="/concepts/trailer-cut-d/lab/">Compare section options &rarr;</a>
+      </div>
+      <a class="tile tile--feature" href="/concepts/trailer-cut-d/">
+        <img src="/concepts/trailer-cut-d/thumb.webp" alt="" loading="lazy">
+        <div class="b"><span class="tag">Layout D &middot; the pick</span><h3>Focused</h3><p>The Trailer Cut hero, then Gameplay, the Three Battlefields, the patron gods and the Wishlist on Steam end slide. Only the hero moves on its own. Section options to compare are one click up: &ldquo;Compare section options&rdquo;.</p><span class="go">Open &rarr;</span></div>
+      </a>
+      <p style="color:var(--muted);margin:22px 0 10px;font-size:14px">Earlier layouts of the same direction (more motion, longer pages):</p>
+      <div class="grid g3">
+        <a class="tile" href="/concepts/trailer-cut/">
+          <img src="/concepts/trailer-cut/thumb.webp" alt="" loading="lazy">
+          <div class="b"><span class="tag">Layout A</span><h3>Cinematic Chapters</h3><p>Gold title cards hand off to big gameplay clips as you scroll, a wide Three Battlefields band, and the trailer's &ldquo;Wishlist on Steam Now&rdquo; end slide.</p><span class="go">Open &rarr;</span></div>
+        </a>
+        <a class="tile" href="/concepts/trailer-cut-b/">
+          <img src="/concepts/trailer-cut-b/thumb.webp" alt="" loading="lazy">
+          <div class="b"><span class="tag">Layout B</span><h3>Full-Bleed Reel</h3><p>Every beat plays full-screen like scrubbing through the trailer, titles only, ending on the three maps.</p><span class="go">Open &rarr;</span></div>
+        </a>
+        <a class="tile" href="/concepts/trailer-cut-c/">
+          <img src="/concepts/trailer-cut-c/thumb.webp" alt="" loading="lazy">
+          <div class="b"><span class="tag">Layout C</span><h3>Filmstrip &amp; Sun</h3><p>The beats slide by as a filmstrip, the three maps as a triptych, and the molten-sun Atlas rising behind the finale.</p><span class="go">Open &rarr;</span></div>
+        </a>
+      </div>
+      <p style="color:var(--muted);margin:22px 0 10px;font-size:14px">Round 1 favorites, for comparison:</p>
+      <div class="grid g3">
+        <a class="tile" href="/concepts/_archive/trailer-cut-2026-10-06/">
+          <img src="/concepts/_archive/trailer-cut-2026-10-06/thumb.webp" alt="" loading="lazy">
+          <div class="b"><span class="tag muted">Round 1</span><h3>Trailer Cut (original)</h3><p>The first version the layouts above grew from.</p><span class="go">Open &rarr;</span></div>
+        </a>
+        <a class="tile" href="/concepts/molten-sun/">
+          <img src="/concepts/molten-sun/thumb.webp" alt="" loading="lazy">
+          <div class="b"><span class="tag muted">Round 1</span><h3>Molten Sun</h3><p>The poster-style direction built from the Steam capsule art.</p><span class="go">Open &rarr;</span></div>
+        </a>
+      </div>
+    </section>
+
+    <section id="site">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow">Step 2</span>
+          <h2>The rest of the site, rebranded</h2>
+          <p>Every page now shares the trailer's look: new nav with the hammer logo and a live &ldquo;Join the Beta&rdquo; Discord button (with an online count), painted key-art headers, gold title type and a shared footer. Same content and data underneath.</p>
+        </div>
+      </div>
+      <div class="grid g4">
+        <a class="tile" href="/analytics.html"><img src="/preview/img/analytics.webp" alt="" loading="lazy"><div class="b"><h3>Analytics</h3><p>Overview, now &ldquo;State of the Meta&rdquo;.</p></div></a>
+        <a class="tile" href="/commanders.html"><img src="/preview/img/commanders.webp" alt="" loading="lazy"><div class="b"><h3>Commanders</h3><p>In-game style portrait tokens with faction rings.</p></div></a>
+        <a class="tile" href="/cards.html"><img src="/preview/img/cards.webp" alt="" loading="lazy"><div class="b"><h3>Cards</h3><p>Card stats, restyled filters and table.</p></div></a>
+        <a class="tile" href="/meta.html"><img src="/preview/img/meta.webp" alt="" loading="lazy"><div class="b"><h3>Meta</h3><p>Matchups and trends.</p></div></a>
+        <a class="tile" href="/decks.html"><img src="/preview/img/decks.webp" alt="" loading="lazy"><div class="b"><h3>Deck Builder</h3><p>Commander picker, card tiles with a foil hover.</p></div></a>
+        <a class="tile" href="/articles/"><img src="/preview/img/articles.webp" alt="" loading="lazy"><div class="b"><h3>Articles</h3><p>Editorial index with art.</p></div></a>
+        <a class="tile" href="/articles/detailed-rules/"><img src="/preview/img/rules.webp" alt="" loading="lazy"><div class="b"><h3>Detailed Rules</h3><p>Reading view with contents and progress bar.</p></div></a>
+        <a class="tile" href="/press.html"><img src="/preview/img/press.webp" alt="" loading="lazy"><div class="b"><h3>Press</h3><p>Matan's press kit, exactly as he built it.</p></div></a>
+      </div>
+      <p style="color:var(--muted);margin-top:14px;font-size:14px">Also new: a fun <a href="/404.html">404 page</a> (&ldquo;This tile is uncharted&rdquo;), plus a sitemap and share previews for Discord and socials.</p>
+    </section>
+
+    <section id="compare">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow">Step 3</span>
+          <h2>Compare with the old site</h2>
+          <p>The pre-refresh homepage and analytics are saved as a &ldquo;Classic&rdquo; snapshot with their original design and the same live data. Nothing has been deleted, and the old version is one command away if we want it back.</p>
+        </div>
+      </div>
+      <div class="compare">
+        <a class="tile" href="/classic/index.html"><img src="/preview/img/classic-home.webp" alt="" loading="lazy"><div class="b"><span class="tag old">Classic</span><h3>Old homepage</h3><p>The homepage as it is today.</p></div></a>
+        <a class="tile" href="/classic/analytics.html"><img src="/preview/img/classic-analytics.webp" alt="" loading="lazy"><div class="b"><span class="tag old">Classic</span><h3>Old analytics</h3><p>Overview, Commanders, Cards, Meta, Metagame, Goals.</p></div></a>
+        <a class="tile" href="https://atlas-conquest.com" target="_blank" rel="noopener"><div class="b" style="padding-top:22px"><span class="tag old">Live</span><h3>atlas-conquest.com</h3><p>The real site, unchanged until we ship.</p><span class="go">Open live site &#8599;</span></div></a>
+      </div>
+    </section>
+
+    <section id="changes">
+      <div class="two">
+        <div class="panel">
+          <span class="eyebrow">Step 4</span>
+          <h2>What changed</h2>
+          <ul class="clean">
+            <li><b>The real logo, everywhere.</b> The new hammer Atlas wordmark replaces typed text, and titles use the game's own trailer font.</li>
+            <li><b>Real gameplay everywhere.</b> New 1080p clips recorded straight from the game (no HUD), clips from the trailer, the full trailer in a player, and real card renders.</li>
+            <li><b>Steam-first.</b> &ldquo;Wishlist on Steam&rdquo; (classic Steam blue) is the main button everywhere, with &ldquo;Join the beta on Discord&rdquo; right beside it. The Steam button goes live the moment we have the store link.</li>
+            <li><b>One look across every page.</b> Shared nav and footer, painted key-art headers, and socials (Discord, X, Instagram, TikTok) on every page.</li>
+            <li><b>Mobile and accessibility pass.</b> Phone layouts, keyboard navigation and reduced-motion support.</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <span class="eyebrow">Heads-up</span>
+          <h2>Placeholders &amp; notes</h2>
+          <ul class="clean">
+            <li>The trailer is the current cut, served from this preview. It moves to YouTube once uploaded.</li>
+            <li>The Steam buttons don't go anywhere yet; they light up once the store page is live.</li>
+            <li>Press: Matan's kit and screenshots are untouched. The page was restyled and got a trailer section and an &ldquo;About the game&rdquo; blurb, so please sanity-check those.</li>
+            <li>This preview has its own address and is hidden from search engines. The real domain is untouched.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="next">
+      <div class="panel">
+        <span class="eyebrow">Step 5</span>
+        <h2>Coming next: analytics, reimagined</h2>
+        <p style="color:var(--muted)">Turning the stats into something people come back to and share, with honest numbers (winrates with confidence ranges, no fake precision):</p>
+        <ul class="clean">
+          <li><b>State of the Meta</b> front page: what changed this month, how every commander is doing, the few real counters, and fun &ldquo;how games go&rdquo; facts.</li>
+          <li><b>A profile page for every commander</b> covering how it wins, matchups, ways to play (open in the deck builder), signature cards, and an opening-hand guide.</li>
+          <li><b>&ldquo;What beats X?&rdquo;</b> matchup explorer, an art-first <b>Cards</b> library, and a searchable <b>Community Decks</b> library (copy any deck code).</li>
+          <li>An <b>Archive</b> tab that keeps every old page reachable.</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+      Feedback welcome in Discord &middot; <a href="https://discord.gg/7QaEY4yJH5" target="_blank" rel="noopener">Atlas Conquest Discord</a>
+    </footer>
+  </main>
+</body>
+</html>

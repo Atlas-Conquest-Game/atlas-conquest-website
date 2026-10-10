@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>New Gameplay Clips — Atlas Conquest</title>
+  <link rel="icon" href="../../favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'OptimusPrinceps';
+      src: url('../../assets/media/fonts/OptimusPrincepsSemiBold.woff') format('woff');
+      font-display: swap;
+    }
+    :root { --bg: #0b0f17; --panel: #121823; --line: #263042; --text: #e8e4dc; --muted: #9aa3b2; --gold-1: #f7dc9a; --gold-2: #e8a245; --gold-3: #c96f22; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: radial-gradient(ellipse 80% 40% at 50% 0%, #2a1a10 0%, var(--bg) 60%) no-repeat, var(--bg); color: var(--text); font: 16px/1.6 Inter, system-ui, sans-serif; }
+    main { max-width: 1320px; margin: 0 auto; padding: 44px 20px 72px; }
+    h1, h2 { font-family: 'OptimusPrinceps', Georgia, serif; font-weight: 400; margin: 0; background: linear-gradient(180deg, var(--gold-1), var(--gold-2) 55%, var(--gold-3)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    h1 { font-size: clamp(28px, 4vw, 42px); text-align: center; }
+    .lede { max-width: 760px; margin: 12px auto 36px; text-align: center; color: var(--muted); }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    figure { margin: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: #070a10; }
+    figcaption { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 4px; }
+    h2 { font-size: 20px; }
+    .use { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-2); font-weight: 600; }
+    figcaption p { margin: 0; color: var(--muted); font-size: 14px; }
+    code { color: var(--gold-1); font-size: 12px; }
+    a { color: var(--gold-1); }
+    @media (max-width: 1000px) { .grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>New Gameplay Clips</h1>
+    <p class="lede">Recorded from the game's own film scenes at 1080p / 30fps with no HUD. Most of this footage isn't in the trailer. Each tile suggests where it could go; tell me which ones you want and where. <a href="../">Back to concepts</a></p>
+    <div class="grid" id="grid"></div>
+  </main>
+  <script>
+    const CLIPS = [
+      ['dunes-pullback', 'Dunes Pull-back', 'Hero / section background', 'Slow pull from the board out to the whole map floating over the desert ruins.'],
+      ['snowmelt-pullback', 'Snowmelt Pull-back', 'Three Battlefields', 'Pulls back to the whole Snowmelt map, an icy island above a glacier.'],
+      ['tropics-pullback', 'Tropics Pull-back', 'Three Battlefields', 'Pulls back to the whole Tropics map, a jungle island in a turquoise sea.'],
+      ['red-dragon', 'Red Dragon', 'Conquer Your Opponents', 'Fire breath and a big explosion.'],
+      ['spore-thresher', 'Spore Thresher', 'Conquer Your Opponents', 'A huge toxic cloud rolls over the snow.'],
+      ['hoplite-fireball', 'Hoplite Fireball', 'Play Cards On The Battlefield', 'A card is played and a fireball hits on Snowmelt.'],
+      ['it-that-weaves', 'It That Weaves', 'Command Your Army', 'The camera dives in for a slash in the snow.'],
+      ['euron-charge', 'Euron', 'Command Your Army', 'An ice-sword legend charges into the enemy line.'],
+      ['milo-strike', 'Milo Strike', 'Command Your Army', 'A golden strike between two commanders.'],
+      ['citadel-lord', 'Citadel Lord', 'Command Your Army', 'A full army formation powers up.'],
+      ['khazgar', 'Khazgar', 'Conquer Your Opponents', 'The flame emperor attacks on Tropics.'],
+      ['territory-claim', 'Territory Claim', 'Expand Your Territory', 'Claiming tiles with the new claim flash.'],
+      ['dyana-shot', 'Dyana', 'Command Your Army', 'A long-range shot across the jungle.'],
+      ['tropics-wide', 'Tropics Wide', 'Calm background', 'The Tropics island with both armies set up.'],
+    ];
+    const grid = document.getElementById('grid');
+    for (const [slug, title, use, desc] of CLIPS) {
+      const f = document.createElement('figure');
+      f.innerHTML = `<video muted loop playsinline preload="none" poster="../../assets/media/clips/${slug}-poster.webp" data-src="../../assets/media/clips/${slug}-1280.mp4"></video>
+        <figcaption><span class="use">${use}</span><h2>${title}</h2><p>${desc}</p><code>${slug}</code></figcaption>`;
+      grid.appendChild(f);
+    }
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        const v = e.target;
+        if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); }
+        else v.pause();
+      }
+    }, { threshold: 0.35 });
+    document.querySelectorAll('video').forEach(v => io.observe(v));
+  </script>
+</body>
+</html>

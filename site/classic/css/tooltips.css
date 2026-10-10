@@ -1,0 +1,71 @@
+/* === Info Tooltips === */
+
+.tooltip-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  cursor: help;
+  vertical-align: middle;
+  margin-left: 0.375rem;
+  line-height: 1;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.tooltip-icon:hover {
+  color: var(--text-secondary);
+  border-color: var(--text-secondary);
+}
+
+.info-tooltip {
+  position: fixed;
+  z-index: 1100;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.5rem 0.75rem;
+  box-shadow: var(--shadow-lg);
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  max-width: 280px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+
+.info-tooltip.visible {
+  opacity: 1;
+}
+
+/* === Card art hover preview (used by initCardPreview in shared.js) === */
+
+.card-preview {
+  position: fixed;
+  z-index: 1100;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.6));
+}
+
+.card-preview.visible {
+  opacity: 1;
+}
+
+.card-preview img {
+  display: block;
+  width: 220px;
+  /* No background or border-radius — the source PNG has transparent corners
+     and the filter: drop-shadow on .card-preview already follows the alpha
+     silhouette. Painting a background here would defeat the transparency. */
+}

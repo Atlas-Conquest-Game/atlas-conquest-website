@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Atlas Conquest — Online Competitive Hex-Grid Card Battles</title>
+  <meta name="description" content="Atlas Conquest is an online competitive hex-grid card game. Build a deck around one of 16 commanders, claim the board tile by tile and defeat the enemy commander. Releasing 2027 — public beta coming soon.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0b0f17">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Atlas Conquest">
+  <meta property="og:title" content="Atlas Conquest — Online Competitive Hex-Grid Card Battles">
+  <meta property="og:description" content="Play cards on the battlefield, expand your territory and conquer your opponent. 280+ cards, 16 commanders. Releasing 2027.">
+  <meta property="og:image" content="../../assets/press/main-capsule.webp">
+  <meta property="og:image:width" content="698">
+  <meta property="og:image:height" content="400">
+  <meta property="og:image:alt" content="Atlas, hammer raised, charging out of a molten sun beside the Atlas Conquest wordmark">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@Atlas_Conquest">
+  <meta name="twitter:title" content="Atlas Conquest — Online Competitive Hex-Grid Card Battles">
+  <meta name="twitter:description" content="Play cards on the battlefield, expand your territory and conquer your opponent. Releasing 2027.">
+  <meta name="twitter:image" content="../../assets/press/main-capsule.webp">
+
+  <link rel="icon" type="image/png" href="../../assets/media/logo/emblem-64.png">
+  <link rel="apple-touch-icon" href="../../assets/media/logo/emblem-384.png">
+  <link rel="preload" href="../../assets/media/fonts/OptimusPrincepsSemiBold.woff" as="font" type="font/woff" crossorigin>
+  <link rel="preload" as="image" href="../../assets/media/logo/wordmark-1200.webp"
+        imagesrcset="../../assets/media/logo/wordmark-640.webp 640w, ../../assets/media/logo/wordmark-1200.webp 1200w"
+        imagesizes="(max-width: 760px) 88vw, 660px">
+  <link rel="preload" as="image" href="img/tiles.webp" type="image/webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Barlow+Semi+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ───────────────────────── NAV ───────────────────────── -->
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="./" aria-label="Atlas Conquest — home">
+        <img src="../../assets/media/logo/wordmark-360.webp"
+             srcset="../../assets/media/logo/wordmark-360.webp 360w, ../../assets/media/logo/wordmark-640.webp 640w"
+             sizes="180px" width="180" height="28" alt="Atlas Conquest">
+      </a>
+      <nav class="nav-links" id="nav-links" aria-label="Primary">
+        <a href="./" aria-current="page">Home</a>
+        <a href="../../analytics.html">Analytics</a>
+        <a href="../../decks.html">Decks</a>
+        <a href="../../articles.html">Articles</a>
+        <a href="../../press.html" data-link="press">Press</a>
+        <a class="nav-cta-mobile btn btn-gold" href="https://discord.gg/7QaEY4yJH5" data-link="discord" target="_blank" rel="noopener">Join the Beta</a>
+      </nav>
+      <a class="btn btn-gold btn-sm nav-cta" href="https://discord.gg/7QaEY4yJH5" data-link="discord" target="_blank" rel="noopener">
+        <svg class="ico" viewBox="0 0 24 19" aria-hidden="true"><use href="#i-discord"/></svg>
+        Join the Beta
+      </a>
+      <button class="nav-burger" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ───────────────────────── HERO: the living board ───────────────────────── -->
+    <section class="hero" id="hero" aria-labelledby="hero-title">
+      <canvas id="board" class="board" aria-hidden="true"></canvas>
+      <div class="hero-shade" aria-hidden="true"></div>
+
+      <div class="hero-content">
+        <p class="hero-eyebrow"><span>Releasing 2027</span><i aria-hidden="true"></i><span>Public beta soon</span></p>
+        <h1 id="hero-title" class="hero-title">
+          <img src="../../assets/media/logo/wordmark-1200.webp"
+               srcset="../../assets/media/logo/wordmark-640.webp 640w, ../../assets/media/logo/wordmark-1200.webp 1200w, ../../assets/media/logo/wordmark-2400.webp 2400w"
+               sizes="(max-width: 760px) 88vw, 660px" width="660" height="104" alt="Atlas Conquest" fetchpriority="high">
+        </h1>
+        <p class="hero-tagline">Online Competitive Hex-Grid Card Battles</p>
+        <div class="orn" aria-hidden="true"><i></i></div>
+        <div class="hero-ctas" data-cta-group>
+          <a class="btn btn-gold btn-lg" href="https://discord.gg/7QaEY4yJH5" data-link="discord" data-cta="beta" target="_blank" rel="noopener">
+            <svg class="ico" viewBox="0 0 24 19" aria-hidden="true"><use href="#i-discord"/></svg>
+            Join the Beta
+          </a>
+          <button type="button" class="btn btn-outline btn-lg btn-steam" data-steam>
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-steam"/></svg>
+            <span data-steam-label>Steam page</span>
+            <span class="soon-pill">Soon</span>
+          </button>
+          <button type="button" class="btn btn-glass btn-lg" data-trailer>
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-play"/></svg>
+            Watch the Trailer
+          </button>
+        </div>
+      </div>
+
+      <!-- In-board HUD (desktop): your board's counts + one hint -->
+      <aside class="hud hud-left" aria-label="Your board">
+        <p class="hud-title">Your board <span>— try it</span></p>
+        <ul class="hud-score">
+          <li class="is-you"><i aria-hidden="true"></i><span class="hud-who">You <small>Jagris</small></span><b data-hud="you">7</b><span class="hud-unit">tiles</span><span class="hud-mana"><b data-hud="mana">7</b> mana next turn</span></li>
+          <li class="is-foe"><i aria-hidden="true"></i><span class="hud-who">Enemy <small>Greenbeard</small></span><b data-hud="foe">7</b><span class="hud-unit">tiles</span></li>
+        </ul>
+        <p class="hud-hint"><span class="hint-fine">Claim tiles on the edge of your territory. Drag a card onto green to deploy it.</span><span class="hint-coarse">Tap tiles next to your territory. Tap a card to play it.</span></p>
+      </aside>
+      <p class="hero-note"><i aria-hidden="true"></i>Board tiles: in-game art from the Dunes, Snowmelt &amp; Tropics maps</p>
+      <p class="board-toast" role="status" aria-live="polite"></p>
+
+      <!-- Your hand: a legal Jagris (Grenalia) hand -->
+      <div class="hand" id="hand" role="group" aria-label="Your hand — play a card onto the board">
+        <!-- filled by board.js; static fallback below -->
+      </div>
+    </section>
+
+    <!-- ───────────────────────── FACT STRIP ───────────────────────── -->
+    <section class="facts" aria-label="Atlas Conquest at a glance">
+      <ul class="facts-list">
+        <li><b data-stat="cards">287</b><span>Cards</span></li>
+        <li><b data-stat="commanders">16</b><span>Commanders</span></li>
+        <li><b>6</b><span>Patron gods</span></li>
+        <li><b data-stat="maps">3</b><span>Maps</span></li>
+        <li><b>1v1</b><span>Online duels</span></li>
+      </ul>
+    </section>
+
+    <!-- ───────────────────────── HOW IT PLAYS ───────────────────────── -->
+    <section class="sec how" id="how" aria-labelledby="how-title">
+      <div class="wrap">
+        <header class="sec-head">
+          <p class="eyebrow">How it plays</p>
+          <h2 class="sec-title" id="how-title">Five steps to conquest</h2>
+          <div class="orn" aria-hidden="true"><i></i></div>
+          <p class="lede">Every match is a duel on a hex grid. Cards become armies, tiles become mana, and the first commander to fall loses.</p>
+        </header>
+
+        <div class="how-grid">
+          <div class="how-steps" role="tablist" aria-label="Turn phases" aria-orientation="vertical">
+            <button class="how-tab" role="tab" id="tab-deploy" aria-controls="how-panel" aria-selected="true" data-step="0">
+              <span class="how-num" aria-hidden="true">1</span>
+              <span class="how-tab-text"><b>Deploy</b><small>Play cards on the battlefield</small></span>
+              <span class="how-bar" aria-hidden="true"><i></i></span>
+            </button>
+            <button class="how-tab" role="tab" id="tab-expand" aria-controls="how-panel" aria-selected="false" tabindex="-1" data-step="1">
+              <span class="how-num" aria-hidden="true">2</span>
+              <span class="how-tab-text"><b>Expand</b><small>Grow your territory</small></span>
+              <span class="how-bar" aria-hidden="true"><i></i></span>
+            </button>
+            <button class="how-tab" role="tab" id="tab-command" aria-controls="how-panel" aria-selected="false" tabindex="-1" data-step="2">
+              <span class="how-num" aria-hidden="true">3</span>
+              <span class="how-tab-text"><b>Command</b><small>Move, fight, use abilities</small></span>
+              <span class="how-bar" aria-hidden="true"><i></i></span>
+            </button>
+            <button class="how-tab" role="tab" id="tab-upgrade" aria-controls="how-panel" aria-selected="false" tabindex="-1" data-step="3">
+              <span class="how-num" aria-hidden="true">4</span>
+              <span class="how-tab-text"><b>Upgrade</b><small>Build your deck</small></span>
+              <span class="how-bar" aria-hidden="true"><i></i></span>
+            </button>
+            <button class="how-tab" role="tab" id="tab-conquer" aria-controls="how-panel" aria-selected="false" tabindex="-1" data-step="4">
+              <span class="how-num" aria-hidden="true">5</span>
+              <span class="how-tab-text"><b>Conquer</b><small>Topple their commander</small></span>
+              <span class="how-bar" aria-hidden="true"><i></i></span>
+            </button>
+          </div>
+
+          <div class="how-panel" id="how-panel" role="tabpanel" aria-labelledby="tab-deploy" tabindex="0">
+            <div class="how-stage">
+              <div class="how-frame">
+                <video class="how-video is-active" data-src="../../assets/media/video/play.mp4" data-poster="../../assets/media/video/play-poster.webp" muted playsinline loop preload="none" aria-label="Gameplay: Viridian War Beast and Explosive Potion are played onto the board"></video>
+                <video class="how-video" data-src="../../assets/media/video/expand.mp4" data-poster="../../assets/media/video/expand-poster.webp" muted playsinline loop preload="none" aria-label="Gameplay: a territory expands across a tropical island"></video>
+                <video class="how-video" data-src="../../assets/media/video/command.mp4" data-poster="../../assets/media/video/command-poster.webp" muted playsinline loop preload="none" aria-label="Gameplay: Soul Siphon on a snow map, a battle and Kai's keystone ritual"></video>
+                <video class="how-video" data-src="../../assets/media/video/upgrade.mp4" data-poster="../../assets/media/video/upgrade-poster.webp" muted playsinline loop preload="none" aria-label="The deck editor, commander picker and a deck list"></video>
+                <video class="how-video" data-src="../../assets/media/video/conquer.mp4" data-poster="../../assets/media/video/conquer-poster.webp" muted playsinline loop preload="none" aria-label="Gameplay: battles, spells and explosions"></video>
+                <span class="frame-corner tl" aria-hidden="true"></span><span class="frame-corner tr" aria-hidden="true"></span>
+                <span class="frame-corner bl" aria-hidden="true"></span><span class="frame-corner br" aria-hidden="true"></span>
+                <span class="how-caption" aria-hidden="true">Gameplay footage · beta build</span>
+                <button class="how-auto" type="button" aria-pressed="true">
+                  <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path class="i-pause" d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/><path class="i-resume" d="M8 5.5v13l10.5-6.5z"/></svg>
+                  <span>Pause steps</span>
+                </button>
+              </div>
+            </div>
+            <div class="how-copy" aria-live="off">
+              <p class="how-kicker"><span data-how="num">01</span> · <span data-how="name">Deploy</span></p>
+              <h3 class="how-title" data-how="title">Play cards on the battlefield</h3>
+              <p class="how-text" data-how="text">Minions are played onto tiles you have claimed and become characters on the board. Spells are one-time effects, then they’re gone.</p>
+              <ul class="how-rules" data-how="rules"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────────────── TRAILER ───────────────────────── -->
+    <section class="sec trailer" id="trailer" aria-labelledby="trailer-title">
+      <div class="wrap">
+        <div class="trailer-card">
+          <div class="trailer-media">
+            <img class="trailer-poster" src="../../assets/media/stills/t21_5.webp"
+                 srcset="../../assets/media/stills/t21_5-960.webp 960w, ../../assets/media/stills/t21_5.webp 1920w"
+                 sizes="(max-width: 1240px) 94vw, 1180px" alt="" width="1920" height="1080" loading="lazy" decoding="async">
+            <button type="button" class="play-big" data-trailer aria-label="Play the Atlas Conquest trailer (with sound)">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-play"/></svg>
+            </button>
+          </div>
+          <div class="trailer-copy">
+            <p class="eyebrow">Official trailer · 1:12</p>
+            <h2 class="sec-title" id="trailer-title">See it in motion</h2>
+            <p>Seventy-two seconds of cards, territory and commanders — straight from the game. Sound on.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────────────── COMMANDERS ───────────────────────── -->
+    <section class="sec cmd" id="commanders" aria-labelledby="cmd-title">
+      <div class="wrap">
+        <header class="sec-head">
+          <p class="eyebrow">Choose your commander</p>
+          <h2 class="sec-title" id="cmd-title"><span data-stat="commanders-word">Sixteen</span> ways to win</h2>
+          <div class="orn" aria-hidden="true"><i></i></div>
+          <p class="lede">Your commander starts on the board, sets your patron god — and with it, which cards your deck can hold.</p>
+        </header>
+
+        <div class="cmd-grid">
+          <article class="cmd-detail" id="cmd-detail" aria-live="polite" style="--fc: #009E73">
+            <div class="cmd-art" aria-hidden="true"><img alt="" width="630" height="630" src="img/cmd/jagris-the-huntsman.webp" data-cmd="art" loading="lazy" decoding="async"></div>
+            <div class="cmd-body">
+              <p class="cmd-patron"><img data-cmd="emblem" src="../../assets/factions/grenalia.png" alt="" width="40" height="40" loading="lazy" decoding="async"><span data-cmd="patron">Grenalia</span><small data-cmd="subtype">Human</small></p>
+              <h3 class="cmd-name" data-cmd="name">Jagris, the Huntsman</h3>
+              <div class="cmd-ability">
+                <p class="cmd-ability-label">Commander ability</p>
+                <p class="cmd-ability-text" data-cmd="text">[Cooldown 3, Range 2]: Target minion gains +1 power, +1 speed, +1 health.</p>
+              </div>
+              <dl class="cmd-stats" data-cmd="stats"></dl>
+              <p class="cmd-record" data-cmd="record"></p>
+              <div class="cmd-links">
+                <a class="btn btn-gold" href="../../commanders.html">See stats
+                  <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                <a class="btn btn-glass" href="../../decks.html">Build a deck</a>
+              </div>
+            </div>
+            <img class="cmd-card" data-cmd="card" src="../../assets/media/cards/jagris-the-huntsman.webp" alt="Jagris, the Huntsman commander card" width="400" height="560" loading="lazy" decoding="async">
+          </article>
+
+          <div class="cmd-picker">
+            <p class="cmd-picker-label" id="cmd-picker-label">Selected: <b>Jagris, the Huntsman</b></p>
+            <div class="honeycomb" id="honeycomb" role="radiogroup" aria-labelledby="cmd-picker-label"></div>
+            <div class="patrons" role="group" aria-label="Filter by patron god">
+              <button type="button" class="patron is-on" data-patron="all" aria-pressed="true"><svg class="patron-all" viewBox="0 0 34 34" aria-hidden="true"><path d="M17 3.5 28.7 10.25v13.5L17 30.5 5.3 23.75v-13.5z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M17 10.5 22.6 13.75v6.5L17 23.5 11.4 20.25v-6.5z" fill="currentColor" opacity=".55"/></svg><small>All</small></button>
+              <button type="button" class="patron" data-patron="skaal" aria-pressed="false" style="--fc:#D55E00"><img src="../../assets/factions/skaal.png" alt="" width="34" height="34" loading="lazy"><small>Skaal</small></button>
+              <button type="button" class="patron" data-patron="grenalia" aria-pressed="false" style="--fc:#009E73"><img src="../../assets/factions/grenalia.png" alt="" width="34" height="34" loading="lazy"><small>Grenalia</small></button>
+              <button type="button" class="patron" data-patron="lucia" aria-pressed="false" style="--fc:#E8B630"><img src="../../assets/factions/lucia.png" alt="" width="34" height="34" loading="lazy"><small>Lucia</small></button>
+              <button type="button" class="patron" data-patron="shadis" aria-pressed="false" style="--fc:#7B7B8E"><img src="../../assets/factions/shadis.png" alt="" width="34" height="34" loading="lazy"><small>Shadis</small></button>
+              <button type="button" class="patron" data-patron="archaeon" aria-pressed="false" style="--fc:#0072B2"><img src="../../assets/factions/archaeon.png" alt="" width="34" height="34" loading="lazy"><small>Archaeon</small></button>
+              <button type="button" class="patron" data-patron="neutral" aria-pressed="false" style="--fc:#A89078"><img src="../../assets/factions/neutral.png" alt="" width="34" height="34" loading="lazy"><small>Neutral</small></button>
+            </div>
+            <p class="patron-blurb" data-patron-blurb>Six patron gods. Decks hold your commander’s patron cards plus neutral cards.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────────────── META ───────────────────────── -->
+    <section class="sec meta" id="meta" aria-labelledby="meta-title">
+      <div class="wrap">
+        <header class="sec-head">
+          <p class="eyebrow"><span class="live-dot" aria-hidden="true"></span>From beta testing</p>
+          <h2 class="sec-title" id="meta-title">The meta is live</h2>
+          <div class="orn" aria-hidden="true"><i></i></div>
+          <p class="lede">Every beta match feeds our public analytics. Here’s a snapshot, refreshed daily from real games.</p>
+        </header>
+
+        <div class="meta-panel" data-meta>
+          <div class="meta-top">
+            <p class="meta-scope">All beta matches</p>
+            <p class="meta-updated" data-meta="updated">Updated daily</p>
+          </div>
+
+          <div class="meta-grid">
+            <div class="meta-kpis">
+              <div class="kpi"><b data-meta="matches">5,229</b><span>matches played</span></div>
+              <div class="kpi"><b data-meta="first">51.7%</b><span>win rate going first</span></div>
+              <div class="kpi"><b data-meta="duration">12–14</b><span>minute median match</span></div>
+            </div>
+
+            <div class="meta-top3">
+              <h3 class="meta-h">Top commanders by win rate <small data-meta="threshold">min. 200 games</small></h3>
+              <ol class="top3" data-meta="top3">
+                <li class="top3-skel"></li><li class="top3-skel"></li><li class="top3-skel"></li>
+              </ol>
+            </div>
+
+            <div class="meta-maps">
+              <h3 class="meta-h">Matches by map</h3>
+              <ul class="maps" data-meta="maps">
+                <li data-img="../../assets/media/stills/t1_5-960.webp"><span class="map-name">Dunes</span><b>—</b><i style="--w:0%"></i></li>
+                <li data-img="../../assets/media/stills/t10_2-960.webp"><span class="map-name">Snowmelt</span><b>—</b><i style="--w:0%"></i></li>
+                <li data-img="../../assets/media/stills/t20_5-960.webp"><span class="map-name">Tropics</span><b>—</b><i style="--w:0%"></i></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="meta-patrons">
+            <h3 class="meta-h">Patron popularity <small>share of commander picks</small></h3>
+            <div class="patron-bar" data-meta="patrons" role="img" aria-label="Patron popularity"></div>
+            <ul class="patron-key" data-meta="patron-key"></ul>
+          </div>
+
+          <div class="meta-foot">
+            <p>Beta numbers from a small, evolving player pool — a snapshot, not a tier list. Time windows and matchups live on the analytics page.</p>
+            <a class="btn btn-glass btn-sm" href="../../analytics.html">Open the analytics
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────────────── CTA BAND ───────────────────────── -->
+    <section class="cta-band" id="join" aria-labelledby="join-title">
+      <video class="cta-video" data-src="../../assets/media/video/cards.mp4" data-poster="../../assets/media/video/cards-poster.webp" muted playsinline loop preload="none" aria-hidden="true"></video>
+      <div class="cta-shade" aria-hidden="true"></div>
+      <div class="wrap cta-inner">
+        <img class="cta-emblem" src="../../assets/media/logo/emblem-384.webp" alt="" width="120" height="120" loading="lazy" decoding="async">
+        <p class="eyebrow">Your move</p>
+        <h2 class="sec-title" id="join-title">Take a seat at the table</h2>
+        <div class="orn" aria-hidden="true"><i></i></div>
+        <p class="lede">The public beta opens through our Discord. Our Steam page is on the way — wishlist the moment it’s live.</p>
+        <div class="cta-actions" data-cta-group>
+          <a class="btn btn-gold btn-lg" href="https://discord.gg/7QaEY4yJH5" data-link="discord" data-cta="beta" target="_blank" rel="noopener">
+            <svg class="ico" viewBox="0 0 24 19" aria-hidden="true"><use href="#i-discord"/></svg>
+            Join the Beta on Discord
+          </a>
+          <button type="button" class="btn btn-outline btn-lg btn-steam" data-steam>
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-steam"/></svg>
+            <span data-steam-label>Steam page</span>
+            <span class="soon-pill">Soon</span>
+          </button>
+        </div>
+        <ul class="socials" aria-label="Atlas Conquest on social media">
+          <li><a href="https://discord.gg/7QaEY4yJH5" data-link="discord" target="_blank" rel="noopener" aria-label="Discord"><svg viewBox="0 0 24 19" aria-hidden="true"><use href="#i-discord"/></svg></a></li>
+          <li><a href="https://x.com/Atlas_Conquest" data-link="x" target="_blank" rel="noopener" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-x"/></svg></a></li>
+          <li><a href="https://www.instagram.com/atlasconquest/" data-link="instagram" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-instagram"/></svg></a></li>
+          <li><a href="https://www.tiktok.com/@atlas.conquest" data-link="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-tiktok"/></svg></a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- ───────────────────────── FOOTER ───────────────────────── -->
+  <footer class="footer">
+    <div class="wrap footer-grid">
+      <div class="footer-brand">
+        <a href="./" aria-label="Atlas Conquest — home"><img src="../../assets/media/logo/wordmark-640.webp" alt="Atlas Conquest" width="240" height="38" loading="lazy" decoding="async"></a>
+        <p>Online Competitive Hex-Grid Card Battles.<br>Releasing 2027.</p>
+        <ul class="socials socials-sm" aria-label="Social media">
+          <li><a href="https://discord.gg/7QaEY4yJH5" data-link="discord" target="_blank" rel="noopener" aria-label="Discord"><svg viewBox="0 0 24 19" aria-hidden="true"><use href="#i-discord"/></svg></a></li>
+          <li><a href="https://x.com/Atlas_Conquest" data-link="x" target="_blank" rel="noopener" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-x"/></svg></a></li>
+          <li><a href="https://www.instagram.com/atlasconquest/" data-link="instagram" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-instagram"/></svg></a></li>
+          <li><a href="https://www.tiktok.com/@atlas.conquest" data-link="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-tiktok"/></svg></a></li>
+        </ul>
+      </div>
+      <nav class="footer-col" aria-label="Site">
+        <p class="footer-h">Explore</p>
+        <a href="./">Home</a>
+        <a href="../../analytics.html">Analytics</a>
+        <a href="../../decks.html">Decks</a>
+        <a href="../../articles.html">Articles</a>
+        <a href="../../press.html" data-link="press">Press</a>
+      </nav>
+      <div class="footer-col">
+        <p class="footer-h">Play</p>
+        <a href="https://discord.gg/7QaEY4yJH5" data-link="discord" target="_blank" rel="noopener">Join the beta</a>
+        <button type="button" class="linklike" data-steam>Steam page (soon)</button>
+        <button type="button" class="linklike" data-trailer>Watch the trailer</button>
+      </div>
+      <div class="footer-col">
+        <p class="footer-h">Press</p>
+        <a href="mailto:press@atlas-conquest.com">press@atlas-conquest.com</a>
+        <a href="../../press.html" data-link="press">Press kit</a>
+      </div>
+    </div>
+    <div class="wrap footer-base">
+      <p>© 2026 Atlas Conquest</p>
+      <p><a href="../../privacy.html">Privacy</a><span aria-hidden="true">·</span><a href="../../terms.html">Terms</a></p>
+    </div>
+  </footer>
+
+  <!-- Steam "coming soon" note -->
+  <div class="steam-pop" id="steam-pop" role="status" aria-live="polite" hidden>
+    <p><b>The Steam page is almost ready.</b> Join the Discord and you’ll hear the moment wishlists open.</p>
+    <a class="btn btn-gold btn-sm" href="https://discord.gg/7QaEY4yJH5" data-link="discord" target="_blank" rel="noopener">Join the Discord</a>
+    <button type="button" class="steam-pop-x" aria-label="Dismiss">×</button>
+  </div>
+
+  <!-- Trailer modal -->
+  <dialog class="modal" id="trailer-modal" aria-label="Atlas Conquest trailer">
+    <div class="modal-box">
+      <button type="button" class="modal-x" data-close aria-label="Close trailer">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <div class="modal-player" data-player></div>
+    </div>
+  </dialog>
+
+  <!-- Icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-discord" viewBox="0 0 24 19"><path fill="currentColor" d="M20.317 1.6a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 1.6.07.07 0 0 0 3.64 1.63C.533 6.24-.319 10.74.099 15.18a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.099.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 12.46c-1.182 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></symbol>
+    <symbol id="i-steam" viewBox="0 0 24 24"><path fill="currentColor" d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658a3.387 3.387 0 0 1 1.912-.59c.063 0 .125.004.188.006l2.861-4.142V8.91a4.528 4.528 0 0 1 4.524-4.524c2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159a3.392 3.392 0 0 1-3.39 3.396 3.406 3.406 0 0 1-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25a2.551 2.551 0 0 0 3.337-1.375 2.547 2.547 0 0 0-1.372-3.332 2.537 2.537 0 0 0-1.878-.03l1.523.63a1.873 1.873 0 0 1-1.451 3.467zm11.415-9.303a3.019 3.019 0 0 0-3.015-3.015 3.015 3.015 0 1 0 3.015 3.015zm-5.273-.005a2.264 2.264 0 1 1 4.531 0 2.265 2.265 0 0 1-4.531 0z"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></symbol>
+    <symbol id="i-instagram" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/></g><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></symbol>
+    <symbol id="i-tiktok" viewBox="0 0 24 24"><path fill="currentColor" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.2v13.6c0 .8.86 1.28 1.54.86l10.6-6.8a1 1 0 0 0 0-1.72L9.54 4.34A1 1 0 0 0 8 5.2z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  </svg>
+
+  <script src="main.js" defer></script>
+  <script src="board.js" defer></script>
+</body>
+</html>

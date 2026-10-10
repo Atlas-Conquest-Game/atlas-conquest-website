@@ -1,0 +1,302 @@
+/* ==========================================================================
+   Gameplay · option B — "Four beats, one stage"
+   One big 16:9 stage + a beat selector. Desktop: a vertical list on a thin gold
+   rail (left) and the stage (right), the whole section inside one 900px screen.
+   Phones/tablets: the stage, a four-way segmented control, then the active line.
+   Calm by design: no hover-driven layout changes, no zooms, fades only.
+   Everything is scoped under .gpb.
+   ========================================================================== */
+
+.gpb .sec__head .spec { margin-top: 14px; }
+
+.gpb__body {
+  margin-top: clamp(26px, 2.6vw, 38px);
+  display: grid;
+  grid-template-columns: minmax(300px, 31fr) minmax(0, 69fr);
+  grid-template-areas: "beats stage";
+  column-gap: clamp(26px, 3vw, 48px);
+  align-items: stretch;
+}
+
+/* ---------- Beat selector (desktop: a list on a rail) ---------- */
+.gpb__beats {
+  grid-area: beats;
+  position: relative;
+  display: flex; flex-direction: column;
+  padding-left: 1px;
+}
+.gpb__beats::before { /* the rail */
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px;
+  background: linear-gradient(180deg, transparent, var(--line) 10%, var(--line) 90%, transparent);
+}
+.gpb__beat {
+  position: relative;
+  flex: 1 1 0; min-height: 0;
+  display: flex; flex-direction: column; justify-content: center; gap: 7px;
+  margin: 0; padding: 10px 14px 10px 28px;
+  border: 0; border-radius: 0 6px 6px 0;
+  background-color: transparent;
+  background-image: linear-gradient(90deg, rgba(232, 162, 69, .12), rgba(232, 162, 69, .035) 55%, rgba(232, 162, 69, 0));
+  background-size: 100% 100%; background-repeat: no-repeat;
+  background-position: 0 0;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color .3s ease;
+}
+.gpb__beat:not([aria-selected="true"]) { background-image: none; }
+.gpb__beat:hover { background-color: rgba(237, 231, 218, .03); }
+.gpb__beat:focus-visible { outline-offset: -2px; border-radius: 0 6px 6px 0; }
+/* the lit stretch of rail beside the active beat */
+.gpb__beat::before {
+  content: ''; position: absolute; left: -1px; top: 12%; bottom: 12%; width: 2px;
+  background: linear-gradient(180deg, rgba(247, 220, 154, 0), var(--gold-hi) 30%, var(--gold) 70%, rgba(232, 162, 69, 0));
+  box-shadow: 0 0 14px rgba(232, 162, 69, .55);
+  opacity: 0; transition: opacity .3s ease;
+}
+/* ◆ marker on the rail */
+.gpb__beat::after {
+  content: ''; position: absolute; left: -4.5px; top: 50%;
+  width: 8px; height: 8px; margin-top: -4px;
+  transform: rotate(45deg);
+  border: 1px solid rgba(247, 220, 154, .38);
+  background: var(--ink-1);
+  transition: background-color .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+.gpb__beat[aria-selected="true"]::before { opacity: 1; }
+.gpb__beat[aria-selected="true"]::after {
+  background: var(--gold); border-color: var(--gold-hi);
+  box-shadow: 0 0 12px rgba(247, 200, 120, .85);
+}
+.gpb__beat:hover::after { border-color: rgba(247, 220, 154, .7); }
+
+.gpb__short { display: none; }
+.gpb__title {
+  font-family: var(--display); font-weight: 400;
+  font-size: clamp(18px, 1.5vw, 21.5px); /* each title stays on one line, 1200px and up */
+  line-height: 1.15; letter-spacing: .01em;
+  color: var(--text);
+  opacity: .66;
+  text-wrap: balance;
+  transition: opacity .3s ease;
+}
+.gpb__title > span { -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.gpb__beat:hover .gpb__title { opacity: .92; }
+.gpb__beat[aria-selected="true"] .gpb__title { opacity: 1; filter: drop-shadow(0 3px 16px rgba(232, 140, 50, .22)); }
+.gpb__beat[aria-selected="true"] .gpb__title > span {
+  background: var(--gold-grad);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+}
+.gpb__line {
+  font-size: 16px; line-height: 1.45;
+  color: var(--text-3);
+  text-wrap: pretty;
+  transition: color .3s ease;
+}
+.gpb__beat[aria-selected="true"] .gpb__line { color: var(--text-2); }
+.gpb__beat:hover .gpb__line { color: var(--text-2); }
+
+/* ---------- The stage ---------- */
+.gpb__stage {
+  grid-area: stage;
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 6px;
+  background: var(--ink-0);
+  box-shadow:
+    0 0 0 1px var(--line),
+    0 34px 80px -40px rgba(0, 0, 0, .95),
+    0 0 90px -44px rgba(232, 140, 50, .45);
+  touch-action: pan-y;
+  transition: box-shadow .3s ease;
+}
+.gpb__stage:hover { box-shadow: 0 0 0 1px rgba(247, 220, 154, .4), 0 34px 80px -40px rgba(0, 0, 0, .95), 0 0 90px -40px rgba(232, 140, 50, .55); }
+.gpb__poster, .gpb__video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  /* trims the bottom 4%: two of the captures carry a thin gold strip of game UI there,
+     which read as a progress bar on the stage */
+  transform: scale(1.04); transform-origin: 50% 0;
+}
+.gpb__video { opacity: 0; transition: opacity .35s ease; pointer-events: none; }
+.gpb__stage.is-live .gpb__video { opacity: 1; }
+.gpb__stage::after { /* soft edge so the controls read on any frame */
+  content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    radial-gradient(ellipse 75% 75% at 50% 50%, rgba(6, 8, 13, 0) 60%, rgba(6, 8, 13, .32)),
+    linear-gradient(180deg, rgba(6, 8, 13, 0) 72%, rgba(6, 8, 13, .42));
+}
+
+/* the whole stage is the play / pause button */
+.gpb__surface {
+  position: absolute; inset: 0; z-index: 2;
+  width: 100%; height: 100%;
+  margin: 0; padding: 0; border: 0;
+  background: none; border-radius: inherit;
+  cursor: pointer;
+}
+.gpb__surface:focus-visible { outline-offset: -4px; border-radius: 6px; }
+.gpb__big {
+  position: absolute; left: 50%; top: 50%;
+  width: 78px; height: 78px; margin: -39px 0 0 -39px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(247, 220, 154, .62);
+  background: rgba(6, 8, 13, .58);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  color: var(--gold-hi);
+  box-shadow: 0 0 0 7px rgba(6, 8, 13, .2), 0 0 44px -6px rgba(232, 140, 50, .6);
+  transition: opacity .3s ease, background-color .25s ease, border-color .25s ease;
+}
+.gpb__big .icon { width: 26px; height: 26px; margin-left: 4px; }
+.gpb__surface:hover .gpb__big,
+.gpb__surface:focus-visible .gpb__big { border-color: var(--gold-hi); background: rgba(40, 26, 10, .62); }
+.gpb__stage[data-state="playing"] .gpb__big { opacity: 0; }
+/* loading: the ring turns slowly until the first frame arrives */
+.gpb__big::after {
+  content: ''; position: absolute; inset: -1px; border-radius: 50%;
+  border: 2px solid transparent; border-top-color: var(--gold-hi);
+  opacity: 0; transition: opacity .2s ease;
+}
+.gpb__stage[data-state="loading"] .gpb__big::after { opacity: 1; animation: gpb-spin 1.1s linear infinite; }
+.gpb__stage[data-state="loading"] .gpb__big .icon { opacity: .45; }
+@keyframes gpb-spin { to { transform: rotate(360deg); } }
+
+/* small pause hint while a clip plays */
+.gpb__state,
+.gpb__expand {
+  position: absolute; bottom: 12px;
+  width: 40px; height: 40px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(247, 220, 154, .4);
+  background: rgba(6, 8, 13, .62);
+  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+  color: var(--gold-hi);
+}
+.gpb__state { left: 12px; opacity: 0; transition: opacity .3s ease; }
+.gpb__state .icon { width: 15px; height: 15px; }
+.gpb__stage[data-state="playing"] .gpb__state { opacity: .78; }
+.gpb__surface:hover .gpb__state,
+.gpb__surface:focus-visible .gpb__state { opacity: 1; border-color: var(--gold-hi); }
+.gpb__expand {
+  right: 12px; z-index: 3;
+  margin: 0; padding: 0;
+  cursor: zoom-in;
+  transition: background-color .25s ease, border-color .25s ease;
+}
+.gpb__expand .icon { width: 17px; height: 17px; }
+.gpb__expand:hover { border-color: var(--gold-hi); background: rgba(40, 26, 10, .78); }
+
+html:not(.js) .gpb__surface,
+html:not(.js) .gpb__expand { display: none; }
+
+/* ---------- Caption under the control (phones / tablets only) ---------- */
+.gpb__now { display: none; }
+.gpb__views { display: none; }
+
+/* ==========================================================================
+   Tablets and phones: stage first, then a segmented control, then the line.
+   ========================================================================== */
+@media (max-width: 1199px) {
+  .gpb__body {
+    max-width: 860px; margin-inline: auto;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "stage" "beats" "now";
+    row-gap: 14px;
+  }
+  .gpb__beats {
+    justify-self: center;
+    width: min(100%, 520px);
+    flex-direction: row; gap: 4px;
+    padding: 4px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: rgba(6, 8, 13, .55);
+  }
+  .gpb__beats::before,
+  .gpb__beat::before,
+  .gpb__beat::after,
+  .gpb__title,
+  .gpb__line { display: none; }
+  .gpb__beat {
+    min-height: 42px; padding: 0 4px;
+    align-items: center; justify-content: center;
+    border-radius: 999px;
+    background-image: none;
+    transition: background-color .25s ease, box-shadow .25s ease;
+  }
+  .gpb__beat:focus-visible { outline-offset: 2px; border-radius: 999px; }
+  .gpb__short {
+    display: block;
+    font-family: var(--sc); font-weight: 700;
+    font-size: 15px; line-height: 1; letter-spacing: .08em;
+    text-transform: lowercase;
+    color: var(--text-2);
+    padding-left: .08em; /* optically re-centre the tracking */
+    transition: color .25s ease;
+  }
+  .gpb__beat:hover { background-color: rgba(232, 162, 69, .08); }
+  .gpb__beat[aria-selected="true"] {
+    background-color: transparent;
+    background-image: var(--gold-grad);
+    box-shadow: inset 0 1px 0 rgba(255, 244, 214, .55), 0 0 18px -4px rgba(232, 150, 60, .65);
+  }
+  .gpb__beat[aria-selected="true"] .gpb__short { color: #241503; }
+
+  .gpb__now {
+    grid-area: now;
+    display: grid;
+    text-align: center;
+  }
+  /* landscape tablets / small laptops: keep the whole section inside one screen */
+  .gpb__stage {
+    justify-self: center;
+    width: min(100%, max(560px, calc((100svh - 400px) * 16 / 9)));
+  }
+  .gpb__cap {
+    grid-area: 1 / 1;
+    opacity: 0; visibility: hidden;
+    transition: opacity .3s ease, visibility 0s linear .3s;
+  }
+  .gpb__cap.is-on { opacity: 1; visibility: visible; transition: opacity .3s ease .05s, visibility 0s; }
+  .gpb__cap-title {
+    font-family: var(--display); font-weight: 400;
+    font-size: 21px; line-height: 1.15; letter-spacing: .01em;
+    filter: drop-shadow(0 3px 14px rgba(232, 140, 50, .2));
+  }
+  .gpb__cap-line {
+    margin: 6px auto 0;
+    max-width: 44ch;
+    font-size: 16.5px; line-height: 1.45;
+    color: var(--text-2);
+    text-wrap: balance;
+  }
+}
+@media (max-width: 640px) {
+  /* the facts line breaks into two even rows instead of leaving a ◆ dangling at a line end */
+  .gpb .spec i:nth-of-type(2) {
+    flex-basis: 100%; width: auto; height: 0;
+    border: 0; background: none; box-shadow: none; transform: none;
+  }
+}
+@media (max-width: 600px) {
+  .gpb__stage { width: 100%; }
+  .gpb__body { margin-top: 20px; row-gap: 12px; }
+  .gpb__big { width: 64px; height: 64px; margin: -32px 0 0 -32px; }
+  .gpb__big .icon { width: 22px; height: 22px; margin-left: 3px; }
+  .gpb__state, .gpb__expand { bottom: 8px; width: 38px; height: 38px; }
+  .gpb__state { left: 8px; }
+  .gpb__expand { right: 8px; }
+  .gpb__beat { min-height: 44px; }
+  .gpb__short { font-size: 15px; letter-spacing: .06em; }
+  .gpb__cap-title { font-size: 19px; }
+  .gpb__cap-line { font-size: 16px; margin-top: 4px; }
+}
+
+/* Reduced motion: stills only (the stage swaps posters; expand shows the still). */
+@media (prefers-reduced-motion: reduce) {
+  .gpb__surface, .gpb__video { display: none !important; }
+}
