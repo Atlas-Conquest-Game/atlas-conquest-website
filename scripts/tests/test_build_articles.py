@@ -203,11 +203,20 @@ def test_unknown_card_raises(codec, cards_index):
 def test_card_img_shortcode(codec, cards_index):
     a = _render("[[card-img:Acid Rain]]", "x", codec, cards_index)
     assert 'class="card-art-inline"' in a.body_html
-    # Cards get the transparent PNG path (sourced from CardScreenshots/);
-    # commanders without an RGBA source would fall back to /assets/cards/<slug>.jpg.
-    assert 'src="/assets/card-art-png/acid-rain.png"' in a.body_html
+    # Cards get the 400×560 transparent WebP render the deck builder uses.
+    assert 'src="/assets/media/cards/acid-rain.webp"' in a.body_html
+    assert 'width="400"' in a.body_html and 'height="560"' in a.body_html
     assert 'data-card="Acid Rain"' in a.body_html
     assert 'loading="lazy"' in a.body_html
+    assert 'decoding="async"' in a.body_html
+
+
+def test_card_img_falls_back_without_a_render(codec, cards_index, tmp_path, monkeypatch):
+    """No WebP render → the transparent PNG (cards) as before."""
+    monkeypatch.setattr(ba, "CARD_RENDER_DIR", tmp_path)
+    a = _render("[[card-img:Acid Rain]]", "x", codec, cards_index)
+    assert 'src="/assets/card-art-png/acid-rain.png"' in a.body_html
+    assert 'width="400"' not in a.body_html
 
 
 def test_card_img_renders_mentioned_cards_side_by_side(codec, cards_index):
@@ -311,8 +320,14 @@ def test_video_block_with_caption(codec, cards_index):
     a = _render(body, "detailed-rules", codec, cards_index)
     assert '<figure class="article-video">' in a.body_html
     assert 'src="/assets/articles/detailed-rules/battle.mp4"' in a.body_html
-    for attr in ("autoplay", "loop", "muted", "playsinline"):
+    for attr in ("data-autoplay", "loop", "muted", "playsinline", "controls"):
         assert f" {attr}" in a.body_html
+    # Nothing downloads until the clip scrolls into view (article.js).
+    assert 'preload="none"' in a.body_html
+    assert " autoplay" not in a.body_html
+    # detailed-rules ships a battle-poster.webp next to the clip.
+    assert 'poster="/assets/articles/detailed-rules/battle-poster.webp"' in a.body_html
+    assert "battle-poster.webp" in a.referenced_images
     assert 'aria-label="Two minions battle"' in a.body_html
     # The caption is Markdown: card links and icons render inside it.
     assert '<figcaption><a class="card-link"' in a.body_html
@@ -348,6 +363,57 @@ def test_webp_sibling_wraps_image_in_picture(codec, cards_index, tmp_path, monke
             '<img alt="A map" src="/assets/articles/article/map.jpg"></picture>') in a.body_html
     assert a.body_html.count("<picture>") == 1
     assert a.referenced_images == {"map.jpg", "map.webp", "plain.png"}
+
+
+def _png(path, size, mode="RGBA"):
+    from PIL import Image
+    Image.new(mode, size, (200, 120, 40, 255) if mode == "RGBA" else (200, 120, 40)).save(path)
+
+
+def test_optimize_body_images_writes_renditions_once(codec, cards_index, tmp_path, monkeypatch):
+    src = tmp_path / "src"
+    out = tmp_path / "out"
+    (src / "article").mkdir(parents=True)
+    _png(src / "article" / "diagram.png", (2480, 1240))
+    _png(src / "article" / "small.png", (600, 300))
+    monkeypatch.setattr(ba, "ARTICLES_IMG_SRC", src)
+    monkeypatch.setattr(ba, "ARTICLE_ASSETS_OUT", out)
+    a = _render("![Big](diagram.png){: .wide }\n\n![Small](small.png)", "article", codec, cards_index)
+    ba.optimize_body_images(a)
+    html = a.body_html
+    webps = sorted(p.name for p in (out / "article").glob("img-*.webp"))
+    assert [n.rsplit("-", 1)[1] for n in webps] == ["1600.webp", "800.webp"]
+    assert '<picture><source type="image/webp" srcset="/assets/articles/article/img-' in html
+    assert 'sizes="(max-width: 1234px) 94vw, 1160px"' in html
+    assert 'data-full="/assets/articles/article/diagram.png"' in html
+    assert 'width="2480" height="1240"' in html
+    # Small images just get their size and lazy loading.
+    assert 'width="600" height="300"' in html
+    assert html.count("<picture>") == 1
+    assert html.count('loading="lazy"') == 2 and html.count('decoding="async"') == 2
+    # A second run re-uses the files byte for byte (no re-encode) and is stable.
+    stamp = {p: p.stat().st_mtime_ns for p in (out / "article").glob("img-*.webp")}
+    b = _render("![Big](diagram.png){: .wide }\n\n![Small](small.png)", "article", codec, cards_index)
+    ba.optimize_body_images(b)
+    assert b.body_html == html
+    assert stamp == {p: p.stat().st_mtime_ns for p in (out / "article").glob("img-*.webp")}
+
+
+def test_optimize_body_images_drops_stale_renditions(codec, cards_index, tmp_path, monkeypatch):
+    src = tmp_path / "src"
+    out = tmp_path / "out"
+    (src / "article").mkdir(parents=True)
+    (out / "article").mkdir(parents=True)
+    (out / "article" / "img-0123456789-800.webp").write_bytes(b"old")
+    _png(src / "article" / "diagram.png", (1000, 500), mode="RGB")
+    monkeypatch.setattr(ba, "ARTICLES_IMG_SRC", src)
+    monkeypatch.setattr(ba, "ARTICLE_ASSETS_OUT", out)
+    a = _render("![Big](diagram.png)", "article", codec, cards_index)
+    ba.optimize_body_images(a)
+    names = sorted(p.name for p in (out / "article").glob("img-*.webp"))
+    assert "img-0123456789-800.webp" not in names
+    # 1000px source: one rendition at 800 plus the full width.
+    assert [n.rsplit("-", 1)[1] for n in names] == ["1000.webp", "800.webp"]
 
 
 def test_deck_block_renders(codec, cards_index):
@@ -502,3 +568,75 @@ def test_list_items_opening_with_an_icon_are_marked(codec, cards_index):
     a = _render(body, "x", codec, cards_index)
     assert a.body_html.count('<li class="icon-item">') == 1
     assert '<li class="icon-item"><img alt="power"' in a.body_html
+
+
+# ─── Page furniture: hero renditions, meta, anchors, reading time ─────
+
+
+def test_reading_minutes_counts_prose_and_figures():
+    words = " ".join(["word"] * 440)            # 2 minutes of prose
+    assert ba.reading_minutes(words) == 2
+    # Card links count as their names; deck codes and icon tokens don't count.
+    assert ba.reading_minutes("[[card:Acid Rain]] {power_3} [[deck:AAAA]]") == 1
+    # Figures add time: 10 diagrams ≈ 2 extra minutes.
+    figs = "\n\n".join("![d](x.png)" for _ in range(10))
+    assert ba.reading_minutes(words + "\n\n" + figs) == 4
+
+
+def test_heading_anchors_are_unique_and_skip_reserved_ids():
+    body = "<h2>Main</h2><p>x</p><h2>The &ldquo;Map&rdquo;</h2><h2>The “Map”</h2><h3>Sub</h3>"
+    out, toc = ba.add_heading_anchors(body)
+    assert [hid for hid, _ in toc] == ["main-section", "the-map", "the-map-2"]
+    assert toc[1][1] == "The “Map”"
+    assert '<h2 id="the-map-2">' in out
+    assert "<h3>Sub</h3>" in out  # only h2s get anchors
+
+
+def _build_with_hero(tmp_path, monkeypatch, article_factory, **front):
+    from PIL import Image
+    article_factory("hero-test", "Hello.\n\n## One\n\nA.\n\n## Two\n\nB.", hero_image="hero.png", **front)
+    Image.new("RGB", (2000, 1000), (200, 120, 40)).save(
+        article_factory.src_root / "images" / "hero-test" / "hero.png")
+    out = tmp_path / "out"
+    monkeypatch.setattr(ba, "ARTICLES_SRC", article_factory.src_root)
+    monkeypatch.setattr(ba, "ARTICLES_IMG_SRC", article_factory.src_root / "images")
+    monkeypatch.setattr(ba, "ARTICLES_OUT", out / "articles")
+    monkeypatch.setattr(ba, "ARTICLE_ASSETS_OUT", out / "assets" / "articles")
+    monkeypatch.setattr(ba, "DATA_DIR", out / "data")
+    monkeypatch.setattr(ba, "ARTICLES_INDEX_JSON", out / "data" / "articles.json")
+    assert ba.build() == 0
+    return out
+
+
+def test_hero_renditions_meta_and_contents(tmp_path, monkeypatch, article_factory):
+    out = _build_with_hero(tmp_path, monkeypatch, article_factory)
+    assets = out / "assets" / "articles" / "hero-test"
+    webps = sorted(p.name for p in assets.glob("hero-*-*.webp"))
+    assert [n.rsplit("-", 1)[1] for n in webps] == ["1280.webp", "1920.webp", "640.webp"]
+    og = next(assets.glob("hero-*-og.jpg"))
+    from PIL import Image
+    assert Image.open(og).size == ba.OG_IMAGE_SIZE
+
+    page = (out / "articles" / "hero-test" / "index.html").read_text(encoding="utf-8")
+    assert '<link rel="canonical" href="https://atlas-conquest.com/articles/hero-test/">' in page
+    assert f'content="https://atlas-conquest.com/assets/articles/hero-test/{og.name}"' in page
+    assert 'og:image:width" content="1200"' in page
+    assert 'srcset="/assets/articles/hero-test/' in page
+    assert '<h2 id="one">' in page and 'href="#two"' in page   # contents menu
+    assert "min read" in page
+
+    index = (out / "articles" / "index.html").read_text(encoding="utf-8")
+    assert 'class="article-card article-card--featured"' in index
+    assert 'data-tag=""' in index                                  # "All" filter chip
+
+    # A second build re-encodes nothing.
+    stamps = {p.name: p.stat().st_mtime_ns for p in assets.iterdir()}
+    assert ba.build() == 0
+    assert {p.name: p.stat().st_mtime_ns for p in assets.iterdir()} == stamps
+
+
+def test_article_without_hero_unfurls_with_the_site_card(codec, cards_index):
+    a = _render("Body.", "x", codec, cards_index)
+    meta = ba.build_meta_block(a)
+    assert f"https://atlas-conquest.com{ba.DEFAULT_SOCIAL_IMAGE}" in meta
+    assert (ba.SITE_DIR / ba.DEFAULT_SOCIAL_IMAGE.lstrip("/")).exists()

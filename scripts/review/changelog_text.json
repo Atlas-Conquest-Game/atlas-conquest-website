@@ -1,0 +1,3920 @@
+{
+  "note": "Card edits deliberately NOT published in site/data/insights/card_changelog.json (text rewordings, subtype, patron/faction reclassification, token flag, token additions/removals). Review by hand; promote anything gameplay-relevant.",
+  "entries": [
+    {
+      "date": "2026-10-03",
+      "card": "Acid Rain",
+      "field": "text",
+      "from": "[Range 4]: Convert target tile to a Toxic Swamp, where characters gain 1 Poison. Destroy enemy commanders' Weapons.",
+      "to": "[Range 4]: Convert target tile to a Toxic Swamp, where characters gain 1 Poison. Destroy the enemy commander's Weapon.",
+      "from_sha": "ac341fb61b5b",
+      "to_sha": "29cba70ec0a8",
+      "source": "git:39a2b80"
+    },
+    {
+      "date": "2026-10-03",
+      "card": "Artifact of the End",
+      "field": "text",
+      "from": "Legendary. Haste. Lifelink. Arrival: Enemy commanders gain 3 Doom. Postmortem: Shuffle this into your deck.",
+      "to": "Legendary. Haste. Lifelink. Arrival: The enemy commander gains 3 Doom. Postmortem: Shuffle this into your deck.",
+      "from_sha": "7ff0d90f02f1",
+      "to_sha": "7cb4fe69f5c3",
+      "source": "git:39a2b80"
+    },
+    {
+      "date": "2026-10-03",
+      "card": "Dragonkin Evoker",
+      "field": "text",
+      "from": "Realmbound. Spell-Damage +1. When ANY spell is played, deal 1 damage to enemy commanders.",
+      "to": "Realmbound. Spell-Damage +1. When ANY spell is played, deal 1 damage to the enemy commander.",
+      "from_sha": "5f3f88ba0032",
+      "to_sha": "5d4646e2fa58",
+      "source": "git:39a2b80"
+    },
+    {
+      "date": "2026-10-03",
+      "card": "Durka Wurm",
+      "field": "text",
+      "from": "Postmortem: Summon a <sprite name=\"power_1\"><sprite name=\"speed_3\"><sprite name=\"health_1\"> Durka Spawn in every unoccupied tile within Range 1.",
+      "to": "Postmortem: Summon a <sprite name=\"power_1\"><sprite name=\"speed_3\"><sprite name=\"health_1\"> Durka Spawn on each unoccupied tile within Range 1.",
+      "from_sha": "2768fc66a2e2",
+      "to_sha": "8e604e0e94b9",
+      "source": "git:39a2b80"
+    },
+    {
+      "date": "2026-10-03",
+      "card": "Elven Spellblade",
+      "field": "text",
+      "from": "Arrival: Deal 3 damage to enemy commanders.",
+      "to": "Arrival: Deal 3 damage to the enemy commander.",
+      "from_sha": "97a0bc33d21d",
+      "to_sha": "93284d6c58c5",
+      "source": "git:39a2b80"
+    },
+    {
+      "date": "2026-10-03",
+      "card": "Grey Wastes Shade",
+      "field": "text",
+      "from": "Lifelink. Postmortem: Enemy commanders heal <sprite name=\"health_6\">.",
+      "to": "Lifelink. Postmortem: The enemy commander heals <sprite name=\"health_6\">.",
+      "from_sha": "d9912e7ac819",
+      "to_sha": "cc903119d41b",
+      "source": "git:39a2b80"
+    },
+    {
+      "date": "2026-10-03",
+      "card": "Heaven's Legion",
+      "field": "text",
+      "from": "Summon a Lucian Soldier on each tile you own.",
+      "to": "Summon a Lucian Soldier on each unoccupied tile you own.",
+      "from_sha": "4a20220e8471",
+      "to_sha": "830c465be8d0",
+      "source": "git:39a2b80"
+    },
+    {
+      "date": "2026-10-03",
+      "card": "Horde Leader",
+      "field": "text",
+      "from": "Ally Undead within Range 3 have +<sprite name=\"power_1\"> and Postmortem: Enemy commanders gain 2 Poison.",
+      "to": "Ally Undead within Range 3 have +<sprite name=\"power_1\"> and Postmortem: The enemy commander gains 2 Poison.",
+      "from_sha": "f80ac7c6de5e",
+      "to_sha": "2a219b66e275",
+      "source": "git:39a2b80"
+    },
+    {
+      "date": "2026-10-03",
+      "card": "Infected Dreg",
+      "field": "text",
+      "from": "Postmortem: Enemy commanders gain 2 Poison.",
+      "to": "Postmortem: The enemy commander gains 2 Poison.",
+      "from_sha": "64b781f6b303",
+      "to_sha": "09e0148fb16a",
+      "source": "git:39a2b80"
+    },
+    {
+      "date": "2026-10-03",
+      "card": "Toxic Watering",
+      "field": "text",
+      "from": "Your Plants gain \"At the end of each of your turns, enemy commanders gain 1 Poison.\"",
+      "to": "Your Plants gain \"At the end of each of your turns, the enemy commander gains 1 Poison.\"",
+      "from_sha": "0a23dd028bcc",
+      "to_sha": "1af217f8183c",
+      "source": "git:39a2b80"
+    },
+    {
+      "date": "2026-10-03",
+      "card": "Trinket Trasher",
+      "field": "text",
+      "from": "Goblin-Deploy. Arrival: Destroy enemy commanders' Weapons.",
+      "to": "Goblin-Deploy. Arrival: Destroy the enemy commander's Weapon.",
+      "from_sha": "80256ad0e471",
+      "to_sha": "e76b9661a0a9",
+      "source": "git:39a2b80"
+    },
+    {
+      "date": "2026-10-03",
+      "card": "Zoghn, Eye of Treason",
+      "field": "text",
+      "from": "Legendary. Arrival: Destroy half your deck. [Cooldown 1]: Draw a card from an enemy deck.",
+      "to": "Legendary. Arrival: Destroy half your deck. [Cooldown 1]: Draw a card from the enemy deck.",
+      "from_sha": "fdac074b9635",
+      "to_sha": "0d391630434b",
+      "source": "git:39a2b80"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Acid Rain",
+      "field": "text",
+      "from": "[Range 4]: Convert a tile to a Toxic Swamp, that adds 1 Poison to characters on it. Destroy the enemy commander's Weapon.",
+      "to": "[Range 4]: Convert target tile to a Toxic Swamp, where characters gain 1 Poison. Destroy enemy commanders' Weapons.",
+      "from_sha": "d8d627da083f",
+      "to_sha": "ac341fb61b5b",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Acrid Potion",
+      "field": "text",
+      "from": "[Range 2]: Target minion gains <sprite name=\"power_1\">, Fatal, and Lifelink.",
+      "to": "[Range 2]: Target minion gains +<sprite name=\"power_1\">, Fatal, and Lifelink.",
+      "from_sha": "b036e6ec98e2",
+      "to_sha": "0bb1514744a6",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Action Surge",
+      "field": "text",
+      "from": "A friendly character gains +1 movement, and regains their Attack. Draw a card.",
+      "to": "Target character you control gains +1 Movement and regains an Attack. Draw a card.",
+      "from_sha": "ca483d961702",
+      "to_sha": "55a4ddc52dd8",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Ancient Golem",
+      "field": "text",
+      "from": "Costs <sprite name=\"mana_1\"> less to play for each card in your hand.",
+      "to": "Costs <sprite name=\"mana_1\"> less per card in your hand.",
+      "from_sha": "25025bb09c85",
+      "to_sha": "11512646a671",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Angel's Grace",
+      "field": "text",
+      "from": "[Range 4]: A character gains +4 movement this turn. If it's a minion, it gains Flying this turn.",
+      "to": "[Range 4]: Target character gains +4 Movement until end of the turn. If it's a minion, it gains Flying until end of the turn.",
+      "from_sha": "03e63a7d6781",
+      "to_sha": "2b3a4aaa8857",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Angelic Captain",
+      "field": "text",
+      "from": "Flying. Arrival AND at the beginning of your turn: ally minions within Range 4 gain +1 Movement this turn.",
+      "to": "Flying. Arrival AND at the start of your turn: Ally minions within Range 4 gain +1 Movement until end of the turn.",
+      "from_sha": "69fdbc1acbb1",
+      "to_sha": "ba6fe7f0e38a",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Apothecary",
+      "field": "text",
+      "from": "Realmbound. Whenever you play a Potion, draw a card.",
+      "to": "Realmbound. When you play a Potion, draw a card.",
+      "from_sha": "f40d94f407aa",
+      "to_sha": "03e1542cae45",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Archpaladin Erix",
+      "field": "text",
+      "from": "Legendary. Sentinel. Flying. Arrival: Set the power of ALL minions equal to their health.",
+      "to": "Legendary. Flying. Sentinel. Arrival: Set the Power of ALL minions equal to their Health.",
+      "from_sha": "af3bbf48c95a",
+      "to_sha": "92fa2e0e7c28",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Artifact of the End",
+      "field": "text",
+      "from": "Legendary. Haste. Lifelink. Arrival: enemy commanders are Doomed 3x. Postmortem: shuffle this into your deck.",
+      "to": "Legendary. Haste. Lifelink. Arrival: Enemy commanders gain 3 Doom. Postmortem: Shuffle this into your deck.",
+      "from_sha": "f90b9671cf71",
+      "to_sha": "7ff0d90f02f1",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Asera",
+      "field": "text",
+      "from": "Legendary. [<sprite name=\"mana_1\">]: Draw a card, deal 2 damage to Asera.",
+      "to": "Legendary. [Pay <sprite name=\"mana_1\">]: Draw a card, deal 2 damage to Asera.",
+      "from_sha": "d274e0cbdb69",
+      "to_sha": "a81f66c32823",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Atlas, First to Walk",
+      "field": "text",
+      "from": "Legendary. Trample. Haste. Atlas gains <sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\"> when a tile is unclaimed. Arrival: Unclaim ALL tiles within Range 2.",
+      "to": "Legendary. Trample. Haste. Atlas gains +<sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\"> when a tile is unclaimed. Arrival: Unclaim ALL tiles within Range 2.",
+      "from_sha": "06d02fabd142",
+      "to_sha": "f4d0d38889fe",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Baby Raptor",
+      "field": "text",
+      "from": "Has +<sprite name=\"power_2\"> and +<sprite name=\"speed_2\"> if you control at least two other Beasts.",
+      "to": "Has +<sprite name=\"power_2\"> and +<sprite name=\"speed_2\"> if you control at least 2 other Beasts.",
+      "from_sha": "9fd46026f1b2",
+      "to_sha": "ec1f5b0faaf6",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Badland Mercenary",
+      "field": "text",
+      "from": "[Cooldown 2, Range 1]: Deal 1 damage to an ally minion and give it <sprite name=\"power_2\">.",
+      "to": "[Cooldown 2, Range 1]: Deal 1 damage to target ally minion and give it +<sprite name=\"power_2\">.",
+      "from_sha": "f112ad1189c9",
+      "to_sha": "45f111117a0f",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Battlefield Savior",
+      "field": "text",
+      "from": "Sentinel. [Arrival, Range 3]: Heal a character for 5.",
+      "to": "Sentinel. [Arrival, Range 3]: Target character heals <sprite name=\"health_5\">.",
+      "from_sha": "fe653789ecd4",
+      "to_sha": "910749967255",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Battlefield Webspinner",
+      "field": "text",
+      "from": "Deploy. [Arrival, Pay <sprite name=\"mana_1\">]: Stun an adjacent minion.",
+      "to": "Deploy. [Arrival, Pay <sprite name=\"mana_1\">]: Stun target adjacent minion.",
+      "from_sha": "a08756146a50",
+      "to_sha": "cb10ead35d68",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Beast Trainer",
+      "field": "text",
+      "from": "[Arrival, Range 1]: Summon two Beasts from your deck that cost 2 or less. They have Deploy.",
+      "to": "[Arrival, Range 1]: Summon 2 Beasts from your deck that cost 2 or less. They have Deploy.",
+      "from_sha": "77a912928992",
+      "to_sha": "c047fc05b9ac",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Big Game Hunter",
+      "field": "text",
+      "from": "[Arrival, Range 3]: Destroy an enemy minion with Power <sprite name=\"power_5\"> or more.",
+      "to": "[Arrival, Range 3]: Destroy target enemy minion with Power <sprite name=\"power_5\"> or more.",
+      "from_sha": "4d21358af8de",
+      "to_sha": "a14553ba050e",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Black Dragon",
+      "field": "text",
+      "from": "Flying. Fatal. [Warmup 3, Range 2]: Destroy a Minion.",
+      "to": "Flying. Fatal. [Warmup 3, Range 2]: Destroy target minion.",
+      "from_sha": "dd316d47ce16",
+      "to_sha": "ff2f2a4d1238",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Blessed Force",
+      "field": "text",
+      "from": "Destroy all minions with Power <sprite name=\"power_3\"> or less within Range 3.",
+      "to": "Destroy ALL minions with Power <sprite name=\"power_3\"> or less within Range 3.",
+      "from_sha": "2ae2697ad3db",
+      "to_sha": "cb8ac2d2531d",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Blinkshot",
+      "field": "text",
+      "from": "[Cooldown 2, Range 2]: Deal 4 damage. [Cooldown 2, Range 2]: Teleport.",
+      "to": "[Cooldown 2, Range 2]: Deal 4 damage to target character. [Cooldown 2, Range 2]: Teleport.",
+      "from_sha": "954e6e1371c0",
+      "to_sha": "3ea7222fa6b8",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Bloodrush",
+      "field": "text",
+      "from": "Your characters gain 2 Movement. Your commander loses 2 life. Draw a card.",
+      "to": "Your characters gain +2 Movement. Your commander takes 2 damage. Draw a card.",
+      "from_sha": "d099a01ffe8d",
+      "to_sha": "a446cba18fcf",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Blue Dragon",
+      "field": "text",
+      "from": "Flying. Spellcaster. [Warmup 3, Range 2]: Deal 2 damage to all characters within 1 Radius and Stun any minions.",
+      "to": "Flying. Spellcaster. [Warmup 3, Range 2]: Deal 2 damage to ALL characters within 1 Radius and Stun any minions.",
+      "from_sha": "9e19a0098d3a",
+      "to_sha": "b2cd16136672",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Brash Outfitter",
+      "field": "text",
+      "from": "Minions in your hand cost <sprite name=\"mana_1\"> less. When you play a Minion whose card costs 3 or more, deal 1 damage to it.",
+      "to": "Minions in your hand cost <sprite name=\"mana_1\"> less. When you play a minion whose card costs 3 or more, deal 1 damage to it.",
+      "from_sha": "ea8d9b6ebf97",
+      "to_sha": "1956870472c2",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Burgeon",
+      "field": "text",
+      "from": "Claim an uncontested tile adjacent to your territory. Add a copy of this to your hand with Ethereal.",
+      "to": "Claim target uncontested tile adjacent to your territory. Add a copy of this to your hand with Ethereal.",
+      "from_sha": "1176d0caf620",
+      "to_sha": "cd7c20f2d622",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Call of the Jungle",
+      "field": "text",
+      "from": "[Range 3]: An ally beast gains <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> and gains Trample.",
+      "to": "[Range 3]: Target ally Beast gains +<sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> and Trample.",
+      "from_sha": "021914b633d9",
+      "to_sha": "59ab04960f9b",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Champion of the Wilds",
+      "field": "text",
+      "from": "[Cooldown 1]: Claim the current tile, if it's adjacent to your territory. (Can claim enemy tiles)",
+      "to": "[Cooldown 1]: Claim the current tile if it's adjacent to your territory. (Can claim enemy tiles)",
+      "from_sha": "e6d4cc2a3dbb",
+      "to_sha": "c07729aacdea",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Chant of the Old Ones",
+      "field": "text",
+      "from": "[Range 3]: Add 3 Poison to a character. Your commander heals 3. Draw 3 minions from your deck, they cost 3 less.",
+      "to": "[Range 3]: Target character gains 3 Poison. Your commander heals <sprite name=\"health_3\">. Draw 3 minions from your deck, they cost <sprite name=\"mana_3\"> less.",
+      "from_sha": "66aca6ba847f",
+      "to_sha": "8fa44732f7bb",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Charger",
+      "field": "text",
+      "from": "[Warmup 1]: An adjacent ally gains +1 movement and regains their Attack.",
+      "to": "[Warmup 1]: Target adjacent ally gains +1 Movement and regains an Attack.",
+      "from_sha": "6593007db451",
+      "to_sha": "e9e617626a5e",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Citadel Lord",
+      "field": "text",
+      "from": "Arrival: Gain <sprite name=\"power_2\"> and <sprite name=\"health_2\"> for each ally minion within Range 4.",
+      "to": "Arrival: Gain +<sprite name=\"power_2\"> and +<sprite name=\"health_2\"> per ally minion within Range 4.",
+      "from_sha": "3bc9a069f80c",
+      "to_sha": "4969f17ac9d6",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Cloning Magic",
+      "field": "text",
+      "from": "[Range 2]: Shuffle three copies of target minion into your deck.",
+      "to": "[Range 2]: Shuffle 3 copies of target minion into your deck.",
+      "from_sha": "17149ac194c4",
+      "to_sha": "c8dbef2593dd",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Combust",
+      "field": "text",
+      "from": "An ally minion deals damage equal to its power to adjacent characters, then dies.",
+      "to": "Target ally minion deals damage equal to its Power to adjacent characters, then dies.",
+      "from_sha": "4b129128c22f",
+      "to_sha": "c8bf960291a6",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Cone of Cold",
+      "field": "text",
+      "from": "[Range 2]: Deal 2 damage to all characters in 1 Radius and Stun any minions.",
+      "to": "[Range 2]: Deal 2 damage to ALL characters within 1 Radius and Stun any minions.",
+      "from_sha": "6daa88f161b6",
+      "to_sha": "5bbddb217926",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Conscription",
+      "field": "text",
+      "from": "Add 3 Lucian Soldiers to your hand. They gain Ethereal.",
+      "to": "Add 3 Lucian Soldiers to your hand with Ethereal.",
+      "from_sha": "7209cbe640f2",
+      "to_sha": "0c889071a246",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Crippling Tax",
+      "field": "text",
+      "from": "Destroy a friendly village. Draw 3 cards. Gain <sprite name=\"dominion_3\"> Dominion.",
+      "to": "Destroy target Village you own. Draw 3 cards. Gain <sprite name=\"dominion_3\"> Dominion.",
+      "from_sha": "3c7eeada6fce",
+      "to_sha": "34b515860615",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Cursed Deathspear",
+      "field": "text",
+      "from": "Weapon Lifelink. When your commander loses life, give your Weapon +<sprite name=\"power_1\">.",
+      "to": "Weapon Lifelink. When your commander takes damage, give your Weapon +<sprite name=\"power_1\">.",
+      "from_sha": "f998ceeff3fa",
+      "to_sha": "ca09903cece6",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Daemonprince Grizlocke",
+      "field": "text",
+      "from": "Legendary. Flying. Trample. [Cooldown 1, Range 1]: Claim ANY unoccupied tile, gain <sprite name=\"dominion_1\"> Dominion, and summon a Daemon Knight.",
+      "to": "Legendary. Flying. Trample. [Cooldown 1, Range 1]: Claim target unoccupied tile, gain <sprite name=\"dominion_1\"> Dominion, and summon a Daemon Knight.",
+      "from_sha": "16964b79d781",
+      "to_sha": "ec37f62058f6",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Danrir, Omenhound",
+      "field": "text",
+      "from": "Legendary. When Danrir attacks and kills an enemy minion, he gains <sprite name=\"power_2\"> and <sprite name=\"health_2\">.",
+      "to": "Legendary. When Danrir attacks and kills an enemy minion, Danrir gains +<sprite name=\"power_2\"> and +<sprite name=\"health_2\">.",
+      "from_sha": "9c830130add4",
+      "to_sha": "716b609342cc",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Dark Offering",
+      "field": "text",
+      "from": "Your commander loses 3 life. Draw 2 cards. Gain <sprite name=\"mana_2\"> this turn.",
+      "to": "Your commander takes 3 damage. Draw 2 cards. Gain <sprite name=\"mana_2\"> this turn.",
+      "from_sha": "5078cac3e2d9",
+      "to_sha": "53006f0026c1",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Darkroot Shiv",
+      "field": "text",
+      "from": "Weapon When you attack, add 2 Poison to the defender.",
+      "to": "Weapon When you attack, the defender gains 2 Poison.",
+      "from_sha": "1dca143e631e",
+      "to_sha": "a394fe5bc398",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Darkwing",
+      "field": "text",
+      "from": "Flying. Commander-Deploy. Arrival: Deal 2 damage to all non-daemon characters.",
+      "to": "Commander-Deploy. Flying. Arrival: Deal 2 damage to ALL non-Daemon characters.",
+      "from_sha": "fef20be3950d",
+      "to_sha": "9065f48cf2d7",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Deathquill",
+      "field": "text",
+      "from": "[Cooldown 1, Range 2]: Deal 1 damage and add 1 Poison to an enemy.",
+      "to": "[Cooldown 1, Range 2]: Deal 1 damage to target enemy and it gains 1 Poison.",
+      "from_sha": "46b6ee7ac7b9",
+      "to_sha": "006f53ffc41e",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Devout Caretaker",
+      "field": "text",
+      "from": "Sentinel. Arrival: add 2 Lucian Soldiers to hand.",
+      "to": "Sentinel. Arrival: Add 2 Lucian Soldiers to your hand.",
+      "from_sha": "68ee6174fdad",
+      "to_sha": "ed8df3b72339",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Domination",
+      "field": "text",
+      "from": "Gain control of an enemy minion.",
+      "to": "Gain control of target enemy minion.",
+      "from_sha": "9e11d1e532d8",
+      "to_sha": "e707b805eebf",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Draconic Mage",
+      "field": "text",
+      "from": "Flying. Spellcaster. Spell-Damage +2. Arrival: Draw a spell from your deck and add two extra copies of it to your hand.",
+      "to": "Flying. Spellcaster. Spell-Damage +2. Arrival: Draw a spell from your deck and add 2 extra copies of it to your hand.",
+      "from_sha": "358ca5d500d3",
+      "to_sha": "4fc7bb63a4b2",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Dragon's Breath",
+      "field": "text",
+      "from": "[Range 4]: Deal 5 damage to target minion. Play this only if you control a Dragon or have a Dragon card in your hand.",
+      "to": "[Range 4]: Deal 5 damage to target minion. You can't play Dragon's Breath unless you control a Dragon or have a Dragon card in your hand.",
+      "from_sha": "b16deb6d5052",
+      "to_sha": "77b0b22bcfc9",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Dragonkin Evoker",
+      "field": "text",
+      "from": "Realmbound. Spell-Damage +1. When ANY spell is played, deal 1 damage to the enemy commander.",
+      "to": "Realmbound. Spell-Damage +1. When ANY spell is played, deal 1 damage to enemy commanders.",
+      "from_sha": "5d4646e2fa58",
+      "to_sha": "5f3f88ba0032",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Drain Energy",
+      "field": "text",
+      "from": "An enemy minion loses <sprite name=\"power_3\"> and <sprite name=\"health_3\"> until end of turn. Your commander heals 3 life.",
+      "to": "Target enemy minion loses <sprite name=\"power_3\"> and <sprite name=\"health_3\"> until end of the turn. Your commander heals <sprite name=\"health_3\">.",
+      "from_sha": "1c5bf3818a65",
+      "to_sha": "760b9786eace",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Drakemire Shaman",
+      "field": "text",
+      "from": "Spellcaster. Arrival: Draw a Dragon. Whenever an ally Dragon in Range 2 attacks, add a Poison Sting to your hand.",
+      "to": "Spellcaster. Arrival: Draw a Dragon. When an ally Dragon within Range 2 attacks, add a Poison Sting to your hand.",
+      "from_sha": "d3db52bf04a4",
+      "to_sha": "d7fdde836eea",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Dread Proclamation",
+      "field": "text",
+      "from": "Until the end of the turn, all enemy minions lose <sprite name=\"power_1\"> and <sprite name=\"health_1\">. When an enemy dies this turn, gain <sprite name=\"dominion_1\"> Dominion.",
+      "to": "Until end of the turn, all enemy minions lose <sprite name=\"power_1\"> and <sprite name=\"health_1\">. When an enemy dies this turn, gain <sprite name=\"dominion_1\"> Dominion.",
+      "from_sha": "529154bd6637",
+      "to_sha": "d1176aa46e5b",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Drowsy Lizard",
+      "field": "text",
+      "from": "[Arrival, Range 4]: Silence a minion.",
+      "to": "[Arrival, Range 4]: Silence target minion.",
+      "from_sha": "043d4f37068f",
+      "to_sha": "5eaf4fcb46f6",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Durka Wurm",
+      "field": "text",
+      "from": "Postmortem: Summon a <sprite name=\"power_1\"><sprite name=\"speed_3\"><sprite name=\"health_1\"> Spawn token in every unoccupied tile within Range 1.",
+      "to": "Postmortem: Summon a <sprite name=\"power_1\"><sprite name=\"speed_3\"><sprite name=\"health_1\"> Durka Spawn in every unoccupied tile within Range 1.",
+      "from_sha": "30a30a6c7ad8",
+      "to_sha": "2768fc66a2e2",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Dwarven Battlepriest",
+      "field": "text",
+      "from": "Spellcaster. [Arrival, Range 4]: An ally minion gains <sprite name=\"health_3\">.",
+      "to": "Spellcaster. [Arrival, Range 4]: Target ally minion gains +<sprite name=\"health_3\">.",
+      "from_sha": "748be39ffcfb",
+      "to_sha": "2b0d60940310",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Dwarven Stout",
+      "field": "text",
+      "from": "[Range 2]: A Dwarf minion gains <sprite name=\"power_4\"> and <sprite name=\"health_4\"> and \"At the end of your turns, deal 1 damage to all adjacent characters.\"",
+      "to": "[Range 2]: Target Dwarf minion gains +<sprite name=\"power_4\"> and +<sprite name=\"health_4\"> and \"At the end of each of your turns, deal 1 damage to all adjacent characters.\"",
+      "from_sha": "ac370b159fda",
+      "to_sha": "6b0842968da6",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Dyana, Prime Huntress",
+      "field": "text",
+      "from": "Legendary. You can't play Dyana unless you control 3 Beasts. [Range 5 Attack]: Deal 7 damage to an enemy.",
+      "to": "Legendary. You can't play Dyana unless you control 3 Beasts. [Range 5 Attack]: Deal 7 damage to target enemy.",
+      "from_sha": "cf2628684af5",
+      "to_sha": "3643149a56ca",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Eagle King",
+      "field": "text",
+      "from": "Flying. When your characters attack, your Commander heals 1. [Arrival]: Summon a Giant Eagle.",
+      "to": "Flying. When your characters attack, your commander heals <sprite name=\"health_1\">. [Arrival]: Summon a Giant Eagle.",
+      "from_sha": "f68899165192",
+      "to_sha": "abdd24383b4e",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Elf Ranger",
+      "field": "text",
+      "from": "[Range 2 Attack]: Deal 2 damage to an enemy.",
+      "to": "[Range 2 Attack]: Deal 2 damage to target enemy.",
+      "from_sha": "0829a29fa580",
+      "to_sha": "df1158aefcd9",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Elite Mercenary",
+      "field": "text",
+      "from": "Commander-Deploy. Sentinel. Lifelink. Shield. Costs <sprite name=\"mana_3\"> less if your opponent controls 4 or more minions.",
+      "to": "Commander-Deploy. Sentinel. Lifelink. Shield. Costs <sprite name=\"mana_3\"> less if the enemy controls 4 or more minions.",
+      "from_sha": "133e28330741",
+      "to_sha": "f55f38399923",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Elixirist",
+      "field": "text",
+      "from": "Arrival: add a Growth Potion to your hand.",
+      "to": "Arrival: Add a Growth Potion to your hand.",
+      "from_sha": "be679c765e53",
+      "to_sha": "49951c930a86",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Elven Spellblade",
+      "field": "text",
+      "from": "Arrival: Deal 3 damage to the enemy commander.",
+      "to": "Arrival: Deal 3 damage to enemy commanders.",
+      "from_sha": "93284d6c58c5",
+      "to_sha": "97a0bc33d21d",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Ember",
+      "field": "text",
+      "from": "When you play a Fire card, gain <sprite name=\"mana_2\"> this turn and gain <sprite name=\"power_2\"> and deal 1 damage to Ember.",
+      "to": "When you play a Fire card, gain <sprite name=\"mana_2\"> this turn, gain +<sprite name=\"power_2\">, and deal 1 damage to Ember.",
+      "from_sha": "d371f94fdcaa",
+      "to_sha": "7ed84b059f5f",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Emerald Asp",
+      "field": "text",
+      "from": "When Emerald Asp attacks, apply Poison to the enemy equal to Emerald Asp's power.",
+      "to": "When Emerald Asp attacks, the enemy gains Poison equal to Emerald Asp's Power.",
+      "from_sha": "b262105d7620",
+      "to_sha": "11860276d331",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Energy Potion",
+      "field": "text",
+      "from": "[Range 2]: A minion gains Haste, regains their movement, and regains an Attack.",
+      "to": "[Range 2]: Target minion gains Haste, regains its Movement, and regains an Attack.",
+      "from_sha": "ee4ea3f28a5b",
+      "to_sha": "0d815eabe6ec",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Enigmatic Golem",
+      "field": "text",
+      "from": "Costs <sprite name=\"mana_X\"> less to play where X is your commander's missing Health.",
+      "to": "Costs <sprite name=\"mana_X\"> less where X is your commander's missing Health.",
+      "from_sha": "cd72ac2a7d1b",
+      "to_sha": "95fe84ee1af0",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Ereloth",
+      "field": "text",
+      "from": "Lifelink. Arrival: all minion cards in your opponent’s hand lose <sprite name=\"power_1\"> and <sprite name=\"health_1\">.",
+      "to": "Lifelink. Arrival: All minion cards in the enemy's hand lose <sprite name=\"power_1\"> and <sprite name=\"health_1\">.",
+      "from_sha": "9f9a329d2b8f",
+      "to_sha": "ee6e3b2b6f05",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Expand the Wilds",
+      "field": "text",
+      "from": "Claim an uncontested tile adjacent to your territory.",
+      "to": "Claim target uncontested tile adjacent to your territory.",
+      "from_sha": "81c8c15f9793",
+      "to_sha": "ba8389c8ceda",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Explosive Potion",
+      "field": "text",
+      "from": "[Range 2]: Deal 2 damage to all characters in 1 Radius.",
+      "to": "[Range 2]: Deal 2 damage to ALL characters within 1 Radius.",
+      "from_sha": "fd713d9af657",
+      "to_sha": "6f1a9d13f52c",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Expropriation",
+      "field": "text",
+      "from": "[Range 2] Return ANY minion to YOUR hand.",
+      "to": "[Range 2]: Return ANY target minion to YOUR hand.",
+      "from_sha": "0a3b03f5c905",
+      "to_sha": "906de1688a6b",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Fade to Mists",
+      "field": "text",
+      "from": "[Range 2]: Return a minion you control to your hand. It costs <sprite name=\"mana_3\"> less.",
+      "to": "[Range 2]: Return target minion you control to your hand. It costs <sprite name=\"mana_3\"> less.",
+      "from_sha": "5f6f6906c6d5",
+      "to_sha": "d77e99938f79",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Feeblemind",
+      "field": "text",
+      "from": "[Range 2]: Stun an enemy commander. Their Intellect becomes 1.",
+      "to": "[Range 2]: Stun target enemy commander. Their Intellect becomes 1.",
+      "from_sha": "a3f8e5c79815",
+      "to_sha": "96da6f2f158e",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Feral Vampire",
+      "field": "text",
+      "from": "Lifelink.  (When battling, your commander heals equal to this character's power.)",
+      "to": "Lifelink.  (When battling, your commander heals equal to this character's Power.)",
+      "from_sha": "05a41de4d810",
+      "to_sha": "b7a8c2f8d892",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Finishing Strike",
+      "field": "text",
+      "from": "[Range 4]: Destroy a damaged minion.",
+      "to": "[Range 4]: Destroy target damaged minion.",
+      "from_sha": "69d5bb113288",
+      "to_sha": "3607a63c17c7",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Fireball",
+      "field": "text",
+      "from": "[Range 4]: Deal 3 damage to all characters in 1 Radius.",
+      "to": "[Range 4]: Deal 3 damage to ALL characters within 1 Radius.",
+      "from_sha": "bbd229646f3e",
+      "to_sha": "f0750cb25f1b",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Firebolt",
+      "field": "text",
+      "from": "[Range 4]: Deal 3 Damage to a character. If this kills them, gain <sprite name=\"dominion_1\"> Dominion.",
+      "to": "[Range 4]: Deal 3 damage to target character. If this kills it, gain <sprite name=\"dominion_1\"> Dominion.",
+      "from_sha": "20149dd02ac0",
+      "to_sha": "d7a3b20239d3",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "First Experiment",
+      "field": "text",
+      "from": "Spellcaster. Whenever you play a Potion on an ally Experiment, gain <sprite name=\"power_2\">.",
+      "to": "Spellcaster. When you play a Potion on an ally Experiment, gain +<sprite name=\"power_2\">.",
+      "from_sha": "e11701b57c03",
+      "to_sha": "c647dc145319",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Flame Acolyte",
+      "field": "text",
+      "from": "Spellcaster. Arrival: add 2 copies of Flamelash to your hand.",
+      "to": "Spellcaster. Arrival: Add 2 copies of Flamelash to your hand.",
+      "from_sha": "29019499f253",
+      "to_sha": "ee746a121421",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Flamelash",
+      "field": "text",
+      "from": "[Range 2]: Deal 3 damage to a character.",
+      "to": "[Range 2]: Deal 3 damage to target character.",
+      "from_sha": "4c75a386d0de",
+      "to_sha": "fa6d47ca3382",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Found City",
+      "field": "text",
+      "from": "Convert a tile you own to a village. Add a copy of Settle Village to your hand.",
+      "to": "Convert target tile you own to a Village. Add a copy of Settle Village to your hand.",
+      "from_sha": "1e1c87aca7ab",
+      "to_sha": "8091484f887b",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Fourth Experiment",
+      "field": "text",
+      "from": "Whenever you play a Potion on an ally Experiment, gain <sprite name=\"power_2\"><sprite name=\"speed_1\"><sprite name=\"health_2\">.",
+      "to": "When you play a Potion on an ally Experiment, gain +<sprite name=\"power_2\"><sprite name=\"speed_1\"><sprite name=\"health_2\">.",
+      "from_sha": "c51e947df41d",
+      "to_sha": "2c2bbc94132f",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Frostblade",
+      "field": "text",
+      "from": "[Range 1]: Deal 2 damage. If targeting a minion, Stun it.",
+      "to": "[Range 1]: Deal 2 damage to target character. If it's a minion, Stun it.",
+      "from_sha": "0b150ab61ebb",
+      "to_sha": "1091060586c5",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Fungal Explosion",
+      "field": "text",
+      "from": "[Range 3]: Add 4 Poison to all characters in 1 Radius.",
+      "to": "[Range 3]: ALL characters within 1 Radius gain 4 Poison.",
+      "from_sha": "bfc9cc543013",
+      "to_sha": "3f59ac58831b",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Giant River Snapper",
+      "field": "text",
+      "from": "Sentinel. Arrival: Your commander heals 8 health.",
+      "to": "Sentinel. Arrival: Your commander heals <sprite name=\"health_8\">.",
+      "from_sha": "abc32d658226",
+      "to_sha": "8e9cc27610c7",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Goblin Duo",
+      "field": "text",
+      "from": "Goblin-Deploy. Arrival: add a goblin scamp to hand.",
+      "to": "Goblin-Deploy. Arrival: Add a Goblin Scamp to your hand.",
+      "from_sha": "000134db4615",
+      "to_sha": "9304290d00a3",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Goblin Firebow",
+      "field": "text",
+      "from": "Goblin-Deploy. [Range 2 Attack]: Deal 2 damage. Deal 1 damage to Goblin Firebow",
+      "to": "Goblin-Deploy. [Range 2 Attack]: Deal 2 damage to target enemy. Deal 1 damage to Goblin Firebow.",
+      "from_sha": "139f99a52674",
+      "to_sha": "57feff5662af",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Goblin Infantry",
+      "field": "text",
+      "from": "Gain <sprite name=\"power_1\"> whenever you play a Goblin card.",
+      "to": "When you play a Goblin card, gain +<sprite name=\"power_1\">.",
+      "from_sha": "2a5274a02252",
+      "to_sha": "affd493fe78e",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Goblin Infiltrator",
+      "field": "text",
+      "from": "Trample. Deploy.",
+      "to": "Deploy. Trample.",
+      "from_sha": "1a36de5cda27",
+      "to_sha": "c650c76edadf",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Goblin King",
+      "field": "text",
+      "from": "Allied Goblin minions within Range 3 have +<sprite name=\"power_2\">.",
+      "to": "Goblin minions you control within Range 3 have +<sprite name=\"power_2\">.",
+      "from_sha": "0c24c58ba11b",
+      "to_sha": "b13849279332",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Goblin Lorespeaker",
+      "field": "text",
+      "from": "Spellcaster. Spell-Damage +1. Whenever a Goblin you control within Range 3 dies, add a Thunderjolt to your hand.",
+      "to": "Spellcaster. Spell-Damage +1. When a Goblin you control within Range 3 dies, add a Thunder Jolt to your hand.",
+      "from_sha": "62a9d5c9caf1",
+      "to_sha": "169ab6f9c8a9",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Goblin Musclejuice",
+      "field": "text",
+      "from": "[Range 2]: A Goblin minion gains <sprite name=\"power_3\"><sprite name=\"speed_2\"><sprite name=\"health_3\">.",
+      "to": "[Range 2]: Target Goblin minion gains +<sprite name=\"power_3\"><sprite name=\"speed_2\"><sprite name=\"health_3\">.",
+      "from_sha": "a3c18589ffd1",
+      "to_sha": "e953b177fbf5",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Goblin Scamp",
+      "field": "text",
+      "from": "Goblin-Deploy.  (Can be played outside of your territory, if next to an ally goblin.)",
+      "to": "Goblin-Deploy.  (Can be played outside of your territory, if next to an ally Goblin.)",
+      "from_sha": "f92ec7cd2cca",
+      "to_sha": "e6d32c6950e5",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Goblin Shaman",
+      "field": "text",
+      "from": "Spellcaster. [Arrival, Range 4]: Deal 1 Damage.",
+      "to": "Spellcaster. [Arrival, Range 4]: Deal 1 damage to target character.",
+      "from_sha": "cad073ccc957",
+      "to_sha": "cb8523150de1",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Gold Dragon",
+      "field": "text",
+      "from": "Flying. Lifelink. [Warmup 3]: Fully heal all allies.",
+      "to": "Flying. Lifelink. [Warmup 3]: All allies fully heal.",
+      "from_sha": "be6f98d3e1e6",
+      "to_sha": "ce88b4441409",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Grand Illusion",
+      "field": "text",
+      "from": "[Range 2]: Swap an ally minion with a non-Titan minion from your deck.",
+      "to": "[Range 2]: Swap target ally minion with a non-Titan minion from your deck.",
+      "from_sha": "16f0ce707768",
+      "to_sha": "86464128eedc",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Gravehand",
+      "field": "text",
+      "from": "Whenever another minion you control within Range 2 dies, draw a card.",
+      "to": "When another minion you control within Range 2 dies, draw a card.",
+      "from_sha": "b986fe3ee04a",
+      "to_sha": "7f3f252c6d52",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Greater Healing Potion",
+      "field": "text",
+      "from": "[Range 2]: Heal a character for 8.",
+      "to": "[Range 2]: Target character heals <sprite name=\"health_8\">.",
+      "from_sha": "ded5c1adac72",
+      "to_sha": "fc9126a7d852",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Green Dragon",
+      "field": "text",
+      "from": "Flying. Trample. [Warmup 3, Range 2]: Add 3 Poison to all characters within 1 Radius.",
+      "to": "Flying. Trample. [Warmup 3, Range 2]: ALL characters within 1 Radius gain 3 Poison.",
+      "from_sha": "01eed5aa72d1",
+      "to_sha": "c3636f6ed792",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Grey Wastes Shade",
+      "field": "text",
+      "from": "Lifelink. Postmortem: the enemy commander heals 6.",
+      "to": "Lifelink. Postmortem: Enemy commanders heal <sprite name=\"health_6\">.",
+      "from_sha": "4cec7ad20620",
+      "to_sha": "d9912e7ac819",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Growth Potion",
+      "field": "text",
+      "from": "[Range 2]: A minion gains <sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\">.",
+      "to": "[Range 2]: Target minion gains +<sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\">.",
+      "from_sha": "eee89f490235",
+      "to_sha": "1d15125947c2",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Gruth, Ogre Champion",
+      "field": "text",
+      "from": "Legendary. Haste. Deploy.",
+      "to": "Legendary. Deploy. Haste.",
+      "from_sha": "298516ebe4d0",
+      "to_sha": "6cef24747767",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Guardian Ent",
+      "field": "text",
+      "from": "Regenerate 3. Trample. Costs <sprite name=\"mana_3\"> less for each Plant you control.",
+      "to": "Regenerate 3. Trample. Costs <sprite name=\"mana_3\"> less per Plant you control.",
+      "from_sha": "f2a58e6ee1cb",
+      "to_sha": "79a3c0ba5171",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Guerilla Gorilla",
+      "field": "text",
+      "from": "Regenerate 3.  (Heals for 3 at the end of your turn.)",
+      "to": "Regenerate 3.  (Heals <sprite name=\"health_3\"> at the end of your turn.)",
+      "from_sha": "922a801ff367",
+      "to_sha": "7828407d276b",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Guide to Heavens",
+      "field": "text",
+      "from": "[Range 4]: Destroy a minion. Its commander gains life equal to its Health.",
+      "to": "[Range 4]: Destroy target minion. Its commander heals equal to its Health.",
+      "from_sha": "3ce950d213c8",
+      "to_sha": "365e3d70cb75",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Holy Fervor",
+      "field": "text",
+      "from": "Ally Human minions within Range 3 gain <sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\">.",
+      "to": "Ally Human minions within Range 3 gain +<sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\">.",
+      "from_sha": "9132eee489c6",
+      "to_sha": "4b262b05316e",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Homesong Minstrel",
+      "field": "text",
+      "from": "[Arrival]: Return a friendly minion to your hand.",
+      "to": "[Arrival]: Return target ally minion to your hand.",
+      "from_sha": "bff0cd951b42",
+      "to_sha": "33ce5b3e6e3f",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Horde Leader",
+      "field": "text",
+      "from": "Ally Undead within Range 3 have +<sprite name=\"power_1\"> and Postmortem: the enemy commander gains 2 Poison.",
+      "to": "Ally Undead within Range 3 have +<sprite name=\"power_1\"> and Postmortem: Enemy commanders gain 2 Poison.",
+      "from_sha": "0483e176c494",
+      "to_sha": "f80ac7c6de5e",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Hover Tank",
+      "field": "text",
+      "from": "Flying. Shield. [Warmup 2, Range 4]: Deal 6 damage to an enemy.",
+      "to": "Flying. Shield. [Warmup 2, Range 4]: Deal 6 damage to target enemy.",
+      "from_sha": "355c43923869",
+      "to_sha": "369974d63ec6",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Imp",
+      "field": "text",
+      "from": "Flying. Commander-Deploy. Arrival: Your commander takes 3 damage.",
+      "to": "Commander-Deploy. Flying. Arrival: Your commander takes 3 damage.",
+      "from_sha": "7be75dccf64a",
+      "to_sha": "905e52a7c432",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Infected Dreg",
+      "field": "text",
+      "from": "Postmortem: the enemy commander gains 2 Poison.",
+      "to": "Postmortem: Enemy commanders gain 2 Poison.",
+      "from_sha": "2d94c276e85e",
+      "to_sha": "64b781f6b303",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Khazgar, Flame Emperor",
+      "field": "text",
+      "from": "Legendary. Tiles within Range 1 become Lava. Heals from Fire damage.  Costs <sprite name=\"mana_1\"> less per Fire card you play.",
+      "to": "Legendary. Tiles within Range 1 become Lava. Heals from Fire damage. Costs <sprite name=\"mana_1\"> less per Fire card you play.",
+      "from_sha": "003cf41a105c",
+      "to_sha": "d6004405fe8d",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Killing Hex",
+      "field": "text",
+      "from": "Destroy a minion.",
+      "to": "Destroy target minion.",
+      "from_sha": "dda9eeb6ea0f",
+      "to_sha": "b6cf747bb3ab",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Knife Sharpener",
+      "field": "text",
+      "from": "When you play a Minion or Weapon within Range 2, give it <sprite name=\"power_1\">.",
+      "to": "When you play a minion or Weapon within Range 2, give it +<sprite name=\"power_1\">.",
+      "from_sha": "c19156aab79e",
+      "to_sha": "23e83e102b03",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Lay Claim",
+      "field": "text",
+      "from": "[Range 0]: Claim a territory an opponent controls. Gain <sprite name=\"dominion_1\"> Dominion.",
+      "to": "[Range 0]: Claim target tile an enemy owns. Gain <sprite name=\"dominion_1\"> Dominion.",
+      "from_sha": "d67c21c95a2f",
+      "to_sha": "9193a9d8d7ce",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Lifeweaver",
+      "field": "text",
+      "from": "Spellcaster. When ANY spell is played, your commander heals 2 life.",
+      "to": "Spellcaster. When ANY spell is played, your commander heals <sprite name=\"health_2\">.",
+      "from_sha": "d87001aa5f9c",
+      "to_sha": "5fa19384cccf",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Lightbound Martyr",
+      "field": "text",
+      "from": "Postmortem: give the leftmost Minion in your hand <sprite name=\"power_2\"><sprite name=\"speed_1\"><sprite name=\"health_2\">.",
+      "to": "Postmortem: Give the leftmost minion card in your hand +<sprite name=\"power_2\"><sprite name=\"speed_1\"><sprite name=\"health_2\">.",
+      "from_sha": "0654649a506e",
+      "to_sha": "0e2284d11873",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Lightning Bolt",
+      "field": "text",
+      "from": "[Range 4]: Deal 6 damage.",
+      "to": "[Range 4]: Deal 6 damage to target character.",
+      "from_sha": "ce9a0aa9f5c1",
+      "to_sha": "61244356cc30",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Live off the Land",
+      "field": "text",
+      "from": "Gain <sprite name=\"dominion_1\"> Dominion. Heal your commander for 4.",
+      "to": "Gain <sprite name=\"dominion_1\"> Dominion. Your commander heals <sprite name=\"health_4\">.",
+      "from_sha": "53a0cde1ad3a",
+      "to_sha": "06a66dfe6a49",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Longleg Dorathru",
+      "field": "text",
+      "from": "Legendary. Commander-Deploy. Arrival: Gain <sprite name=\"power_2\"> and <sprite name=\"health_2\"> for each card you've played this turn.",
+      "to": "Legendary. Commander-Deploy. Arrival: Gain +<sprite name=\"power_2\"> and +<sprite name=\"health_2\"> per card you've played this turn.",
+      "from_sha": "f41d74f033f2",
+      "to_sha": "a3ba76358840",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Lucian Battalion",
+      "field": "text",
+      "from": "Arrival: add a Lucian Soldier to hand.",
+      "to": "Arrival: Add a Lucian Soldier to your hand.",
+      "from_sha": "84bff15844a3",
+      "to_sha": "fad68d87eb1e",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Lucian Squire",
+      "field": "text",
+      "from": "Arrival: give the leftmost minion card in your hand <sprite name=\"power_1\"> and <sprite name=\"health_1\">.",
+      "to": "Arrival: Give the leftmost minion card in your hand +<sprite name=\"power_1\"> and +<sprite name=\"health_1\">.",
+      "from_sha": "69fdf5e31e54",
+      "to_sha": "900500009f59",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Mage Slayer",
+      "field": "text",
+      "from": "Veiled.  (Cannot be the direct target of enemy Spells or Abilities.)",
+      "to": "Veiled.  (Cannot be the direct target of enemy spells or abilities.)",
+      "from_sha": "8b92a0e9367b",
+      "to_sha": "d75947834921",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Master Craftsman",
+      "field": "text",
+      "from": "[<sprite name=\"mana_1\">, Warmup 2]: Convert the occupied tile to a village.",
+      "to": "[Pay <sprite name=\"mana_1\">, Warmup 2]: Convert the current tile to a Village.",
+      "from_sha": "16b2ad78e687",
+      "to_sha": "09ed16f3aa07",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Matrix, Mad Weaver",
+      "field": "text",
+      "from": "Legendary. Commander-Deploy. Arrival: Unclaim the current tile. If it's a village, destroy it and gain a War Chest.",
+      "to": "Legendary. Commander-Deploy. Arrival: Unclaim the current tile. If it's a Village, destroy it and gain a War Chest.",
+      "from_sha": "069b93f4937f",
+      "to_sha": "89e0e383adc5",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Memory Theft",
+      "field": "text",
+      "from": "[Range 2]: Deal 1 damage to a character. If it dies, draw a card from their deck.",
+      "to": "[Range 2]: Deal 1 damage to target character. If it dies, draw a card from its controller's deck.",
+      "from_sha": "5ff6b3950c53",
+      "to_sha": "104b436e0201",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Mindstone Servant",
+      "field": "text",
+      "from": "Whenever Mindstone Servant takes damage, draw a card and gain <sprite name=\"intellect_1\"> Intellect. Spellcaster.",
+      "to": "Spellcaster. When Mindstone Servant takes damage, draw a card and gain <sprite name=\"intellect_1\"> Intellect.",
+      "from_sha": "779605d982c9",
+      "to_sha": "fb71aaee0d2d",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Minor Priest",
+      "field": "text",
+      "from": "Spellcaster. [Range 2, Cooldown 1]: A character you control heals 1.",
+      "to": "Spellcaster. [Cooldown 1, Range 2]: Target character you control heals <sprite name=\"health_1\">.",
+      "from_sha": "a627b64c884b",
+      "to_sha": "0a4a8b2e7817",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Nevisha Ascendant",
+      "field": "text",
+      "from": "Legendary. Flying. Arrival AND at the beginning of your turn: add a Lucian Soldier to your hand and ally minions in Range 3 gain <sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\">.",
+      "to": "Legendary. Flying. Arrival AND at the start of your turn: Add a Lucian Soldier to your hand and ally minions within Range 3 gain +<sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\">.",
+      "from_sha": "bfa2f1797a02",
+      "to_sha": "3cc8527b50b9",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Nexus Operative",
+      "field": "text",
+      "from": "Spellcaster. Whenever you play a spell, your other Spellcasters gain <sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\"> until end of turn.",
+      "to": "Spellcaster. When you play a spell, your other Spellcasters gain +<sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\"> until end of the turn.",
+      "from_sha": "9013ea545907",
+      "to_sha": "e369ba8dcd65",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Nexus Recruit",
+      "field": "text",
+      "from": "Spellcaster. Whenever you draw a card, gain <sprite name=\"power_1\"><sprite name=\"health_1\"> until end of turn.",
+      "to": "Spellcaster. When you draw a card, gain +<sprite name=\"power_1\"> and +<sprite name=\"health_1\"> until end of the turn.",
+      "from_sha": "0c34493a9310",
+      "to_sha": "727e7615da18",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Nobleman of the Order",
+      "field": "text",
+      "from": "Whenever a minion is healed within Range 3, draw a card.",
+      "to": "When a minion within Range 3 is healed, draw a card.",
+      "from_sha": "4e1f17d204a0",
+      "to_sha": "6756fa0218bd",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Oathbroken Apprentice",
+      "field": "text",
+      "from": "Commander-Deploy. Whenever your commander loses life on your turn, gain <sprite name=\"power_1\">.",
+      "to": "Commander-Deploy. When your commander takes damage on your turn, gain +<sprite name=\"power_1\">.",
+      "from_sha": "07ec82f355d3",
+      "to_sha": "c5cfaa0b210d",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Oathsworn Champion",
+      "field": "text",
+      "from": "Arrival: Heal all allies for 2.",
+      "to": "Arrival: All allies heal <sprite name=\"health_2\">.",
+      "from_sha": "aa9418124641",
+      "to_sha": "1f85eb8ce743",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Oldsteel Guard",
+      "field": "text",
+      "from": "Has +<sprite name=\"power_1\"> for each territory you control.",
+      "to": "Has +<sprite name=\"power_1\"> per tile you own.",
+      "from_sha": "c81ee9e2c9ee",
+      "to_sha": "8e0acf729408",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Outflank",
+      "field": "text",
+      "from": "[Range 3]: Target enemy minion takes damage equal to the number of humans you control.",
+      "to": "[Range 3]: Target enemy minion takes damage equal to the number of Humans you control.",
+      "from_sha": "526d42c4302f",
+      "to_sha": "981768702a8f",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Outland Berserker",
+      "field": "text",
+      "from": "Commander-Deploy. Whenever Outland Berserker takes damage, it gains <sprite name=\"power_2\">.",
+      "to": "Commander-Deploy. When Outland Berserker takes damage, Outland Berserker gains +<sprite name=\"power_2\">.",
+      "from_sha": "456259fd95fc",
+      "to_sha": "daa7a3d31a54",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Outland Village",
+      "field": "text",
+      "from": "[Range 3]: Claim an unclaimed, uncontested tile. Convert the tile to a village.",
+      "to": "[Range 3]: Claim target unclaimed, uncontested tile. Convert it to a Village.",
+      "from_sha": "05e7233067df",
+      "to_sha": "da3dcafee9aa",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Pack Wolf",
+      "field": "text",
+      "from": "Has +<sprite name=\"power_2\"> for each adjacent ally Beast.",
+      "to": "Has +<sprite name=\"power_2\"> per adjacent ally Beast.",
+      "from_sha": "1b874f2b80b6",
+      "to_sha": "25a8a1553c98",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Paladin Initiate",
+      "field": "text",
+      "from": "Commander-Deploy. Sentinel. Whenever a character you own is healed, gain <sprite name=\"power_1\">.",
+      "to": "Commander-Deploy. Sentinel. When a character you control is healed, gain +<sprite name=\"power_1\">.",
+      "from_sha": "955d4b569265",
+      "to_sha": "d4e053d7bc15",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Paladin of Eos",
+      "field": "text",
+      "from": "[Range 2, Cooldown 1]: Heal a character for 2.",
+      "to": "[Cooldown 1, Range 2]: Target character heals <sprite name=\"health_2\">.",
+      "from_sha": "c6f9bb06dd94",
+      "to_sha": "a236eaf1b541",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Paladin Proselyte",
+      "field": "text",
+      "from": "Commander-Deploy. Sentinel. Whenever a character you own is healed, gain <sprite name=\"power_1\"> and <sprite name=\"health_1\">.",
+      "to": "Commander-Deploy. Sentinel. When a character you control is healed, gain +<sprite name=\"power_1\"> and +<sprite name=\"health_1\">.",
+      "from_sha": "f7dc31713fce",
+      "to_sha": "a6a1927a0cbf",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Peer",
+      "field": "text",
+      "from": "[Range 2]: Draw a card, then Reveal the leftmost card from a commander's hand.",
+      "to": "[Range 2]: Draw a card, then Reveal the leftmost card in target commander's hand.",
+      "from_sha": "f564fefbe204",
+      "to_sha": "471a0d9db528",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Pit Lord",
+      "field": "text",
+      "from": "Flying. Trample. Commander-Deploy. At the beginning of your turn: your commander loses 4 life.",
+      "to": "Commander-Deploy. Flying. Trample. At the start of your turn: Your commander takes 4 damage.",
+      "from_sha": "104ed0b2278d",
+      "to_sha": "4fc07fbbea5c",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Pixie Pikeman",
+      "field": "text",
+      "from": "Flying. Arrival: discard the leftmost card in your hand, then draw a card.",
+      "to": "Flying. Arrival: Discard the leftmost card in your hand, then draw a card.",
+      "from_sha": "2a3882805d93",
+      "to_sha": "ccb19e159322",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Poison Spray",
+      "field": "text",
+      "from": "[Range 3]: Add 4 Poison to a character.",
+      "to": "[Range 3]: Target character gains 4 Poison.",
+      "from_sha": "9c036e9a900b",
+      "to_sha": "e3ca230e422d",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Poison Sting",
+      "field": "text",
+      "from": "[Range 3]: Add 2 Poison to a character.",
+      "to": "[Range 3]: Target character gains 2 Poison.",
+      "from_sha": "c766d710b16b",
+      "to_sha": "b38aa97a7aa6",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Pond Hopper",
+      "field": "text",
+      "from": "[Range 4, Cooldown 1]: Pull a minion in a straight line to Pond Hopper.",
+      "to": "[Cooldown 1, Range 4]: Pull target minion in a straight line to Pond Hopper.",
+      "from_sha": "f2051e4a8c13",
+      "to_sha": "ef7d5c678f7d",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Potion of Healing",
+      "field": "text",
+      "from": "[Range 2]: Heal a character for 4.",
+      "to": "[Range 2]: Target character heals <sprite name=\"health_4\">.",
+      "from_sha": "f916b5ff77ce",
+      "to_sha": "a375eb0651d7",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Power Potion",
+      "field": "text",
+      "from": "[Range 2]: A minion gains <sprite name=\"power_3\"> and <sprite name=\"health_3\">.",
+      "to": "[Range 2]: Target minion gains +<sprite name=\"power_3\"> and +<sprite name=\"health_3\">.",
+      "from_sha": "46a442bffffd",
+      "to_sha": "6a6c36aa12c3",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Purifier Euron",
+      "field": "text",
+      "from": "Legendary. [Once Per Game]: Destroy the current tile if it's a village to destroy ALL other minions.",
+      "to": "Legendary. [Once Per Game]: Destroy the current tile if it's a Village to destroy ALL other minions.",
+      "from_sha": "1da8b9fa5c0c",
+      "to_sha": "287118bc3cf0",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Pyromancer Apprentice",
+      "field": "text",
+      "from": "Realmbound. Spellcaster. Whenever you play a Spell with cost 3 or greater, add a Flamelash to your hand.",
+      "to": "Realmbound. Spellcaster. When you play a spell with cost 3 or greater, add a Flamelash to your hand.",
+      "from_sha": "c7643c1312e4",
+      "to_sha": "d3a992b5d932",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Pyromaniac",
+      "field": "text",
+      "from": "Spellcaster. Arrival: Draw a fire card from your deck.",
+      "to": "Spellcaster. Arrival: Draw a Fire card from your deck.",
+      "from_sha": "8ad1778c4394",
+      "to_sha": "bd0d21c65f35",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Quell the Weak",
+      "field": "text",
+      "from": "[Range 4]: Destroy a minion with Power <sprite name=\"power_3\"> or less.",
+      "to": "[Range 4]: Destroy target minion with Power <sprite name=\"power_3\"> or less.",
+      "from_sha": "6b317b042d4f",
+      "to_sha": "fc614cd7110c",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Red Dragon",
+      "field": "text",
+      "from": "Flying. Haste. [Warmup 3, Range 2]: Deal 3 damage to all characters within 1 Radius.",
+      "to": "Flying. Haste. [Warmup 3, Range 2]: Deal 3 damage to ALL characters within 1 Radius.",
+      "from_sha": "1a532768cfa3",
+      "to_sha": "5038d98b6f00",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Regeneration Potion",
+      "field": "text",
+      "from": "[Range 2]: Give a minion Regenerate 3.",
+      "to": "[Range 2]: Target minion gains Regenerate 3.",
+      "from_sha": "dbf8a11012d1",
+      "to_sha": "46555ce133ed",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Remit",
+      "field": "text",
+      "from": "[Range 2] Return a minion to their controller's hand.",
+      "to": "[Range 2]: Return target minion to its controller's hand.",
+      "from_sha": "1143ae07d4ca",
+      "to_sha": "10094e8b5416",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Revoke the Living",
+      "field": "text",
+      "from": "Add 2 Poison to all enemies within Range 1 of your territory. Gain <sprite name=\"dominion_1\"> Dominion.",
+      "to": "All enemies within Range 1 of your territory gain 2 Poison. Gain <sprite name=\"dominion_1\"> Dominion.",
+      "from_sha": "6b24384ee526",
+      "to_sha": "a9aed2749086",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Rhea, Morning Saint",
+      "field": "text",
+      "from": "Legendary. Shield. Arrival: if your other minions have 7 or more total Health, give the leftmost minion in your hand <sprite name=\"power_5\"><sprite name=\"speed_1\"><sprite name=\"health_5\"> and Shield.",
+      "to": "Legendary. Shield. Arrival: If your other minions' total Health is at least 7, give the leftmost minion card in your hand +<sprite name=\"power_5\"><sprite name=\"speed_1\"><sprite name=\"health_5\"> and Shield.",
+      "from_sha": "ff5875060cd2",
+      "to_sha": "d988feff727a",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Ritual of Shadows",
+      "field": "text",
+      "from": "Shuffle three Dark Offerings into your deck.",
+      "to": "Shuffle 3 Dark Offerings into your deck.",
+      "from_sha": "e79404e81f18",
+      "to_sha": "13a0a582de16",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Rule the Hinterlands",
+      "field": "text",
+      "from": "Claim an uncontested tile adjacent to your territory. Gain <sprite name=\"dominion_2\"> Dominion.",
+      "to": "Claim target uncontested tile adjacent to your territory. Gain <sprite name=\"dominion_2\"> Dominion.",
+      "from_sha": "eef47fc9774e",
+      "to_sha": "bfaa72055afb",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Sacrificial Offering",
+      "field": "text",
+      "from": "Destroy an ally minion. Draw 2 cards.",
+      "to": "Sacrifice target minion. Draw 2 cards.",
+      "from_sha": "c06e5c93bb90",
+      "to_sha": "8f6b86094d1e",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Sage Potion",
+      "field": "text",
+      "from": "[Range 2]: A minion gains \"Whenever you draw a card, gain <sprite name=\"power_1\"> and <sprite name=\"health_1\">\".",
+      "to": "[Range 2]: Target minion gains \"When you draw a card, gain +<sprite name=\"power_1\"> and +<sprite name=\"health_1\">.\"",
+      "from_sha": "2bc8f0ea2482",
+      "to_sha": "28d32d0bf59f",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Sanguine Baroness",
+      "field": "text",
+      "from": "Fatal. Arrival: Draw 2 cards and your commander heals 2.",
+      "to": "Fatal. Arrival: Draw 2 cards and your commander heals <sprite name=\"health_2\">.",
+      "from_sha": "d7fc5cfc8bcd",
+      "to_sha": "44211718d5fe",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Second Experiment",
+      "field": "text",
+      "from": "Whenever you play a Potion on an ally Experiment, gain <sprite name=\"power_1\"> and <sprite name=\"speed_1\">.",
+      "to": "When you play a Potion on an ally Experiment, gain +<sprite name=\"power_1\"> and +<sprite name=\"speed_1\">.",
+      "from_sha": "4cc9ba9b6816",
+      "to_sha": "a14f1d9104a3",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Settle Village",
+      "field": "text",
+      "from": "Convert a tile you own to a village.",
+      "to": "Convert target tile you own to a Village.",
+      "from_sha": "878c5976af0c",
+      "to_sha": "8cb1c4d0c57c",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Shield Potion",
+      "field": "text",
+      "from": "[Range 2]: A character gains Shield.",
+      "to": "[Range 2]: Target character gains Shield.",
+      "from_sha": "3720490726a5",
+      "to_sha": "7922cb874d1a",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Skerr'drix",
+      "field": "text",
+      "from": "Legendary. Spellcaster. When you play a non-Ethereal spell, add an Ethereal copy to your hand that costs zero mana.",
+      "to": "Legendary. Spellcaster. When you play a non-Ethereal spell, add an Ethereal copy to your hand that costs <sprite name=\"mana_0\">.",
+      "from_sha": "440184e6e66f",
+      "to_sha": "8bcfd5ed5bc7",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Slash and Burn",
+      "field": "text",
+      "from": "Unclaim a tile you control. Gain <sprite name=\"dominion_2\"> Dominion.",
+      "to": "Unclaim target tile you own. Gain <sprite name=\"dominion_2\"> Dominion.",
+      "from_sha": "a42a4205b73e",
+      "to_sha": "14a6640d8fe2",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Slay the Mighty",
+      "field": "text",
+      "from": "[Range 4]: Destroy a minion with Power <sprite name=\"power_5\"> or more.",
+      "to": "[Range 4]: Destroy target minion with Power <sprite name=\"power_5\"> or more.",
+      "from_sha": "97ed30699f88",
+      "to_sha": "2ca206346b2f",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Soul Sale",
+      "field": "text",
+      "from": "Add 3 Imps to your hand. They cost <sprite name=\"mana_0\"> and have Ethereal.",
+      "to": "Add 3 Imps to your hand with Ethereal. They cost <sprite name=\"mana_0\">.",
+      "from_sha": "1d38719030d7",
+      "to_sha": "b64385e388ae",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Soulreap",
+      "field": "text",
+      "from": "An enemy minion loses <sprite name=\"power_6\"> and <sprite name=\"health_6\">. Your commander heals 6 life. Costs <sprite name=\"mana_5\"> less if you control a Daemon.",
+      "to": "Target enemy minion loses <sprite name=\"power_6\"> and <sprite name=\"health_6\">. Your commander heals <sprite name=\"health_6\">. Costs <sprite name=\"mana_5\"> less if you control a Daemon.",
+      "from_sha": "83850b123eeb",
+      "to_sha": "033780400f6f",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Spiderling Rider",
+      "field": "text",
+      "from": "Trample. [Range 2 Attack]: Deal 2 damage to an enemy if you control another Arachnid.",
+      "to": "Trample. [Range 2 Attack]: Deal 2 damage to target enemy if you control another Arachnid.",
+      "from_sha": "1d68f7c06a59",
+      "to_sha": "a747a477064f",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Spoils of War",
+      "field": "text",
+      "from": "Discard your hand. Draw cards equal to the number of territories you control.",
+      "to": "Discard your hand. Draw cards equal to the number of tiles you own.",
+      "from_sha": "785588437df8",
+      "to_sha": "fae4a0a58b63",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Spore Thresher",
+      "field": "text",
+      "from": "At the end of your turn, add 2 Poison to enemies and heal 2 for allies within Range 2.",
+      "to": "At the end of your turn, enemies within Range 2 gain 2 Poison and allies within Range 2 heal <sprite name=\"health_2\">.",
+      "from_sha": "bb841c167a12",
+      "to_sha": "99bf7a01ea7a",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Stagasus",
+      "field": "text",
+      "from": "Flying. [<sprite name=\"mana_1\">, Warmup 1, Range 2]: Give an ally +4 movement.",
+      "to": "Flying. [Pay <sprite name=\"mana_1\">, Warmup 1, Range 2]: Target ally gains +4 Movement.",
+      "from_sha": "68832060e80b",
+      "to_sha": "513f2fa54330",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Stalking Hippo",
+      "field": "text",
+      "from": "Regenerate 5.  (Heals for 5 at the end of your turn.)",
+      "to": "Regenerate 5.  (Heals <sprite name=\"health_5\"> at the end of your turn.)",
+      "from_sha": "1b18170df3d8",
+      "to_sha": "e3e5b25f6da3",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Stampede",
+      "field": "text",
+      "from": "Beasts you control within Range 3 gain <sprite name=\"power_3\"><sprite name=\"speed_2\"><sprite name=\"health_3\"> and gain Trample until the end of the turn.",
+      "to": "Beasts you control within Range 3 gain +<sprite name=\"power_3\"><sprite name=\"speed_2\"><sprite name=\"health_3\"> and Trample until end of the turn.",
+      "from_sha": "bd2a8959fcc1",
+      "to_sha": "0694c8320343",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Stormrider Zurn",
+      "field": "text",
+      "from": "Legendary. Spellcaster. Haste. When you play a Lightning spell, gain <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> until end of turn.",
+      "to": "Legendary. Spellcaster. Haste. When you play a Lightning spell, gain +<sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> until end of the turn.",
+      "from_sha": "2a6d3ebc840c",
+      "to_sha": "daf8a6a3ec5d",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Stumbling Ghoul",
+      "field": "text",
+      "from": "Postmortem: Summon a <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> Undead Zombie.",
+      "to": "Postmortem: Summon a <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> Zombie.",
+      "from_sha": "b477c012e3c9",
+      "to_sha": "3652d11b0797",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Styrian Infantry",
+      "field": "text",
+      "from": "Arrival: draw a card if you have 3 or less maximum mana.",
+      "to": "Arrival: Draw a card if you have 3 or less maximum Mana.",
+      "from_sha": "be84bda269a3",
+      "to_sha": "8f496dc8eaad",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Supercharger",
+      "field": "text",
+      "from": "[Warmup 1]: All adjacent allies gain +1 movement and regain their Attacks.",
+      "to": "[Warmup 1]: All adjacent allies gain +1 Movement and regain an Attack.",
+      "from_sha": "fcb310b39b5a",
+      "to_sha": "a1b378855663",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Swiftness Potion",
+      "field": "text",
+      "from": "[Range 2]: A minion gains <sprite name=\"speed_3\">.",
+      "to": "[Range 2]: Target minion gains +<sprite name=\"speed_3\">.",
+      "from_sha": "6de7949b1c8c",
+      "to_sha": "0b2c31ca02a2",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Tadpole",
+      "field": "text",
+      "from": "Whenever you play a Spell, Tadpole gains <sprite name=\"power_1\"> and <sprite name=\"health_1\">.",
+      "to": "When you play a spell, Tadpole gains +<sprite name=\"power_1\"> and +<sprite name=\"health_1\">.",
+      "from_sha": "dc90be2ec222",
+      "to_sha": "db00800ea04c",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Throne Guardian",
+      "field": "text",
+      "from": "Flying. Arrival: Gain <sprite name=\"dominion_1\"> Dominion, Gain <sprite name=\"intellect_1\"> Intellect, Draw 1 Card.",
+      "to": "Flying. Arrival: Gain <sprite name=\"dominion_1\"> Dominion, Gain <sprite name=\"intellect_1\"> Intellect, Draw 1 card.",
+      "from_sha": "d1fed1f0367d",
+      "to_sha": "90cc4bae59a1",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Thunder Jolt",
+      "field": "text",
+      "from": "[Range 4]: Deal 1 damage.",
+      "to": "[Range 4]: Deal 1 damage to target character.",
+      "from_sha": "c3ee4c649325",
+      "to_sha": "8f15b2cc0853",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Thunder Skywhale",
+      "field": "text",
+      "from": "Flying. Deploy. [Arrival]: Return all enemy minions within Range 2 that have Health less than the number of tiles in your territory.",
+      "to": "Deploy. Flying. Arrival: Return all enemy minions within Range 2 that have Health less than the number of tiles in your territory.",
+      "from_sha": "ff248e86d7cb",
+      "to_sha": "6952f4d47f6f",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Thunder Step",
+      "field": "text",
+      "from": "A friendly character may Teleport up to 2 tiles this turn. Before it does, Stun all adjacent minions.",
+      "to": "Target character you control may Teleport up to 2 tiles this turn. Before it does, Stun all adjacent minions.",
+      "from_sha": "a1ad05fbf9e9",
+      "to_sha": "1af93e8e4d1a",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Thunderous Warbeast",
+      "field": "text",
+      "from": "Arrival: Add two Thunder Jolts to your hand. When you play a Lightning spell, your commander heals 2.",
+      "to": "Arrival: Add 2 Thunder Jolts to your hand. When you play a Lightning spell, your commander heals <sprite name=\"health_2\">.",
+      "from_sha": "0de766d0f274",
+      "to_sha": "8d0c110974bc",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Toxic Watering",
+      "field": "text",
+      "from": "Your plants gain \"At the end of each of your turns, enemy commanders gain 1 Poison.\"",
+      "to": "Your Plants gain \"At the end of each of your turns, enemy commanders gain 1 Poison.\"",
+      "from_sha": "02a843997834",
+      "to_sha": "0a23dd028bcc",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Toxicologist",
+      "field": "text",
+      "from": "Realmbound. At the beginning of your turn: add a Poison Sting to your hand. If Toxicologist is poisoned, add two.",
+      "to": "Realmbound. At the start of your turn: Add a Poison Sting to your hand. If Toxicologist has Poison, add 2.",
+      "from_sha": "c1f2faa5c97e",
+      "to_sha": "46147ebb3492",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Toxicologist's Vial",
+      "field": "text",
+      "from": "[Range 2]: Double a character's Poison.",
+      "to": "[Range 2]: Double target character's Poison.",
+      "from_sha": "b33e4eded08c",
+      "to_sha": "1a0593f30a07",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Tree of Life",
+      "field": "text",
+      "from": "Legendary. At the end of your turn, your commander and plants you control gain <sprite name=\"health_2\"> (increases Max Health).",
+      "to": "Legendary. At the end of your turn, your commander and Plants you control gain +<sprite name=\"health_2\"> (increases Max Health).",
+      "from_sha": "7bf7d077179f",
+      "to_sha": "9b17e4e48de8",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Trinket Trasher",
+      "field": "text",
+      "from": "Goblin-Deploy. Arrival: Destroy the enemy commander's Weapon.",
+      "to": "Goblin-Deploy. Arrival: Destroy enemy commanders' Weapons.",
+      "from_sha": "e76b9661a0a9",
+      "to_sha": "80256ad0e471",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Undying Behemoth",
+      "field": "text",
+      "from": "Sentinel. Postmortem: Summon a <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> Undead Zombie that has: “Postmortem: Summon a <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> Undead Zombie.”",
+      "to": "Sentinel. Postmortem: Summon a <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> Zombie that has \"Postmortem: Summon a <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> Zombie.\"",
+      "from_sha": "3fefc3d69f63",
+      "to_sha": "17c6b322b22c",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Ursine Blade Trio",
+      "field": "text",
+      "from": "Commander-Deploy. Arrival: draw another Ursine Blade Trio from your deck.",
+      "to": "Commander-Deploy. Arrival: Draw another Ursine Blade Trio from your deck.",
+      "from_sha": "84aaf2d09ae2",
+      "to_sha": "978d6ae1d354",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Vergis, Doomed Archaeologist",
+      "field": "text",
+      "from": "Legendary. Arrival: shuffle Artifact of the End into your deck",
+      "to": "Legendary. Arrival: Shuffle Artifact of the End into your deck.",
+      "from_sha": "6069b22a4f55",
+      "to_sha": "f5a23310ef54",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Vyre Aristocrat",
+      "field": "text",
+      "from": "Lifelink. [<sprite name=\"mana_1\">]: Sacrifice an adjacent Minion to gain <sprite name=\"power_2\"> and <sprite name=\"health_2\">.",
+      "to": "Lifelink. [Pay <sprite name=\"mana_1\">]: Sacrifice target adjacent minion to gain +<sprite name=\"power_2\"> and +<sprite name=\"health_2\">.",
+      "from_sha": "b979a96d17c8",
+      "to_sha": "8fe72e9d3a4f",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "War Banner",
+      "field": "text",
+      "from": "Deploy. Adjacent ally Minions have +<sprite name=\"power_2\">.",
+      "to": "Deploy. Adjacent ally minions have +<sprite name=\"power_2\">.",
+      "from_sha": "a2d6a6518cc6",
+      "to_sha": "86dcbcac93cd",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Warcry",
+      "field": "text",
+      "from": "Your characters within Range 3 gain <sprite name=\"power_2\"> and <sprite name=\"speed_2\"> until end of turn.",
+      "to": "Your characters within Range 3 gain +<sprite name=\"power_2\"> and +<sprite name=\"speed_2\"> until end of the turn.",
+      "from_sha": "5095ee73a062",
+      "to_sha": "2f511f0623ea",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Zealous Captain",
+      "field": "text",
+      "from": "Whenever a character you own is healed, adjacent ally minions gain <sprite name=\"power_1\"> and <sprite name=\"health_1\">.",
+      "to": "When a character you control is healed, adjacent ally minions gain +<sprite name=\"power_1\"> and +<sprite name=\"health_1\">.",
+      "from_sha": "5f847be8a139",
+      "to_sha": "9d8338d711c9",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Zealous Strength",
+      "field": "text",
+      "from": "Ally minions within Range 3 gain <sprite name=\"power_2\"> and <sprite name=\"health_2\">. They also gain +1 Movement this turn only.",
+      "to": "Ally minions within Range 3 gain +<sprite name=\"power_2\"> and +<sprite name=\"health_2\">. They also gain +1 Movement until end of the turn.",
+      "from_sha": "e21b71d2a377",
+      "to_sha": "d6e3561ccb8f",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-28",
+      "card": "Zoloth the Butcher",
+      "field": "text",
+      "from": "Legendary. [Arrival]: Sacrifice a Minion to add three <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> Zombies to your hand with Ethereal that cost <sprite name=\"mana_0\">.",
+      "to": "Legendary. Arrival: Sacrifice target minion to add 3 <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> Zombies to your hand with Ethereal that cost <sprite name=\"mana_0\">.",
+      "from_sha": "26de7020ae24",
+      "to_sha": "c7cc119c0ce1",
+      "source": "git:452dd44"
+    },
+    {
+      "date": "2026-09-20",
+      "card": "Acid Rain",
+      "field": "text",
+      "from": "[Range 4]: Convert a tile to a Toxic Swamp, that adds 1 Poison to characters on it. Destroy the enemy commander's weapon.",
+      "to": "[Range 4]: Convert a tile to a Toxic Swamp, that adds 1 Poison to characters on it. Destroy the enemy commander's Weapon.",
+      "from_sha": "11cee4536077",
+      "to_sha": "d8d627da083f",
+      "source": "git:5729471"
+    },
+    {
+      "date": "2026-09-20",
+      "card": "Beast Trainer",
+      "field": "text",
+      "from": "[Arrival, Range 1]: Deploy two Beasts from your deck that cost 2 or less.",
+      "to": "[Arrival, Range 1]: Summon two Beasts from your deck that cost 2 or less. They have Deploy.",
+      "from_sha": "0c810bf64d58",
+      "to_sha": "77a912928992",
+      "source": "git:5729471"
+    },
+    {
+      "date": "2026-09-20",
+      "card": "Charge Up",
+      "field": "text",
+      "from": "Your commander permanently gains Spell Damage +2.",
+      "to": "Your commander permanently gains Spell-Damage +2.",
+      "from_sha": "886725b864f3",
+      "to_sha": "bd86edafa39b",
+      "source": "git:5729471"
+    },
+    {
+      "date": "2026-09-20",
+      "card": "Cone of Cold",
+      "field": "text",
+      "from": "[Range 2]: Deal 2 damage to all characters in 1 Radius and stun any minions.",
+      "to": "[Range 2]: Deal 2 damage to all characters in 1 Radius and Stun any minions.",
+      "from_sha": "36c0a790ca0e",
+      "to_sha": "6daa88f161b6",
+      "source": "git:5729471"
+    },
+    {
+      "date": "2026-09-20",
+      "card": "Cursed Deathspear",
+      "field": "text",
+      "from": "Weapon Lifelink. When your commander loses life, give your weapon +<sprite name=\"power_1\">.",
+      "to": "Weapon Lifelink. When your commander loses life, give your Weapon +<sprite name=\"power_1\">.",
+      "from_sha": "05250b5d2e18",
+      "to_sha": "f998ceeff3fa",
+      "source": "git:5729471"
+    },
+    {
+      "date": "2026-09-20",
+      "card": "Daemon Knight",
+      "field": "text",
+      "from": "Trample.  (When battling and killing an enemy, regain an Attack.)",
+      "to": "Trample.  (When attacking and killing an enemy, regain an Attack.)",
+      "from_sha": "f9c0aa781be8",
+      "to_sha": "98ff801ad756",
+      "source": "git:5729471"
+    },
+    {
+      "date": "2026-09-20",
+      "card": "Darkroot Ooze",
+      "field": "text",
+      "from": "When Darkroot Ooze battles, double the enemy's poison.",
+      "to": "When Darkroot Ooze battles, double the enemy's Poison.",
+      "from_sha": "e42119d06183",
+      "to_sha": "e44c6b3811d0",
+      "source": "git:5729471"
+    },
+    {
+      "date": "2026-09-20",
+      "card": "Frostblade",
+      "field": "text",
+      "from": "[Range 1]: Deal 2 damage. If targeting a minion, stun it.",
+      "to": "[Range 1]: Deal 2 damage. If targeting a minion, Stun it.",
+      "from_sha": "9bfeee2c0307",
+      "to_sha": "0b150ab61ebb",
+      "source": "git:5729471"
+    },
+    {
+      "date": "2026-09-20",
+      "card": "Green Dragon",
+      "field": "text",
+      "from": "Flying. Trample. [Warmup 3, Range 2]: Add 3 poison to all characters within 1 Radius.",
+      "to": "Flying. Trample. [Warmup 3, Range 2]: Add 3 Poison to all characters within 1 Radius.",
+      "from_sha": "a03a876d93f2",
+      "to_sha": "01eed5aa72d1",
+      "source": "git:5729471"
+    },
+    {
+      "date": "2026-09-20",
+      "card": "Lumbering Ogre",
+      "field": "text",
+      "from": "Trample.  (When battling and killing an enemy, regain an Attack.)",
+      "to": "Trample.  (When attacking and killing an enemy, regain an Attack.)",
+      "from_sha": "f9c0aa781be8",
+      "to_sha": "98ff801ad756",
+      "source": "git:5729471"
+    },
+    {
+      "date": "2026-09-20",
+      "card": "Regeneration Potion",
+      "field": "text",
+      "from": "[Range 2]: Give a minion Regeneration 3.",
+      "to": "[Range 2]: Give a minion Regenerate 3.",
+      "from_sha": "4b1bfb145c8d",
+      "to_sha": "dbf8a11012d1",
+      "source": "git:5729471"
+    },
+    {
+      "date": "2026-09-20",
+      "card": "Revoke the Living",
+      "field": "text",
+      "from": "Add 2 poison to all enemies within Range 1 of your territory. Gain <sprite name=\"dominion_1\"> Dominion.",
+      "to": "Add 2 Poison to all enemies within Range 1 of your territory. Gain <sprite name=\"dominion_1\"> Dominion.",
+      "from_sha": "4c9457878df9",
+      "to_sha": "6b24384ee526",
+      "source": "git:5729471"
+    },
+    {
+      "date": "2026-09-20",
+      "card": "Skerr'drix",
+      "field": "text",
+      "from": "Legendary. Spellcaster. When you play a non-ethereal spell, add an ethereal copy to your hand that costs zero mana.",
+      "to": "Legendary. Spellcaster. When you play a non-Ethereal spell, add an Ethereal copy to your hand that costs zero mana.",
+      "from_sha": "23a336c82035",
+      "to_sha": "440184e6e66f",
+      "source": "git:5729471"
+    },
+    {
+      "date": "2026-09-20",
+      "card": "Toxicologist's Vial",
+      "field": "text",
+      "from": "[Range 2]: Double a character's poison.",
+      "to": "[Range 2]: Double a character's Poison.",
+      "from_sha": "e5264c71e4ac",
+      "to_sha": "b33e4eded08c",
+      "source": "git:5729471"
+    },
+    {
+      "date": "2026-09-20",
+      "card": "Trinket Trasher",
+      "field": "text",
+      "from": "Goblin-Deploy. Arrival: Destroy the enemy commander's weapon.",
+      "to": "Goblin-Deploy. Arrival: Destroy the enemy commander's Weapon.",
+      "from_sha": "8aee585aa8e2",
+      "to_sha": "e76b9661a0a9",
+      "source": "git:5729471"
+    },
+    {
+      "date": "2026-09-20",
+      "card": "Viridian War Beast",
+      "field": "text",
+      "from": "Trample.  (When battling and killing an enemy, regain an Attack.)",
+      "to": "Trample.  (When attacking and killing an enemy, regain an Attack.)",
+      "from_sha": "f9c0aa781be8",
+      "to_sha": "98ff801ad756",
+      "source": "git:5729471"
+    },
+    {
+      "date": "2026-09-20",
+      "card": "Yorefell, Blade of Lusheim",
+      "field": "text",
+      "from": "Weapon Lifelink. Does not lose durability when you attack.",
+      "to": "Weapon Lifelink. Does not lose Durability when you attack.",
+      "from_sha": "1ffc735d315f",
+      "to_sha": "b7c3e940d3df",
+      "source": "git:5729471"
+    },
+    {
+      "date": "2026-09-12",
+      "card": "Knife Sharpener",
+      "field": "text",
+      "from": "When you play a Minion within Range 2, give it <sprite name=\"power_1\">.",
+      "to": "When you play a Minion or Weapon within Range 2, give it <sprite name=\"power_1\">.",
+      "from_sha": "dcf539de6cc2",
+      "to_sha": "c19156aab79e",
+      "source": "git:e135c9e"
+    },
+    {
+      "date": "2026-09-12",
+      "card": "Sentinel of Light",
+      "field": "text",
+      "from": "Lifelink. Shield. Commander-Deploy.",
+      "to": "Lifelink. Shield. Sentinel.",
+      "from_sha": "36c67ad1ee3c",
+      "to_sha": "5fbc060f3477",
+      "source": "git:e135c9e"
+    },
+    {
+      "date": "2026-09-08",
+      "card": "Artifact of the End",
+      "field": "text",
+      "from": "Legendary. Haste. Deploy. Arrival: enemy commanders are Doomed. Postmortem: return this to your hand.",
+      "to": "Legendary. Haste. Lifelink. Arrival: enemy commanders are Doomed 3x. Postmortem: shuffle this into your deck.",
+      "from_sha": "cfc6147193d6",
+      "to_sha": "f90b9671cf71",
+      "source": "git:2d11891"
+    },
+    {
+      "date": "2026-08-28",
+      "card": "Big Game Hunter",
+      "field": "text",
+      "from": "[Arrival, Range 3]: Destroy an enemy minion with 5 or more Power.",
+      "to": "[Arrival, Range 3]: Destroy an enemy minion with Power <sprite name=\"power_5\"> or more.",
+      "from_sha": "dd9c52baa041",
+      "to_sha": "4d21358af8de",
+      "source": "git:5cb566c"
+    },
+    {
+      "date": "2026-08-28",
+      "card": "Blessed Force",
+      "field": "text",
+      "from": "Destroy all minions with mana cost 3 or less within Range 3.",
+      "to": "Destroy all minions with Power <sprite name=\"power_3\"> or less within Range 3.",
+      "from_sha": "704ad0d3803a",
+      "to_sha": "2ae2697ad3db",
+      "source": "git:5cb566c"
+    },
+    {
+      "date": "2026-08-28",
+      "card": "Iron Dagger",
+      "field": "text",
+      "from": "Weapon - <sprite name=\"power_2\"><sprite name=\"speed_1\"><sprite name=\"durability_5\"> Offensive.  (Only grants its bonuses during your own turn.)",
+      "to": "Weapon Offensive.  (Only grants its bonuses during your own turn.)",
+      "from_sha": "7585450cc1ec",
+      "to_sha": "91711b21899f",
+      "source": "git:5cb566c"
+    },
+    {
+      "date": "2026-08-28",
+      "card": "Parrying Buckler",
+      "field": "text",
+      "from": "Weapon - <sprite name=\"power_1\"><sprite name=\"speed_0\"><sprite name=\"durability_8\"> Defensive.  (Only grants its bonuses during other players' turns.)",
+      "to": "Weapon Defensive.  (Only grants its bonuses during other players' turns.)",
+      "from_sha": "855b540bc4ca",
+      "to_sha": "1298e1c786b6",
+      "source": "git:5cb566c"
+    },
+    {
+      "date": "2026-08-28",
+      "card": "Quell the Weak",
+      "field": "text",
+      "from": "[Range 4]: Destroy a minion with Power 3 or less.",
+      "to": "[Range 4]: Destroy a minion with Power <sprite name=\"power_3\"> or less.",
+      "from_sha": "4c4e921f9710",
+      "to_sha": "6b317b042d4f",
+      "source": "git:5cb566c"
+    },
+    {
+      "date": "2026-08-28",
+      "card": "Slay the Mighty",
+      "field": "text",
+      "from": "[Range 4]: Destroy a minion with Power 5 or more.",
+      "to": "[Range 4]: Destroy a minion with Power <sprite name=\"power_5\"> or more.",
+      "from_sha": "bdee47c9e869",
+      "to_sha": "97ed30699f88",
+      "source": "git:5cb566c"
+    },
+    {
+      "date": "2026-08-28",
+      "card": "Warlord's Mace",
+      "field": "text",
+      "from": "Weapon - <sprite name=\"power_3\"><sprite name=\"speed_1\"><sprite name=\"durability_3\"> Offensive. When you attack and kill a minion, gain <sprite name=\"dominion_1\"> Dominion.",
+      "to": "Weapon Offensive. When you attack and kill a minion, gain <sprite name=\"dominion_1\"> Dominion.",
+      "from_sha": "ef6a4a8b5596",
+      "to_sha": "5e6a4a9a0333",
+      "source": "git:5cb566c"
+    },
+    {
+      "date": "2026-08-19",
+      "card": "Acid Rain",
+      "field": "text",
+      "from": "[Range 4]: Convert a tile to a Toxic Swamp, that adds 1 Poison to characters on it.",
+      "to": "[Range 4]: Convert a tile to a Toxic Swamp, that adds 1 Poison to characters on it. Destroy the enemy commander's weapon.",
+      "from_sha": "745c777c9079",
+      "to_sha": "11cee4536077",
+      "source": "git:dfb1640"
+    },
+    {
+      "date": "2026-08-19",
+      "card": "Archpaladin Erix",
+      "field": "text",
+      "from": "Legendary. Flying. Arrival: Set the power of ALL minions equal to their health.",
+      "to": "Legendary. Sentinel. Flying. Arrival: Set the power of ALL minions equal to their health.",
+      "from_sha": "b94b93ef6cf0",
+      "to_sha": "af3bbf48c95a",
+      "source": "git:dfb1640"
+    },
+    {
+      "date": "2026-08-19",
+      "card": "Battlefield Savior",
+      "field": "faction",
+      "from": "lucia",
+      "to": "neutral",
+      "source": "git:dfb1640"
+    },
+    {
+      "date": "2026-08-19",
+      "card": "Battlefield Savior",
+      "field": "patron",
+      "from": "Lucia",
+      "to": "Neutral",
+      "source": "git:dfb1640"
+    },
+    {
+      "date": "2026-08-19",
+      "card": "Battlefield Savior",
+      "field": "text",
+      "from": "Arrival: add a Guiding Light to hand.",
+      "to": "Sentinel. [Arrival, Range 3]: Heal a character for 5.",
+      "from_sha": "c15693c436f6",
+      "to_sha": "fe653789ecd4",
+      "source": "git:dfb1640"
+    },
+    {
+      "date": "2026-08-19",
+      "card": "City Planning",
+      "field": "text",
+      "from": "Draw 2 Village cards from your deck.",
+      "to": "Draw 2 Village cards from your deck. They cost <sprite name=\"mana_1\"> less.",
+      "from_sha": "74d7516eab8e",
+      "to_sha": "ceb91158dd23",
+      "source": "git:dfb1640"
+    },
+    {
+      "date": "2026-08-19",
+      "card": "Devout Caretaker",
+      "field": "text",
+      "from": "Arrival: add 2 Lucian Soldiers to hand.",
+      "to": "Sentinel. Arrival: add 2 Lucian Soldiers to hand.",
+      "from_sha": "60a86f5dc549",
+      "to_sha": "68ee6174fdad",
+      "source": "git:dfb1640"
+    },
+    {
+      "date": "2026-08-19",
+      "card": "Elite Mercenary",
+      "field": "text",
+      "from": "Commander-Deploy. Lifelink. Shield. Costs <sprite name=\"mana_3\"> less if your opponent controls 4 or more minions.",
+      "to": "Commander-Deploy. Sentinel. Lifelink. Shield. Costs <sprite name=\"mana_3\"> less if your opponent controls 4 or more minions.",
+      "from_sha": "6470aab03daa",
+      "to_sha": "133e28330741",
+      "source": "git:dfb1640"
+    },
+    {
+      "date": "2026-08-19",
+      "card": "Ember",
+      "field": "text",
+      "from": "When you play a Fire card, gain <sprite name=\"mana_2\"> and <sprite name=\"power_2\"> this turn, and deal 1 damage to Ember.",
+      "to": "When you play a Fire card, gain <sprite name=\"mana_2\"> this turn and gain <sprite name=\"power_2\"> and deal 1 damage to Ember.",
+      "from_sha": "afdd882918eb",
+      "to_sha": "d371f94fdcaa",
+      "source": "git:dfb1640"
+    },
+    {
+      "date": "2026-08-19",
+      "card": "Eternal Wall",
+      "field": "text",
+      "from": "Commander-Deploy. Arrival: Add a copy of this to your hand with Ethereal.",
+      "to": "Commander-Deploy. Sentinel. Arrival: Add a copy of this to your hand with Ethereal.",
+      "from_sha": "1bcfc052efdd",
+      "to_sha": "7cb16bdfcc00",
+      "source": "git:dfb1640"
+    },
+    {
+      "date": "2026-08-19",
+      "card": "Giant River Snapper",
+      "field": "text",
+      "from": "Arrival: Your commander heals 8 health.",
+      "to": "Sentinel. Arrival: Your commander heals 8 health.",
+      "from_sha": "a5fc0c81f5ff",
+      "to_sha": "abc32d658226",
+      "source": "git:dfb1640"
+    },
+    {
+      "date": "2026-08-19",
+      "card": "Guerilla Gorilla",
+      "field": "text",
+      "from": "When Guerilla Gorilla attacks and kills an enemy, heal 3 and gain +3 movement this turn.",
+      "to": "Regenerate 3.  (Heals for 3 at the end of your turn.)",
+      "from_sha": "1a07ce95d135",
+      "to_sha": "922a801ff367",
+      "source": "git:dfb1640"
+    },
+    {
+      "date": "2026-08-19",
+      "card": "Lucian Zealot",
+      "field": "text",
+      "from": "[Skip an Attack]: Summon a Lucian Soldier.",
+      "to": "[Warmup 1]: Summon a Lucian Soldier.",
+      "from_sha": "6ff3ed9f1a9f",
+      "to_sha": "45fe506b5b45",
+      "source": "git:dfb1640"
+    },
+    {
+      "date": "2026-08-19",
+      "card": "Mana Bloom",
+      "field": "text",
+      "from": "[Skip an Attack]: Gain <sprite name=\"mana_1\"> this turn.",
+      "to": "[Warmup 1]: Gain <sprite name=\"mana_1\"> this turn.",
+      "from_sha": "399e01fc1b34",
+      "to_sha": "fb7be3512696",
+      "source": "git:dfb1640"
+    },
+    {
+      "date": "2026-08-19",
+      "card": "Manaphant",
+      "field": "text",
+      "from": "[Cooldown 2, Skip an Attack]: Gain <sprite name=\"mana_1\"> this turn.",
+      "to": "[Warmup 2]: Gain <sprite name=\"mana_1\"> this turn.",
+      "from_sha": "6a6d6f3dda57",
+      "to_sha": "e523792dac92",
+      "source": "git:dfb1640"
+    },
+    {
+      "date": "2026-08-19",
+      "card": "Nexus Recruit",
+      "field": "text",
+      "from": "Spellcaster. Whenever you draw a card, gain <sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\"> until end of turn.",
+      "to": "Spellcaster. Whenever you draw a card, gain <sprite name=\"power_1\"><sprite name=\"health_1\"> until end of turn.",
+      "from_sha": "a678961689a4",
+      "to_sha": "0c34493a9310",
+      "source": "git:dfb1640"
+    },
+    {
+      "date": "2026-08-19",
+      "card": "Paladin Initiate",
+      "field": "text",
+      "from": "Commander-Deploy. Whenever a character you own is healed, gain <sprite name=\"power_1\">.",
+      "to": "Commander-Deploy. Sentinel. Whenever a character you own is healed, gain <sprite name=\"power_1\">.",
+      "from_sha": "c41e6e44765c",
+      "to_sha": "955d4b569265",
+      "source": "git:dfb1640"
+    },
+    {
+      "date": "2026-08-19",
+      "card": "Paladin Proselyte",
+      "field": "text",
+      "from": "Commander-Deploy. Whenever a character you own is healed, gain <sprite name=\"power_1\"> and <sprite name=\"health_1\">.",
+      "to": "Commander-Deploy. Sentinel. Whenever a character you own is healed, gain <sprite name=\"power_1\"> and <sprite name=\"health_1\">.",
+      "from_sha": "f5b35c48037f",
+      "to_sha": "f7dc31713fce",
+      "source": "git:dfb1640"
+    },
+    {
+      "date": "2026-08-19",
+      "card": "Quell the Weak",
+      "field": "text",
+      "from": "[Range 4]: Destroy a minion with mana cost 4 or less.",
+      "to": "[Range 4]: Destroy a minion with Power 3 or less.",
+      "from_sha": "3427837920fb",
+      "to_sha": "4c4e921f9710",
+      "source": "git:dfb1640"
+    },
+    {
+      "date": "2026-08-19",
+      "card": "Slay the Mighty",
+      "field": "text",
+      "from": "[Range 4]: Destroy a minion with mana cost 4 or greater.",
+      "to": "[Range 4]: Destroy a minion with Power 5 or more.",
+      "from_sha": "855ff28851e7",
+      "to_sha": "bdee47c9e869",
+      "source": "git:dfb1640"
+    },
+    {
+      "date": "2026-08-19",
+      "card": "Stagasus",
+      "field": "text",
+      "from": "Flying. [<sprite name=\"mana_1\">, Range 2, Skip an Attack]: Give an ally +4 movement.",
+      "to": "Flying. [<sprite name=\"mana_1\">, Warmup 1, Range 2]: Give an ally +4 movement.",
+      "from_sha": "5d9c8e832c59",
+      "to_sha": "68832060e80b",
+      "source": "git:dfb1640"
+    },
+    {
+      "date": "2026-08-19",
+      "card": "Stalwart Tarantula",
+      "field": "text",
+      "from": "Has +<sprite name=\"power_2\"> during enemy turns.",
+      "to": "Sentinel. Has +<sprite name=\"power_2\"> during enemy turns.",
+      "from_sha": "869b3ab9ec4e",
+      "to_sha": "da90a4c9ee74",
+      "source": "git:dfb1640"
+    },
+    {
+      "date": "2026-08-19",
+      "card": "Undying Behemoth",
+      "field": "text",
+      "from": "Postmortem: Summon a <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> Undead Zombie that has: “Postmortem: Summon a <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> Undead Zombie.”",
+      "to": "Sentinel. Postmortem: Summon a <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> Undead Zombie that has: “Postmortem: Summon a <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> Undead Zombie.”",
+      "from_sha": "77c7edbd333b",
+      "to_sha": "3fefc3d69f63",
+      "source": "git:dfb1640"
+    },
+    {
+      "date": "2026-08-18",
+      "card": "Durka Wurm",
+      "field": "text",
+      "from": "Postmortem: Summon a <sprite name=\"power_1\"><sprite name=\"speed_2\"><sprite name=\"health_1\"> Spawn token in every unoccupied tile within Range 1.",
+      "to": "Postmortem: Summon a <sprite name=\"power_1\"><sprite name=\"speed_3\"><sprite name=\"health_1\"> Spawn token in every unoccupied tile within Range 1.",
+      "from_sha": "14b5a7a3a1ba",
+      "to_sha": "30a30a6c7ad8",
+      "source": "git:4307a4e"
+    },
+    {
+      "date": "2026-08-11",
+      "card": "Artifact of the End",
+      "field": "token-added",
+      "from": null,
+      "to": {
+        "cost": 3,
+        "attack": 3,
+        "speed": 2,
+        "health": 1,
+        "type": "Minion",
+        "legendary": true
+      },
+      "source": "git:3a7147b"
+    },
+    {
+      "date": "2026-08-11",
+      "card": "Daemon Familiar",
+      "field": "token-added",
+      "from": null,
+      "to": {
+        "cost": 5,
+        "attack": 4,
+        "speed": 3,
+        "health": 4,
+        "type": "Minion",
+        "legendary": true
+      },
+      "source": "git:3a7147b"
+    },
+    {
+      "date": "2026-08-11",
+      "card": "Daemon Knight",
+      "field": "token-added",
+      "from": null,
+      "to": {
+        "cost": 5,
+        "attack": 4,
+        "speed": 4,
+        "health": 4,
+        "type": "Minion",
+        "legendary": false
+      },
+      "source": "git:3a7147b"
+    },
+    {
+      "date": "2026-08-11",
+      "card": "Dark Offering",
+      "field": "token-added",
+      "from": null,
+      "to": {
+        "cost": 0,
+        "attack": null,
+        "speed": null,
+        "health": null,
+        "type": "Spell",
+        "legendary": false
+      },
+      "source": "git:3a7147b"
+    },
+    {
+      "date": "2026-08-11",
+      "card": "Dragon",
+      "field": "token-added",
+      "from": null,
+      "to": {
+        "cost": 5,
+        "attack": 4,
+        "speed": 4,
+        "health": 4,
+        "type": "Minion",
+        "legendary": false
+      },
+      "source": "git:3a7147b"
+    },
+    {
+      "date": "2026-08-11",
+      "card": "Durka Spawn",
+      "field": "token-added",
+      "from": null,
+      "to": {
+        "cost": 0,
+        "attack": 1,
+        "speed": 2,
+        "health": 1,
+        "type": "Minion",
+        "legendary": false
+      },
+      "source": "git:3a7147b"
+    },
+    {
+      "date": "2026-08-11",
+      "card": "Illusion",
+      "field": "token-added",
+      "from": null,
+      "to": {
+        "cost": 2,
+        "attack": 3,
+        "speed": 2,
+        "health": 3,
+        "type": "Minion",
+        "legendary": false
+      },
+      "source": "git:3a7147b"
+    },
+    {
+      "date": "2026-08-11",
+      "card": "Lucian Soldier",
+      "field": "token-added",
+      "from": null,
+      "to": {
+        "cost": 0,
+        "attack": 1,
+        "speed": 3,
+        "health": 1,
+        "type": "Minion",
+        "legendary": false
+      },
+      "source": "git:3a7147b"
+    },
+    {
+      "date": "2026-08-11",
+      "card": "Zombie",
+      "field": "token-added",
+      "from": null,
+      "to": {
+        "cost": 2,
+        "attack": 2,
+        "speed": 2,
+        "health": 2,
+        "type": "Minion",
+        "legendary": false
+      },
+      "source": "git:3a7147b"
+    },
+    {
+      "date": "2026-08-10",
+      "card": "Hover Tank",
+      "field": "faction",
+      "from": "neutral",
+      "to": "mechanus",
+      "source": "git:1c71cba"
+    },
+    {
+      "date": "2026-08-10",
+      "card": "Pixie Pikeman",
+      "field": "faction",
+      "from": "neutral",
+      "to": "adora",
+      "source": "git:1c71cba"
+    },
+    {
+      "date": "2026-08-10",
+      "card": "War Chest",
+      "field": "faction",
+      "from": "neutral",
+      "to": "treasure",
+      "source": "git:1c71cba"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Acrid Potion",
+      "field": "text",
+      "from": "[Range 2]: Target minion gains +1 Power, Fatal, and Lifelink.",
+      "to": "[Range 2]: Target minion gains <sprite name=\"power_1\">, Fatal, and Lifelink.",
+      "from_sha": "001e95c34bed",
+      "to_sha": "b036e6ec98e2",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Ancient Golem",
+      "field": "text",
+      "from": "Costs 1 less mana to play for each card in your hand.",
+      "to": "Costs <sprite name=\"mana_1\"> less to play for each card in your hand.",
+      "from_sha": "12b958096a44",
+      "to_sha": "25025bb09c85",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Apprentice Mage",
+      "field": "text",
+      "from": "Spellcaster. [Arrival, Pay 1 Mana]: Draw a card.",
+      "to": "Spellcaster. [Arrival, Pay <sprite name=\"mana_1\">]: Draw a card.",
+      "from_sha": "616e49d197d5",
+      "to_sha": "395fda8c4e65",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Asera",
+      "field": "text",
+      "from": "Legendary. [1 Mana]: Draw a card, deal 2 damage to Asera.",
+      "to": "Legendary. [<sprite name=\"mana_1\">]: Draw a card, deal 2 damage to Asera.",
+      "from_sha": "86f837378872",
+      "to_sha": "d274e0cbdb69",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Assistant Chemist",
+      "field": "text",
+      "from": "Potions in your hand cost 1 less.",
+      "to": "Potions in your hand cost <sprite name=\"mana_1\"> less.",
+      "from_sha": "63011fcc3e89",
+      "to_sha": "8cc84f7d05aa",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Atlas, First to Walk",
+      "field": "text",
+      "from": "Legendary. Trample. Haste. Atlas gains +1/+1/+1 when a tile is unclaimed. Arrival: Unclaim ALL tiles within Range 2.",
+      "to": "Legendary. Trample. Haste. Atlas gains <sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\"> when a tile is unclaimed. Arrival: Unclaim ALL tiles within Range 2.",
+      "from_sha": "8f474253cc76",
+      "to_sha": "06d02fabd142",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Baby Raptor",
+      "field": "text",
+      "from": "Has +2 Power and Speed if you control at least two other Beasts.",
+      "to": "Has +<sprite name=\"power_2\"> and +<sprite name=\"speed_2\"> if you control at least two other Beasts.",
+      "from_sha": "6eb178dc61d1",
+      "to_sha": "9fd46026f1b2",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Badland Mercenary",
+      "field": "text",
+      "from": "[Cooldown 2, Range 1]: Deal 1 damage to an ally minion and give it +2 Power.",
+      "to": "[Cooldown 2, Range 1]: Deal 1 damage to an ally minion and give it <sprite name=\"power_2\">.",
+      "from_sha": "24a872510da7",
+      "to_sha": "f112ad1189c9",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Battlefield Webspinner",
+      "field": "text",
+      "from": "Deploy. [Arrival, Pay 1 Mana]: Stun an adjacent minion.",
+      "to": "Deploy. [Arrival, Pay <sprite name=\"mana_1\">]: Stun an adjacent minion.",
+      "from_sha": "2ebe3a84bd9c",
+      "to_sha": "a08756146a50",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Brash Outfitter",
+      "field": "text",
+      "from": "Minions in your hand cost 1 less. When you play a Minion whose card costs 3 or more, deal 1 damage to it.",
+      "to": "Minions in your hand cost <sprite name=\"mana_1\"> less. When you play a Minion whose card costs 3 or more, deal 1 damage to it.",
+      "from_sha": "4193902a6f35",
+      "to_sha": "ea8d9b6ebf97",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Call of the Jungle",
+      "field": "text",
+      "from": "[Range 3]: An ally beast gains +2/+2/+2 and gains Trample.",
+      "to": "[Range 3]: An ally beast gains <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> and gains Trample.",
+      "from_sha": "3f4471dd3315",
+      "to_sha": "021914b633d9",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Citadel Lord",
+      "field": "text",
+      "from": "Arrival: Gain +2 Power and +2 Health for each ally minion within Range 4.",
+      "to": "Arrival: Gain <sprite name=\"power_2\"> and <sprite name=\"health_2\"> for each ally minion within Range 4.",
+      "from_sha": "c9d9403c95b3",
+      "to_sha": "3bc9a069f80c",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Crippling Tax",
+      "field": "text",
+      "from": "Destroy a friendly village. Draw 3 cards. Gain 3 Dominion.",
+      "to": "Destroy a friendly village. Draw 3 cards. Gain <sprite name=\"dominion_3\"> Dominion.",
+      "from_sha": "59288f459001",
+      "to_sha": "3c7eeada6fce",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Daemonic Summoning",
+      "field": "text",
+      "from": "Draw a Daemon from your deck. It costs 3 less mana.",
+      "to": "Draw a Daemon from your deck. It costs <sprite name=\"mana_3\"> less.",
+      "from_sha": "a6ca4988cbce",
+      "to_sha": "89465ca5a443",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Daemonprince Grizlocke",
+      "field": "text",
+      "from": "Legendary. Flying. Trample. [Cooldown 1, Range 1]: Claim ANY unoccupied tile, gain 1 Dominion, and summon a Daemon Knight.",
+      "to": "Legendary. Flying. Trample. [Cooldown 1, Range 1]: Claim ANY unoccupied tile, gain <sprite name=\"dominion_1\"> Dominion, and summon a Daemon Knight.",
+      "from_sha": "232f342e21e0",
+      "to_sha": "16964b79d781",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Danrir, Omenhound",
+      "field": "text",
+      "from": "Legendary. When Danrir attacks and kills an enemy minion, he gains +2 Power and +2 Health.",
+      "to": "Legendary. When Danrir attacks and kills an enemy minion, he gains <sprite name=\"power_2\"> and <sprite name=\"health_2\">.",
+      "from_sha": "716498342272",
+      "to_sha": "9c830130add4",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Diplomatic Envoy",
+      "field": "text",
+      "from": "Spellcaster. Arrival: Gain 2 Intellect.",
+      "to": "Spellcaster. Arrival: Gain <sprite name=\"intellect_2\"> Intellect. (Intellect is your max hand size.)",
+      "from_sha": "6562001d91ba",
+      "to_sha": "a4d23ab613cd",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Dragon Egg",
+      "field": "text",
+      "from": "Postmortem: Summon a 4/4/4 Dragon with Flying.",
+      "to": "Postmortem: Summon a <sprite name=\"power_4\"><sprite name=\"speed_4\"><sprite name=\"health_4\"> Dragon with Flying.",
+      "from_sha": "1a506e87303f",
+      "to_sha": "097b295d29e1",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Dragon Tamer",
+      "field": "text",
+      "from": "Realmbound. Dragons in your hand cost 2 less.",
+      "to": "Realmbound. Dragons in your hand cost <sprite name=\"mana_2\"> less.",
+      "from_sha": "2617846855f3",
+      "to_sha": "b72ab419ddf4",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Drain Energy",
+      "field": "text",
+      "from": "An enemy minion gets -3 Power and -3 Health until end of turn. Your commander heals 3 life.",
+      "to": "An enemy minion loses <sprite name=\"power_3\"> and <sprite name=\"health_3\"> until end of turn. Your commander heals 3 life.",
+      "from_sha": "21ce11123eaf",
+      "to_sha": "1c5bf3818a65",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Dread Knight",
+      "field": "text",
+      "from": "Commander-Deploy. Enemy minions within Range 2 have -1 Power.",
+      "to": "Commander-Deploy. Enemy minions within Range 2 have -<sprite name=\"power_1\">.",
+      "from_sha": "caa45ace1f5b",
+      "to_sha": "e007a7cfedb5",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Dread Proclamation",
+      "field": "text",
+      "from": "Until the end of the turn, all enemy minions get -1/-0/-1. When an enemy dies this turn, gain 1 Dominion.",
+      "to": "Until the end of the turn, all enemy minions lose <sprite name=\"power_1\"> and <sprite name=\"health_1\">. When an enemy dies this turn, gain <sprite name=\"dominion_1\"> Dominion.",
+      "from_sha": "620e6bda7268",
+      "to_sha": "529154bd6637",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Dreadlord Cyrion",
+      "field": "text",
+      "from": "Legendary. Commander-Deploy. Enemy minions within Range 2 have -1/-1/-1.",
+      "to": "Legendary. Commander-Deploy. Enemy minions within Range 2 have -<sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\">.",
+      "from_sha": "a2e2a2e15a12",
+      "to_sha": "0f15aade0a09",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Durka Wurm",
+      "field": "text",
+      "from": "Postmortem: Summon a 1/2/1 Spawn token in every unoccupied tile within Range 1.",
+      "to": "Postmortem: Summon a <sprite name=\"power_1\"><sprite name=\"speed_2\"><sprite name=\"health_1\"> Spawn token in every unoccupied tile within Range 1.",
+      "from_sha": "20f3fc43a310",
+      "to_sha": "14b5a7a3a1ba",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Dwarven Battlepriest",
+      "field": "text",
+      "from": "Spellcaster. [Arrival, Range 4]: An ally minion gains +3 Health.",
+      "to": "Spellcaster. [Arrival, Range 4]: An ally minion gains <sprite name=\"health_3\">.",
+      "from_sha": "bd85b07f38b4",
+      "to_sha": "748be39ffcfb",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Dwarven Stout",
+      "field": "text",
+      "from": "[Range 2]: Give a Dwarf minion +4/+0/+4 and \"At the end of your turns, deal 1 damage to all adjacent characters.\"",
+      "to": "[Range 2]: A Dwarf minion gains <sprite name=\"power_4\"> and <sprite name=\"health_4\"> and \"At the end of your turns, deal 1 damage to all adjacent characters.\"",
+      "from_sha": "5930d97e090b",
+      "to_sha": "ac370b159fda",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Elite Mercenary",
+      "field": "text",
+      "from": "Commander-Deploy. Lifelink. Shield. Costs 3 less if your opponent controls 4 or more minions.",
+      "to": "Commander-Deploy. Lifelink. Shield. Costs <sprite name=\"mana_3\"> less if your opponent controls 4 or more minions.",
+      "from_sha": "ee64bae99742",
+      "to_sha": "6470aab03daa",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Ember",
+      "field": "text",
+      "from": "When you play a Fire card, gain 2 Mana, gain +2 Power, and deal 1 damage to Ember.",
+      "to": "When you play a Fire card, gain <sprite name=\"mana_2\"> and <sprite name=\"power_2\"> this turn, and deal 1 damage to Ember.",
+      "from_sha": "f4f81a78ea7c",
+      "to_sha": "afdd882918eb",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Enigmatic Golem",
+      "field": "text",
+      "from": "Costs X less mana to play where X is your commander's missing Health.",
+      "to": "Costs <sprite name=\"mana_X\"> less to play where X is your commander's missing Health.",
+      "from_sha": "bafbccbb2a67",
+      "to_sha": "cd72ac2a7d1b",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Ereloth",
+      "field": "text",
+      "from": "Lifelink. Arrival: give all minion cards in your opponent’s hand -1 Power and -1 Health.",
+      "to": "Lifelink. Arrival: all minion cards in your opponent’s hand lose <sprite name=\"power_1\"> and <sprite name=\"health_1\">.",
+      "from_sha": "ed44cc4412ad",
+      "to_sha": "9f9a329d2b8f",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Fade to Mists",
+      "field": "text",
+      "from": "[Range 2]: Return a minion you control to your hand. It costs 3 less.",
+      "to": "[Range 2]: Return a minion you control to your hand. It costs <sprite name=\"mana_3\"> less.",
+      "from_sha": "bcf3f48d279e",
+      "to_sha": "5f6f6906c6d5",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Firebolt",
+      "field": "text",
+      "from": "[Range 4]: Deal 3 Damage to a character. If this kills them, gain 1 Dominion.",
+      "to": "[Range 4]: Deal 3 Damage to a character. If this kills them, gain <sprite name=\"dominion_1\"> Dominion.",
+      "from_sha": "09dbd695b4c4",
+      "to_sha": "20149dd02ac0",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "First Experiment",
+      "field": "text",
+      "from": "Spellcaster. Whenever you play a Potion on an ally Experiment, gain +2 Power.",
+      "to": "Spellcaster. Whenever you play a Potion on an ally Experiment, gain <sprite name=\"power_2\">.",
+      "from_sha": "2bd499ca3420",
+      "to_sha": "e11701b57c03",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Fourth Experiment",
+      "field": "text",
+      "from": "Whenever you play a Potion on an ally Experiment, gain +2/+1/+2.",
+      "to": "Whenever you play a Potion on an ally Experiment, gain <sprite name=\"power_2\"><sprite name=\"speed_1\"><sprite name=\"health_2\">.",
+      "from_sha": "9ec093cabf67",
+      "to_sha": "c51e947df41d",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Ghast",
+      "field": "text",
+      "from": "[Range 2]: Target minion gains -1/-0/-1. Ghast also gains -1/-0/-1.",
+      "to": "[Range 2]: Target minion loses <sprite name=\"power_1\"> and <sprite name=\"health_1\">. Ghast also loses <sprite name=\"power_1\"> and <sprite name=\"health_1\">.",
+      "from_sha": "f5aeca34de4e",
+      "to_sha": "7740c9edfab4",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Goblin Infantry",
+      "field": "text",
+      "from": "Gain +1 Power whenever you play a Goblin card.",
+      "to": "Gain <sprite name=\"power_1\"> whenever you play a Goblin card.",
+      "from_sha": "d2cf56f6a2da",
+      "to_sha": "2a5274a02252",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Goblin King",
+      "field": "text",
+      "from": "Allied Goblin minions within Range 3 have +2 Power.",
+      "to": "Allied Goblin minions within Range 3 have +<sprite name=\"power_2\">.",
+      "from_sha": "dbd942c189e9",
+      "to_sha": "0c24c58ba11b",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Goblin Musclejuice",
+      "field": "text",
+      "from": "[Range 2]: Give a Goblin minion +3/+2/+3.",
+      "to": "[Range 2]: A Goblin minion gains <sprite name=\"power_3\"><sprite name=\"speed_2\"><sprite name=\"health_3\">.",
+      "from_sha": "2b41722c0e24",
+      "to_sha": "a3c18589ffd1",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Growth",
+      "field": "text",
+      "from": "Add 1 Mana.",
+      "to": "Gain <sprite name=\"mana_1\"> this turn.",
+      "from_sha": "7134a2350cfc",
+      "to_sha": "515878689104",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Growth Potion",
+      "field": "text",
+      "from": "[Range 2]: Give a minion +1/+1/+1.",
+      "to": "[Range 2]: A minion gains <sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\">.",
+      "from_sha": "c0513bf8b240",
+      "to_sha": "eee89f490235",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Grutali",
+      "field": "text",
+      "from": "Legendary. Trample. Arrival: Gain 5 Dominion.",
+      "to": "Legendary. Trample. Arrival: Gain <sprite name=\"dominion_5\"> Dominion.",
+      "from_sha": "3f465a03a025",
+      "to_sha": "82064de4da82",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Guardian Ent",
+      "field": "text",
+      "from": "Regenerate 3. Trample. Costs 3 less for each Plant you control.",
+      "to": "Regenerate 3. Trample. Costs <sprite name=\"mana_3\"> less for each Plant you control.",
+      "from_sha": "c4b38851f53e",
+      "to_sha": "f2a58e6ee1cb",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Holy Fervor",
+      "field": "text",
+      "from": "Ally Human minions within Range 3 gain +1/+1/+1.",
+      "to": "Ally Human minions within Range 3 gain <sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\">.",
+      "from_sha": "d10d6ec62f55",
+      "to_sha": "9132eee489c6",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Horde Leader",
+      "field": "text",
+      "from": "Ally Undead within Range 3 have +1 Power and Postmortem: the enemy commander gains 2 Poison.",
+      "to": "Ally Undead within Range 3 have +<sprite name=\"power_1\"> and Postmortem: the enemy commander gains 2 Poison.",
+      "from_sha": "099897687f91",
+      "to_sha": "0483e176c494",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Illusory Legion",
+      "field": "text",
+      "from": "[Range 2]: Summon a 3/2/3 Illusion with Frail. Add a copy of this to your hand with Ethereal.",
+      "to": "[Range 2]: Summon a <sprite name=\"power_3\"><sprite name=\"speed_2\"><sprite name=\"health_3\"> Illusion with Frail. Add a copy of this to your hand with Ethereal.",
+      "from_sha": "7633c817f0bf",
+      "to_sha": "41ae022f071d",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Khazgar, Flame Emperor",
+      "field": "text",
+      "from": "Legendary. Tiles within Range 1 become Lava. Heals from Fire damage.  Costs 1 less per Fire card you play.",
+      "to": "Legendary. Tiles within Range 1 become Lava. Heals from Fire damage.  Costs <sprite name=\"mana_1\"> less per Fire card you play.",
+      "from_sha": "551b65486ec5",
+      "to_sha": "003cf41a105c",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Kindle",
+      "field": "text",
+      "from": "Gain 2 Mana at the start of your next turn.",
+      "to": "Gain <sprite name=\"mana_2\"> at the start of your next turn.",
+      "from_sha": "77770bd80ac1",
+      "to_sha": "860bf1e64220",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Knife Sharpener",
+      "field": "text",
+      "from": "When you play a Minion within Range 2, give it +1 Power.",
+      "to": "When you play a Minion within Range 2, give it <sprite name=\"power_1\">.",
+      "from_sha": "c24504404c69",
+      "to_sha": "dcf539de6cc2",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Lay Claim",
+      "field": "text",
+      "from": "[Range 0]: Claim a territory an opponent controls. Increase your Dominion by 1.",
+      "to": "[Range 0]: Claim a territory an opponent controls. Gain <sprite name=\"dominion_1\"> Dominion.",
+      "from_sha": "d43ab92497c0",
+      "to_sha": "d67c21c95a2f",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Lightbound Martyr",
+      "field": "text",
+      "from": "Postmortem: give the leftmost Minion in your hand +2/+1/+2.",
+      "to": "Postmortem: give the leftmost Minion in your hand <sprite name=\"power_2\"><sprite name=\"speed_1\"><sprite name=\"health_2\">.",
+      "from_sha": "5d8309452311",
+      "to_sha": "0654649a506e",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Live off the Land",
+      "field": "text",
+      "from": "Increase your Dominion by 1. Heal your commander for 4.",
+      "to": "Gain <sprite name=\"dominion_1\"> Dominion. Heal your commander for 4.",
+      "from_sha": "5995c03f352a",
+      "to_sha": "53a0cde1ad3a",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Longleg Dorathru",
+      "field": "text",
+      "from": "Legendary. Commander-Deploy. Arrival: Gain +2 Power and +2 Health for each card you've played this turn.",
+      "to": "Legendary. Commander-Deploy. Arrival: Gain <sprite name=\"power_2\"> and <sprite name=\"health_2\"> for each card you've played this turn.",
+      "from_sha": "e4ad70800f02",
+      "to_sha": "f41d74f033f2",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Lord of Casterhorn",
+      "field": "text",
+      "from": "Commander-Deploy. Ally minions within Range 3 have +1 Power and +1 Health.",
+      "to": "Commander-Deploy. Ally minions within Range 3 have +<sprite name=\"power_1\"> and +<sprite name=\"health_1\">.",
+      "from_sha": "1996933a686c",
+      "to_sha": "63ca70de86e1",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Lucian Squire",
+      "field": "text",
+      "from": "Arrival: give the leftmost minion card in your hand +1 Power and +1 Health.",
+      "to": "Arrival: give the leftmost minion card in your hand <sprite name=\"power_1\"> and <sprite name=\"health_1\">.",
+      "from_sha": "cc78e3a32d5c",
+      "to_sha": "69fdf5e31e54",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Mana Bloom",
+      "field": "text",
+      "from": "[Skip an Attack]: Gain 1 mana this turn.",
+      "to": "[Skip an Attack]: Gain <sprite name=\"mana_1\"> this turn.",
+      "from_sha": "535d126f81da",
+      "to_sha": "399e01fc1b34",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Manaphant",
+      "field": "text",
+      "from": "[Cooldown 2, Skip an Attack]: Gain 1 mana this turn.",
+      "to": "[Cooldown 2, Skip an Attack]: Gain <sprite name=\"mana_1\"> this turn.",
+      "from_sha": "e4c3806e1560",
+      "to_sha": "6a6d6f3dda57",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Master Craftsman",
+      "field": "text",
+      "from": "[1 Mana, Warmup 2]: Convert the occupied tile to a village.",
+      "to": "[<sprite name=\"mana_1\">, Warmup 2]: Convert the occupied tile to a village.",
+      "from_sha": "2bd70b49a27e",
+      "to_sha": "16b2ad78e687",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Mindstone Servant",
+      "field": "text",
+      "from": "Whenever Mindstone Servant takes damage, draw a card and gain 1 Intellect. Spellcaster.",
+      "to": "Whenever Mindstone Servant takes damage, draw a card and gain <sprite name=\"intellect_1\"> Intellect. Spellcaster.",
+      "from_sha": "55a0402aab3b",
+      "to_sha": "779605d982c9",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Nevisha Ascendant",
+      "field": "text",
+      "from": "Legendary. Flying. Arrival AND at the beginning of your turn: add a Lucian Soldier to your hand and ally minions in Range 3 gain +1/+1/+1.",
+      "to": "Legendary. Flying. Arrival AND at the beginning of your turn: add a Lucian Soldier to your hand and ally minions in Range 3 gain <sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\">.",
+      "from_sha": "850aa7604814",
+      "to_sha": "bfa2f1797a02",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Nexus Operative",
+      "field": "text",
+      "from": "Spellcaster. Whenever you play a spell, your other Spellcasters gain +1/+1/+1 until end of turn.",
+      "to": "Spellcaster. Whenever you play a spell, your other Spellcasters gain <sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\"> until end of turn.",
+      "from_sha": "ca335a7c7fb2",
+      "to_sha": "9013ea545907",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Nexus Recruit",
+      "field": "text",
+      "from": "Spellcaster. Whenever you draw a card, gain +1/+1/+1 until end of turn.",
+      "to": "Spellcaster. Whenever you draw a card, gain <sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\"> until end of turn.",
+      "from_sha": "0d456292609a",
+      "to_sha": "a678961689a4",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Oathbroken Apprentice",
+      "field": "text",
+      "from": "Commander-Deploy. Whenever your commander loses life on your turn, gain +1 Power.",
+      "to": "Commander-Deploy. Whenever your commander loses life on your turn, gain <sprite name=\"power_1\">.",
+      "from_sha": "d76a99216f24",
+      "to_sha": "07ec82f355d3",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Oldsteel Guard",
+      "field": "text",
+      "from": "Has +1 Power for each territory you control.",
+      "to": "Has +<sprite name=\"power_1\"> for each territory you control.",
+      "from_sha": "a79788898771",
+      "to_sha": "c81ee9e2c9ee",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Outland Berserker",
+      "field": "text",
+      "from": "Commander-Deploy. Whenever Outland Berserker takes damage, it gains +2 Power.",
+      "to": "Commander-Deploy. Whenever Outland Berserker takes damage, it gains <sprite name=\"power_2\">.",
+      "from_sha": "56ce9492517e",
+      "to_sha": "456259fd95fc",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Pack Wolf",
+      "field": "text",
+      "from": "Gets +2 Power for each adjacent ally Beast.",
+      "to": "Has +<sprite name=\"power_2\"> for each adjacent ally Beast.",
+      "from_sha": "c4b26f6a7fac",
+      "to_sha": "1b874f2b80b6",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Paladin Initiate",
+      "field": "text",
+      "from": "Commander-Deploy. Whenever a character you own is healed, gain +1 Power.",
+      "to": "Commander-Deploy. Whenever a character you own is healed, gain <sprite name=\"power_1\">.",
+      "from_sha": "e1e01fff56eb",
+      "to_sha": "c41e6e44765c",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Paladin Proselyte",
+      "field": "text",
+      "from": "Commander-Deploy. Whenever a character you own is healed, gain +1/+0/+1.",
+      "to": "Commander-Deploy. Whenever a character you own is healed, gain <sprite name=\"power_1\"> and <sprite name=\"health_1\">.",
+      "from_sha": "fb9011cfbd60",
+      "to_sha": "f5b35c48037f",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Power Potion",
+      "field": "text",
+      "from": "[Range 2]: Give a minion +3/+0/+3",
+      "to": "[Range 2]: A minion gains <sprite name=\"power_3\"> and <sprite name=\"health_3\">.",
+      "from_sha": "53451d920034",
+      "to_sha": "46a442bffffd",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Prideplain Enforcer",
+      "field": "text",
+      "from": "Arrival: Gain 1 Dominion.",
+      "to": "Arrival: Gain <sprite name=\"dominion_1\"> Dominion.",
+      "from_sha": "cb5b38570a3c",
+      "to_sha": "fd7fd6085c87",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Reileigh, Brewpatron",
+      "field": "text",
+      "from": "Legendary. Potions in your hand cost 0.",
+      "to": "Legendary. Potions in your hand cost <sprite name=\"mana_0\">.",
+      "from_sha": "0f1ac7577eb9",
+      "to_sha": "d02cba99e521",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Revoke the Living",
+      "field": "text",
+      "from": "Add 2 poison to all enemies within Range 1 of your territory. Increase your Dominion by 1.",
+      "to": "Add 2 poison to all enemies within Range 1 of your territory. Gain <sprite name=\"dominion_1\"> Dominion.",
+      "from_sha": "fed0040e7ec0",
+      "to_sha": "4c9457878df9",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Rhea, Morning Saint",
+      "field": "text",
+      "from": "Legendary. Shield. Arrival: if your other minions have 7 or more total Health, give the leftmost minion in your hand +5/+1/+5 and Shield.",
+      "to": "Legendary. Shield. Arrival: if your other minions have 7 or more total Health, give the leftmost minion in your hand <sprite name=\"power_5\"><sprite name=\"speed_1\"><sprite name=\"health_5\"> and Shield.",
+      "from_sha": "81298cd89c4b",
+      "to_sha": "ff5875060cd2",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Royal Commander",
+      "field": "text",
+      "from": "Ally minions within Range 3 have +1/+1/+1.",
+      "to": "Ally minions within Range 3 have +<sprite name=\"power_1\"><sprite name=\"speed_1\"><sprite name=\"health_1\">.",
+      "from_sha": "4a2916f75129",
+      "to_sha": "cc2c7a4344f7",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Rule the Hinterlands",
+      "field": "text",
+      "from": "Claim an uncontested tile adjacent to your territory. Increase your Dominion by 2.",
+      "to": "Claim an uncontested tile adjacent to your territory. Gain <sprite name=\"dominion_2\"> Dominion.",
+      "from_sha": "345c7c5d2210",
+      "to_sha": "eef47fc9774e",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Sage Potion",
+      "field": "text",
+      "from": "[Range 2]: A minion gains \"Whenever you draw a card, gain +1/+0/+1\".",
+      "to": "[Range 2]: A minion gains \"Whenever you draw a card, gain <sprite name=\"power_1\"> and <sprite name=\"health_1\">\".",
+      "from_sha": "743faccecd68",
+      "to_sha": "2bc8f0ea2482",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Second Experiment",
+      "field": "text",
+      "from": "Whenever you play a Potion on an ally Experiment, gain +1 Speed and +1 Power.",
+      "to": "Whenever you play a Potion on an ally Experiment, gain <sprite name=\"power_1\"> and <sprite name=\"speed_1\">.",
+      "from_sha": "86656769427e",
+      "to_sha": "4cc9ba9b6816",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Slash and Burn",
+      "field": "text",
+      "from": "Unclaim a tile you control. Gain 2 Dominion.",
+      "to": "Unclaim a tile you control. Gain <sprite name=\"dominion_2\"> Dominion.",
+      "from_sha": "e55cf22b39c5",
+      "to_sha": "a42a4205b73e",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Soul Sale",
+      "field": "text",
+      "from": "Add 3 Imps to your hand. They cost 0 and have Ethereal.",
+      "to": "Add 3 Imps to your hand. They cost <sprite name=\"mana_0\"> and have Ethereal.",
+      "from_sha": "bc61f2cf1bb3",
+      "to_sha": "1d38719030d7",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Soulreap",
+      "field": "text",
+      "from": "An enemy minion gets -6 Power and -6 Health. Your commander heals 6 life. Costs 5 less if you control a Daemon.",
+      "to": "An enemy minion loses <sprite name=\"power_6\"> and <sprite name=\"health_6\">. Your commander heals 6 life. Costs <sprite name=\"mana_5\"> less if you control a Daemon.",
+      "from_sha": "d898fdc0f2c2",
+      "to_sha": "83850b123eeb",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Stagasus",
+      "field": "text",
+      "from": "Flying. [1 Mana, Range 2, Skip an Attack]: Give an ally +4 movement.",
+      "to": "Flying. [<sprite name=\"mana_1\">, Range 2, Skip an Attack]: Give an ally +4 movement.",
+      "from_sha": "e29acb486299",
+      "to_sha": "5d9c8e832c59",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Stalwart Tarantula",
+      "field": "text",
+      "from": "Has +2 Power during enemy turns.",
+      "to": "Has +<sprite name=\"power_2\"> during enemy turns.",
+      "from_sha": "3b9e941ef36f",
+      "to_sha": "869b3ab9ec4e",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Stampede",
+      "field": "text",
+      "from": "Beasts you control within Range 3 gain +3/+2/+3 and gain Trample until the end of the turn.",
+      "to": "Beasts you control within Range 3 gain <sprite name=\"power_3\"><sprite name=\"speed_2\"><sprite name=\"health_3\"> and gain Trample until the end of the turn.",
+      "from_sha": "43366ebd5a5c",
+      "to_sha": "bd2a8959fcc1",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Stormrider Zurn",
+      "field": "text",
+      "from": "Legendary. Spellcaster. Haste. When you play a Lightning spell, gain +2/+2/+2 until end of turn.",
+      "to": "Legendary. Spellcaster. Haste. When you play a Lightning spell, gain <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> until end of turn.",
+      "from_sha": "53038f0cf031",
+      "to_sha": "2a6d3ebc840c",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Stumbling Ghoul",
+      "field": "text",
+      "from": "Postmortem: Summon a 2/2/2 Undead Zombie.",
+      "to": "Postmortem: Summon a <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> Undead Zombie.",
+      "from_sha": "ba1e52a95bfb",
+      "to_sha": "b477c012e3c9",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Swiftness Potion",
+      "field": "text",
+      "from": "[Range 2]: Give a minion +3 Speed.",
+      "to": "[Range 2]: A minion gains <sprite name=\"speed_3\">.",
+      "from_sha": "6bd1f5821ce6",
+      "to_sha": "6de7949b1c8c",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Tadpole",
+      "field": "text",
+      "from": "Whenever you play a Spell, Tadpole gains +1 Power and +1 Health.",
+      "to": "Whenever you play a Spell, Tadpole gains <sprite name=\"power_1\"> and <sprite name=\"health_1\">.",
+      "from_sha": "4f3ee9143f9a",
+      "to_sha": "dc90be2ec222",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Tax Collector",
+      "field": "text",
+      "from": "Arrival: ALL players gain 2 Dominion.",
+      "to": "Arrival: ALL players gain <sprite name=\"dominion_2\"> Dominion.",
+      "from_sha": "0f56bff2c3b7",
+      "to_sha": "13478ad58e33",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Throne Guardian",
+      "field": "text",
+      "from": "Flying. Arrival: Gain 1 Dominion, Gain 1 Intellect, Draw 1 Card.",
+      "to": "Flying. Arrival: Gain <sprite name=\"dominion_1\"> Dominion, Gain <sprite name=\"intellect_1\"> Intellect, Draw 1 Card.",
+      "from_sha": "d410fd46b864",
+      "to_sha": "d1fed1f0367d",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Tree of Life",
+      "field": "text",
+      "from": "Legendary. At the end of your turn, your commander and plants you control gain +2 Health (increases Max Health).",
+      "to": "Legendary. At the end of your turn, your commander and plants you control gain <sprite name=\"health_2\"> (increases Max Health).",
+      "from_sha": "eb1597c7364e",
+      "to_sha": "7bf7d077179f",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Undying Behemoth",
+      "field": "text",
+      "from": "Postmortem: Summon a 2/2/2 Undead Zombie that has: “Postmortem: Summon a 2/2/2 Undead Zombie.”",
+      "to": "Postmortem: Summon a <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> Undead Zombie that has: “Postmortem: Summon a <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> Undead Zombie.”",
+      "from_sha": "8537ac7e9c96",
+      "to_sha": "77c7edbd333b",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Vyre Aristocrat",
+      "field": "text",
+      "from": "Lifelink. [1 Mana]: Sacrifice an adjacent Minion to gain +2/+0/+2.",
+      "to": "Lifelink. [<sprite name=\"mana_1\">]: Sacrifice an adjacent Minion to gain <sprite name=\"power_2\"> and <sprite name=\"health_2\">.",
+      "from_sha": "274e5be8b168",
+      "to_sha": "b979a96d17c8",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "War Banner",
+      "field": "text",
+      "from": "Deploy. Adjacent ally Minions have +2 Power.",
+      "to": "Deploy. Adjacent ally Minions have +<sprite name=\"power_2\">.",
+      "from_sha": "68e4074aa84e",
+      "to_sha": "a2d6a6518cc6",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "War Chest",
+      "field": "text",
+      "from": "Add 1 Mana this turn, and at the start of your next turn.",
+      "to": "Gain <sprite name=\"mana_1\"> this turn, and at the start of your next turn.",
+      "from_sha": "15c37da269ac",
+      "to_sha": "d0162418c48b",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Warcry",
+      "field": "text",
+      "from": "Your characters within Range 3 gain +2 Power and +2 Speed until end of turn.",
+      "to": "Your characters within Range 3 gain <sprite name=\"power_2\"> and <sprite name=\"speed_2\"> until end of turn.",
+      "from_sha": "98e19d72c03a",
+      "to_sha": "5095ee73a062",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Zealous Captain",
+      "field": "text",
+      "from": "Whenever a character you own is healed, adjacent ally minions gain +1/+0/+1.",
+      "to": "Whenever a character you own is healed, adjacent ally minions gain <sprite name=\"power_1\"> and <sprite name=\"health_1\">.",
+      "from_sha": "2cc8d6756fe3",
+      "to_sha": "5f847be8a139",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Zealous Strength",
+      "field": "text",
+      "from": "Ally minions within Range 3 gain +2 Power and +2 Health. They also gain +1 Movement this turn only.",
+      "to": "Ally minions within Range 3 gain <sprite name=\"power_2\"> and <sprite name=\"health_2\">. They also gain +1 Movement this turn only.",
+      "from_sha": "127687c0fc66",
+      "to_sha": "e21b71d2a377",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-08-05",
+      "card": "Zoloth the Butcher",
+      "field": "text",
+      "from": "Legendary. [Arrival]: Sacrifice a Minion to add three 2/2/2 Zombies to your hand with Ethereal that cost 0.",
+      "to": "Legendary. [Arrival]: Sacrifice a Minion to add three <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> Zombies to your hand with Ethereal that cost <sprite name=\"mana_0\">.",
+      "from_sha": "148ef5720772",
+      "to_sha": "26de7020ae24",
+      "source": "git:7e9590b"
+    },
+    {
+      "date": "2026-07-17",
+      "card": "Dread Proclamation",
+      "field": "text",
+      "from": "Until the end of the turn, all enemies get -1/-0/-1. When an enemy dies this turn, gain 1 Dominion.",
+      "to": "Until the end of the turn, all enemy minions get -1/-0/-1. When an enemy dies this turn, gain 1 Dominion.",
+      "from_sha": "0de13d43c63d",
+      "to_sha": "620e6bda7268",
+      "source": "git:bf8c338"
+    },
+    {
+      "date": "2026-06-19",
+      "card": "Angel's Grace",
+      "field": "text",
+      "from": "[Range 4]: A character gains +4 movement. If it's a minion, it gains Flying this turn.",
+      "to": "[Range 4]: A character gains +4 movement this turn. If it's a minion, it gains Flying this turn.",
+      "from_sha": "f7c04144d866",
+      "to_sha": "03e63a7d6781",
+      "source": "git:21521f3"
+    },
+    {
+      "date": "2026-06-19",
+      "card": "Blessed Force",
+      "field": "text",
+      "from": "Destroy all minions with mana cost 3 or less within Range 2.",
+      "to": "Destroy all minions with mana cost 3 or less within Range 3.",
+      "from_sha": "771a9bd0c5d7",
+      "to_sha": "704ad0d3803a",
+      "source": "git:21521f3"
+    },
+    {
+      "date": "2026-06-19",
+      "card": "Primordial Storm",
+      "field": "text",
+      "from": "Deal 5 damage to all enemy minions.",
+      "to": "Deal 3 damage to all enemy minions twice.",
+      "from_sha": "4ebca4f2b4cd",
+      "to_sha": "ba05232178f7",
+      "source": "git:21521f3"
+    },
+    {
+      "date": "2026-05-23",
+      "card": "Mindstone Servant",
+      "field": "text",
+      "from": "Whenever Mindstone Servant survives damage, draw a card and gain 1 Intellect.",
+      "to": "Whenever Mindstone Servant takes damage, draw a card and gain 1 Intellect. Spellcaster.",
+      "from_sha": "0c3d480994a9",
+      "to_sha": "55a0402aab3b",
+      "source": "git:18265c5"
+    },
+    {
+      "date": "2026-05-23",
+      "card": "Purifier Euron",
+      "field": "text",
+      "from": "Legendary. Must be played on a Village. At the end of your turn, destroy all Villages and other Minions within Range 1.",
+      "to": "Legendary. [Once Per Game]: Destroy the current tile if it's a village to destroy ALL other minions.",
+      "from_sha": "3cfefcde3249",
+      "to_sha": "1da8b9fa5c0c",
+      "source": "git:18265c5"
+    },
+    {
+      "date": "2026-05-23",
+      "card": "Stampede",
+      "field": "text",
+      "from": "Beasts you control within Range 3 gain +3/+3/+3 and gain Trample until the end of the turn.",
+      "to": "Beasts you control within Range 3 gain +3/+2/+3 and gain Trample until the end of the turn.",
+      "from_sha": "630fed7d37ce",
+      "to_sha": "43366ebd5a5c",
+      "source": "git:18265c5"
+    },
+    {
+      "date": "2026-05-23",
+      "card": "Warcry",
+      "field": "text",
+      "from": "Your characters within Range 3 gain +2 Power and +3 Speed until end of turn.",
+      "to": "Your characters within Range 3 gain +2 Power and +2 Speed until end of turn.",
+      "from_sha": "a8882322f4d1",
+      "to_sha": "98e19d72c03a",
+      "source": "git:18265c5"
+    },
+    {
+      "date": "2026-05-16",
+      "card": "Lay Claim",
+      "field": "text",
+      "from": "[Range 0]: Increase your Dominion by 1. Claim a territory an opponent controls.",
+      "to": "[Range 0]: Claim a territory an opponent controls. Increase your Dominion by 1.",
+      "from_sha": "59dd8f343063",
+      "to_sha": "d43ab92497c0",
+      "source": "git:459e8da"
+    },
+    {
+      "date": "2026-05-16",
+      "card": "Nexus Operative",
+      "field": "text",
+      "from": "Spellcaster. Whenever you play a spell, your Spellcasters gain +1/+1/+1 until end of turn.",
+      "to": "Spellcaster. Whenever you play a spell, your other Spellcasters gain +1/+1/+1 until end of turn.",
+      "from_sha": "f793679e3a5a",
+      "to_sha": "ca335a7c7fb2",
+      "source": "git:459e8da"
+    },
+    {
+      "date": "2026-04-09",
+      "card": "Acrid Potion",
+      "field": "text",
+      "from": "[Range 2]: An ally minion gains +1 Power, Fatal, and Lifelink.",
+      "to": "[Range 2]: Target minion gains +1 Power, Fatal, and Lifelink.",
+      "from_sha": "8217a6e6c48b",
+      "to_sha": "001e95c34bed",
+      "source": "git:d5bc4a8"
+    },
+    {
+      "date": "2026-04-09",
+      "card": "Draconic Mage",
+      "field": "text",
+      "from": "Flying. Arrival: Draw a spell from your deck and add another copy to your hand.",
+      "to": "Flying. Spellcaster. Spell-Damage +2. Arrival: Draw a spell from your deck and add two extra copies of it to your hand.",
+      "from_sha": "989ffbff9ab2",
+      "to_sha": "358ca5d500d3",
+      "source": "git:d5bc4a8"
+    },
+    {
+      "date": "2026-04-09",
+      "card": "Energy Potion",
+      "field": "text",
+      "from": "[Range 2]: A minion regains their movement and regains an Attack.",
+      "to": "[Range 2]: A minion gains Haste, regains their movement, and regains an Attack.",
+      "from_sha": "c9df82f321ad",
+      "to_sha": "ee4ea3f28a5b",
+      "source": "git:d5bc4a8"
+    },
+    {
+      "date": "2026-04-09",
+      "card": "Flame Acolyte",
+      "field": "text",
+      "from": "Arrival: add 2 copies of Flamelash to your hand.",
+      "to": "Spellcaster. Arrival: add 2 copies of Flamelash to your hand.",
+      "from_sha": "6cee04dc78d0",
+      "to_sha": "29019499f253",
+      "source": "git:d5bc4a8"
+    },
+    {
+      "date": "2026-04-09",
+      "card": "Pyromaniac",
+      "field": "text",
+      "from": "Arrival: Draw a fire card from your deck.",
+      "to": "Spellcaster. Arrival: Draw a fire card from your deck.",
+      "from_sha": "2294e7154dab",
+      "to_sha": "8ad1778c4394",
+      "source": "git:d5bc4a8"
+    },
+    {
+      "date": "2026-03-17",
+      "card": "Archpaladin Erix",
+      "field": "text",
+      "from": "Flying. Arrival: Set the power of ALL minions equal to their health.",
+      "to": "Legendary. Flying. Arrival: Set the power of ALL minions equal to their health.",
+      "from_sha": "ea3f4e30b2b2",
+      "to_sha": "b94b93ef6cf0",
+      "source": "git:3f44914"
+    },
+    {
+      "date": "2026-03-17",
+      "card": "Grand Illusion",
+      "field": "text",
+      "from": "[Range 2]: Swap an ally minion with a non-legendary minion from your deck.",
+      "to": "[Range 2]: Swap an ally minion with a non-Titan minion from your deck.",
+      "from_sha": "25873523044f",
+      "to_sha": "16f0ce707768",
+      "source": "git:3f44914"
+    }
+  ]
+}
