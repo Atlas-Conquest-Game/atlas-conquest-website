@@ -722,10 +722,11 @@ h2.pitch__lead { font-weight: 400; }
 /* One turn in three beats, cut from one take: same camera, so they read as a sequence. */
 .story { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 1.6vw, 28px); counter-reset: none; }
 .beat { position: relative; min-width: 0; display: flex; flex-direction: column; }
-.beat + .beat::before { /* a small chevron in the gutter: this leads to that */
-  content: ''; position: absolute; top: calc((100% - 3.2em) / 2 - 8px); left: calc(-1 * clamp(16px, 1.6vw, 28px) / 2 - 6px);
-  width: 12px; height: 12px; border-top: 2px solid var(--gold); border-right: 2px solid var(--gold);
-  transform: rotate(45deg); opacity: .7;
+.beat + .beat::before { /* a small chevron in the gutter, centred on the video: this leads to that */
+  content: ''; position: absolute; top: 0; margin-top: calc(28.125% - 5px);
+  left: calc(-1 * clamp(16px, 1.6vw, 28px) / 2 - 7px);
+  width: 10px; height: 10px; border-top: 2px solid var(--gold); border-right: 2px solid var(--gold);
+  transform: rotate(45deg); opacity: .55;
 }
 .beat__media {
   position: relative; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 6px; background: var(--ink-0);
@@ -1349,7 +1350,7 @@ html:not(.js) .clip__btn { display: none; }
 /* pitch on tablets and phones: beats stack one after another, full width */
 @media (max-width: 900px) {
   .story { grid-template-columns: minmax(0, 1fr); gap: 34px; max-width: 640px; margin-inline: auto; }
-  .beat + .beat::before { top: -24px; left: calc(50% - 6px); transform: rotate(135deg); }
+  .beat + .beat::before { top: -22px; margin-top: 0; left: calc(50% - 5px); transform: rotate(135deg); }
   .beat__cap { margin-top: 10px; }
   .glance__facts { display: grid; grid-template-columns: repeat(2, auto); justify-content: center; row-gap: 10px; }
   .glance__facts li { font-size: 22px; padding: 4px 16px; }

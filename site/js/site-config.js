@@ -55,7 +55,7 @@ window.AC_CONFIG = {
   const ROOT = script && script.src ? new URL('../', script.src).href : new URL('/', location.href).href;
 
   const LABELS = {
-    discord: { full: 'Play Free Now on Discord', short: 'Play Free' },
+    discord: { full: 'Join the Beta on Discord', short: 'Join the Beta' },
     steam: { full: 'Wishlist on Steam', short: 'Wishlist' },
   };
 
