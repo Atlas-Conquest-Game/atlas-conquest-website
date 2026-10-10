@@ -54,6 +54,8 @@ See [ARCHITECTURE.md](docs/ARCHITECTURE.md) for the full system design.
 | `scripts/pipeline/io_helpers.py` | DynamoDB scanning, cache management, JSON I/O, CSV loading |
 | `scripts/insights/` + `scripts/build_insights.py` | Analytics v2 derived layer: reads the *published* `site/data/*.json` (+ git history of `cards.json`) and writes only `site/data/insights/` (matchup model, meta pulse, card changelog, per-commander profiles, community decks, manifest). Runs in CI after `fetch_data.py` (non-blocking; writes nothing on failure). No tier lists — Wilson intervals + gated verdicts (sample-size and one-player/<5-player gates); commit `site/data/insights/_state/` with the changelog. Contracts in DATA_MODEL.md "Insights layer". |
 
+**Archive (repo only, never published)**: `site/archive/index.html` links the pre-refresh site (`site/classic/`), every homepage concept (`site/concepts/`) and the old team preview (`site/preview/`). `deploy-site.yml` deletes those four folders before uploading the Pages artifact, so they exist only in git; browse them locally with `python3 -m http.server 8000 --directory site` → `/archive/`. The live homepage is `site/index.html` + `site/home/`.
+
 ## Key Docs
 
 | Doc | Purpose |
