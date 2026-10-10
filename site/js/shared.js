@@ -33,25 +33,72 @@ const FACTION_LABELS = {
   treasure: 'Treasure',
 };
 
-// Chart.js dark theme defaults. Guarded because the Articles pages load
+// Chart theme — mirrors the CSS tokens in site/css/variables.css so canvases
+// sit on the navy panels like the rest of the UI. Use these instead of hex
+// literals in page scripts (e.g. `grid: { color: CHART_THEME.grid }`).
+const CHART_THEME = Object.freeze({
+  font: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+  text: '#b3ada1',        // --text-secondary: ticks, legend, axis titles
+  textStrong: '#ede7da',  // --text: tooltip titles, emphasised labels
+  muted: '#948d81',       // --text-muted
+  grid: '#1f2838',        // gridlines on --bg-card
+  axis: '#2b3549',        // axis baseline
+  surface: '#131924',     // --bg-card: doughnut segment separators
+  tooltipBg: 'rgba(22, 29, 42, 0.97)',
+  tooltipBorder: 'rgba(232, 162, 69, 0.3)',
+  gold: '#e8a245',
+  goldFill: 'rgba(232, 162, 69, 0.7)',
+  goldSoft: 'rgba(232, 162, 69, 0.18)',
+  // Steel blue pairs with gold for two-part splits (first/second turn,
+  // minions/spells); the pair stays distinct under common CVD types.
+  steel: '#9db4dc',
+  steelFill: 'rgba(126, 154, 201, 0.6)',
+  // Recessive slate for "everything else" segments.
+  slate: '#7d8aa0',
+  slateFill: 'rgba(110, 122, 144, 0.55)',
+  positive: '#3fb950',
+  positiveFill: 'rgba(63, 185, 80, 0.55)',
+  negative: '#f85149',
+  negativeFill: 'rgba(248, 81, 73, 0.5)',
+});
+
+// Shared chart tooltip style (spread into per-chart tooltip options)
+const CHART_TOOLTIP = {
+  backgroundColor: CHART_THEME.tooltipBg,
+  borderColor: CHART_THEME.tooltipBorder,
+  borderWidth: 1,
+  titleColor: CHART_THEME.textStrong,
+  bodyColor: '#d6d0c4',
+  footerColor: CHART_THEME.text,
+  titleFont: { weight: '600' },
+  padding: { top: 9, right: 12, bottom: 9, left: 12 },
+  cornerRadius: 8,
+  boxPadding: 5,
+  caretSize: 5,
+};
+
+// Chart.js global defaults. Guarded because the Articles pages load
 // shared.js (for the nav and card preview) without Chart.js — an unguarded
 // reference throws and halts the rest of this file's top-level execution.
 if (typeof Chart !== 'undefined') {
-  Chart.defaults.color = '#8b949e';
-  Chart.defaults.borderColor = '#30363d';
-  Chart.defaults.font.family = "'Inter', sans-serif";
+  Chart.defaults.color = CHART_THEME.text;
+  Chart.defaults.borderColor = CHART_THEME.grid;
+  Chart.defaults.font.family = CHART_THEME.font;
+  Chart.defaults.font.size = 12;
+  Chart.defaults.scale.border.color = CHART_THEME.axis;
+  Object.assign(Chart.defaults.plugins.tooltip, CHART_TOOLTIP);
+  Object.assign(Chart.defaults.plugins.legend.labels, {
+    color: CHART_THEME.text,
+    boxWidth: 10,
+    boxHeight: 10,
+    padding: 14,
+    useBorderRadius: true,
+    borderRadius: 2,
+  });
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    Chart.defaults.animation = false;
+  }
 }
-
-// Shared chart tooltip style
-const CHART_TOOLTIP = {
-  backgroundColor: '#21262d',
-  borderColor: '#30363d',
-  borderWidth: 1,
-  titleColor: '#e6edf3',
-  bodyColor: '#8b949e',
-  padding: 10,
-  cornerRadius: 6,
-};
 
 // ─── Shared State ───────────────────────────────────────────
 
@@ -120,6 +167,14 @@ async function loadCommanderMulliganStats() {
 }
 
 // ─── Helpers ────────────────────────────────────────────────
+
+// One date style across the site ("Oct 5, 2026") — unambiguous outside the
+// US, and the same as the article bylines and legal pages.
+const AC_DATE_FORMAT = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+function formatSiteDate(value) {
+  const d = value instanceof Date ? value : new Date(value);
+  return Number.isNaN(d.getTime()) ? '--' : AC_DATE_FORMAT.format(d);
+}
 
 function el(id, text) {
   const node = document.getElementById(id);
@@ -229,7 +284,7 @@ function sortedCommanders(deckComp) {
 function renderMetadata(metadata) {
   if (!metadata) return;
   el('hero-matches', `${metadata.total_matches.toLocaleString()} matches`);
-  el('hero-updated', `Last updated: ${new Date(metadata.last_updated).toLocaleDateString()}`);
+  el('hero-updated', `Last updated: ${formatSiteDate(metadata.last_updated)}`);
   el('stat-matches', metadata.total_matches.toLocaleString());
 }
 
@@ -256,8 +311,15 @@ function buildFilterSelect(buttons, dataKey, insertAfterNode) {
 
 // ─── Time Filter ────────────────────────────────────────────
 
+// The sticky bar's own buttons only — meta.html's matchup modal reuses the
+// .time-btn/.map-btn classes for its private filter row.
+function filterBarButtons(cls) {
+  const scoped = document.querySelectorAll(`#time-filter-bar .${cls}`);
+  return Array.from(scoped.length ? scoped : document.querySelectorAll(`.${cls}:not(.modal-${cls})`));
+}
+
 function initTimeFilters(renderCallback) {
-  const buttons = Array.from(document.querySelectorAll('.time-btn'));
+  const buttons = filterBarButtons('time-btn');
   const select = buildFilterSelect(buttons, 'period', buttons[buttons.length - 1]);
   const apply = value => {
     buttons.forEach(b => b.classList.toggle('active', b.dataset.period === value));
@@ -272,7 +334,7 @@ function initTimeFilters(renderCallback) {
 // ─── Map Filter ────────────────────────────────────────────
 
 function initMapFilters(renderCallback) {
-  const buttons = Array.from(document.querySelectorAll('.map-btn'));
+  const buttons = filterBarButtons('map-btn');
   const select = buildFilterSelect(buttons, 'map', buttons[buttons.length - 1]);
   const apply = value => {
     buttons.forEach(b => b.classList.toggle('active', b.dataset.map === value));
@@ -287,29 +349,75 @@ function initMapFilters(renderCallback) {
 // ─── Nav Active State ───────────────────────────────────────
 
 function initNavActiveState() {
+  // The primary nav's current item is written statically (aria-current, by
+  // scripts/sync_chrome.py), so only the analytics sub-nav is marked here.
   const pageName = window.location.pathname.split('/').pop() || 'index.html';
-  const currentPage = pageName === '' ? 'index.html' : pageName;
-
-  // Primary nav: highlight based on data-nav attribute
-  const analyticsPages = ['analytics.html', 'commanders.html', 'cards.html', 'meta.html', 'goals.html'];
-  const path = window.location.pathname;
-  const isArticles = currentPage === 'articles.html' || path.startsWith('/articles/') || path.includes('/articles/');
-  const isDecks = currentPage === 'decks.html' || path.startsWith('/decks/') || path.includes('/decks/');
-  const primaryLinks = document.querySelectorAll('.nav-link[data-nav]');
-  primaryLinks.forEach(link => {
-    const nav = link.dataset.nav;
-    if (nav === 'home' && currentPage === 'index.html') link.classList.add('active');
-    else if (nav === 'analytics' && analyticsPages.includes(currentPage)) link.classList.add('active');
-    else if (nav === 'metagame' && currentPage === 'metagame.html') link.classList.add('active');
-    else if (nav === 'decks' && isDecks) link.classList.add('active');
-    else if (nav === 'articles' && isArticles) link.classList.add('active');
+  document.querySelectorAll('.sub-nav-link').forEach(link => {
+    if (link.getAttribute('href') === pageName) link.classList.add('active');
   });
+}
 
-  // Sub-nav: highlight matching page
-  const subLinks = document.querySelectorAll('.sub-nav-link');
-  subLinks.forEach(link => {
-    if (link.getAttribute('href') === currentPage) link.classList.add('active');
-  });
+// ─── Modal Focus Management ─────────────────────────────────
+
+// The analytics modals are plain overlays (role="dialog" aria-modal="true"),
+// so focus handling is ours: on open, remember the opener, make everything
+// behind the dialog inert, move focus to the dialog's Close button and keep
+// Tab inside it; on close, undo all of that and put focus back on the opener.
+// Same contract as the trailer modal in site-config.js.
+const _acModalState = new Map();
+const AC_FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+function acModalOpen(modal, opener) {
+  if (!modal) return;
+  if (_acModalState.has(modal)) return; // already open (e.g. re-render inside it)
+  const from = opener || document.activeElement;
+  const inerted = [];
+  // Inert every sibling of the dialog and of each of its ancestors up to
+  // <body>, so it works whether the overlay sits beside <main> or inside it.
+  for (let node = modal; node && node !== document.body; node = node.parentElement) {
+    const parent = node.parentElement;
+    if (!parent) break;
+    Array.from(parent.children).forEach(sib => {
+      if (sib === node || sib.inert) return;
+      if (sib.tagName === 'SCRIPT' || sib.id === 'card-preview' || sib.classList.contains('info-tooltip')) return;
+      sib.inert = true;
+      inerted.push(sib);
+    });
+  }
+  const onKey = e => {
+    if (e.key !== 'Tab') return;
+    const items = Array.from(modal.querySelectorAll(AC_FOCUSABLE))
+      .filter(n => n.offsetParent !== null || n === document.activeElement);
+    if (!items.length) { e.preventDefault(); return; }
+    const first = items[0];
+    const last = items[items.length - 1];
+    if (e.shiftKey && (document.activeElement === first || !modal.contains(document.activeElement))) {
+      e.preventDefault(); last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault(); first.focus();
+    }
+  };
+  modal.addEventListener('keydown', onKey);
+  _acModalState.set(modal, { from, inerted, onKey });
+  const target = modal.querySelector('.modal-close') || modal.querySelector(AC_FOCUSABLE);
+  if (target) target.focus({ preventScroll: true });
+}
+
+function acModalClose(modal) {
+  const state = modal && _acModalState.get(modal);
+  if (!state) return;
+  _acModalState.delete(modal);
+  modal.removeEventListener('keydown', state.onKey);
+  state.inerted.forEach(node => { node.inert = false; });
+  let back = state.from;
+  // The opener may have been re-rendered while the dialog was up (period
+  // change): fall back to its replacement, matched by data-commander.
+  if (back && !document.contains(back) && back.dataset && back.dataset.commander) {
+    back = document.querySelector(`[data-commander="${CSS.escape(back.dataset.commander)}"][tabindex]`);
+  }
+  if (back && typeof back.focus === 'function' && document.contains(back) && back !== document.body) {
+    back.focus({ preventScroll: true });
+  }
 }
 
 // ─── Commander Detail Modal ─────────────────────────────────
@@ -400,22 +508,57 @@ async function openCommanderModal(cmdName) {
   Object.values(modalCharts).forEach(c => c && c.destroy());
   modalCharts = {};
 
-  // Matchup chart
+  // Matchup chart. Every opponent this commander has met, most-played first;
+  // each label carries its game count, and the bar's weight follows the sample:
+  // full colour from 20 games, faded below that, and under 5 games (the
+  // heatmap's cut-off) no bar at all — just "too few games to call".
   const matchupCanvas = document.getElementById('modal-matchup-chart');
   if (matchupCanvas && matchupData && matchupData.matchups) {
     const cmdMatchups = matchupData.matchups
-      .filter(m => m.commander === cmdName && m.opponent !== cmdName && m.total >= 5)
-      .sort((a, b) => b.total - a.total);
+      .filter(m => m.commander === cmdName && m.opponent !== cmdName && m.total > 0)
+      .sort((a, b) => b.total - a.total || b.winrate - a.winrate);
 
     if (cmdMatchups.length) {
-      const labels = cmdMatchups.map(m => m.opponent);
-      const winrates = cmdMatchups.map(m => m.winrate * 100);
-      const colors = cmdMatchups.map(m => (
-        m.winrate > 0.52 ? '#3fb95099' : m.winrate < 0.48 ? '#f8514999' : '#8b949e99'
-      ));
-      const borders = cmdMatchups.map(m => (
-        m.winrate > 0.52 ? '#3fb950' : m.winrate < 0.48 ? '#f85149' : '#8b949e'
-      ));
+      const MIN_SHOWN = 5;
+      const FULL_WEIGHT = 20;
+      const thin = m => m.total < MIN_SHOWN;
+      const labels = cmdMatchups.map(m => `${m.opponent} · ${m.total}`);
+      const winrates = cmdMatchups.map(m => (thin(m) ? null : m.winrate * 100));
+      const tone = m => (m.winrate > 0.52 ? [63, 185, 80] : m.winrate < 0.48 ? [248, 81, 73] : [179, 173, 161]);
+      const colors = cmdMatchups.map(m => `rgba(${tone(m).join(', ')}, ${m.total < FULL_WEIGHT ? 0.32 : 0.62})`);
+      const borders = cmdMatchups.map(m => `rgba(${tone(m).join(', ')}, ${m.total < FULL_WEIGHT ? 0.55 : 1})`);
+      // Under 5 games there is no bar, just a muted note where it would start.
+      const thinNote = {
+        id: 'acThinNote',
+        afterDatasetsDraw(chart) {
+          const { ctx, scales } = chart;
+          ctx.save();
+          ctx.font = `italic 11px ${CHART_THEME.font}`;
+          ctx.fillStyle = CHART_THEME.muted;
+          ctx.textBaseline = 'middle';
+          cmdMatchups.forEach((m, i) => {
+            if (!thin(m)) return;
+            ctx.fillText('too few games to call', scales.x.getPixelForValue(0) + 6, scales.y.getPixelForValue(i));
+          });
+          ctx.restore();
+        },
+      };
+      const evenLine = {
+        id: 'acEvenLine',
+        afterDatasetsDraw(chart) {
+          const { ctx, chartArea, scales } = chart;
+          const x = scales.x.getPixelForValue(50);
+          ctx.save();
+          ctx.strokeStyle = 'rgba(237, 231, 218, 0.45)';
+          ctx.setLineDash([4, 4]);
+          ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(x, chartArea.top); ctx.lineTo(x, chartArea.bottom); ctx.stroke();
+          ctx.restore();
+        },
+      };
+
+      const wrap = matchupCanvas.parentElement;
+      if (wrap) wrap.style.height = `${Math.max(180, cmdMatchups.length * 26 + 60)}px`;
 
       modalCharts.matchup = new Chart(matchupCanvas, {
         type: 'bar',
@@ -428,12 +571,14 @@ async function openCommanderModal(cmdName) {
             borderColor: borders,
             borderWidth: 1,
             borderRadius: 3,
+            minBarLength: 3, // a 0% matchup still shows a sliver
           }],
         },
+        plugins: [evenLine, thinNote],
         options: {
           indexAxis: 'y',
           responsive: true,
-          maintainAspectRatio: true,
+          maintainAspectRatio: false,
           plugins: {
             legend: { display: false },
             tooltip: {
@@ -441,7 +586,9 @@ async function openCommanderModal(cmdName) {
               callbacks: {
                 label: (ctx) => {
                   const m = cmdMatchups[ctx.dataIndex];
-                  return `${ctx.parsed.x.toFixed(1)}% (${m.wins}-${m.losses}, ${m.total} games)`;
+                  if (thin(m)) return `-- (only ${m.total} game${m.total === 1 ? '' : 's'}: too few to call)`;
+                  const note = m.total < FULL_WEIGHT ? ' · small sample' : '';
+                  return `${(m.winrate * 100).toFixed(1)}% (${m.wins}-${m.losses}, ${m.total} games)${note}`;
                 },
               },
             },
@@ -450,12 +597,13 @@ async function openCommanderModal(cmdName) {
             x: {
               beginAtZero: true,
               max: 100,
-              grid: { color: '#21262d' },
-              title: { display: true, text: 'Winrate %', color: '#8b949e', font: { size: 11 } },
+              grid: { color: CHART_THEME.grid },
+              ticks: { callback: v => `${v}%` },
+              title: { display: true, text: 'Winrate (dashed line = 50%)', color: CHART_THEME.text, font: { size: 11 } },
             },
             y: {
               grid: { display: false },
-              ticks: { font: { size: 10 } },
+              ticks: { font: { size: 10 }, autoSkip: false },
             },
           },
         },
@@ -474,24 +622,24 @@ async function openCommanderModal(cmdName) {
           {
             label: 'All Decks',
             data: d.cost_histogram.all_decks,
-            backgroundColor: '#58a6ff88',
-            borderColor: '#58a6ff',
+            backgroundColor: CHART_THEME.goldFill,
+            borderColor: CHART_THEME.gold,
             borderWidth: 1,
             borderRadius: 3,
           },
           {
             label: 'Winning',
             data: d.cost_histogram.winning_decks,
-            backgroundColor: '#3fb95088',
-            borderColor: '#3fb950',
+            backgroundColor: CHART_THEME.positiveFill,
+            borderColor: CHART_THEME.positive,
             borderWidth: 1,
             borderRadius: 3,
           },
           {
             label: 'Losing',
             data: d.cost_histogram.losing_decks,
-            backgroundColor: '#f8514988',
-            borderColor: '#f85149',
+            backgroundColor: CHART_THEME.negativeFill,
+            borderColor: CHART_THEME.negative,
             borderWidth: 1,
             borderRadius: 3,
           },
@@ -514,12 +662,12 @@ async function openCommanderModal(cmdName) {
         scales: {
           y: {
             beginAtZero: true,
-            grid: { color: '#21262d' },
-            title: { display: true, text: 'Avg Cards at Cost', color: '#8b949e', font: { size: 11 } },
+            grid: { color: CHART_THEME.grid },
+            title: { display: true, text: 'Avg Cards at Cost', color: CHART_THEME.text, font: { size: 11 } },
           },
           x: {
             grid: { display: false },
-            title: { display: true, text: 'Mana Cost', color: '#8b949e', font: { size: 11 } },
+            title: { display: true, text: 'Mana Cost', color: CHART_THEME.text, font: { size: 11 } },
           },
         },
       },
@@ -535,8 +683,8 @@ async function openCommanderModal(cmdName) {
         labels: ['Minions', 'Spells'],
         datasets: [{
           data: [d.avg_minion_count, d.avg_spell_count],
-          backgroundColor: ['#3fb95099', '#d2a8ff99'],
-          borderColor: ['#3fb950', '#d2a8ff'],
+          backgroundColor: [CHART_THEME.goldFill, CHART_THEME.steelFill],
+          borderColor: [CHART_THEME.gold, CHART_THEME.steel],
           borderWidth: 1,
         }],
       },
@@ -568,8 +716,8 @@ async function openCommanderModal(cmdName) {
         labels: ['Patron', 'Neutral', 'Other Faction'],
         datasets: [{
           data: [d.avg_patron_cards, d.avg_neutral_cards, d.avg_other_cards],
-          backgroundColor: ['#58a6ff99', '#A8907899', '#f8514966'],
-          borderColor: ['#58a6ff', '#A89078', '#f85149'],
+          backgroundColor: [CHART_THEME.goldFill, 'rgba(168, 144, 120, 0.6)', CHART_THEME.slateFill],
+          borderColor: [CHART_THEME.gold, FACTION_COLORS.neutral, CHART_THEME.slate],
           borderWidth: 1,
         }],
       },
@@ -595,6 +743,7 @@ async function openCommanderModal(cmdName) {
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
   document.body.classList.add('modal-open');
+  acModalOpen(modal);
 
   await loadCommanderCardStats();
   if (document.getElementById('modal-name') && document.getElementById('modal-name').textContent === cmdName) {
@@ -604,8 +753,9 @@ async function openCommanderModal(cmdName) {
 
 function closeCommanderModal() {
   const modal = document.getElementById('commander-modal');
-  if (!modal) return;
+  if (!modal || !modal.classList.contains('open')) return;
   modal.classList.remove('open');
+  acModalClose(modal);
   document.body.style.overflow = '';
   document.body.classList.remove('modal-open');
   Object.values(modalCharts).forEach(c => c && c.destroy());
@@ -742,6 +892,8 @@ function initStickyTableHeader(table) {
 
   function rebuild() {
     clone.innerHTML = table.tHead.outerHTML;
+    // The clone is aria-hidden; keep its copies of the "?" chips untabbable.
+    clone.querySelectorAll('[tabindex]').forEach(n => n.setAttribute('tabindex', '-1'));
     // Auto table layout sizes columns to content, and the clone has only the
     // header's short strings to go on — so copy the real widths across.
     const real = table.tHead.rows[0].cells;
@@ -803,39 +955,167 @@ function initStickyTableHeader(table) {
   schedule();
 }
 
+// ─── Table scroll cue ───────────────────────────────────────
+
+// Marks each .table-wrapper .is-scrollable while it has columns hidden past its
+// edge and .is-at-end once scrolled all the way across, so CSS can fade the
+// right edge as a "swipe for more" cue on phones (see analytics.css §7b).
+function initTableScrollCues() {
+  const wrappers = new Set();
+  const check = w => {
+    const scrollable = w.scrollWidth - w.clientWidth > 4;
+    w.classList.toggle('is-scrollable', scrollable);
+    w.classList.toggle('is-at-end', !scrollable || w.scrollLeft + w.clientWidth >= w.scrollWidth - 4);
+  };
+  const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(entries => {
+    entries.forEach(e => check(e.target.closest('.table-wrapper') || e.target));
+  }) : null;
+  const watch = () => {
+    document.querySelectorAll('.table-wrapper').forEach(w => {
+      if (wrappers.has(w)) { check(w); return; }
+      wrappers.add(w);
+      w.addEventListener('scroll', () => check(w), { passive: true });
+      if (ro) { ro.observe(w); const t = w.querySelector('table'); if (t) ro.observe(t); }
+      check(w);
+    });
+  };
+  watch();
+  window.addEventListener('resize', watch);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (document.querySelector('.table-wrapper')) initTableScrollCues();
+});
+
 // ─── Tooltip System ─────────────────────────────────────────
 
+// Any [data-tooltip] element shows the shared .info-tooltip bubble. The "?"
+// chips (.tooltip-icon) are upgraded to real controls so the caveats they hold
+// ("at least 20 games", how turn order is inferred) reach keyboard, touch and
+// screen-reader users too: focusable, named by their text, shown on hover,
+// focus or tap, and dismissed with Esc, a second tap or a tap elsewhere.
+function upgradeTooltipIcon(icon) {
+  if (!icon || icon.dataset.ttReady || icon.closest('.sticky-table-header')) return;
+  icon.dataset.ttReady = '1';
+  icon.setAttribute('role', 'button');
+  icon.setAttribute('tabindex', '0');
+  icon.setAttribute('aria-label', `More info: ${icon.dataset.tooltip}`);
+  glueToPreviousWord(icon);
+}
+
+// Keep a "?" on the same line as the word before it, so a narrow screen never
+// wraps the icon onto a line of its own under a title.
+function glueToPreviousWord(icon) {
+  const prev = icon.previousSibling;
+  if (!prev || prev.nodeType !== Node.TEXT_NODE) return;
+  const m = prev.textContent.match(/(\S+)(\s*)$/);
+  if (!m) return;
+  const glue = document.createElement('span');
+  glue.className = 'ac-nowrap';
+  glue.style.whiteSpace = 'nowrap';
+  prev.textContent = prev.textContent.slice(0, m.index);
+  glue.textContent = m[1] + (m[2] ? ' ' : '');
+  icon.parentNode.insertBefore(glue, icon);
+  glue.appendChild(icon);
+}
+
 function initTooltips() {
+  if (document.querySelector('.info-tooltip')) return; // once per page
   const tooltipEl = document.createElement('div');
   tooltipEl.className = 'info-tooltip';
+  tooltipEl.setAttribute('role', 'tooltip');
+  tooltipEl.id = 'ac-info-tooltip';
   document.body.appendChild(tooltipEl);
 
-  document.addEventListener('mouseover', e => {
-    const target = e.target.closest('[data-tooltip]');
-    if (!target) return;
+  let current = null;   // element whose tip is showing
+  let pinned = false;   // opened by tap/click/keyboard (stays until dismissed)
 
-    tooltipEl.textContent = target.dataset.tooltip;
-    tooltipEl.classList.add('visible');
-
+  const place = target => {
     const rect = target.getBoundingClientRect();
-    tooltipEl.style.left = rect.left + 'px';
+    tooltipEl.style.left = Math.max(12, rect.left) + 'px';
     tooltipEl.style.top = (rect.bottom + 8) + 'px';
 
     // Keep within viewport
     requestAnimationFrame(() => {
       const tipRect = tooltipEl.getBoundingClientRect();
       if (tipRect.right > window.innerWidth - 12) {
-        tooltipEl.style.left = (window.innerWidth - tipRect.width - 12) + 'px';
+        tooltipEl.style.left = Math.max(12, window.innerWidth - tipRect.width - 12) + 'px';
       }
       if (tipRect.bottom > window.innerHeight - 12) {
         tooltipEl.style.top = (rect.top - tipRect.height - 8) + 'px';
       }
     });
+  };
+
+  const show = (target, pin) => {
+    current = target;
+    pinned = !!pin;
+    tooltipEl.textContent = target.dataset.tooltip;
+    tooltipEl.classList.add('visible');
+    target.setAttribute('aria-describedby', tooltipEl.id);
+    place(target);
+  };
+
+  const hide = () => {
+    if (current) current.removeAttribute('aria-describedby');
+    current = null;
+    pinned = false;
+    tooltipEl.classList.remove('visible');
+  };
+
+  document.querySelectorAll('.tooltip-icon[data-tooltip]').forEach(upgradeTooltipIcon);
+
+  document.addEventListener('mouseover', e => {
+    const target = e.target.closest('[data-tooltip]');
+    if (!target || pinned) return;
+    show(target, false);
   });
 
   document.addEventListener('mouseout', e => {
     const target = e.target.closest('[data-tooltip]');
-    if (!target) return;
-    tooltipEl.classList.remove('visible');
+    if (!target || pinned) return;
+    hide();
   });
+
+  document.addEventListener('focusin', e => {
+    const target = e.target.closest && e.target.closest('.tooltip-icon[data-tooltip]');
+    if (target) show(target, false);
+  });
+
+  document.addEventListener('focusout', e => {
+    if (current && e.target === current) hide();
+  });
+
+  // Capture phase: a tap on "?" inside a sortable header or a collapsible
+  // title toggles the tip without also sorting or collapsing.
+  document.addEventListener('click', e => {
+    const icon = e.target.closest('.tooltip-icon[data-tooltip]');
+    if (icon && !icon.closest('.sticky-table-header')) {
+      e.preventDefault();
+      e.stopPropagation();
+      if (current === icon && pinned) hide();
+      else show(icon, true);
+      return;
+    }
+    if (pinned) hide();
+  }, true);
+
+  document.addEventListener('keydown', e => {
+    const icon = e.target.closest && e.target.closest('.tooltip-icon[data-tooltip]');
+    if (icon && (e.key === 'Enter' || e.key === ' ')) {
+      e.preventDefault();
+      e.stopPropagation();
+      if (current === icon && pinned) hide();
+      else show(icon, true);
+    } else if (e.key === 'Escape' && current) {
+      hide();
+    }
+  });
+
+  // Follow the trigger while the page scrolls (focusing one scrolls it into view).
+  let raf = 0;
+  window.addEventListener('scroll', () => {
+    if (!current || raf) return;
+    raf = requestAnimationFrame(() => { raf = 0; if (current) place(current); });
+  }, { passive: true });
 }

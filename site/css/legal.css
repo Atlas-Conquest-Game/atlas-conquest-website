@@ -1,80 +1,267 @@
-/*
- * Legal pages: privacy policy and terms.
- *
- * These are read once, under mild duress, by someone checking a specific claim.
- * So the priority is scanning rather than beauty -- a narrow measure, generous
- * spacing between headings, and enough contrast to read a paragraph without
- * effort. Nothing here is reused elsewhere.
- */
+/* ==========================================================================
+   Legal pages — privacy policy and terms (game + Twitch extension)
+   --------------------------------------------------------------------------
+   Read once, under mild duress, by someone checking a specific claim. So the
+   priority is scanning rather than decoration: a narrow measure, generous
+   space between headings, an "On this page" index, and a product switch
+   (game / Twitch extension) answering "am I even on the right page?" first.
+   Brand touches stay in the hero and the section titles.
+   ========================================================================== */
 
-.legal {
-  /* ~70 characters at this size. Wider is measurably harder to scan back to the
-     start of the next line, which is the whole activity on a page like this. */
-  max-width: 46rem;
-  padding-top: 2.5rem;
-  padding-bottom: 5rem;
-  line-height: 1.7;
+/* ─── Hero ───────────────────────────────────────────────────────────── */
+
+.legal-hero .ac-page-hero__inner > * { max-width: none; }
+
+.legal-hero-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.9rem 1.5rem;
 }
 
-.legal-lead {
-  font-size: 1.0625rem;
-  opacity: 0.9;
-  margin-bottom: 2.5rem;
-}
-
-.legal h2 {
-  font-family: "Cinzel", Georgia, serif;
-  font-size: 1.375rem;
-  margin-top: 3rem;
-  margin-bottom: 0.75rem;
-}
-
-.legal h3 {
-  font-size: 1.0625rem;
-  font-weight: 600;
-  margin-top: 1.75rem;
-  margin-bottom: 0.5rem;
-}
-
-.legal p,
-.legal li {
-  margin-bottom: 1rem;
-}
-
-.legal ul {
-  padding-left: 1.25rem;
-  margin-bottom: 1.5rem;
-}
-
-.legal li {
-  margin-bottom: 0.5rem;
-}
-
-.legal code {
-  font-size: 0.9em;
-  padding: 0.1em 0.35em;
-  border-radius: 4px;
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.legal a {
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-/*
- * Cross-link between the game and extension versions of each document.
- *
- * Sits above the lead paragraph because the first question a reader has is
- * "am I even on the right page" -- answering it after they have read the intro
- * wastes the intro.
- */
+/* Segmented switch between the game and Twitch-extension versions. */
 .legal-switch {
-  margin: 0 0 2rem;
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.04);
+  display: inline-flex;
+  padding: 4px;
+  border: 1px solid var(--ac-line);
+  border-radius: 999px;
+  background: rgba(6, 8, 13, 0.55);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+.legal-switch a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 1rem;
+  border-radius: 999px;
+  font: 600 0.75rem/1 var(--ac-font-body);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ac-text-2);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+.legal-switch a:hover { color: var(--ac-gold-1); }
+.legal-switch a[aria-current='page'] {
+  color: #2a1505;
+  background: var(--ac-grad-button);
+  box-shadow: inset 0 1px 0 rgba(255, 246, 214, 0.6), 0 6px 16px -8px rgba(240, 90, 26, 0.8);
+}
+.legal-switch a:focus-visible {
+  outline: 2px solid var(--ac-gold-1);
+  outline-offset: 2px;
+}
+
+.legal-updated {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--ac-text-3);
+}
+.legal-updated time { color: var(--ac-text-2); font-variant-numeric: tabular-nums; }
+
+/* ─── Layout: index + body ───────────────────────────────────────────── */
+
+.legal-layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 46rem);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+  padding-top: clamp(2.25rem, 4vw, 3.25rem);
+  padding-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.legal-toc {
+  position: sticky;
+  top: calc(var(--nav-height) + 2rem);
+  padding-left: 1rem;
+  border-left: 1px solid var(--ac-line);
+}
+.legal-toc-title {
+  margin: 0 0 0.85rem;
+  font: 600 0.6875rem/1 var(--ac-font-body);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ac-gold-2);
+}
+.legal-toc ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.legal-toc a {
+  position: relative;
+  display: block;
+  padding: 0.38rem 0;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--ac-text-2);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+.legal-toc a::before {
+  content: '';
+  position: absolute;
+  left: calc(-1rem - 4px);
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  background: var(--ac-gold-2);
+  transform: translateY(-50%) rotate(45deg) scale(0);
+  transition: transform 0.2s var(--ac-ease);
+}
+.legal-toc a:hover { color: var(--ac-text); }
+.legal-toc a:hover::before { transform: translateY(-50%) rotate(45deg) scale(0.7); }
+.legal-toc a[aria-current='true'] { color: var(--ac-gold-1); }
+.legal-toc a[aria-current='true']::before { transform: translateY(-50%) rotate(45deg) scale(1); }
+
+/* ─── Body ───────────────────────────────────────────────────────────── */
+
+.legal-body {
+  min-width: 0;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--ac-text);
+}
+
+.legal-scope {
+  margin: 0 0 1.75rem;
+  padding: 0.85rem 1.1rem;
+  border: 1px solid var(--ac-line-soft);
+  border-left: 2px solid var(--ac-gold-2);
+  border-radius: 0 10px 10px 0;
+  background: linear-gradient(90deg, rgba(232, 162, 69, 0.07), rgba(232, 162, 69, 0) 80%);
   font-size: 0.9375rem;
   line-height: 1.6;
+  color: var(--ac-text-2);
+}
+.legal-scope strong { color: var(--ac-text); }
+
+.legal-lead {
+  margin: 0 0 2.25rem;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--ac-text);
+}
+
+.legal-body h2 {
+  margin: 2.75rem 0 0.85rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--ac-line-soft);
+  font-family: var(--ac-font-display);
+  font-weight: 400;
+  font-size: var(--ac-h2-data);
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  color: var(--ac-gold-1);
+  scroll-margin-top: calc(var(--nav-height) + 1.5rem);
+}
+.legal-body h3 {
+  margin: 1.9rem 0 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ac-text);
+}
+
+.legal-body p,
+.legal-body li { color: var(--ac-text); }
+.legal-body p { margin: 0 0 1rem; }
+.legal-body ul,
+.legal-body ol {
+  margin: 0 0 1.5rem;
+  padding-left: 1.4rem;
+}
+.legal-body li {
+  margin-bottom: 0.55rem;
+  padding-left: 0.2rem;
+}
+.legal-body ul > li::marker {
+  content: '◆  ';
+  font-size: 0.6em;
+  color: var(--ac-gold-2);
+}
+.legal-body strong { color: #fff6e6; font-weight: 600; }
+
+.legal-body a {
+  color: var(--gold-text, #f2c271);
+  text-decoration: underline;
+  text-decoration-color: rgba(242, 194, 113, 0.45);
+  text-underline-offset: 0.2em;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+.legal-body a:hover {
+  color: var(--ac-gold-1);
+  text-decoration-color: currentColor;
+}
+
+.legal-body code {
+  padding: 0.12em 0.4em;
+  border: 1px solid var(--border-subtle, #1a2130);
+  border-radius: 5px;
+  background: var(--bg-inset, #0d121b);
+  font-size: 0.88em;
+}
+
+/* The closing "Contact" section reads as a card. */
+.legal-body h2#contact + p {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1.1rem 1.25rem;
+  border: 1px solid var(--ac-line);
+  border-radius: 12px;
+  background:
+    radial-gradient(80% 120% at 100% 0%, rgba(240, 120, 30, 0.12), transparent 70%),
+    var(--ac-navy-3);
+}
+.legal-body h2#contact + p::before {
+  content: '';
+  flex: none;
+  width: 22px;
+  height: 22px;
+  background: var(--ac-gold-2);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23000' stroke-width='1.8' stroke-linejoin='round'%3E%3Crect x='3' y='5' width='18' height='14' rx='2'/%3E%3Cpath d='m3.5 6.5 8.5 6.5 8.5-6.5'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23000' stroke-width='1.8' stroke-linejoin='round'%3E%3Crect x='3' y='5' width='18' height='14' rx='2'/%3E%3Cpath d='m3.5 6.5 8.5 6.5 8.5-6.5'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+}
+.legal-body h2#contact + p a {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────────── */
+
+@media (max-width: 960px) {
+  .legal-layout {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: calc(46rem + 4rem);
+  }
+  /* The index becomes a compact block above the text. */
+  .legal-toc {
+    position: static;
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--ac-line-soft);
+    border-radius: 12px;
+    background: rgba(19, 25, 36, 0.6);
+  }
+  .legal-toc ol {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 12rem), 1fr));
+    gap: 0 1.25rem;
+  }
+  .legal-toc a::before { display: none; }
+}
+
+@media (max-width: 480px) {
+  .legal-switch { display: flex; width: 100%; }
+  .legal-switch a { flex: 1; justify-content: center; padding: 0 0.6rem; letter-spacing: 0.04em; }
+  .legal-body { font-size: 1rem; }
+  .legal-lead { font-size: 1.125rem; }
+}
+
+@media print {
+  .legal-toc,
+  .legal-switch { display: none; }
+  .legal-layout { display: block; }
+  .legal-body h2 { color: #7a4a10; }
 }

@@ -39,8 +39,48 @@ const FACTION_COLORS = {
   adora: '#CC79A7', mechanus: '#A9714B', treasure: '#EDD9A0',
 };
 
-const MINION_COLOR = 'var(--lucia)';
-const SPELL_COLOR  = '#7C9EFF';
+// Display order for faction groupings (commander picker, quick start).
+const FACTION_ORDER = ['skaal', 'grenalia', 'lucia', 'shadis', 'archaeon', 'neutral', 'adora', 'mechanus', 'treasure'];
+
+// Minions use the brand gold (not Lucia's faction colour — that one carries
+// data meaning elsewhere); spells a periwinkle that stays distinct from it
+// under every common colour-vision deficiency.
+const MINION_COLOR = 'var(--gold)';
+const SPELL_COLOR  = '#8ea2ff';
+
+// Deck size rule from docs/GAME_RULES.md. Informational only: the meter in
+// the sidebar shows where a deck sits against it; nothing is blocked.
+const DECK_MIN_CARDS = 40;
+const DECK_MAX_CARDS = 60;
+const MAX_COPIES = 3;
+
+// Card art. The transparent 400×560 WebP renders (rounded corners, ribbon
+// overhang intact) read as real cards on navy and weigh ~40% of the framed
+// JPGs, so every card image on this page uses them. The JPG stays as the
+// fallback (older offline caches hold it) via cardArtFallback().
+function cardArtSrc(slug) { return `/assets/media/cards/${slug}.webp`; }
+function cardArtJpg(slug) { return `/assets/cards/${slug}.jpg`; }
+
+// onerror handler for card <img>s: try the JPG once, then hide the image.
+function cardArtFallback(img) {
+  const fb = img.dataset.fallback;
+  if (fb && !img.src.endsWith(fb)) { img.src = fb; return; }
+  img.onerror = null;
+  img.style.visibility = 'hidden';
+}
+
+function titleCase(s) {
+  return String(s || '').replace(/\b\w/g, ch => ch.toUpperCase());
+}
+
+// Polite screen-reader announcement (#deck-live).
+function announce(msg) {
+  const el = document.getElementById('deck-live');
+  if (!el) return;
+  el.textContent = '';
+  // New text node on the next frame so repeated messages are re-announced.
+  requestAnimationFrame(() => { el.textContent = msg; });
+}
 
 // Lazim has a unique rule: cards from any god, but no neutral cards. Mirrors
 // his Patrons list in the game (Assets/Resources/Commanders/lazim-thief-of-gods
@@ -111,10 +151,41 @@ function factionColor(faction) {
   return FACTION_COLORS[(faction || '').toLowerCase()] || FACTION_COLORS.neutral;
 }
 
+// Uses the shared .faction-badge.<faction> chip from components.css.
 function factionBadge(faction) {
   const f = (faction || 'neutral').toLowerCase();
-  const c = FACTION_COLORS[f] || FACTION_COLORS.neutral;
-  return `<span class="faction-badge" style="color:${c};background:${c}1a;padding:2px 7px;border-radius:4px;font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em">${f}</span>`;
+  const known = FACTION_COLORS[f] ? f : 'neutral';
+  return `<span class="faction-badge ${known}">${titleCase(f)}</span>`;
+}
+
+// Round commander portrait token with a faction-coloured ring — the way
+// commanders sit on the board in-game. `cls` adds a size/context modifier.
+// Drawn diameter per token modifier (decks.css), for the srcset `sizes`.
+const CMD_TOKEN_PX = { 'cmd-token--xs': 22, 'cmd-token--strip': 52, 'cmd-token--start': 64, 'cmd-token--summary': 76, 'cmd-token--picker': 84 };
+
+function commanderTokenHtml(name, cls = '') {
+  const data = commanderMap[name] || {};
+  const fc = factionColor(data.faction);
+  const px = CMD_TOKEN_PX[cls] || 56;
+  // 160px WebP token portrait (scripts/generate_deck_pages.py) for small
+  // tokens, the 400px JPG for big/high-DPR ones; if the WebP is missing the
+  // onerror drops the srcset and the JPG loads instead.
+  const small = commanderArtPath(name).replace('/assets/commanders/', '/assets/commanders/token/').replace(/\.jpg$/, '.webp');
+  return `<span class="cmd-token${cls ? ' ' + cls : ''}" style="--fc:${fc}" aria-hidden="true">` +
+    `<img class="cmd-token-img" src="${commanderArtPath(name)}" srcset="${small} 160w, ${commanderArtPath(name)} 400w" sizes="${px}px" alt="" loading="lazy" decoding="async" width="400" height="400" ` +
+    `onerror="if(this.srcset){this.removeAttribute('srcset')}else{this.style.visibility='hidden'}">` +
+    `</span>`;
+}
+
+// One-line description of the card pool a commander can build from. Mirrors
+// isCardCompatible() / getCardPool() — wording only.
+function poolDescription(commanderName) {
+  const cmdData = commanderMap[commanderName];
+  if (!cmdData || !commanderName) return '';
+  const faction = titleCase(cmdData.faction || 'Neutral');
+  if (commanderName === LAZIM_NAME) return 'Cards from every god — no Neutral';
+  if (faction.toLowerCase() === 'neutral') return 'Neutral cards only';
+  return `${faction} + Neutral cards`;
 }
 
 // ─── Card Compatibility ────────────────────────────────────
@@ -154,46 +225,131 @@ function renderManaCurve(deck) {
   const totals = minionBuckets.map((m, i) => m + spellBuckets[i]);
   const max = Math.max(...totals, 1);
   const labels = ['0', '1', '2', '3', '4', '5', '6', '7+'];
-  document.getElementById('mana-curve').innerHTML = labels.map((l, i) => {
-    const totalH = Math.round((totals[i] / max) * 72);
+  const PLOT_H = 84; // px — matches the plot area in .mana-curve (decks.css)
+
+  // Average cost (same rule as the quick stat: cards with a numeric cost).
+  let costSum = 0, costN = 0;
+  deck.cards.forEach(c => {
+    const v = parseInt((cardInfoMap[c.name] || {}).cost);
+    if (!isNaN(v)) { costSum += v * c.count; costN += c.count; }
+  });
+  const avg = costN > 0 ? costSum / costN : null;
+
+  const cols = labels.map((l, i) => {
+    const totalH = totals[i] > 0 ? Math.max(4, Math.round((totals[i] / max) * PLOT_H)) : 0;
     const spellH  = totals[i] > 0 ? Math.round((spellBuckets[i] / totals[i]) * totalH) : 0;
     const minionH = totalH - spellH;
-    return `<div class="mana-bar-col">
+    return `<div class="mana-bar-col${totals[i] ? '' : ' empty'}">
       <div class="mana-bar-count">${totals[i] || ''}</div>
       <div class="mana-bar-stack" style="height:${totalH}px">
         <div class="mana-bar-seg spell"  style="height:${spellH}px"></div>
         <div class="mana-bar-seg minion" style="height:${minionH}px"></div>
       </div>
-      <div class="mana-bar-label">${l}</div>
+      ${manaGemHtml(l, 'mana-bar-gem')}
     </div>`;
   }).join('');
+
+  // Average marker: a dashed rule at the deck's mean cost, placed on the same
+  // 0…7+ axis as the columns (each column is 1/8 of the width; a cost of n
+  // sits at the centre of column n).
+  let marker = '';
+  if (avg !== null && deck.cards.length) {
+    const pos = ((Math.min(avg, 7) + 0.5) / labels.length) * 100;
+    marker = `<div class="mana-curve-avg" style="left:${pos.toFixed(2)}%" aria-hidden="true"></div>`;
+  }
+
+  const el = document.getElementById('mana-curve');
+  el.innerHTML = cols + marker;
+  el.setAttribute('aria-label', 'Mana curve: ' + labels.map((l, i) =>
+    `cost ${l}, ${totals[i]} card${totals[i] === 1 ? '' : 's'} (${minionBuckets[i]} minion${minionBuckets[i] === 1 ? '' : 's'}, ${spellBuckets[i]} spell${spellBuckets[i] === 1 ? '' : 's'})`
+  ).join('; ') + (avg !== null ? `. Average cost ${avg.toFixed(1)}.` : '.'));
+  const avgLegend = document.getElementById('mana-legend-avg');
+  if (avgLegend) {
+    avgLegend.hidden = !marker;
+    const v = document.getElementById('mana-legend-avg-value');
+    if (v && avg !== null) v.textContent = avg.toFixed(1);
+  }
 }
 
 // ─── Type Breakdown ────────────────────────────────────────
+// Two split bars: card type (minion / spell) and faction (the commander's
+// patron vs neutral, plus anything incompatible that slipped in).
+
+function splitBarHtml(title, parts) {
+  const total = parts.reduce((s, p) => s + p.value, 0);
+  const shown = parts.filter(p => p.value > 0);
+  const pct = v => (total > 0 ? Math.round((v / total) * 100) : 0);
+  return `<div class="deck-split">
+    <div class="deck-split-title">${title}</div>
+    <div class="deck-split-bar" aria-hidden="true">${
+      shown.map(p => `<span style="flex:${p.value};background:${p.color}"></span>`).join('')
+    }</div>
+    <ul class="deck-split-legend">${
+      shown.map(p => `<li><span class="deck-split-swatch" style="background:${p.color}"></span>` +
+        `<span class="deck-split-name">${p.label}</span>` +
+        `<span class="deck-split-value">${p.value}</span>` +
+        `<span class="deck-split-pct">${pct(p.value)}%</span></li>`).join('')
+    }</ul>
+  </div>`;
+}
 
 function renderTypeBreakdown(deck) {
   let minions = 0, spells = 0;
+  const byFaction = {};
   deck.cards.forEach(c => {
-    const t = ((cardInfoMap[c.name] || {}).type || '').toLowerCase();
+    const info = cardInfoMap[c.name] || {};
+    const t = (info.type || '').toLowerCase();
     if (t === 'minion') minions += c.count;
     else if (t === 'spell') spells += c.count;
+    const f = (info.faction || 'neutral').toLowerCase();
+    byFaction[f] = (byFaction[f] || 0) + c.count;
   });
-  const total = minions + spells;
-  const mPct = total > 0 ? Math.round(minions / total * 100) : 0;
-  const sPct = total > 0 ? 100 - mPct : 0;
-  document.getElementById('type-breakdown').innerHTML = `
-    <div class="type-breakdown-counts">
-      <span style="color:${MINION_COLOR}"><strong>${minions}</strong> Minions</span>
-      <span style="color:${SPELL_COLOR}"><strong>${spells}</strong> Spells</span>
+  const factions = Object.keys(byFaction)
+    .sort((a, b) => byFaction[b] - byFaction[a] || FACTION_ORDER.indexOf(a) - FACTION_ORDER.indexOf(b))
+    .map(f => ({ label: titleCase(f), value: byFaction[f], color: factionColor(f) }));
+
+  if (!deck.cards.length) {
+    document.getElementById('type-breakdown').innerHTML =
+      '<p class="deck-split-empty">Add cards to see the type and faction split.</p>';
+    return;
+  }
+  document.getElementById('type-breakdown').innerHTML =
+    splitBarHtml('Card type', [
+      { label: 'Minions', value: minions, color: MINION_COLOR },
+      { label: 'Spells', value: spells, color: SPELL_COLOR },
+    ]) +
+    (factions.length ? splitBarHtml('Faction', factions) : '');
+}
+
+// ─── Deck Size Meter ───────────────────────────────────────
+// Where the deck sits against the 40–60 card rule. The bar spans 0–60; the
+// tick marks the 40-card minimum.
+
+function renderDeckSize(total) {
+  const el = document.getElementById('deck-size');
+  if (!el) return;
+  let state, text;
+  if (total < DECK_MIN_CARDS) {
+    state = 'short';
+    const need = DECK_MIN_CARDS - total;
+    text = `${need} more card${need === 1 ? '' : 's'} to reach the ${DECK_MIN_CARDS}-card minimum`;
+  } else if (total <= DECK_MAX_CARDS) {
+    state = 'ok';
+    text = `Within the ${DECK_MIN_CARDS}–${DECK_MAX_CARDS} card limit`;
+  } else {
+    state = 'over';
+    const over = total - DECK_MAX_CARDS;
+    text = `${over} card${over === 1 ? '' : 's'} over the ${DECK_MAX_CARDS}-card maximum`;
+  }
+  const fill = Math.min(total / DECK_MAX_CARDS, 1) * 100;
+  const tick = (DECK_MIN_CARDS / DECK_MAX_CARDS) * 100;
+  el.dataset.state = state;
+  el.innerHTML = `
+    <div class="deck-size-bar" role="progressbar" aria-label="Deck size" aria-valuemin="0" aria-valuemax="${DECK_MAX_CARDS}" aria-valuenow="${Math.min(total, DECK_MAX_CARDS)}" aria-valuetext="${total} cards. ${text}">
+      <span class="deck-size-fill" style="width:${fill.toFixed(1)}%"></span>
+      <span class="deck-size-tick" style="left:${tick.toFixed(2)}%"></span>
     </div>
-    <div class="type-breakdown-bar">
-      <div style="flex:${minions};background:${MINION_COLOR}"></div>
-      <div style="flex:${spells};background:${SPELL_COLOR}"></div>
-    </div>
-    <div class="type-breakdown-pct">
-      <span>${mPct}%</span>
-      <span>${sPct}%</span>
-    </div>`;
+    <div class="deck-size-text"><span class="deck-size-dot" aria-hidden="true"></span>${text}</div>`;
 }
 
 // ─── Card Art Hover Preview ────────────────────────────────
@@ -215,7 +371,7 @@ function initCardPreview() {
   function previewNameFor(target) {
     const cmd = target.closest('.deck-commander-section[data-commander]');
     if (cmd) return cmd.dataset.commander || null;
-    const cmdTile = target.closest('.commander-picker-tile');
+    const cmdTile = target.closest('.commander-picker-tile, .deck-start-token');
     if (cmdTile) return cmdTile.dataset.name || null;
     const artWrap = target.closest('.card-tile-art-wrap');
     if (artWrap) return artWrap.closest('.card-tile')?.dataset.name || null;
@@ -227,8 +383,9 @@ function initCardPreview() {
   }
 
   // Contents and placement come from /js/cardpreview.js — a card that creates a
-  // token previews side-by-side with it.
-  const srcFor = slug => `/assets/cards/${slug}.jpg`;
+  // token previews side-by-side with it. Transparent WebP renders, so the
+  // popup's drop-shadow follows the card's own silhouette.
+  const srcFor = slug => cardArtSrc(slug);
 
   document.addEventListener('mouseover', e => {
     const name = previewNameFor(e.target);
@@ -249,6 +406,112 @@ function initCardPreview() {
   });
 }
 
+// ─── Card Tiles ─────────────────────────────────────────────
+// One tile renderer for both the Add Cards browser and the decklist grid.
+// The card is the full transparent render; .card-tile-card is the element
+// that tilts (pointer-tracked, see cardTilt) inside .card-tile-art-wrap, the
+// untransformed hit area — so hover never shifts layout or the click target.
+//   mode 'browse' — pool browser: +/- stepper, gold glow when in the deck
+//   mode 'edit'   — build-mode decklist: +/- stepper
+//   mode 'view'   — import-mode decklist: read-only ×N
+
+let lastAddedName = null; // tile to pulse after the next render
+
+function cardTileHtml(name, { count = 0, mode = 'browse', compatible = true } = {}) {
+  const slug = cardArtSlug(name);
+  const src = cardArtSrc(slug);
+  const cls = ['card-tile'];
+  if (mode === 'browse' && count > 0) cls.push('in-deck');
+  if (!compatible) cls.push('incompatible');
+  if (count >= MAX_COPIES) cls.push('at-max');
+  if (name === lastAddedName) cls.push('just-added');
+
+  const pips = Array.from({ length: MAX_COPIES }, (_, i) => `<i${i < count ? ' class="on"' : ''}></i>`).join('');
+  const controls = mode === 'view'
+    ? `<span class="card-tile-count active"><span class="card-tile-pips" aria-hidden="true">${pips}</span><span class="card-tile-count-num">&times;${count}</span></span>`
+    : `<button type="button" class="card-tile-btn minus" data-name="${name}" aria-label="Remove one ${name}"${count === 0 ? ' disabled' : ''}>−</button>
+       <span class="card-tile-count${count > 0 ? ' active' : ''}"><span class="card-tile-pips" aria-hidden="true">${pips}</span><span class="ac-sr">${count} in deck</span></span>
+       <button type="button" class="card-tile-btn plus" data-name="${name}" aria-label="Add one ${name}"${count >= MAX_COPIES ? ' disabled' : ''}>+</button>`;
+
+  return `<div class="${cls.join(' ')}" data-name="${name}">
+    <div class="card-tile-art-wrap">
+      <div class="card-tile-card" style="--card-mask:url('${src}')">
+        <img class="card-tile-art" src="${src}" data-fallback="${cardArtJpg(slug)}" alt="" width="400" height="560" loading="lazy" decoding="async" onerror="cardArtFallback(this)">
+      </div>
+    </div>
+    <div class="card-tile-name">${name}</div>
+    <div class="card-tile-controls">${controls}</div>
+  </div>`;
+}
+
+// ─── Card Tilt + Foil ───────────────────────────────────────
+// Desktop only (real mouse), off under prefers-reduced-motion. Writes
+// --rx/--ry (rotation) and --mx/--my (sheen position) onto the hovered
+// .card-tile-art-wrap; CSS does the rest. One rAF per frame, transforms only.
+
+const cardTilt = (() => {
+  const MAX_DEG = 8;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let current = null, frame = 0, px = -1, py = -1, enabled = false;
+
+  function apply() {
+    frame = 0;
+    if (!current || !current.isConnected) return;
+    const r = current.getBoundingClientRect();
+    const x = Math.min(Math.max((px - r.left) / r.width, 0), 1);
+    const y = Math.min(Math.max((py - r.top) / r.height, 0), 1);
+    current.style.setProperty('--rx', `${((0.5 - y) * MAX_DEG * 2).toFixed(2)}deg`);
+    current.style.setProperty('--ry', `${((x - 0.5) * MAX_DEG * 2).toFixed(2)}deg`);
+    current.style.setProperty('--mx', `${(x * 100).toFixed(1)}%`);
+    current.style.setProperty('--my', `${(y * 100).toFixed(1)}%`);
+  }
+
+  function release(el) {
+    if (!el) return;
+    el.classList.remove('is-tilting');
+    ['--rx', '--ry', '--mx', '--my'].forEach(p => el.style.removeProperty(p));
+  }
+
+  function setCurrent(wrap) {
+    if (wrap === current) return;
+    release(current);
+    current = wrap;
+    if (current) current.classList.add('is-tilting');
+  }
+
+  function onMove(e) {
+    if (e.pointerType && e.pointerType !== 'mouse') return;
+    if (reduce.matches) { setCurrent(null); return; }
+    px = e.clientX; py = e.clientY;
+    setCurrent(e.target.closest ? e.target.closest('.card-tile-art-wrap') : null);
+    if (current && !frame) frame = requestAnimationFrame(apply);
+  }
+
+  return {
+    init() {
+      if (!supportsHover || enabled) return;
+      enabled = true;
+      document.addEventListener('pointermove', onMove, { passive: true });
+      document.addEventListener('pointerout', e => { if (!e.relatedTarget) setCurrent(null); });
+      window.addEventListener('blur', () => setCurrent(null));
+    },
+    // After a re-render (clicking + rebuilds the grid) the tile under the
+    // cursor is a new element — pick it up at once, without easing in from
+    // flat, so the card doesn't visibly snap back on every click.
+    refresh() {
+      if (!enabled || reduce.matches || px < 0 || (current && current.isConnected)) return;
+      current = null;
+      const hit = document.elementFromPoint(px, py);
+      const wrap = hit && hit.closest('.card-tile-art-wrap');
+      if (!wrap) return;
+      wrap.classList.add('no-ease');
+      setCurrent(wrap);
+      apply();
+      requestAnimationFrame(() => requestAnimationFrame(() => wrap.classList.remove('no-ease')));
+    },
+  };
+})();
+
 // ─── Card Pool (Build Mode) ────────────────────────────────
 
 function getCardPool() {
@@ -257,8 +520,15 @@ function getCardPool() {
   const selectedCommander = document.getElementById('build-commander')?.value || '';
   const cmdData = commanderMap[selectedCommander];
   const cmdFaction = cmdData ? (cmdData.faction || '').toLowerCase() : null;
+  // cardlist.json can list a name twice when the game re-issued a card under a
+  // new id (Feral Vampire: 202 and 206). Keep one tile per name — the last
+  // entry, which is the id deckcode.js encodes with (its name → id map keeps
+  // the later one).
+  const latest = new Map();
+  cardlistData.cards.forEach(c => latest.set(c.name, c));
 
   return cardlistData.cards.filter(c => {
+    if (latest.get(c.name) !== c) return false;
     if (commanderSet.has(c.name)) return false;
     // Only show cards tracked in cards.json — filters placeholders, retired
     // names, etc. Tokens are tracked there too (they need type/faction for the
@@ -295,25 +565,16 @@ function renderCardBrowser(q = '') {
     return a.name.localeCompare(b.name);
   });
 
-  grid.innerHTML = pool.map(c => {
-    const info = cardInfoMap[c.name] || {};
-    const cost = info.cost != null ? info.cost : '?';
-    const slug = cardArtSlug(c.name);
-    const count = currentDeck ? (currentDeck.cards.find(x => x.name === c.name)?.count || 0) : 0;
-    const atMax = count >= 3;
-    return `<div class="card-tile${count > 0 ? ' in-deck' : ''}" data-name="${c.name}">
-      <div class="card-tile-art-wrap">
-        <img class="card-tile-art" src="/assets/cards/${slug}.jpg" alt="" loading="lazy" onerror="this.style.visibility='hidden'">
-        <div class="card-tile-cost-badge">${cost}</div>
-      </div>
-      <div class="card-tile-name">${c.name}</div>
-      <div class="card-tile-controls">
-        <button class="card-tile-btn minus" data-name="${c.name}"${count === 0 ? ' disabled' : ''}>−</button>
-        <span class="card-tile-count${count > 0 ? ' active' : ''}">${count}</span>
-        <button class="card-tile-btn plus" data-name="${c.name}"${atMax ? ' disabled' : ''}>+</button>
-      </div>
-    </div>`;
-  }).join('');
+  grid.innerHTML = pool.length
+    ? pool.map(c => {
+        const count = currentDeck ? (currentDeck.cards.find(x => x.name === c.name)?.count || 0) : 0;
+        return cardTileHtml(c.name, { count, mode: 'browse' });
+      }).join('')
+    : `<p class="card-browser-empty">No cards match these filters.</p>`;
+
+  const countEl = document.getElementById('card-browser-result-count');
+  if (countEl) countEl.textContent = `${pool.length} card${pool.length === 1 ? '' : 's'}`;
+  cardTilt.refresh();
 
   // Event delegation — one handler on the grid
   grid.onclick = e => {
@@ -343,6 +604,21 @@ function renderCardBrowser(q = '') {
 
 // ─── Card Detail Sheet (mobile-friendly add/remove) ────────
 
+// Large card art in the detail sheets: WebP first, the JPG if that fails.
+// Hidden until loaded so the previous card never flashes in its place.
+function setSheetArt(img, name) {
+  const slug = cardArtSlug(name);
+  img.style.visibility = 'hidden';
+  img.dataset.fallback = cardArtJpg(slug);
+  img.onload = () => { img.style.visibility = ''; };
+  img.onerror = () => {
+    if (!img.src.endsWith(img.dataset.fallback)) { img.src = img.dataset.fallback; return; }
+    img.style.visibility = '';
+  };
+  img.src = cardArtSrc(slug);
+  img.alt = name;
+}
+
 function openCardDetailSheet(name) {
   // Defensive: on hybrid devices (touchscreen + mouse) a tap can still leave
   // the hover popup visible; the detail sheet is about to cover it anyway,
@@ -351,8 +627,6 @@ function openCardDetailSheet(name) {
 
   const info = cardInfoMap[name] || {};
   const cost = info.cost != null ? info.cost : '?';
-  const fc = factionColor(info.faction);
-  const fLabel = (info.faction || 'neutral').toUpperCase();
   const typeLabel = (info.type || '').toUpperCase();
   const count = currentDeck ? (currentDeck.cards.find(c => c.name === name)?.count || 0) : 0;
 
@@ -360,22 +634,19 @@ function openCardDetailSheet(name) {
   // guard against the same stale-image flash as the commander sheet in case
   // this card's art hasn't loaded yet (e.g. still lazy-loading).
   const art = document.getElementById('card-detail-art');
-  art.style.visibility = 'hidden';
-  art.onload = art.onerror = () => { art.style.visibility = ''; };
-  art.src = `/assets/cards/${cardArtSlug(name)}.jpg`;
-  art.alt = name;
+  setSheetArt(art, name);
   // Touch has no hover preview, so the cards this one creates are shown beside
   // its art here instead.
   renderMentionStrip(
     document.getElementById('card-detail-mentions'),
     name,
-    s => `/assets/cards/${s}.jpg`,
+    s => cardArtSrc(s),
   );
   document.getElementById('card-detail-name').textContent = name;
   document.getElementById('card-detail-badges').innerHTML = `
     ${manaGemHtml(cost, 'card-detail-badge-cost', `Cost ${cost}`)}
     ${typeLabel ? `<span class="card-detail-badge-type">${typeLabel}</span>` : ''}
-    <span class="card-detail-badge-faction" style="color:${fc};border:1px solid ${fc}40">${fLabel}</span>`;
+    ${factionBadge(info.faction)}`;
   document.getElementById('card-detail-count').textContent = count;
 
   const sheet = document.getElementById('card-detail-sheet');
@@ -465,6 +736,7 @@ function initCostChips() {
         activeCostChips.add(cost);
         chip.classList.add('active');
       }
+      chip.setAttribute('aria-pressed', String(activeCostChips.has(cost)));
       const searchInput = document.getElementById('build-card-input');
       renderCardBrowser(searchInput?.value.trim().toLowerCase() || '');
     });
@@ -500,7 +772,7 @@ function compactRowHtml(c, deck, isBuild) {
 
   return `<li class="deck-compact-row${compatible ? '' : ' incompatible'}" data-name="${c.name}"
       aria-label="${label}"
-      style="--art:url('/assets/cards/${slug}.jpg');--fc:${fc}">
+      style="--art:url('${cardArtSrc(slug)}');--fc:${fc}">
       ${manaGemHtml(cost)}
       <span class="deck-compact-name" aria-hidden="true">${c.name}</span>
       ${right}
@@ -550,24 +822,45 @@ function renderDeck(deck) {
   const cmdData = commanderMap[deck.commander];
   const faction = cmdData ? (cmdData.faction || 'Neutral') : 'Neutral';
 
+  // Faction ring on the commander token + the blurred portrait behind the
+  // summary card. No commander yet: a neutral ring and no backdrop.
+  const tokenEl = document.getElementById('deck-commander-token');
+  if (tokenEl) {
+    tokenEl.style.setProperty('--fc', deck.commander ? factionColor(faction) : 'var(--border-strong)');
+    tokenEl.classList.toggle('is-empty', !deck.commander);
+  }
+  const backdropEl = document.getElementById('deck-summary-backdrop');
+  if (backdropEl) {
+    backdropEl.style.backgroundImage = deck.commander ? `url("${commanderArtPath(deck.commander)}")` : '';
+    backdropEl.style.setProperty('--fc', factionColor(faction));
+  }
+
   // Commander portrait — falls back to a faction-colored initial badge if the
   // art file is missing, instead of just leaving a blank gap.
   const artEl = document.getElementById('deck-commander-art');
   const fallbackEl = document.getElementById('deck-commander-fallback');
   artEl.style.display = '';
-  artEl.src = commanderArtPath(deck.commander || '');
-  artEl.alt = deck.commander || '';
   if (fallbackEl) fallbackEl.classList.add('hidden');
   artEl.onload = () => { if (fallbackEl) fallbackEl.classList.add('hidden'); };
   artEl.onerror = () => {
     artEl.style.display = 'none';
     if (!fallbackEl) return;
-    const fc = factionColor(faction);
+    const fc = deck.commander ? factionColor(faction) : 'var(--text-muted)';
     fallbackEl.textContent = (deck.commander || '?').charAt(0).toUpperCase();
-    fallbackEl.style.background = `${fc}33`;
+    fallbackEl.style.background = deck.commander ? `${fc}33` : 'var(--bg-elevated)';
     fallbackEl.style.color = fc;
     fallbackEl.classList.remove('hidden');
   };
+  artEl.alt = deck.commander || '';
+  // No commander picked yet (a fresh Build deck): go straight to the "?"
+  // placeholder instead of requesting a portrait URL that can't exist.
+  if (deck.commander) {
+    if (artEl.getAttribute('src') !== commanderArtPath(deck.commander)) artEl.src = commanderArtPath(deck.commander);
+    else if (artEl.complete && artEl.naturalWidth === 0) artEl.onerror();
+  } else {
+    artEl.removeAttribute('src');
+    artEl.onerror();
+  }
 
   // Tag the commander section so initCardPreview() can show the commander art
   // on hover — same machinery as card-name hover, just sourced from /assets/commanders/.
@@ -579,7 +872,7 @@ function renderDeck(deck) {
 
   // Deck name + commander label + faction badge
   document.getElementById('deck-name').textContent = deck.deckName || 'Unnamed Deck';
-  document.getElementById('deck-commander').textContent = deck.commander || '—';
+  document.getElementById('deck-commander').textContent = deck.commander || 'No commander yet';
   document.getElementById('deck-commander-faction').innerHTML = deck.commander ? factionBadge(faction) : '';
 
   // Quick stats
@@ -599,8 +892,10 @@ function renderDeck(deck) {
 
   const headerCount = document.getElementById('deck-list-header-count');
   if (headerCount) {
-    headerCount.textContent = `· ${totalCards} card${totalCards === 1 ? '' : 's'}, ${uniqueCards} unique`;
+    headerCount.textContent = `${totalCards} card${totalCards === 1 ? '' : 's'} · ${uniqueCards} unique`;
   }
+  renderDeckSize(totalCards);
+  renderShareStrip(deck, totalCards, faction);
 
   // Mobile deck drawer pill — Import mode only. Build mode uses the
   // Add Cards / My Deck tabs instead (see setBuildMobileView()).
@@ -655,7 +950,7 @@ function renderDeck(deck) {
     if (isBuild) {
       html = `<div class="deck-list-empty-hint">
         <p>Your deck doesn't have any cards yet.</p>
-        <button type="button" class="btn btn-primary" id="deck-list-empty-add-btn">Add Cards</button>
+        <button type="button" class="ac-btn ac-btn--gold ac-btn--sm" id="deck-list-empty-add-btn">Add Cards</button>
       </div>`;
     }
   } else if (deckView === 'compact') {
@@ -669,28 +964,17 @@ function renderDeck(deck) {
     });
     for (const cost of Object.keys(groups).sort((a, b) => a - b)) {
       const cards = groups[cost];
+      const n = cards.reduce((s, c) => s + c.count, 0);
       html += `<div class="deck-cost-group">`;
-      html += `<div class="deck-cost-group-label">${cost} Cost (${cards.reduce((s, c) => s + c.count, 0)} cards)</div>`;
+      html += `<h3 class="deck-cost-group-label">${manaGemHtml(cost, 'deck-cost-group-gem')}` +
+        `<span class="deck-cost-group-text">${cost} Cost <span class="deck-cost-group-n">${n} card${n === 1 ? '' : 's'}</span></span></h3>`;
       html += `<div class="deck-card-grid">`;
       cards.forEach(c => {
-        const info = cardInfoMap[c.name] || {};
-        const tileCost = info.cost != null ? info.cost : '?';
-        const slug = cardArtSlug(c.name);
-        const compatible = isCardCompatible(c.name, deck.commander);
-        html += `<div class="card-tile${compatible ? '' : ' incompatible'}" data-name="${c.name}">
-          <div class="card-tile-art-wrap">
-            <img class="card-tile-art" src="/assets/cards/${slug}.jpg" alt="" loading="lazy" onerror="this.style.visibility='hidden'">
-            <div class="card-tile-cost-badge">${tileCost}</div>
-          </div>
-          <div class="card-tile-name">${c.name}</div>
-          <div class="card-tile-controls">
-            ${isBuild
-              ? `<button class="card-tile-btn minus" data-name="${c.name}">−</button>
-                 <span class="card-tile-count active">${c.count}</span>
-                 <button class="card-tile-btn plus" data-name="${c.name}"${c.count >= 3 ? ' disabled' : ''}>+</button>`
-              : `<span class="card-tile-count active">&times;${c.count}</span>`}
-          </div>
-        </div>`;
+        html += cardTileHtml(c.name, {
+          count: c.count,
+          mode: isBuild ? 'edit' : 'view',
+          compatible: isCardCompatible(c.name, deck.commander),
+        });
       });
       html += `</div></div>`;
     }
@@ -700,6 +984,7 @@ function renderDeck(deck) {
   // row/tile to open the detail sheet is the only way to see a full card on
   // touch, and import mode needs that too.
   wireDeckListTiles();
+  cardTilt.refresh();
 
   const buildNote = document.getElementById('build-note');
   if (currentMode === 'build') {
@@ -757,6 +1042,43 @@ function wireDeckListTiles() {
 
 // ─── Import (Decode) ───────────────────────────────────────
 
+// Below 900px the summary sidebar is a drawer, so an opened deck gets a
+// compact strip above the list instead: commander token, deck name, commander
+// and size, plus Copy link. Import mode only (Build has its own My Deck tab).
+function renderShareStrip(deck, totalCards, faction) {
+  const strip = document.getElementById('deck-share-strip');
+  if (!strip) return;
+  const show = currentMode === 'import' && deck.cards.length > 0;
+  strip.classList.toggle('hidden', !show);
+  if (!show) return;
+  strip.style.setProperty('--fc', deck.commander ? factionColor(faction) : 'var(--border-strong)');
+  document.getElementById('deck-share-strip-token').innerHTML =
+    deck.commander ? commanderTokenHtml(deck.commander, 'cmd-token--strip') : '';
+  document.getElementById('deck-share-strip-name').textContent = deck.deckName || 'Unnamed Deck';
+  document.getElementById('deck-share-strip-sub').textContent =
+    `${deck.commander || 'No commander'} · ${totalCards} card${totalCards === 1 ? '' : 's'}`;
+}
+
+// A deck opened from a shared link folds the import box into one line on
+// narrow screens; "Change" brings the box back for a different code.
+function setImportLinked(linked) {
+  const panel = document.getElementById('panel-import');
+  if (!panel) return;
+  panel.classList.toggle('is-linked', linked);
+  const btn = document.getElementById('deck-import-change');
+  if (btn) btn.setAttribute('aria-expanded', String(!linked));
+}
+
+function initImportLinked() {
+  const btn = document.getElementById('deck-import-change');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    setImportLinked(false);
+    const input = document.getElementById('deck-code-input');
+    if (input) { input.focus(); input.select(); }
+  });
+}
+
 function handleDecode() {
   const input = document.getElementById('deck-code-input');
   document.getElementById('deck-error').classList.add('hidden');
@@ -766,6 +1088,8 @@ function handleDecode() {
     const deck = decodeDeckCode(code);
     deckSource = 'import';
     renderDeck(deck);
+    const total = deck.cards.reduce((s, c) => s + c.count, 0);
+    announce(`Loaded ${deck.deckName || 'deck'}${deck.commander ? ` for ${deck.commander}` : ''}: ${total} cards.`);
   } catch (e) {
     showError(`Failed to decode: ${e.message}`);
   }
@@ -778,16 +1102,8 @@ function updateFilterHint(commanderName) {
   if (!hintEl) return;
   const cmdData = commanderMap[commanderName];
   if (!cmdData || !commanderName) { hintEl.classList.add('hidden'); return; }
-  const faction = cmdData.faction || 'Neutral';
-  let text;
-  if (commanderName === LAZIM_NAME) {
-    text = 'Showing cards from every god — no Neutral';
-  } else if (faction.toLowerCase() === 'neutral') {
-    text = 'Showing neutral cards only';
-  } else {
-    text = `Showing ${faction} + Neutral cards`;
-  }
-  hintEl.textContent = text;
+  hintEl.innerHTML = `${commanderTokenHtml(commanderName, 'cmd-token--xs')}<span>Showing ${poolDescription(commanderName).replace(/^Cards/, 'cards')}</span>`;
+  hintEl.style.setProperty('--fc', factionColor(cmdData.faction));
   hintEl.classList.remove('hidden');
 }
 
@@ -831,9 +1147,10 @@ function initBuildMode() {
   document.querySelectorAll('.build-sort-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       buildSortMode = btn.dataset.sort;
-      document.querySelectorAll('.build-sort-btn').forEach(b =>
-        b.classList.toggle('active', b.dataset.sort === buildSortMode)
-      );
+      document.querySelectorAll('.build-sort-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.sort === buildSortMode);
+        b.setAttribute('aria-pressed', String(b.dataset.sort === buildSortMode));
+      });
       renderCardBrowser(searchInput.value.trim().toLowerCase());
     });
   });
@@ -848,44 +1165,69 @@ function initBuildMode() {
 // select's value + dispatches 'change' so all existing selection logic
 // (faction filtering, deck sync, etc.) is untouched.
 
+// Commanders grouped by faction, in FACTION_ORDER (anything unexpected last).
+function commandersByFaction() {
+  const groups = {};
+  commanderList.forEach(name => {
+    const f = ((commanderMap[name] || {}).faction || 'neutral').toLowerCase();
+    (groups[f] = groups[f] || []).push(name);
+  });
+  const rank = f => (FACTION_ORDER.includes(f) ? FACTION_ORDER.indexOf(f) : 99);
+  return Object.keys(groups).sort((a, b) => rank(a) - rank(b)).map(f => ({ faction: f, names: groups[f] }));
+}
+
 function renderCommanderPicker() {
   const grid = document.getElementById('commander-picker-grid');
   if (!grid) return;
   const current = document.getElementById('build-commander').value;
-  grid.innerHTML = commanderList.map(name => {
-    const data = commanderMap[name] || {};
-    const faction = data.faction || 'Neutral';
-    const fc = factionColor(faction);
-    return `<button type="button" class="commander-picker-tile${name === current ? ' selected' : ''}" data-name="${name}">
-      <img class="commander-picker-tile-art" src="${commanderArtPath(name)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'">
-      <span class="commander-picker-tile-name">${name}</span>
-      <span class="commander-picker-tile-faction" style="color:${fc};border:1px solid ${fc}40">${faction.toUpperCase()}</span>
-    </button>`;
-  }).join('');
+  grid.innerHTML = commandersByFaction().map(({ faction, names }) => `
+    <section class="commander-picker-group" style="--fc:${factionColor(faction)}" aria-label="${titleCase(faction)}">
+      <h3 class="commander-picker-group-title">
+        <img class="commander-picker-group-emblem" src="/assets/factions/${faction}.png" alt="" width="24" height="24" loading="lazy" decoding="async" onerror="this.remove()">
+        <span>${titleCase(faction)}</span>
+      </h3>
+      <div class="commander-picker-group-grid">${names.map(name => `
+        <button type="button" class="commander-picker-tile${name === current ? ' selected' : ''}" data-name="${name}" aria-pressed="${name === current}">
+          ${commanderTokenHtml(name, 'cmd-token--picker')}
+          <span class="commander-picker-tile-name">${name}</span>
+          ${name === current ? '<span class="commander-picker-tile-current">Current</span>' : ''}
+        </button>`).join('')}
+      </div>
+    </section>`).join('');
 }
 
 function updateCommanderPickerButton(name) {
+  const btn = document.getElementById('commander-picker-btn');
   const portrait = document.getElementById('commander-picker-btn-portrait');
   const label = document.getElementById('commander-picker-btn-label');
+  const sub = document.getElementById('commander-picker-btn-sub');
   if (!portrait || !label) return;
   if (!name) {
     portrait.style.backgroundImage = '';
+    btn?.style.removeProperty('--fc');
+    btn?.classList.remove('has-commander');
     label.textContent = 'Select a commander...';
     label.classList.add('placeholder');
+    if (sub) sub.textContent = 'Sets which cards you can add';
     return;
   }
-  portrait.style.backgroundImage = `url(${commanderArtPath(name)})`;
+  portrait.style.backgroundImage = `url("${commanderArtPath(name)}")`;
+  btn?.style.setProperty('--fc', factionColor((commanderMap[name] || {}).faction));
+  btn?.classList.add('has-commander');
   label.textContent = name;
   label.classList.remove('placeholder');
+  if (sub) sub.textContent = poolDescription(name);
 }
 
 function openCommanderPicker() {
   renderCommanderPicker(); // refresh 'selected' highlight
   document.getElementById('commander-picker-modal').classList.remove('hidden');
   document.getElementById('commander-picker-backdrop').classList.remove('hidden');
-  // Land focus inside the modal (on its close button) rather than leaving it
-  // on the trigger button behind an open overlay — standard modal behavior.
-  document.getElementById('commander-picker-close').focus();
+  // Land focus inside the modal — on the current commander if there is one,
+  // otherwise its close button — rather than leaving it on the trigger
+  // button behind an open overlay (standard modal behavior).
+  const selected = document.querySelector('#commander-picker-grid .commander-picker-tile.selected');
+  (selected || document.getElementById('commander-picker-close')).focus();
 }
 
 function closeCommanderPicker() {
@@ -934,14 +1276,11 @@ function openCommanderDetail(name) {
   // detail sheet (which reuses an already-cached image from its own grid),
   // this is always a fresh fetch. Hide the old commander's art immediately
   // instead of leaving it on screen until the new one finishes loading.
-  art.style.visibility = 'hidden';
-  art.onload = art.onerror = () => { art.style.visibility = ''; };
-  art.src = `/assets/cards/${cardArtSlug(name)}.jpg`;
-  art.alt = name;
+  setSheetArt(art, name);
   renderMentionStrip(
     document.getElementById('commander-detail-mentions'),
     name,
-    s => `/assets/cards/${s}.jpg`,
+    s => cardArtSrc(s),
   );
 
   const sheet = document.getElementById('commander-detail-sheet');
@@ -961,8 +1300,10 @@ function closeCommanderDetail() {
     document.getElementById('commander-detail-backdrop').classList.add('hidden');
   }, 200);
   // Picker grid is still open underneath — land back on its close button
-  // rather than a now-possibly-stale tile reference.
-  document.getElementById('commander-picker-close').focus();
+  // rather than a now-possibly-stale tile reference. (Opened from the quick
+  // start instead, there's no picker: go to the commander field.)
+  const pickerOpen = !document.getElementById('commander-picker-modal').classList.contains('hidden');
+  document.getElementById(pickerOpen ? 'commander-picker-close' : 'commander-picker-btn').focus();
 }
 
 // Actually applies a commander selection: sets the hidden <select>'s value,
@@ -1005,7 +1346,10 @@ function addCardToBuild(name) {
   } else {
     currentDeck.cards.push({ name, count: 1 });
   }
+  lastAddedName = name; // pulse the tile on this render only
   renderDeck(currentDeck);
+  lastAddedName = null;
+  announceCount(name, 'Added');
 }
 
 function removeOneFromBuild(name) {
@@ -1015,16 +1359,44 @@ function removeOneFromBuild(name) {
   if (card.count > 1) card.count--;
   else currentDeck.cards = currentDeck.cards.filter(c => c.name !== name);
   renderDeck(currentDeck);
+  announceCount(name, 'Removed');
+}
+
+function announceCount(name, verb) {
+  if (!currentDeck) return;
+  const n = currentDeck.cards.find(c => c.name === name)?.count || 0;
+  const total = currentDeck.cards.reduce((s, c) => s + c.count, 0);
+  announce(`${verb} ${name}. ${n} of ${MAX_COPIES} in deck, ${total} card${total === 1 ? '' : 's'} total.`);
 }
 
 // ─── Copy Actions ──────────────────────────────────────────
+
+// Clipboard write with a fallback for browsers/contexts without the async
+// Clipboard API (e.g. an http:// preview): a hidden textarea + execCommand.
+function copyText(text) {
+  if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+  return new Promise((resolve, reject) => {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.cssText = 'position:fixed;top:-1000px;left:0;opacity:0';
+    document.body.appendChild(ta);
+    ta.select();
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch { ok = false; }
+    ta.remove();
+    if (ok) resolve(); else reject(new Error('copy failed'));
+  });
+}
 
 function handleCopyCode() {
   if (!currentDeck) return;
   try {
     const code = encodeDeckCode(currentDeck);
-    navigator.clipboard.writeText(code);
-    flashButton('btn-copy-code', 'Copied!');
+    copyText(code).then(
+      () => { flashButton('btn-copy-code', 'Code copied'); announce('Deck code copied to the clipboard.'); },
+      () => showError("Couldn't reach the clipboard — your browser blocked it. Try again."),
+    );
   } catch (e) {
     showError(`Failed to encode: ${e.message}`);
   }
@@ -1037,8 +1409,9 @@ function deckCommanderSlug(name) {
   return name.toLowerCase().replace(/[,']/g, '').replace(/\s+/g, '-');
 }
 
-function handleCopyUrl() {
+function handleCopyUrl(e) {
   if (!currentDeck) return;
+  const btnId = (e && e.currentTarget && e.currentTarget.id) || 'btn-copy-url';
   try {
     const code = encodeDeckCode(currentDeck);
     // Build the share URL against the per-commander path if a pre-generated page
@@ -1050,19 +1423,33 @@ function handleCopyUrl() {
       pathname = `/decks/${deckCommanderSlug(currentDeck.commander)}/`;
     }
     const url = `${window.location.origin}${pathname}?code=${encodeURIComponent(code)}`;
-    navigator.clipboard.writeText(url);
-    flashButton('btn-copy-url', 'Copied!');
+    copyText(url).then(
+      () => { flashButton(btnId, 'Link copied'); announce('Share link copied to the clipboard.'); },
+      () => showError("Couldn't reach the clipboard — your browser blocked it. Try again."),
+    );
   } catch (e) {
     showError(`Failed to encode: ${e.message}`);
   }
 }
 
+// Swap a button's label (and icon) to a confirmation for a moment. Works on
+// the icon + .deck-btn-label buttons without wiping their markup.
 function flashButton(id, text) {
   const btn = document.getElementById(id);
-  const original = btn.textContent;
-  btn.textContent = text;
+  if (!btn) return;
+  const label = btn.querySelector('.deck-btn-label') || btn;
+  const use = btn.querySelector('use');
+  if (!btn.dataset.label) btn.dataset.label = label.textContent;
+  if (use && !btn.dataset.icon) btn.dataset.icon = use.getAttribute('href');
+  label.textContent = text;
+  if (use) use.setAttribute('href', '#dk-i-check');
   btn.classList.add('copied');
-  setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+  clearTimeout(btn._flashTimer);
+  btn._flashTimer = setTimeout(() => {
+    label.textContent = btn.dataset.label;
+    if (use) use.setAttribute('href', btn.dataset.icon);
+    btn.classList.remove('copied');
+  }, 1600);
 }
 
 // ─── Tabs ──────────────────────────────────────────────────
@@ -1149,7 +1536,9 @@ function setBuildMobileView(view) {
   const cardList = document.getElementById('deck-card-list');
   const sidebar = document.getElementById('deck-sidebar');
   if (view === 'deck' && sidebar && cardList) {
-    cardList.parentNode.insertBefore(sidebar, cardList);
+    // Above the "Decklist" header too, so the header stays with its cards.
+    const anchor = document.getElementById('deck-list-header') || cardList;
+    anchor.parentNode.insertBefore(sidebar, anchor);
   } else {
     restoreSidebarPosition();
   }
@@ -1183,6 +1572,33 @@ function initServiceWorker() {
 // the two detail sheets can each be stacked on top of the commander picker,
 // so Escape should peel off one layer at a time, matching their close
 // buttons/backdrop-click behavior rather than closing everything at once.
+// The topmost open overlay, same precedence as Escape below (or null).
+function topOverlay() {
+  const open = id => !document.getElementById(id).classList.contains('hidden');
+  if (open('commander-detail-sheet')) return document.getElementById('commander-detail-sheet');
+  if (open('card-detail-sheet')) return document.getElementById('card-detail-sheet');
+  if (open('commander-picker-modal')) return document.getElementById('commander-picker-modal');
+  const sidebar = document.getElementById('deck-sidebar');
+  if (sidebar.classList.contains('drawer-open')) return sidebar;
+  return null;
+}
+
+// Keep Tab inside whichever overlay is on top, like a native modal dialog.
+function initOverlayFocusTrap() {
+  const FOCUSABLE = 'button:not([disabled]), [href], input:not([type="hidden"]), select, textarea, [tabindex]:not([tabindex="-1"])';
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Tab') return;
+    const box = topOverlay();
+    if (!box) return;
+    const items = [...box.querySelectorAll(FOCUSABLE)].filter(el => el.getClientRects().length > 0 && !el.closest('.hidden'));
+    if (!items.length) return;
+    const first = items[0], last = items[items.length - 1];
+    if (!box.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+    else if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+}
+
 function initOverlayEscapeHandling() {
   document.addEventListener('keydown', e => {
     if (e.key !== 'Escape') return;
@@ -1202,18 +1618,150 @@ function initDeckCodeHelp() {
   const btn = document.getElementById('deck-code-help-btn');
   const help = document.getElementById('deck-code-help');
   if (!btn || !help) return;
-  btn.addEventListener('click', () => help.classList.toggle('hidden'));
+  btn.addEventListener('click', () => {
+    help.classList.toggle('hidden');
+    btn.setAttribute('aria-expanded', String(!help.classList.contains('hidden')));
+  });
+}
+
+// ─── Mode tabs: ARIA state + arrow-key navigation ──────────
+// initTabs() owns what switching does; this keeps aria-selected / roving
+// tabindex in step (its click listener runs after initTabs' own).
+
+function initTabA11y() {
+  const tabs = [...document.querySelectorAll('.deck-tab')];
+  if (!tabs.length) return;
+  const sync = () => tabs.forEach(t => {
+    const on = t.classList.contains('active');
+    t.setAttribute('aria-selected', String(on));
+    t.tabIndex = on ? 0 : -1;
+  });
+  tabs.forEach(t => t.addEventListener('click', sync));
+  tabs[0].parentElement.addEventListener('keydown', e => {
+    const i = tabs.indexOf(document.activeElement);
+    if (i < 0) return;
+    let j = null;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') j = (i + 1) % tabs.length;
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') j = (i - 1 + tabs.length) % tabs.length;
+    else if (e.key === 'Home') j = 0;
+    else if (e.key === 'End') j = tabs.length - 1;
+    if (j === null) return;
+    e.preventDefault();
+    tabs[j].click();
+    tabs[j].focus();
+  });
+  sync();
+}
+
+// ─── Quick start (empty state) ──────────────────────────────
+// Every commander as a round token: one click jumps into Build mode with
+// that commander chosen. Touch gets the same detail-then-confirm sheet as
+// the picker, since there's no hover preview to see the card first.
+
+function renderStartTokens() {
+  const wrap = document.getElementById('deck-start-tokens');
+  if (!wrap) return;
+  wrap.innerHTML = commandersByFaction().map(({ names }) => names.map(name => {
+    const short = name.split(',')[0];
+    return `<button type="button" class="deck-start-token" data-name="${name}" aria-label="Start a ${name} deck" title="${name}">
+      ${commanderTokenHtml(name, 'cmd-token--start')}
+      <span class="deck-start-token-name">${short}</span>
+    </button>`;
+  }).join('')).join('');
+
+  wrap.addEventListener('click', e => {
+    const btn = e.target.closest('.deck-start-token');
+    if (!btn) return;
+    const name = btn.dataset.name;
+    document.getElementById('card-preview')?.classList.remove('visible');
+    document.getElementById('tab-build').click();
+    if (supportsHover) selectCommander(name);
+    else openCommanderDetail(name);
+  });
+}
+
+// ─── Import UX: paste-to-load + Paste button ────────────────
+
+function initImportUx() {
+  const input = document.getElementById('deck-code-input');
+  // Pasting a code into the field loads it straight away — no extra tap.
+  input.addEventListener('paste', () => {
+    setTimeout(() => { if (input.value.trim()) handleDecode(); }, 0);
+  });
+
+  const pasteBtn = document.getElementById('btn-paste');
+  if (!pasteBtn || !(navigator.clipboard && navigator.clipboard.readText && window.isSecureContext)) return;
+  pasteBtn.hidden = false;
+  pasteBtn.addEventListener('click', async () => {
+    let text = '';
+    try {
+      text = (await navigator.clipboard.readText()).trim();
+    } catch {
+      input.focus();
+      showError('Clipboard access was blocked — paste the code into the field instead.');
+      return;
+    }
+    if (!text) { showError('Your clipboard is empty — copy a deck code in the game first.'); return; }
+    input.value = text;
+    handleDecode();
+  });
+}
+
+// ─── Hero counts + install prompt ──────────────────────────
+
+function fillHeroCounts() {
+  const set = (key, n) => {
+    const li = document.querySelector(`[data-deck-hero-count="${key}"]`);
+    if (!li || !n) return;
+    li.querySelector('strong').textContent = n;
+    li.hidden = false;
+  };
+  set('cards', getCardPool().length);
+  set('commanders', commanderList.length);
+}
+
+// Chrome/Edge/Android offer installation via beforeinstallprompt; surface it
+// as a quiet "Install as an app" link in the hero instead of the browser's
+// own mini-infobar. Registered at load (the event can fire before init()).
+let deferredInstallPrompt = null;
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  const item = document.getElementById('deck-install-item');
+  if (item) item.hidden = false;
+});
+window.addEventListener('appinstalled', () => {
+  deferredInstallPrompt = null;
+  const item = document.getElementById('deck-install-item');
+  if (item) item.hidden = true;
+});
+
+function initInstallButton() {
+  const btn = document.getElementById('deck-install-btn');
+  if (!btn) return;
+  if (deferredInstallPrompt) document.getElementById('deck-install-item').hidden = false;
+  btn.addEventListener('click', async () => {
+    if (!deferredInstallPrompt) return;
+    deferredInstallPrompt.prompt();
+    try { await deferredInstallPrompt.userChoice; } catch { /* dismissed */ }
+    deferredInstallPrompt = null;
+    document.getElementById('deck-install-item').hidden = true;
+  });
 }
 
 async function init() {
   await loadCardlist();
 
-  const decksLink = document.querySelector('.nav-link[data-nav="decks"]');
-  if (decksLink) decksLink.classList.add('active');
-
   initServiceWorker();
   initTabs();
+  initTabA11y();
   initBuildMode();
+  renderStartTokens();
+  fillHeroCounts();
+  initImportUx();
+  initInstallButton();
+  initOverlayFocusTrap();
+  cardTilt.init();
   initCommanderPicker();
   initCommanderDetail();
   initBuildMobileTabs();
@@ -1231,6 +1779,9 @@ async function init() {
   });
   document.getElementById('btn-copy-code').addEventListener('click', handleCopyCode);
   document.getElementById('btn-copy-url').addEventListener('click', handleCopyUrl);
+  const stripCopy = document.getElementById('btn-copy-url-strip');
+  if (stripCopy) stripCopy.addEventListener('click', handleCopyUrl);
+  initImportLinked();
 
   // Auto-decode from URL
   const params = new URLSearchParams(window.location.search);
@@ -1241,10 +1792,34 @@ async function init() {
       const deck = decodeDeckCode(code);
       deckSource = 'import';
       renderDeck(deck);
+      setImportLinked(true);
     } catch (e) {
       showError(`Failed to decode URL deck code: ${e.message}`);
     }
+  } else {
+    openCommanderPage();
   }
+}
+
+// /decks/<slug>/ without a ?code is that commander's page (it's in the
+// sitemap): start a Build deck with the commander already chosen and say so
+// in the hero, instead of the generic "Choose a commander" state.
+function openCommanderPage() {
+  const m = window.location.pathname.match(/\/decks\/([a-z0-9-]+)\/?(?:index\.html)?$/);
+  if (!m) return;
+  const name = commanderList.find(n => deckCommanderSlug(n) === m[1]);
+  if (!name) return;
+  const lede = document.querySelector('.deck-hero .ac-page-hero__lede');
+  if (lede) lede.textContent = `Build a ${name} deck (${poolDescription(name)}) and watch the curve and deck size as you go. Share it as a link, or as a code for the game.`;
+  const eyebrow = document.querySelector('.deck-hero .ac-eyebrow');
+  if (eyebrow) eyebrow.textContent = name;
+  const buildTab = document.getElementById('tab-build');
+  if (buildTab) buildTab.click();
+  // Same as selectCommander() minus closing the picker, which would move
+  // focus to the picker button on page load.
+  const select = document.getElementById('build-commander');
+  select.value = name;
+  select.dispatchEvent(new Event('change'));
 }
 
 document.addEventListener('DOMContentLoaded', init);

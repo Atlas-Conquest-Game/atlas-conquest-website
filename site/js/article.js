@@ -1,9 +1,13 @@
 /**
- * Article page bootstrapper.
+ * Articles bootstrapper — runs on the index (/articles/) and on every article.
  *
  * Article HTML is fully server-rendered by scripts/build_articles.py — there's
- * no client-side Markdown parsing or deck decoding. This script wires up the
- * shared nav-active state, the card-hover preview, and the figure lightbox.
+ * no client-side Markdown parsing or deck decoding. This script adds the
+ * progressive enhancements:
+ *   - index: the tag filter (?tag=… deep links included);
+ *   - article: the reading bar (current section, contents menu, and a JS
+ *     progress fallback where CSS scroll timelines aren't supported);
+ *   - the figure lightbox, reduced-motion clips, and the card-hover preview.
  */
 
 /**
@@ -85,7 +89,7 @@ function initImageLightbox() {
       '<span>Click to expand</span>';
     wrap.appendChild(hint);
 
-    const fire = () => open(el.currentSrc || el.src, el.alt);
+    const fire = () => open(el.dataset.full || el.currentSrc || el.src, el.alt);
     wrap.addEventListener('click', fire);
     wrap.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
@@ -111,21 +115,184 @@ function initImageLightbox() {
 }
 
 /**
- * Article clips ([[video:...]]) autoplay on a silent loop. For readers who ask
- * for reduced motion, stop them and hand over the controls instead.
+ * Article clips ([[video:...]]) ship with preload="none" and native controls,
+ * so nothing downloads up front and readers without JS can still play them.
+ * Here they become silent loops that play only while on screen. Readers who ask
+ * for reduced motion keep the controls and press play themselves.
  */
-function initReducedMotionVideos() {
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  document.querySelectorAll('.article-video video').forEach((video) => {
-    video.removeAttribute('autoplay');
-    video.pause();
-    video.controls = true;
+function initArticleVideos() {
+  const videos = document.querySelectorAll('.article-video video');
+  if (!videos.length) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (isIntersecting) {
+        const p = target.play();
+        if (p && p.catch) p.catch(() => { target.controls = true; });
+      } else if (!target.paused) {
+        target.pause();
+      }
+    });
+  }, { rootMargin: '120px 0px', threshold: 0.2 });
+  videos.forEach((video) => {
+    video.muted = true;
+    video.controls = false;
+    io.observe(video);
+  });
+}
+
+/**
+ * Index: filter the article cards by tag. The chips are server-rendered
+ * buttons (hidden without JS); ?tag=<name> deep links — the tag chips on each
+ * article point here — pre-select a filter.
+ */
+function initArticleFilter() {
+  const bar = document.querySelector('[data-article-filter]');
+  const grid = document.querySelector('[data-article-grid]');
+  if (!bar || !grid) return;
+  const chips = [...bar.querySelectorAll('.article-filter-chip')];
+  const cards = [...grid.querySelectorAll('.article-card')];
+  const status = document.querySelector('[data-article-filter-status]');
+
+  function apply(tag, { push } = {}) {
+    const known = chips.some(c => c.dataset.tag === tag);
+    if (!known) tag = '';
+    let shown = 0;
+    cards.forEach(card => {
+      const tags = (card.dataset.tags || '').split(',');
+      const match = !tag || tags.includes(tag);
+      card.hidden = !match;
+      if (match) shown += 1;
+    });
+    grid.classList.toggle('is-filtered', Boolean(tag));
+    chips.forEach(c => c.setAttribute('aria-pressed', String(c.dataset.tag === tag)));
+    if (status) {
+      const label = chips.find(c => c.dataset.tag === tag);
+      const name = label ? label.firstChild.textContent.trim() : '';
+      status.textContent = tag
+        ? `Showing ${shown} ${shown === 1 ? 'article' : 'articles'} tagged ${name}`
+        : `Showing all ${shown} articles`;
+    }
+    if (push) {
+      const url = new URL(location.href);
+      if (tag) url.searchParams.set('tag', tag);
+      else url.searchParams.delete('tag');
+      history.replaceState(null, '', url);
+    }
+  }
+
+  bar.addEventListener('click', e => {
+    const chip = e.target.closest('.article-filter-chip');
+    if (!chip) return;
+    apply(chip.dataset.tag, { push: true });
+  });
+
+  const initial = (new URLSearchParams(location.search).get('tag') || '').toLowerCase();
+  if (initial) apply(initial);
+}
+
+/**
+ * Article: the sticky reading bar under the header.
+ *  - names the section being read (the last <h2> above the reading line);
+ *  - highlights it in the Contents menu, and closes the menu on Esc, an
+ *    outside click or picking a section;
+ *  - drives the progress ring by hand when the browser can't run the CSS
+ *    scroll timeline in articles.css.
+ */
+function initReadingBar() {
+  const bar = document.querySelector('[data-readbar]');
+  const body = document.querySelector('[data-article-body]');
+  if (!bar || !body) return;
+
+  const sectionLabel = bar.querySelector('[data-readbar-section]');
+  const toc = bar.querySelector('[data-article-toc]');
+  const headings = [...body.querySelectorAll('h2[id]')];
+  const links = toc ? [...toc.querySelectorAll('a[href^="#"]')] : [];
+  const cssProgress = window.CSS && CSS.supports &&
+    CSS.supports('animation-timeline: view()') && CSS.supports('timeline-scope: --a');
+
+  // The reading line sits just under the nav + reading bar.
+  const readingLine = () => bar.getBoundingClientRect().bottom + 56;
+
+  let current = null;
+  function update() {
+    const line = readingLine();
+    let active = null;
+    for (const h of headings) {
+      if (h.getBoundingClientRect().top <= line) active = h;
+      else break;
+    }
+    if (active !== current) {
+      current = active;
+      if (sectionLabel) {
+        sectionLabel.textContent = active ? active.textContent.trim() : '';
+        sectionLabel.classList.toggle('is-visible', Boolean(active));
+      }
+      links.forEach(a => {
+        if (active && a.getAttribute('href') === '#' + active.id) a.setAttribute('aria-current', 'true');
+        else a.removeAttribute('aria-current');
+      });
+    }
+    if (!cssProgress) {
+      const rect = body.getBoundingClientRect();
+      const span = rect.height - (window.innerHeight - line);
+      const p = span > 0 ? (line - rect.top) / span : 1;
+      bar.style.setProperty('--ac-read', String(Math.min(1, Math.max(0, p))));
+    }
+  }
+
+  let ticking = false;
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => { ticking = false; update(); });
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  update();
+
+  if (!toc) return;
+  const summary = toc.querySelector('summary');
+  const close = (returnFocus) => {
+    if (!toc.open) return;
+    toc.open = false;
+    if (returnFocus && summary) summary.focus();
+  };
+  document.addEventListener('click', e => {
+    if (toc.open && !toc.contains(e.target)) close(false);
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && toc.open) {
+      e.preventDefault();
+      close(true);
+    }
+  });
+  toc.addEventListener('focusout', e => {
+    if (toc.open && e.relatedTarget && !toc.contains(e.relatedTarget)) close(false);
+  });
+  links.forEach(a => a.addEventListener('click', () => {
+    close(false);
+    // Land keyboard focus on the section too, so Tab continues from there.
+    const target = document.getElementById(a.getAttribute('href').slice(1));
+    if (target) {
+      if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+      requestAnimationFrame(() => target.focus({ preventScroll: true }));
+    }
+  }));
+  // Opening the menu scrolls the current section into view inside it.
+  toc.addEventListener('toggle', () => {
+    if (!toc.open) return;
+    const here = toc.querySelector('a[aria-current="true"]');
+    if (here) here.scrollIntoView({ block: 'nearest' });
   });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   if (typeof initNavActiveState === 'function') initNavActiveState();
   if (typeof initCardPreview === 'function') initCardPreview();
+  initArticleFilter();
+  initReadingBar();
   initImageLightbox();
-  initReducedMotionVideos();
+  initArticleVideos();
 });

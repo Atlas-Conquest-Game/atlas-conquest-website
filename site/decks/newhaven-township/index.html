@@ -5,10 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <!-- GEN:META:BEGIN — generated for Newhaven Township; edit scripts/generate_deck_pages.py, not this file. -->
   <title>Newhaven Township Deck — Atlas Conquest</title>
+  <meta name="description" content="Build or open a Newhaven Township deck for Atlas Conquest: every card Newhaven Township can run, the mana curve and deck stats, shareable as a link or code.">
+  <link rel="canonical" href="https://atlas-conquest.com/decks/newhaven-township/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Atlas Conquest">
   <meta property="og:title" content="Newhaven Township Deck — Atlas Conquest">
-  <meta property="og:description" content="Import this Newhaven Township deck in Atlas Conquest. Paste the shared URL to view the decklist, stats, and mana curve.">
+  <meta property="og:description" content="Build or open a Newhaven Township deck for Atlas Conquest: every card Newhaven Township can run, the mana curve and deck stats, shareable as a link or code.">
   <meta property="og:image" content="https://atlas-conquest.com/assets/og/newhaven-township.jpg">
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
@@ -16,8 +18,9 @@
   <meta property="og:image:alt" content="Newhaven Township Deck — Atlas Conquest">
   <meta property="og:url" content="https://atlas-conquest.com/decks/newhaven-township/">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@Atlas_Conquest">
   <meta name="twitter:title" content="Newhaven Township Deck — Atlas Conquest">
-  <meta name="twitter:description" content="Import this Newhaven Township deck in Atlas Conquest. Paste the shared URL to view the decklist, stats, and mana curve.">
+  <meta name="twitter:description" content="Build or open a Newhaven Township deck for Atlas Conquest: every card Newhaven Township can run, the mana curve and deck stats, shareable as a link or code.">
   <meta name="twitter:image" content="https://atlas-conquest.com/assets/og/newhaven-township.jpg">
   <link rel="icon" type="image/jpeg" href="https://atlas-conquest.com/assets/commanders/newhaven-township.jpg">
   <!-- GEN:META:END -->
@@ -25,7 +28,7 @@
        block-replace never touches this; it still reaches every generated
        page since generate_deck_pages.py copies this whole file. -->
   <link rel="manifest" href="/manifest.webmanifest">
-  <meta name="theme-color" content="#0e1117">
+  <meta name="theme-color" content="#0b0f17">
   <link rel="apple-touch-icon" href="/assets/logo/apple-touch-icon.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -39,272 +42,482 @@
   <link rel="stylesheet" href="/css/components.css">
   <link rel="stylesheet" href="/css/responsive.css">
   <link rel="stylesheet" href="/css/tooltips.css">
+  <!-- AC:HEAD — generated from site/partials/head.html by scripts/sync_chrome.py; edit the partial, not this block. -->
+  <script>document.documentElement.classList.add('ac-js')</script>
+  <link rel="preload" href="/assets/media/fonts/OptimusPrincepsSemiBold.woff" as="font" type="font/woff" crossorigin>
+  <link rel="stylesheet" href="/css/brand.css">
+  <script src="/js/site-config.js" defer></script>
+  <!-- /AC:HEAD -->
   <link rel="stylesheet" href="/css/decks.css">
 </head>
 <body>
 
-  <!-- Navigation -->
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="/index.html" class="nav-logo">
-        <img src="/assets/logo/atlas-conquest-logo.png" alt="Atlas Conquest" width="178" height="28" class="nav-logo-wordmark">
-      </a>
-      <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
-      <label for="nav-toggle" class="nav-burger" aria-label="Toggle navigation menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </label>
-      <div class="nav-links">
-        <a href="/index.html" class="nav-link" data-nav="home">Home</a>
-        <a href="/analytics.html" class="nav-link" data-nav="analytics">Analytics</a>
-        <a href="/metagame.html" class="nav-link" data-nav="metagame">Metagame</a>
-        <a href="/decks.html" class="nav-link" data-nav="decks">Decks</a>
-        <a href="/articles/" class="nav-link" data-nav="articles">Articles</a>
-        <a href="/press.html" class="nav-link" data-nav="press">Press</a>
+  <!-- AC:NAV — generated from site/partials/nav.html by scripts/sync_chrome.py; edit the partial, not this block. -->
+  <svg class="ac-sprite" width="0" height="0" aria-hidden="true" focusable="false">
+    <symbol id="ac-i-discord" viewBox="0 0 24 24"><path fill="currentColor" d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.445.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.618-1.25.077.077 0 0 0-.078-.037A19.74 19.74 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.319 13.58.099 18.058a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.873-1.295 1.226-1.994a.076.076 0 0 0-.042-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .079.01c.12.098.245.197.372.291a.077.077 0 0 1-.006.128 12.3 12.3 0 0 1-1.873.891.077.077 0 0 0-.041.107c.36.698.772 1.363 1.225 1.993a.076.076 0 0 0 .084.029 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.055c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.029zM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.42 0-1.333.956-2.418 2.157-2.418 1.21 0 2.176 1.095 2.157 2.419 0 1.333-.956 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.086-2.157-2.42 0-1.333.955-2.418 2.157-2.418 1.21 0 2.175 1.095 2.157 2.419 0 1.333-.946 2.419-2.157 2.419z"/></symbol>
+    <symbol id="ac-i-steam" viewBox="0 0 24 24"><path fill="currentColor" d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658a3.387 3.387 0 0 1 1.912-.59c.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25 1.297.539 2.793-.076 3.332-1.375.263-.63.264-1.319.005-1.949s-.75-1.121-1.377-1.383c-.624-.26-1.29-.249-1.878-.03l1.523.63c.956.4 1.409 1.5 1.009 2.455-.397.957-1.497 1.41-2.454 1.012H7.54zm11.415-9.303c0-1.662-1.353-3.015-3.015-3.015-1.665 0-3.015 1.353-3.015 3.015 0 1.665 1.35 3.015 3.015 3.015 1.663 0 3.015-1.35 3.015-3.015zm-5.273-.005c0-1.252 1.013-2.266 2.265-2.266 1.249 0 2.266 1.014 2.266 2.266 0 1.251-1.017 2.265-2.266 2.265-1.253 0-2.265-1.014-2.265-2.265z"/></symbol>
+    <symbol id="ac-i-x" viewBox="0 0 24 24"><path fill="currentColor" d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932zM17.61 20.644h2.039L6.486 3.24H4.298z"/></symbol>
+    <symbol id="ac-i-instagram" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/></g><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor"/></symbol>
+    <symbol id="ac-i-tiktok" viewBox="0 0 24 24"><path fill="currentColor" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></symbol>
+    <symbol id="ac-i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.14v13.72a1 1 0 0 0 1.52.85l10.6-6.86a1 1 0 0 0 0-1.7L9.52 4.29A1 1 0 0 0 8 5.14z"/></symbol>
+    <symbol id="ac-i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></g></symbol>
+    <symbol id="ac-i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h13M13 6l6 6-6 6"/></symbol>
+    <symbol id="ac-i-close" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="ac-i-brush" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m9.06 11.9 8.07-8.06a2.85 2.85 0 1 1 4.03 4.03l-8.06 8.08"/><path d="M7.07 14.94c-1.66 0-3 1.35-3 3.02 0 1.33-2.5 1.52-2 2.02 1.08 1.1 2.49 2.02 4 2.02 2.2 0 4-1.8 4-4.04a3.01 3.01 0 0 0-3-3.02z"/></g></symbol>
+  </svg>
+  <a class="ac-skip" href="#main">Skip to content</a>
+  <div class="ac-nav" data-ac-nav>
+    <div class="ac-nav__bar">
+      <nav class="ac-nav__inner" aria-label="Primary">
+        <a class="ac-nav__brand" href="/index.html">
+          <img src="/assets/media/logo/wordmark-360.webp" srcset="/assets/media/logo/wordmark-360.webp 360w, /assets/media/logo/wordmark-640.webp 640w" sizes="190px" width="190" height="30" alt="Atlas Conquest home">
+        </a>
+        <button class="ac-nav__toggle" type="button" aria-expanded="false" aria-controls="ac-nav-menu">
+          <span class="ac-nav__burger" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span class="ac-sr">Menu</span>
+        </button>
+        <div class="ac-nav__menu" id="ac-nav-menu">
+          <ul class="ac-nav__links">
+            <li><a class="nav-link" data-nav="home" href="/index.html">Home</a></li>
+            <li><a class="nav-link" data-nav="articles" href="/articles/">Articles</a></li>
+            <li><a class="nav-link" data-nav="press" href="/press.html">Press</a></li>
+            <li><a class="nav-link" data-nav="decks" aria-current="page" href="/decks.html">Decks</a></li>
+            <li><a class="nav-link" data-nav="analytics" href="/analytics.html">Analytics</a></li>
+          </ul>
+          <div class="ac-nav__extras">
+            <div class="ac-nav__ctas">
+              <span class="ac-cta-slot" data-ac-cta="primary"><a class="ac-btn ac-btn--steam" href="#" data-ac-pending data-platform="steam"><svg class="ac-icon" aria-hidden="true"><use href="#ac-i-steam"/></svg><span class="ac-btn__label">Wishlist on Steam</span></a></span>
+              <span class="ac-cta-slot" data-ac-cta="secondary"><a class="ac-btn ac-btn--ghost" href="https://discord.gg/7QaEY4yJH5" target="_blank" rel="noopener" data-platform="discord"><svg class="ac-icon" aria-hidden="true"><use href="#ac-i-discord"/></svg><span class="ac-btn__label">Play Free Now on Discord</span></a></span>
+            </div>
+            <p class="ac-nav__live" data-ac-discord-live hidden><span class="ac-dot" aria-hidden="true"></span><span><strong data-ac-discord-online></strong> online now &middot; <strong data-ac-discord-members></strong> in the Discord</span></p>
+            <ul class="ac-social" aria-label="Atlas Conquest on social media">
+              <li><a href="https://discord.gg/7QaEY4yJH5" data-ac-href="discord" target="_blank" rel="noopener" aria-label="Discord"><svg class="ac-icon" aria-hidden="true"><use href="#ac-i-discord"/></svg></a></li>
+              <li><a href="https://x.com/Atlas_Conquest" data-ac-href="x" target="_blank" rel="noopener" aria-label="X (Twitter)"><svg class="ac-icon" aria-hidden="true"><use href="#ac-i-x"/></svg></a></li>
+              <li><a href="https://www.instagram.com/atlasconquest/" data-ac-href="instagram" target="_blank" rel="noopener" aria-label="Instagram"><svg class="ac-icon" aria-hidden="true"><use href="#ac-i-instagram"/></svg></a></li>
+              <li><a href="https://www.tiktok.com/@atlas.conquest" data-ac-href="tiktok" target="_blank" rel="noopener" aria-label="TikTok"><svg class="ac-icon" aria-hidden="true"><use href="#ac-i-tiktok"/></svg></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="ac-nav__actions">
+          <span class="ac-cta-slot" data-ac-cta="secondary" data-ac-cta-style="pill" data-ac-cta-short data-ac-cta-count><a class="ac-btn ac-btn--pill" href="https://discord.gg/7QaEY4yJH5" target="_blank" rel="noopener" data-platform="discord"><svg class="ac-icon" aria-hidden="true"><use href="#ac-i-discord"/></svg><span class="ac-btn__label">Play Free</span><span class="ac-btn__live" data-ac-discord-live hidden><span class="ac-dot" aria-hidden="true"></span><span data-ac-discord-online></span><span class="ac-btn__live-label"> online</span></span></a></span>
+          <span class="ac-cta-slot" data-ac-cta="primary" data-ac-cta-size="sm" data-ac-cta-short="narrow" data-ac-cta-count><a class="ac-btn ac-btn--steam ac-btn--sm" href="#" data-ac-pending data-platform="steam"><svg class="ac-icon" aria-hidden="true"><use href="#ac-i-steam"/></svg><span class="ac-btn__label"><span class="ac-btn__label-full">Wishlist on Steam</span><span class="ac-btn__label-short">Wishlist</span></span></a></span>
+        </div>
+      </nav>
+    </div>
+    <div class="ac-nav__scrim" data-ac-nav-scrim></div>
+  </div>
+  <!-- /AC:NAV -->
+
+  <!-- Page icons (deck tools only). The shared brand sprite above lives in the
+       AC:NAV region; these extend it with the builder's own glyphs. -->
+  <svg class="ac-sprite" width="0" height="0" aria-hidden="true" focusable="false">
+    <symbol id="dk-i-code" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M13.5 4.5l-3 15"/></g></symbol>
+    <symbol id="dk-i-hammer" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13.2 3.6 20.4 10.8 17.1 14.1 9.9 6.9Z"/><path d="m12 9.1-8.5 8.5a1.6 1.6 0 0 0 2.3 2.3l8.5-8.5"/></g></symbol>
+    <symbol id="dk-i-link" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></symbol>
+    <symbol id="dk-i-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></g></symbol>
+    <symbol id="dk-i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+    <symbol id="dk-i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></g></symbol>
+    <symbol id="dk-i-paste" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M9 13h6M9 17h4"/></g></symbol>
+    <symbol id="dk-i-install" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></g></symbol>
+    <symbol id="dk-i-swap" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4 3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></g></symbol>
+  </svg>
+
+  <main id="main">
+
+    <!-- Hero — compact on purpose: this is a tool, so the builder starts just
+         below the fold line. Pyrotechnic key art (each page has its own
+         painting; mechanic belongs to Cards). Root-absolute paths (this file is also the template for
+         /decks/<slug>/index.html). -->
+    <header class="ac-page-hero ac-page-hero--compact deck-hero" style="--ac-hero-pos: 78% 22%">
+      <img class="ac-page-hero__art" src="/assets/media/keyart/pyrotechnic-1200.webp" srcset="/assets/media/keyart/pyrotechnic-1200.webp 1200w, /assets/media/keyart/pyrotechnic-2400.webp 2400w" sizes="(min-width: 901px) 62vw, 100vw" width="1200" height="675" alt="" fetchpriority="high" decoding="async">
+      <div class="ac-page-hero__inner">
+        <p class="ac-eyebrow">Deck tools</p>
+        <h1 class="ac-title">Deck Builder</h1>
+        <span class="ac-ornament ac-ornament--start" aria-hidden="true"></span>
+        <p class="ac-page-hero__lede">Build a deck from the full card pool, open any list from a code copied in the game, and share it with a single link.</p>
+        <!-- Counts are filled from the same data the builder loads (cardlist +
+             commanders JSON) and stay hidden if that fails — never hard-coded. -->
+        <ul class="ac-page-hero__meta deck-hero-meta">
+          <li data-deck-hero-count="cards" hidden><strong></strong> playable cards</li>
+          <li data-deck-hero-count="commanders" hidden><strong></strong> commanders</li>
+          <li class="deck-hero-offline">Works offline</li>
+          <li class="deck-hero-install" id="deck-install-item" hidden>
+            <button type="button" class="deck-install-btn" id="deck-install-btn">
+              <svg class="ac-icon" aria-hidden="true"><use href="#dk-i-install"/></svg>Install as an app
+            </button>
+          </li>
+        </ul>
       </div>
-    </div>
-  </nav>
+    </header>
 
-  <!-- Hero -->
-  <header class="hero hero-compact">
-    <div class="container">
-      <h1 class="hero-title">Deck Tools</h1>
-      <p class="hero-subtitle">Import, view, and share Atlas Conquest decks</p>
-    </div>
-  </header>
+    <!-- Main Content -->
+    <section class="section deck-section" aria-label="Deck builder">
+      <div class="container">
 
-  <!-- Main Content -->
-  <section class="section">
-    <div class="container">
+        <!-- Two-column layout -->
+        <div class="deck-layout">
 
-      <!-- Two-column layout -->
-      <div class="deck-layout">
+          <!-- Left column: controls + card list -->
+          <div class="deck-main">
 
-        <!-- Left column: controls + card list -->
-        <div class="deck-main">
-
-          <!-- Mode Tabs -->
-          <div class="deck-tabs">
-            <button class="deck-tab active" data-mode="import" id="tab-import">Import Deck</button>
-            <button class="deck-tab" data-mode="build" id="tab-build">Build Deck</button>
-          </div>
-
-          <!-- Import Panel -->
-          <div class="deck-panel" id="panel-import">
-            <label class="deck-input-label" for="deck-code-input">
-              Paste deck code
-              <button type="button" class="deck-code-help-btn" id="deck-code-help-btn" aria-label="What's a deck code?">?</button>
-            </label>
-            <div class="deck-code-help hidden" id="deck-code-help">
-              In the Atlas Conquest game client, open the deck editor and use the "Export" / "Copy Code"
-              option on any deck. It copies a text code to your clipboard — paste it here.
+            <!-- Mode Tabs (ARIA tabs; arrow keys move between them) -->
+            <div class="deck-tabs" role="tablist" aria-label="Deck tools">
+              <button class="deck-tab active" data-mode="import" id="tab-import" type="button" role="tab" aria-selected="true" aria-controls="panel-import">
+                <span class="deck-tab-icon" aria-hidden="true"><svg class="ac-icon"><use href="#dk-i-code"/></svg></span>
+                <span class="deck-tab-text">
+                  <span class="deck-tab-title">Import Deck</span>
+                  <span class="deck-tab-sub">Open a deck code or shared link</span>
+                </span>
+              </button>
+              <button class="deck-tab" data-mode="build" id="tab-build" type="button" role="tab" aria-selected="false" aria-controls="panel-build" tabindex="-1">
+                <span class="deck-tab-icon" aria-hidden="true"><svg class="ac-icon"><use href="#dk-i-hammer"/></svg></span>
+                <span class="deck-tab-text">
+                  <span class="deck-tab-title">Build Deck</span>
+                  <span class="deck-tab-sub">Pick a commander, add cards</span>
+                </span>
+              </button>
             </div>
-            <div class="deck-input-row">
-              <input type="text" id="deck-code-input" class="deck-input" placeholder="e.g. wrNWQ29udHJvbHYz:DMHgDgzrwAAO..." spellcheck="false">
-              <button class="btn btn-primary" id="btn-decode">Decode</button>
-            </div>
-            <p class="deck-input-hint">Copy a deck code from the Atlas Conquest deck editor, then paste it here.</p>
-          </div>
 
-          <!-- Build Panel (hidden by default) -->
-          <div class="deck-panel hidden" id="panel-build">
-            <div class="build-row">
-              <div class="build-field">
-                <label class="deck-input-label" for="commander-picker-btn">Commander</label>
-                <button type="button" class="commander-picker-btn" id="commander-picker-btn">
-                  <span class="commander-picker-btn-portrait" id="commander-picker-btn-portrait"></span>
-                  <span class="commander-picker-btn-label placeholder" id="commander-picker-btn-label">Select a commander...</span>
-                  <span class="commander-picker-btn-chevron">▾</span>
-                </button>
-                <!-- Actual state lives here — the picker above just drives this
-                     select's value + dispatches 'change', so all existing
-                     commander-selection logic is untouched. -->
-                <select id="build-commander" class="hidden" aria-hidden="true" tabindex="-1">
-                  <option value="">Select a commander...</option>
-                </select>
+            <!-- Import Panel -->
+            <div class="deck-panel" id="panel-import" role="tabpanel" aria-labelledby="tab-import">
+              <!-- Phones/tablets, deck opened from a shared link: the import box
+                   folds into this one line so the deck itself is above the fold. -->
+              <div class="deck-import-linked" id="deck-import-linked">
+                <svg class="ac-icon" aria-hidden="true"><use href="#dk-i-link"/></svg>
+                <span class="deck-import-linked-text">Opened from a shared link</span>
+                <button type="button" class="deck-import-change" id="deck-import-change" aria-controls="deck-import-box" aria-expanded="false">Change</button>
               </div>
-              <div class="build-field">
-                <label class="deck-input-label" for="build-name">Deck Name</label>
-                <input type="text" id="build-name" class="deck-input" placeholder="My Deck">
+              <div class="deck-import" id="deck-import-box">
+                <div class="deck-input-label-row">
+                  <label class="deck-input-label" for="deck-code-input">Deck code</label>
+                  <button type="button" class="deck-code-help-btn" id="deck-code-help-btn" aria-expanded="false" aria-controls="deck-code-help">
+                    <span aria-hidden="true">?</span><span class="ac-sr">Where do I find a deck code?</span>
+                  </button>
+                </div>
+                <div class="deck-code-help hidden" id="deck-code-help">
+                  In the Atlas Conquest game client, open the deck editor and use the "Export" / "Copy Code"
+                  option on any deck. It copies a text code to your clipboard — paste it here.
+                </div>
+                <div class="deck-input-row">
+                  <div class="deck-code-field">
+                    <svg class="ac-icon deck-code-field-icon" aria-hidden="true"><use href="#dk-i-code"/></svg>
+                    <input type="text" id="deck-code-input" class="deck-input" placeholder="Paste a code, e.g. wrNWQ29udHJvbHYz:DMHgDgzrwAAO…" spellcheck="false" autocomplete="off" autocapitalize="off" aria-describedby="deck-input-hint">
+                  </div>
+                  <button type="button" class="ac-btn ac-btn--ghost deck-paste-btn" id="btn-paste" hidden>
+                    <svg class="ac-icon" aria-hidden="true"><use href="#dk-i-paste"/></svg><span>Paste</span>
+                  </button>
+                  <button type="button" class="ac-btn ac-btn--gold" id="btn-decode">Load deck</button>
+                </div>
+                <p class="deck-input-hint" id="deck-input-hint">Pasting a code loads it straight away. Shared deck links open here automatically.</p>
               </div>
             </div>
 
-            <!-- Mobile-only: split browsing the card pool from viewing your
-                 current deck, instead of one long scrolling page. -->
-            <div class="build-mobile-tabs" id="build-mobile-tabs">
-              <button type="button" class="build-mobile-tab active" data-view="browse">Add Cards</button>
-              <button type="button" class="build-mobile-tab" data-view="deck">My Deck <span class="build-mobile-tab-count" id="build-mobile-tab-count">0</span></button>
-            </div>
-
-            <!-- Card Pool Browser -->
-            <div class="card-browser" id="card-browser">
-              <div class="card-browser-toolbar">
-                <input type="text" id="build-card-input" class="deck-input" placeholder="Filter cards..." autocomplete="off">
-                <div class="card-browser-sort-row">
-                  <button class="build-sort-btn active" data-sort="cost" id="sort-btn-cost">Cost</button>
-                  <button class="build-sort-btn" data-sort="name" id="sort-btn-name">Name</button>
+            <!-- Build Panel (hidden by default) -->
+            <div class="deck-panel hidden" id="panel-build" role="tabpanel" aria-labelledby="tab-build">
+              <div class="build-row">
+                <div class="build-field build-field--commander">
+                  <span class="deck-input-label" id="commander-picker-label">Commander</span>
+                  <button type="button" class="commander-picker-btn" id="commander-picker-btn" aria-haspopup="dialog" aria-labelledby="commander-picker-label commander-picker-btn-label">
+                    <span class="commander-picker-btn-portrait" id="commander-picker-btn-portrait" aria-hidden="true"></span>
+                    <span class="commander-picker-btn-text">
+                      <span class="commander-picker-btn-label placeholder" id="commander-picker-btn-label">Select a commander...</span>
+                      <span class="commander-picker-btn-sub" id="commander-picker-btn-sub">Sets which cards you can add</span>
+                    </span>
+                    <span class="commander-picker-btn-chevron" aria-hidden="true"><svg class="ac-icon"><use href="#dk-i-swap"/></svg></span>
+                  </button>
+                  <!-- Actual state lives here — the picker above just drives this
+                       select's value + dispatches 'change', so all existing
+                       commander-selection logic is untouched. -->
+                  <select id="build-commander" class="hidden" aria-hidden="true" tabindex="-1">
+                    <option value="">Select a commander...</option>
+                  </select>
+                </div>
+                <div class="build-field">
+                  <label class="deck-input-label" for="build-name">Deck name</label>
+                  <input type="text" id="build-name" class="deck-input" placeholder="My Deck" autocomplete="off">
                 </div>
               </div>
-              <!-- Cost filter chips — tap-friendly alternative to typing on mobile -->
-              <div class="card-browser-chip-row" id="card-browser-chip-row">
-                <button class="cost-chip" data-cost="0">0</button>
-                <button class="cost-chip" data-cost="1">1</button>
-                <button class="cost-chip" data-cost="2">2</button>
-                <button class="cost-chip" data-cost="3">3</button>
-                <button class="cost-chip" data-cost="4">4</button>
-                <button class="cost-chip" data-cost="5">5</button>
-                <button class="cost-chip" data-cost="6">6</button>
-                <button class="cost-chip" data-cost="7">7+</button>
+
+              <!-- Mobile-only: split browsing the card pool from viewing your
+                   current deck, instead of one long scrolling page. -->
+              <div class="build-mobile-tabs" id="build-mobile-tabs">
+                <button type="button" class="build-mobile-tab active" data-view="browse">Add Cards</button>
+                <button type="button" class="build-mobile-tab" data-view="deck">My Deck <span class="build-mobile-tab-count" id="build-mobile-tab-count">0</span></button>
               </div>
-              <div class="build-filter-hint hidden" id="build-filter-hint"></div>
-              <div class="card-browser-grid" id="card-browser-grid"></div>
+
+              <!-- Card Pool Browser -->
+              <div class="card-browser" id="card-browser">
+                <div class="card-browser-toolbar">
+                  <div class="card-browser-search">
+                    <svg class="ac-icon" aria-hidden="true"><use href="#dk-i-search"/></svg>
+                    <input type="search" id="build-card-input" class="deck-input" placeholder="Search cards" autocomplete="off" aria-label="Search cards by name">
+                  </div>
+                  <div class="card-browser-sort-row" role="group" aria-label="Sort cards">
+                    <button type="button" class="build-sort-btn active" data-sort="cost" id="sort-btn-cost" aria-pressed="true">Cost</button>
+                    <button type="button" class="build-sort-btn" data-sort="name" id="sort-btn-name" aria-pressed="false">A–Z</button>
+                  </div>
+                </div>
+                <!-- Cost filter — the game's own mana gems, tap-friendly on mobile -->
+                <div class="card-browser-chip-row" id="card-browser-chip-row" role="group" aria-label="Filter by cost">
+                  <span class="card-browser-chip-label" aria-hidden="true">Cost</span>
+                  <button type="button" class="cost-chip" data-cost="0" aria-pressed="false" aria-label="Cost 0"><span class="mana-gem" aria-hidden="true"><span class="mana-gem-value">0</span></span></button>
+                  <button type="button" class="cost-chip" data-cost="1" aria-pressed="false" aria-label="Cost 1"><span class="mana-gem" aria-hidden="true"><span class="mana-gem-value">1</span></span></button>
+                  <button type="button" class="cost-chip" data-cost="2" aria-pressed="false" aria-label="Cost 2"><span class="mana-gem" aria-hidden="true"><span class="mana-gem-value">2</span></span></button>
+                  <button type="button" class="cost-chip" data-cost="3" aria-pressed="false" aria-label="Cost 3"><span class="mana-gem" aria-hidden="true"><span class="mana-gem-value">3</span></span></button>
+                  <button type="button" class="cost-chip" data-cost="4" aria-pressed="false" aria-label="Cost 4"><span class="mana-gem" aria-hidden="true"><span class="mana-gem-value">4</span></span></button>
+                  <button type="button" class="cost-chip" data-cost="5" aria-pressed="false" aria-label="Cost 5"><span class="mana-gem" aria-hidden="true"><span class="mana-gem-value">5</span></span></button>
+                  <button type="button" class="cost-chip" data-cost="6" aria-pressed="false" aria-label="Cost 6"><span class="mana-gem" aria-hidden="true"><span class="mana-gem-value">6</span></span></button>
+                  <button type="button" class="cost-chip" data-cost="7" aria-pressed="false" aria-label="Cost 7 or more"><span class="mana-gem" aria-hidden="true"><span class="mana-gem-value wide">7+</span></span></button>
+                  <span class="card-browser-result-count" id="card-browser-result-count" aria-live="polite"></span>
+                </div>
+                <div class="build-filter-hint hidden" id="build-filter-hint"></div>
+                <div class="card-browser-grid" id="card-browser-grid"></div>
+              </div>
             </div>
-          </div>
 
-          <!-- Empty State -->
-          <div class="deck-empty-state" id="deck-empty-state">
-            <p>Paste a deck code above to view a decklist, or switch to <strong>Build Deck</strong> to create one from scratch.</p>
-          </div>
-
-          <!-- Incompatible card warning -->
-          <div class="deck-warning hidden" id="deck-warning"></div>
-
-          <!-- Decklist header — card count + grid/compact view switch. The
-               compact view mirrors the in-game decklist: one row per card with
-               a mana gem, the name, and the copy count over a fade of the
-               card's own artwork. Preference persists in localStorage. -->
-          <div class="deck-list-header hidden" id="deck-list-header">
-            <div class="deck-list-header-title">
-              Decklist <span class="deck-list-header-count" id="deck-list-header-count"></span>
+            <!-- Empty State — a quick start: tap a commander to jump straight
+                 into Build mode with it selected (rendered by decks.js). -->
+            <div class="deck-empty-state" id="deck-empty-state">
+              <div class="deck-start">
+                <p class="ac-eyebrow">Quick start</p>
+                <h2 class="ac-title ac-title--sm deck-start-title">Choose a commander</h2>
+                <p class="deck-start-text">Start a new deck by picking a commander below, or paste a deck code above to view any list. Switch to <strong>Build Deck</strong> any time.</p>
+                <div class="deck-start-tokens" id="deck-start-tokens"></div>
+              </div>
             </div>
-            <div class="view-switch" role="group" aria-label="Decklist view">
-              <button type="button" class="view-switch-btn active" data-view="grid" aria-pressed="true" title="Card grid view">
-                <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true" focusable="false">
-                  <rect x="1" y="1" width="6" height="6" rx="1.5"/>
-                  <rect x="9" y="1" width="6" height="6" rx="1.5"/>
-                  <rect x="1" y="9" width="6" height="6" rx="1.5"/>
-                  <rect x="9" y="9" width="6" height="6" rx="1.5"/>
-                </svg>
-                <span>Grid</span>
+
+            <!-- Incompatible card warning -->
+            <div class="deck-warning hidden" id="deck-warning" role="status"></div>
+
+            <!-- Decklist header — card count + grid/compact view switch. The
+                 compact view mirrors the in-game decklist: one row per card with
+                 a mana gem, the name, and the copy count over a fade of the
+                 card's own artwork. Preference persists in localStorage. -->
+            <!-- Phones/tablets: whose deck this is, with the share action, right
+                 above the list (the sidebar is a drawer below 900px). -->
+            <div class="deck-share-strip hidden" id="deck-share-strip">
+              <span class="deck-share-strip-token" id="deck-share-strip-token"></span>
+              <div class="deck-share-strip-meta">
+                <p class="deck-share-strip-name" id="deck-share-strip-name"></p>
+                <p class="deck-share-strip-sub" id="deck-share-strip-sub"></p>
+              </div>
+              <button type="button" class="ac-btn ac-btn--gold ac-btn--sm deck-share-strip-btn" id="btn-copy-url-strip">
+                <svg class="ac-icon" aria-hidden="true"><use href="#dk-i-link"/></svg><span class="deck-btn-label">Copy link</span>
               </button>
-              <button type="button" class="view-switch-btn" data-view="compact" aria-pressed="false" title="Compact list view">
-                <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true" focusable="false">
-                  <rect x="1" y="2" width="14" height="3" rx="1.5"/>
-                  <rect x="1" y="6.5" width="14" height="3" rx="1.5"/>
-                  <rect x="1" y="11" width="14" height="3" rx="1.5"/>
-                </svg>
-                <span>Compact</span>
-              </button>
             </div>
-          </div>
 
-          <!-- Card List -->
-          <div class="deck-card-list hidden" id="deck-card-list"></div>
-
-          <!-- Build mode note -->
-          <div class="deck-build-note hidden" id="build-note">
-            Use +/− to adjust a card's count, or tap its art for details.
-          </div>
-
-          <!-- Error -->
-          <div class="deck-message hidden" id="deck-error"></div>
-
-        </div><!-- /deck-main -->
-
-        <!-- Right column: stats sidebar (shown when deck loaded). On mobile
-             this same panel becomes a slide-up drawer, toggled by the pill
-             button below — see .deck-drawer-* rules in decks.css. -->
-        <div class="deck-sidebar hidden" id="deck-sidebar">
-
-          <!-- Mobile-only drawer close button -->
-          <button class="deck-drawer-close" id="deck-drawer-close" aria-label="Close deck panel">&times;</button>
-
-          <!-- Commander info + Share URL -->
-          <div class="deck-sidebar-card">
-            <div class="deck-commander-section">
-              <img id="deck-commander-art" class="deck-commander-portrait" src="" alt="" style="display:none">
-              <div class="deck-commander-portrait deck-commander-fallback hidden" id="deck-commander-fallback"></div>
-              <div class="deck-commander-meta">
-                <div class="deck-name" id="deck-name"></div>
-                <div class="deck-commander-faction" id="deck-commander-faction"></div>
-                <div class="deck-commander-label" id="deck-commander"></div>
+            <div class="deck-list-header hidden" id="deck-list-header">
+              <h2 class="deck-list-header-title">
+                <span class="deck-list-header-name">Decklist</span> <span class="deck-list-header-count" id="deck-list-header-count"></span>
+              </h2>
+              <div class="view-switch" role="group" aria-label="Decklist view">
+                <button type="button" class="view-switch-btn active" data-view="grid" aria-pressed="true" title="Card grid view">
+                  <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true" focusable="false">
+                    <rect x="1" y="1" width="6" height="6" rx="1.5"/>
+                    <rect x="9" y="1" width="6" height="6" rx="1.5"/>
+                    <rect x="1" y="9" width="6" height="6" rx="1.5"/>
+                    <rect x="9" y="9" width="6" height="6" rx="1.5"/>
+                  </svg>
+                  <span>Cards</span>
+                </button>
+                <button type="button" class="view-switch-btn" data-view="compact" aria-pressed="false" title="Compact list view">
+                  <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true" focusable="false">
+                    <rect x="1" y="2" width="14" height="3" rx="1.5"/>
+                    <rect x="1" y="6.5" width="14" height="3" rx="1.5"/>
+                    <rect x="1" y="11" width="14" height="3" rx="1.5"/>
+                  </svg>
+                  <span>List</span>
+                </button>
               </div>
             </div>
-            <div class="deck-copy-row">
-              <button class="btn btn-primary" id="btn-copy-url">Copy URL</button>
-              <button class="btn btn-secondary" id="btn-copy-code">Copy Deck Code</button>
+
+            <!-- Card List -->
+            <div class="deck-card-list hidden" id="deck-card-list"></div>
+
+            <!-- Build mode note -->
+            <div class="deck-build-note hidden" id="build-note">
+              Use +/− to adjust a card's count, or tap its art for details.
             </div>
-          </div>
 
-          <!-- Quick stats -->
-          <div class="deck-sidebar-card">
-            <div class="deck-quick-stats">
-              <div class="deck-quick-stat">
-                <div class="deck-quick-stat-value" id="stat-total-cards">0</div>
-                <div class="deck-quick-stat-label">Cards</div>
+            <!-- Error -->
+            <div class="deck-message hidden" id="deck-error" role="alert"></div>
+
+          </div><!-- /deck-main -->
+
+          <!-- Right column: stats sidebar (shown when deck loaded). On mobile
+               this same panel becomes a slide-up drawer, toggled by the pill
+               button below — see .deck-drawer-* rules in decks.css. -->
+          <aside class="deck-sidebar hidden" id="deck-sidebar" aria-label="Deck summary">
+
+            <!-- Mobile-only drawer close button -->
+            <button type="button" class="deck-drawer-close" id="deck-drawer-close" aria-label="Close deck panel"><svg class="ac-icon" aria-hidden="true"><use href="#ac-i-close"/></svg></button>
+
+            <!-- Commander info + Share -->
+            <div class="deck-sidebar-card deck-summary-card">
+              <div class="deck-summary-backdrop" id="deck-summary-backdrop" aria-hidden="true"></div>
+              <div class="deck-commander-section">
+                <div class="deck-commander-token cmd-token cmd-token--summary" id="deck-commander-token">
+                  <img id="deck-commander-art" class="deck-commander-portrait" src="" alt="" style="display:none">
+                  <div class="deck-commander-portrait deck-commander-fallback hidden" id="deck-commander-fallback"></div>
+                </div>
+                <div class="deck-commander-meta">
+                  <div class="deck-name" id="deck-name"></div>
+                  <div class="deck-commander-label" id="deck-commander"></div>
+                  <div class="deck-commander-faction" id="deck-commander-faction"></div>
+                </div>
               </div>
-              <div class="deck-quick-stat">
-                <div class="deck-quick-stat-value" id="stat-unique-cards">0</div>
-                <div class="deck-quick-stat-label">Unique</div>
+              <div class="deck-copy-row">
+                <button type="button" class="ac-btn ac-btn--gold ac-btn--sm" id="btn-copy-url">
+                  <svg class="ac-icon" aria-hidden="true"><use href="#dk-i-link"/></svg><span class="deck-btn-label">Copy link</span>
+                </button>
+                <button type="button" class="ac-btn ac-btn--ghost ac-btn--sm" id="btn-copy-code">
+                  <svg class="ac-icon" aria-hidden="true"><use href="#dk-i-copy"/></svg><span class="deck-btn-label">Copy code</span>
+                </button>
               </div>
-              <div class="deck-quick-stat">
-                <div class="deck-quick-stat-value" id="stat-avg-cost">—</div>
-                <div class="deck-quick-stat-label">Avg Cost</div>
+              <p class="deck-share-hint">Links open this deck on the site; codes paste into the game's deck editor.</p>
+            </div>
+
+            <!-- Quick stats -->
+            <div class="deck-sidebar-card">
+              <div class="deck-quick-stats">
+                <div class="deck-quick-stat">
+                  <div class="deck-quick-stat-value" id="stat-total-cards">0</div>
+                  <div class="deck-quick-stat-label">Cards</div>
+                </div>
+                <div class="deck-quick-stat">
+                  <div class="deck-quick-stat-value" id="stat-unique-cards">0</div>
+                  <div class="deck-quick-stat-label">Unique</div>
+                </div>
+                <div class="deck-quick-stat">
+                  <div class="deck-quick-stat-value" id="stat-avg-cost">—</div>
+                  <div class="deck-quick-stat-label">Avg Cost</div>
+                </div>
+              </div>
+              <!-- Deck size vs the 40–60 card rule (docs/GAME_RULES.md). -->
+              <div class="deck-size" id="deck-size"></div>
+            </div>
+
+            <!-- Mana Curve -->
+            <div class="deck-sidebar-card">
+              <h3 class="deck-sidebar-section-label">Mana Curve</h3>
+              <div class="mana-curve" id="mana-curve" role="img" aria-label="Mana curve"></div>
+              <div class="mana-curve-legend">
+                <span class="mana-legend-item"><span class="mana-legend-dot minion"></span>Minions</span>
+                <span class="mana-legend-item"><span class="mana-legend-dot spell"></span>Spells</span>
+                <span class="mana-legend-item mana-legend-avg" id="mana-legend-avg" hidden><span class="mana-legend-line"></span>Avg cost <strong id="mana-legend-avg-value"></strong></span>
               </div>
             </div>
-          </div>
 
-          <!-- Mana Curve -->
-          <div class="deck-sidebar-card">
-            <div class="deck-sidebar-section-label">Mana Curve</div>
-            <div class="mana-curve" id="mana-curve"></div>
-            <div class="mana-curve-legend">
-              <span class="mana-legend-item"><span class="mana-legend-dot minion"></span>Minions</span>
-              <span class="mana-legend-item"><span class="mana-legend-dot spell"></span>Spells</span>
+            <!-- Type Breakdown -->
+            <div class="deck-sidebar-card">
+              <h3 class="deck-sidebar-section-label">Breakdown</h3>
+              <div id="type-breakdown"></div>
             </div>
-          </div>
 
-          <!-- Type Breakdown -->
-          <div class="deck-sidebar-card">
-            <div class="deck-sidebar-section-label">Type Breakdown</div>
-            <div id="type-breakdown"></div>
-          </div>
+          </aside><!-- /deck-sidebar -->
 
-        </div><!-- /deck-sidebar -->
+        </div><!-- /deck-layout -->
 
-      </div><!-- /deck-layout -->
+        <!-- Mobile deck drawer trigger + backdrop (desktop hides these; the
+             sidebar above is used directly there). Shown once a deck exists. -->
+        <div class="deck-drawer-backdrop" id="deck-drawer-backdrop"></div>
+        <button type="button" class="deck-drawer-pill hidden" id="deck-drawer-pill" aria-expanded="false" aria-controls="deck-sidebar">
+          <span class="deck-drawer-pill-label">Deck stats</span>
+          <span class="deck-drawer-pill-count" id="deck-drawer-pill-count">0 cards</span>
+        </button>
 
-      <!-- Mobile deck drawer trigger + backdrop (desktop hides these; the
-           sidebar above is used directly there). Shown once a deck exists. -->
-      <div class="deck-drawer-backdrop" id="deck-drawer-backdrop"></div>
-      <button class="deck-drawer-pill hidden" id="deck-drawer-pill" aria-expanded="false">
-        <span class="deck-drawer-pill-label">Deck</span>
-        <span class="deck-drawer-pill-count" id="deck-drawer-pill-count">0 cards</span>
-      </button>
+        <!-- Screen-reader announcements (card added/removed, copied, …) -->
+        <p class="ac-sr" id="deck-live" aria-live="polite"></p>
 
+      </div>
+    </section>
+
+  </main>
+
+  <!-- AC:FOOTER — generated from site/partials/footer.html by scripts/sync_chrome.py; edit the partial, not this block. -->
+  <footer class="ac-footer">
+    <section class="ac-footer__cta" aria-labelledby="ac-footer-cta-title">
+      <img class="ac-footer__cta-art" src="/assets/media/keyart/khazgar-1200.webp" alt="" width="1200" height="675" loading="lazy" decoding="async">
+      <div class="ac-footer__inner ac-footer__cta-inner">
+        <div class="ac-footer__cta-copy">
+          <p class="ac-eyebrow">Public beta</p>
+          <h2 class="ac-title ac-title--md" id="ac-footer-cta-title">Take Up the Hammer</h2>
+          <p class="ac-footer__cta-text">Wishlist on Steam to hear the moment we launch. Beta access goes out through our Discord: join to get in when the gates open, find opponents and follow development as it happens.</p>
+          <p class="ac-footer__live" data-ac-discord-live hidden><span class="ac-dot" aria-hidden="true"></span><span><strong data-ac-discord-members></strong> members &middot; <strong data-ac-discord-online></strong> online now</span></p>
+        </div>
+        <div class="ac-footer__cta-actions">
+          <span class="ac-cta-slot" data-ac-cta="primary" data-ac-cta-size="lg"><a class="ac-btn ac-btn--steam ac-btn--lg" href="#" data-ac-pending data-platform="steam"><svg class="ac-icon" aria-hidden="true"><use href="#ac-i-steam"/></svg><span class="ac-btn__label">Wishlist on Steam</span></a></span>
+          <span class="ac-cta-slot" data-ac-cta="secondary" data-ac-cta-size="lg"><a class="ac-btn ac-btn--ghost ac-btn--lg" href="https://discord.gg/7QaEY4yJH5" target="_blank" rel="noopener" data-platform="discord"><svg class="ac-icon" aria-hidden="true"><use href="#ac-i-discord"/></svg><span class="ac-btn__label">Play Free Now on Discord</span></a></span>
+        </div>
+      </div>
+    </section>
+    <div class="ac-footer__main">
+      <div class="ac-footer__inner ac-footer__grid">
+        <div class="ac-footer__brand">
+          <a class="ac-footer__logo" href="/index.html"><img src="/assets/media/logo/wordmark-640.webp" alt="Atlas Conquest home" width="240" height="38" loading="lazy" decoding="async"></a>
+          <p class="ac-footer__tagline" data-ac-text="tagline">Online Competitive Hex-Grid Card Battles</p>
+          <p class="ac-footer__release"><span data-ac-text="release">Releasing 2027</span></p>
+          <p class="ac-footer__press">Press &amp; business<br><a href="mailto:press@atlas-conquest.com" data-ac-href="press">press@atlas-conquest.com</a></p>
+        </div>
+        <nav class="ac-footer__col" aria-labelledby="ac-footer-game">
+          <h2 class="ac-footer__heading" id="ac-footer-game">Game</h2>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="https://www.youtube.com/watch?v=hPoGfdLZThA" data-ac-trailer target="_blank" rel="noopener">Watch the trailer</a></li>
+            <li><a href="/articles/">Articles &amp; guides</a></li>
+            <li><a href="/press.html">Press kit</a></li>
+            <li><span class="ac-cta-slot" data-ac-cta="steam" data-ac-cta-style="text"><a class="ac-textcta" href="#" data-ac-pending data-platform="steam"><svg class="ac-icon" aria-hidden="true"><use href="#ac-i-steam"/></svg><span>Wishlist on Steam</span></a></span></li>
+          </ul>
+        </nav>
+        <nav class="ac-footer__col" aria-labelledby="ac-footer-community">
+          <h2 class="ac-footer__heading" id="ac-footer-community">Community</h2>
+          <ul class="ac-footer__social">
+            <li><a href="https://discord.gg/7QaEY4yJH5" data-ac-href="discord" target="_blank" rel="noopener"><svg class="ac-icon" aria-hidden="true"><use href="#ac-i-discord"/></svg>Discord</a></li>
+            <li><a href="https://x.com/Atlas_Conquest" data-ac-href="x" target="_blank" rel="noopener"><svg class="ac-icon" aria-hidden="true"><use href="#ac-i-x"/></svg>X <span class="ac-sr">(Twitter)</span></a></li>
+            <li><a href="https://www.instagram.com/atlasconquest/" data-ac-href="instagram" target="_blank" rel="noopener"><svg class="ac-icon" aria-hidden="true"><use href="#ac-i-instagram"/></svg>Instagram</a></li>
+            <li><a href="https://www.tiktok.com/@atlas.conquest" data-ac-href="tiktok" target="_blank" rel="noopener"><svg class="ac-icon" aria-hidden="true"><use href="#ac-i-tiktok"/></svg>TikTok</a></li>
+          </ul>
+        </nav>
+        <nav class="ac-footer__col" aria-labelledby="ac-footer-tools">
+          <h2 class="ac-footer__heading" id="ac-footer-tools">Tools</h2>
+          <ul>
+            <li><a href="/analytics.html">Match analytics</a></li>
+            <li><a href="/commanders.html">Commanders</a></li>
+            <li><a href="/cards.html">Cards</a></li>
+            <li><a href="/meta.html">Meta trends</a></li>
+            <li><a href="/decks.html">Deck builder</a></li>
+          </ul>
+        </nav>
+      </div>
     </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <p class="footer-text">Atlas Conquest Analytics &mdash; Updated daily from game data.</p>
-      <p class="footer-text footer-muted">Built for the community. Not affiliated with the Atlas Conquest development team.</p>
+    <div class="ac-footer__bottom">
+      <div class="ac-footer__inner ac-footer__bottom-inner">
+        <p class="ac-footer__copy">&copy; 2026 Atlas Conquest</p>
+        <p class="ac-footer__human"><svg class="ac-icon" aria-hidden="true"><use href="#ac-i-brush"/></svg>Human-made art</p>
+        <ul class="ac-footer__legal">
+          <li><a href="/privacy.html">Privacy</a></li>
+          <li><a href="/terms.html">Terms</a></li>
+        </ul>
+      </div>
     </div>
   </footer>
+  <!-- /AC:FOOTER -->
 
   <!-- Card art hover preview (fixed, follows cursor) — filled by
        /js/cardpreview.js, which also pulls in any cards this one creates. -->
   <div class="card-preview" id="card-preview"></div>
 
   <!-- Commander picker — visual replacement for the plain <select>, tap the
-       commander field to open. -->
+       commander field to open. Tiles are round, faction-ringed portrait
+       tokens grouped by faction (rendered by decks.js). -->
   <div class="commander-picker-backdrop hidden" id="commander-picker-backdrop"></div>
-  <div class="commander-picker-modal hidden" id="commander-picker-modal">
+  <div class="commander-picker-modal hidden" id="commander-picker-modal" role="dialog" aria-modal="true" aria-labelledby="commander-picker-title">
     <div class="commander-picker-header">
-      <span class="commander-picker-title">Select Commander</span>
-      <button class="commander-picker-close" id="commander-picker-close" aria-label="Close">&times;</button>
+      <div>
+        <p class="commander-picker-kicker">Build Deck</p>
+        <h2 class="commander-picker-title" id="commander-picker-title">Choose your commander</h2>
+      </div>
+      <button type="button" class="commander-picker-close" id="commander-picker-close" aria-label="Close"><svg class="ac-icon" aria-hidden="true"><use href="#ac-i-close"/></svg></button>
     </div>
     <div class="commander-picker-grid" id="commander-picker-grid"></div>
   </div>
@@ -314,15 +527,15 @@
        committing. The real card art already has the ability text and all
        4 stats (dominion/intellect/speed/health) baked in by the game. -->
   <div class="commander-detail-backdrop hidden" id="commander-detail-backdrop"></div>
-  <div class="commander-detail-sheet hidden" id="commander-detail-sheet">
+  <div class="commander-detail-sheet hidden" id="commander-detail-sheet" role="dialog" aria-modal="true" aria-label="Commander details">
     <div class="card-detail-handle"></div>
-    <button class="card-detail-close" id="commander-detail-close" aria-label="Close">&times;</button>
+    <button type="button" class="card-detail-close" id="commander-detail-close" aria-label="Close"><svg class="ac-icon" aria-hidden="true"><use href="#ac-i-close"/></svg></button>
     <div class="commander-detail-body">
       <div class="card-detail-art-row">
         <img class="commander-detail-art" id="commander-detail-art" src="" alt="">
         <div class="mention-strip" id="commander-detail-mentions" hidden></div>
       </div>
-      <button class="btn btn-primary commander-detail-select-btn" id="commander-detail-select-btn">Select Commander</button>
+      <button type="button" class="ac-btn ac-btn--gold ac-btn--block commander-detail-select-btn" id="commander-detail-select-btn">Select Commander</button>
     </div>
   </div>
 
@@ -330,9 +543,9 @@
        path for adding/removing cards on touch devices (the inline +/- on
        each tile still works too). -->
   <div class="card-detail-backdrop hidden" id="card-detail-backdrop"></div>
-  <div class="card-detail-sheet hidden" id="card-detail-sheet">
+  <div class="card-detail-sheet hidden" id="card-detail-sheet" role="dialog" aria-modal="true" aria-labelledby="card-detail-name">
     <div class="card-detail-handle"></div>
-    <button class="card-detail-close" id="card-detail-close" aria-label="Close">&times;</button>
+    <button type="button" class="card-detail-close" id="card-detail-close" aria-label="Close"><svg class="ac-icon" aria-hidden="true"><use href="#ac-i-close"/></svg></button>
     <div class="card-detail-body">
       <div class="card-detail-art-row">
         <img class="card-detail-art" id="card-detail-art" src="" alt="">
@@ -345,12 +558,13 @@
         <div class="card-detail-badges" id="card-detail-badges"></div>
       </div>
       <div class="card-detail-stepper">
-        <button class="card-detail-btn minus" id="card-detail-minus" aria-label="Remove one">−</button>
+        <button type="button" class="card-detail-btn minus" id="card-detail-minus" aria-label="Remove one">−</button>
         <span class="card-detail-count" id="card-detail-count">0</span>
-        <button class="card-detail-btn plus" id="card-detail-plus" aria-label="Add one">+</button>
+        <button type="button" class="card-detail-btn plus" id="card-detail-plus" aria-label="Add one">+</button>
       </div>
     </div>
   </div>
+
 
   <script src="/js/cardpreview.js"></script>
   <script src="/js/deckcode.js"></script>
