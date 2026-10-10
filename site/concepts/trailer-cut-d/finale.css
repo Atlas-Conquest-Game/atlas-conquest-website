@@ -1,0 +1,142 @@
+/* ==========================================================================
+   Finale A — "Desktop end slide"
+   The trailer's closing slide, sized to one screen on a computer:
+   title → coverflow → pill → calls to action → links, all visible at once,
+   clear of the sticky nav, over a dim molten backdrop with a vignette.
+   Everything is scoped to .finale-a and to widths above 700px, so phones
+   keep today's finale exactly. CSS only — main.js setupFlow is untouched.
+   ========================================================================== */
+
+.finale-a__art { display: none; }
+
+@media (min-width: 701px) {
+  .finale-a {
+    /* one number drives the composition: the card width. It is the smaller of
+       a width share and what's left of the screen height after the fixed parts
+       (nav + title + pill + buttons + links + padding ≈ 480px), so the whole
+       slide always fits one screen. 1.778 = card height (1.4) × flow room (1.27).
+       The third term takes over on tall wide screens (≈920px+), where the title and
+       paddings grow with the height, so 1920×960 or 2560×1080 don't spill past one screen. */
+    --fa-cw: clamp(132px, min(15.5vw, calc((100vh - 480px) / 1.778), calc((78vh - 278px) / 1.778)), 340px);
+    --fa-ch: calc(var(--fa-cw) * 1.4);
+    --fa-pad: 44px;   /* room above/below the cards inside the flow box, so glows never hit its edge */
+    padding: calc(var(--nav-h) + clamp(18px, 3.6vh, 46px)) 0 clamp(22px, 4.2vh, 50px);
+    background: #070a11;
+  }
+  @media (orientation: landscape) {
+    .finale-a {
+      min-height: 100vh; min-height: 100svh;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+  }
+
+  /* ---------- Backdrop: dim key art, molten sun, hex, specks, vignette ---------- */
+  .finale-a .finale__bg > * { position: absolute; inset: 0; }
+  .finale-a__art {
+    display: block; z-index: 0;
+    background: url("../../home/media/finale-backdrop.webp") center 38% / cover no-repeat;
+    opacity: .2;
+    filter: saturate(.85);
+    -webkit-mask-image: radial-gradient(ellipse 78% 74% at 50% 46%, #000 34%, transparent 100%);
+    mask-image: radial-gradient(ellipse 78% 74% at 50% 46%, #000 34%, transparent 100%);
+  }
+  .finale-a .finale__hex {
+    z-index: 1;
+    opacity: .085;
+    -webkit-mask-image: radial-gradient(ellipse 62% 58% at 50% 50%, #000 20%, transparent 100%);
+    mask-image: radial-gradient(ellipse 62% 58% at 50% 50%, #000 20%, transparent 100%);
+  }
+  /* the molten sun: a broad warm bloom centred on the hero card */
+  .finale-a .finale__glow {
+    z-index: 2;
+    background:
+      radial-gradient(circle calc(var(--fa-ch) * 1.25) at 50% 52%, rgba(255, 170, 70, .16), rgba(240, 120, 40, .07) 46%, transparent 100%),
+      radial-gradient(ellipse 70% 46% at 50% 54%, rgba(214, 104, 34, .1), transparent 72%);
+  }
+  /* static gold specks, like the trailer's embers (they never move) */
+  .finale-a .finale__bg::before {
+    content: ''; position: absolute; inset: 0; z-index: 3;
+    background:
+      radial-gradient(circle at 6% 24%, rgba(255, 196, 110, .55) 0 1.4px, transparent 2.4px),
+      radial-gradient(circle at 12% 70%, rgba(255, 180, 90, .4) 0 1px, transparent 2px),
+      radial-gradient(circle at 15% 10%, rgba(255, 210, 140, .35) 0 1px, transparent 2px),
+      radial-gradient(circle at 24% 87%, rgba(255, 170, 80, .45) 0 1.6px, transparent 2.6px),
+      radial-gradient(circle at 3% 47%, rgba(255, 186, 100, .3) 0 1px, transparent 2px),
+      radial-gradient(circle at 33% 95%, rgba(255, 190, 100, .3) 0 1px, transparent 2px),
+      radial-gradient(circle at 70% 92%, rgba(255, 180, 90, .4) 0 1.4px, transparent 2.4px),
+      radial-gradient(circle at 87% 9%, rgba(255, 210, 140, .45) 0 1.6px, transparent 2.6px),
+      radial-gradient(circle at 85% 78%, rgba(255, 175, 85, .5) 0 1.2px, transparent 2.2px),
+      radial-gradient(circle at 93% 30%, rgba(255, 196, 110, .35) 0 1px, transparent 2px),
+      radial-gradient(circle at 97% 61%, rgba(255, 186, 100, .4) 0 1.4px, transparent 2.4px),
+      radial-gradient(circle at 58% 97%, rgba(255, 200, 120, .25) 0 1px, transparent 2px);
+  }
+  /* vignette + soft seams into the section above and the footer below */
+  .finale-a .finale__bg::after {
+    content: ''; position: absolute; inset: 0; z-index: 4;
+    background:
+      linear-gradient(180deg, var(--ink-1) 0, rgba(11, 15, 23, 0) 16%),
+      linear-gradient(0deg, var(--ink-0) 0, rgba(6, 8, 13, 0) 14%),
+      radial-gradient(ellipse 80% 78% at 50% 50%, transparent 52%, rgba(4, 6, 10, .78) 100%);
+  }
+
+  /* ---------- Title: bigger on large screens, shrinks on short ones ---------- */
+  .finale-a .finale__title { font-size: clamp(40px, min(5.2vw, 8.4vh), 104px); }
+
+  /* ---------- Coverflow ---------- */
+  .finale-a .flow {
+    --cw: var(--fa-cw);
+    width: min(100%, calc(var(--cw) * 7.6));
+    margin: calc(clamp(0px, .6vh, 8px) - var(--fa-pad) + 20px) auto calc(20px - var(--fa-pad));
+    height: calc(var(--fa-ch) * 1.27 + 2 * var(--fa-pad));
+    /* cards dissolve into the vignette long before the screen edge */
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, rgba(0, 0, 0, .18) 4%, rgba(0, 0, 0, .62) 11%, #000 21%, #000 79%, rgba(0, 0, 0, .62) 89%, rgba(0, 0, 0, .18) 96%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, rgba(0, 0, 0, .18) 4%, rgba(0, 0, 0, .62) 11%, #000 21%, #000 79%, rgba(0, 0, 0, .62) 89%, rgba(0, 0, 0, .18) 96%, transparent 100%);
+  }
+  .finale-a .flow__card { top: calc(var(--fa-ch) * .135 + var(--fa-pad)); }
+  /* keyboard focus: keep the ring around the cards, clear of the title and the pill */
+  .finale-a .flow:focus-visible { outline-offset: calc(14px - var(--fa-pad)); border-radius: 14px; }
+  /* the warm halo the hero card sits in — fixed in place, it never follows the cards */
+  .finale-a .flow::before {
+    content: ''; position: absolute; z-index: 0; pointer-events: none;
+    left: 50%; top: calc(var(--fa-ch) * .635 + var(--fa-pad));
+    width: calc(var(--cw) * 2.8); height: calc(var(--fa-ch) * 1.22 + 2 * var(--fa-pad) - 8px);
+    transform: translate(-50%, -50%);
+    background: radial-gradient(closest-side, rgba(255, 178, 80, .34), rgba(240, 124, 40, .15) 48%, rgba(200, 84, 24, .04) 76%, transparent);
+  }
+  .finale-a .flow__card.is-center img,
+  .finale-a .flow__card.is-center:hover img {
+    transform: scale(1.06);
+    filter: drop-shadow(0 22px 26px rgba(0, 0, 0, .62)) drop-shadow(0 0 34px rgba(255, 168, 64, .34));
+  }
+
+  /* pause: small, tucked against the hero card's lower-right corner. On short screens
+     the next card's bottom edge reaches that corner, so the button drops just below it
+     (the max), and it sits above the cards so a card gliding past never hides it. */
+  .finale-a .flow__pause {
+    z-index: 110;
+    left: calc(50% + var(--cw) * .66 + 14px); right: auto;
+    top: calc(max(var(--fa-ch) * 1.245 - 30px, var(--fa-ch) * 1.135 + 8px) + var(--fa-pad)); bottom: auto;
+    width: 30px; height: 30px;
+    background: rgba(7, 10, 17, .7);
+    border-color: rgba(232, 162, 69, .3);
+  }
+  .finale-a .flow__pause .icon { width: 11px; height: 11px; }
+
+  /* ---------- Pill, calls to action, links ---------- */
+  .finale-a .made-pill { position: relative; margin-top: 2px; }
+  .finale-a .finale__ctas { margin-top: clamp(16px, 2.4vh, 26px); }
+  .finale-a .finale__links { margin-top: clamp(6px, 1.2vh, 14px); }
+}
+
+/* short laptop screens (≈720–820px tall): trim the fixed parts so the cards keep their size */
+@media (min-width: 701px) and (max-height: 820px) {
+  .finale-a { --fa-cw: clamp(132px, min(15.5vw, calc((100vh - 436px) / 1.778)), 340px); }
+  .finale-a .made-pill { padding: 8px 24px 9px 19px; font-size: 18px; }
+  .finale-a .finale__ctas .btn--xl { --h: 58px; font-size: 19px; padding: 0 32px; }
+  .finale-a .finale__ctas .beta-pill { min-height: 42px; font-size: 16px; }
+  .finale-a .finale__links a { min-height: 38px; }
+}
+
+@media (min-width: 701px) and (prefers-reduced-motion: reduce) {
+  .finale-a .flow__card.is-center img { transition: none; }
+}

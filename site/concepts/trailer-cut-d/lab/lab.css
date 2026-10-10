@@ -1,0 +1,12 @@
+/* Section lab: the little "which option is this" tag on each prototype page. */
+.lab-badge {
+  position: fixed; z-index: 90; left: 12px; bottom: 12px;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 7px 12px; border-radius: 999px;
+  background: rgba(6, 8, 13, .82); color: var(--gold-hi);
+  border: 1px solid rgba(247, 220, 154, .4);
+  font: 600 13px/1 var(--sans); letter-spacing: .04em; text-decoration: none;
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+}
+.lab-badge:hover { background: rgba(232, 162, 69, .2); }
+.lab-badge b { font-weight: 700; color: #fff; }

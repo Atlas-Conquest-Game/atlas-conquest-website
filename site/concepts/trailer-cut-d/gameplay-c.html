@@ -1,0 +1,670 @@
+<!doctype html>
+<!-- Layout D ("Focused"): the Trailer Cut hero, then about five calm screens —
+     How it plays · Three Battlefields · Patron gods & commanders · Wishlist finale.
+     One autoplaying video (the hero loop). Section clips play only on hover or tap. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Atlas Conquest — Online Competitive Hex-Grid Card Battles</title>
+  <meta name="description" content="Atlas Conquest is an online competitive hex-grid card game. Play cards onto the battlefield, expand your territory, command your army and conquer your opponent. Releasing 2027 — wishlist on Steam, and join the beta on Discord.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0b0f17">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Atlas Conquest">
+  <meta property="og:url" content="https://atlas-conquest.com/">
+  <meta property="og:title" content="Atlas Conquest — Online Competitive Hex-Grid Card Battles">
+  <meta property="og:description" content="Play cards on the battlefield, expand your territory, command your army and conquer your opponents. Releasing 2027.">
+  <meta property="og:image" content="https://atlas-conquest.com/assets/press/main-capsule.webp">
+  <meta property="og:image:type" content="image/webp">
+  <meta property="og:image:width" content="698">
+  <meta property="og:image:height" content="400">
+  <meta property="og:image:alt" content="Atlas Conquest key art: a hammer-wielding Atlas charging out of a molten sun.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@Atlas_Conquest">
+  <meta name="twitter:title" content="Atlas Conquest — Online Competitive Hex-Grid Card Battles">
+  <meta name="twitter:description" content="Play cards on the battlefield, expand your territory, command your army and conquer your opponents. Releasing 2027.">
+  <meta name="twitter:image" content="https://atlas-conquest.com/assets/press/main-capsule.webp">
+  <meta name="twitter:image:alt" content="Atlas Conquest key art: a hammer-wielding Atlas charging out of a molten sun.">
+
+  <link rel="icon" href="../../favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="../../assets/logo/apple-touch-icon.png">
+
+  <link rel="preload" as="image" href="../../home/media/hero-poster.webp" media="(min-width: 641px), (orientation: landscape)" fetchpriority="high">
+  <link rel="preload" as="image" href="../../home/media/hero-portrait-poster.webp" media="(max-width: 640px) and (orientation: portrait)" fetchpriority="high">
+  <link rel="preload" as="font" type="font/woff" href="../../assets/media/fonts/OptimusPrincepsSemiBold.woff" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Alegreya+Sans+SC:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="lab/lab.css">
+  <link rel="stylesheet" href="lab/gameplay-c.css">
+  <script src="main.js" defer></script>
+  <script src="lab/gameplay-c.js" defer></script>
+</head>
+<body>
+  <!-- Icon sprite -->
+  <svg width="0" height="0" class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-steam" viewBox="0 0 24 24"><path fill="currentColor" d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658a3.387 3.387 0 0 1 1.912-.59c.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25 1.297.539 2.793-.076 3.332-1.375.263-.63.264-1.319.005-1.949s-.75-1.121-1.377-1.383c-.624-.26-1.29-.249-1.878-.03l1.523.63c.956.4 1.409 1.5 1.009 2.455-.397.957-1.497 1.41-2.454 1.012H7.54zm11.415-9.303c0-1.662-1.353-3.015-3.015-3.015-1.665 0-3.015 1.353-3.015 3.015 0 1.665 1.35 3.015 3.015 3.015 1.663 0 3.015-1.35 3.015-3.015zm-5.273-.005c0-1.252 1.013-2.266 2.265-2.266 1.249 0 2.266 1.014 2.266 2.266 0 1.251-1.017 2.265-2.266 2.265-1.253 0-2.265-1.014-2.265-2.265z"/></symbol>
+    <symbol id="i-discord" viewBox="0 0 24 19"><path fill="currentColor" d="M20.317 1.6a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 1.6.07.07 0 0 0 3.64 1.63C.533 6.24-.319 10.74.099 15.18a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.099.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 12.46c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path fill="currentColor" d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></symbol>
+    <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor"/></symbol>
+    <symbol id="i-tiktok" viewBox="0 0 24 24"><path fill="currentColor" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.14v13.72a1 1 0 0 0 1.52.85l10.96-6.86a1 1 0 0 0 0-1.7L9.52 4.29A1 1 0 0 0 8 5.14z"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1" fill="currentColor"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+    <symbol id="i-expand" viewBox="0 0 24 24"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-replay" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-hex" viewBox="0 0 24 24"><path d="M12 2.6l8.2 4.7v9.4L12 21.4l-8.2-4.7V7.3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" data-nav>
+    <div class="nav__inner">
+      <a class="nav__logo" href="./" aria-label="Atlas Conquest — home">
+        <img src="../../assets/media/logo/wordmark-360.webp" srcset="../../assets/media/logo/wordmark-360.webp 360w, ../../assets/media/logo/wordmark-640.webp 640w" sizes="190px" width="190" height="30" alt="Atlas Conquest">
+      </a>
+      <nav class="nav__menu" id="nav-menu" aria-label="Primary">
+        <ul class="nav__links">
+          <li><a href="./" aria-current="page">Home</a></li>
+          <li><a href="../../analytics.html">Analytics</a></li>
+          <li><a href="../../decks.html">Decks</a></li>
+          <li><a href="../../articles.html">Articles</a></li>
+          <li><a href="../../press.html" data-link="press">Press</a></li>
+        </ul>
+        <!-- Mobile menu only: the secondary call to action -->
+        <a class="nav__alt nav__alt--discord" href="https://discord.gg/7QaEY4yJH5" data-link="discord" data-primary-only="steam" target="_blank" rel="noopener">
+          <svg class="icon" aria-hidden="true"><use href="#i-discord"/></svg>Join the beta on Discord
+        </a>
+        <a class="nav__alt" href="#" data-link="steam" data-placement="nav" data-primary-only="discord" target="_blank" rel="noopener">
+          <svg class="icon" aria-hidden="true"><use href="#i-steam"/></svg>Wishlist on Steam
+        </a>
+      </nav>
+      <!-- Steam is the strongest call to action everywhere (CONFIG.primaryCta = 'discord' flips the roles). -->
+      <a class="btn btn--steam btn--sm nav__cta" href="#" data-link="steam" data-placement="nav" data-primary-only="steam" target="_blank" rel="noopener">
+        <svg class="icon" aria-hidden="true"><use href="#i-steam"/></svg>
+        <span class="btn__label"><span class="lbl-long">Wishlist on Steam</span><span class="lbl-short">Wishlist</span></span>
+      </a>
+      <a class="btn btn--discord btn--sm nav__cta" href="https://discord.gg/7QaEY4yJH5" data-link="discord" data-primary-only="discord" target="_blank" rel="noopener">
+        <svg class="icon" aria-hidden="true"><use href="#i-discord"/></svg>
+        <span class="btn__label">Join the Beta</span>
+      </a>
+      <button type="button" class="nav__burger" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO (as Layout A; intro shortened so the buttons land within ~1s) ============ -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__media" aria-hidden="true">
+        <!-- The only autoplaying video on the page. JS picks a size; reduced motion keeps the poster. -->
+        <video class="hero__video" muted playsinline loop preload="none"
+               data-hero-video
+               data-src-xl="../../home/media/hero-1920.mp4"
+               data-src-lg="../../home/media/hero-1280.mp4"
+               data-src-md="../../home/media/hero-960.mp4"
+               data-src-portrait="../../home/media/hero-portrait.mp4"
+               data-hero-poster="../../home/media/hero-poster.webp"
+               data-hero-poster-portrait="../../home/media/hero-portrait-poster.webp"></video>
+        <div class="hero__scrim"></div>
+        <div class="hex-lattice hex-lattice--hero"></div>
+        <div class="hero__glow"></div>
+        <div class="embers" data-embers="22"></div>
+      </div>
+      <div class="letterbox letterbox--top" aria-hidden="true"></div>
+      <div class="letterbox letterbox--bottom" aria-hidden="true"></div>
+
+      <div class="hero__content">
+        <h1 id="hero-title" class="hero__logo">
+          <img src="../../assets/media/logo/wordmark-1200.webp"
+               srcset="../../assets/media/logo/wordmark-640.webp 640w, ../../assets/media/logo/wordmark-1200.webp 1200w, ../../assets/media/logo/wordmark-2400.webp 2400w"
+               sizes="(max-width: 640px) 92vw, min(1000px, 74vw)"
+               width="1200" height="189" alt="Atlas Conquest" fetchpriority="high" decoding="async">
+        </h1>
+        <p class="hero__tagline">Online Competitive Hex-Grid Card Battles</p>
+        <p class="dateline"><span>Releasing 2027</span></p>
+        <div class="hero__ctas">
+          <a class="btn btn--steam btn--lg" href="#" data-link="steam" data-placement="hero" data-primary-only="steam" target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="#i-steam"/></svg>
+            <span class="btn__label">Wishlist on Steam</span>
+          </a>
+          <a class="btn btn--discord btn--lg" href="https://discord.gg/7QaEY4yJH5" data-link="discord" data-primary-only="discord" target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="#i-discord"/></svg>
+            <span class="btn__label">Join the Beta on Discord</span>
+          </a>
+          <button type="button" class="btn btn--ghost btn--lg" data-trailer>
+            <span class="btn__play" aria-hidden="true"><svg class="icon"><use href="#i-play"/></svg></span>
+            <span class="btn__label">Watch the Trailer</span>
+            <span class="btn__meta" aria-hidden="true">1:12</span>
+          </button>
+        </div>
+        <a class="beta-pill steam-pill hero__beta" href="#" data-link="steam" data-placement="hero" data-primary-only="discord" target="_blank" rel="noopener">
+          <svg class="icon" aria-hidden="true"><use href="#i-steam"/></svg>
+          <span class="beta-pill__label">Wishlist on Steam</span>
+          <svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </a>
+        <a class="beta-pill hero__beta" href="https://discord.gg/7QaEY4yJH5" data-link="discord" data-primary-only="steam" target="_blank" rel="noopener">
+          <svg class="icon" aria-hidden="true"><use href="#i-discord"/></svg>
+          <span class="beta-pill__label">Join the beta on Discord</span>
+          <svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </a>
+      </div>
+
+      <div class="hero__foot">
+        <p class="hero__caption"><span class="rec" aria-hidden="true"></span>In-game footage</p>
+        <a class="scroll-cue" href="#how"><span>Scroll</span><i aria-hidden="true"></i></a>
+        <button type="button" class="hero__pause" data-hero-pause aria-pressed="false">
+          <svg class="icon icon--pause" aria-hidden="true"><use href="#i-pause"/></svg>
+          <svg class="icon icon--play" aria-hidden="true"><use href="#i-play"/></svg>
+          <span class="visually-hidden" data-hero-pause-label>Pause background motion</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ============ 1 · READ THE BOARD (lab option gameplay-c) ============
+         One real in-game screenshot (with the game's UI) and five hex markers on the things that
+         matter. A marker or a note lights that spot and shows a two-line note; "See it" opens a
+         short new clip (or the card) in the shared viewer. Nothing moves on its own.
+         Wide screens: the notes sit in a panel beside the image. Narrower: a swipe rail below it,
+         kept in sync with the markers. Without JS every note shows. -->
+    <section class="sec how rb" id="how" aria-labelledby="how-title">
+      <div class="container">
+        <header class="sec__head">
+          <h2 id="how-title" class="section-title"><span class="gold">Read The Board</span></h2>
+          <span class="ornament" aria-hidden="true"><i></i></span>
+        </header>
+
+        <div class="rb__board" data-board>
+          <div class="rb__stage">
+            <img class="rb__shot" src="lab/media/gameplay-c-board-1280.webp"
+                 srcset="lab/media/gameplay-c-board-960.webp 960w, lab/media/gameplay-c-board-1280.webp 1280w, ../../assets/press/large/screenshot-02-khazgar-flame-emperor.webp 1920w"
+                 sizes="(max-width: 600px) 100vw, (max-width: 980px) 92vw, min(920px, 66vw)"
+                 width="1920" height="1080"
+                 alt="A match on the Tropics map. Your commander Kai and two minions hold green territory at the top, a fiery battle breaks out in the middle, the enemy commander Milo holds red territory at the bottom right, and three cards wait in your hand."
+                 loading="lazy" decoding="async">
+            <div class="rb__spot" data-spot aria-hidden="true"></div>
+            <div class="rb__spot" data-spot aria-hidden="true"></div>
+
+            <button type="button" class="rb__pin rb__pin--up" data-pin aria-controls="rb-hand" aria-pressed="true" style="--x:49.9%; --y:73.6%" data-spot-at="50 85 19 27"><span class="rb__mark" aria-hidden="true"><span class="rb__hex"></span></span><span class="rb__tag">Your Hand</span></button>
+            <button type="button" class="rb__pin rb__pin--left" data-pin aria-controls="rb-land" aria-pressed="false" style="--x:86.4%; --y:35%" data-spot-at="86 32 12 24"><span class="rb__mark" aria-hidden="true"><span class="rb__hex"></span></span><span class="rb__tag">Land &amp; Mana</span></button>
+            <button type="button" class="rb__pin" data-pin aria-controls="rb-attack" aria-pressed="false" style="--x:49.7%; --y:51.9%" data-spot-at="50 54 14 26"><span class="rb__mark" aria-hidden="true"><span class="rb__hex"></span></span><span class="rb__tag">Attack</span></button>
+            <button type="button" class="rb__pin" data-pin aria-controls="rb-commander" aria-pressed="false" style="--x:35.5%; --y:32.6%" data-spot-at="35.4 20 10 24"><span class="rb__mark" aria-hidden="true"><span class="rb__hex"></span></span><span class="rb__tag">Your Commander</span></button>
+            <button type="button" class="rb__pin" data-pin aria-controls="rb-opponent" aria-pressed="false" style="--x:70%; --y:89%" data-spot-at="71.5 77 10 23"><span class="rb__mark" aria-hidden="true"><span class="rb__hex"></span></span><span class="rb__tag">Your Opponent</span></button>
+
+            <button type="button" class="rb__expand" data-view
+                    data-view-image="../../assets/press/large/screenshot-02-khazgar-flame-emperor.webp"
+                    data-view-caption="Kai vs. Milo &middot; Tropics"
+                    data-view-alt="A full-size in-game screenshot of a match on the Tropics map, with both commanders, their territory and three cards in hand."
+                    aria-label="View the screenshot full size"><svg class="icon" aria-hidden="true"><use href="#i-expand"/></svg></button>
+          </div>
+
+          <ul class="rb__notes" data-rail>
+            <li class="rb-note is-active" id="rb-hand" data-note>
+              <h3 class="rb-note__title"><button type="button" class="rb-note__head" data-note-head aria-expanded="true" aria-controls="rb-hand-body"><span class="rb__mark" aria-hidden="true"><span class="rb__hex"></span></span><span class="rb-note__name">Your Hand</span></button></h3>
+              <div class="rb-note__body" id="rb-hand-body">
+                <div class="rb-note__inner">
+                  <p class="rb-note__text">Spend mana to play minions onto tiles you&rsquo;ve claimed, or cast spells for one-time effects.</p>
+                  <button type="button" class="rb-see" data-view data-view-group="rb"
+                          data-view-video="../../assets/media/clips/hoplite-fireball-1280.mp4"
+                          data-view-poster="../../assets/media/clips/hoplite-fireball-poster.webp"
+                          data-view-caption="Playing a card">
+                    <span class="rb-see__thumb"><img src="lab/media/gameplay-c-thumb-hoplite-fireball.webp" alt="" width="320" height="180" loading="lazy" decoding="async"><span class="rb-see__play" aria-hidden="true"><svg class="icon"><use href="#i-play"/></svg></span></span>
+                    <span class="rb-see__label">See it<span class="rb-see__meta">0:06</span></span>
+                  </button>
+                </div>
+              </div>
+            </li>
+            <li class="rb-note" id="rb-land" data-note>
+              <h3 class="rb-note__title"><button type="button" class="rb-note__head" data-note-head aria-expanded="false" aria-controls="rb-land-body"><span class="rb__mark" aria-hidden="true"><span class="rb__hex"></span></span><span class="rb-note__name">Land &amp; Mana</span></button></h3>
+              <div class="rb-note__body" id="rb-land-body">
+                <div class="rb-note__inner">
+                  <p class="rb-note__text">Claimed tiles pay 1 mana a turn and villages pay 2. Dominion caps how many you hold.</p>
+                  <button type="button" class="rb-see" data-view data-view-group="rb"
+                          data-view-video="../../assets/media/clips/territory-claim-1280.mp4"
+                          data-view-poster="../../assets/media/clips/territory-claim-poster.webp"
+                          data-view-caption="Claiming land">
+                    <span class="rb-see__thumb"><img src="lab/media/gameplay-c-thumb-territory-claim.webp" alt="" width="320" height="180" loading="lazy" decoding="async"><span class="rb-see__play" aria-hidden="true"><svg class="icon"><use href="#i-play"/></svg></span></span>
+                    <span class="rb-see__label">See it<span class="rb-see__meta">0:05</span></span>
+                  </button>
+                </div>
+              </div>
+            </li>
+            <li class="rb-note" id="rb-attack" data-note>
+              <h3 class="rb-note__title"><button type="button" class="rb-note__head" data-note-head aria-expanded="false" aria-controls="rb-attack-body"><span class="rb__mark" aria-hidden="true"><span class="rb__hex"></span></span><span class="rb-note__name">Attack</span></button></h3>
+              <div class="rb-note__body" id="rb-attack-body">
+                <div class="rb-note__inner">
+                  <p class="rb-note__text">Move onto an enemy to fight. Both strike at once, and if the defender falls, you take its tile.</p>
+                  <button type="button" class="rb-see" data-view data-view-group="rb"
+                          data-view-video="../../assets/media/clips/khazgar-1280.mp4"
+                          data-view-poster="../../assets/media/clips/khazgar-poster.webp"
+                          data-view-caption="Khazgar, Flame Emperor attacks">
+                    <span class="rb-see__thumb"><img src="lab/media/gameplay-c-thumb-khazgar.webp" alt="" width="320" height="180" loading="lazy" decoding="async"><span class="rb-see__play" aria-hidden="true"><svg class="icon"><use href="#i-play"/></svg></span></span>
+                    <span class="rb-see__label">See it<span class="rb-see__meta">0:06</span></span>
+                  </button>
+                </div>
+              </div>
+            </li>
+            <li class="rb-note" id="rb-commander" data-note>
+              <h3 class="rb-note__title"><button type="button" class="rb-note__head" data-note-head aria-expanded="false" aria-controls="rb-commander-body"><span class="rb__mark" aria-hidden="true"><span class="rb__hex"></span></span><span class="rb-note__name">Your Commander</span></button></h3>
+              <div class="rb-note__body" id="rb-commander-body">
+                <div class="rb-note__inner">
+                  <p class="rb-note__text">Kai, Longcount Shaman leads your army on the board. If your commander falls, you lose.</p>
+                  <button type="button" class="rb-see rb-see--card" data-view data-view-group="rb"
+                          data-view-image="../../assets/media/cards/kai-longcount-shaman.webp"
+                          data-view-caption="Kai, Longcount Shaman"
+                          data-view-alt="The Kai, Longcount Shaman commander card.">
+                    <span class="rb-see__thumb"><img src="lab/media/gameplay-c-thumb-kai-card.webp" alt="" width="160" height="224" loading="lazy" decoding="async"></span>
+                    <span class="rb-see__label">See the card</span>
+                  </button>
+                </div>
+              </div>
+            </li>
+            <li class="rb-note" id="rb-opponent" data-note>
+              <h3 class="rb-note__title"><button type="button" class="rb-note__head" data-note-head aria-expanded="false" aria-controls="rb-opponent-body"><span class="rb__mark" aria-hidden="true"><span class="rb__hex"></span></span><span class="rb-note__name">Your Opponent</span></button></h3>
+              <div class="rb-note__body" id="rb-opponent-body">
+                <div class="rb-note__inner">
+                  <p class="rb-note__text">Every match is one on one, online. Defeat the enemy commander to win.</p>
+                  <button type="button" class="rb-see" data-view data-view-group="rb"
+                          data-view-video="../../assets/media/clips/milo-strike-1280.mp4"
+                          data-view-poster="../../assets/media/clips/milo-strike-poster.webp"
+                          data-view-caption="Milo Sunstone strikes">
+                    <span class="rb-see__thumb"><img src="lab/media/gameplay-c-thumb-milo-strike.webp" alt="" width="320" height="180" loading="lazy" decoding="async"><span class="rb-see__play" aria-hidden="true"><svg class="icon"><use href="#i-play"/></svg></span></span>
+                    <span class="rb-see__label">See it<span class="rb-see__meta">0:05</span></span>
+                  </button>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 2 · THREE BATTLEFIELDS ============
+         Calm by default: each panel is a still of the whole map (no hover video, no widening).
+         Click / tap / Enter opens the shared viewer, which plays that map's fly-over once at
+         normal speed and settles on the wide frame; arrows step between the three maps. -->
+    <section class="sec maps" id="battlefields" aria-labelledby="maps-title">
+      <div class="container">
+        <header class="sec__head">
+          <h2 id="maps-title" class="section-title"><span class="gold">Three Battlefields</span></h2>
+          <span class="ornament" aria-hidden="true"><i></i></span>
+        </header>
+        <ul class="maps__list">
+          <li class="map map--dunes">
+            <button type="button" class="map__open" data-view data-view-group="maps"
+                    data-view-video="../../assets/media/clips/dunes-pullback-1280.mp4"
+                    data-view-poster="../../assets/press/large/map-dunes-far.webp"
+                    data-view-start="0.3" data-view-caption="Dunes &middot; desert ruins"
+                    aria-label="Open the Dunes map larger">
+              <img class="map__still" src="../../assets/press/map-dunes-far.webp" srcset="../../assets/press/map-dunes-far.webp 711w, ../../assets/press/large/map-dunes-far.webp 1920w" sizes="(max-width: 700px) calc(100vw - 32px), 31vw" width="1920" height="1080" alt="The whole Dunes map: a hex-grid plateau among desert ruins." loading="lazy" decoding="async">
+              <span class="expand-hint" aria-hidden="true"><svg class="icon"><use href="#i-expand"/></svg></span>
+            </button>
+            <div class="map__cap">
+              <h3 class="map__name"><span class="gold">Dunes</span></h3>
+              <p class="map__desc">Desert ruins</p>
+            </div>
+          </li>
+          <li class="map map--snow">
+            <button type="button" class="map__open" data-view data-view-group="maps"
+                    data-view-video="../../assets/media/clips/snowmelt-pullback-1280.mp4"
+                    data-view-poster="../../assets/press/large/map-snowmelt-far.webp"
+                    data-view-start="0.3" data-view-caption="Snowmelt &middot; frozen glacier"
+                    aria-label="Open the Snowmelt map larger">
+              <img class="map__still" src="../../assets/press/map-snowmelt-far.webp" srcset="../../assets/press/map-snowmelt-far.webp 711w, ../../assets/press/large/map-snowmelt-far.webp 1920w" sizes="(max-width: 700px) calc(100vw - 32px), 31vw" width="1920" height="1080" alt="The whole Snowmelt map: an icy hex-grid island above a glacier." loading="lazy" decoding="async">
+              <span class="expand-hint" aria-hidden="true"><svg class="icon"><use href="#i-expand"/></svg></span>
+            </button>
+            <div class="map__cap">
+              <h3 class="map__name"><span class="gold">Snowmelt</span></h3>
+              <p class="map__desc">Frozen glacier</p>
+            </div>
+          </li>
+          <li class="map map--tropics">
+            <button type="button" class="map__open" data-view data-view-group="maps"
+                    data-view-video="../../assets/media/clips/tropics-pullback-1280.mp4"
+                    data-view-poster="../../assets/press/large/map-tropics-far.webp"
+                    data-view-start="0.3" data-view-caption="Tropics &middot; jungle island"
+                    aria-label="Open the Tropics map larger">
+              <img class="map__still" src="../../assets/press/map-tropics-far.webp" srcset="../../assets/press/map-tropics-far.webp 711w, ../../assets/press/large/map-tropics-far.webp 1920w" sizes="(max-width: 700px) calc(100vw - 32px), 31vw" width="1920" height="1080" alt="The whole Tropics map: a jungle hex-grid island in a turquoise sea." loading="lazy" decoding="async">
+              <span class="expand-hint" aria-hidden="true"><svg class="icon"><use href="#i-expand"/></svg></span>
+            </button>
+            <div class="map__cap">
+              <h3 class="map__name"><span class="gold">Tropics</span></h3>
+              <p class="map__desc">Jungle island</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ 3 · PATRON GODS & COMMANDERS ============
+         ARIA tabs (roving tabindex, arrow keys, Home/End). Static panels: the god, its playstyle,
+         three real cards and its commanders (each links to that commander's deck builder page).
+         Without JS every panel shows, stacked. -->
+    <section class="sec gods" id="gods" aria-labelledby="gods-title">
+      <div class="container">
+        <header class="sec__head">
+          <h2 id="gods-title" class="section-title"><span class="gold">Patron Gods &amp; Commanders</span></h2>
+          <span class="ornament" aria-hidden="true"><i></i></span>
+        </header>
+
+        <div class="gods__tabs" role="tablist" aria-label="Patron gods" data-gods-tabs>
+          <button type="button" class="god-tab" role="tab" id="tab-skaal" aria-controls="god-skaal" aria-selected="true" style="--fcr:213, 94, 0"><img src="media/emblem-skaal-160.webp" alt="" width="56" height="56" loading="lazy" decoding="async"><span>Skaal</span></button>
+          <button type="button" class="god-tab" role="tab" id="tab-grenalia" aria-controls="god-grenalia" aria-selected="false" tabindex="-1" style="--fcr:0, 158, 115"><img src="media/emblem-grenalia-160.webp" alt="" width="56" height="56" loading="lazy" decoding="async"><span>Grenalia</span></button>
+          <button type="button" class="god-tab" role="tab" id="tab-lucia" aria-controls="god-lucia" aria-selected="false" tabindex="-1" style="--fcr:232, 182, 48"><img src="media/emblem-lucia-160.webp" alt="" width="56" height="56" loading="lazy" decoding="async"><span>Lucia</span></button>
+          <button type="button" class="god-tab" role="tab" id="tab-archaeon" aria-controls="god-archaeon" aria-selected="false" tabindex="-1" style="--fcr:0, 114, 178"><img src="media/emblem-archaeon-160.webp" alt="" width="56" height="56" loading="lazy" decoding="async"><span>Archaeon</span></button>
+          <button type="button" class="god-tab" role="tab" id="tab-shadis" aria-controls="god-shadis" aria-selected="false" tabindex="-1" style="--fcr:123, 123, 142"><img src="media/emblem-shadis-160.webp" alt="" width="56" height="56" loading="lazy" decoding="async"><span>Shadis</span></button>
+          <button type="button" class="god-tab" role="tab" id="tab-neutral" aria-controls="god-neutral" aria-selected="false" tabindex="-1" style="--fcr:168, 144, 120"><img src="media/emblem-neutral-160.webp" alt="" width="56" height="56" loading="lazy" decoding="async"><span>Neutral</span></button>
+        </div>
+
+        <!-- Skaal -->
+        <div class="god" role="tabpanel" id="god-skaal" aria-labelledby="tab-skaal" style="--fcr:213, 94, 0">
+          <div class="god__info">
+            <div class="god__head">
+              <img class="god__emblem" src="media/emblem-skaal-160.webp" alt="" width="80" height="80" loading="lazy" decoding="async">
+              <div>
+                <h3 class="god__name">Skaal</h3>
+                <p class="god__role">Goddess of War</p>
+              </div>
+            </div>
+            <p class="god__line">Aggressive minions and destructive magic. Overwhelm them before they settle in.</p>
+            <h4 class="god__sub">Commanders</h4>
+            <ul class="cmdrs">
+              <li><a class="cmdr" href="../../decks/captain-greenbeard/"><img src="../../assets/commanders/token/captain-greenbeard.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><span><span class="cmdr__name">Captain Greenbeard</span><span class="cmdr__go">Build a deck</span></span></a></li>
+              <li><a class="cmdr" href="../../decks/kai-longcount-shaman/"><img src="../../assets/commanders/token/kai-longcount-shaman.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><span><span class="cmdr__name">Kai, Longcount Shaman</span><span class="cmdr__go">Build a deck</span></span></a></li>
+              <li><a class="cmdr" href="../../decks/macks-speed/"><img src="../../assets/commanders/token/macks-speed.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><span><span class="cmdr__name">Macks Speed</span><span class="cmdr__go">Build a deck</span></span></a></li>
+            </ul>
+          </div>
+          <ul class="god__cards" aria-label="Skaal cards">
+            <li><img src="../../assets/media/cards/stormrider-zurn.webp" width="400" height="560" alt="Stormrider Zurn" loading="lazy" decoding="async"></li>
+            <li><img src="../../assets/media/cards/red-dragon.webp" width="400" height="560" alt="Red Dragon" loading="lazy" decoding="async"></li>
+            <li><img src="../../assets/media/cards/fireball.webp" width="400" height="560" alt="Fireball" loading="lazy" decoding="async"></li>
+          </ul>
+        </div>
+
+        <!-- Grenalia -->
+        <div class="god" role="tabpanel" id="god-grenalia" aria-labelledby="tab-grenalia" style="--fcr:0, 158, 115">
+          <div class="god__info">
+            <div class="god__head">
+              <img class="god__emblem" src="media/emblem-grenalia-160.webp" alt="" width="80" height="80" loading="lazy" decoding="async">
+              <div>
+                <h3 class="god__name">Grenalia</h3>
+                <p class="god__role">Goddess of Nature</p>
+              </div>
+            </div>
+            <p class="god__line">Mana growth, poisons and massive creatures. Ramp into overwhelming force.</p>
+            <h4 class="god__sub">Commanders</h4>
+            <ul class="cmdrs">
+              <li><a class="cmdr" href="../../decks/elber-jungle-emissary/"><img src="../../assets/commanders/token/elber-jungle-emissary.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><span><span class="cmdr__name">Elber, Jungle Emissary</span><span class="cmdr__go">Build a deck</span></span></a></li>
+              <li><a class="cmdr" href="../../decks/jagris-the-huntsman/"><img src="../../assets/commanders/token/jagris-the-huntsman.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><span><span class="cmdr__name">Jagris, the Huntsman</span><span class="cmdr__go">Build a deck</span></span></a></li>
+              <li><a class="cmdr" href="../../decks/lubela-tender-of-the-wilds/"><img src="../../assets/commanders/token/lubela-tender-of-the-wilds.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><span><span class="cmdr__name">Lubela, Tender of the Wilds</span><span class="cmdr__go">Build a deck</span></span></a></li>
+            </ul>
+          </div>
+          <ul class="god__cards" aria-label="Grenalia cards">
+            <li><img src="../../assets/media/cards/dyana-prime-huntress.webp" width="400" height="560" alt="Dyana, Prime Huntress" loading="lazy" decoding="async"></li>
+            <li><img src="../../assets/media/cards/green-dragon.webp" width="400" height="560" alt="Green Dragon" loading="lazy" decoding="async"></li>
+            <li><img src="../../assets/media/cards/spore-thresher.webp" width="400" height="560" alt="Spore Thresher" loading="lazy" decoding="async"></li>
+          </ul>
+        </div>
+
+        <!-- Lucia -->
+        <div class="god" role="tabpanel" id="god-lucia" aria-labelledby="tab-lucia" style="--fcr:232, 182, 48">
+          <div class="god__info">
+            <div class="god__head">
+              <img class="god__emblem" src="media/emblem-lucia-160.webp" alt="" width="80" height="80" loading="lazy" decoding="async">
+              <div>
+                <h3 class="god__name">Lucia</h3>
+                <p class="god__role">Goddess of Light</p>
+              </div>
+            </div>
+            <p class="god__line">Unified armies, healing and villages. Outlast the competition.</p>
+            <h4 class="god__sub">Commanders</h4>
+            <ul class="cmdrs">
+              <li><a class="cmdr" href="../../decks/elyse-of-the-order/"><img src="../../assets/commanders/token/elyse-of-the-order.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><span><span class="cmdr__name">Elyse of the Order</span><span class="cmdr__go">Build a deck</span></span></a></li>
+              <li><a class="cmdr" href="../../decks/executor-ginn/"><img src="../../assets/commanders/token/executor-ginn.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><span><span class="cmdr__name">Executor Ginn</span><span class="cmdr__go">Build a deck</span></span></a></li>
+              <li><a class="cmdr" href="../../decks/milo-sunstone/"><img src="../../assets/commanders/token/milo-sunstone.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><span><span class="cmdr__name">Milo Sunstone</span><span class="cmdr__go">Build a deck</span></span></a></li>
+            </ul>
+          </div>
+          <ul class="god__cards" aria-label="Lucia cards">
+            <li><img src="../../assets/media/cards/purifier-euron.webp" width="400" height="560" alt="Purifier Euron" loading="lazy" decoding="async"></li>
+            <li><img src="../../assets/media/cards/gold-dragon.webp" width="400" height="560" alt="Gold Dragon" loading="lazy" decoding="async"></li>
+            <li><img src="../../assets/media/cards/blessed-force.webp" width="400" height="560" alt="Blessed Force" loading="lazy" decoding="async"></li>
+          </ul>
+        </div>
+
+        <!-- Shadis -->
+        <div class="god" role="tabpanel" id="god-archaeon" aria-labelledby="tab-archaeon" style="--fcr:0, 114, 178">
+          <div class="god__info">
+            <div class="god__head">
+              <img class="god__emblem" src="media/emblem-archaeon-160.webp" alt="" width="80" height="80" loading="lazy" decoding="async">
+              <div>
+                <h3 class="god__name">Archaeon</h3>
+                <p class="god__role">God of Wisdom</p>
+              </div>
+            </div>
+            <p class="god__line">Ancient power, artifacts and spells. Outthink your opponent.</p>
+            <h4 class="god__sub">Commanders</h4>
+            <ul class="cmdrs">
+              <li><a class="cmdr" href="../../decks/it-that-weaves/"><img src="../../assets/commanders/token/it-that-weaves.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><span><span class="cmdr__name">It That Weaves</span><span class="cmdr__go">Build a deck</span></span></a></li>
+              <li><a class="cmdr" href="../../decks/rosirix-the-witch/"><img src="../../assets/commanders/token/rosirix-the-witch.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><span><span class="cmdr__name">Rosirix the Witch</span><span class="cmdr__go">Build a deck</span></span></a></li>
+              <li><a class="cmdr" href="../../decks/starwise-luna/"><img src="../../assets/commanders/token/starwise-luna.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><span><span class="cmdr__name">Starwise Luna</span><span class="cmdr__go">Build a deck</span></span></a></li>
+            </ul>
+          </div>
+          <ul class="god__cards" aria-label="Archaeon cards">
+            <li><img src="../../assets/media/cards/zoghn-eye-of-treason.webp" width="400" height="560" alt="Zoghn, Eye of Treason" loading="lazy" decoding="async"></li>
+            <li><img src="../../assets/media/cards/lorecaller-gazan.webp" width="400" height="560" alt="Lorecaller Gazan" loading="lazy" decoding="async"></li>
+            <li><img src="../../assets/media/cards/thunder-skywhale.webp" width="400" height="560" alt="Thunder Skywhale" loading="lazy" decoding="async"></li>
+          </ul>
+        </div>
+
+        <!-- Neutral -->
+        <div class="god" role="tabpanel" id="god-shadis" aria-labelledby="tab-shadis" style="--fcr:123, 123, 142">
+          <div class="god__info">
+            <div class="god__head">
+              <img class="god__emblem" src="media/emblem-shadis-160.webp" alt="" width="80" height="80" loading="lazy" decoding="async">
+              <div>
+                <h3 class="god__name">Shadis</h3>
+                <p class="god__role">God of Death</p>
+              </div>
+            </div>
+            <p class="god__line">Stealth, deception and dark magic. Win through cunning.</p>
+            <h4 class="god__sub">Commanders</h4>
+            <ul class="cmdrs">
+              <li><a class="cmdr" href="../../decks/fael-spiritwalker/"><img src="../../assets/commanders/token/fael-spiritwalker.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><span><span class="cmdr__name">Fael Spiritwalker</span><span class="cmdr__go">Build a deck</span></span></a></li>
+              <li><a class="cmdr" href="../../decks/soultaker-viessa/"><img src="../../assets/commanders/token/soultaker-viessa.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><span><span class="cmdr__name">Soultaker Viessa</span><span class="cmdr__go">Build a deck</span></span></a></li>
+            </ul>
+          </div>
+          <ul class="god__cards" aria-label="Shadis cards">
+            <li><img src="../../assets/media/cards/daemonprince-grizlocke.webp" width="400" height="560" alt="Daemonprince Grizlocke" loading="lazy" decoding="async"></li>
+            <li><img src="../../assets/media/cards/nilo-of-one-thousand-cuts.webp" width="400" height="560" alt="Nilo of One Thousand Cuts" loading="lazy" decoding="async"></li>
+            <li><img src="../../assets/media/cards/black-dragon.webp" width="400" height="560" alt="Black Dragon" loading="lazy" decoding="async"></li>
+          </ul>
+        </div>
+
+        <!-- Archaeon -->
+        <div class="god" role="tabpanel" id="god-neutral" aria-labelledby="tab-neutral" style="--fcr:168, 144, 120">
+          <div class="god__info">
+            <div class="god__head">
+              <img class="god__emblem" src="media/emblem-neutral-160.webp" alt="" width="80" height="80" loading="lazy" decoding="async">
+              <div>
+                <h3 class="god__name">Neutral</h3>
+                <p class="god__role">Open to every commander</p>
+              </div>
+            </div>
+            <p class="god__line">Mercenaries any deck can recruit. Versatile tools for every strategy.</p>
+            <h4 class="god__sub">Commanders</h4>
+            <ul class="cmdrs">
+              <li><a class="cmdr" href="../../decks/lazim-thief-of-gods/"><img src="../../assets/commanders/token/lazim-thief-of-gods.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><span><span class="cmdr__name">Lazim, Thief of Gods</span><span class="cmdr__go">Build a deck</span></span></a></li>
+              <li><a class="cmdr" href="../../decks/newhaven-township/"><img src="../../assets/commanders/token/newhaven-township.webp" alt="" width="46" height="46" loading="lazy" decoding="async"><span><span class="cmdr__name">Newhaven Township</span><span class="cmdr__go">Build a deck</span></span></a></li>
+            </ul>
+          </div>
+          <ul class="god__cards" aria-label="Neutral cards">
+            <li><img src="../../assets/media/cards/atlas-first-to-walk.webp" width="400" height="560" alt="Atlas, First to Walk" loading="lazy" decoding="async"></li>
+            <li><img src="../../assets/media/cards/khazgar-flame-emperor.webp" width="400" height="560" alt="Khazgar, Flame Emperor" loading="lazy" decoding="async"></li>
+            <li><img src="../../assets/media/cards/king-darian.webp" width="400" height="560" alt="King Darian" loading="lazy" decoding="async"></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 5 · FINALE: the trailer's end slide ============ -->
+    <section class="finale" id="wishlist" aria-labelledby="finale-title">
+      <div class="finale__bg" aria-hidden="true">
+        <div class="finale__hex"></div>
+        <div class="finale__glow"></div>
+      </div>
+      <div class="finale__inner">
+        <h2 id="finale-title" class="finale__title"><span class="gold" data-primary-only="steam">Wishlist on Steam Now</span><span class="gold" data-primary-only="discord">Join the Beta Now</span></h2>
+      </div>
+
+      <!-- Coverflow: the centre card is largest and frontmost, the rest recede to both edges.
+           Eleven commissioned cards that the god tabs above don't already show, mixed factions.
+           Once it scrolls into view it brings each card to the front once (~18s), then stops for good.
+           Click a card, drag/swipe or use the arrow keys to move it yourself. -->
+      <div class="flow" data-flow tabindex="0" role="group" aria-roledescription="carousel" aria-label="Cards from the game">
+        <ul class="flow__track" data-flow-track>
+          <li class="flow__card"><img src="../../assets/media/cards/asera.webp" width="400" height="560" alt="Asera" loading="lazy" decoding="async" draggable="false"></li>
+          <li class="flow__card"><img src="../../assets/media/cards/giant-river-snapper.webp" width="400" height="560" alt="Giant River Snapper" loading="lazy" decoding="async" draggable="false"></li>
+          <li class="flow__card"><img src="../../assets/media/cards/lightning-bolt.webp" width="400" height="560" alt="Lightning Bolt" loading="lazy" decoding="async" draggable="false"></li>
+          <li class="flow__card"><img src="../../assets/media/cards/blue-dragon.webp" width="400" height="560" alt="Blue Dragon" loading="lazy" decoding="async" draggable="false"></li>
+          <li class="flow__card"><img src="../../assets/media/cards/dreadlord-cyrion.webp" width="400" height="560" alt="Dreadlord Cyrion" loading="lazy" decoding="async" draggable="false"></li>
+          <li class="flow__card"><img src="../../assets/media/cards/daemonic-summoning.webp" width="400" height="560" alt="Daemonic Summoning" loading="lazy" decoding="async" draggable="false"></li>
+          <li class="flow__card"><img src="../../assets/media/cards/slay-the-mighty.webp" width="400" height="560" alt="Slay the Mighty" loading="lazy" decoding="async" draggable="false"></li>
+          <li class="flow__card"><img src="../../assets/media/cards/grutali.webp" width="400" height="560" alt="Grutali" loading="lazy" decoding="async" draggable="false"></li>
+          <li class="flow__card"><img src="../../assets/media/cards/drakemire-shaman.webp" width="400" height="560" alt="Drakemire Shaman" loading="lazy" decoding="async" draggable="false"></li>
+          <li class="flow__card"><img src="../../assets/media/cards/firebolt.webp" width="400" height="560" alt="Firebolt" loading="lazy" decoding="async" draggable="false"></li>
+          <li class="flow__card"><img src="../../assets/media/cards/cone-of-cold.webp" width="400" height="560" alt="Cone of Cold" loading="lazy" decoding="async" draggable="false"></li>
+        </ul>
+        <button type="button" class="flow__pause" data-flow-toggle aria-pressed="false" aria-label="Pause cards" hidden>
+          <svg class="icon icon--pause" aria-hidden="true"><use href="#i-pause"/></svg>
+          <svg class="icon icon--play" aria-hidden="true"><use href="#i-play"/></svg>
+        </button>
+      </div>
+
+      <div class="finale__inner finale__inner--foot">
+        <p class="made-pill"><svg class="icon" aria-hidden="true"><use href="#i-hex"/></svg>100% Human-Made Assets</p>
+        <div class="finale__ctas">
+          <a class="btn btn--steam btn--xl" href="#" data-link="steam" data-placement="finale" data-primary-only="steam" target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="#i-steam"/></svg>
+            <span class="btn__label">Wishlist on Steam</span>
+          </a>
+          <a class="beta-pill" href="https://discord.gg/7QaEY4yJH5" data-link="discord" data-primary-only="steam" target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="#i-discord"/></svg>
+            <span class="beta-pill__label">Join the beta on Discord</span>
+            <svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </a>
+          <a class="btn btn--discord btn--xl" href="https://discord.gg/7QaEY4yJH5" data-link="discord" data-primary-only="discord" target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="#i-discord"/></svg>
+            <span class="btn__label">Join the Beta on Discord</span>
+          </a>
+          <a class="beta-pill steam-pill" href="#" data-link="steam" data-placement="finale" data-primary-only="discord" target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="#i-steam"/></svg>
+            <span class="beta-pill__label">Wishlist on Steam</span>
+            <svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </a>
+        </div>
+        <nav class="finale__links" aria-label="More Atlas Conquest">
+          <ul>
+            <li><a href="../../press.html" data-link="press">Press kit</a></li>
+            <li><a href="../../decks.html">Deck builder</a></li>
+            <li><a href="../../analytics.html">Analytics</a></li>
+            <li><a href="../../articles/detailed-rules/">Rules</a></li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <!-- On phones the footer compacts to two columns and drops the links the finale row already has (.is-dup). -->
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <a href="./" class="footer__logo" aria-label="Atlas Conquest — back to top">
+          <img src="../../assets/media/logo/wordmark-360.webp" srcset="../../assets/media/logo/wordmark-360.webp 360w, ../../assets/media/logo/wordmark-640.webp 640w" sizes="220px" width="220" height="35" alt="Atlas Conquest" loading="lazy" decoding="async">
+        </a>
+        <p class="footer__tagline">Online Competitive Hex-Grid Card Battles</p>
+        <p class="footer__release">Releasing 2027</p>
+      </div>
+      <nav class="footer__col" aria-label="Site">
+        <h3 class="footer__h">Explore</h3>
+        <ul>
+          <li><a href="./">Home</a></li>
+          <li class="is-dup"><a href="../../analytics.html">Analytics</a></li>
+          <li class="is-dup"><a href="../../decks.html">Decks</a></li>
+          <li><a href="../../articles.html">Articles</a></li>
+          <li class="is-dup"><a href="../../press.html" data-link="press">Press</a></li>
+        </ul>
+      </nav>
+      <div class="footer__col">
+        <h3 class="footer__h">Community</h3>
+        <ul class="footer__social">
+          <li><a href="https://discord.gg/7QaEY4yJH5" data-link="discord" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-discord"/></svg>Discord</a></li>
+          <li><a href="https://x.com/Atlas_Conquest" data-link="x" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg>X</a></li>
+          <li><a href="https://www.instagram.com/atlasconquest/" data-link="instagram" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg>Instagram</a></li>
+          <li><a href="https://www.tiktok.com/@atlas.conquest" data-link="tiktok" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-tiktok"/></svg>TikTok</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h3 class="footer__h">Press</h3>
+        <ul>
+          <li><a href="mailto:press@atlas-conquest.com"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>press@atlas-conquest.com</a></li>
+          <li class="is-dup"><a href="../../press.html" data-link="press">Press kit</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <p>© 2026 Atlas Conquest</p>
+      <ul>
+        <li><a href="../../privacy.html">Privacy</a></li>
+        <li><a href="../../terms.html">Terms</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- ============ TRAILER MODAL ============ -->
+  <dialog class="modal" data-modal aria-labelledby="modal-title">
+    <span class="modal__sentinel" tabindex="0" data-sentinel="start"></span>
+    <div class="modal__inner">
+      <div class="modal__bar">
+        <h2 id="modal-title" class="modal__title">Atlas Conquest <span>— Trailer</span></h2>
+        <button type="button" class="round-btn modal__close" data-modal-close aria-label="Close trailer"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+      </div>
+      <div class="modal__frame" data-modal-frame></div>
+    </div>
+    <span class="modal__sentinel" tabindex="0" data-sentinel="end"></span>
+  </dialog>
+
+  <!-- ============ MEDIA VIEWER ============
+       Shared click-to-expand viewer. Any element with data-view opens it:
+       data-view-video | data-view-image, data-view-poster, data-view-caption,
+       data-view-group (prev/next within the group), data-view-start (fraction to skip),
+       data-view-loop (loop instead of play-once). -->
+  <dialog class="viewer" data-viewer aria-label="Media viewer">
+    <div class="viewer__inner">
+      <div class="viewer__stage" data-viewer-stage>
+        <button type="button" class="viewer__replay" data-viewer-replay hidden><svg class="icon" aria-hidden="true"><use href="#i-replay"/></svg><span>Replay</span></button>
+      </div>
+      <div class="viewer__bar">
+        <p class="viewer__cap" data-viewer-cap aria-live="polite"></p>
+        <div class="viewer__nav">
+          <span class="viewer__count" data-viewer-count></span>
+          <button type="button" class="round-btn viewer__prev" data-viewer-prev aria-label="Previous"><svg class="icon" aria-hidden="true"><use href="#i-chev"/></svg></button>
+          <button type="button" class="round-btn" data-viewer-next aria-label="Next"><svg class="icon" aria-hidden="true"><use href="#i-chev"/></svg></button>
+          <button type="button" class="round-btn" data-viewer-close aria-label="Close"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <a class="lab-badge" href="lab/">Gameplay &middot; <b>C · Read the board</b></a>
+</body>
+</html>

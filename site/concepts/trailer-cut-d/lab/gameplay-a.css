@@ -1,0 +1,212 @@
+/* ==========================================================================
+   Gameplay · option A — "Media viewer"
+   A Steam-store style stage + thumbnail rail of new in-game clips and
+   screenshots. Calm by design: nothing moves until someone picks an item;
+   only opacity / glow fade, nothing changes size on hover.
+   Everything is scoped under .gpa.
+   ========================================================================== */
+
+.gpa { padding-bottom: clamp(56px, 5.6vw, 84px); }
+
+.gpa__viewer {
+  --gpa-gap: clamp(16px, 1.6vw, 24px);
+  --gpa-ring: 0 0 0 1px rgba(247, 220, 154, .22);
+  margin-top: clamp(24px, 2.6vw, 36px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) min(30%, 410px);
+  gap: var(--gpa-gap);
+}
+
+/* ---------- Stage ---------- */
+.gpa__stage {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--ink-2);
+  box-shadow: var(--gpa-ring), 0 40px 80px -40px rgba(0, 0, 0, .95), 0 0 90px -40px rgba(232, 140, 50, .35);
+  touch-action: pan-y;
+  isolation: isolate;
+}
+.gpa__stage::after { /* soft floor so the corner control reads on bright frames */
+  content: ''; position: absolute; inset: auto 0 0 0; height: 34%;
+  background: linear-gradient(0deg, rgba(6, 8, 13, .55), transparent);
+  pointer-events: none; z-index: 2;
+}
+.gpa__still, .gpa__video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+/* a few clips end in the game's gold frame edge (~12 of 720 px): scale them up from the top so it falls outside */
+.gpa__still.is-trim, .gpa__video.is-trim { height: 102.5%; bottom: auto; }
+.gpa__still { opacity: 0; transition: opacity .35s ease; }
+.gpa__still.is-front { opacity: 1; }
+.gpa__video { z-index: 1; opacity: 0; transition: opacity .35s ease; pointer-events: none; }
+.gpa__stage.is-live .gpa__video { opacity: 1; }
+
+/* the whole stage is one button: play / pause a clip, or open a screenshot larger */
+.gpa__hit {
+  position: absolute; inset: 0; z-index: 3;
+  width: 100%; height: 100%;
+  margin: 0; padding: 0; border: 0;
+  background: none; border-radius: inherit;
+  display: grid; place-items: center;
+  cursor: pointer;
+}
+.gpa__hit:focus-visible { outline-offset: -4px; }
+.gpa__stage:not(.is-clip) .gpa__hit { cursor: zoom-in; }
+
+.gpa__ring {
+  display: grid; place-items: center;
+  width: clamp(64px, 6.4vw, 92px); height: clamp(64px, 6.4vw, 92px);
+  border-radius: 50%;
+  border: 1.5px solid rgba(247, 220, 154, .8);
+  background: rgba(6, 8, 13, .5);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  color: var(--gold-hi);
+  box-shadow: 0 0 0 8px rgba(247, 220, 154, .08), 0 0 44px -6px rgba(232, 140, 50, .65);
+  transition: opacity .3s ease, background-color .25s ease, box-shadow .25s ease;
+}
+.gpa__ring .icon { width: 38%; height: 38%; }
+.gpa__ring .icon--play { margin-left: 7%; }
+.gpa__ring .icon--pause { display: none; }
+.gpa__hit:hover .gpa__ring,
+.gpa__hit:focus-visible .gpa__ring { background: rgba(6, 8, 13, .72); box-shadow: 0 0 0 8px rgba(247, 220, 154, .14), 0 0 54px -4px rgba(232, 140, 50, .8); }
+/* playing: the ring steps aside; it fades back (as a pause sign) only while pointed at / focused */
+.gpa__stage.is-playing .gpa__ring { opacity: 0; }
+.gpa__stage.is-playing .gpa__ring .icon--play { display: none; }
+.gpa__stage.is-playing .gpa__ring .icon--pause { display: block; }
+.gpa__stage.is-playing .gpa__hit:focus-visible .gpa__ring { opacity: 1; }
+@media (hover: hover) { .gpa__stage.is-playing .gpa__hit:hover .gpa__ring { opacity: .85; } }
+/* screenshots: no ring at all */
+.gpa__stage:not(.is-clip) .gpa__ring { display: none; }
+
+.gpa__expand {
+  position: absolute; z-index: 4; right: 14px; bottom: 14px;
+  display: grid; place-items: center;
+  width: 42px; height: 42px; border-radius: 50%;
+  border: 1px solid rgba(247, 220, 154, .45);
+  background: rgba(6, 8, 13, .62);
+  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+  color: var(--gold-hi);
+  cursor: pointer;
+  transition: background-color .25s, border-color .25s;
+}
+.gpa__expand .icon { width: 17px; height: 17px; }
+.gpa__expand:hover { background: rgba(232, 162, 69, .22); border-color: var(--gold-hi); }
+html:not(.js) .gpa__hit, html:not(.js) .gpa__expand { display: none; }
+
+/* ---------- Side: caption + rail ---------- */
+.gpa__side {
+  display: flex; flex-direction: column;
+  min-width: 0;
+  contain: size;            /* the stage alone sets the row height; the rail fills what is left */
+  container-type: inline-size;
+}
+.gpa__cap {
+  flex: none;
+  box-sizing: content-box;
+  height: 2.5em;            /* always two lines tall, so the rail never jumps */
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--line-soft);
+  font-family: var(--display);
+  font-size: clamp(15px, 5.5cqi, 23px);
+  line-height: 1.25;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
+  letter-spacing: .02em;
+  color: var(--gold-hi);
+  text-wrap: balance;
+}
+.gpa__rail {
+  flex: 1; min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+.gpa__rail > li { min-width: 0; min-height: 0; display: flex; }
+.gpa__thumb {
+  position: relative;
+  flex: 1;
+  min-width: 0; min-height: 0;
+  margin: 0; padding: 0; border: 0;
+  border-radius: 5px;
+  overflow: hidden;
+  background: var(--ink-2);
+  cursor: pointer;
+  box-shadow: 0 0 0 1px rgba(247, 220, 154, .12);
+  transition: box-shadow .25s ease;
+}
+.gpa__thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: brightness(.8) saturate(.9);
+  transition: filter .3s ease;
+}
+.gpa__thumb:hover img, .gpa__thumb:focus-visible img { filter: brightness(.95) saturate(1); }
+.gpa__thumb:hover { box-shadow: 0 0 0 1px rgba(247, 220, 154, .4); }
+.gpa__thumb[aria-selected="true"] { box-shadow: 0 0 0 2px var(--gold-hi), 0 0 22px -4px rgba(232, 140, 50, .75); }
+.gpa__thumb[aria-selected="true"] img { filter: none; }
+/* arrow keys move focus without selecting, so the focus ring must not look like the gold "selected" ring */
+.gpa__thumb:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+.gpa__glyph {
+  position: absolute; left: 6px; bottom: 6px;
+  display: grid; place-items: center;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: rgba(6, 8, 13, .7);
+  box-shadow: 0 0 0 1px rgba(247, 220, 154, .45);
+  color: var(--gold-hi);
+}
+.gpa__glyph .icon { width: 9px; height: 9px; margin-left: 1px; }
+
+/* ---------- Narrower screens: stage on top, one swipeable row of thumbs ---------- */
+@media (max-width: 999px) {
+  .gpa__viewer { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .gpa__side { contain: none; container-type: normal; }
+  .gpa__cap {
+    height: 2.5em; margin: 14px 0 12px; padding: 0; border: 0;
+    display: flex; align-items: center; justify-content: center;
+    -webkit-line-clamp: unset; overflow: visible;
+    font-size: clamp(17px, 2.4vw, 21px);
+    text-align: center;
+  }
+  .gpa__rail {
+    display: flex; gap: 10px;
+    overflow-x: auto; overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    margin-inline: calc(-1 * var(--gutter));
+    padding: 6px var(--gutter) 10px;   /* room for the 3px-offset focus ring inside the scroller */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(232, 162, 69, .45) transparent;
+  }
+  .gpa__rail > li { flex: 0 0 clamp(124px, 19vw, 176px); scroll-snap-align: start; }
+  .gpa__thumb { aspect-ratio: 16 / 9; }
+}
+@media (max-width: 600px) {
+  .gpa { padding-bottom: 36px; }
+  .gpa__viewer { margin-top: 20px; }
+  .gpa__stage {   /* edge to edge on phones */
+    margin-inline: calc(-1 * var(--gutter));
+    border-radius: 0;
+    box-shadow: 0 1px 0 rgba(247, 220, 154, .16), 0 -1px 0 rgba(247, 220, 154, .16), 0 30px 60px -36px rgba(0, 0, 0, .95);
+  }
+  .gpa__ring { width: 62px; height: 62px; }
+  .gpa__expand { right: 10px; bottom: 10px; width: 38px; height: 38px; }
+  .gpa__cap { margin: 12px 0 8px; font-size: 16.5px; }
+  .gpa__rail { scrollbar-width: none; }
+  .gpa__rail::-webkit-scrollbar { display: none; }
+  .gpa__rail > li { flex-basis: 34vw; }
+}
+@media (hover: none) { .gpa__rail { scrollbar-width: none; } .gpa__rail::-webkit-scrollbar { display: none; } }
+
+/* The shared viewer, only while it shows this section's set (.gpa-open is set by gameplay-a.js):
+   on phones the captions here are longer than the map names, so give them their own row. */
+@media (max-width: 600px) {
+  .viewer.gpa-open .viewer__bar { flex-wrap: wrap; row-gap: 10px; }
+  .viewer.gpa-open .viewer__cap { flex: 1 1 100%; font-size: 16px; line-height: 1.35; }
+  .viewer.gpa-open .viewer__nav { margin-left: auto; }
+}
