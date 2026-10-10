@@ -307,8 +307,162 @@
     },
     {
       "title": "Key art",
-      "coming_soon": true,
-      "items": []
+      "items": [
+        {
+          "slug": "key-art-atlas",
+          "title": "Atlas",
+          "files": [
+            {
+              "format": "PNG",
+              "filename": "AtlasConquest-KeyArt-Atlas.png",
+              "id": "1Vksp7AGw1Z8ZMZk4UwR_4SIG5pv8WLbB",
+              "size": "7.6 MB"
+            },
+            {
+              "format": "PNG",
+              "label": "With logo",
+              "filename": "AtlasConquest-KeyArt-Atlas-Logo.png",
+              "id": "1YzKLIdQwQN2oPwo5AOKnG41sar78zK2g",
+              "size": "7.7 MB"
+            }
+          ],
+          "dimensions": "3840 × 2160",
+          "preview": "assets/press/key-art-atlas.webp",
+          "large": "assets/press/large/key-art-atlas.webp"
+        },
+        {
+          "slug": "key-art-dyana",
+          "title": "Dyana",
+          "files": [
+            {
+              "format": "PNG",
+              "filename": "AtlasConquest-KeyArt-Dyana.png",
+              "id": "1ytKCsWZgaNWTXkW2qPY9E47o__GkGsD2",
+              "size": "9.8 MB"
+            },
+            {
+              "format": "PNG",
+              "label": "With logo",
+              "filename": "AtlasConquest-KeyArt-Dyana-Logo.png",
+              "id": "1IK0cOZDX4PgcaIagwCY-XUFOEA4gawyo",
+              "size": "9.8 MB"
+            }
+          ],
+          "dimensions": "3840 × 2160",
+          "preview": "assets/press/key-art-dyana.webp",
+          "large": "assets/press/large/key-art-dyana.webp"
+        },
+        {
+          "slug": "key-art-euron",
+          "title": "Euron",
+          "files": [
+            {
+              "format": "PNG",
+              "filename": "AtlasConquest-KeyArt-Euron.png",
+              "id": "1PAoLiULDV4bTrpjralAZM2mW7_xn0A8I",
+              "size": "7.9 MB"
+            },
+            {
+              "format": "PNG",
+              "label": "With logo",
+              "filename": "AtlasConquest-KeyArt-Euron-Logo.png",
+              "id": "12drHSs0xrouxOqtswqcJZjB2P0smzVlZ",
+              "size": "7.9 MB"
+            }
+          ],
+          "dimensions": "3840 × 2160",
+          "preview": "assets/press/key-art-euron.webp",
+          "large": "assets/press/large/key-art-euron.webp"
+        },
+        {
+          "slug": "key-art-khazgar",
+          "title": "Khazgar",
+          "files": [
+            {
+              "format": "PNG",
+              "filename": "AtlasConquest-KeyArt-Khazgar.png",
+              "id": "1G9EzZdDLUjegPlwp8TSY9uTalZe9QHjR",
+              "size": "7.4 MB"
+            },
+            {
+              "format": "PNG",
+              "label": "With logo",
+              "filename": "AtlasConquest-KeyArt-Khazgar-Logo.png",
+              "id": "1oXxoqz27GS4yzPFEL6t_r5gVdfPnj_1c",
+              "size": "7.5 MB"
+            }
+          ],
+          "dimensions": "3840 × 2160",
+          "preview": "assets/press/key-art-khazgar.webp",
+          "large": "assets/press/large/key-art-khazgar.webp"
+        },
+        {
+          "slug": "key-art-nilo",
+          "title": "Nilo",
+          "files": [
+            {
+              "format": "PNG",
+              "filename": "AtlasConquest-KeyArt-Nilo.png",
+              "id": "1VybPP93gfrsH1ZwySlNVFu5WMNw1a4X5",
+              "size": "8.3 MB"
+            },
+            {
+              "format": "PNG",
+              "label": "With logo",
+              "filename": "AtlasConquest-KeyArt-Nilo-Logo.png",
+              "id": "1XnhKon6yeFHA71choH1Zuw7iJaLZGkSE",
+              "size": "8.3 MB"
+            }
+          ],
+          "dimensions": "3840 × 2160",
+          "preview": "assets/press/key-art-nilo.webp",
+          "large": "assets/press/large/key-art-nilo.webp"
+        },
+        {
+          "slug": "key-art-zoghn",
+          "title": "Zoghn",
+          "files": [
+            {
+              "format": "PNG",
+              "filename": "AtlasConquest-KeyArt-Zoghn.png",
+              "id": "1nOxK-diRh9JgdkPOjTeF45ij8J320Mdu",
+              "size": "8.2 MB"
+            },
+            {
+              "format": "PNG",
+              "label": "With logo",
+              "filename": "AtlasConquest-KeyArt-Zoghn-Logo.png",
+              "id": "1W0X0YYUAaJciMZilphHFMn9yCD-kyITq",
+              "size": "8.1 MB"
+            }
+          ],
+          "dimensions": "3840 × 2160",
+          "preview": "assets/press/key-art-zoghn.webp",
+          "large": "assets/press/large/key-art-zoghn.webp"
+        },
+        {
+          "slug": "key-art-zurn",
+          "title": "Zurn",
+          "files": [
+            {
+              "format": "PNG",
+              "filename": "AtlasConquest-KeyArt-Zurn.png",
+              "id": "1yRaJSaBDjOFg8O7f63IGu35_wuq_bOib",
+              "size": "7.3 MB"
+            },
+            {
+              "format": "PNG",
+              "label": "With logo",
+              "filename": "AtlasConquest-KeyArt-Zurn-Logo.png",
+              "id": "1UYvoKDfWS04igcfhpW2YhEPoMc20VjZ1",
+              "size": "7.4 MB"
+            }
+          ],
+          "dimensions": "3840 × 2160",
+          "preview": "assets/press/key-art-zurn.webp",
+          "large": "assets/press/large/key-art-zurn.webp"
+        }
+      ]
     },
     {
       "title": "Steam capsules",

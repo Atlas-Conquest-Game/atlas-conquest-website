@@ -22,10 +22,11 @@ function escapeHTML(s) {
 
 function renderItem(item) {
   const files = (item.files || []).filter(f => f.id);
+  // `label` names a variant when two files share a format (key art with and without the logo).
   const downloads = files.map(f => `
     <a class="press-dl" href="${DRIVE_DOWNLOAD(f.id)}" download
-       aria-label="Download ${escapeHTML(item.title)} as ${escapeHTML(f.format)}${f.size ? ` (${escapeHTML(f.size)})` : ''}">
-      ${DOWNLOAD_ICON}${escapeHTML(f.format)}${f.size ? ` <span class="press-card-meta">${escapeHTML(f.size)}</span>` : ''}
+       aria-label="Download ${escapeHTML(item.title)}${f.label ? `, ${escapeHTML(f.label.toLowerCase())},` : ''} as ${escapeHTML(f.format)}${f.size ? ` (${escapeHTML(f.size)})` : ''}">
+      ${DOWNLOAD_ICON}${escapeHTML(f.label || f.format)}${f.size ? ` <span class="press-card-meta">${escapeHTML(f.size)}</span>` : ''}
     </a>`).join('');
   // "View" opens the first file in Drive's viewer — handy for checking before downloading.
   const view = files.length
