@@ -34,6 +34,11 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      # The archive (old site + every homepage concept) lives in the repo only, never on the
+      # public site: open it locally with `python3 -m http.server 8000 --directory site` → /archive/.
+      - name: Keep the archive out of the published site
+        run: rm -rf site/archive site/concepts site/classic site/preview
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
