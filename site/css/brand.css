@@ -1,0 +1,1261 @@
+/* ==========================================================================
+   Atlas Conquest — brand layer
+   --------------------------------------------------------------------------
+   The trailer's identity, shared by every page: brand tokens, display type
+   (.ac-title / .ac-eyebrow / .ac-ornament), buttons (.ac-btn), the site nav
+   (.ac-nav), the footer (.ac-footer), the subpage hero (.ac-page-hero), the
+   trailer modal (.ac-trailer) and cross-document view transitions.
+
+   Load order (managed by scripts/sync_chrome.py via the AC:HEAD region):
+   AFTER the shared CSS (variables → base → layout → components → modals →
+   responsive → tooltips) and BEFORE any page CSS. So brand.css wins over the
+   legacy chrome rules, and page CSS can still refine anything here.
+
+   Everything is namespaced .ac-* (plus .nav-link, which shared.js/decks.js
+   query). Tokens are --ac-* and self-contained; nothing here depends on the
+   legacy tokens except the content width (--max-width).
+   ========================================================================== */
+
+@font-face {
+  font-family: 'OptimusPrinceps';
+  src: url('../assets/media/fonts/OptimusPrincepsSemiBold.woff') format('woff'),
+       url('../assets/media/fonts/OptimusPrincepsSemiBold.ttf') format('truetype');
+  /* One semibold face. Claim the whole weight range so an h1/h2 (bold by
+     default) never gets a synthetic faux-bold smear. */
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── Tokens ──────────────────────────────────────────────────────────── */
+
+:root {
+  /* Navy surfaces, darkest → lightest */
+  --ac-navy-0: #06080d;
+  --ac-navy-1: #0b0f17;
+  --ac-navy-2: #10151f;
+  --ac-navy-3: #131924;
+  --ac-navy-4: #1c2433;
+  --ac-navy-5: #283246;
+
+  /* Title metal (gold) + logo fire */
+  --ac-gold-1: #f7dc9a;
+  --ac-gold-2: #e8a245;
+  --ac-gold-3: #c96f22;
+  --ac-ember: #f05a1a;
+  --ac-fire-1: #f05a1a;
+  --ac-fire-2: #ff9a1f;
+  --ac-fire-3: #ffd23a;
+  --ac-grad-gold: linear-gradient(180deg, #f7dc9a 8%, #f2c271 38%, #e8a245 64%, #c96f22 100%);
+  --ac-grad-fire: linear-gradient(90deg, #f05a1a 0%, #ff9a1f 55%, #ffd23a 100%);
+  --ac-grad-button: linear-gradient(180deg, #ffd56a 0%, #f8ab37 46%, #e5801f 100%);
+
+  /* Text on navy (all ≥ 4.5:1 on --ac-navy-3) */
+  --ac-text: #ede7da;
+  --ac-text-2: #bdb6a8;
+  --ac-text-3: #9a9285;
+
+  /* Hairlines */
+  --ac-line: rgba(232, 162, 69, 0.22);
+  --ac-line-soft: rgba(232, 162, 69, 0.12);
+  --ac-line-strong: rgba(232, 162, 69, 0.5);
+  --ac-hairline: linear-gradient(90deg, transparent, rgba(232, 162, 69, 0.5) 50%, transparent);
+
+  /* Platform colours — use sparingly */
+  --ac-discord: #5865f2;
+  --ac-steam: #1b2838; /* store navy */
+  --ac-steam-1: #47bfff; /* classic Steam button blue, light → deep */
+  --ac-steam-2: #1a44c2;
+  --ac-grad-steam: linear-gradient(90deg, #47bfff 5%, #1a44c2 60%);
+  --ac-online: #3fb950;
+
+  /* Type */
+  --ac-font-display: 'OptimusPrinceps', 'Cinzel', 'Trajan Pro', Georgia, serif;
+  --ac-font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Layout */
+  --ac-nav-h: 64px;
+  --ac-gutter: 2rem;
+  --ac-maxw: var(--max-width, 1200px);
+  --ac-radius: 10px;
+  --ac-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* The legacy sticky stack (.sub-nav, .time-filter-bar) hangs off
+     --nav-height, so it follows the brand nav's height. Set it here only. */
+  --nav-height: var(--ac-nav-h);
+
+  /* Faint hex lattice used behind heroes and the footer */
+  --ac-hex: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='97' viewBox='0 0 56 97'%3E%3Cpath d='M28 0L56 16.17V48.5L28 64.66L0 48.5V16.17ZM28 64.66V97' fill='none' stroke='%23e8a245' stroke-opacity='.09' stroke-width='1'/%3E%3C/svg%3E");
+}
+
+@media (max-width: 768px) {
+  :root {
+    --ac-nav-h: 56px;
+    --ac-gutter: 1rem;
+  }
+}
+
+/* ─── Utilities ───────────────────────────────────────────────────────── */
+
+.ac-sr {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.ac-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.ac-icon {
+  width: 1.25em;
+  height: 1.25em;
+  flex: none;
+  display: inline-block;
+  vertical-align: -0.25em;
+}
+
+.ac-skip {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 2000;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  background: var(--ac-gold-1);
+  color: #1d1003;
+  font: 600 0.875rem/1 var(--ac-font-body);
+  text-decoration: none;
+  transform: translateY(-160%);
+  transition: transform 0.2s var(--ac-ease);
+}
+.ac-skip:focus,
+.ac-skip:focus-visible {
+  transform: none;
+  outline: 2px solid var(--ac-navy-1);
+  outline-offset: 2px;
+}
+
+/* ─── Display type ────────────────────────────────────────────────────── */
+
+/* Gold OptimusPrinceps title. Titles only — never numbers, tables, labels or
+   UI text. The gradient repeats per line (1lh tiles) so a wrapped title reads
+   as the same metal on every line instead of fading out top to bottom. */
+.ac-title {
+  font-family: var(--ac-font-display);
+  font-weight: 400;
+  font-size: clamp(2.25rem, 1.3rem + 3.4vw, 4rem);
+  line-height: 1.08;
+  letter-spacing: 0.01em;
+  text-wrap: balance;
+  margin: 0;
+  color: var(--ac-gold-2);
+  background: var(--ac-grad-gold) 0 0 / 100% 1.08em repeat-y;
+  background-size: 100% 1lh;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* A soft ember glow behind the metal; drop-shadow follows the glyphs. */
+  filter: drop-shadow(0 2px 14px rgba(232, 128, 40, 0.22));
+  padding-bottom: 0.04em;
+}
+/* Section-title scale. Two steps cover every page: --md (32px) for section
+   titles on content pages (Press, articles) and --sm (28px) for data, tool and
+   legal pages (analytics .section-title, deck builder, legal h2). Page CSS
+   reads the same values from --ac-h2-content / --ac-h2-data. */
+:root {
+  --ac-h2-content: clamp(1.625rem, 1.2rem + 1.2vw, 2rem);
+  --ac-h2-data: clamp(1.375rem, 1.1rem + 0.9vw, 1.75rem);
+}
+.ac-title--lg { font-size: clamp(2rem, 1.3rem + 2.6vw, 3.25rem); }
+.ac-title--md { font-size: var(--ac-h2-content); }
+.ac-title--sm { font-size: var(--ac-h2-data); }
+
+.ac-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7em;
+  margin: 0 0 0.9rem;
+  font: 600 0.75rem/1.2 var(--ac-font-body);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ac-gold-2);
+}
+.ac-eyebrow::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  flex: none;
+  background: currentColor;
+  transform: rotate(45deg);
+}
+
+/* Line ◆ line divider from the trailer title cards. Decorative: always pair
+   with aria-hidden="true". Default is centred; --start fades out to the right
+   from a leading diamond for left-aligned layouts. */
+.ac-ornament {
+  display: block;
+  width: 180px;
+  max-width: 60%;
+  height: 9px;
+  margin: 1rem 0 1.25rem;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9' viewBox='0 0 9 9'%3E%3Cpath d='M4.5.5 8.5 4.5 4.5 8.5.5 4.5Z' fill='%23f2c271'/%3E%3C/svg%3E") center / 9px 9px no-repeat,
+    linear-gradient(90deg, rgba(232, 162, 69, 0), rgba(232, 162, 69, 0.75)) left center / calc(50% - 11px) 1px no-repeat,
+    linear-gradient(90deg, rgba(232, 162, 69, 0.75), rgba(232, 162, 69, 0)) right center / calc(50% - 11px) 1px no-repeat;
+}
+.ac-ornament--center { margin-left: auto; margin-right: auto; }
+.ac-ornament--start {
+  width: 140px;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9' viewBox='0 0 9 9'%3E%3Cpath d='M4.5.5 8.5 4.5 4.5 8.5.5 4.5Z' fill='%23f2c271'/%3E%3C/svg%3E") left center / 9px 9px no-repeat,
+    linear-gradient(90deg, rgba(232, 162, 69, 0.75), rgba(232, 162, 69, 0)) right center / calc(100% - 18px) 1px no-repeat;
+}
+
+/* ─── Buttons ─────────────────────────────────────────────────────────── */
+
+.ac-btn {
+  --h: 46px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  min-height: var(--h);
+  padding: 0 1.25rem;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font: 600 0.8125rem/1.1 var(--ac-font-body);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.2s var(--ac-ease), box-shadow 0.25s ease, background-color 0.2s ease,
+    border-color 0.2s ease, color 0.2s ease, filter 0.2s ease;
+}
+.ac-btn .ac-icon { width: 1.35em; height: 1.35em; }
+.ac-btn:focus-visible {
+  outline: 2px solid var(--ac-gold-1);
+  outline-offset: 3px;
+}
+
+/* Gold — the primary call to action. Molten fill, dark ink. */
+.ac-btn--gold {
+  color: #2a1505;
+  background: var(--ac-grad-button);
+  border-color: rgba(255, 214, 140, 0.7);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 246, 214, 0.65),
+    inset 0 -2px 0 rgba(140, 60, 8, 0.28),
+    0 10px 26px -12px rgba(240, 90, 26, 0.85);
+  text-shadow: 0 1px 0 rgba(255, 236, 190, 0.45);
+}
+.ac-btn--gold:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.06) saturate(1.05);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 246, 214, 0.75),
+    inset 0 -2px 0 rgba(140, 60, 8, 0.28),
+    0 14px 34px -12px rgba(240, 90, 26, 0.95),
+    0 0 0 4px rgba(255, 170, 60, 0.12);
+}
+.ac-btn--gold:active { transform: translateY(0); filter: brightness(0.98); }
+
+/* Ghost — secondary. Gold hairline on glass. */
+.ac-btn--ghost {
+  color: var(--ac-text);
+  background: rgba(11, 15, 23, 0.45);
+  border-color: var(--ac-line-strong);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.ac-btn--ghost:hover {
+  color: var(--ac-gold-1);
+  border-color: var(--ac-gold-1);
+  background: rgba(232, 162, 69, 0.08);
+}
+
+/* Discord blurple — sparingly: a Discord-specific section, never the default CTA. */
+.ac-btn--discord {
+  color: #fff;
+  background: var(--ac-discord);
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 10px 26px -14px rgba(88, 101, 242, 0.9);
+}
+.ac-btn--discord:hover { background: #4752c4; transform: translateY(-1px); }
+
+/* Steam — the classic store-button blue, white ink, soft blue glow. The lead
+   call to action whenever AC_CONFIG.primaryCta is 'steam' (the default). */
+.ac-btn--steam {
+  color: #fff;
+  background: var(--ac-grad-steam);
+  border-color: rgba(150, 215, 255, 0.5);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -2px 0 rgba(8, 26, 92, 0.3),
+    0 10px 26px -12px rgba(26, 68, 194, 0.9),
+    0 0 18px -2px rgba(71, 191, 255, 0.35);
+  text-shadow: 0 1px 1px rgba(8, 26, 92, 0.35);
+}
+.ac-btn--steam:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.12) saturate(1.05);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -2px 0 rgba(8, 26, 92, 0.3),
+    0 14px 32px -12px rgba(26, 68, 194, 1),
+    0 0 26px 0 rgba(71, 191, 255, 0.5),
+    0 0 0 4px rgba(71, 191, 255, 0.14);
+}
+.ac-btn--steam:active { transform: translateY(0); filter: brightness(0.97); }
+.ac-btn--steam:focus-visible { outline-color: #9fdcff; }
+
+/* A Steam button in the secondary (ghost) role still reads as Steam on hover. */
+.ac-btn--ghost[data-platform='steam']:hover {
+  color: #c7ebff;
+  border-color: var(--ac-steam-1);
+  background: rgba(71, 191, 255, 0.1);
+}
+
+/* Pill — the compact secondary in the nav bar (Discord + live online count). */
+.ac-btn--pill {
+  --h: 36px;
+  gap: 0.5em;
+  padding: 0 0.95rem;
+  border-radius: 999px;
+  border-color: rgba(88, 101, 242, 0.5);
+  background: rgba(88, 101, 242, 0.14);
+  color: var(--ac-text);
+  font-size: 0.71875rem;
+  letter-spacing: 0.08em;
+}
+.ac-btn--pill .ac-icon { width: 1.4em; height: 1.4em; color: #a3abff; }
+.ac-btn--pill:hover {
+  color: #fff;
+  border-color: var(--ac-discord);
+  background: rgba(88, 101, 242, 0.28);
+  transform: translateY(-1px);
+}
+.ac-btn--pill:has(.ac-btn__live:not([hidden])) { padding-right: 0.3rem; }
+.ac-btn--pill .ac-btn__live {
+  background: rgba(6, 8, 13, 0.55);
+  color: var(--ac-text);
+  letter-spacing: 0.02em;
+}
+.ac-btn--pill[data-platform='steam'] {
+  border-color: rgba(71, 191, 255, 0.5);
+  background: rgba(71, 191, 255, 0.12);
+}
+.ac-btn--pill[data-platform='steam'] .ac-icon { color: #9fdcff; }
+.ac-btn--pill[data-platform='steam']:hover { border-color: var(--ac-steam-1); background: rgba(71, 191, 255, 0.24); }
+
+/* data-ac-cta-short="narrow": full label, short one on small screens (see the nav). */
+.ac-btn__label-short { display: none; }
+/* In the nav bar a Discord lead button (primaryCta 'discord') is always "Join the Beta". */
+.ac-nav__actions .ac-btn[data-platform='discord'] .ac-btn__label-full { display: none; }
+.ac-nav__actions .ac-btn[data-platform='discord'] .ac-btn__label-short { display: inline; }
+
+.ac-btn--sm { --h: 38px; padding: 0 0.875rem; font-size: 0.71875rem; gap: 0.5em; }
+.ac-btn--lg { --h: 54px; padding: 0 1.6rem; font-size: 0.875rem; }
+.ac-btn--block { display: flex; width: 100%; }
+
+/* Live Discord count inside a button. */
+.ac-btn__live {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  margin-left: 0.15em;
+  padding: 0.32em 0.6em 0.32em 0.5em;
+  border-radius: 999px;
+  background: rgba(30, 14, 3, 0.86);
+  color: var(--ac-gold-1);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  text-shadow: none;
+  font-variant-numeric: tabular-nums;
+}
+.ac-btn__live[hidden] { display: none; }
+
+/* Text-style CTA (footer lists). */
+.ac-textcta { display: inline-flex; align-items: center; gap: 0.5em; }
+/* "Coming soon" chip, for page copy (e.g. the Press fact sheet); CTAs never use it. */
+.ac-soon {
+  display: inline-block;
+  padding: 0.15em 0.55em;
+  border: 1px solid var(--ac-line);
+  border-radius: 999px;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ac-gold-2);
+  vertical-align: 0.1em;
+}
+
+/* Live-count containers stay hidden until site-config.js has real numbers,
+   whatever display their own class sets. */
+[data-ac-discord-live][hidden] { display: none !important; }
+
+/* CTA slots render their button in place; the slot itself takes no box. */
+[data-ac-cta] { display: contents; }
+
+/* Skip-link landing target (site-config.js adds tabindex="-1"). */
+#main[tabindex='-1']:focus { outline: none; }
+
+/* ─── Live dot ────────────────────────────────────────────────────────── */
+
+.ac-dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--ac-online);
+  box-shadow: 0 0 6px rgba(63, 185, 80, 0.7);
+}
+.ac-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid var(--ac-online);
+  animation: ac-ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes ac-ping {
+  0% { transform: scale(1); opacity: 0.8; }
+  70%, 100% { transform: scale(2.6); opacity: 0; }
+}
+
+/* ─── Nav ─────────────────────────────────────────────────────────────── */
+
+.ac-nav {
+  position: sticky;
+  top: 0;
+  z-index: 300;
+}
+
+.ac-nav__bar {
+  position: relative;
+  z-index: 2; /* above the mobile scrim (the blur makes the bar its own stacking context) */
+  height: var(--ac-nav-h);
+  background: rgba(8, 11, 18, 0.74);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  backdrop-filter: blur(14px) saturate(1.4);
+  border-bottom: 1px solid rgba(232, 162, 69, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  /* Named on the bar, not .ac-nav: a view-transition-name makes its element a
+     backdrop root, which would blank the frosted blur of any descendant. */
+  view-transition-name: ac-nav;
+}
+/* Molten hairline under the bar, brightest at the centre. */
+.ac-nav__bar::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: var(--ac-hairline);
+  opacity: 0.55;
+  pointer-events: none;
+}
+/* Reading fuse: a molten line burns along the bar's lower edge as the page
+   scrolls. Pure CSS (scroll-driven animation); browsers without support just
+   keep the static hairline. */
+@supports (animation-timeline: scroll()) {
+  .ac-nav__bar::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    z-index: 1;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(240, 90, 26, 0.2) 0%, #f05a1a 40%, #ff9a1f 85%, #ffe08a 100%);
+    box-shadow: 0 0 10px rgba(255, 130, 40, 0.55);
+    transform-origin: 0 50%;
+    transform: scaleX(0);
+    pointer-events: none;
+    animation: ac-fuse linear both;
+    animation-timeline: scroll(root block);
+  }
+  @keyframes ac-fuse {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+}
+
+.ac-nav.is-scrolled .ac-nav__bar {
+  background: rgba(8, 11, 18, 0.9);
+  box-shadow: 0 10px 30px -18px rgba(0, 0, 0, 0.9);
+}
+
+.ac-nav__inner {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  height: 100%;
+  max-width: var(--ac-maxw);
+  margin: 0 auto;
+  padding: 0 var(--ac-gutter);
+}
+
+.ac-nav__brand {
+  display: block;
+  flex: none;
+  border-radius: 4px;
+  line-height: 0;
+  transition: filter 0.25s ease;
+}
+.ac-nav__brand img {
+  display: block;
+  width: 190px;
+  height: auto;
+}
+.ac-nav__brand:hover { filter: brightness(1.12) drop-shadow(0 0 12px rgba(255, 150, 40, 0.35)); }
+.ac-nav__brand:focus-visible { outline: 2px solid var(--ac-gold-1); outline-offset: 6px; }
+
+.ac-nav__menu {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.ac-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* .nav-link is shared with legacy CSS (layout.css/responsive.css) — the
+   .ac-nav prefix outranks those rules, and every visual property is reset. */
+.ac-nav .nav-link {
+  position: relative;
+  display: block;
+  padding: 0.75rem 0.85rem;
+  border-radius: 6px;
+  background: none;
+  color: var(--ac-text-2);
+  font: 600 0.75rem/1 var(--ac-font-body);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+.ac-nav .nav-link::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 1px;
+  width: 5px;
+  height: 5px;
+  background: var(--ac-gold-2);
+  box-shadow: 0 0 8px rgba(255, 160, 50, 0.8);
+  transform: translateX(-50%) rotate(45deg) scale(0);
+  transition: transform 0.25s var(--ac-ease);
+}
+.ac-nav .nav-link:hover {
+  color: var(--ac-text);
+  background: none;
+}
+.ac-nav .nav-link:hover::after { transform: translateX(-50%) rotate(45deg) scale(0.6); }
+/* Current page comes only from the static aria-current that sync_chrome.py
+   writes. The legacy .active class that shared.js/decks.js still add is
+   neutralised here (shared.js also flags Home on every trailing-slash URL). */
+.ac-nav .nav-link.active:not([aria-current='page']) { color: var(--ac-text-2); background: none; }
+.ac-nav .nav-link.active:not([aria-current='page']):hover { color: var(--ac-text); }
+.ac-nav .nav-link[aria-current='page'] {
+  color: var(--ac-gold-1);
+  background: none;
+}
+.ac-nav .nav-link[aria-current='page']::after { transform: translateX(-50%) rotate(45deg) scale(1); }
+.ac-nav .nav-link:focus-visible {
+  outline: 2px solid var(--ac-gold-1);
+  outline-offset: -2px;
+}
+
+/* Desktop: the mobile-only extras stay out of the bar. */
+.ac-nav__extras { display: none; }
+
+.ac-nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: none;
+}
+
+.ac-nav__toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-right: -10px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  color: var(--ac-gold-1);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.ac-nav__toggle:focus-visible { outline: 2px solid var(--ac-gold-1); outline-offset: -4px; }
+.ac-nav__burger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 20px;
+}
+.ac-nav__burger span {
+  display: block;
+  height: 1.5px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform 0.3s var(--ac-ease), opacity 0.2s ease;
+}
+.ac-nav.is-open .ac-nav__burger span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.ac-nav.is-open .ac-nav__burger span:nth-child(2) { opacity: 0; }
+.ac-nav.is-open .ac-nav__burger span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+.ac-nav__scrim { display: none; }
+
+/* Medium widths: keep the full nav, drop the word "online" from the count. */
+@media (max-width: 1180px) {
+  .ac-nav__inner { gap: 1rem; }
+  .ac-nav .nav-link { padding-left: 0.7rem; padding-right: 0.7rem; letter-spacing: 0.13em; }
+  .ac-nav__actions .ac-btn__live-label { display: none; }
+}
+
+/* Tighter still: the pill keeps its icon + live count and its words go
+   visually hidden (still its accessible name). */
+@media (max-width: 1060px) {
+  .ac-nav__actions .ac-btn--pill .ac-btn__label { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .ac-nav__actions .ac-btn--pill { padding-left: 0.7rem; }
+}
+
+/* Just above the hamburger breakpoint: short labels, and a Discord lead button
+   drops its count (the pill beside it carries the platform's icon). */
+@media (min-width: 901px) and (max-width: 1000px) {
+  .ac-nav__actions .ac-btn__label-full { display: none; }
+  .ac-nav__actions .ac-btn__label-short { display: inline; }
+  .ac-nav__actions .ac-btn--sm .ac-btn__live { display: none; }
+}
+
+/* ── Mobile: hamburger + slide-down panel ── */
+@media (max-width: 900px) {
+  .ac-nav__inner { gap: 0.75rem; }
+  .ac-nav__brand { margin-right: auto; }
+  .ac-nav__brand img { width: 160px; }
+  .ac-nav__actions { order: 2; }
+  .ac-nav__actions .ac-btn__live { display: none; }
+  .ac-nav__actions .ac-btn--pill { display: none; } /* the menu panel has both CTAs */
+  .ac-js .ac-nav__toggle { display: inline-flex; order: 3; }
+
+  /* Without JS the links stay reachable as a scrollable strip under the bar. */
+  html:not(.ac-js) .ac-nav__bar { height: auto; }
+  html:not(.ac-js) .ac-nav__inner { flex-wrap: wrap; padding-top: 0.6rem; padding-bottom: 0.3rem; }
+  html:not(.ac-js) .ac-nav__menu { order: 4; width: 100%; overflow-x: auto; }
+  html:not(.ac-js) .ac-nav .nav-link { padding: 0.7rem 0.45rem; font-size: 0.6875rem; letter-spacing: 0.08em; }
+
+  .ac-js .ac-nav__menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    display: block;
+    max-height: calc(100vh - var(--ac-nav-h));
+    max-height: calc(100dvh - var(--ac-nav-h));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    margin: 0;
+    padding: 0.25rem var(--ac-gutter) 1.5rem;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 120%, rgba(232, 128, 40, 0.16), transparent 70%),
+      rgba(8, 11, 18, 0.98);
+    border-bottom: 1px solid var(--ac-line);
+    box-shadow: 0 24px 50px -20px rgba(0, 0, 0, 0.9);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease, transform 0.3s var(--ac-ease), visibility 0s linear 0.3s;
+  }
+  .ac-js .ac-nav.is-open .ac-nav__menu {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.2s ease, transform 0.3s var(--ac-ease), visibility 0s;
+  }
+  .ac-js .ac-nav.is-open .ac-nav__bar { background: rgba(8, 11, 18, 0.98); }
+
+  .ac-js .ac-nav__links {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  .ac-js .ac-nav .nav-link {
+    padding: 1.05rem 0.25rem;
+    border-radius: 0;
+    border-bottom: 1px solid var(--ac-line-soft);
+    font-size: 0.875rem;
+    letter-spacing: 0.18em;
+  }
+  .ac-js .ac-nav .nav-link::after {
+    left: auto;
+    right: 0.5rem;
+    top: 50%;
+    bottom: auto;
+    width: 6px;
+    height: 6px;
+    transform: translateY(-50%) rotate(45deg) scale(0);
+  }
+  .ac-js .ac-nav .nav-link[aria-current='page']::after { transform: translateY(-50%) rotate(45deg) scale(1); }
+  .ac-js .ac-nav .nav-link:hover::after { transform: translateY(-50%) rotate(45deg) scale(0.6); }
+
+  .ac-js .ac-nav__extras {
+    display: grid;
+    gap: 1.1rem;
+    padding-top: 1.4rem;
+  }
+  .ac-nav__ctas { display: grid; gap: 0.6rem; }
+  .ac-nav__ctas .ac-btn { width: 100%; }
+  .ac-nav__live {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    margin: 0;
+    font-size: 0.8125rem;
+    color: var(--ac-text-2);
+  }
+  .ac-nav__live[hidden] { display: none; }
+  .ac-nav__live strong { color: var(--ac-text); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .ac-nav__extras .ac-social { justify-content: center; }
+
+  .ac-js .ac-nav__scrim {
+    display: block;
+    position: fixed;
+    inset: var(--ac-nav-h) 0 0;
+    z-index: 1;
+    background: rgba(3, 5, 9, 0.6);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0s linear 0.25s;
+  }
+  .ac-js .ac-nav.is-open .ac-nav__scrim {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.25s ease, visibility 0s;
+  }
+}
+
+@media (max-width: 520px) {
+  .ac-nav__actions .ac-btn__label-full { display: none; }
+  .ac-nav__actions .ac-btn__label-short { display: inline; }
+}
+@media (max-width: 420px) {
+  .ac-nav__brand img { width: 136px; }
+  .ac-nav__actions .ac-btn--sm { padding: 0 0.7rem; letter-spacing: 0.06em; }
+}
+@media (max-width: 359px) {
+  .ac-nav__brand img { width: 118px; }
+  .ac-nav__actions .ac-btn__label { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; } /* icon-only, still named */
+}
+
+/* Social icon row (nav panel, available to pages too). */
+.ac-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ac-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--ac-line);
+  border-radius: 50%;
+  color: var(--ac-text-2);
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+.ac-social a:hover { color: var(--ac-gold-1); border-color: var(--ac-gold-2); background: rgba(232, 162, 69, 0.08); }
+.ac-social a:focus-visible { outline: 2px solid var(--ac-gold-1); outline-offset: 2px; }
+.ac-social .ac-icon { width: 18px; height: 18px; }
+
+/* ─── Subpage hero ────────────────────────────────────────────────────── */
+/*
+  <header class="ac-page-hero">
+    <img class="ac-page-hero__art" src="…-1200.webp" srcset="…-1200.webp 1200w, …-2400.webp 2400w"
+         sizes="100vw" alt="" fetchpriority="high">        ← optional key art
+    <div class="ac-page-hero__inner">
+      <p class="ac-eyebrow">…</p> <h1 class="ac-title">…</h1>
+      <span class="ac-ornament ac-ornament--start" aria-hidden="true"></span>
+      <p class="ac-page-hero__lede">…</p>
+    </div>
+  </header>
+  Art can also come from data-ac-hero-art="assets/…webp" (resolved against the
+  page by site-config.js) or style="--ac-hero-art: url('/assets/…')" — that one
+  must be root-absolute: a relative url() in a custom property resolves against
+  brand.css, not the page. Focal point: --ac-hero-pos (default 70% 35%).
+*/
+.ac-page-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  min-height: var(--ac-hero-min, 0);
+  padding: clamp(3.25rem, 2rem + 5vw, 6rem) 0 clamp(2.5rem, 1.6rem + 3vw, 4.25rem);
+  background: var(--ac-navy-1);
+  border-bottom: 1px solid var(--ac-line-soft);
+}
+.ac-page-hero:has(.ac-page-hero__art),
+.ac-page-hero[data-ac-hero-art],
+.ac-page-hero[style*='--ac-hero-art'] {
+  --ac-hero-min: clamp(320px, 42vw, 520px);
+}
+.ac-page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: var(--ac-hero-art, none) var(--ac-hero-pos, 70% 35%) / cover no-repeat;
+}
+.ac-page-hero__art {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--ac-hero-pos, 70% 35%);
+}
+/* Legibility: navy from the text side, a floor fade into the page, a low
+   ember glow and a faint hex lattice (the board) over everything. */
+.ac-page-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(0deg, var(--ac-navy-1) 0%, rgba(11, 15, 23, 0.6) 22%, rgba(11, 15, 23, 0) 52%),
+    linear-gradient(90deg, rgba(11, 15, 23, 0.97) 0%, rgba(11, 15, 23, 0.9) 30%, rgba(11, 15, 23, 0.55) 58%, rgba(11, 15, 23, 0.2) 100%),
+    radial-gradient(ellipse 55% 90% at 8% 110%, rgba(240, 120, 30, 0.2), transparent 70%),
+    radial-gradient(ellipse 40% 70% at 92% -10%, rgba(232, 162, 69, 0.1), transparent 70%),
+    var(--ac-hex) 0 0 / 56px 97px;
+}
+.ac-page-hero__inner {
+  position: relative;
+  width: 100%;
+  max-width: var(--ac-maxw);
+  margin: 0 auto;
+  padding: 0 var(--ac-gutter);
+}
+.ac-page-hero__inner > * { max-width: 680px; }
+.ac-page-hero .ac-title { font-size: clamp(2.5rem, 1.4rem + 3.6vw, 4.25rem); }
+.ac-page-hero__lede {
+  margin: 0;
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.1875rem);
+  line-height: 1.6;
+  color: var(--ac-text-2);
+}
+.ac-page-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+.ac-page-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.25rem;
+  margin-top: 1.25rem;
+  font-size: 0.8125rem;
+  color: var(--ac-text-3);
+}
+
+.ac-page-hero--compact {
+  padding: clamp(2.25rem, 1.6rem + 2.5vw, 3.5rem) 0 clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+}
+.ac-page-hero--compact:has(.ac-page-hero__art),
+.ac-page-hero--compact[data-ac-hero-art],
+.ac-page-hero--compact[style*='--ac-hero-art'] { --ac-hero-min: clamp(220px, 24vw, 320px); }
+.ac-page-hero--compact .ac-title { font-size: clamp(2rem, 1.4rem + 2.2vw, 3rem); }
+.ac-page-hero--compact .ac-ornament { margin: 0.75rem 0 0.9rem; }
+
+.ac-page-hero--center { text-align: center; }
+.ac-page-hero--center .ac-page-hero__inner > * { margin-left: auto; margin-right: auto; }
+.ac-page-hero--center .ac-page-hero__actions,
+.ac-page-hero--center .ac-page-hero__meta { justify-content: center; }
+.ac-page-hero--center::after {
+  background:
+    linear-gradient(0deg, var(--ac-navy-1) 0%, rgba(11, 15, 23, 0.55) 30%, rgba(11, 15, 23, 0.55) 70%, rgba(11, 15, 23, 0.75) 100%),
+    radial-gradient(ellipse 60% 80% at 50% 120%, rgba(240, 120, 30, 0.18), transparent 70%),
+    var(--ac-hex) 0 0 / 56px 97px;
+}
+
+@media (max-width: 768px) {
+  .ac-page-hero:has(.ac-page-hero__art),
+  .ac-page-hero[data-ac-hero-art],
+  .ac-page-hero[style*='--ac-hero-art'] { --ac-hero-min: 340px; }
+  .ac-page-hero--compact:has(.ac-page-hero__art),
+  .ac-page-hero--compact[data-ac-hero-art],
+  .ac-page-hero--compact[style*='--ac-hero-art'] { --ac-hero-min: 240px; }
+  .ac-page-hero::after {
+    background:
+      linear-gradient(0deg, var(--ac-navy-1) 0%, rgba(11, 15, 23, 0.86) 38%, rgba(11, 15, 23, 0.5) 72%, rgba(11, 15, 23, 0.35) 100%),
+      radial-gradient(ellipse 80% 60% at 20% 110%, rgba(240, 120, 30, 0.18), transparent 70%),
+      var(--ac-hex) 0 0 / 56px 97px;
+  }
+}
+
+/* ─── Footer ──────────────────────────────────────────────────────────── */
+
+.ac-footer {
+  position: relative;
+  margin-top: clamp(3rem, 6vw, 5rem);
+  background: var(--ac-navy-0);
+  color: var(--ac-text-2);
+  font-family: var(--ac-font-body);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+/* Zero-specificity resets (:where) so .ac-btn variants inside keep their colours. */
+:where(.ac-footer) a { color: inherit; text-decoration: none; }
+:where(.ac-footer) a:focus-visible { outline: 2px solid var(--ac-gold-1); outline-offset: 3px; border-radius: 3px; }
+:where(.ac-footer) ul { margin: 0; padding: 0; list-style: none; }
+:where(.ac-footer) p { margin: 0; }
+
+.ac-footer__inner {
+  max-width: var(--ac-maxw);
+  margin: 0 auto;
+  padding: 0 var(--ac-gutter);
+}
+
+/* Call-to-action band */
+.ac-footer__cta {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(3rem, 2rem + 4vw, 5rem) 0;
+  border-top: 1px solid var(--ac-line-soft);
+}
+.ac-footer__cta::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -1px;
+  height: 1px;
+  background: var(--ac-hairline);
+}
+/* Key art sits in a window on the right, feathered into the navy on the
+   left so the copy always reads on solid ground. */
+.ac-footer__cta-art {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -2;
+  width: min(72%, 1040px);
+  height: 100%;
+  object-fit: cover;
+  object-position: 22% 30%;
+  opacity: 0.92;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 38%, #000 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 38%, #000 100%);
+}
+.ac-footer__cta::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, var(--ac-navy-0) 0%, rgba(6, 8, 13, 0.92) 30%, rgba(6, 8, 13, 0.35) 62%, rgba(6, 8, 13, 0.2) 100%),
+    linear-gradient(180deg, var(--ac-navy-0) 0%, rgba(6, 8, 13, 0) 28%, rgba(6, 8, 13, 0) 72%, var(--ac-navy-0) 100%),
+    radial-gradient(ellipse 40% 70% at 0% 100%, rgba(240, 110, 30, 0.12), transparent 70%);
+}
+.ac-footer__cta-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem 3rem;
+}
+.ac-footer__cta-copy { max-width: 560px; }
+/* The beta band is a call to action, not a section title: it keeps the
+   larger display size. */
+.ac-footer__cta-copy .ac-title { margin-bottom: 0.85rem; font-size: clamp(1.75rem, 1.25rem + 1.8vw, 2.5rem); }
+.ac-footer__cta-text { color: var(--ac-text-2); font-size: 1rem; }
+.ac-footer__live {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: 1rem;
+  color: var(--ac-text-2);
+  font-size: 0.875rem;
+}
+.ac-footer__live[hidden] { display: none; }
+.ac-footer__live strong { color: var(--ac-text); font-weight: 600; font-variant-numeric: tabular-nums; }
+.ac-footer__cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* Link columns */
+.ac-footer__main {
+  padding: clamp(2.75rem, 2rem + 3vw, 4rem) 0 2.5rem;
+  border-top: 1px solid var(--ac-line-soft);
+  background:
+    radial-gradient(ellipse 50% 120% at 0% 0%, rgba(232, 128, 40, 0.07), transparent 60%),
+    var(--ac-navy-0);
+}
+.ac-footer__grid {
+  display: grid;
+  grid-template-columns: minmax(240px, 1.6fr) repeat(3, minmax(140px, 1fr));
+  gap: 2.5rem 2rem;
+}
+.ac-footer__logo { display: inline-block; line-height: 0; }
+.ac-footer__logo img { width: 220px; height: auto; display: block; }
+.ac-footer__tagline { margin-top: 1rem; color: var(--ac-text); font-size: 0.9375rem; }
+.ac-footer__release {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 0.75rem;
+  color: var(--ac-gold-2);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+.ac-footer__release::before,
+.ac-footer__release::after {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+.ac-footer__press { margin-top: 1.5rem; color: var(--ac-text-3); font-size: 0.8125rem; }
+.ac-footer__press a { color: var(--ac-text); border-bottom: 1px solid var(--ac-line); }
+.ac-footer__press a:hover { color: var(--ac-gold-1); border-bottom-color: var(--ac-gold-2); }
+
+.ac-footer__heading {
+  margin: 0 0 1rem;
+  font: 600 0.6875rem/1.2 var(--ac-font-body);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ac-gold-2);
+}
+.ac-footer__col li + li { margin-top: 0.55rem; }
+.ac-footer__col a,
+.ac-footer__col .ac-textcta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.1rem 0;
+  color: var(--ac-text-2);
+  transition: color 0.2s ease;
+}
+.ac-footer__col a:hover { color: var(--ac-gold-1); }
+.ac-footer__col .ac-icon { width: 16px; height: 16px; opacity: 0.85; }
+.ac-footer__col .ac-textcta[data-platform='steam']:hover { color: #9fdcff; }
+
+/* Legal strip */
+.ac-footer__bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 1.25rem 0 1.5rem;
+  font-size: 0.8125rem;
+  color: var(--ac-text-3);
+}
+.ac-footer__bottom-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 2rem;
+}
+.ac-footer__human {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--ac-gold-1);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.ac-footer__human .ac-icon { width: 16px; height: 16px; color: var(--ac-gold-2); }
+.ac-footer__legal { display: flex; gap: 1.5rem; }
+.ac-footer__legal a:hover { color: var(--ac-gold-1); }
+
+@media (max-width: 960px) {
+  .ac-footer__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .ac-footer__brand { grid-column: 1 / -1; }
+}
+@media (max-width: 768px) {
+  .ac-footer__cta-art { width: 100%; opacity: 0.45; object-position: 30% 30%; -webkit-mask-image: none; mask-image: none; }
+  .ac-footer__cta::after {
+    background: linear-gradient(180deg, var(--ac-navy-1) 0%, rgba(6, 8, 13, 0.82) 30%, rgba(6, 8, 13, 0.9) 70%, var(--ac-navy-0) 100%);
+  }
+}
+@media (max-width: 560px) {
+  .ac-footer__cta-actions { width: 100%; }
+  .ac-footer__cta-actions .ac-btn { flex: 1 1 100%; }
+  .ac-footer__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem 1.25rem; }
+  .ac-footer__col:last-child { grid-column: 1 / -1; }
+  .ac-footer__col:last-child ul { columns: 2; column-gap: 1.25rem; }
+  .ac-footer__col:last-child li { break-inside: avoid; }
+  .ac-footer__col:last-child li + li { margin-top: 0; }
+  .ac-footer__col:last-child li { margin-bottom: 0.55rem; }
+  .ac-footer__bottom-inner { flex-direction: column; align-items: flex-start; }
+}
+
+/* ─── Trailer modal ───────────────────────────────────────────────────── */
+
+.ac-trailer {
+  width: min(1180px, 92vw, calc((100vh - 140px) * 16 / 9));
+  width: min(1180px, 92vw, calc((100dvh - 140px) * 16 / 9));
+  max-width: none;
+  max-height: none;
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ac-text);
+  overflow: visible;
+}
+.ac-trailer::backdrop {
+  background: radial-gradient(ellipse at center, rgba(20, 12, 6, 0.86), rgba(3, 4, 7, 0.94));
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.ac-trailer[open] { animation: ac-modal-in 0.32s var(--ac-ease); }
+.ac-trailer__frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #000;
+  box-shadow:
+    0 0 0 1px var(--ac-line),
+    0 40px 90px -30px rgba(0, 0, 0, 0.95),
+    0 0 80px -30px rgba(240, 110, 30, 0.45);
+}
+.ac-trailer__frame iframe,
+.ac-trailer__frame video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #000;
+}
+.ac-trailer__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+.ac-trailer__title {
+  margin: 0;
+  font: 400 1.125rem/1.2 var(--ac-font-display);
+  letter-spacing: 0.04em;
+  color: var(--ac-gold-1);
+}
+.ac-trailer__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 40px;
+  padding: 0 0.9rem;
+  border: 1px solid var(--ac-line-strong);
+  border-radius: 999px;
+  background: rgba(11, 15, 23, 0.6);
+  color: var(--ac-text);
+  font: 600 0.6875rem/1 var(--ac-font-body);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.ac-trailer__close:hover { border-color: var(--ac-gold-1); color: var(--ac-gold-1); }
+.ac-trailer__close:focus-visible { outline: 2px solid var(--ac-gold-1); outline-offset: 2px; }
+.ac-trailer__close .ac-icon { width: 16px; height: 16px; }
+html.ac-modal-open { overflow: hidden; }
+
+@keyframes ac-modal-in {
+  from { opacity: 0; transform: translateY(12px) scale(0.985); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ─── Cross-document view transitions ─────────────────────────────────── */
+
+@view-transition {
+  navigation: auto;
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.22s;
+  animation-timing-function: ease;
+}
+/* The nav is its own layer, so it holds still while the page cross-fades. */
+::view-transition-group(ac-nav) { animation-duration: 0.22s; }
+::view-transition-old(ac-nav) { display: none; }
+::view-transition-new(ac-nav) { animation: none; }
+
+/* ─── Reduced motion ──────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+  .ac-dot::after { animation: none; display: none; }
+  .ac-btn,
+  .ac-nav__menu,
+  .ac-nav__scrim,
+  .ac-nav__burger span,
+  .ac-nav .nav-link::after,
+  .ac-skip { transition: none !important; }
+  .ac-btn:hover { transform: none; }
+  .ac-trailer[open] { animation: none; }
+}
+
+/* ─── Print ───────────────────────────────────────────────────────────── */
+
+@media print {
+  .ac-nav,
+  .ac-skip,
+  .ac-footer__cta,
+  .ac-footer__main,
+  .ac-trailer { display: none !important; }
+  .ac-footer { margin-top: 2rem; background: none; color: #444; }
+  .ac-title {
+    background: none;
+    -webkit-text-fill-color: currentColor;
+    color: #7a4a10;
+    filter: none;
+  }
+}

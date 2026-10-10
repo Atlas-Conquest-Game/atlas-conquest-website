@@ -1,21 +1,58 @@
-/* === Design Tokens === */
+/* === Design Tokens ===
+   Atlas Conquest brand on a data site: deep navy surfaces with warm amber
+   depth, gold for titles and active UI, Okabe-Ito faction colours for data.
+   The legacy token names (--bg, --bg-card, --text-secondary, ...) are kept so
+   every page stylesheet inherits the new look without renaming anything. */
 
 :root {
-  /* Dark backgrounds */
-  --bg: #0e1117;
-  --bg-subtle: #161b22;
-  --bg-inset: #1c2128;
-  --bg-card: #1c2128;
-  --bg-elevated: #21262d;
+  color-scheme: dark;
 
-  /* Text */
-  --text: #e6edf3;
-  --text-secondary: #8b949e;
-  --text-muted: #484f58;
+  /* Surfaces — darkest to lightest */
+  --bg: #0b0f17;            /* page */
+  --bg-subtle: #0f141e;     /* alt sections, sticky bars */
+  --bg-inset: #0d121b;      /* recessed wells: inputs, progress tracks, segmented controls */
+  --bg-card: #131924;       /* cards, panels, chart backgrounds, table header */
+  --bg-elevated: #1c2433;   /* hover, raised controls, tooltips */
+  --bg-raised: #232c3d;     /* top-most chips on elevated surfaces */
+
+  /* Text — the same warm parchment ramp as the brand layer (brand.css).
+     All three pass WCAG AA (>= 4.5:1) on --bg-card AND --bg-elevated. */
+  --text: #ede7da;            /* 14.3:1 on card */
+  --text-secondary: #b3ada1;  /* 7.9:1 on card */
+  --text-muted: #948d81;      /* 5.4:1 on card, 4.7:1 on elevated */
 
   /* Borders */
-  --border: #30363d;
-  --border-subtle: #21262d;
+  --border: #253043;
+  --border-subtle: #1a2130;
+  --border-strong: #34405a;
+
+  /* Brand — gold title metal + molten logo fire */
+  --gold-hi: #f7dc9a;
+  --gold: #e8a245;
+  --gold-lo: #c96f22;
+  --gold-text: #f2c271;     /* gold for small text / active labels (10.7:1 on card) */
+  --gold-grad: linear-gradient(180deg, #f7dc9a 8%, #f2c271 38%, #e8a245 64%, #c96f22 100%);
+  --fire-1: #f05a1a;
+  --fire-2: #ff9a1f;
+  --fire-3: #ffd23a;
+  --fire-grad: linear-gradient(90deg, #f05a1a 0%, #ff9a1f 55%, #ffd23a 100%);
+
+  /* Accent (UI state) — active pills, sort arrows, focus, progress */
+  --accent: var(--gold);
+  --accent-text: var(--gold-text);
+  --accent-soft: rgba(232, 162, 69, 0.12);
+  --accent-softer: rgba(232, 162, 69, 0.06);
+  --accent-line: rgba(232, 162, 69, 0.28);      /* gold hairline */
+  --accent-line-soft: rgba(232, 162, 69, 0.14);
+  --accent-border: rgba(232, 162, 69, 0.6);     /* active control border */
+  --focus: #f7dc9a;
+  --hairline-gold: linear-gradient(90deg, transparent, rgba(232, 162, 69, 0.55) 50%, transparent);
+
+  /* Typography */
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  /* 'OptimusPrinceps' @font-face lives in brand.css. Titles only — never for
+     numbers, tables, labels or UI text. */
+  --font-display: 'OptimusPrinceps', 'Cinzel', 'Trajan Pro', Georgia, serif;
 
   /* Faction accents — colorblind-safe Okabe-Ito palette */
   --skaal: #D55E00;
@@ -40,21 +77,36 @@
   /* Semantic */
   --positive: #3fb950;
   --negative: #f85149;
+  /* Softer red-orange used for "unfavoured" text where pure --negative would
+     shout (matchup cells, bucket tables). */
+  --negative-soft: #f0834a;
 
   /* Layout */
   --max-width: 1200px;
   --nav-height: 56px;
-  /* Bottom edge of the sticky stack on an analytics page: nav + sub-nav +
-     time-filter bar. Measured rather than summed, because the bars overlap
-     slightly (see .has-sub-nav .time-filter-bar in layout.css). Used by
-     .table-sticky to size a table pane against the space actually left over.
+  /* Bottom edge of the sticky stack on an analytics page: brand nav (64) +
+     analytics tab bar (48) + filter bar (55). site-config.js measures the real
+     bars and overwrites this at runtime; this plain-px value is the no-JS
+     fallback (shared.js reads it with parseFloat, which can't parse calc()).
      Overridden at the 768px breakpoint in responsive.css. */
-  --sticky-stack: 141px;
+  --sticky-stack: 167px;
+  --radius-sm: 6px;
   --radius: 8px;
   --radius-lg: 12px;
+  --radius-pill: 999px;
 
-  /* Shadows */
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  /* Surface recipe — panels layer a faint top sheen over --bg-card and carry
+     a 1px inner highlight so edges read as bevelled rather than outlined. */
+  --sheen: linear-gradient(180deg, rgba(255, 255, 255, 0.028) 0%, rgba(255, 255, 255, 0) 46%);
+  --inner-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+  /* Shadows (navy-tinted, never pure grey) */
+  --shadow-sm: 0 1px 2px rgba(2, 4, 10, 0.45), 0 2px 6px -2px rgba(2, 4, 10, 0.35);
+  --shadow-md: 0 8px 22px -6px rgba(2, 4, 10, 0.6);
+  --shadow-lg: 0 18px 48px -12px rgba(2, 4, 10, 0.75);
+  --glow-warm: 0 0 0 1px rgba(232, 162, 69, 0.1), 0 14px 34px -14px rgba(232, 140, 50, 0.35);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur: 0.18s;
 }

@@ -23,19 +23,28 @@ function renderCommanderCards(stats, commanders) {
   }
 
   const sorted = [...stats].sort((a, b) => b.winrate - a.winrate);
+  const useTokens = typeof window.ACA !== 'undefined';
+  container.classList.toggle('an-roster', useTokens);
 
   container.innerHTML = sorted.map((c, i) => {
     const artPath = artLookup[c.name];
-    const artHtml = artPath
-      ? `<img class="commander-art" src="${artPath}" alt="${c.name}" loading="lazy">`
-      : `<div class="commander-art commander-art-placeholder">${c.name.charAt(0)}</div>`;
-
     const wr = (c.winrate * 100).toFixed(1);
     let wrClass = 'winrate-neutral';
     if (c.winrate > 0.52) wrClass = 'winrate-positive';
     else if (c.winrate < 0.48) wrClass = 'winrate-negative';
 
     const delay = Math.min(i * 0.04, 0.5);
+
+    // In-game style portrait token (faction ring + rank bubble) when the
+    // suite UI helper is present; the square art card otherwise.
+    const artHtml = useTokens
+      ? ACA.token(c.name, c.faction, { size: 'lg', badge: i + 1, art: artPath })
+      : artPath
+        ? `<img class="commander-art" src="${artPath}" alt="${c.name}" loading="lazy">`
+        : `<div class="commander-art commander-art-placeholder">${c.name.charAt(0)}</div>`;
+    const bar = useTokens
+      ? `<div class="an-wrbar" aria-hidden="true"><span class="an-wrbar__fill ${wrClass}" style="--wr: ${wr}%"></span></div>`
+      : '';
 
     return `
       <div class="commander-card" data-commander="${c.name}" role="button" tabindex="0" aria-label="Open ${c.name} details" style="animation-delay: ${delay}s">
@@ -47,6 +56,7 @@ function renderCommanderCards(stats, commanders) {
             <span class="${wrClass}">${wr}%</span> WR
             <span class="commander-card-games">${c.matches} games</span>
           </div>
+          ${bar}
         </div>
       </div>
     `;
@@ -124,7 +134,7 @@ function renderBucketTable(tableId, data, unitSuffix) {
   };
 
   thead.innerHTML =
-    `<th class="sortable" data-table="${tableId}" data-bsort="name">Commander${sortIcon('name')}</th>` +
+    `<th class="sortable wr-cmd-col" data-table="${tableId}" data-bsort="name">Commander${sortIcon('name')}</th>` +
     buckets.map((b, i) => `<th class="sortable" data-table="${tableId}" data-bsort="${i}">${b}${unitSuffix}${sortIcon(String(i))}</th>`).join('') +
     `<th class="sortable" data-table="${tableId}" data-bsort="total">Games${sortIcon('total')}</th>`;
 
@@ -138,7 +148,9 @@ function renderBucketTable(tableId, data, unitSuffix) {
       else if (b.winrate < 0.45) cls = 'wr-low';
       return `<td class="wr-cell ${cls}">${wr}%<span class="wr-cell-count">${b.games}</span></td>`;
     }).join('');
-    return `<tr><td><strong>${row.name}</strong> ${factionBadge(factionLookup[row.name] || '')}</td>${cells}<td>${row.totalGames}</td></tr>`;
+    const faction = factionLookup[row.name] || '';
+    const token = typeof window.ACA !== 'undefined' ? ACA.token(row.name, faction, { size: 'xs' }) : '';
+    return `<tr><td class="wr-cmd-col"><span class="an-cmd-cell">${token}<strong title="${row.name}">${row.name}</strong> ${factionBadge(faction)}</span></td>${cells}<td>${row.totalGames}</td></tr>`;
   }).join('');
 
   // Attach sort handlers
@@ -214,8 +226,8 @@ function renderAvgCostChart(deckComp) {
       scales: {
         y: {
           beginAtZero: true,
-          grid: { color: '#21262d' },
-          title: { display: true, text: 'Avg Mana Cost', color: '#8b949e', font: { size: 11 } },
+          grid: { color: CHART_THEME.grid },
+          title: { display: true, text: 'Avg Mana Cost', color: CHART_THEME.text, font: { size: 11 } },
         },
         x: {
           ticks: { maxRotation: 45, font: { size: 10 } },
@@ -244,16 +256,16 @@ function renderMinionSpellChart(deckComp) {
         {
           label: 'Minions',
           data: sorted.map(([, d]) => d.avg_minion_count),
-          backgroundColor: '#3fb95099',
-          borderColor: '#3fb950',
+          backgroundColor: CHART_THEME.goldFill,
+          borderColor: CHART_THEME.gold,
           borderWidth: 1,
           borderRadius: 3,
         },
         {
           label: 'Spells',
           data: sorted.map(([, d]) => d.avg_spell_count),
-          backgroundColor: '#d2a8ff99',
-          borderColor: '#d2a8ff',
+          backgroundColor: CHART_THEME.steelFill,
+          borderColor: CHART_THEME.steel,
           borderWidth: 1,
           borderRadius: 3,
         },
@@ -278,7 +290,7 @@ function renderMinionSpellChart(deckComp) {
       },
       scales: {
         x: { stacked: true, ticks: { maxRotation: 45, font: { size: 10 } }, grid: { display: false } },
-        y: { stacked: true, beginAtZero: true, grid: { color: '#21262d' }, title: { display: true, text: 'Avg Cards', color: '#8b949e', font: { size: 11 } } },
+        y: { stacked: true, beginAtZero: true, grid: { color: CHART_THEME.grid }, title: { display: true, text: 'Avg Cards', color: CHART_THEME.text, font: { size: 11 } } },
       },
     },
   });
@@ -302,24 +314,24 @@ function renderPatronNeutralChart(deckComp) {
         {
           label: 'Patron',
           data: sorted.map(([, d]) => d.avg_patron_cards),
-          backgroundColor: '#58a6ff99',
-          borderColor: '#58a6ff',
+          backgroundColor: CHART_THEME.goldFill,
+          borderColor: CHART_THEME.gold,
           borderWidth: 1,
           borderRadius: 3,
         },
         {
           label: 'Neutral',
           data: sorted.map(([, d]) => d.avg_neutral_cards),
-          backgroundColor: '#A8907899',
-          borderColor: '#A89078',
+          backgroundColor: 'rgba(168, 144, 120, 0.6)',
+          borderColor: FACTION_COLORS.neutral,
           borderWidth: 1,
           borderRadius: 3,
         },
         {
           label: 'Other',
           data: sorted.map(([, d]) => d.avg_other_cards),
-          backgroundColor: '#f8514999',
-          borderColor: '#f85149',
+          backgroundColor: CHART_THEME.slateFill,
+          borderColor: CHART_THEME.slate,
           borderWidth: 1,
           borderRadius: 3,
         },
@@ -344,7 +356,7 @@ function renderPatronNeutralChart(deckComp) {
       },
       scales: {
         x: { stacked: true, ticks: { maxRotation: 45, font: { size: 10 } }, grid: { display: false } },
-        y: { stacked: true, beginAtZero: true, grid: { color: '#21262d' }, title: { display: true, text: 'Avg Cards', color: '#8b949e', font: { size: 11 } } },
+        y: { stacked: true, beginAtZero: true, grid: { color: CHART_THEME.grid }, title: { display: true, text: 'Avg Cards', color: CHART_THEME.text, font: { size: 11 } } },
       },
     },
   });
@@ -388,6 +400,21 @@ async function init() {
   initModal();
   initNavActiveState();
   initTooltips();
+  openCommanderFromHash();
+  window.addEventListener('hashchange', openCommanderFromHash);
+}
+
+// Article mentions link to /commanders.html#<slug>: open that commander's
+// detail sheet straight away (focus returns to its roster card on close).
+function openCommanderFromHash() {
+  const slug = decodeURIComponent((location.hash || '').slice(1)).toLowerCase();
+  if (!slug) return;
+  const deckComp = getPeriodData(appData.deckComposition, currentPeriod) || {};
+  const name = Object.keys(deckComp).find(n => commanderSlug(n) === slug);
+  if (!name) return;
+  const card = document.querySelector(`.commander-card[data-commander="${CSS.escape(name)}"]`);
+  if (card) card.focus({ preventScroll: true });
+  openCommanderModal(name);
 }
 
 document.addEventListener('DOMContentLoaded', init);

@@ -1,4 +1,4 @@
-/* === Quick Links (home page) === */
+/* === Quick Links (analytics overview) === */
 .quick-links {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -7,19 +7,39 @@
 }
 
 .quick-link {
+  position: relative;
   display: block;
-  background: var(--bg-card);
+  background: var(--sheen), var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 1.5rem;
+  padding: 1.5rem 3rem 1.5rem 1.5rem;
   text-decoration: none;
-  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: var(--inner-highlight), var(--shadow-sm);
+  transition: border-color 0.2s ease, transform 0.25s var(--ease-out), box-shadow 0.2s ease;
+}
+
+/* Gold arrow that nudges forward on hover. */
+.quick-link::after {
+  content: '';
+  position: absolute;
+  right: 1.375rem;
+  top: 1.625rem;
+  width: 16px;
+  height: 16px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23e8a245' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E") center / contain no-repeat;
+  opacity: 0.7;
+  transition: transform 0.25s var(--ease-out), opacity 0.2s ease;
 }
 
 .quick-link:hover {
-  border-color: var(--text-muted);
+  border-color: var(--accent-line);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--inner-highlight), var(--glow-warm), var(--shadow-md);
+}
+
+.quick-link:hover::after {
+  transform: translateX(4px);
+  opacity: 1;
 }
 
 .quick-link-title {
@@ -27,12 +47,17 @@
   font-weight: 600;
   color: var(--text);
   margin-bottom: 0.375rem;
+  transition: color var(--dur) ease;
+}
+
+.quick-link:hover .quick-link-title {
+  color: var(--gold-text);
 }
 
 .quick-link-desc {
   font-size: 0.8125rem;
   color: var(--text-secondary);
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
 /* === Animations === */
@@ -65,28 +90,35 @@
   /* The nav collapses to a burger and the filter bar reflows below this
      breakpoint, so the sticky stack above a table pane gets shorter. */
   :root {
-    --sticky-stack: 122px;
+    --sticky-stack: 152px; /* 56 nav + 46 tab bar + 50 filter bar */
   }
 
-  .hero-title {
-    font-size: 2rem;
+  .hero {
+    padding: 3rem 0 2.25rem;
+  }
+
+  .hero-compact {
+    padding: 2.25rem 0 1.75rem;
+  }
+
+  .hero-title,
+  .hero-compact .hero-title {
+    font-size: 2.125rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
   }
 
   .hero-meta {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.375rem;
-  }
-
-  .hero-divider {
-    display: none;
+    gap: 0.375rem 0.75rem;
   }
 
   .nav-inner {
     padding: 0 1rem;
   }
 
-  /* Collapse the primary nav into a hamburger dropdown */
+  /* Collapse the primary nav into a hamburger dropdown (legacy nav markup) */
   .nav-burger {
     display: flex;
   }
@@ -115,11 +147,6 @@
     padding: 0.5rem 0.75rem;
   }
 
-  .sub-nav-inner {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
   /* Swap the period/map button rows for compact dropdowns */
   .time-filter-inner {
     flex-wrap: wrap;
@@ -136,6 +163,17 @@
     display: inline-block;
   }
 
+  /* Fallback: if no dropdown was built into this bar (script failed or put
+     it elsewhere), keep the pills visible so the filters stay usable. */
+  .time-filter-inner:not(:has(.filter-select)) .time-btn,
+  .time-filter-inner:not(:has(.filter-select)) .map-btn {
+    display: inline-block;
+  }
+
+  .time-filter-inner:not(:has(.filter-select)) .filter-label:not(:first-child) {
+    margin-left: 0.25rem;
+  }
+
   .section {
     padding: 2.5rem 0;
   }
@@ -146,10 +184,20 @@
 
   .card-grid {
     grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .stat-card {
+    padding: 1.125rem 1.125rem;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
   }
 
   .commander-grid {
     grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 0.75rem;
   }
 
   .chart-row {
@@ -160,12 +208,31 @@
     grid-template-columns: 1fr;
   }
 
+  .chart-container {
+    padding: 1.125rem;
+  }
+
+  .data-table th,
+  .data-table td {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .data-table th.sortable {
+    padding-right: 1.5rem;
+  }
+
   .quick-links {
     grid-template-columns: 1fr;
   }
 
+  .modal-overlay {
+    padding: 1rem 0.5rem;
+  }
+
   .modal-content {
-    padding: 1.5rem;
+    padding: 1.5rem 1.125rem;
+    border-radius: 14px;
   }
 
   .modal-kpi-grid {
@@ -175,11 +242,22 @@
   .modal-header {
     flex-direction: column;
     text-align: center;
+    padding-right: 0;
+  }
+
+  .modal-header::after {
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--hairline-gold);
+  }
+
+  .modal-name {
+    font-size: 1.5rem;
   }
 
   .modal-art {
-    width: 64px;
-    height: 64px;
+    width: 72px;
+    height: 72px;
   }
 
   .matchup-modal-header {
@@ -198,11 +276,27 @@
   .matchup-modal-cards-row {
     grid-template-columns: 1fr;
   }
+
+  .mirror-toggle {
+    margin-left: 0;
+  }
 }
 
 @media (max-width: 480px) {
   .card-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .stat-card {
+    padding: 1rem;
+  }
+
+  .stat-value {
+    font-size: 1.375rem;
+  }
+
+  .stat-value-sm {
+    font-size: 1rem;
   }
 
   .commander-grid {
@@ -210,31 +304,79 @@
   }
 
   .modal-kpi-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .hero-title,
+  .hero-compact .hero-title {
+    font-size: 1.875rem;
   }
 }
 
 /* === Placeholder / Coming Soon Card === */
 
 .placeholder-card {
-  background: var(--bg-inset);
-  border: 1px dashed var(--border);
-  border-radius: 12px;
+  background:
+    radial-gradient(60% 80% at 50% 0%, rgba(232, 140, 50, 0.05), transparent 70%),
+    var(--bg-inset);
+  border: 1px dashed rgba(232, 162, 69, 0.28);
+  border-radius: var(--radius-lg);
   padding: 2rem 2.5rem;
   text-align: center;
 }
 
 .placeholder-card .section-title {
-  color: var(--text-secondary);
   font-size: 1.25rem;
   margin-bottom: 0.75rem;
+  -webkit-text-fill-color: var(--text-secondary);
+  background: none;
+}
+
+.placeholder-card .section-title::after {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .placeholder-text {
-  color: var(--text-muted);
+  color: var(--text-secondary);
   font-style: italic;
   font-size: 0.9375rem;
   line-height: 1.6;
   max-width: 500px;
   margin: 0 auto;
+}
+
+/* === Reduced motion ===
+   Kill entrance animations, hover lifts and zooms; keep colour transitions. */
+@media (prefers-reduced-motion: reduce) {
+  .stat-card,
+  .commander-card,
+  .modal-content,
+  .modal-overlay.open {
+    animation: none;
+  }
+
+  .commander-card:hover,
+  .quick-link:hover {
+    transform: none;
+  }
+
+  .commander-card:hover .commander-art {
+    transform: none;
+  }
+
+  .quick-link:hover::after,
+  .modal-close:hover {
+    transform: none;
+  }
+
+  .progress-fill {
+    transition: none;
+  }
+
+  .matchup-tooltip,
+  .info-tooltip {
+    transform: none;
+  }
 }

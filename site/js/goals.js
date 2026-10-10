@@ -66,7 +66,7 @@ function renderGoal(goal) {
         ${sub}
       </div>
       <div class="progress-track">
-        <div class="progress-fill ${goal.met ? 'met' : ''}" style="width: ${pct.toFixed(1)}%"></div>
+        <div class="progress-fill ${goal.met ? 'met' : ''}" data-width="${pct.toFixed(1)}%" style="width: ${pct.toFixed(1)}%"></div>
       </div>
       ${deckDetailHTML(goal)}
     </div>`;
@@ -76,13 +76,31 @@ function renderGoalGroup(containerId, goals) {
   const container = document.getElementById(containerId);
   if (!container) return;
   container.innerHTML = goals.map(renderGoal).join('');
+  fillOnArrival(container);
+}
+
+// Presentation: progress bars start empty and fill when they scroll into view.
+// Reduced motion (or no IntersectionObserver) keeps the final widths as rendered.
+function fillOnArrival(container) {
+  const motion = !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  if (!motion || !('IntersectionObserver' in window)) return;
+  const bars = container.querySelectorAll('.progress-fill[data-width]');
+  bars.forEach(bar => { bar.style.width = '0%'; });
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      io.unobserve(entry.target);
+      requestAnimationFrame(() => { entry.target.style.width = entry.target.dataset.width; });
+    });
+  }, { threshold: 0.3 });
+  bars.forEach(bar => io.observe(bar));
 }
 
 function kpiCard(label, rate, num, den) {
   return `
     <div class="stat-card">
       <div class="stat-label">${label}</div>
-      <div class="stat-value">${fmtPct(rate)}</div>
+      <div class="stat-value" data-countup>${fmtPct(rate)}</div>
       <div class="stat-sub">${num} / ${den}</div>
     </div>`;
 }
@@ -283,6 +301,7 @@ function renderAll() {
   renderGoalGroup('art-goals', data.art_goals);
   renderGoalGroup('animation-goals', data.animation_goals);
   renderOverall(data.overall);
+  if (typeof window.ACA !== 'undefined') ACA.countUpAll(document.getElementById('overall-kpis'));
   renderArtSourceCharts(data.overall);
   renderArtSourceTable(data.overall);
   renderPatronTable(data.by_patron);

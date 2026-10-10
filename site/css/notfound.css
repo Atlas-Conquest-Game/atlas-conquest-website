@@ -1,0 +1,292 @@
+/* ==========================================================================
+   404 — "This Tile Is Uncharted"
+   --------------------------------------------------------------------------
+   A small hex cluster from the game board: the centre tile is the missing
+   page (fogged, "404"); the six around it are the site's sections. Hovering
+   or focusing a tile claims it — it lifts and lights up in molten gold, like
+   territory changing hands. A tile matching the missed URL is pre-lit.
+   Served by GitHub Pages at any depth, so every URL in the page is
+   root-absolute. Loads after brand.css.
+   ========================================================================== */
+
+.nf {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  min-height: calc(100svh - var(--nav-height));
+  overflow: hidden;
+  padding: clamp(2.5rem, 6vw, 5rem) 0;
+  background: var(--ac-navy-1);
+}
+
+/* Key art (the eldritch eye over dark water), held well back. */
+.nf-art {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 60% 40%;
+  opacity: 0.55;
+}
+.nf::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(11, 15, 23, 0.96) 0%, rgba(11, 15, 23, 0.82) 38%, rgba(11, 15, 23, 0.55) 70%, rgba(11, 15, 23, 0.7) 100%),
+    linear-gradient(0deg, var(--ac-navy-1) 0%, rgba(11, 15, 23, 0) 30%),
+    radial-gradient(40% 55% at 72% 50%, rgba(240, 120, 30, 0.14), transparent 70%),
+    var(--ac-hex) 0 0 / 56px 97px;
+}
+
+.nf-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 500px);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+  width: 100%;
+  max-width: var(--ac-maxw);
+  margin: 0 auto;
+  padding: 0 var(--ac-gutter);
+}
+
+/* ─── Copy ───────────────────────────────────────────────────────────── */
+
+.nf-copy .ac-title { font-size: clamp(2.5rem, 1.4rem + 3.6vw, 4.25rem); }
+.nf-lede {
+  max-width: 34rem;
+  margin: 0 0 1.25rem;
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.1875rem);
+  line-height: 1.65;
+  color: var(--ac-text-2);
+}
+.nf-path,
+.nf-suggest {
+  margin: 0 0 0.6rem;
+  font-size: 0.875rem;
+  color: var(--ac-text-3);
+}
+.nf-path code {
+  display: inline-block;
+  max-width: 100%;
+  padding: 0.15em 0.5em;
+  border: 1px solid var(--ac-line-soft);
+  border-radius: 6px;
+  background: rgba(6, 8, 13, 0.6);
+  font-size: 0.85em;
+  color: var(--ac-text-2);
+  overflow-wrap: anywhere;
+  vertical-align: bottom;
+}
+.nf-suggest { color: var(--ac-text-2); }
+.nf-suggest a {
+  color: var(--ac-gold-1);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgba(247, 220, 154, 0.4);
+  text-underline-offset: 0.2em;
+}
+.nf-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.6rem;
+}
+.nf-icon-back { transform: rotate(180deg); }
+
+/* ─── The board ──────────────────────────────────────────────────────── */
+
+.nf-board {
+  position: relative;
+  margin: 0;
+}
+.nf-board-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* Tiles */
+.nf-hex {
+  cursor: pointer;
+  outline: none;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.35s var(--ac-ease);
+  animation: nf-rise 0.7s var(--ac-ease) backwards;
+  animation-delay: calc(0.12s + var(--i, 0) * 0.07s);
+}
+@keyframes nf-rise {
+  from { opacity: 0; transform: translateY(10px) scale(0.92); }
+  to { opacity: 1; transform: none; }
+}
+.nf-hex-base {
+  fill: rgba(16, 21, 31, 0.86);
+  stroke: rgba(232, 162, 69, 0.34);
+  stroke-width: 1.5;
+  transition: stroke 0.25s ease, fill 0.25s ease;
+}
+.nf-hex-claim {
+  fill: url(#nf-claim-fill);
+  stroke: #ffc86b;
+  stroke-width: 2.5;
+  opacity: 0;
+  filter: drop-shadow(0 0 7px rgba(255, 150, 40, 0.75));
+  transition: opacity 0.3s ease;
+}
+.nf-hex-rim {
+  fill: none;
+  stroke: rgba(232, 162, 69, 0.12);
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+  transition: stroke 0.3s ease;
+}
+.nf-hex-pip {
+  fill: var(--ac-gold-3);
+  transition: fill 0.25s ease;
+}
+.nf-hex-icon {
+  color: var(--ac-text-2);
+  transition: color 0.25s ease;
+}
+.nf-hex-label {
+  font: 600 10.5px/1 var(--ac-font-body);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-anchor: middle;
+  fill: var(--ac-text-2);
+  transition: fill 0.25s ease;
+}
+
+/* Claim: hover, keyboard focus, or the tile we think you wanted. */
+.nf-hex:hover,
+.nf-hex:focus-visible { transform: translateY(-5px) scale(1.04); }
+.nf-hex:hover .nf-hex-claim,
+.nf-hex:focus-visible .nf-hex-claim,
+.nf-hex.is-suggested .nf-hex-claim { opacity: 1; }
+.nf-hex:hover .nf-hex-base,
+.nf-hex:focus-visible .nf-hex-base,
+.nf-hex.is-suggested .nf-hex-base { stroke: transparent; }
+.nf-hex:hover .nf-hex-rim,
+.nf-hex:focus-visible .nf-hex-rim,
+.nf-hex.is-suggested .nf-hex-rim { stroke: rgba(255, 220, 150, 0.55); }
+.nf-hex:hover .nf-hex-label,
+.nf-hex:focus-visible .nf-hex-label,
+.nf-hex.is-suggested .nf-hex-label { fill: #fff3d6; }
+.nf-hex:hover .nf-hex-pip,
+.nf-hex:focus-visible .nf-hex-pip,
+.nf-hex.is-suggested .nf-hex-pip { fill: var(--ac-fire-3); }
+.nf-hex:hover .nf-hex-icon,
+.nf-hex:focus-visible .nf-hex-icon,
+.nf-hex.is-suggested .nf-hex-icon { color: #fff3d6; }
+/* Keyboard focus gets an extra outer ring on top of the claim glow. */
+.nf-hex:focus-visible .nf-hex-base {
+  stroke: var(--ac-gold-1);
+  stroke-width: 5;
+  stroke-opacity: 0.5;
+}
+/* The suggested tile breathes until you claim something else. */
+.nf-hex.is-suggested .nf-hex-claim { animation: nf-breathe 2.4s ease-in-out infinite; }
+@keyframes nf-breathe {
+  50% { filter: drop-shadow(0 0 14px rgba(255, 160, 50, 0.95)); }
+}
+
+/* While another tile is being claimed, the suggestion stands down. */
+.nf-board:has(.nf-hex:is(:hover, :focus-visible)) .nf-hex.is-suggested:not(:hover):not(:focus-visible) .nf-hex-claim {
+  opacity: 0;
+  animation: none;
+}
+.nf-board:has(.nf-hex:is(:hover, :focus-visible)) .nf-hex.is-suggested:not(:hover):not(:focus-visible) .nf-hex-base {
+  stroke: rgba(232, 162, 69, 0.34);
+}
+
+/* The uncharted centre tile: fogged, smouldering, slowly circling. */
+.nf-center-glow {
+  fill: rgba(240, 110, 30, 0.12);
+  filter: blur(10px);
+  animation: nf-smoulder 4s ease-in-out infinite;
+}
+@keyframes nf-smoulder {
+  50% { fill: rgba(240, 110, 30, 0.26); }
+}
+.nf-center-base {
+  fill: url(#nf-fog);
+  stroke: rgba(240, 90, 26, 0.7);
+  stroke-width: 1.5;
+}
+.nf-center-ring {
+  fill: none;
+  stroke: rgba(255, 170, 70, 0.45);
+  stroke-width: 1.2;
+  stroke-dasharray: 5 6;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: nf-spin 26s linear infinite;
+}
+@keyframes nf-spin { to { transform: rotate(360deg); } }
+.nf-center-code {
+  font: 400 30px/1 var(--ac-font-display);
+  letter-spacing: 0.04em;
+  text-anchor: middle;
+  fill: url(#nf-gold);
+}
+.nf-center-label {
+  font: 600 7.5px/1 var(--ac-font-body);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  text-anchor: middle;
+  fill: var(--ac-text-3);
+}
+
+.nf-board-hint {
+  margin: 0.4rem 0 0;
+  font: 600 0.65625rem/1 var(--ac-font-body);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--ac-text-3);
+}
+@media (hover: none) {
+  .nf-board-hint { display: none; }
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .nf { align-items: flex-start; }
+  .nf-inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+  .nf-board {
+    width: min(100%, 420px);
+    margin: 0 auto;
+  }
+  .nf::before {
+    background:
+      linear-gradient(0deg, var(--ac-navy-1) 0%, rgba(11, 15, 23, 0.88) 45%, rgba(11, 15, 23, 0.72) 100%),
+      radial-gradient(60% 40% at 50% 75%, rgba(240, 120, 30, 0.14), transparent 70%),
+      var(--ac-hex) 0 0 / 56px 97px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nf-actions .ac-btn { width: 100%; }
+}
+
+/* ─── Motion ─────────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .nf-hex,
+  .nf-center-glow,
+  .nf-center-ring,
+  .nf-hex.is-suggested .nf-hex-claim { animation: none; }
+  .nf-hex { transition: none; }
+  .nf-hex:hover,
+  .nf-hex:focus-visible { transform: none; }
+}

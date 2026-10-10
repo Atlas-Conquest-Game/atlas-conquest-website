@@ -2,16 +2,25 @@
  * Atlas Conquest — Deck Tools Service Worker
  *
  * Scope is site-wide ("/", since this file is served from the root), but the
- * fetch handler only intercepts deck-tools-relevant requests. Everything else
- * (analytics pages, articles, other JSON) is left completely alone via an
- * early return — this worker must not affect pages outside deck tools.
+ * fetch handler only intercepts deck-tools-relevant requests: deck-tools
+ * navigations, the deck data JSON, card/commander art, and the shell's own
+ * files (SHELL_URLS). Shell files are shared with other pages (variables.css,
+ * brand.css, …) but are served network-first, so online behaviour anywhere on
+ * the site is unchanged; the cache only answers when the network fails.
+ * Everything else (analytics pages, articles, other JSON) is left completely
+ * alone via an early return.
  *
  * Bump CACHE_NAME whenever the precached shell list below changes, so the
  * `activate` handler evicts the old cache and clients pick up fresh files.
  */
 
-// v4: new logo — same icon file names, new pixels.
-const CACHE_NAME = 'ac-decks-v4';
+// v6: the deck page's own hero art joins the shell, card art now comes from the
+// transparent WebP renders in /assets/media/cards/ (cached like the JPGs were),
+// and commander tokens use the small WebPs in /assets/commanders/token/.
+// v5: brand chrome — brand.css, site-config.js, the title font, the hammer
+// wordmark and footer key art join the shell, and the shell is now actually
+// served from cache when offline (see isShellRequest below).
+const CACHE_NAME = 'ac-decks-v7';
 const DATA_CACHE = 'ac-decks-data-v2';
 // Bumped to v2 to flush art cached under the old cache-first strategy, which
 // pinned every viewed card JPG permanently and hid updated screenshots.
@@ -27,16 +36,24 @@ const SHELL_URLS = [
   '/css/components.css',
   '/css/responsive.css',
   '/css/tooltips.css',
+  '/css/brand.css',
   '/css/decks.css',
+  '/js/site-config.js',
   '/js/cardpreview.js',
   '/js/deckcode.js',
   '/js/decks.js',
   // UI chrome. Small and used on every decklist row, and it falls outside
-  // isArtRequest() (which only covers /assets/cards/ and /assets/commanders/),
+  // isArtRequest() (which only covers card, commander and faction art),
   // so without this the compact view loses its cost gems offline.
   '/assets/ui/cost-gem.webp',
-  // Nav wordmark, so the offline deck builder keeps its header logo.
-  '/assets/logo/atlas-conquest-logo.png',
+  // Brand chrome (site/partials/): nav + footer wordmarks, the title font and
+  // the footer call-to-action art, so the offline deck builder keeps its look.
+  '/assets/media/logo/wordmark-360.webp',
+  '/assets/media/logo/wordmark-640.webp',
+  '/assets/media/fonts/OptimusPrincepsSemiBold.woff',
+  '/assets/media/keyart/khazgar-1200.webp',
+  // The deck builder's hero painting.
+  '/assets/media/keyart/pyrotechnic-1200.webp',
   '/assets/logo/icon-192.png',
   '/assets/logo/icon-512.png',
   '/assets/logo/apple-touch-icon.png',
@@ -66,7 +83,12 @@ async function precacheCommanderArt(artCache) {
     const commanders = await res.json();
     const urls = commanders.flatMap(c => {
       const slug = slugify(c.name);
-      return [`/assets/commanders/${slug}.jpg`, `/assets/cards/${slug}.jpg`];
+      return [
+        `/assets/commanders/${slug}.jpg`,
+        `/assets/commanders/token/${slug}.webp`,
+        `/assets/cards/${slug}.jpg`,
+        `/assets/media/cards/${slug}.webp`,
+      ];
     });
     await artCache.addAll(urls);
   } catch {
@@ -99,7 +121,30 @@ function isDataRequest(url) {
 }
 
 function isArtRequest(url) {
-  return url.pathname.startsWith('/assets/cards/') || url.pathname.startsWith('/assets/commanders/');
+  return url.pathname.startsWith('/assets/cards/') ||
+    url.pathname.startsWith('/assets/commanders/') ||
+    url.pathname.startsWith('/assets/media/cards/') ||
+    url.pathname.startsWith('/assets/factions/');
+}
+
+// The precached shell's own CSS/JS/images. Served network-first so online
+// visitors always get the deployed files, with the precache as the offline
+// fallback — without this the shell above was cached but never used, and an
+// offline launch rendered unstyled.
+const SHELL_PATHS = new Set(SHELL_URLS);
+function isShellRequest(url) {
+  return SHELL_PATHS.has(url.pathname) && url.pathname !== '/decks.html';
+}
+
+async function networkFirst(request, cacheName) {
+  const cache = await caches.open(cacheName);
+  try {
+    const response = await fetch(request);
+    if (response && response.ok) cache.put(request, response.clone());
+    return response;
+  } catch {
+    return (await cache.match(request, { ignoreSearch: true })) || Response.error();
+  }
 }
 
 function isDeckToolsNavigation(url) {
@@ -147,6 +192,10 @@ self.addEventListener('fetch', event => {
   }
   if (isDataRequest(url)) {
     event.respondWith(staleWhileRevalidate(request, DATA_CACHE));
+    return;
+  }
+  if (isShellRequest(url)) {
+    event.respondWith(networkFirst(request, CACHE_NAME));
     return;
   }
   if (isArtRequest(url)) {

@@ -9,16 +9,24 @@
 
 .card-search-bar input {
   flex: 1;
-  max-width: 400px;
-  padding: 0.5rem 0.875rem;
-  background: var(--bg-inset);
+  max-width: 420px;
+  min-height: 40px;
+  padding: 0.5rem 0.875rem 0.5rem 2.375rem;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23e8a245' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.6-3.6'/%3E%3C/svg%3E") 0.875rem center / 15px no-repeat,
+    var(--bg-inset);
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: var(--radius-pill);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
   font-family: inherit;
   font-size: 0.875rem;
   color: var(--text);
   outline: none;
-  transition: border-color 0.15s ease;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card-search-bar input:hover {
+  border-color: var(--border-strong);
 }
 
 .card-search-bar input::placeholder {
@@ -26,7 +34,8 @@
 }
 
 .card-search-bar input:focus {
-  border-color: #388bfd;
+  border-color: var(--accent-border);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4), 0 0 0 3px rgba(232, 162, 69, 0.14);
 }
 
 .search-count {
@@ -35,29 +44,8 @@
   white-space: nowrap;
 }
 
-/* === Commander Select Dropdown === */
-
-.commander-select {
-  padding: 0.375rem 0.75rem;
-  background: var(--bg-inset);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  font-family: inherit;
-  font-size: 0.8125rem;
-  color: var(--text);
-  cursor: pointer;
-  outline: none;
-  transition: border-color 0.15s ease;
-  appearance: auto;
-}
-
-.commander-select:hover {
-  border-color: #388bfd;
-}
-
-.commander-select:focus {
-  border-color: #388bfd;
-}
+/* === Commander Select Dropdown ===
+   Styled suite-wide in analytics.css (also used on the Metagame page). */
 
 /* Checkbox filter in the filter bar (e.g. "Show tokens"). Sized to sit level
    with .filter-btn / .commander-select. */
@@ -65,9 +53,11 @@
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
-  padding: 0.375rem 0.75rem;
+  min-height: 34px;
+  padding: 0.375rem 0.875rem;
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-inset);
   font-size: 0.8125rem;
   color: var(--text-secondary);
   cursor: pointer;
@@ -76,7 +66,7 @@
 }
 
 .filter-check:hover {
-  border-color: #388bfd;
+  border-color: var(--border-strong);
   color: var(--text);
 }
 
@@ -111,8 +101,13 @@
 }
 
 .column-picker[open] > summary {
-  color: var(--text);
-  border-color: #388bfd;
+  color: var(--gold-hi);
+  border-color: var(--accent-border);
+}
+
+.column-picker > summary:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
 }
 
 .column-picker-menu {
@@ -175,7 +170,7 @@
 }
 
 .column-picker-menu input {
-  accent-color: #388bfd;
+  accent-color: var(--gold);
   margin: 0;
   cursor: inherit;
 }
@@ -241,6 +236,24 @@ th.col-feedback {
   background: var(--bg-elevated);
 }
 
+/* Filter bar on the Cards page: faction pills, then the commander select
+   and option toggles. Give the toolbar a panel so it reads as one control
+   surface above the table. */
+#cards .filter-bar {
+  gap: 0.5rem;
+  padding: 0.875rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--sheen), var(--bg-card);
+  box-shadow: var(--inner-highlight), var(--shadow-sm);
+}
+
+#cards .filter-bar .filter-divider {
+  height: 22px;
+  margin: 0 0.25rem;
+}
+
 /* === Card Preview (hover popup) === */
 
 .card-preview {
@@ -276,4 +289,26 @@ th.col-feedback {
    built, so their names take the token accent (see --token). */
 .card-name-token {
   color: var(--token);
+}
+
+@media (max-width: 768px) {
+  .card-search-bar {
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+  }
+
+  .card-search-bar input {
+    flex: 1 1 100%;
+    max-width: none;
+  }
+
+  #cards .filter-bar .filter-divider {
+    display: none;
+  }
+
+  /* The Columns menu opens leftwards so it stays on screen. */
+  .column-picker-menu {
+    left: auto;
+    right: 0;
+  }
 }

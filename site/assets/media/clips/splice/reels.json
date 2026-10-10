@@ -1,0 +1,45 @@
+{
+ "play": {
+  "duration": 8.0,
+  "segment_starts": [
+   0.0,
+   3.0
+  ]
+ },
+ "expand": {
+  "duration": 8.34,
+  "segment_starts": [
+   0.0,
+   4.3
+  ]
+ },
+ "command": {
+  "duration": 11.8,
+  "segment_starts": [
+   0.0,
+   4.5,
+   8.2
+  ]
+ },
+ "conquer": {
+  "duration": 15.0,
+  "segment_starts": [
+   0.0,
+   5.1,
+   9.4
+  ],
+  "segments": [
+   "red-dragon",
+   "spore-thresher",
+   "khazgar"
+  ]
+ },
+ "battlefields": {
+  "duration": 16.4,
+  "segment_starts": [
+   0.0,
+   6.9,
+   11.4
+  ]
+ }
+}

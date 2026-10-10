@@ -1,0 +1,12 @@
+# Atlas Conquest — https://atlas-conquest.com
+# The analytics pages render from /data/*.json, so crawlers may fetch it.
+User-agent: *
+Allow: /
+Disallow: /concepts/
+Disallow: /archive/
+Disallow: /classic/
+Disallow: /preview/
+Disallow: /partials/
+Disallow: /deck_tests.html
+
+Sitemap: https://atlas-conquest.com/sitemap.xml

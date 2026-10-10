@@ -451,9 +451,9 @@ function renderCardHeader(columns) {
     if (col.group !== 'card') classes.push(`col-${col.group}`);
     if (col.key === cardSortKey) classes.push(cardSortDir === 'asc' ? 'sorted-asc' : 'sorted-desc');
     const tip = col.tooltip
-      ? ` <span class="tooltip-icon" data-tooltip="${col.tooltip.replace(/"/g, '&quot;')}">?</span>`
+      ? ` <span class="tooltip-icon" data-tooltip="${col.tooltip.replace(/"/g, '&quot;')}" data-tt-ready="1" role="button" tabindex="0" aria-label="More info: ${col.tooltip.replace(/"/g, '&quot;')}">?</span>`
       : '';
-    return `<th class="${classes.join(' ')}" data-sort="${col.key}">${col.label}${tip}</th>`;
+    return `<th class="${classes.join(' ')}" data-sort="${col.key}" data-col="${col.key}">${col.label}${tip}</th>`;
   }).join('');
 }
 
@@ -547,8 +547,8 @@ function renderCardTable(stats) {
 
   const ctx = { totalGames, fbBaseline: fb ? fb.baseline : null };
   tbody.innerHTML = sorted.map(c => `
-    <tr data-card-slug="${commanderSlug(c.name)}" class="card-row">
-      ${columns.map(col => `<td${col.deemph ? ' class="cell-muted"' : ''}>${col.render(c, ctx)}</td>`).join('')}
+    <tr data-card-slug="${commanderSlug(c.name)}" class="card-row" style="--row-faction: ${FACTION_COLORS[c.faction] || 'transparent'}">
+      ${columns.map(col => `<td data-col="${col.key}"${col.deemph ? ' class="cell-muted"' : ''}>${col.render(c, ctx)}</td>`).join('')}
     </tr>`).join('');
 
   if (sorted.length === 0) {
@@ -708,6 +708,39 @@ function initSearch() {
   });
 }
 
+// ─── Deep links ─────────────────────────────────────────────
+
+// Article card mentions link to /cards.html#<slug> (and ?q=<text> works too):
+// fill the search with that card, then bring its row into view with a brief
+// gold highlight so the reader lands on it, not at the top of 280 rows.
+function applyCardDeepLink() {
+  const slug = decodeURIComponent((location.hash || '').slice(1)).toLowerCase();
+  const q = (new URLSearchParams(location.search).get('q') || '').trim();
+  if (!slug && !q) return;
+  const stats = getPeriodData(appData.cardStats, currentPeriod) || [];
+  const card = slug ? stats.find(c => commanderSlug(c.name) === slug || cardArtSlug(c.name) === slug) : null;
+  const query = card ? card.name : q;
+  if (!query) return;
+
+  if (card && card.token && !showTokens) {
+    showTokens = true;
+    const box = document.getElementById('show-tokens');
+    if (box) box.checked = true;
+  }
+  searchQuery = query;
+  const input = document.getElementById('card-search');
+  if (input) input.value = query;
+  rerenderCardTable();
+  if (!card) return;
+
+  const row = document.querySelector(`#card-table tr[data-card-slug="${CSS.escape(commanderSlug(card.name))}"]`);
+  if (!row) return;
+  row.classList.add('is-linked');
+  const smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  requestAnimationFrame(() => row.scrollIntoView({ block: 'center', behavior: smooth ? 'smooth' : 'auto' }));
+  setTimeout(() => row.classList.remove('is-linked'), 3200);
+}
+
 // ─── Card Preview on Hover ──────────────────────────────────
 
 // Contents and placement come from site/js/cardpreview.js — hovering a card
@@ -816,6 +849,8 @@ async function init() {
   initMapFilters(renderAll);
   initNavActiveState();
   initTooltips();
+  applyCardDeepLink();
+  window.addEventListener('hashchange', applyCardDeepLink);
 }
 
 document.addEventListener('DOMContentLoaded', init);

@@ -1,0 +1,71 @@
+<!-- PARTIAL footer.html: the site footer (beta call-to-action band + link columns + legal
+     strip). scripts/sync_chrome.py copies this (minus this comment) into each page's
+     AC:FOOTER region. {{ROOT}} works as in nav.html. Links that come from AC_CONFIG carry
+     data-ac-href / data-ac-text so site-config.js keeps them current; the static values here
+     are the no-JS fallback and must stay valid. -->
+<footer class="ac-footer">
+  <section class="ac-footer__cta" aria-labelledby="ac-footer-cta-title">
+    <img class="ac-footer__cta-art" src="{{ROOT}}assets/media/keyart/khazgar-1200.webp" alt="" width="1200" height="675" loading="lazy" decoding="async">
+    <div class="ac-footer__inner ac-footer__cta-inner">
+      <div class="ac-footer__cta-copy">
+        <p class="ac-eyebrow">Public beta</p>
+        <h2 class="ac-title ac-title--md" id="ac-footer-cta-title">Take Up the Hammer</h2>
+        <p class="ac-footer__cta-text">Wishlist on Steam to hear the moment we launch. Beta access goes out through our Discord: join to get in when the gates open, find opponents and follow development as it happens.</p>
+        <p class="ac-footer__live" data-ac-discord-live hidden><span class="ac-dot" aria-hidden="true"></span><span><strong data-ac-discord-members></strong> members &middot; <strong data-ac-discord-online></strong> online now</span></p>
+      </div>
+      <div class="ac-footer__cta-actions">
+        <span class="ac-cta-slot" data-ac-cta="primary" data-ac-cta-size="lg"><a class="ac-btn ac-btn--steam ac-btn--lg" href="#" data-ac-pending data-platform="steam"><svg class="ac-icon" aria-hidden="true"><use href="#ac-i-steam"/></svg><span class="ac-btn__label">Wishlist on Steam</span></a></span>
+        <span class="ac-cta-slot" data-ac-cta="secondary" data-ac-cta-size="lg"><a class="ac-btn ac-btn--ghost ac-btn--lg" href="https://discord.gg/7QaEY4yJH5" target="_blank" rel="noopener" data-platform="discord"><svg class="ac-icon" aria-hidden="true"><use href="#ac-i-discord"/></svg><span class="ac-btn__label">Play Free Now on Discord</span></a></span>
+      </div>
+    </div>
+  </section>
+  <div class="ac-footer__main">
+    <div class="ac-footer__inner ac-footer__grid">
+      <div class="ac-footer__brand">
+        <a class="ac-footer__logo" href="{{ROOT}}index.html"><img src="{{ROOT}}assets/media/logo/wordmark-640.webp" alt="Atlas Conquest home" width="240" height="38" loading="lazy" decoding="async"></a>
+        <p class="ac-footer__tagline" data-ac-text="tagline">Online Competitive Hex-Grid Card Battles</p>
+        <p class="ac-footer__release"><span data-ac-text="release">Releasing 2027</span></p>
+        <p class="ac-footer__press">Press &amp; business<br><a href="mailto:press@atlas-conquest.com" data-ac-href="press">press@atlas-conquest.com</a></p>
+      </div>
+      <nav class="ac-footer__col" aria-labelledby="ac-footer-game">
+        <h2 class="ac-footer__heading" id="ac-footer-game">Game</h2>
+        <ul>
+          <li><a href="{{ROOT}}index.html">Home</a></li>
+          <li><a href="https://www.youtube.com/watch?v=hPoGfdLZThA" data-ac-trailer target="_blank" rel="noopener">Watch the trailer</a></li>
+          <li><a href="{{ROOT}}articles/">Articles &amp; guides</a></li>
+          <li><a href="{{ROOT}}press.html">Press kit</a></li>
+          <li><span class="ac-cta-slot" data-ac-cta="steam" data-ac-cta-style="text"><a class="ac-textcta" href="#" data-ac-pending data-platform="steam"><svg class="ac-icon" aria-hidden="true"><use href="#ac-i-steam"/></svg><span>Wishlist on Steam</span></a></span></li>
+        </ul>
+      </nav>
+      <nav class="ac-footer__col" aria-labelledby="ac-footer-community">
+        <h2 class="ac-footer__heading" id="ac-footer-community">Community</h2>
+        <ul class="ac-footer__social">
+          <li><a href="https://discord.gg/7QaEY4yJH5" data-ac-href="discord" target="_blank" rel="noopener"><svg class="ac-icon" aria-hidden="true"><use href="#ac-i-discord"/></svg>Discord</a></li>
+          <li><a href="https://x.com/Atlas_Conquest" data-ac-href="x" target="_blank" rel="noopener"><svg class="ac-icon" aria-hidden="true"><use href="#ac-i-x"/></svg>X <span class="ac-sr">(Twitter)</span></a></li>
+          <li><a href="https://www.instagram.com/atlasconquest/" data-ac-href="instagram" target="_blank" rel="noopener"><svg class="ac-icon" aria-hidden="true"><use href="#ac-i-instagram"/></svg>Instagram</a></li>
+          <li><a href="https://www.tiktok.com/@atlas.conquest" data-ac-href="tiktok" target="_blank" rel="noopener"><svg class="ac-icon" aria-hidden="true"><use href="#ac-i-tiktok"/></svg>TikTok</a></li>
+        </ul>
+      </nav>
+      <nav class="ac-footer__col" aria-labelledby="ac-footer-tools">
+        <h2 class="ac-footer__heading" id="ac-footer-tools">Tools</h2>
+        <ul>
+          <li><a href="{{ROOT}}analytics.html">Match analytics</a></li>
+          <li><a href="{{ROOT}}commanders.html">Commanders</a></li>
+          <li><a href="{{ROOT}}cards.html">Cards</a></li>
+          <li><a href="{{ROOT}}meta.html">Meta trends</a></li>
+          <li><a href="{{ROOT}}decks.html">Deck builder</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <div class="ac-footer__bottom">
+    <div class="ac-footer__inner ac-footer__bottom-inner">
+      <p class="ac-footer__copy">&copy; 2026 Atlas Conquest</p>
+      <p class="ac-footer__human"><svg class="ac-icon" aria-hidden="true"><use href="#ac-i-brush"/></svg>Human-made art</p>
+      <ul class="ac-footer__legal">
+        <li><a href="{{ROOT}}privacy.html">Privacy</a></li>
+        <li><a href="{{ROOT}}terms.html">Terms</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>

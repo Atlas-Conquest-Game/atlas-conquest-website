@@ -1,0 +1,9 @@
+<!-- PARTIAL head.html: shared <head> includes for every page. scripts/sync_chrome.py copies
+     this (minus this comment) into each page's AC:HEAD region. {{ROOT}} becomes "" for pages
+     at the site root and "/" for nested pages and the templates they're generated from. Keep
+     the region AFTER the shared stylesheets (variables.css → tooltips.css) and BEFORE any
+     page stylesheet, so brand.css overrides legacy chrome and page CSS can refine brand.css. -->
+<script>document.documentElement.classList.add('ac-js')</script>
+<link rel="preload" href="{{ROOT}}assets/media/fonts/OptimusPrincepsSemiBold.woff" as="font" type="font/woff" crossorigin>
+<link rel="stylesheet" href="{{ROOT}}css/brand.css">
+<script src="{{ROOT}}js/site-config.js" defer></script>

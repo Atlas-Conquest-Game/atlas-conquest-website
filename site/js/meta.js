@@ -158,7 +158,7 @@ function renderMetaChart(trends) {
           min: 0,
           max: 100,
           ticks: { callback: v => v + '%' },
-          grid: { color: '#21262d' },
+          grid: { color: CHART_THEME.grid },
         },
         x: {
           ticks: { maxTicksLimit: 15, maxRotation: 45 },
@@ -185,9 +185,14 @@ function renderMatchups(matchupData) {
     matchupMap[m.commander][m.opponent] = m;
   });
 
+  // Commander portrait tokens on both axes (presentation only).
+  const factionOf = buildFactionLookup();
+  const tok = name => (typeof window.ACA !== 'undefined'
+    ? ACA.token(name, factionOf[name] || '', { size: 'xs' }) : '');
+
   const thead = table.querySelector('thead tr');
   thead.innerHTML = '<th class="matchup-corner"></th>' +
-    cmds.map(c => `<th class="matchup-col-header" title="${c}">${c}</th>`).join('');
+    cmds.map(c => `<th class="matchup-col-header" title="${c}">${tok(c)}${c}</th>`).join('');
 
   const tbody = table.querySelector('tbody');
   tbody.innerHTML = cmds.map(row => {
@@ -209,7 +214,7 @@ function renderMatchups(matchupData) {
       return `<td class="matchup-cell ${cls}" data-type="data" data-row="${row}" data-col="${col}" data-wr="${wr}" data-total="${m.total}" data-wins="${m.wins}" data-losses="${m.losses}">${wr}%<span class="matchup-count">${m.total}</span></td>`;
     }).join('');
 
-    return `<tr><th class="matchup-row-header" title="${row}">${row}</th>${cells}</tr>`;
+    return `<tr><th class="matchup-row-header" title="${row}"><span class="an-mh">${row}${tok(row)}</span></th>${cells}</tr>`;
   }).join('');
 
   initMatchupTooltip();
@@ -233,13 +238,13 @@ function initMatchupTooltip() {
         const total = parseInt(cell.dataset.total) || 0;
         titleEl.textContent = `${row} mirror match`;
         wrEl.textContent = 'Mirror';
-        wrEl.style.color = '#8b949e';
+        wrEl.style.color = CHART_THEME.muted;
         gamesEl.textContent = `${total} game${total !== 1 ? 's' : ''} played`;
       } else if (type === 'nodata') {
         titleEl.textContent = `${row} vs ${col}`;
         const total = parseInt(cell.dataset.total) || 0;
         wrEl.textContent = 'Insufficient data';
-        wrEl.style.color = '#8b949e';
+        wrEl.style.color = CHART_THEME.muted;
         gamesEl.textContent = `${total} game${total !== 1 ? 's' : ''} played`;
       } else {
         titleEl.textContent = `${row} vs ${col}`;
@@ -252,7 +257,7 @@ function initMatchupTooltip() {
         wrEl.textContent = `${wr}% winrate`;
         if (wrNum > 55) wrEl.style.color = '#3fb950';
         else if (wrNum < 45) wrEl.style.color = '#f0834a';
-        else wrEl.style.color = '#e6edf3';
+        else wrEl.style.color = CHART_THEME.textStrong;
 
         gamesEl.textContent = `${total} games (${wins}W - ${losses}L)`;
       }
@@ -294,7 +299,8 @@ function buildTogglePills(container, entries, selectedSet, factionLookup, rerend
   container.innerHTML = entries.map(cmd => {
     const faction = factionLookup[cmd.name] || '';
     const active = selectedSet.has(cmd.name) ? ' active' : '';
-    return `<button class="filter-btn${active}" data-faction="${faction}" data-commander="${cmd.name}">${cmd.name}</button>`;
+    const token = typeof window.ACA !== 'undefined' ? ACA.token(cmd.name, faction, { size: 'xs' }) : '';
+    return `<button type="button" class="filter-btn an-cmd-pill${active}" data-faction="${faction}" data-commander="${cmd.name}">${token}${cmd.name}</button>`;
   }).join('');
   container.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -311,7 +317,7 @@ function buildColoredDatasets(entries, selectedSet, factionLookup, opts = {}) {
   const factionCounter = {};
   return visible.map(cmd => {
     const faction = factionLookup[cmd.name] || 'neutral';
-    const baseColor = FACTION_COLORS[faction] || '#58a6ff';
+    const baseColor = FACTION_COLORS[faction] || CHART_THEME.gold;
     const idx = factionCounter[faction] || 0;
     factionCounter[faction] = idx + 1;
     const color = idx === 0 ? baseColor : shiftColor(baseColor, idx * 15);
@@ -392,8 +398,8 @@ function renderCommanderTrends(cmdTrends) {
           stacked: true,
           beginAtZero: true,
           ticks: { callback: v => v + '%' },
-          grid: { color: '#21262d' },
-          title: { display: true, text: 'Pick Rate', color: '#8b949e', font: { size: 11 } },
+          grid: { color: CHART_THEME.grid },
+          title: { display: true, text: 'Pick Rate', color: CHART_THEME.text, font: { size: 11 } },
         },
         x: {
           ticks: { maxTicksLimit: 15, maxRotation: 45 },
@@ -495,8 +501,8 @@ function renderCommanderWinrateTrends(wrTrends) {
         y: {
           min: 0, max: 100,
           ticks: { callback: v => v + '%' },
-          grid: { color: '#21262d' },
-          title: { display: true, text: 'Win Rate', color: '#8b949e', font: { size: 11 } },
+          grid: { color: CHART_THEME.grid },
+          title: { display: true, text: 'Win Rate', color: CHART_THEME.text, font: { size: 11 } },
         },
         x: {
           ticks: { maxTicksLimit: 15, maxRotation: 45 },
@@ -540,6 +546,16 @@ function renderFirstTurnChart(ftData) {
   el('ft-going-second', ((1 - ftData.first_player_winrate) * 100).toFixed(1) + '%');
   el('ft-overall-games', ftData.total_games.toLocaleString() + ' games');
 
+  // Phones: 16 commanders don't fit as columns, so the bars run sideways with
+  // full names on the left and the chart grows to fit them.
+  const narrow = FT_NARROW.matches;
+  const wrap = canvas.parentElement;
+  if (wrap) wrap.style.height = narrow ? `${cmds.length * 36 + 90}px` : '';
+  const valueAxis = { min: 20, max: 80, ticks: { callback: v => v + '%' }, grid: { color: CHART_THEME.grid } };
+  const nameAxis = narrow
+    ? { ticks: { font: { size: 10 }, autoSkip: false }, grid: { display: false } }
+    : { ticks: { maxRotation: 45, font: { size: 10 } }, grid: { display: false } };
+
   firstTurnChart = new Chart(canvas, {
     type: 'bar',
     data: {
@@ -548,24 +564,27 @@ function renderFirstTurnChart(ftData) {
         {
           label: 'Going First',
           data: cmds.map(([, d]) => (d.first_winrate * 100).toFixed(1)),
-          backgroundColor: '#58a6ff99',
-          borderColor: '#58a6ff',
+          // Gold vs steel blue: same pairing as the Overview's first-turn bar,
+          // and distinguishable under every common colour-vision deficiency.
+          backgroundColor: 'rgba(232, 162, 69, 0.7)',
+          borderColor: CHART_THEME.gold,
           borderWidth: 1,
           borderRadius: 3,
         },
         {
           label: 'Going Second',
           data: cmds.map(([, d]) => (d.second_winrate * 100).toFixed(1)),
-          backgroundColor: '#f0834a99',
-          borderColor: '#f0834a',
+          backgroundColor: 'rgba(126, 154, 201, 0.6)',
+          borderColor: '#9db4dc',
           borderWidth: 1,
           borderRadius: 3,
         },
       ],
     },
     options: {
+      indexAxis: narrow ? 'y' : 'x',
       responsive: true,
-      maintainAspectRatio: true,
+      maintainAspectRatio: !narrow,
       plugins: {
         legend: {
           labels: { usePointStyle: true, pointStyle: 'circle', padding: 14, font: { size: 11 } },
@@ -579,26 +598,21 @@ function renderFirstTurnChart(ftData) {
               const games = isFirst ? d.first_games : d.second_games;
               const adv = ((d.first_winrate - d.second_winrate) * 100).toFixed(1);
               const advStr = adv >= 0 ? `+${adv}pp` : `${adv}pp`;
-              return `${ctx.dataset.label}: ${ctx.parsed.y}% (${games} games) · ${advStr}`;
+              const value = narrow ? ctx.parsed.x : ctx.parsed.y;
+              return `${ctx.dataset.label}: ${value}% (${games} games) · ${advStr}`;
             },
           },
         },
       },
-      scales: {
-        y: {
-          min: 20,
-          max: 80,
-          ticks: { callback: v => v + '%' },
-          grid: { color: '#21262d' },
-        },
-        x: {
-          ticks: { maxRotation: 45, font: { size: 10 } },
-          grid: { display: false },
-        },
-      },
+      scales: narrow ? { x: valueAxis, y: nameAxis } : { y: valueAxis, x: nameAxis },
     },
   });
 }
+
+const FT_NARROW = window.matchMedia('(max-width: 600px)');
+FT_NARROW.addEventListener('change', () => {
+  if (appData && appData.firstTurn) renderFirstTurnChart(getPeriodData(appData.firstTurn, currentPeriod));
+});
 
 // ─── Matchup Detail Modal ────────────────────────────────────
 
@@ -629,6 +643,7 @@ function syncModalFilterBar() {
 }
 
 async function openMatchupModal(cmd1, cmd2) {
+  const opener = document.activeElement;
   const details = await loadMatchupDetails();
   if (!details) return;
 
@@ -649,6 +664,7 @@ async function openMatchupModal(cmd1, cmd2) {
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
   document.body.classList.add('modal-open');
+  acModalOpen(modal, opener);
 }
 
 function renderMatchupModalContent(matchup, cmd1, cmd2) {
@@ -777,6 +793,7 @@ function closeMatchupModal() {
   const modal = document.getElementById('matchup-modal');
   if (!modal) return;
   modal.classList.remove('open');
+  acModalClose(modal);
   document.body.style.overflow = '';
   document.body.classList.remove('modal-open');
   matchupModalOpen = false;
@@ -863,9 +880,21 @@ function renderAll() {
 // ─── Collapsible Sections ───────────────────────────────────
 
 function initCollapsible() {
-  document.querySelectorAll('.section-title.collapsible').forEach((title) => {
+  document.querySelectorAll('.section-title.collapsible').forEach((title, i) => {
     const body = title.parentElement.querySelector('.section-body');
     if (!body) return;
+    // The round chevron <button> is the keyboard control (Enter/Space click
+    // it, and the click bubbles to the title handler below); keep its
+    // aria-expanded and aria-controls true to the section's state.
+    const chevron = title.querySelector('.chevron');
+    if (!body.id) body.id = `section-body-${i}`;
+    const sync = () => {
+      const collapsed = body.classList.contains('collapsed');
+      if (chevron) chevron.setAttribute('aria-expanded', String(!collapsed));
+      body.inert = collapsed; // no tabbing into a folded-away section
+    };
+    if (chevron) chevron.setAttribute('aria-controls', body.id);
+    sync();
 
     // First section expanded, rest collapsed (set in HTML via .collapsed class)
     if (body.classList.contains('collapsed')) {
@@ -874,7 +903,9 @@ function initCollapsible() {
       body.style.opacity = '0';
       body.style.overflow = 'hidden';
     } else {
-      body.style.maxHeight = body.scrollHeight + 'px';
+      // Open sections size to their content (charts re-render taller on a
+      // period change or on phones), so no fixed max-height here.
+      body.style.maxHeight = 'none';
       body.style.opacity = '1';
       body.style.overflow = 'visible';
     }
@@ -890,15 +921,18 @@ function initCollapsible() {
         body.style.overflow = 'hidden';
         body.style.maxHeight = body.scrollHeight + 'px';
         body.style.opacity = '1';
-        setTimeout(() => { body.style.overflow = 'visible'; }, 300);
+        setTimeout(() => { body.style.overflow = 'visible'; body.style.maxHeight = 'none'; }, 300);
+        sync();
       } else {
         body.style.maxHeight = body.scrollHeight + 'px';
         body.style.overflow = 'hidden';
+        void body.offsetHeight; // commit the px start value so the fold animates
         requestAnimationFrame(() => {
           body.classList.add('collapsed');
           title.classList.add('collapsed');
           body.style.maxHeight = '0';
           body.style.opacity = '0';
+          sync();
         });
       }
     });
