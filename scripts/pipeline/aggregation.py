@@ -9,8 +9,31 @@ from collections import Counter, defaultdict
 from datetime import datetime
 from itertools import combinations
 
-from pipeline.constants import ART_TYPE_BUCKETS
+from pipeline.constants import ART_TYPE_BUCKETS, MIN_PILOTS_PUBLISHED
 from pipeline.deckcode_py import DeckCodecError
+
+
+def week_key(dt):
+    """ISO-8601 week key ``YYYY-Www`` for a datetime/date.
+
+    Uses ``isocalendar()`` so every key names one Monday–Sunday week and the
+    year is the ISO week-numbering year: 2025-12-29 … 2026-01-04 are all
+    ``2026-W01``. The previous ``strftime("%Y-W%W")`` keys split that week
+    into ``2025-W52`` + ``2026-W00`` and were offset by one from ISO numbering
+    in most years. Key format is unchanged (zero-padded, sorts
+    chronologically).
+    """
+    iso = dt.isocalendar()
+    return f"{iso[0]}-W{iso[1]:02d}"
+
+
+def published_pilots(count, minimum=MIN_PILOTS_PUBLISHED):
+    """Distinct-pilot count as published: ``None`` below ``minimum``.
+
+    Small counts are withheld so a commander played by two or three people
+    doesn't read as a community-wide result (and isn't quietly identifying).
+    """
+    return count if count >= minimum else None
 
 
 def _infer_first_index_from_mulligan(players):
@@ -53,8 +76,16 @@ def first_player_index(game):
 
 
 def aggregate_commander_stats(games):
-    """Compute per-commander winrate, matches, popularity."""
-    stats = defaultdict(lambda: {"matches": 0, "wins": 0, "faction": ""})
+    """Compute per-commander winrate, matches, popularity.
+
+    ``pilots`` is the number of distinct player names that played the
+    commander in these games (raw count; see ``published_pilots`` for the
+    privacy floor applied on output). Blank names and the "Unknown" default
+    that cleaning assigns to nameless players are not counted — they could be
+    any number of people.
+    """
+    stats = defaultdict(lambda: {"matches": 0, "wins": 0, "faction": "", "pilots": 0})
+    pilot_names = defaultdict(set)
 
     for game in games:
         for p in game["players"]:
@@ -65,6 +96,12 @@ def aggregate_commander_stats(games):
             stats[cmd]["faction"] = stats[cmd]["faction"] or ""
             if p["winner"]:
                 stats[cmd]["wins"] += 1
+            name = (p.get("name") or "").strip()
+            if name and name.lower() != "unknown":
+                pilot_names[cmd].add(name)
+
+    for cmd, s in stats.items():
+        s["pilots"] = len(pilot_names[cmd])
 
     # Enrich with faction from commanders CSV
     return stats
@@ -378,8 +415,8 @@ def aggregate_trends(games):
             continue
         try:
             dt = datetime.fromisoformat(dt_str)
-            # Week key: YYYY-WNN
-            week = dt.strftime("%Y-W%W")
+            # Week key: ISO YYYY-Www (see week_key)
+            week = week_key(dt)
         except ValueError:
             continue
 
@@ -475,7 +512,7 @@ def aggregate_commander_trends(games):
             continue
         try:
             dt = datetime.fromisoformat(dt_str)
-            week = dt.strftime("%Y-W%W")
+            week = week_key(dt)
         except ValueError:
             continue
 
@@ -514,7 +551,7 @@ def aggregate_commander_winrate_trends(games):
             continue
         try:
             dt = datetime.fromisoformat(dt_str)
-            week = dt.strftime("%Y-W%W")
+            week = week_key(dt)
         except ValueError:
             continue
 

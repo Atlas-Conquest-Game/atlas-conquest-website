@@ -39,3 +39,9 @@ google_token.json
 client_secret*.json
 credentials.json
 token.json
+
+# Local-only video masters: the trailer plays from YouTube (site-config youtubeTrailerId), these stay out of git.
+site/assets/media/video/trailer.mp4
+site/assets/media/video/trailer-720.mp4
+site/assets/media/video/hero.mp4
+site/assets/media/video/hero-960.mp4

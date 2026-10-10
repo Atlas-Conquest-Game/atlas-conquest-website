@@ -76,6 +76,16 @@ CARD_RENAMES = {
 # Minimum turns per player to count as a real game
 MIN_TURNS = 3
 
+# Published in metadata.json. 3.1.0 = weekly trend keys are ISO-8601 weeks
+# (isocalendar) and commander_stats rows carry `pilots`. 3.0.0 data used
+# strftime("%Y-W%W") week keys; scripts/insights/weeks.py reads this value to
+# decide how to parse the keys, so bump it whenever the week scheme changes.
+DATA_VERSION = "3.1.0"
+
+# commander_stats `pilots` (distinct player names) is published as null below
+# this count.
+MIN_PILOTS_PUBLISHED = 5
+
 # Time periods for aggregation: key → days (None = all time)
 PERIODS = {"all": None, "6m": 180, "3m": 90, "1m": 30}
 

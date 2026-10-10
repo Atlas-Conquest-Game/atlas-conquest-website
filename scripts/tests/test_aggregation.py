@@ -15,6 +15,7 @@ from pipeline.aggregation import (
     aggregate_trends,
     aggregate_first_turn,
     aggregate_commander_trends,
+    aggregate_commander_winrate_trends,
     aggregate_duration_winrates,
     aggregate_action_winrates,
     aggregate_turn_winrates,
@@ -1047,3 +1048,93 @@ class TestAdvancedCardMetrics:
         assert fb["deck_winrate"] == 0.5
         # Greenbeard's own average is (9 + 5) / 2 = 7.
         assert fb["played_turns_delta"] == 2
+
+
+# ─── B15: ISO-8601 week keys in the weekly trend series ──────────
+
+def _dated_game(i, dt, c1="Captain Greenbeard", c2="Elber, Jungle Emissary", p1_wins=True):
+    return make_clean_game(
+        game_id=f"wk-{i}", datetime=dt,
+        players_overrides=[{"commander": c1, "winner": p1_wins},
+                           {"commander": c2, "winner": not p1_wins}],
+    )
+
+
+class TestB15_ISOWeekKeys:
+    """Weekly keys are ISO weeks (isocalendar), format unchanged: YYYY-Www."""
+
+    def test_week_key_values(self):
+        from datetime import datetime
+        from pipeline.aggregation import week_key
+        assert week_key(datetime(2026, 1, 1)) == "2026-W01"     # %W gave 2026-W00
+        assert week_key(datetime(2025, 12, 29)) == "2026-W01"   # %W gave 2025-W52
+        assert week_key(datetime(2024, 12, 31)) == "2025-W01"
+        assert week_key(datetime(2026, 9, 28)) == "2026-W40"    # %W gave 2026-W39
+        assert week_key(datetime(2026, 10, 4, 23, 59)) == "2026-W40"
+        assert week_key(datetime(2026, 10, 5)) == "2026-W41"
+        assert week_key(datetime(2026, 12, 31)) == "2026-W53"
+
+    def test_new_year_week_is_not_split(self):
+        days = ["2025-12-29", "2025-12-30", "2025-12-31", "2026-01-01", "2026-01-02",
+                "2026-01-03", "2026-01-04"]
+        games = [_dated_game(i, f"{d}T12:00:00") for i, d in enumerate(days)]
+        weekly, totals = aggregate_trends(games)
+        assert list(totals) == ["2026-W01"] and totals["2026-W01"] == 14
+        ct = aggregate_commander_trends(games)
+        assert ct["dates"] == ["2026-W01"]
+        cwt = aggregate_commander_winrate_trends(games)
+        assert cwt["dates"] == ["2026-W01"]
+        assert cwt["commanders"]["Captain Greenbeard"]["games"] == [7]
+
+    def test_keys_are_zero_padded_and_sorted(self):
+        import re
+        dts = ["2026-02-02T10:00:00", "2026-01-05T10:00:00", "2026-03-30T10:00:00"]
+        games = [_dated_game(i * 10 + k, dt) for i, dt in enumerate(dts) for k in range(4)]
+        for result in (aggregate_commander_trends(games), aggregate_commander_winrate_trends(games)):
+            assert result["dates"] == ["2026-W02", "2026-W06", "2026-W14"]
+            assert all(re.fullmatch(r"\d{4}-W\d{2}", d) for d in result["dates"])
+
+    def test_sunday_and_monday_differ(self):
+        from pipeline.aggregation import week_key
+        from datetime import datetime
+        assert week_key(datetime(2026, 10, 4, 23, 0)) != week_key(datetime(2026, 10, 5, 0, 30))
+
+
+# ─── B16: distinct pilots per commander ──────────────────────────
+
+class TestB16_Pilots:
+    def _games(self, pilots_for_greenbeard):
+        games = []
+        for i, name in enumerate(pilots_for_greenbeard):
+            games.append(make_clean_game(
+                game_id=f"pilot-{i}",
+                players_overrides=[{"name": name, "commander": "Captain Greenbeard", "winner": True},
+                                   {"name": f"opp{i % 2}", "commander": "Elber, Jungle Emissary",
+                                    "winner": False}],
+            ))
+        return games
+
+    def test_counts_distinct_names(self):
+        stats = aggregate_commander_stats(self._games(["a", "b", "a", "c", " c ", "", "Unknown"]))
+        # blank and the cleaning default "Unknown" ignored, whitespace trimmed
+        assert stats["Captain Greenbeard"]["pilots"] == 3
+        assert stats["Captain Greenbeard"]["matches"] == 7     # unchanged counting
+        assert stats["Elber, Jungle Emissary"]["pilots"] == 2
+
+    def test_published_null_below_five(self):
+        from pipeline.aggregation import published_pilots
+        assert published_pilots(4) is None
+        assert published_pilots(5) == 5
+        assert published_pilots(0) is None
+
+    def test_commander_stats_rows_field_addition_only(self):
+        from pipeline.main import commander_stats_rows
+        raw = aggregate_commander_stats(self._games(["a", "b", "c", "d", "e", "e"]))
+        rows = commander_stats_rows(raw, {"Captain Greenbeard": "skaal"})
+        gb = next(r for r in rows if r["name"] == "Captain Greenbeard")
+        assert gb == {"name": "Captain Greenbeard", "faction": "skaal", "matches": 6, "wins": 6,
+                      "winrate": 1.0, "pilots": 5}
+        elber = next(r for r in rows if r["name"] == "Elber, Jungle Emissary")
+        assert elber["pilots"] is None and elber["faction"] == "neutral"
+        assert [r["name"] for r in rows] == sorted([r["name"] for r in rows],
+                                                   key=lambda n: -raw[n]["matches"])

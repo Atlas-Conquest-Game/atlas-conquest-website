@@ -9,6 +9,7 @@ Inputs:
   site/data/cards.json          — full card metadata (cost, faction, type)
   site/data/commanders.json     — commander metadata (faction, art)
   site/assets/icons/text/icons.json — inline stat icons (scripts/import_text_icons.py)
+  site/partials/*.html          — shared nav/footer/head chrome, applied via sync_chrome
 
 Outputs:
   site/articles/index.html              — index page with all published articles
@@ -35,6 +36,7 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import hashlib
 import html
 import json
 import re
@@ -57,6 +59,7 @@ from markdown.treeprocessors import Treeprocessor
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from pipeline.deckcode_py import DeckCodec, DeckCodecError
+import sync_chrome  # shared nav/footer/head chrome (site/partials/)
 
 
 # ─── Paths ─────────────────────────────────────────────────
@@ -79,6 +82,34 @@ TEXT_ICONS_DIR = SITE_DIR / "assets" / "icons" / "text"
 TEXT_ICONS_JSON = TEXT_ICONS_DIR / "icons.json"
 
 SITE_ROOT_URL = "https://atlas-conquest.com"
+
+# Hero art. Authors drop in whatever they have (one hero is a 7000px, 15 MB JPEG),
+# so the build makes small WebP renditions for the index cards and the article
+# header, plus a 1200×630 JPEG crop for link unfurls. Renditions live next to the
+# article's images as hero-<hash>-<width>.webp / hero-<hash>-og.jpg; the hash is
+# of the source file, so an existing rendition is never re-encoded (keeps CI
+# output byte-stable) and a new hero image gets fresh files.
+HERO_WIDTHS = (640, 1280, 1920)
+OG_IMAGE_SIZE = (1200, 630)
+HERO_RENDITION_RE = re.compile(r"^hero-[0-9a-f]{10}-(?:\d+\.webp|og\.jpg)$")
+# Body images (diagrams, maps) arrive as 2,480px PNGs of 1–2 MB. Anything wider
+# than BODY_RENDITION_MIN gets WebP renditions at BODY_WIDTHS (never wider than
+# the source) served through srcset, named img-<hash>-<width>.webp after the
+# source bytes so — like the hero — an existing rendition is never re-encoded.
+# The original stays as the <img> fallback and the lightbox's full-size view.
+BODY_WIDTHS = (800, 1600)
+BODY_RENDITION_MIN = 900
+BODY_RENDITION_RE = re.compile(r"^img-[0-9a-f]{10}-\d+\.webp$")
+# Rendered card art (400×560, transparent WebP) — what the deck builder shows.
+CARD_RENDER_DIR = SITE_DIR / "assets" / "media" / "cards"
+CARD_RENDER_SIZE = (400, 560)
+# Unfurl image for articles without a hero (brand card: key art + wordmark).
+DEFAULT_SOCIAL_IMAGE = "/assets/social/atlas-conquest-og.jpg"
+# hero_align → focal point inside the cropped header art.
+HERO_FOCUS = {"top": "70% 12%", "center": "70% 45%", "bottom": "70% 88%"}
+WORDS_PER_MINUTE = 220
+# Ids the page chrome already uses; a heading anchor never takes one of these.
+RESERVED_IDS = {"main", "ac-nav-menu", "article-toc", "card-preview"}
 
 # Sentinels mirror the GEN:META pattern in scripts/generate_deck_pages.py.
 SENTINEL_META_BEGIN = "<!-- GEN:META:BEGIN"
@@ -268,11 +299,14 @@ class CardIndex:
     def card_img_src(self, name: str, kind: str) -> str:
         """Image URL for an inline card image.
 
-        Cards have an RGBA source — point at the transparent PNG produced by the
-        pipeline's generate_thumbnails(). Commanders don't have an RGBA source
-        today, so they fall back to the framed JPG.
+        Prefers the 400×560 transparent WebP render the deck builder uses
+        (site/assets/media/cards/). Otherwise cards with an RGBA source point at
+        the transparent PNG produced by the pipeline's generate_thumbnails(), and
+        anything else falls back to the framed JPG.
         """
         slug = slugify(name)
+        if (CARD_RENDER_DIR / f"{slug}.webp").exists():
+            return f"/assets/media/cards/{slug}.webp"
         if kind == "card" and self.card_art_source(name):
             return f"/assets/card-art-png/{slug}.png"
         return f"/assets/cards/{slug}.jpg"
@@ -321,10 +355,15 @@ class CardImgInlineProcessor(InlineProcessor):
         el = ET.Element("img")
         el.set("class", "card-art-inline card-art-mention" if mention else "card-art-inline")
         el.set("data-card", name)
-        el.set("src", self._cards.card_img_src(name, kind))
+        src = self._cards.card_img_src(name, kind)
+        el.set("src", src)
         el.set("alt", name)
+        if src.startswith("/assets/media/cards/"):
+            el.set("width", str(CARD_RENDER_SIZE[0]))
+            el.set("height", str(CARD_RENDER_SIZE[1]))
         # loading=lazy keeps multi-card paragraphs from blocking initial paint.
         el.set("loading", "lazy")
+        el.set("decoding", "async")
         return el
 
     def handleMatch(self, m, data):
@@ -529,8 +568,8 @@ class ArticleImageTreeprocessor(Treeprocessor):
         picture.append(img)
 
 
-# [[video:clip.mp4|Description]] — a silent, looping clip (autoplay needs
-# muted + playsinline). The description is the video's accessible label, so it
+# [[video:clip.mp4|Description]] — a silent, looping clip that plays while on
+# screen (article.js; muted + playsinline let it start without a gesture). The description is the video's accessible label, so it
 # should say only what the clip shows; any following lines in the paragraph
 # become a Markdown caption, which can explain more (e.g. card text).
 class VideoBlockProcessor(BlockProcessor):
@@ -555,13 +594,26 @@ class VideoBlockProcessor(BlockProcessor):
             raise BuildError(f"[[video:{name}]] needs a description: [[video:{name}|What the clip shows]]", self._source)
         self._copied.add(name)
 
-        figure = ET.SubElement(parent, "figure", {"class": "article-video"})
-        ET.SubElement(figure, "video", {
+        # Clips don't download until they scroll into view: no autoplay
+        # attribute (it would override preload="none"); article.js plays them
+        # through an IntersectionObserver and drops the controls, which stay
+        # for readers without JS or who ask for reduced motion. A
+        # <name>-poster.webp/.jpg next to the clip fills the frame until then.
+        attrs = {
             "src": f"/assets/articles/{self._slug}/{name}",
-            "autoplay": "autoplay", "loop": "loop", "muted": "muted",
-            "playsinline": "playsinline", "preload": "auto",
+            "data-autoplay": "", "loop": "loop", "muted": "muted",
+            "playsinline": "playsinline", "preload": "none", "controls": "controls",
             "aria-label": label,
-        })
+        }
+        stem = name[:-4]
+        for ext in ("webp", "jpg"):
+            poster = f"{stem}-poster.{ext}"
+            if (ARTICLES_IMG_SRC / self._slug / poster).exists():
+                self._copied.add(poster)
+                attrs["poster"] = f"/assets/articles/{self._slug}/{poster}"
+                break
+        figure = ET.SubElement(parent, "figure", {"class": "article-video"})
+        ET.SubElement(figure, "video", attrs)
         caption = block[m.end():].strip()
         if caption:
             ET.SubElement(figure, "figcaption").text = caption
@@ -658,20 +710,23 @@ def render_deck_embed(deck: dict, code: str, cards: CardIndex) -> str:
     parts = []
     parts.append('<div class="article-deck" data-commander="')
     parts.append(html.escape(commander, quote=True))
-    parts.append('">')
+    # The commander's faction colour rings the portrait token (articles.css).
+    parts.append(f'" style="--deck-faction:{FACTION_COLORS.get(cmd_faction, "#A89078")}">')
     # URL-encode the code so `:` and `=` in base64 survive query parsing on the Decks page.
     open_url = f"/decks/{cmd_slug}/?code={urllib.parse.quote(code, safe='')}"
     parts.append(f'<a class="article-deck-header" href="{open_url}">')
     parts.append(
-        f'<img class="article-deck-portrait" src="/{html.escape(cmd_art.lstrip("/"), quote=True)}" alt="" loading="lazy">'
+        f'<img class="article-deck-portrait" src="/{html.escape(cmd_art.lstrip("/"), quote=True)}" alt="" width="56" height="56" loading="lazy" decoding="async">'
     )
     parts.append('<div class="article-deck-meta">')
     parts.append(f'<div class="article-deck-title">{html.escape(deck_name)}</div>')
+    # Faction hues stay off small text (Archaeon blue is 3.6:1 on navy): the
+    # name reads in the text colour and the faction travels as a coloured dot.
     parts.append(
         f'<div class="article-deck-commander">'
-        f'<span style="color:{FACTION_COLORS.get(cmd_faction, "#A89078")}">'
-        f'{html.escape(commander)}</span> · '
-        f'{cmd_faction.title()}</div>'
+        f'<span class="article-deck-cmdname">{html.escape(commander)}</span> · '
+        f'<span class="article-deck-dot" style="--f:{FACTION_COLORS.get(cmd_faction, "#A89078")}">'
+        f'{cmd_faction.title()}</span></div>'
     )
     parts.append(
         f'<div class="article-deck-stats">{total} cards · {unique} unique</div>'
@@ -690,7 +745,7 @@ def render_deck_embed(deck: dict, code: str, cards: CardIndex) -> str:
             f'<li class="article-deck-row" data-card="{html.escape(name, quote=True)}">'
             f'<span class="article-deck-cost">{cost_str}</span>'
             f'<span class="article-deck-name">{html.escape(name)}</span>'
-            f'<span class="article-deck-faction" style="color:{color}">'
+            f'<span class="article-deck-faction article-deck-dot" style="--f:{color}">'
             f'{faction.upper()}</span>'
             f'<span class="article-deck-count">×{c["count"]}</span>'
             f'</li>'
@@ -721,6 +776,15 @@ class Article:
     hero_align: str = "center"  # "top" | "center" | "bottom" — object-position keyword
     referenced_images: set[str] = field(default_factory=set)
     body_html: str = ""
+    # Filled by build_hero_renditions(): width → root-absolute URL of a WebP
+    # rendition, the source's pixel size, and the 1200×630 unfurl crop.
+    hero_renditions: dict[int, str] = field(default_factory=dict)
+    hero_size: tuple[int, int] | None = None
+    og_image: str | None = None
+
+    @property
+    def reading_minutes(self) -> int:
+        return reading_minutes(self.body_md)
 
     @property
     def out_dir(self) -> Path:
@@ -856,92 +920,445 @@ def copy_article_images(article: Article) -> None:
 
 
 def _format_date(d: dt.date) -> str:
-    return d.strftime("%B %-d, %Y") if sys.platform != "win32" else d.strftime("%B %#d, %Y")
+    """"Oct 5, 2026" — the site-wide date style (formatSiteDate() in shared.js).
+    Month names are spelled out here so the output never depends on the locale."""
+    return f"{_MONTHS[d.month - 1]} {d.day}, {d.year}"
+
+
+_MONTHS = ("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+
+
+# ─── Reading time ──────────────────────────────────────────
+
+_SHORTCODE_RE = re.compile(r"\[\[(card|card-img|deck|video):([^\]|]*)(?:\|[^\]]*)?\]\]")
+_MD_IMAGE_RE = re.compile(r"!\[[^\]]*\]\([^)]*\)(?:\{[^}]*\})?")
+
+
+# Seconds a reader spends on things that aren't prose.
+SECONDS_PER = {"figure": 12, "video": 12, "deck": 10, "card-img": 4}
+
+
+def reading_minutes(body_md: str) -> int:
+    """Whole minutes to read an article: prose at WORDS_PER_MINUTE plus a few
+    seconds per diagram, clip, deck list and card image (SECONDS_PER). Card links
+    count as their names; deck codes, icon tokens and code blocks don't count."""
+    text = re.sub(r"```.*?```", " ", body_md, flags=re.DOTALL)
+    seconds = len(_MD_IMAGE_RE.findall(text)) * SECONDS_PER["figure"]
+    seconds += sum(SECONDS_PER.get(m.group(1), 0) for m in _SHORTCODE_RE.finditer(text))
+    text = _SHORTCODE_RE.sub(lambda m: m.group(2) if m.group(1) == "card" else " ", text)
+    text = _MD_IMAGE_RE.sub(" ", text)
+    text = re.sub(r"\{[a-z0-9_]+\}", " ", text)
+    words = len(re.findall(r"[A-Za-z0-9][A-Za-z0-9'’-]*", text))
+    return max(1, round(words / WORDS_PER_MINUTE + seconds / 60))
+
+
+# ─── Hero renditions ───────────────────────────────────────
+
+
+def hero_source_path(article: Article) -> Path | None:
+    """The local file behind an article's hero_image, or None for remote URLs."""
+    img = article.hero_image
+    if not img or img.startswith(("http://", "https://")):
+        return None
+    if img.startswith("/"):
+        return SITE_DIR / img.lstrip("/")
+    return ARTICLES_IMG_SRC / article.slug / img
+
+
+def build_hero_renditions(article: Article) -> None:
+    """Write WebP renditions + an unfurl crop of the hero, and record their URLs.
+
+    Never upscales the WebP renditions, never re-encodes a file that already
+    exists, and removes renditions left over from a previous hero image.
+    Silently does nothing when there is no local hero or Pillow is missing (the
+    pages then fall back to the original image)."""
+    src = hero_source_path(article)
+    if src is None or not src.exists():
+        return
+    try:
+        from PIL import Image
+    except ImportError:  # pragma: no cover — Pillow is in requirements.txt
+        return
+
+    digest = hashlib.sha1(src.read_bytes()).hexdigest()[:10]
+    prefix = f"hero-{digest}-"
+    out_dir = article.asset_dir
+    out_dir.mkdir(parents=True, exist_ok=True)
+    for old in out_dir.iterdir():
+        if HERO_RENDITION_RE.match(old.name) and not old.name.startswith(prefix):
+            old.unlink()
+    url_base = f"/assets/articles/{article.slug}/"
+
+    try:
+        with Image.open(src) as im:
+            width, height = im.size
+            widths = [w for w in HERO_WIDTHS if w <= width] or [width]
+            if width < HERO_WIDTHS[-1] and width > widths[-1] * 1.15:
+                widths.append(width)  # e.g. a 1858px hero also gets a full-size rendition
+            og_path = out_dir / f"{prefix}og.jpg"
+            todo = [w for w in widths if not (out_dir / f"{prefix}{w}.webp").exists()]
+            if todo or not og_path.exists():
+                # JPEG can decode at a reduced scale — a big speed-up on huge heroes.
+                need_w = max(max(widths), OG_IMAGE_SIZE[0])
+                im.draft("RGB", (need_w, max(OG_IMAGE_SIZE[1], round(height * need_w / width))))
+                rgb = _flatten(im, Image)
+                for w in todo:
+                    h = max(1, round(height * w / width))
+                    rgb.resize((w, h), Image.LANCZOS).save(
+                        out_dir / f"{prefix}{w}.webp", "WEBP", quality=80, method=6)
+                if not og_path.exists():
+                    _og_crop(rgb, article.hero_align, Image).save(
+                        og_path, "JPEG", quality=84, optimize=True, progressive=True)
+    except OSError as exc:
+        raise BuildError(f"Couldn't render hero image {src.name}: {exc}", article.source) from exc
+
+    article.hero_renditions = {w: f"{url_base}{prefix}{w}.webp" for w in widths}
+    article.hero_size = (width, height)
+    article.og_image = f"{url_base}{prefix}og.jpg"
+
+
+def _flatten(im, Image):
+    """RGB copy of ``im``; transparency is laid over the site's navy."""
+    if im.mode in ("RGBA", "LA") or (im.mode == "P" and "transparency" in im.info):
+        rgba = im.convert("RGBA")
+        bg = Image.new("RGB", rgba.size, (11, 15, 23))
+        bg.paste(rgba, mask=rgba.getchannel("A"))
+        return bg
+    return im.convert("RGB")
+
+
+def _og_crop(rgb, align: str, Image):
+    """Crop to the unfurl aspect ratio (vertical band chosen by hero_align) and resize."""
+    tw, th = OG_IMAGE_SIZE
+    w, h = rgb.size
+    if w / h > tw / th:
+        cw = round(h * tw / th)
+        box = ((w - cw) // 2, 0, (w - cw) // 2 + cw, h)
+    else:
+        ch = round(w * th / tw)
+        top = {"top": 0, "bottom": h - ch}.get(align, (h - ch) // 2)
+        box = (0, top, w, top + ch)
+    return rgb.crop(box).resize(OG_IMAGE_SIZE, Image.LANCZOS)
+
+
+# ─── Body images ───────────────────────────────────────────
+
+_BODY_PICTURE_RE = re.compile(
+    r'<picture><source srcset="(?P<sib>[^"]*)" type="image/webp">(?P<img1><img [^>]*>)</picture>'
+    r'|(?P<img2><img [^>]*>)'
+)
+_ATTR_RE = re.compile(r'([\w:-]+)="([^"]*)"')
+BODY_SIZES = {
+    "wide": "(max-width: 1234px) 94vw, 1160px",
+    "pair": "(max-width: 760px) 94vw, 580px",
+    "": "(max-width: 760px) 92vw, 660px",
+}
+
+
+def _img_tag(attrs: dict[str, str]) -> str:
+    return "<img " + " ".join(f'{k}="{html.escape(v, quote=True)}"' for k, v in attrs.items()) + ">"
+
+
+def _body_renditions(src: Path, out_dir: Path, url_base: str, keep: set[str]):
+    """(width, height, [(url, w), …]) for one body image; renditions are written
+    once and never re-encoded. Returns None when Pillow can't read the file."""
+    try:
+        from PIL import Image
+    except ImportError:  # pragma: no cover — Pillow is in requirements.txt
+        return None
+    try:
+        with Image.open(src) as im:
+            width, height = im.size
+            if width <= BODY_RENDITION_MIN or src.suffix.lower() not in (".png", ".jpg", ".jpeg"):
+                return width, height, []
+            digest = hashlib.sha1(src.read_bytes()).hexdigest()[:10]
+            widths = [w for w in BODY_WIDTHS if w < width]
+            if width < BODY_WIDTHS[-1] * 1.15:
+                widths = [w for w in widths if w < width / 1.15] + [width]
+            out = []
+            for w in widths:
+                name = f"img-{digest}-{w}.webp"
+                keep.add(name)
+                target = out_dir / name
+                if not target.exists():
+                    out_dir.mkdir(parents=True, exist_ok=True)
+                    frame = im if im.mode in ("RGB", "RGBA") else im.convert("RGBA")
+                    h = max(1, round(height * w / width))
+                    frame.resize((w, h), Image.LANCZOS).save(target, "WEBP", quality=86, method=6)
+                out.append((f"{url_base}{name}", w))
+            return width, height, out
+    except OSError:
+        return None
+
+
+def optimize_body_images(article: Article) -> None:
+    """Give every body <img> lazy loading, async decoding and intrinsic size, and
+    serve the article's own large images through WebP renditions (srcset)."""
+    url_base = f"/assets/articles/{article.slug}/"
+    src_dir = ARTICLES_IMG_SRC / article.slug
+    out_dir = article.asset_dir
+    keep: set[str] = set()
+
+    def _sub(m: re.Match[str]) -> str:
+        tag = m.group("img1") or m.group("img2")
+        sibling = m.group("sib")
+        attrs = dict(_ATTR_RE.findall(tag[5:-1]))
+        attrs = {k: html.unescape(v) for k, v in attrs.items()}
+        attrs.setdefault("loading", "lazy")
+        attrs.setdefault("decoding", "async")
+        src = attrs.get("src", "")
+        renditions = []
+        if src.startswith(url_base) and "width" not in attrs:
+            info = _body_renditions(src_dir / src[len(url_base):], out_dir, url_base, keep)
+            if info:
+                w, h, renditions = info
+                attrs["width"], attrs["height"] = str(w), str(h)
+        if renditions:
+            attrs["data-full"] = src
+            classes = attrs.get("class", "").split()
+            sizes = BODY_SIZES["wide" if "wide" in classes else "pair" if "pair" in classes else ""]
+            srcset = ", ".join(f"{u} {w}w" for u, w in renditions)
+            return (f'<picture><source type="image/webp" srcset="{html.escape(srcset, quote=True)}" '
+                    f'sizes="{sizes}">{_img_tag(attrs)}</picture>')
+        if sibling is not None:
+            return f'<picture><source srcset="{sibling}" type="image/webp">{_img_tag(attrs)}</picture>'
+        return _img_tag(attrs)
+
+    article.body_html = _BODY_PICTURE_RE.sub(_sub, article.body_html)
+    if out_dir.exists():
+        for old in out_dir.iterdir():
+            if BODY_RENDITION_RE.match(old.name) and old.name not in keep:
+                old.unlink()
+
+
+def _hero_img(article: Article, cls: str, sizes: str, *, eager: bool) -> str:
+    """<img> for the hero: responsive renditions when built, else the original."""
+    loading = 'fetchpriority="high"' if eager else 'loading="lazy"'
+    if article.hero_renditions:
+        widths = sorted(article.hero_renditions)
+        srcset = ", ".join(f"{article.hero_renditions[w]} {w}w" for w in widths)
+        default = article.hero_renditions[widths[0] if not eager else widths[min(1, len(widths) - 1)]]
+        w0, h0 = article.hero_size or (16, 9)
+        dims = f'width="{widths[0]}" height="{max(1, round(h0 * widths[0] / w0))}" '
+        return (
+            f'<img class="{cls}" src="{html.escape(default, quote=True)}" '
+            f'srcset="{html.escape(srcset, quote=True)}" sizes="{sizes}" {dims}'
+            f'alt="" {loading} decoding="async">'
+        )
+    if article.hero_image_url:
+        return (
+            f'<img class="{cls}" src="{html.escape(article.hero_image_url, quote=True)}" '
+            f'alt="" {loading} decoding="async">'
+        )
+    return ""
+
+
+# ─── Headings → anchors + contents ─────────────────────────
+
+_H2_RE = re.compile(r"<h2>(.*?)</h2>", re.DOTALL)
+
+
+def add_heading_anchors(body_html: str) -> tuple[str, list[tuple[str, str]]]:
+    """Give every <h2> a stable id and return (html, [(id, text), …]) for the
+    contents menu. Done on the page copy, not article.body_html."""
+    seen: dict[str, int] = {}
+    toc: list[tuple[str, str]] = []
+
+    def _sub(m: re.Match[str]) -> str:
+        inner = m.group(1)
+        text = html.unescape(re.sub(r"<[^>]+>", "", inner)).strip()
+        base = re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-") or "section"
+        if base in RESERVED_IDS:
+            base += "-section"
+        n = seen.get(base, 0)
+        seen[base] = n + 1
+        hid = base if n == 0 else f"{base}-{n + 1}"
+        toc.append((hid, text))
+        return f'<h2 id="{hid}">{inner}</h2>'
+
+    return _H2_RE.sub(_sub, body_html), toc
+
+
+# ─── Page blocks ───────────────────────────────────────────
+
+
+def _byline(article: Article) -> str:
+    """Author ◆ date ◆ reading time. Each later item carries its own separator so
+    a wrapped byline never ends on a dangling diamond."""
+    sep = '<span class="article-meta-sep" aria-hidden="true">◆</span>'
+    return (
+        f'<span class="article-author">By {html.escape(article.author)}</span>'
+        f'<span class="article-meta-item">{sep}'
+        f'<time datetime="{article.date.isoformat()}">{_format_date(article.date)}</time></span>'
+        f'<span class="article-meta-item article-readtime">{sep}{article.reading_minutes} min read</span>'
+    )
+
+
+def render_article_card(article: Article, *, featured: bool = False, eager: bool = False,
+                        heading: str = "h2") -> str:
+    """One card for the index grid or the "keep reading" row."""
+    sizes = ("(max-width: 700px) calc(100vw - 2rem), (max-width: 1100px) 56vw, 680px"
+             if featured else
+             "(max-width: 700px) calc(100vw - 2rem), (max-width: 1100px) 46vw, 380px")
+    hero = _hero_img(article, "article-card-hero", sizes, eager=eager)
+    if not hero:
+        hero = '<div class="article-card-hero article-card-hero-placeholder"></div>'
+    tags_html = "".join(f'<span class="article-tag">{html.escape(t)}</span>' for t in article.tags)
+    data_tags = html.escape(",".join(t.lower() for t in article.tags), quote=True)
+    cls = "article-card article-card--featured" if featured else "article-card"
+    return (
+        f'<a class="{cls}" href="/articles/{article.slug}/" data-tags="{data_tags}">\n'
+        f'  <div class="article-card-media">{hero}</div>\n'
+        f'  <div class="article-card-body">\n'
+        f'    <div class="article-card-tags">{tags_html}</div>\n'
+        f'    <{heading} class="article-card-title">{html.escape(article.title)}</{heading}>\n'
+        f'    <p class="article-card-summary">{html.escape(article.summary)}</p>\n'
+        f'    <div class="article-card-byline">{_byline(article)}</div>\n'
+        f'    <span class="article-card-cta" aria-hidden="true">Read article'
+        f'<svg class="ac-icon" aria-hidden="true"><use href="#ac-i-arrow"/></svg></span>\n'
+        f'  </div>\n'
+        f'</a>'
+    )
 
 
 def build_meta_block(article: Article) -> str:
     page_url = f"{SITE_ROOT_URL}/articles/{article.slug}/"
-    og_image = (
-        article.hero_image_url
-        if article.hero_image_url and article.hero_image_url.startswith("/")
-        else article.hero_image_url
-    )
-    if og_image and og_image.startswith("/"):
-        og_image_abs = f"{SITE_ROOT_URL}{og_image}"
-    elif og_image:
-        og_image_abs = og_image
+    og_size: tuple[int, int] | None = None
+    if article.og_image:
+        og_image_abs, og_size = f"{SITE_ROOT_URL}{article.og_image}", OG_IMAGE_SIZE
+    elif article.hero_image_url and article.hero_image_url.startswith("/"):
+        og_image_abs = f"{SITE_ROOT_URL}{article.hero_image_url}"
+    elif article.hero_image_url:
+        og_image_abs = article.hero_image_url
     else:
-        og_image_abs = f"{SITE_ROOT_URL}/assets/logo/atlas-conquest-icon.png"
+        og_image_abs, og_size = f"{SITE_ROOT_URL}{DEFAULT_SOCIAL_IMAGE}", OG_IMAGE_SIZE
 
     t = html.escape(article.title, quote=True)
     d = html.escape(article.summary, quote=True)
     u = html.escape(page_url, quote=True)
     og = html.escape(og_image_abs, quote=True)
+    alt = html.escape(f"Header art for “{article.title}”", quote=True)
     author = html.escape(article.author, quote=True)
     iso = article.date.isoformat()
+    size_tags = (
+        f'  <meta property="og:image:width" content="{og_size[0]}">\n'
+        f'  <meta property="og:image:height" content="{og_size[1]}">\n'
+        if og_size else ""
+    )
+    tag_tags = "".join(
+        f'  <meta property="article:tag" content="{html.escape(tag, quote=True)}">\n'
+        for tag in article.tags
+    )
 
     return (
         f'{SENTINEL_META_BEGIN} — generated by scripts/build_articles.py; do not edit. -->\n'
         f'  <title>{t} — Atlas Conquest</title>\n'
+        f'  <meta name="description" content="{d}">\n'
+        f'  <link rel="canonical" href="{u}">\n'
         f'  <meta property="og:type" content="article">\n'
         f'  <meta property="og:site_name" content="Atlas Conquest">\n'
         f'  <meta property="og:title" content="{t}">\n'
         f'  <meta property="og:description" content="{d}">\n'
         f'  <meta property="og:image" content="{og}">\n'
+        f'{size_tags}'
+        f'  <meta property="og:image:alt" content="{alt}">\n'
         f'  <meta property="og:url" content="{u}">\n'
         f'  <meta property="article:published_time" content="{iso}">\n'
         f'  <meta property="article:author" content="{author}">\n'
+        f'{tag_tags}'
         f'  <meta name="twitter:card" content="summary_large_image">\n'
+        f'  <meta name="twitter:site" content="@Atlas_Conquest">\n'
         f'  <meta name="twitter:title" content="{t}">\n'
         f'  <meta name="twitter:description" content="{d}">\n'
         f'  <meta name="twitter:image" content="{og}">\n'
+        f'  <meta name="twitter:image:alt" content="{alt}">\n'
         f'  <link rel="icon" type="image/png" href="/assets/logo/atlas-conquest-icon.png">\n'
         f'  {SENTINEL_META_END}'
     )
 
 
-def build_article_body_block(article: Article) -> str:
+def build_article_body_block(article: Article, more: Iterable[Article] = ()) -> str:
     tags_html = "".join(
-        f'<a class="article-tag" href="/articles/?tag={html.escape(t, quote=True)}">'
+        f'<a class="article-tag" href="/articles/?tag={urllib.parse.quote(t.lower())}">'
         f'{html.escape(t)}</a>'
         for t in article.tags
     )
-    hero_html = ""
-    if article.hero_image_url:
-        # object-position keyword (top|center|bottom) chooses the visible band
-        # when object-fit:cover crops a portrait/oblong hero. Validated in
-        # load_article so this is safe to inline.
-        hero_html = (
-            f'<img class="article-hero" src="{html.escape(article.hero_image_url, quote=True)}" '
-            f'alt="" loading="eager" '
-            f'style="object-position: center {article.hero_align};">'
+    # hero_align (validated in load_article) picks the visible band of the art.
+    focus = HERO_FOCUS.get(article.hero_align, HERO_FOCUS["center"])
+    hero_html = _hero_img(article, "article-hero ac-page-hero__art", "100vw", eager=True)
+    body_html, toc = add_heading_anchors(article.body_html)
+
+    toc_html = ""
+    if len(toc) >= 2:
+        items = "".join(
+            f'<li><a href="#{hid}">{html.escape(text)}</a></li>' for hid, text in toc
         )
+        toc_html = (
+            f'      <details class="article-toc" data-article-toc>\n'
+            f'        <summary class="article-toc-toggle">Contents'
+            f'<span class="article-toc-count">{len(toc)}</span></summary>\n'
+            f'        <nav class="article-toc-panel" id="article-toc" aria-label="Contents">'
+            f'<ol>{items}</ol></nav>\n'
+            f'      </details>\n'
+        )
+
+    more = list(more)
+    more_html = ""
+    if more:
+        cards = "\n".join(render_article_card(a, heading="h3") for a in more)
+        more_html = (
+            f'<section class="article-more" aria-labelledby="article-more-title">\n'
+            f'  <div class="container">\n'
+            f'    <div class="article-more-head">\n'
+            f'      <div>\n'
+            f'        <p class="ac-eyebrow">Keep reading</p>\n'
+            f'        <h2 class="ac-title ac-title--sm" id="article-more-title">More from the Atlas</h2>\n'
+            f'      </div>\n'
+            f'      <a class="ac-btn ac-btn--ghost ac-btn--sm" href="/articles/">All articles'
+            f'<svg class="ac-icon" aria-hidden="true"><use href="#ac-i-arrow"/></svg></a>\n'
+            f'    </div>\n'
+            f'    <div class="article-card-grid article-card-grid--more">\n{cards}\n    </div>\n'
+            f'  </div>\n'
+            f'</section>\n'
+        )
+
     return (
         f'{SENTINEL_ARTICLE_BEGIN} — generated by scripts/build_articles.py; do not edit. -->\n'
-        f'<header class="article-header">{hero_html}\n'
-        f'  <div class="container article-header-inner">\n'
+        f'<header class="article-header ac-page-hero" style="--ac-hero-pos: {focus}">\n'
+        f'  {hero_html}\n'
+        f'  <div class="ac-page-hero__inner article-header-inner">\n'
+        f'    <p class="ac-eyebrow article-eyebrow"><a href="/articles/">Articles</a></p>\n'
+        f'    <h1 class="article-title ac-title">{html.escape(article.title)}</h1>\n'
+        f'    <span class="ac-ornament ac-ornament--start" aria-hidden="true"></span>\n'
+        f'    <p class="article-summary ac-page-hero__lede">{html.escape(article.summary)}</p>\n'
+        f'    <div class="article-byline ac-page-hero__meta">{_byline(article)}</div>\n'
         f'    <div class="article-tags">{tags_html}</div>\n'
-        f'    <h1 class="article-title">{html.escape(article.title)}</h1>\n'
-        f'    <div class="article-byline">By {html.escape(article.author)} · '
-        f'<time datetime="{article.date.isoformat()}">{_format_date(article.date)}</time></div>\n'
-        f'    <p class="article-summary">{html.escape(article.summary)}</p>\n'
         f'  </div>\n'
         f'</header>\n'
-        f'<div class="container article-prose">\n'
-        f'{article.body_html}\n'
+        f'<div class="article-readbar" data-readbar>\n'
+        f'  <div class="container article-readbar-inner">\n'
+        f'    <span class="article-readbar-ring" aria-hidden="true"></span>\n'
+        f'    <span class="article-readbar-time">{article.reading_minutes} min read</span>\n'
+        f'    <span class="article-readbar-section" data-readbar-section aria-hidden="true"></span>\n'
+        f'{toc_html}'
+        f'  </div>\n'
         f'</div>\n'
+        f'<div class="container article-prose" data-article-body>\n'
+        f'{body_html}\n'
+        f'</div>\n'
+        f'{more_html}'
         f'{SENTINEL_ARTICLE_END}'
     )
 
 
-def render_article_page(article: Article, template: str) -> str:
+def render_article_page(article: Article, template: str, more: Iterable[Article] = ()) -> str:
     if not META_RE.search(template) or not ARTICLE_RE.search(template):
         raise BuildError(
             "site/article.html is missing GEN:META or GEN:ARTICLE sentinels",
             ARTICLE_TEMPLATE,
         )
-    out = META_RE.sub(build_meta_block(article), template, count=1)
-    out = ARTICLE_RE.sub(build_article_body_block(article), out, count=1)
+    out = META_RE.sub(lambda _m: build_meta_block(article), template, count=1)
+    out = ARTICLE_RE.sub(lambda _m: build_article_body_block(article, more), out, count=1)
     return out
 
 
@@ -949,30 +1366,38 @@ def render_index_block(articles: list[Article]) -> str:
     if not articles:
         body = '<p class="articles-empty">No articles published yet — check back soon.</p>'
     else:
-        cards_html = []
+        # Tag filter (article.js wires it up; hidden without JS). Counts are real.
+        counts: dict[str, tuple[str, int]] = {}
         for a in articles:
-            hero = (
-                f'<img class="article-card-hero" src="{html.escape(a.hero_image_url, quote=True)}" '
-                f'alt="" loading="lazy">'
-                if a.hero_image_url
-                else '<div class="article-card-hero article-card-hero-placeholder"></div>'
+            for t in a.tags:
+                label, n = counts.get(t.lower(), (t, 0))
+                counts[t.lower()] = (label, n + 1)
+        chips = [
+            f'<button type="button" class="article-filter-chip" data-tag="" aria-pressed="true">'
+            f'All<span class="article-filter-count">{len(articles)}</span></button>'
+        ]
+        for key, (label, n) in sorted(counts.items(), key=lambda kv: (-kv[1][1], kv[0])):
+            chips.append(
+                f'<button type="button" class="article-filter-chip" data-tag="{html.escape(key, quote=True)}" '
+                f'aria-pressed="false">{html.escape(label)}'
+                f'<span class="article-filter-count">{n}</span></button>'
             )
-            tags_html = "".join(
-                f'<span class="article-tag">{html.escape(t)}</span>' for t in a.tags
-            )
-            cards_html.append(
-                f'<a class="article-card" href="/articles/{a.slug}/">\n'
-                f'  {hero}\n'
-                f'  <div class="article-card-body">\n'
-                f'    <div class="article-card-tags">{tags_html}</div>\n'
-                f'    <h2 class="article-card-title">{html.escape(a.title)}</h2>\n'
-                f'    <p class="article-card-summary">{html.escape(a.summary)}</p>\n'
-                f'    <div class="article-card-byline">By {html.escape(a.author)} · '
-                f'<time datetime="{a.date.isoformat()}">{_format_date(a.date)}</time></div>\n'
-                f'  </div>\n'
-                f'</a>'
-            )
-        body = '<div class="article-card-grid">\n' + "\n".join(cards_html) + "\n</div>"
+        filter_html = (
+            '<div class="article-filter" role="group" aria-label="Filter articles by tag" data-article-filter>\n'
+            '  <span class="article-filter-label" aria-hidden="true">Filter</span>\n  '
+            + "\n  ".join(chips)
+            + '\n</div>\n<p class="ac-sr" role="status" data-article-filter-status></p>'
+        )
+        cards_html = [
+            render_article_card(a, featured=(i == 0), eager=(i == 0))
+            for i, a in enumerate(articles)
+        ]
+        body = (
+            filter_html
+            + '\n<div class="article-card-grid" data-article-grid>\n'
+            + "\n".join(cards_html)
+            + "\n</div>"
+        )
     return f"{SENTINEL_INDEX_BEGIN} — generated by scripts/build_articles.py; do not edit. -->\n{body}\n{SENTINEL_INDEX_END}"
 
 
@@ -982,7 +1407,7 @@ def render_index_page(articles: list[Article], template: str) -> str:
             "site/articles.html is missing GEN:ARTICLES sentinels",
             INDEX_TEMPLATE,
         )
-    return INDEX_RE.sub(render_index_block(articles), template, count=1)
+    return INDEX_RE.sub(lambda _m: render_index_block(articles), template, count=1)
 
 
 # ─── Index JSON ────────────────────────────────────────────
@@ -1035,18 +1460,29 @@ def build(*, include_drafts: bool = False, verbose: bool = False) -> int:
     article_template = ARTICLE_TEMPLATE.read_text(encoding="utf-8")
     index_template = INDEX_TEMPLATE.read_text(encoding="utf-8")
 
+    # Pass 1: bodies, images and hero renditions for every article — each page's
+    # "keep reading" row shows the other articles' cards, so they must exist first.
     for a in articles:
         try:
             render_article_body(a, codec, cards)
             copy_article_images(a)
+            optimize_body_images(a)
+            build_hero_renditions(a)
         except BuildError as exc:
             print(f"ERROR: {exc}", file=sys.stderr)
             return 1
+
+    # Pass 2: pages.
+    for a in articles:
+        more = [other for other in articles if other is not a][:3]
         try:
-            page_html = render_article_page(a, article_template)
+            page_html = render_article_page(a, article_template, more)
         except BuildError as exc:
             print(f"ERROR: {exc}", file=sys.stderr)
             return 1
+        # Re-render the AC:* chrome regions for this page's location so the output
+        # always matches site/partials/, whether or not the template was re-synced.
+        page_html = sync_chrome.apply_chrome(page_html, f"articles/{a.slug}/index.html")
         a.out_dir.mkdir(parents=True, exist_ok=True)
         (a.out_dir / "index.html").write_text(page_html, encoding="utf-8")
         if verbose:
@@ -1060,6 +1496,7 @@ def build(*, include_drafts: bool = False, verbose: bool = False) -> int:
     except BuildError as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 1
+    index_html = sync_chrome.apply_chrome(index_html, "articles/index.html")
     ARTICLES_OUT.mkdir(parents=True, exist_ok=True)
     (ARTICLES_OUT / "index.html").write_text(index_html, encoding="utf-8")
     write_index_json(articles)

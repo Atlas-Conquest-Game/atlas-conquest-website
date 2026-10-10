@@ -3,11 +3,12 @@
 from collections import defaultdict
 from datetime import datetime, timezone
 
-from pipeline.constants import PERIODS, MAPS, DATA_DIR
+from pipeline.constants import PERIODS, MAPS, DATA_DIR, DATA_VERSION
 from pipeline.deckcode_py import DeckCodec, DeckCodecError
 from pipeline.cleaning import clean_game
 from pipeline.filtering import filter_games_by_period, filter_games_by_map
 from pipeline.aggregation import (
+    published_pilots,
     aggregate_commander_stats,
     aggregate_matchups,
     aggregate_matchup_details,
@@ -36,6 +37,26 @@ from pipeline.io_helpers import (
     load_cards_csv, load_commanders_csv, load_tokens_csv,
     build_mentions_index,
 )
+
+
+def commander_stats_rows(cmd_stats_raw, faction_lookup):
+    """commander_stats.json rows for one period × map, most-played first.
+
+    ``pilots`` (distinct player names) is an additive field: null when fewer
+    than MIN_PILOTS_PUBLISHED people played the commander in scope.
+    """
+    rows = []
+    for name, data in sorted(cmd_stats_raw.items(), key=lambda x: x[1]["matches"], reverse=True):
+        winrate = data["wins"] / data["matches"] if data["matches"] > 0 else 0
+        rows.append({
+            "name": name,
+            "faction": faction_lookup.get(name, "neutral"),
+            "matches": data["matches"],
+            "wins": data["wins"],
+            "winrate": round(winrate, 4),
+            "pilots": published_pilots(data.get("pilots", 0)),
+        })
+    return rows
 
 
 def build_and_write_all(games, cards_csv, commanders_csv, tokens_csv=()):
@@ -129,22 +150,12 @@ def build_and_write_all(games, cards_csv, commanders_csv, tokens_csv=()):
                 "last_updated": datetime.now(timezone.utc).isoformat(),
                 "total_matches": n,
                 "total_players": len(unique_players),
-                "data_version": "3.0.0",
+                "data_version": DATA_VERSION,
             }
 
             # ── commander_stats ──
-            cmd_stats_raw = aggregate_commander_stats(map_games)
-            cmd_stats = []
-            for name, data in sorted(cmd_stats_raw.items(), key=lambda x: x[1]["matches"], reverse=True):
-                winrate = data["wins"] / data["matches"] if data["matches"] > 0 else 0
-                cmd_stats.append({
-                    "name": name,
-                    "faction": faction_lookup.get(name, "neutral"),
-                    "matches": data["matches"],
-                    "wins": data["wins"],
-                    "winrate": round(winrate, 4),
-                })
-            out["commander_stats"][period_key][map_name] = cmd_stats
+            out["commander_stats"][period_key][map_name] = commander_stats_rows(
+                aggregate_commander_stats(map_games), faction_lookup)
 
             # ── matchups ──
             matchup_raw = aggregate_matchups(map_games)

@@ -34,6 +34,18 @@ jobs:
           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
         run: python scripts/fetch_data.py
 
+      # Derived analytics v2 layer (site/data/insights/) built from the JSON
+      # fetch_data.py just published. Writes only under site/data/insights/,
+      # so the commit step below picks it up with the rest of site/data/.
+      # The card changelog diffs against the state committed in
+      # site/data/insights/_state/, so the shallow checkout is enough.
+      # Non-blocking: if it fails it writes nothing (previous insights stay)
+      # and shows an error annotation, and the daily data commit still runs.
+      - name: Build insights
+        id: insights
+        continue-on-error: true
+        run: python scripts/build_insights.py
+
       - name: Run pipeline tests
         run: pytest scripts/tests/ -v --tb=short
 
