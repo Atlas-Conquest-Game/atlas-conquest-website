@@ -49,7 +49,7 @@ const CONFIG = {
      Steam is the primary CTA by default. With a store URL, each Steam link is tagged with
      its placement (utm_source=atlas-website, utm_medium=nav|hero|finale). Without one yet,
      the buttons stay put and a click shows a short polite note beside the button. */
-  const SOON_MSG = 'Steam page coming soon. Play free now on Discord.';
+  const SOON_MSG = 'Steam page coming soon. Join the beta on Discord meanwhile.';
 
   function tagged(url, placement) {
     try {
