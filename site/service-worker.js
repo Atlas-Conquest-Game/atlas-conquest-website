@@ -20,7 +20,7 @@
 // v5: brand chrome — brand.css, site-config.js, the title font, the hammer
 // wordmark and footer key art join the shell, and the shell is now actually
 // served from cache when offline (see isShellRequest below).
-const CACHE_NAME = 'ac-decks-v7';
+const CACHE_NAME = 'ac-decks-v8';
 const DATA_CACHE = 'ac-decks-data-v2';
 // Bumped to v2 to flush art cached under the old cache-first strategy, which
 // pinned every viewed card JPG permanently and hid updated screenshots.
