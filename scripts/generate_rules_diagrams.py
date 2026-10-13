@@ -46,7 +46,7 @@ def save(im, name):
 # The callout coordinates below were measured on the earlier card screenshots,
 # which filled the 800×1120 frame. Today's shots hold the same card at a fixed,
 # slightly smaller scale with a margin round it; this maps one onto the other.
-REFRAME_SCALE, REFRAME_DX, REFRAME_DY = 0.938, 25, 69
+REFRAME_SCALE, REFRAME_DX, REFRAME_DY = 0.938, 25, 34
 
 
 class Card:

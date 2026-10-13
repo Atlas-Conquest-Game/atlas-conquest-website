@@ -81,7 +81,7 @@ def _resize_webp_rgba(source, target, max_width, quality=85):
 # Art panel crop box on a 600x840 card image: left, top, right, bottom.
 # Measured on the shadowless screenshots, where the card sits inside the frame
 # with a margin all round (the tool shoots at a fixed 1.25 canvas scale).
-ART_PANEL_CROP_BOX = (89, 85, 511, 469)
+ART_PANEL_CROP_BOX = (89, 59, 511, 443)
 
 
 def crop_art_panel(card_jpg, target):
