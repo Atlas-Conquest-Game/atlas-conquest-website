@@ -55,6 +55,9 @@ function renderItem(item) {
     </article>`;
 }
 
+// Anchor for a press kit group, e.g. "Steam capsules" -> "kit-steam-capsules".
+const groupId = g => 'kit-' + g.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
 async function renderPressKit() {
   const root = document.getElementById('press-kit-groups');
   let kit;
@@ -82,11 +85,16 @@ async function renderPressKit() {
     </div>`;
   root.innerHTML = groups.length
     ? groups.map(g => `
-      <section class="press-group">
+      <section class="press-group" id="${groupId(g)}">
         <h3 class="press-group-title">${escapeHTML(g.title)}</h3>
         ${g.items.length ? `<div class="press-grid">${g.items.map(renderItem).join('')}</div>` : comingSoon(g.title)}
       </section>`).join('')
     : '<p class="press-kit-empty">Individual files are coming soon — the full press kit is available above.</p>';
+  // The side panel's "Press kit" jump link becomes one link per group.
+  const tocLink = document.querySelector('[data-toc-kit]');
+  if (tocLink && groups.length) {
+    tocLink.outerHTML = groups.map(g => `<a href="#${groupId(g)}">${escapeHTML(g.title)}</a>`).join('');
+  }
 }
 
 /**
@@ -95,7 +103,6 @@ async function renderPressKit() {
  * the backdrop, the close button or press Escape to leave.
  */
 function initLightbox() {
-  const root = document.getElementById('press-kit-groups');
   const box = document.createElement('div');
   box.className = 'press-lightbox';
   box.setAttribute('role', 'dialog');
@@ -130,8 +137,8 @@ function initLightbox() {
     if (lastFocus) lastFocus.focus();
   }
 
-  // The cards are rendered after the manifest loads, so listen on their container.
-  root.addEventListener('click', (e) => {
+  // Previews are rendered after their manifests load, so listen on the page.
+  document.addEventListener('click', (e) => {
     const trigger = e.target.closest('.press-preview-zoom');
     if (trigger) open(trigger);
   });
@@ -152,23 +159,152 @@ function initLightbox() {
   });
 }
 
-function initCopyEmail() {
-  const btn = document.getElementById('copy-email');
-  if (!btn) return;
-  btn.addEventListener('click', async () => {
-    const original = btn.textContent;
-    try {
-      await navigator.clipboard.writeText(btn.dataset.email);
-      btn.textContent = 'Copied!';
-    } catch {
-      btn.textContent = btn.dataset.email;
-    }
-    setTimeout(() => { btn.textContent = original; }, 2000);
+/**
+ * Copy buttons: `data-copy` holds the text itself, `data-copy-from` the id of
+ * the element whose text to copy.
+ */
+function initCopyButtons() {
+  document.querySelectorAll('[data-copy], [data-copy-from]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const original = btn.textContent;
+      const source = btn.dataset.copyFrom && document.getElementById(btn.dataset.copyFrom);
+      const text = source ? source.textContent.trim() : btn.dataset.copy;
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.textContent = 'Copied!';
+      } catch {
+        // No clipboard access: show a short value so it can be selected by hand.
+        btn.textContent = source ? 'Copy failed' : text;
+      }
+      setTimeout(() => { btn.textContent = original; }, 2000);
+    });
   });
 }
 
+/**
+ * Live numbers in the fact sheet and feature list, from the same pipeline
+ * output the home page reads. The HTML carries fallbacks if a file is missing.
+ */
+async function renderStats() {
+  const load = url => fetch(url).then(res => (res.ok ? res.json() : null)).catch(() => null);
+  const set = (stat, value) => document.querySelectorAll(`[data-stat="${stat}"]`).forEach(el => { el.textContent = value; });
+  const [metadata, commanders, cards] = await Promise.all([
+    load('data/metadata.json'), load('data/commanders.json'), load('data/cards.json'),
+  ]);
+  const all = metadata && metadata.all && metadata.all.all;
+  if (all && all.total_players) set('players', all.total_players.toLocaleString('en-US'));
+  if (all && all.total_matches) {
+    // Round down to the nearest hundred so "+" stays truthful.
+    const total = all.total_matches;
+    set('matches', total >= 1000 ? (Math.floor(total / 100) * 100).toLocaleString('en-US') + '+' : String(total));
+  }
+  if (commanders) set('commanders', String(commanders.length));
+  if (cards) set('cards', String(cards.filter(c => !c.token).length));
+}
+
+/**
+ * Card images: every card's raw render, searchable by name. The list comes
+ * from data/press_cards.json (scripts/build_press_cards.py). Single cards are
+ * fetched from the repo on GitHub and saved under the card's own name; the
+ * all-cards ZIP is a file on the press-kit release.
+ */
+const CARDS_SHOWN = 12;
+
+async function initCards() {
+  const section = document.getElementById('cards');
+  const grid = document.getElementById('press-cards-grid');
+  if (!section || !grid) return;
+  let data;
+  try {
+    const res = await fetch('data/press_cards.json');
+    if (!res.ok) throw new Error(res.status);
+    data = await res.json();
+  } catch {
+    return; // the section stays hidden
+  }
+  const cards = data.cards || [];
+  if (!cards.length) return;
+  section.hidden = false;
+
+  const zip = data.zip || {};
+  const zipLink = document.getElementById('press-cards-zip');
+  if (zip.url) {
+    zipLink.href = zip.url;
+    document.getElementById('press-cards-zip-label').textContent =
+      `Download all cards${zip.size ? ` (ZIP, ${zip.size})` : ''}`;
+  } else {
+    zipLink.hidden = true;
+  }
+  if (data.dimensions) document.getElementById('press-cards-dimensions').textContent = data.dimensions;
+
+  const search = document.getElementById('press-cards-search');
+  const count = document.getElementById('press-cards-count');
+
+  function render() {
+    const query = search.value.trim().toLowerCase();
+    const matches = query ? cards.filter(c => c.name.toLowerCase().includes(query)) : cards;
+    const shown = matches.slice(0, CARDS_SHOWN);
+    count.textContent = !matches.length
+      ? `No card matches "${search.value.trim()}".`
+      : matches.length > shown.length
+        ? `Showing ${shown.length} of ${matches.length}${query ? ' matches' : ' cards'}. Type more of the name to narrow it down.`
+        : `${matches.length} ${matches.length === 1 ? 'card' : 'cards'}`;
+    grid.innerHTML = shown.map(c => {
+      const meta = [c.kind, c.faction].filter(Boolean).join(' · ');
+      return `
+      <article class="press-card">
+        <button type="button" class="press-preview press-preview-zoom" data-large="assets/card-art-png/${escapeHTML(c.slug)}.png"
+           data-caption="${escapeHTML(c.name)}" aria-label="View ${escapeHTML(c.name)} larger">
+          <img src="assets/media/cards/${escapeHTML(c.slug)}.webp" alt="${escapeHTML(c.name)}" width="400" height="560" loading="lazy">
+          <span class="press-zoom-hint">${EXPAND_ICON}<span>Click to expand</span></span>
+        </button>
+        <div class="press-card-body">
+          <div>
+            <h4 class="press-card-title">${escapeHTML(c.name)}</h4>
+            <div class="press-card-meta">${escapeHTML(meta)}</div>
+          </div>
+          <div class="press-card-actions">
+            <a class="press-dl" href="${escapeHTML(data.raw_base + encodeURIComponent(c.file))}" data-save-as="${escapeHTML(c.slug)}.png"
+               target="_blank" rel="noopener" aria-label="Download ${escapeHTML(c.name)} as PNG">${DOWNLOAD_ICON}PNG</a>
+          </div>
+        </div>
+      </article>`;
+    }).join('');
+  }
+
+  // The PNGs are on another origin, where a plain link opens the image instead
+  // of saving it. Fetch it and save the copy; if that fails the link still opens it.
+  grid.addEventListener('click', async (e) => {
+    const link = e.target.closest('a[data-save-as]');
+    if (!link || link.dataset.busy) return;
+    e.preventDefault();
+    link.dataset.busy = '1';
+    try {
+      const res = await fetch(link.href);
+      if (!res.ok) throw new Error(res.status);
+      const url = URL.createObjectURL(await res.blob());
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = link.dataset.saveAs;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 10000);
+    } catch {
+      window.open(link.href, '_blank', 'noopener');
+    } finally {
+      delete link.dataset.busy;
+    }
+  });
+
+  search.addEventListener('input', render);
+  render();
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-  initCopyEmail();
+  initCopyButtons();
+  renderStats();
   initLightbox();
   renderPressKit();
+  initCards();
 });
