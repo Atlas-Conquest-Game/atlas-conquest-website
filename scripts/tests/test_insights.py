@@ -955,6 +955,13 @@ class TestRealBuild:
 
         def check(o):
             if isinstance(o, dict):
+                # A turn-order split is withheld as a whole when either side is
+                # short, so a side can be past the 20-game gate and still carry
+                # no estimate (DATA_MODEL.md, `turn_order`).
+                if "first" in o and "second" in o and o.get("reportable") is False:
+                    for side in (o["first"], o["second"]):
+                        assert side["wr"] is None and side["lo"] is None and side["hi"] is None
+                    return
                 if "games" in o and "wr" in o and isinstance(o["games"], int):
                     seen["rate"] += 1
                     if o["games"] < 20 or o["verdict"] in ("one_player", "few_players"):
