@@ -66,6 +66,25 @@ jobs:
       - name: Build articles
         run: python scripts/build_articles.py
 
+      # Press kit card images: the list the Press page searches
+      # (site/data/press_cards.json) and the all-cards ZIP on the `press-kit`
+      # release. The ZIP is rebuilt only when CardScreenshots/ changed; the
+      # release notes record the tree it was built from. Non-blocking: a
+      # failure leaves the previous list and ZIP in place.
+      - name: Refresh press kit card images
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          tree=$(git rev-parse HEAD:CardScreenshots)
+          if gh release view press-kit --json body --jq .body | grep -q "$tree"; then
+            python scripts/build_press_cards.py
+          else
+            python scripts/build_press_cards.py --zip /tmp/AtlasConquest-Cards.zip
+            gh release upload press-kit /tmp/AtlasConquest-Cards.zip --clobber
+            gh release edit press-kit --notes "Every Atlas Conquest card as an 800x1120 PNG on a transparent background, for the press kit at https://atlas-conquest.com/press.html. Rebuilt automatically from CardScreenshots tree $tree."
+          fi
+
       - name: Commit and push updated data
         id: commit
         run: |

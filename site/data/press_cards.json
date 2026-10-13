@@ -1,0 +1,2196 @@
+{
+ "raw_base": "https://raw.githubusercontent.com/Atlas-Conquest-Game/atlas-conquest-website/main/CardScreenshots/",
+ "dimensions": "800 × 1120",
+ "zip": {
+  "url": "https://github.com/Atlas-Conquest-Game/atlas-conquest-website/releases/download/press-kit/AtlasConquest-Cards.zip",
+  "filename": "AtlasConquest-Cards.zip",
+  "size": "281 MB",
+  "count": 312
+ },
+ "cards": [
+  {
+   "name": "Acid Rain",
+   "slug": "acid-rain",
+   "kind": "Spell",
+   "faction": "Grenalia",
+   "file": "Acid-Rain.png"
+  },
+  {
+   "name": "Acrid Potion",
+   "slug": "acrid-potion",
+   "kind": "Spell",
+   "faction": "Shadis",
+   "file": "Acrid-Potion.png"
+  },
+  {
+   "name": "Action Surge",
+   "slug": "action-surge",
+   "kind": "Spell",
+   "faction": "Skaal",
+   "file": "action-surge.png"
+  },
+  {
+   "name": "Alchemist",
+   "slug": "alchemist",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Alchemist.png"
+  },
+  {
+   "name": "Ancient Golem",
+   "slug": "ancient-golem",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Ancient-Golem.png"
+  },
+  {
+   "name": "Angel's Grace",
+   "slug": "angels-grace",
+   "kind": "Spell",
+   "faction": "Lucia",
+   "file": "Angels-Grace.png"
+  },
+  {
+   "name": "Angelic Captain",
+   "slug": "angelic-captain",
+   "kind": "Minion",
+   "faction": "Lucia",
+   "file": "Angelic-Captain.png"
+  },
+  {
+   "name": "Apothecary",
+   "slug": "apothecary",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Apothecary.png"
+  },
+  {
+   "name": "Apprentice Mage",
+   "slug": "apprentice-mage",
+   "kind": "Minion",
+   "faction": "Archaeon",
+   "file": "Apprentice-Mage.png"
+  },
+  {
+   "name": "Archpaladin Erix",
+   "slug": "archpaladin-erix",
+   "kind": "Minion",
+   "faction": "Lucia",
+   "file": "archpaladin-erix.png"
+  },
+  {
+   "name": "Artifact of the End",
+   "slug": "artifact-of-the-end",
+   "kind": "Token",
+   "faction": "Treasure",
+   "file": "Artifact-of-the-End.png"
+  },
+  {
+   "name": "Asera",
+   "slug": "asera",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Asera.png"
+  },
+  {
+   "name": "Assistant Chemist",
+   "slug": "assistant-chemist",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Assistant-Chemist.png"
+  },
+  {
+   "name": "Atlas, First to Walk",
+   "slug": "atlas-first-to-walk",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Atlas-First-to-Walk.png"
+  },
+  {
+   "name": "Baby Raptor",
+   "slug": "baby-raptor",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Baby-Raptor.png"
+  },
+  {
+   "name": "Badland Mercenary",
+   "slug": "badland-mercenary",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Badland-Mercenary.png"
+  },
+  {
+   "name": "Battlefield Savior",
+   "slug": "battlefield-savior",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Battlefield-Savior.png"
+  },
+  {
+   "name": "Battlefield Webspinner",
+   "slug": "battlefield-webspinner",
+   "kind": "Minion",
+   "faction": "Archaeon",
+   "file": "Battlefield-Webspinner.png"
+  },
+  {
+   "name": "Beast Trainer",
+   "slug": "beast-trainer",
+   "kind": "Minion",
+   "faction": "Grenalia",
+   "file": "Beast-Trainer.png"
+  },
+  {
+   "name": "Big Game Hunter",
+   "slug": "big-game-hunter",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Big-Game-Hunter.png"
+  },
+  {
+   "name": "Black Dragon",
+   "slug": "black-dragon",
+   "kind": "Minion",
+   "faction": "Shadis",
+   "file": "Black-Dragon.png"
+  },
+  {
+   "name": "Black Scorpion",
+   "slug": "black-scorpion",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Black-Scorpion.png"
+  },
+  {
+   "name": "Blessed Force",
+   "slug": "blessed-force",
+   "kind": "Spell",
+   "faction": "Lucia",
+   "file": "Blessed-Force.png"
+  },
+  {
+   "name": "Blinkshot",
+   "slug": "blinkshot",
+   "kind": "Minion",
+   "faction": "Archaeon",
+   "file": "Blinkshot.png"
+  },
+  {
+   "name": "Bloodrush",
+   "slug": "bloodrush",
+   "kind": "Spell",
+   "faction": "Skaal",
+   "file": "Bloodrush.png"
+  },
+  {
+   "name": "Blue Dragon",
+   "slug": "blue-dragon",
+   "kind": "Minion",
+   "faction": "Archaeon",
+   "file": "Blue-Dragon.png"
+  },
+  {
+   "name": "Bramble",
+   "slug": "bramble",
+   "kind": "Minion",
+   "faction": "Grenalia",
+   "file": "Bramble.png"
+  },
+  {
+   "name": "Brash Outfitter",
+   "slug": "brash-outfitter",
+   "kind": "Minion",
+   "faction": "Skaal",
+   "file": "Brash-Outfitter.png"
+  },
+  {
+   "name": "Burgeon",
+   "slug": "burgeon",
+   "kind": "Spell",
+   "faction": "Grenalia",
+   "file": "Burgeon.png"
+  },
+  {
+   "name": "Call of the Jungle",
+   "slug": "call-of-the-jungle",
+   "kind": "Spell",
+   "faction": "Grenalia",
+   "file": "Call-of-the-Jungle.png"
+  },
+  {
+   "name": "Captain Greenbeard",
+   "slug": "captain-greenbeard",
+   "kind": "Commander",
+   "faction": "Skaal",
+   "file": "Captain-Greenbeard.png"
+  },
+  {
+   "name": "Champion of the Wilds",
+   "slug": "champion-of-the-wilds",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Champion-of-the-Wilds.png"
+  },
+  {
+   "name": "Chant of the Old Ones",
+   "slug": "chant-of-the-old-ones",
+   "kind": "Spell",
+   "faction": "Grenalia",
+   "file": "Chant-of-the-Old-Ones.png"
+  },
+  {
+   "name": "Charge Up",
+   "slug": "charge-up",
+   "kind": "Spell",
+   "faction": "Skaal",
+   "file": "Charge-Up.png"
+  },
+  {
+   "name": "Charger",
+   "slug": "charger",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Charger.png"
+  },
+  {
+   "name": "Citadel Lord",
+   "slug": "citadel-lord",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Citadel-Lord.png"
+  },
+  {
+   "name": "City Planning",
+   "slug": "city-planning",
+   "kind": "Spell",
+   "faction": "Lucia",
+   "file": "city-planning.png"
+  },
+  {
+   "name": "Cloning Magic",
+   "slug": "cloning-magic",
+   "kind": "Spell",
+   "faction": "Archaeon",
+   "file": "Cloning-Magic.png"
+  },
+  {
+   "name": "Combust",
+   "slug": "combust",
+   "kind": "Spell",
+   "faction": "Skaal",
+   "file": "Combust.png"
+  },
+  {
+   "name": "Cone of Cold",
+   "slug": "cone-of-cold",
+   "kind": "Spell",
+   "faction": "Archaeon",
+   "file": "Cone-of-Cold.png"
+  },
+  {
+   "name": "Conscription",
+   "slug": "conscription",
+   "kind": "Spell",
+   "faction": "Lucia",
+   "file": "Conscription.png"
+  },
+  {
+   "name": "Crimson Flameblade",
+   "slug": "crimson-flameblade",
+   "kind": "Spell",
+   "faction": "Skaal",
+   "file": "crimson-flameblade.png"
+  },
+  {
+   "name": "Crippling Tax",
+   "slug": "crippling-tax",
+   "kind": "Spell",
+   "faction": "Lucia",
+   "file": "Crippling-Tax.png"
+  },
+  {
+   "name": "Cursed Deathspear",
+   "slug": "cursed-deathspear",
+   "kind": "Spell",
+   "faction": "Shadis",
+   "file": "cursed-deathspear.png"
+  },
+  {
+   "name": "Daemon Familiar",
+   "slug": "daemon-familiar",
+   "kind": "Token",
+   "faction": "Shadis",
+   "file": "Daemon-Familiar.png"
+  },
+  {
+   "name": "Daemon Knight",
+   "slug": "daemon-knight",
+   "kind": "Token",
+   "faction": "Shadis",
+   "file": "Daemon-Knight.png"
+  },
+  {
+   "name": "Daemonic Summoning",
+   "slug": "daemonic-summoning",
+   "kind": "Spell",
+   "faction": "Shadis",
+   "file": "Daemonic-Summoning.png"
+  },
+  {
+   "name": "Daemonprince Grizlocke",
+   "slug": "daemonprince-grizlocke",
+   "kind": "Minion",
+   "faction": "Shadis",
+   "file": "Daemonprince-Grizlocke.png"
+  },
+  {
+   "name": "Danrir, Omenhound",
+   "slug": "danrir-omenhound",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Danrir-Omenhound.png"
+  },
+  {
+   "name": "Dark Offering",
+   "slug": "dark-offering",
+   "kind": "Token",
+   "faction": "Shadis",
+   "file": "Dark-Offering.png"
+  },
+  {
+   "name": "Darkroot Ooze",
+   "slug": "darkroot-ooze",
+   "kind": "Minion",
+   "faction": "Grenalia",
+   "file": "Darkroot-Ooze.png"
+  },
+  {
+   "name": "Darkroot Shiv",
+   "slug": "darkroot-shiv",
+   "kind": "Spell",
+   "faction": "Grenalia",
+   "file": "darkroot-shiv.png"
+  },
+  {
+   "name": "Darkroot Witch",
+   "slug": "darkroot-witch",
+   "kind": "Minion",
+   "faction": "Grenalia",
+   "file": "Darkroot-Witch.png"
+  },
+  {
+   "name": "Darkwing",
+   "slug": "darkwing",
+   "kind": "Minion",
+   "faction": "Shadis",
+   "file": "Darkwing.png"
+  },
+  {
+   "name": "Deathquill",
+   "slug": "deathquill",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Deathquill.png"
+  },
+  {
+   "name": "Demilich",
+   "slug": "demilich",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Demilich.png"
+  },
+  {
+   "name": "Devout Caretaker",
+   "slug": "devout-caretaker",
+   "kind": "Minion",
+   "faction": "Lucia",
+   "file": "Devout-Caretaker.png"
+  },
+  {
+   "name": "Diplomatic Envoy",
+   "slug": "diplomatic-envoy",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "diplomatic-envoy.png"
+  },
+  {
+   "name": "Domination",
+   "slug": "domination",
+   "kind": "Spell",
+   "faction": "Shadis",
+   "file": "Domination.png"
+  },
+  {
+   "name": "Draconic Mage",
+   "slug": "draconic-mage",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "draconic-mage.png"
+  },
+  {
+   "name": "Dragon",
+   "slug": "dragon",
+   "kind": "Token",
+   "faction": "Neutral",
+   "file": "Dragon.png"
+  },
+  {
+   "name": "Dragon Egg",
+   "slug": "dragon-egg",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Dragon-Egg.png"
+  },
+  {
+   "name": "Dragon Tamer",
+   "slug": "dragon-tamer",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Dragon-Tamer.png"
+  },
+  {
+   "name": "Dragon's Breath",
+   "slug": "dragons-breath",
+   "kind": "Spell",
+   "faction": "Skaal",
+   "file": "dragons-breath.png"
+  },
+  {
+   "name": "Dragonkin Evoker",
+   "slug": "dragonkin-evoker",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Dragonkin-Evoker.png"
+  },
+  {
+   "name": "Drain Energy",
+   "slug": "drain-energy",
+   "kind": "Spell",
+   "faction": "Shadis",
+   "file": "Drain-Energy.png"
+  },
+  {
+   "name": "Drakemire Shaman",
+   "slug": "drakemire-shaman",
+   "kind": "Minion",
+   "faction": "Grenalia",
+   "file": "Drakemire-Shaman.png"
+  },
+  {
+   "name": "Dread Knight",
+   "slug": "dread-knight",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Dread-Knight.png"
+  },
+  {
+   "name": "Dread Proclamation",
+   "slug": "dread-proclamation",
+   "kind": "Spell",
+   "faction": "Shadis",
+   "file": "Dread-Proclamation.png"
+  },
+  {
+   "name": "Dreadlord Cyrion",
+   "slug": "dreadlord-cyrion",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Dreadlord-Cyrion.png"
+  },
+  {
+   "name": "Drowsy Lizard",
+   "slug": "drowsy-lizard",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Drowsy-Lizard.png"
+  },
+  {
+   "name": "Durka Spawn",
+   "slug": "durka-spawn",
+   "kind": "Token",
+   "faction": "Neutral",
+   "file": "Durka-Spawn.png"
+  },
+  {
+   "name": "Durka Wurm",
+   "slug": "durka-wurm",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Durka-Wurm.png"
+  },
+  {
+   "name": "Dwarven Battlepriest",
+   "slug": "dwarven-battlepriest",
+   "kind": "Minion",
+   "faction": "Lucia",
+   "file": "Dwarven-Battlepriest.png"
+  },
+  {
+   "name": "Dwarven Stout",
+   "slug": "dwarven-stout",
+   "kind": "Spell",
+   "faction": "Lucia",
+   "file": "Dwarven-Stout.png"
+  },
+  {
+   "name": "Dyana, Prime Huntress",
+   "slug": "dyana-prime-huntress",
+   "kind": "Minion",
+   "faction": "Grenalia",
+   "file": "Dyana-Prime-Huntress.png"
+  },
+  {
+   "name": "Eagle King",
+   "slug": "eagle-king",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Eagle-King.png"
+  },
+  {
+   "name": "Elber, Jungle Emissary",
+   "slug": "elber-jungle-emissary",
+   "kind": "Commander",
+   "faction": "Grenalia",
+   "file": "Elber-Jungle-Emissary.png"
+  },
+  {
+   "name": "Elf Ranger",
+   "slug": "elf-ranger",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Elf-Ranger.png"
+  },
+  {
+   "name": "Elite Mercenary",
+   "slug": "elite-mercenary",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Elite-Mercenary.png"
+  },
+  {
+   "name": "Elixirist",
+   "slug": "elixirist",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "elixirist.png"
+  },
+  {
+   "name": "Elven Spellblade",
+   "slug": "elven-spellblade",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "elven-spellblade.png"
+  },
+  {
+   "name": "Elyse of the Order",
+   "slug": "elyse-of-the-order",
+   "kind": "Commander",
+   "faction": "Lucia",
+   "file": "Elyse-of-the-Order.png"
+  },
+  {
+   "name": "Ember",
+   "slug": "ember",
+   "kind": "Minion",
+   "faction": "Skaal",
+   "file": "Ember.png"
+  },
+  {
+   "name": "Emerald Asp",
+   "slug": "emerald-asp",
+   "kind": "Minion",
+   "faction": "Grenalia",
+   "file": "Emerald-Asp.png"
+  },
+  {
+   "name": "Energy Potion",
+   "slug": "energy-potion",
+   "kind": "Spell",
+   "faction": "Neutral",
+   "file": "Energy-Potion.png"
+  },
+  {
+   "name": "Enigmatic Golem",
+   "slug": "enigmatic-golem",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Enigmatic-Golem.png"
+  },
+  {
+   "name": "Ereloth",
+   "slug": "ereloth",
+   "kind": "Minion",
+   "faction": "Shadis",
+   "file": "ereloth.png"
+  },
+  {
+   "name": "Eternal Wall",
+   "slug": "eternal-wall",
+   "kind": "Minion",
+   "faction": "Lucia",
+   "file": "Eternal-Wall.png"
+  },
+  {
+   "name": "Executor Ginn",
+   "slug": "executor-ginn",
+   "kind": "Commander",
+   "faction": "Lucia",
+   "file": "Executor-Ginn.png"
+  },
+  {
+   "name": "Expand the Wilds",
+   "slug": "expand-the-wilds",
+   "kind": "Spell",
+   "faction": "Grenalia",
+   "file": "Expand-the-Wilds.png"
+  },
+  {
+   "name": "Explosive Potion",
+   "slug": "explosive-potion",
+   "kind": "Spell",
+   "faction": "Neutral",
+   "file": "Explosive-Potion.png"
+  },
+  {
+   "name": "Expropriation",
+   "slug": "expropriation",
+   "kind": "Spell",
+   "faction": "Archaeon",
+   "file": "Expropriation.png"
+  },
+  {
+   "name": "Fade to Mists",
+   "slug": "fade-to-mists",
+   "kind": "Spell",
+   "faction": "Archaeon",
+   "file": "fade-to-mists.png"
+  },
+  {
+   "name": "Fael Spiritwalker",
+   "slug": "fael-spiritwalker",
+   "kind": "Commander",
+   "faction": "Shadis",
+   "file": "Fael-Spiritwalker.png"
+  },
+  {
+   "name": "Feeblemind",
+   "slug": "feeblemind",
+   "kind": "Spell",
+   "faction": "Archaeon",
+   "file": "Feeblemind.png"
+  },
+  {
+   "name": "Feral Vampire",
+   "slug": "feral-vampire",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Feral-Vampire.png"
+  },
+  {
+   "name": "Finishing Strike",
+   "slug": "finishing-strike",
+   "kind": "Spell",
+   "faction": "Skaal",
+   "file": "finishing-strike.png"
+  },
+  {
+   "name": "Fireball",
+   "slug": "fireball",
+   "kind": "Spell",
+   "faction": "Skaal",
+   "file": "Fireball.png"
+  },
+  {
+   "name": "Firebolt",
+   "slug": "firebolt",
+   "kind": "Spell",
+   "faction": "Skaal",
+   "file": "Firebolt.png"
+  },
+  {
+   "name": "First Experiment",
+   "slug": "first-experiment",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "First-Experiment.png"
+  },
+  {
+   "name": "Flame Acolyte",
+   "slug": "flame-acolyte",
+   "kind": "Minion",
+   "faction": "Skaal",
+   "file": "Flame-Acolyte.png"
+  },
+  {
+   "name": "Flamelash",
+   "slug": "flamelash",
+   "kind": "Spell",
+   "faction": "Skaal",
+   "file": "Flamelash.png"
+  },
+  {
+   "name": "Found City",
+   "slug": "found-city",
+   "kind": "Spell",
+   "faction": "Neutral",
+   "file": "found-city.png"
+  },
+  {
+   "name": "Fourth Experiment",
+   "slug": "fourth-experiment",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Fourth-Experiment.png"
+  },
+  {
+   "name": "Frostblade",
+   "slug": "frostblade",
+   "kind": "Spell",
+   "faction": "Archaeon",
+   "file": "Frostblade.png"
+  },
+  {
+   "name": "Fungal Explosion",
+   "slug": "fungal-explosion",
+   "kind": "Spell",
+   "faction": "Grenalia",
+   "file": "Fungal-Explosion.png"
+  },
+  {
+   "name": "Ghast",
+   "slug": "ghast",
+   "kind": "Minion",
+   "faction": "Shadis",
+   "file": "Ghast.png"
+  },
+  {
+   "name": "Giant Eagle",
+   "slug": "giant-eagle",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Giant-Eagle.png"
+  },
+  {
+   "name": "Giant River Snapper",
+   "slug": "giant-river-snapper",
+   "kind": "Minion",
+   "faction": "Grenalia",
+   "file": "Giant-River-Snapper.png"
+  },
+  {
+   "name": "Gilded Defender",
+   "slug": "gilded-defender",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Gilded-Defender.png"
+  },
+  {
+   "name": "Goblin Duo",
+   "slug": "goblin-duo",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Goblin-Duo.png"
+  },
+  {
+   "name": "Goblin Firebow",
+   "slug": "goblin-firebow",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Goblin-Firebow.png"
+  },
+  {
+   "name": "Goblin Infantry",
+   "slug": "goblin-infantry",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Goblin-Infantry.png"
+  },
+  {
+   "name": "Goblin Infiltrator",
+   "slug": "goblin-infiltrator",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Goblin-Infiltrator.png"
+  },
+  {
+   "name": "Goblin King",
+   "slug": "goblin-king",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Goblin-King.png"
+  },
+  {
+   "name": "Goblin Lorespeaker",
+   "slug": "goblin-lorespeaker",
+   "kind": "Minion",
+   "faction": "Skaal",
+   "file": "Goblin-Lorespeaker.png"
+  },
+  {
+   "name": "Goblin Musclejuice",
+   "slug": "goblin-musclejuice",
+   "kind": "Spell",
+   "faction": "Skaal",
+   "file": "Goblin-Musclejuice.png"
+  },
+  {
+   "name": "Goblin Paratrooper",
+   "slug": "goblin-paratrooper",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Goblin-Paratrooper.png"
+  },
+  {
+   "name": "Goblin Recruitment",
+   "slug": "goblin-recruitment",
+   "kind": "Spell",
+   "faction": "Skaal",
+   "file": "Goblin-Recruitment.png"
+  },
+  {
+   "name": "Goblin Scamp",
+   "slug": "goblin-scamp",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Goblin-Scamp.png"
+  },
+  {
+   "name": "Goblin Scout",
+   "slug": "goblin-scout",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Goblin-Scout.png"
+  },
+  {
+   "name": "Goblin Shaman",
+   "slug": "goblin-shaman",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Goblin-Shaman.png"
+  },
+  {
+   "name": "Goblin Skirmisher",
+   "slug": "goblin-skirmisher",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Goblin-Skirmisher.png"
+  },
+  {
+   "name": "Gold Dragon",
+   "slug": "gold-dragon",
+   "kind": "Minion",
+   "faction": "Lucia",
+   "file": "Gold-Dragon.png"
+  },
+  {
+   "name": "Grand Illusion",
+   "slug": "grand-illusion",
+   "kind": "Spell",
+   "faction": "Archaeon",
+   "file": "Grand-Illusion.png"
+  },
+  {
+   "name": "Grand Swordsmith",
+   "slug": "grand-swordsmith",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "grand-swordsmith.png"
+  },
+  {
+   "name": "Granite Guard",
+   "slug": "granite-guard",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "granite-guard.png"
+  },
+  {
+   "name": "Gravehand",
+   "slug": "gravehand",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Gravehand.png"
+  },
+  {
+   "name": "Great Weapon Conjuring",
+   "slug": "great-weapon-conjuring",
+   "kind": "Spell",
+   "faction": "Lucia",
+   "file": "great-weapon-conjuring.png"
+  },
+  {
+   "name": "Greater Healing Potion",
+   "slug": "greater-healing-potion",
+   "kind": "Spell",
+   "faction": "Neutral",
+   "file": "Greater-Healing-Potion.png"
+  },
+  {
+   "name": "Green Dragon",
+   "slug": "green-dragon",
+   "kind": "Minion",
+   "faction": "Grenalia",
+   "file": "Green-Dragon.png"
+  },
+  {
+   "name": "Grey Wastes Shade",
+   "slug": "grey-wastes-shade",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Grey-Wastes-Shade.png"
+  },
+  {
+   "name": "Growth",
+   "slug": "growth",
+   "kind": "Spell",
+   "faction": "Grenalia",
+   "file": "Growth.png"
+  },
+  {
+   "name": "Growth Potion",
+   "slug": "growth-potion",
+   "kind": "Spell",
+   "faction": "Neutral",
+   "file": "Growth-Potion.png"
+  },
+  {
+   "name": "Grutali",
+   "slug": "grutali",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Grutali.png"
+  },
+  {
+   "name": "Gruth, Ogre Champion",
+   "slug": "gruth-ogre-champion",
+   "kind": "Minion",
+   "faction": "Skaal",
+   "file": "Gruth-Ogre-Champion.png"
+  },
+  {
+   "name": "Guardian Ent",
+   "slug": "guardian-ent",
+   "kind": "Minion",
+   "faction": "Grenalia",
+   "file": "guardian-ent.png"
+  },
+  {
+   "name": "Guerilla Gorilla",
+   "slug": "guerilla-gorilla",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Guerilla-Gorilla.png"
+  },
+  {
+   "name": "Guide to Heavens",
+   "slug": "guide-to-heavens",
+   "kind": "Spell",
+   "faction": "Lucia",
+   "file": "Guide-to-Heavens.png"
+  },
+  {
+   "name": "Heaven's Legion",
+   "slug": "heavens-legion",
+   "kind": "Spell",
+   "faction": "Lucia",
+   "file": "Heavens-Legion.png"
+  },
+  {
+   "name": "Heavy Cavalry",
+   "slug": "heavy-cavalry",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Heavy-Cavalry.png"
+  },
+  {
+   "name": "High Elf Mage",
+   "slug": "high-elf-mage",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "High-Elf-Mage.png"
+  },
+  {
+   "name": "Holy Fervor",
+   "slug": "holy-fervor",
+   "kind": "Spell",
+   "faction": "Lucia",
+   "file": "Holy-Fervor.png"
+  },
+  {
+   "name": "Homesong Minstrel",
+   "slug": "homesong-minstrel",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Homesong-Minstrel.png"
+  },
+  {
+   "name": "Hoplite Vanguard",
+   "slug": "hoplite-vanguard",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Hoplite-Vanguard.png"
+  },
+  {
+   "name": "Horde Leader",
+   "slug": "horde-leader",
+   "kind": "Minion",
+   "faction": "Shadis",
+   "file": "Horde-Leader.png"
+  },
+  {
+   "name": "Hover Tank",
+   "slug": "hover-tank",
+   "kind": "Minion",
+   "faction": "Mechanus",
+   "file": "hover-tank.png"
+  },
+  {
+   "name": "Illusion",
+   "slug": "illusion",
+   "kind": "Token",
+   "faction": "Archaeon",
+   "file": "Illusion.png"
+  },
+  {
+   "name": "Illusory Legion",
+   "slug": "illusory-legion",
+   "kind": "Spell",
+   "faction": "Archaeon",
+   "file": "Illusory-Legion.png"
+  },
+  {
+   "name": "Imp",
+   "slug": "imp",
+   "kind": "Minion",
+   "faction": "Shadis",
+   "file": "Imp.png"
+  },
+  {
+   "name": "Infected Dreg",
+   "slug": "infected-dreg",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Infected-Dreg.png"
+  },
+  {
+   "name": "Iron Dagger",
+   "slug": "iron-dagger",
+   "kind": "Spell",
+   "faction": "Neutral",
+   "file": "iron-dagger.png"
+  },
+  {
+   "name": "It That Weaves",
+   "slug": "it-that-weaves",
+   "kind": "Commander",
+   "faction": "Archaeon",
+   "file": "It-That-Weaves.png"
+  },
+  {
+   "name": "Jagris, the Huntsman",
+   "slug": "jagris-the-huntsman",
+   "kind": "Commander",
+   "faction": "Grenalia",
+   "file": "Jagris-the-Huntsman.png"
+  },
+  {
+   "name": "Kai, Longcount Shaman",
+   "slug": "kai-longcount-shaman",
+   "kind": "Commander",
+   "faction": "Skaal",
+   "file": "Kai-Longcount-Shaman.png"
+  },
+  {
+   "name": "Khazgar, Flame Emperor",
+   "slug": "khazgar-flame-emperor",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Khazgar-Flame-Emperor.png"
+  },
+  {
+   "name": "Killing Hex",
+   "slug": "killing-hex",
+   "kind": "Spell",
+   "faction": "Shadis",
+   "file": "Killing-Hex.png"
+  },
+  {
+   "name": "Kindle",
+   "slug": "kindle",
+   "kind": "Spell",
+   "faction": "Skaal",
+   "file": "kindle.png"
+  },
+  {
+   "name": "King Darian",
+   "slug": "king-darian",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "King-Darian.png"
+  },
+  {
+   "name": "Knife Sharpener",
+   "slug": "knife-sharpener",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Knife-Sharpener.png"
+  },
+  {
+   "name": "Lay Claim",
+   "slug": "lay-claim",
+   "kind": "Spell",
+   "faction": "Skaal",
+   "file": "Lay-Claim.png"
+  },
+  {
+   "name": "Lazim, Thief of Gods",
+   "slug": "lazim-thief-of-gods",
+   "kind": "Commander",
+   "faction": "Neutral",
+   "file": "Lazim-Thief-of-Gods.png"
+  },
+  {
+   "name": "Lifeweaver",
+   "slug": "lifeweaver",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Lifeweaver.png"
+  },
+  {
+   "name": "Light Elemental",
+   "slug": "light-elemental",
+   "kind": "Minion",
+   "faction": "Lucia",
+   "file": "light-elemental.png"
+  },
+  {
+   "name": "Lightbound Martyr",
+   "slug": "lightbound-martyr",
+   "kind": "Minion",
+   "faction": "Lucia",
+   "file": "lightbound-martyr.png"
+  },
+  {
+   "name": "Lightning Bolt",
+   "slug": "lightning-bolt",
+   "kind": "Spell",
+   "faction": "Skaal",
+   "file": "Lightning-Bolt.png"
+  },
+  {
+   "name": "Limmick, Goblin Hedonist",
+   "slug": "limmick-goblin-hedonist",
+   "kind": "Minion",
+   "faction": "Skaal",
+   "file": "Limmick-Goblin-Hedonist.png"
+  },
+  {
+   "name": "Live off the Land",
+   "slug": "live-off-the-land",
+   "kind": "Spell",
+   "faction": "Grenalia",
+   "file": "Live-off-the-Land.png"
+  },
+  {
+   "name": "Local Trader",
+   "slug": "local-trader",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Local-Trader.png"
+  },
+  {
+   "name": "Longleg Dorathru",
+   "slug": "longleg-dorathru",
+   "kind": "Minion",
+   "faction": "Archaeon",
+   "file": "longleg-dorathru.png"
+  },
+  {
+   "name": "Lord of Casterhorn",
+   "slug": "lord-of-casterhorn",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Lord-of-Casterhorn.png"
+  },
+  {
+   "name": "Lord of Heavenspire",
+   "slug": "lord-of-heavenspire",
+   "kind": "Minion",
+   "faction": "Lucia",
+   "file": "Lord-of-Heavenspire.png"
+  },
+  {
+   "name": "Lorecaller Gazan",
+   "slug": "lorecaller-gazan",
+   "kind": "Minion",
+   "faction": "Archaeon",
+   "file": "Lorecaller-Gazan.png"
+  },
+  {
+   "name": "Lubela, Tender of the Wilds",
+   "slug": "lubela-tender-of-the-wilds",
+   "kind": "Commander",
+   "faction": "Grenalia",
+   "file": "Lubela-Tender-of-the-Wilds.png"
+  },
+  {
+   "name": "Lucian Battalion",
+   "slug": "lucian-battalion",
+   "kind": "Minion",
+   "faction": "Lucia",
+   "file": "Lucian-Battalion.png"
+  },
+  {
+   "name": "Lucian Soldier",
+   "slug": "lucian-soldier",
+   "kind": "Token",
+   "faction": "Lucia",
+   "file": "Lucian-Soldier.png"
+  },
+  {
+   "name": "Lucian Squire",
+   "slug": "lucian-squire",
+   "kind": "Minion",
+   "faction": "Lucia",
+   "file": "lucian-squire.png"
+  },
+  {
+   "name": "Lucian Zealot",
+   "slug": "lucian-zealot",
+   "kind": "Minion",
+   "faction": "Lucia",
+   "file": "Lucian-Zealot.png"
+  },
+  {
+   "name": "Lumbering Ogre",
+   "slug": "lumbering-ogre",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Lumbering-Ogre.png"
+  },
+  {
+   "name": "Macks Speed",
+   "slug": "macks-speed",
+   "kind": "Commander",
+   "faction": "Skaal",
+   "file": "Macks-Speed.png"
+  },
+  {
+   "name": "Mad Warlock",
+   "slug": "mad-warlock",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Mad-Warlock.png"
+  },
+  {
+   "name": "Mage Slayer",
+   "slug": "mage-slayer",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "mage-slayer.png"
+  },
+  {
+   "name": "Mana Bloom",
+   "slug": "mana-bloom",
+   "kind": "Minion",
+   "faction": "Grenalia",
+   "file": "Mana-Bloom.png"
+  },
+  {
+   "name": "Manaphant",
+   "slug": "manaphant",
+   "kind": "Minion",
+   "faction": "Grenalia",
+   "file": "Manaphant.png"
+  },
+  {
+   "name": "Master Craftsman",
+   "slug": "master-craftsman",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Master-Craftsman.png"
+  },
+  {
+   "name": "Matrix, Mad Weaver",
+   "slug": "matrix-mad-weaver",
+   "kind": "Minion",
+   "faction": "Archaeon",
+   "file": "matrix-mad-weaver.png"
+  },
+  {
+   "name": "Memory Theft",
+   "slug": "memory-theft",
+   "kind": "Spell",
+   "faction": "Archaeon",
+   "file": "memory-theft.png"
+  },
+  {
+   "name": "Milo Sunstone",
+   "slug": "milo-sunstone",
+   "kind": "Commander",
+   "faction": "Lucia",
+   "file": "Milo-Sunstone.png"
+  },
+  {
+   "name": "Mind Blast",
+   "slug": "mind-blast",
+   "kind": "Spell",
+   "faction": "Archaeon",
+   "file": "mind-blast.png"
+  },
+  {
+   "name": "Mindstone Servant",
+   "slug": "mindstone-servant",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "mindstone-servant.png"
+  },
+  {
+   "name": "Minor Priest",
+   "slug": "minor-priest",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Minor-Priest.png"
+  },
+  {
+   "name": "Moonlight Seraph",
+   "slug": "moonlight-seraph",
+   "kind": "Minion",
+   "faction": "Lucia",
+   "file": "Moonlight-Seraph.png"
+  },
+  {
+   "name": "Mother of Beasts",
+   "slug": "mother-of-beasts",
+   "kind": "Minion",
+   "faction": "Grenalia",
+   "file": "Mother-of-Beasts.png"
+  },
+  {
+   "name": "Mummified Warrior",
+   "slug": "mummified-warrior",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Mummified-Warrior.png"
+  },
+  {
+   "name": "Nevisha Ascendant",
+   "slug": "nevisha-ascendant",
+   "kind": "Minion",
+   "faction": "Lucia",
+   "file": "Nevisha-Ascendant.png"
+  },
+  {
+   "name": "Newhaven Township",
+   "slug": "newhaven-township",
+   "kind": "Commander",
+   "faction": "Neutral",
+   "file": "Newhaven-Township.png"
+  },
+  {
+   "name": "Nexus Operative",
+   "slug": "nexus-operative",
+   "kind": "Minion",
+   "faction": "Archaeon",
+   "file": "Nexus-Operative.png"
+  },
+  {
+   "name": "Nexus Recruit",
+   "slug": "nexus-recruit",
+   "kind": "Minion",
+   "faction": "Archaeon",
+   "file": "Nexus-Recruit.png"
+  },
+  {
+   "name": "Nilo of One Thousand Cuts",
+   "slug": "nilo-of-one-thousand-cuts",
+   "kind": "Minion",
+   "faction": "Shadis",
+   "file": "Nilo-of-One-Thousand-Cuts.png"
+  },
+  {
+   "name": "Nobleman of the Order",
+   "slug": "nobleman-of-the-order",
+   "kind": "Minion",
+   "faction": "Lucia",
+   "file": "Nobleman-of-the-Order.png"
+  },
+  {
+   "name": "Oathbroken Apprentice",
+   "slug": "oathbroken-apprentice",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "oathbroken-apprentice.png"
+  },
+  {
+   "name": "Oathsworn Champion",
+   "slug": "oathsworn-champion",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Oathsworn-Champion.png"
+  },
+  {
+   "name": "Oldsteel Guard",
+   "slug": "oldsteel-guard",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "oldsteel-guard.png"
+  },
+  {
+   "name": "Outflank",
+   "slug": "outflank",
+   "kind": "Spell",
+   "faction": "Lucia",
+   "file": "Outflank.png"
+  },
+  {
+   "name": "Outland Berserker",
+   "slug": "outland-berserker",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Outland-Berserker.png"
+  },
+  {
+   "name": "Outland Village",
+   "slug": "outland-village",
+   "kind": "Spell",
+   "faction": "Neutral",
+   "file": "Outland-Village.png"
+  },
+  {
+   "name": "Owl Familiar",
+   "slug": "owl-familiar",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Owl-Familiar.png"
+  },
+  {
+   "name": "Pack Wolf",
+   "slug": "pack-wolf",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Pack-Wolf.png"
+  },
+  {
+   "name": "Paladin Initiate",
+   "slug": "paladin-initiate",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Paladin-Initiate.png"
+  },
+  {
+   "name": "Paladin of Eos",
+   "slug": "paladin-of-eos",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Paladin-of-Eos.png"
+  },
+  {
+   "name": "Paladin Proselyte",
+   "slug": "paladin-proselyte",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Paladin-Proselyte.png"
+  },
+  {
+   "name": "Parrying Buckler",
+   "slug": "parrying-buckler",
+   "kind": "Spell",
+   "faction": "Neutral",
+   "file": "parrying-buckler.png"
+  },
+  {
+   "name": "Peer",
+   "slug": "peer",
+   "kind": "Spell",
+   "faction": "Archaeon",
+   "file": "Peer.png"
+  },
+  {
+   "name": "Pit Lord",
+   "slug": "pit-lord",
+   "kind": "Minion",
+   "faction": "Shadis",
+   "file": "Pit-Lord.png"
+  },
+  {
+   "name": "Pixie Pikeman",
+   "slug": "pixie-pikeman",
+   "kind": "Minion",
+   "faction": "Adora",
+   "file": "pixie-pikeman.png"
+  },
+  {
+   "name": "Poison Spray",
+   "slug": "poison-spray",
+   "kind": "Spell",
+   "faction": "Grenalia",
+   "file": "Poison-Spray.png"
+  },
+  {
+   "name": "Poison Sting",
+   "slug": "poison-sting",
+   "kind": "Spell",
+   "faction": "Grenalia",
+   "file": "Poison-Sting.png"
+  },
+  {
+   "name": "Pond Hopper",
+   "slug": "pond-hopper",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Pond-Hopper.png"
+  },
+  {
+   "name": "Ponder",
+   "slug": "ponder",
+   "kind": "Spell",
+   "faction": "Archaeon",
+   "file": "Ponder.png"
+  },
+  {
+   "name": "Potion of Healing",
+   "slug": "potion-of-healing",
+   "kind": "Spell",
+   "faction": "Neutral",
+   "file": "Potion-of-Healing.png"
+  },
+  {
+   "name": "Power Potion",
+   "slug": "power-potion",
+   "kind": "Spell",
+   "faction": "Neutral",
+   "file": "Power-Potion.png"
+  },
+  {
+   "name": "Prideplain Enforcer",
+   "slug": "prideplain-enforcer",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Prideplain-Enforcer.png"
+  },
+  {
+   "name": "Prideplain Queen",
+   "slug": "prideplain-queen",
+   "kind": "Minion",
+   "faction": "Grenalia",
+   "file": "Prideplain-Queen.png"
+  },
+  {
+   "name": "Primordial Storm",
+   "slug": "primordial-storm",
+   "kind": "Spell",
+   "faction": "Skaal",
+   "file": "primordial-storm.png"
+  },
+  {
+   "name": "Prince Xerxes",
+   "slug": "prince-xerxes",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Prince-Xerxes.png"
+  },
+  {
+   "name": "Purifier Euron",
+   "slug": "purifier-euron",
+   "kind": "Minion",
+   "faction": "Lucia",
+   "file": "Purifier-Euron.png"
+  },
+  {
+   "name": "Pyr, Mortal Shepherd",
+   "slug": "pyr-mortal-shepherd",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "pyr-mortal-shepherd.png"
+  },
+  {
+   "name": "Pyromancer Apprentice",
+   "slug": "pyromancer-apprentice",
+   "kind": "Minion",
+   "faction": "Skaal",
+   "file": "Pyromancer-Apprentice.png"
+  },
+  {
+   "name": "Pyromaniac",
+   "slug": "pyromaniac",
+   "kind": "Minion",
+   "faction": "Skaal",
+   "file": "Pyromaniac.png"
+  },
+  {
+   "name": "Quell the Weak",
+   "slug": "quell-the-weak",
+   "kind": "Spell",
+   "faction": "Lucia",
+   "file": "Quell-the-Weak.png"
+  },
+  {
+   "name": "Quickling",
+   "slug": "quickling",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Quickling.png"
+  },
+  {
+   "name": "Ravenous Wolf",
+   "slug": "ravenous-wolf",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Ravenous-Wolf.png"
+  },
+  {
+   "name": "Red Dragon",
+   "slug": "red-dragon",
+   "kind": "Minion",
+   "faction": "Skaal",
+   "file": "Red-Dragon.png"
+  },
+  {
+   "name": "Regeneration Potion",
+   "slug": "regeneration-potion",
+   "kind": "Spell",
+   "faction": "Grenalia",
+   "file": "Regeneration-Potion.png"
+  },
+  {
+   "name": "Reileigh, Brewpatron",
+   "slug": "reileigh-brewpatron",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Reileigh-Brewpatron.png"
+  },
+  {
+   "name": "Remit",
+   "slug": "remit",
+   "kind": "Spell",
+   "faction": "Archaeon",
+   "file": "Remit.png"
+  },
+  {
+   "name": "Revoke the Living",
+   "slug": "revoke-the-living",
+   "kind": "Spell",
+   "faction": "Grenalia",
+   "file": "Revoke-the-Living.png"
+  },
+  {
+   "name": "Rhea, Morning Saint",
+   "slug": "rhea-morning-saint",
+   "kind": "Minion",
+   "faction": "Lucia",
+   "file": "rhea-morning-saint.png"
+  },
+  {
+   "name": "Ritual of Shadows",
+   "slug": "ritual-of-shadows",
+   "kind": "Spell",
+   "faction": "Shadis",
+   "file": "Ritual-of-Shadows.png"
+  },
+  {
+   "name": "Rosirix the Witch",
+   "slug": "rosirix-the-witch",
+   "kind": "Commander",
+   "faction": "Archaeon",
+   "file": "rosirix-the-witch.png"
+  },
+  {
+   "name": "Royal Commandant",
+   "slug": "royal-commandant",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "royal-commandant.png"
+  },
+  {
+   "name": "Rule the Hinterlands",
+   "slug": "rule-the-hinterlands",
+   "kind": "Spell",
+   "faction": "Grenalia",
+   "file": "Rule-the-Hinterlands.png"
+  },
+  {
+   "name": "Runic Knight",
+   "slug": "runic-knight",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Runic-Knight.png"
+  },
+  {
+   "name": "Sacrificial Offering",
+   "slug": "sacrificial-offering",
+   "kind": "Spell",
+   "faction": "Shadis",
+   "file": "Sacrificial-Offering.png"
+  },
+  {
+   "name": "Sage Potion",
+   "slug": "sage-potion",
+   "kind": "Spell",
+   "faction": "Archaeon",
+   "file": "Sage-Potion.png"
+  },
+  {
+   "name": "Sanguine Baroness",
+   "slug": "sanguine-baroness",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Sanguine-Baroness.png"
+  },
+  {
+   "name": "Scout Hunter",
+   "slug": "scout-hunter",
+   "kind": "Minion",
+   "faction": "Archaeon",
+   "file": "Scout-Hunter.png"
+  },
+  {
+   "name": "Second Experiment",
+   "slug": "second-experiment",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Second-Experiment.png"
+  },
+  {
+   "name": "Sentinel of Light",
+   "slug": "sentinel-of-light",
+   "kind": "Minion",
+   "faction": "Lucia",
+   "file": "Sentinel-of-Light.png"
+  },
+  {
+   "name": "Settle Village",
+   "slug": "settle-village",
+   "kind": "Spell",
+   "faction": "Neutral",
+   "file": "Settle-Village.png"
+  },
+  {
+   "name": "Shield Potion",
+   "slug": "shield-potion",
+   "kind": "Spell",
+   "faction": "Lucia",
+   "file": "Shield-Potion.png"
+  },
+  {
+   "name": "Shock Nova",
+   "slug": "shock-nova",
+   "kind": "Spell",
+   "faction": "Skaal",
+   "file": "Shock-Nova.png"
+  },
+  {
+   "name": "Silence",
+   "slug": "silence",
+   "kind": "Spell",
+   "faction": "Lucia",
+   "file": "silence.png"
+  },
+  {
+   "name": "Silver Dragon",
+   "slug": "silver-dragon",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Silver-Dragon.png"
+  },
+  {
+   "name": "Skaali Blessing",
+   "slug": "skaali-blessing",
+   "kind": "Spell",
+   "faction": "Skaal",
+   "file": "skaali-blessing.png"
+  },
+  {
+   "name": "Skerr'drix",
+   "slug": "skerrdrix",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Skerrdrix.png"
+  },
+  {
+   "name": "Slash and Burn",
+   "slug": "slash-and-burn",
+   "kind": "Spell",
+   "faction": "Skaal",
+   "file": "Slash-and-Burn.png"
+  },
+  {
+   "name": "Slay the Mighty",
+   "slug": "slay-the-mighty",
+   "kind": "Spell",
+   "faction": "Lucia",
+   "file": "Slay-the-Mighty.png"
+  },
+  {
+   "name": "Soul Sale",
+   "slug": "soul-sale",
+   "kind": "Spell",
+   "faction": "Shadis",
+   "file": "soul-sale.png"
+  },
+  {
+   "name": "Soulreap",
+   "slug": "soulreap",
+   "kind": "Spell",
+   "faction": "Shadis",
+   "file": "Soulreap.png"
+  },
+  {
+   "name": "Soultaker Viessa",
+   "slug": "soultaker-viessa",
+   "kind": "Commander",
+   "faction": "Shadis",
+   "file": "Soultaker-Viessa.png"
+  },
+  {
+   "name": "Spiderling Rider",
+   "slug": "spiderling-rider",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Spiderling-Rider.png"
+  },
+  {
+   "name": "Spoils of War",
+   "slug": "spoils-of-war",
+   "kind": "Spell",
+   "faction": "Skaal",
+   "file": "Spoils-of-War.png"
+  },
+  {
+   "name": "Spore Thresher",
+   "slug": "spore-thresher",
+   "kind": "Minion",
+   "faction": "Grenalia",
+   "file": "Spore-Thresher.png"
+  },
+  {
+   "name": "Stagasus",
+   "slug": "stagasus",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Stagasus.png"
+  },
+  {
+   "name": "Stalking Hippo",
+   "slug": "stalking-hippo",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Stalking-Hippo.png"
+  },
+  {
+   "name": "Stalwart Tarantula",
+   "slug": "stalwart-tarantula",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Stalwart-Tarantula.png"
+  },
+  {
+   "name": "Stampede",
+   "slug": "stampede",
+   "kind": "Spell",
+   "faction": "Grenalia",
+   "file": "Stampede.png"
+  },
+  {
+   "name": "Starwise Luna",
+   "slug": "starwise-luna",
+   "kind": "Commander",
+   "faction": "Archaeon",
+   "file": "Starwise-Luna.png"
+  },
+  {
+   "name": "Steel Lancer",
+   "slug": "steel-lancer",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Steel-Lancer.png"
+  },
+  {
+   "name": "Stormrider Zurn",
+   "slug": "stormrider-zurn",
+   "kind": "Minion",
+   "faction": "Skaal",
+   "file": "Stormrider-Zurn.png"
+  },
+  {
+   "name": "Stout Knight",
+   "slug": "stout-knight",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Stout-Knight.png"
+  },
+  {
+   "name": "Strategic Reserves",
+   "slug": "strategic-reserves",
+   "kind": "Spell",
+   "faction": "Skaal",
+   "file": "Strategic-Reserves.png"
+  },
+  {
+   "name": "Stumbling Ghoul",
+   "slug": "stumbling-ghoul",
+   "kind": "Minion",
+   "faction": "Shadis",
+   "file": "Stumbling-Ghoul.png"
+  },
+  {
+   "name": "Styrian Infantry",
+   "slug": "styrian-infantry",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Styrian-Infantry.png"
+  },
+  {
+   "name": "Supercharger",
+   "slug": "supercharger",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Supercharger.png"
+  },
+  {
+   "name": "Swiftfoot Goblin",
+   "slug": "swiftfoot-goblin",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Swiftfoot-Goblin.png"
+  },
+  {
+   "name": "Swiftness Potion",
+   "slug": "swiftness-potion",
+   "kind": "Spell",
+   "faction": "Neutral",
+   "file": "Swiftness-Potion.png"
+  },
+  {
+   "name": "Tadpole",
+   "slug": "tadpole",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Tadpole.png"
+  },
+  {
+   "name": "Tax Collector",
+   "slug": "tax-collector",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "tax-collector.png"
+  },
+  {
+   "name": "Throne Guardian",
+   "slug": "throne-guardian",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Throne-Guardian.png"
+  },
+  {
+   "name": "Thunder Jolt",
+   "slug": "thunder-jolt",
+   "kind": "Spell",
+   "faction": "Skaal",
+   "file": "Thunder-Jolt.png"
+  },
+  {
+   "name": "Thunder Skywhale",
+   "slug": "thunder-skywhale",
+   "kind": "Minion",
+   "faction": "Archaeon",
+   "file": "Thunder-Skywhale.png"
+  },
+  {
+   "name": "Thunder Step",
+   "slug": "thunder-step",
+   "kind": "Spell",
+   "faction": "Skaal",
+   "file": "Thunder-Step.png"
+  },
+  {
+   "name": "Thunderous Warbeast",
+   "slug": "thunderous-warbeast",
+   "kind": "Minion",
+   "faction": "Skaal",
+   "file": "Thunderous-Warbeast.png"
+  },
+  {
+   "name": "Titan Herald",
+   "slug": "titan-herald",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Titan-Herald.png"
+  },
+  {
+   "name": "Toxic Watering",
+   "slug": "toxic-watering",
+   "kind": "Spell",
+   "faction": "Grenalia",
+   "file": "Toxic-Watering.png"
+  },
+  {
+   "name": "Toxicologist",
+   "slug": "toxicologist",
+   "kind": "Minion",
+   "faction": "Grenalia",
+   "file": "Toxicologist.png"
+  },
+  {
+   "name": "Toxicologist's Vial",
+   "slug": "toxicologists-vial",
+   "kind": "Spell",
+   "faction": "Grenalia",
+   "file": "Toxicologists-Vial.png"
+  },
+  {
+   "name": "Tree of Life",
+   "slug": "tree-of-life",
+   "kind": "Minion",
+   "faction": "Grenalia",
+   "file": "Tree-of-Life.png"
+  },
+  {
+   "name": "Trinket Trasher",
+   "slug": "trinket-trasher",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "trinket-trasher.png"
+  },
+  {
+   "name": "Tyrannic Ideal",
+   "slug": "tyrannic-ideal",
+   "kind": "Spell",
+   "faction": "Archaeon",
+   "file": "tyrannic-ideal.png"
+  },
+  {
+   "name": "Undying Behemoth",
+   "slug": "undying-behemoth",
+   "kind": "Minion",
+   "faction": "Shadis",
+   "file": "Undying-Behemoth.png"
+  },
+  {
+   "name": "Ursine Blade Trio",
+   "slug": "ursine-blade-trio",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Ursine-Blade-Trio.png"
+  },
+  {
+   "name": "Vergis, Doomed Archaeologist",
+   "slug": "vergis-doomed-archaeologist",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Vergis-Doomed-Archaeologist.png"
+  },
+  {
+   "name": "Viridian War Beast",
+   "slug": "viridian-war-beast",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Viridian-War-Beast.png"
+  },
+  {
+   "name": "Vyre Aristocrat",
+   "slug": "vyre-aristocrat",
+   "kind": "Minion",
+   "faction": "Shadis",
+   "file": "Vyre-Aristocrat.png"
+  },
+  {
+   "name": "Wandering Ancient",
+   "slug": "wandering-ancient",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Wandering-Ancient.png"
+  },
+  {
+   "name": "War Banner",
+   "slug": "war-banner",
+   "kind": "Minion",
+   "faction": "Skaal",
+   "file": "War-Banner.png"
+  },
+  {
+   "name": "War Chest",
+   "slug": "war-chest",
+   "kind": "Spell",
+   "faction": "Treasure",
+   "file": "war-chest.png"
+  },
+  {
+   "name": "Warcry",
+   "slug": "warcry",
+   "kind": "Spell",
+   "faction": "Skaal",
+   "file": "Warcry.png"
+  },
+  {
+   "name": "Warlord's Mace",
+   "slug": "warlords-mace",
+   "kind": "Spell",
+   "faction": "Neutral",
+   "file": "warlords-mace.png"
+  },
+  {
+   "name": "Warscarred Rhino",
+   "slug": "warscarred-rhino",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Warscarred-Rhino.png"
+  },
+  {
+   "name": "Warscarred Soldier",
+   "slug": "warscarred-soldier",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Warscarred-Soldier.png"
+  },
+  {
+   "name": "Wise Elder",
+   "slug": "wise-elder",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "Wise-Elder.png"
+  },
+  {
+   "name": "Yorefell, Blade of Lusheim",
+   "slug": "yorefell-blade-of-lusheim",
+   "kind": "Spell",
+   "faction": "Lucia",
+   "file": "yorefell-blade-of-lusheim.png"
+  },
+  {
+   "name": "Zealous Captain",
+   "slug": "zealous-captain",
+   "kind": "Minion",
+   "faction": "Lucia",
+   "file": "Zealous-Captain.png"
+  },
+  {
+   "name": "Zealous Strength",
+   "slug": "zealous-strength",
+   "kind": "Spell",
+   "faction": "Lucia",
+   "file": "Zealous-Strength.png"
+  },
+  {
+   "name": "Zoghn, Eye of Treason",
+   "slug": "zoghn-eye-of-treason",
+   "kind": "Minion",
+   "faction": "Archaeon",
+   "file": "Zoghn-Eye-of-Treason.png"
+  },
+  {
+   "name": "Zoloth the Butcher",
+   "slug": "zoloth-the-butcher",
+   "kind": "Minion",
+   "faction": "Shadis",
+   "file": "zoloth-the-butcher.png"
+  },
+  {
+   "name": "Zombie",
+   "slug": "zombie",
+   "kind": "Token",
+   "faction": "Shadis",
+   "file": "Zombie.png"
+  }
+ ]
+}
