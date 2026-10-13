@@ -944,7 +944,8 @@ class TestRealBuild:
         out, _, _ = real_build
         index = json.loads((out / "index.json").read_text())
         listed = {f["path"] for f in index["files"]}
-        on_disk = {str(p.relative_to(out)) for p in out.rglob("*.json")} - {"index.json"}
+        # Manifest paths are URL paths ("commanders/x.json") on every OS.
+        on_disk = {p.relative_to(out).as_posix() for p in out.rglob("*.json")} - {"index.json"}
         assert on_disk <= listed | {"index.json"}
         assert index["gates"]["stats_kit"]["min_games_for_estimate"] == 20
         assert index["gates"]["stats_kit"]["low_data_below_games"] == 40
