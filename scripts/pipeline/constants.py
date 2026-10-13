@@ -13,6 +13,9 @@ CARD_ASSETS_DIR = PROJECT_DIR / "site" / "assets" / "cards"
 # RGBA card art — same images as CARD_ASSETS_DIR but PNG with transparent
 # corners, used for hover popups and inline article images.
 CARD_PNG_ASSETS_DIR = PROJECT_DIR / "site" / "assets" / "card-art-png"
+# The same transparent render as a 400px WebP — the deck builder's card tiles
+# and the cards embedded in articles.
+CARD_WEBP_ASSETS_DIR = PROJECT_DIR / "site" / "assets" / "media" / "cards"
 # Illustration-only panels cropped from the CARD_ASSETS_DIR JPGs (no frame, name
 # banner or text box) — the Metagame page's archetype tab backgrounds.
 CARD_ART_PANEL_DIR = PROJECT_DIR / "site" / "assets" / "art"

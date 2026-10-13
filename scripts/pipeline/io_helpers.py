@@ -9,7 +9,7 @@ import sys
 import time
 
 from pipeline.constants import (
-    DATA_DIR, ASSETS_DIR, CARD_ASSETS_DIR, CARD_PNG_ASSETS_DIR, CARD_ART_PANEL_DIR,
+    DATA_DIR, ASSETS_DIR, CARD_ASSETS_DIR, CARD_PNG_ASSETS_DIR, CARD_WEBP_ASSETS_DIR, CARD_ART_PANEL_DIR,
     ARTWORK_DIR, CARD_SCREENSHOTS_DIR,
     RAW_CACHE, CARDS_CSV, COMMANDERS_CSV, TOKENS_CSV, CARDLIST_ASSET,
     DYNAMO_TABLE, DYNAMO_REGION, PATRON_MAP, COMMANDER_RENAMES, CARD_RENAMES,
@@ -64,8 +64,24 @@ def _resize_png_rgba(source, target, max_width):
     return True
 
 
+def _resize_webp_rgba(source, target, max_width, quality=85):
+    """Resize an RGBA source PNG to max_width and save it as a WebP with alpha.
+    Returns True on success, False if PIL is missing."""
+    try:
+        from PIL import Image
+    except ImportError:
+        return False
+    img = Image.open(source).convert("RGBA")
+    if img.width > max_width:
+        img = img.resize((max_width, int(img.height * max_width / img.width)), Image.LANCZOS)
+    img.save(target, "WEBP", quality=quality, method=6)
+    return True
+
+
 # Art panel crop box on a 600x840 card image: left, top, right, bottom.
-ART_PANEL_CROP_BOX = (75, 35, 525, 445)
+# Measured on the shadowless screenshots, where the card sits inside the frame
+# with a margin all round (the tool shoots at a fixed 1.25 canvas scale).
+ART_PANEL_CROP_BOX = (89, 85, 511, 469)
 
 
 def crop_art_panel(card_jpg, target):
@@ -110,6 +126,8 @@ def generate_thumbnails():
     Commander art:  Artwork/<slug>.png → site/assets/commanders/<slug>.jpg  (400px wide)
                     Only processes files whose slug matches a commander in the CSV.
     Card previews:  CardScreenshots/*.png → site/assets/cards/*.jpg  (600px wide)
+                    and, with alpha, site/assets/card-art-png/*.png (500px) and
+                    site/assets/media/cards/*.webp (400px)
     Art panels:     site/assets/cards/*.jpg → site/assets/art/*.jpg  (illustration crop)
 
     Regenerates a thumbnail when its target is missing or the source art's
@@ -122,6 +140,7 @@ def generate_thumbnails():
     ASSETS_DIR.mkdir(parents=True, exist_ok=True)
     CARD_ASSETS_DIR.mkdir(parents=True, exist_ok=True)
     CARD_PNG_ASSETS_DIR.mkdir(parents=True, exist_ok=True)
+    CARD_WEBP_ASSETS_DIR.mkdir(parents=True, exist_ok=True)
     CARD_ART_PANEL_DIR.mkdir(parents=True, exist_ok=True)
 
     # Manifest of source-art hashes, keyed by "<kind>:<slug>". Lives under
@@ -143,6 +162,7 @@ def generate_thumbnails():
     cmd_count = 0
     card_count = 0
     card_png_count = 0
+    card_webp_count = 0
     art_panel_count = 0
     regenerated_card_jpgs = set()
 
@@ -189,6 +209,10 @@ def generate_thumbnails():
     #   - site/assets/card-art-png/<slug>.png   same image with alpha preserved, 500px wide
     #     (used by .card-preview hover popup and [[card-img:...]] inline embeds —
     #      transparent corners blend with the dark site background)
+    #   - site/assets/media/cards/<slug>.webp   the same again, 400px wide WebP
+    #     (deck builder card tiles, cards embedded in articles)
+    # The sources are the card alone on transparency: no drop shadow is baked in,
+    # so a page that wants one adds it in CSS.
     if CARD_SCREENSHOTS_DIR.exists():
         for source in CARD_SCREENSHOTS_DIR.iterdir():
             if source.suffix.lower() not in (".png", ".jpg", ".jpeg"):
@@ -211,6 +235,12 @@ def generate_thumbnails():
                     if _resize_png_rgba(source, png_target, 500):
                         manifest[png_key] = src_hash
                         card_png_count += 1
+                webp_target = CARD_WEBP_ASSETS_DIR / f"{slug}.webp"
+                webp_key = f"card-webp:{slug}"
+                if _needs_regen(webp_key, webp_target, src_hash):
+                    if _resize_webp_rgba(source, webp_target, 400):
+                        manifest[webp_key] = src_hash
+                        card_webp_count += 1
 
     # Art panels derive from the card JPGs, so they're (re)cropped whenever that
     # JPG was regenerated above or the panel doesn't exist yet. No manifest
@@ -227,8 +257,8 @@ def generate_thumbnails():
         json.dump(manifest, f, indent=2, sort_keys=True)
 
     print(f"  Thumbnails: {cmd_count} commander + {card_count} card JPGs + {card_png_count} card PNGs"
-          f" + {art_panel_count} art panels generated")
-    if cmd_count == 0 and card_count == 0 and card_png_count == 0 and art_panel_count == 0:
+          f" + {card_webp_count} card WebPs + {art_panel_count} art panels generated")
+    if cmd_count == 0 and card_count == 0 and card_png_count == 0 and card_webp_count == 0 and art_panel_count == 0:
         print("  (all thumbnails up to date)")
 
 
