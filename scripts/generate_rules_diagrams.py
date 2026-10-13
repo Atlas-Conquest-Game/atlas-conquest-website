@@ -43,11 +43,17 @@ def save(im, name):
     print(f"  {name}  {im.width}x{im.height}  ({(OUT_DIR / name).stat().st_size / 1024:.0f} KB)")
 
 
+# The callout coordinates below were measured on the earlier card screenshots,
+# which filled the 800×1120 frame. Today's shots hold the same card at a fixed,
+# slightly smaller scale with a margin round it; this maps one onto the other.
+REFRAME_SCALE, REFRAME_DX, REFRAME_DY = 0.938, 25, 69
+
+
 class Card:
     """A card render pasted onto the canvas, cropped to its alpha bounds.
 
-    `at(x, y)` maps a point in the source screenshot (800×1120) to canvas
-    pixels, so callouts can be written against the untouched art.
+    `at(x, y)` maps a callout point (see REFRAME_*) to canvas pixels, so
+    callouts can be written against the untouched art.
     """
 
     def __init__(self, im, name, x, y, height):
@@ -61,6 +67,8 @@ class Card:
         im.paste(art, (self.x, self.y), art)
 
     def at(self, sx, sy):
+        sx = sx * REFRAME_SCALE + REFRAME_DX
+        sy = sy * REFRAME_SCALE + REFRAME_DY
         return (self.x + (sx - self.crop[0]) * self.k, self.y + (sy - self.crop[1]) * self.k)
 
 
@@ -111,7 +119,7 @@ def diagram_cards():
     panel(d, (32 * SS, 128 * SS, (W - 32) * SS, (H - 32) * SS))
 
     CARD_H, TOP = 560, 204
-    card_w = round(CARD_H * 795 / 1047)          # Prideplain crop aspect
+    card_w = round(CARD_H * 742 / 981)           # Prideplain crop aspect
     minion = Card(im, "Prideplain-Enforcer", 80, TOP, CARD_H)
     spell = Card(im, "Ponder", W - 80 - card_w, TOP, CARD_H)
 
@@ -236,7 +244,7 @@ def diagram_commander():
     panel(d, (32 * SS, 128 * SS, (W - 32) * SS, (H - 32) * SS))
 
     CARD_H, TOP = 560, 172
-    card_w = round(CARD_H * 797 / 1044)          # Greenbeard crop aspect
+    card_w = round(CARD_H * 740 / 971)           # Greenbeard crop aspect
     cx = 560
     cmd = Card(im, "Captain-Greenbeard", cx - card_w // 2, TOP, CARD_H)
 
