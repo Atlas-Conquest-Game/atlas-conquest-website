@@ -4,7 +4,7 @@
       "id": "art_count",
       "label": "100 Cards with Human Art",
       "kind": "count",
-      "current": 286,
+      "current": 287,
       "target": 100,
       "met": true
     },
@@ -41,8 +41,8 @@
         {
           "deck": "Starter Beasts",
           "total": 15,
-          "met_count": 14,
-          "rate": 0.9333,
+          "met_count": 15,
+          "rate": 1.0,
           "met": true
         },
         {
@@ -158,14 +158,14 @@
   "overall": {
     "cards": {
       "total": 287,
-      "human": 286,
-      "human_rate": 0.9965,
+      "human": 287,
+      "human_rate": 1.0,
       "animated": 286,
       "animated_rate": 0.9965,
       "art_types": {
         "commissioned": {
-          "count": 94,
-          "rate": 0.3275
+          "count": 95,
+          "rate": 0.331
         },
         "purchased": {
           "count": 2,
@@ -176,8 +176,8 @@
           "rate": 0.662
         },
         "ai": {
-          "count": 1,
-          "rate": 0.0035
+          "count": 0,
+          "rate": 0.0
         },
         "other": {
           "count": 0,
@@ -245,14 +245,14 @@
     },
     "all": {
       "total": 312,
-      "human": 311,
-      "human_rate": 0.9968,
+      "human": 312,
+      "human_rate": 1.0,
       "animated": 311,
       "animated_rate": 0.9968,
       "art_types": {
         "commissioned": {
-          "count": 112,
-          "rate": 0.359
+          "count": 113,
+          "rate": 0.3622
         },
         "purchased": {
           "count": 2,
@@ -263,8 +263,8 @@
           "rate": 0.6314
         },
         "ai": {
-          "count": 1,
-          "rate": 0.0032
+          "count": 0,
+          "rate": 0.0
         },
         "other": {
           "count": 0,
@@ -403,14 +403,14 @@
       "faction": "grenalia",
       "cards": {
         "total": 34,
-        "human": 33,
-        "human_rate": 0.9706,
+        "human": 34,
+        "human_rate": 1.0,
         "animated": 34,
         "animated_rate": 1.0,
         "art_types": {
           "commissioned": {
-            "count": 13,
-            "rate": 0.3824
+            "count": 14,
+            "rate": 0.4118
           },
           "purchased": {
             "count": 0,
@@ -421,8 +421,8 @@
             "rate": 0.5882
           },
           "ai": {
-            "count": 1,
-            "rate": 0.0294
+            "count": 0,
+            "rate": 0.0
           },
           "other": {
             "count": 0,
