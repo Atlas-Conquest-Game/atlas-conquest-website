@@ -145,7 +145,8 @@
 }
 
 .press-soon:hover .press-soon-tip,
-.press-soon:focus .press-soon-tip {
+.press-soon:focus .press-soon-tip,
+.press-soon.show-tip .press-soon-tip {
   opacity: 1;
 }
 
@@ -198,9 +199,29 @@
     max-height: none;
   }
 
-  /* The page is one column here, so there is nothing to jump across. */
+  /* One column is the longest form of the page, so the contents become a
+     row of chips that scrolls sideways, just above the main column. */
   .press-toc {
-    display: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .press-toc .press-side-title {
+    flex-basis: 100%;
+    margin-bottom: 0.125rem;
+  }
+
+  .press-toc a {
+    margin: 0;
+    padding: 0.375rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .press-toc a:hover {
+    border-color: var(--lucia);
   }
 }
 
@@ -636,4 +657,86 @@
   background: var(--bg-elevated);
   color: var(--text);
   border-color: var(--text-muted);
+}
+
+/* ─── Phones ──────────────────────────────────────────── */
+
+/* Touch: comfortable tap sizes for the small buttons. */
+@media (pointer: coarse) {
+  .press-dl,
+  .press-btn-small,
+  .press-toc a {
+    min-height: 44px;
+  }
+
+  .press-lightbox-close {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (max-width: 480px) {
+  .press {
+    gap: 2rem;
+    padding-top: 1.75rem;
+  }
+
+  .press-section + .press-section {
+    margin-top: 2.5rem;
+  }
+
+  .press-toc {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .press-toc::-webkit-scrollbar {
+    display: none;
+  }
+
+  .press-toc .press-side-title {
+    display: none;
+  }
+
+  .press-kit-all {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+
+  /* Stills fill the card width; the fixed 200px stage letterboxed 16:9
+     screenshots between wide checkerboard bars. */
+  .press-preview {
+    height: auto;
+    aspect-ratio: 16 / 9;
+    min-height: 0; /* hold the ratio; portrait art shrinks to fit inside it */
+    padding: 0.625rem;
+  }
+
+  /* Download buttons share each row evenly, even when one wraps. */
+  .press-card-actions .press-dl {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+
+  /* Two cards across instead of one 380px-tall tile per card. */
+  .press-grid-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  .press-grid-cards .press-preview {
+    height: 200px;
+    aspect-ratio: auto;
+    padding: 0.5rem;
+  }
+
+  .press-grid-cards .press-preview img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .press-grid-cards .press-card-body {
+    padding: 0.75rem;
+  }
 }
