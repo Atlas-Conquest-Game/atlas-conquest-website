@@ -301,8 +301,22 @@ async function initCards() {
   render();
 }
 
+// The "Coming soon" tip shows on hover or focus, but iOS Safari doesn't focus
+// a tapped button, so a tap shows it for a moment instead.
+function initSoonTips() {
+  document.querySelectorAll('.press-soon').forEach(btn => {
+    let timer;
+    btn.addEventListener('click', () => {
+      btn.classList.add('show-tip');
+      clearTimeout(timer);
+      timer = setTimeout(() => btn.classList.remove('show-tip'), 1800);
+    });
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initCopyButtons();
+  initSoonTips();
   renderStats();
   initLightbox();
   renderPressKit();
