@@ -413,8 +413,7 @@
 .card-preview img {
   display: block;
   width: 250px;
-  border-radius: 8px;
-  background: var(--bg-elevated);
+  /* No background — the transparent render lets the drop-shadow follow the card. */
 }
 
 /* Mentioned cards are supporting context — smaller than the hovered card. */

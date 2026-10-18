@@ -750,7 +750,9 @@ function initCardPreview() {
   if (!preview) return;
 
   const tbody = document.querySelector('#card-table tbody');
-  const srcFor = slug => `assets/cards/${slug}.jpg`;
+  // Transparent render, so the drop-shadow on .card-preview follows the card
+  // (the framed JPG flattens the margin to black).
+  const srcFor = slug => `assets/media/cards/${slug}.webp`;
 
   tbody.addEventListener('mouseover', e => {
     const cell = e.target.closest('td');

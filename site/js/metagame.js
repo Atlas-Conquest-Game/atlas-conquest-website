@@ -339,7 +339,9 @@ function initCardPreview() {
   const list = document.getElementById('archetype-list');
   if (!preview || !list) return;
 
-  const srcFor = slug => `assets/cards/${slug}.jpg`;
+  // Transparent render, so the drop-shadow on .card-preview follows the card
+  // (the framed JPG flattens the margin to black).
+  const srcFor = slug => `assets/media/cards/${slug}.webp`;
 
   list.addEventListener('mouseover', e => {
     const cell = e.target.closest('.metagame-card-name');
