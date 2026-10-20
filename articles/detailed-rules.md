@@ -63,15 +63,15 @@ Commanders and minions are both **characters**. Characters stand on tiles, and e
 
 Each turn, each of your characters can move up to its {speed} Speed in tiles. Drag it to where you want it to go.
 
-[[video:movement.mp4|A minion with 3 Speed is dragged along a three-tile route and walks it, its Speed badge counting down from 3 to 0]]
-A minion with {speed_3} is dragged along a three-tile route. The tiles it can reach are outlined, and its Speed badge counts down to {speed_0} as it moves.
+[[video:movement.mp4|Styrian Infantry, with 3 Speed, is dragged along a three-tile route and walks it, its Speed badge counting down from 3 to 0]]
+A [[card:Styrian Infantry]] with {speed_3} is dragged along a three-tile route. The tiles it can reach are outlined, the route is drawn as you drag with the Speed it will cost shown under its badge, and the badge counts down to {speed_0} as it moves.
 
 Characters can pass through tiles held by your other characters, but not through enemies, and must end their move on an empty tile.
 
 To **battle**, drag a character onto an enemy next to it. Both deal damage equal to their {power} Power to each other at the same time. A character whose {health} Health reaches 0 is destroyed. If the defender is destroyed, the attacker moves into its tile.
 
-[[video:battle.mp4|Heavy Cavalry attacks Guerilla Gorilla. Both take damage at once, the Gorilla dies, and the Cavalry moves into its tile with 5 Health left]]
-[[card:Heavy Cavalry]] ({power_5}{health_8}) attacks a [[card:Guerilla Gorilla]] ({power_3}{health_4}). Both deal damage at the same time: the Gorilla is destroyed, and the Cavalry, down to {health_5}, moves into its tile.
+[[video:battle.mp4|Lorecaller Gazan attacks a Runic Knight. A forecast marks the Knight with a skull, both take damage at once, the Knight dies, and Gazan moves into its tile with 4 Health left]]
+[[card:Lorecaller Gazan]] ({power_7}{health_7}) attacks a [[card:Runic Knight]] ({power_3}{health_4}). Before the drop, a forecast shows the damage each will take and a skull on the Knight. Both deal damage at the same time: the Knight is destroyed, and Gazan, down to {health_4}, moves into its tile.
 
 A few more details:
 
@@ -101,8 +101,8 @@ Activated abilities sit in the top-left and top-right circles; static and trigge
 [[video:ability-activated.mp4|Blinkshot's activated ability lights up its range, targets an enemy Runic Knight two tiles away, and the shot destroys it]]
 An **activated** ability: [[card:Blinkshot]] uses *[Cooldown 2, Range 2]: Deal 4 damage to target character.* Its range lights up, it targets an enemy [[card:Runic Knight]] two tiles away, and the shot destroys it.
 
-[[video:ability-arrival.mp4|Darkwing is played next to its commander. A blast hits the board: the enemy Owl Familiar dies, the enemy Gorilla and the player's commander take 2 damage, and Darkwing is unharmed]]
-A **triggered** ability: [[card:Darkwing]] is played next to its commander (Commander-Deploy), and its Arrival fires: *Deal 2 damage to ALL non-Daemon characters.* The enemy [[card:Owl Familiar]] is destroyed, the enemy [[card:Guerilla Gorilla]] and your own commander take 2 damage, and Darkwing, a Daemon, is unharmed.
+[[video:ability-arrival.mp4|Darkwing is played next to its commander. A blast hits the board: the enemy Prideplain Enforcer dies, the enemy Danrir and the player's commander take 2 damage, and Darkwing is unharmed]]
+A **triggered** ability: [[card:Darkwing]] is played next to its commander (Commander-Deploy), and its Arrival fires: *Deal 2 damage to ALL non-Daemon characters.* The enemy [[card:Prideplain Enforcer]] is destroyed, the enemy [[card:Danrir, Omenhound]] and your own commander take 2 damage, and Darkwing, a Daemon, is unharmed.
 
 ## Reading Card Text
 
