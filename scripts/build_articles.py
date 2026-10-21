@@ -24,6 +24,8 @@ shape for consistency):
   [[deck:<DECKCODE>]]     — embedded deck listing (block form when on its own line)
   [[video:clip.mp4|Description]] — silent looping clip; lines after it in the
                             same paragraph become its caption (block form only)
+  [[video-sound:clip.mp4|Description]] — the same, but a clip with sound: native
+                            controls, no autoplay or loop, the reader presses play
 Plus the game's own inline stat-icon tokens, written exactly as in card text:
   {power_3} {health} {mana_X} — inline icon from the CardTextIcons sprite sheet
 
@@ -572,8 +574,11 @@ class ArticleImageTreeprocessor(Treeprocessor):
 # screen (article.js; muted + playsinline let it start without a gesture). The description is the video's accessible label, so it
 # should say only what the clip shows; any following lines in the paragraph
 # become a Markdown caption, which can explain more (e.g. card text).
+# [[video-sound:clip.mp4|Description]] is a clip whose audio matters (music,
+# spell sounds): it keeps its controls and plays only when the reader presses
+# play, since browsers refuse to autoplay sound anyway.
 class VideoBlockProcessor(BlockProcessor):
-    RE = re.compile(r"^\[\[video:([^\]|]+?)\s*(?:\|\s*([^\]]*?)\s*)?\]\][ \t]*(?:\n|$)")
+    RE = re.compile(r"^\[\[(video|video-sound):([^\]|]+?)\s*(?:\|\s*([^\]]*?)\s*)?\]\][ \t]*(?:\n|$)")
 
     def __init__(self, parser, article_slug: str, copied_images: set[str], source: Path):
         super().__init__(parser)
@@ -587,11 +592,11 @@ class VideoBlockProcessor(BlockProcessor):
     def run(self, parent, blocks):
         block = blocks.pop(0)
         m = self.RE.match(block)
-        name, label = m.group(1).strip(), (m.group(2) or "").strip()
+        kind, name, label = m.group(1), m.group(2).strip(), (m.group(3) or "").strip()
         if not name.endswith(".mp4") or "/" in name:
-            raise BuildError(f"[[video:{name}]] must name an .mp4 in articles/images/{self._slug}/", self._source)
+            raise BuildError(f"[[{kind}:{name}]] must name an .mp4 in articles/images/{self._slug}/", self._source)
         if not label:
-            raise BuildError(f"[[video:{name}]] needs a description: [[video:{name}|What the clip shows]]", self._source)
+            raise BuildError(f"[[{kind}:{name}]] needs a description: [[{kind}:{name}|What the clip shows]]", self._source)
         self._copied.add(name)
 
         # Clips don't download until they scroll into view: no autoplay
@@ -605,6 +610,9 @@ class VideoBlockProcessor(BlockProcessor):
             "playsinline": "playsinline", "preload": "none", "controls": "controls",
             "aria-label": label,
         }
+        if kind == "video-sound":
+            for key in ("data-autoplay", "loop", "muted"):
+                del attrs[key]
         stem = name[:-4]
         for ext in ("webp", "jpg"):
             poster = f"{stem}-poster.{ext}"
@@ -930,12 +938,12 @@ _MONTHS = ("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct",
 
 # ─── Reading time ──────────────────────────────────────────
 
-_SHORTCODE_RE = re.compile(r"\[\[(card|card-img|deck|video):([^\]|]*)(?:\|[^\]]*)?\]\]")
+_SHORTCODE_RE = re.compile(r"\[\[(card|card-img|deck|video|video-sound):([^\]|]*)(?:\|[^\]]*)?\]\]")
 _MD_IMAGE_RE = re.compile(r"!\[[^\]]*\]\([^)]*\)(?:\{[^}]*\})?")
 
 
 # Seconds a reader spends on things that aren't prose.
-SECONDS_PER = {"figure": 12, "video": 12, "deck": 10, "card-img": 4}
+SECONDS_PER = {"figure": 12, "video": 12, "video-sound": 12, "deck": 10, "card-img": 4}
 
 
 def reading_minutes(body_md: str) -> int:

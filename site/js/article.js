@@ -121,7 +121,7 @@ function initImageLightbox() {
  * for reduced motion keep the controls and press play themselves.
  */
 function initArticleVideos() {
-  const videos = document.querySelectorAll('.article-video video');
+  const videos = document.querySelectorAll('.article-video video[data-autoplay]');
   if (!videos.length) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if (!('IntersectionObserver' in window)) return;

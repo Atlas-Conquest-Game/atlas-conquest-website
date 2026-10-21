@@ -336,6 +336,17 @@ def test_video_block_with_caption(codec, cards_index):
     assert "battle.mp4" in a.referenced_images
 
 
+def test_video_sound_keeps_controls_and_audio(codec, cards_index):
+    a = _render("[[video-sound:music.mp4|The main menu with its music]]", "x", codec, cards_index)
+    assert '<figure class="article-video">' in a.body_html
+    assert " controls" in a.body_html
+    assert 'preload="none"' in a.body_html
+    # article.js only takes over [data-autoplay] clips, so this one keeps its sound.
+    for attr in ("data-autoplay", " loop", " muted", " autoplay"):
+        assert attr not in a.body_html
+    assert "music.mp4" in a.referenced_images
+
+
 def test_video_without_caption(codec, cards_index):
     a = _render("[[video:battle.mp4|Two minions battle]]", "x", codec, cards_index)
     assert "<figcaption>" not in a.body_html
