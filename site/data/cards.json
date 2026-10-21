@@ -184,7 +184,7 @@
   {
     "name": "Archpaladin Erix",
     "type": "Minion",
-    "text": "Legendary. Flying. Sentinel. Arrival: Set the Power of ALL minions equal to their Health.",
+    "text": "Legendary. Flying. Taunt. Arrival: Set the Power of ALL minions equal to their Health.",
     "subtype": "Dwarf",
     "cost": 6,
     "attack": 2,
@@ -306,7 +306,7 @@
   {
     "name": "Battlefield Savior",
     "type": "Minion",
-    "text": "Sentinel. [Arrival, Range 3]: Target character heals <sprite name=\"health_5\">.",
+    "text": "Taunt. [Arrival, Range 3]: Target character heals <sprite name=\"health_5\">.",
     "subtype": "Human",
     "cost": 3,
     "attack": 3,
@@ -1044,7 +1044,7 @@
   {
     "name": "Devout Caretaker",
     "type": "Minion",
-    "text": "Sentinel. Arrival: Add 2 Lucian Soldiers to your hand.",
+    "text": "Taunt. Arrival: Add 2 Lucian Soldiers to your hand.",
     "subtype": "Human",
     "cost": 4,
     "attack": 1,
@@ -1466,7 +1466,7 @@
   {
     "name": "Elite Mercenary",
     "type": "Minion",
-    "text": "Commander-Deploy. Sentinel. Lifelink. Shield. Costs <sprite name=\"mana_3\"> less if the enemy controls 4 or more minions.",
+    "text": "Commander-Deploy. Taunt. Lifelink. Shield. Costs <sprite name=\"mana_3\"> less if the enemy controls 4 or more minions.",
     "subtype": "Human",
     "cost": 7,
     "attack": 4,
@@ -1633,7 +1633,7 @@
   {
     "name": "Eternal Wall",
     "type": "Minion",
-    "text": "Commander-Deploy. Sentinel. Arrival: Add a copy of this to your hand with Ethereal.",
+    "text": "Commander-Deploy. Taunt. Arrival: Add a copy of this to your hand with Ethereal.",
     "subtype": "",
     "cost": 2,
     "attack": 0,
@@ -2025,7 +2025,7 @@
   {
     "name": "Giant River Snapper",
     "type": "Minion",
-    "text": "Sentinel. Arrival: Your commander heals <sprite name=\"health_8\">.",
+    "text": "Taunt. Arrival: Your commander heals <sprite name=\"health_8\">.",
     "subtype": "Beast",
     "cost": 8,
     "attack": 8,
@@ -2398,7 +2398,7 @@
   {
     "name": "Granite Guard",
     "type": "Minion",
-    "text": "Sentinel.  (An enemy that could battle this minion may only battle Sentinels.)",
+    "text": "Taunt.  (Adjacent enemies may only battle characters with Taunt. Enemy minions can't move away from this.)",
     "subtype": "Dwarf",
     "cost": 4,
     "attack": 3,
@@ -3879,7 +3879,7 @@
   {
     "name": "Paladin Initiate",
     "type": "Minion",
-    "text": "Commander-Deploy. Sentinel. When a character you control is healed, gain +<sprite name=\"power_1\">.",
+    "text": "Commander-Deploy. Taunt. When a character you control is healed, gain +<sprite name=\"power_1\">.",
     "subtype": "Human",
     "cost": 1,
     "attack": 1,
@@ -3921,7 +3921,7 @@
   {
     "name": "Paladin Proselyte",
     "type": "Minion",
-    "text": "Commander-Deploy. Sentinel. When a character you control is healed, gain +<sprite name=\"power_1\"> and +<sprite name=\"health_1\">.",
+    "text": "Commander-Deploy. Taunt. When a character you control is healed, gain +<sprite name=\"power_1\"> and +<sprite name=\"health_1\">.",
     "subtype": "Human",
     "cost": 3,
     "attack": 3,
@@ -4257,7 +4257,7 @@
   {
     "name": "Pyr, Mortal Shepherd",
     "type": "Minion",
-    "text": "Legendary. Flying. Sentinel. Arrival: Draw an Elf, a Dwarf, and a Human from your deck.",
+    "text": "Legendary. Flying. Taunt. Arrival: Draw an Elf, a Dwarf, and a Human from your deck.",
     "subtype": "Angel",
     "cost": 8,
     "attack": 5,
@@ -4698,7 +4698,7 @@
   {
     "name": "Sentinel of Light",
     "type": "Minion",
-    "text": "Lifelink. Shield. Sentinel.",
+    "text": "Lifelink. Shield. Taunt.",
     "subtype": "Human",
     "cost": 2,
     "attack": 2,
@@ -5048,7 +5048,7 @@
   {
     "name": "Stalwart Tarantula",
     "type": "Minion",
-    "text": "Sentinel. Has +<sprite name=\"power_2\"> during enemy turns.",
+    "text": "Taunt. Has +<sprite name=\"power_2\"> during enemy turns.",
     "subtype": "Arachnid",
     "cost": 3,
     "attack": 2,
@@ -5565,7 +5565,7 @@
   {
     "name": "Undying Behemoth",
     "type": "Minion",
-    "text": "Sentinel. Postmortem: Summon a <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> Zombie that has \"Postmortem: Summon a <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> Zombie.\"",
+    "text": "Taunt. Postmortem: Summon a <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> Zombie that has \"Postmortem: Summon a <sprite name=\"power_2\"><sprite name=\"speed_2\"><sprite name=\"health_2\"> Zombie.\"",
     "subtype": "Undead",
     "cost": 6,
     "attack": 5,
