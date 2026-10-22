@@ -236,6 +236,89 @@ th.col-feedback {
   background: var(--bg-elevated);
 }
 
+/* === Frozen columns ===
+   Card, Faction and Type stay put while the stats scroll sideways. The left
+   offsets (--fz-<key>) are measured by layoutFrozenColumns() in cards.js; the
+   same classes and offsets ride along into the floating header clone. Sticky
+   cells need an opaque fill, so banding, hover and the deep-link glow are
+   re-stated over --bg-card here. */
+/* th/td in the selector so it outranks `.data-table th.sortable` (relative). */
+.data-table th.col-frozen,
+.data-table td.col-frozen {
+  position: sticky;
+  z-index: 1;
+  background: var(--bg-card);
+}
+.data-table [data-col="name"].col-frozen { left: var(--fz-name, 0px); }
+.data-table [data-col="faction"].col-frozen { left: var(--fz-faction, 0px); }
+.data-table [data-col="type"].col-frozen { left: var(--fz-type, 0px); }
+
+.data-table thead th.col-frozen {
+  z-index: 2;
+  background: #161d2a;
+}
+.data-table tbody tr:nth-child(even) td.col-frozen {
+  background: linear-gradient(rgba(255, 255, 255, 0.014), rgba(255, 255, 255, 0.014)), var(--bg-card);
+}
+.data-table .card-row:hover td.col-frozen {
+  background: var(--bg-elevated);
+}
+.data-table tbody tr.is-linked td.col-frozen {
+  background: linear-gradient(rgba(232, 162, 69, 0.14), rgba(232, 162, 69, 0.14)), var(--bg-card);
+}
+
+/* Edge shadow on the last frozen column, once columns are scrolled under it. */
+.table-wrapper.is-scrolled-x .col-frozen-edge::before,
+.sticky-table-header.is-scrolled-x .col-frozen-edge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: -1px;
+  right: -10px;
+  width: 10px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.35), transparent);
+  box-shadow: inset 1px 0 0 var(--border);
+  pointer-events: none;
+}
+
+/* === Floating horizontal scrollbar ===
+   Pinned to the viewport bottom while the table runs past it, so columns off
+   to the right are reachable without first scrolling to the last row. Built
+   by initFloatingScrollbar() in shared.js. */
+.floating-scrollbar {
+  position: fixed;
+  bottom: 0;
+  z-index: 200;
+  display: none;
+  height: 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  background: rgba(19, 25, 36, 0.92);
+  border: 1px solid var(--border);
+  border-bottom: none;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.35);
+  /* Always drawn (macOS overlay scrollbars would otherwise hide it). */
+  scrollbar-width: auto;
+  scrollbar-color: var(--border-strong) transparent;
+}
+.floating-scrollbar.visible { display: block; }
+.floating-scrollbar > div { height: 1px; }
+.floating-scrollbar::-webkit-scrollbar { height: 12px; }
+.floating-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.floating-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 6px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+.floating-scrollbar::-webkit-scrollbar-thumb:hover { background-color: var(--gold); }
+
+/* Touch screens swipe the table itself. */
+@media (hover: none) {
+  .floating-scrollbar.visible { display: none; }
+}
+
 /* Filter bar on the Cards page: faction pills, then the commander select
    and option toggles. Give the toolbar a panel so it reads as one control
    surface above the table. */
@@ -252,37 +335,6 @@ th.col-feedback {
 #cards .filter-bar .filter-divider {
   height: 22px;
   margin: 0 0.25rem;
-}
-
-/* === Card Preview (hover popup) === */
-
-.card-preview {
-  position: fixed;
-  z-index: 1100;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.12s ease;
-  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.6));
-  /* Row, because a card that creates a token previews next to it. */
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-}
-
-.card-preview.visible {
-  opacity: 1;
-}
-
-.card-preview img {
-  display: block;
-  width: 250px;
-  /* No background/border-radius — the source PNG has transparent corners. */
-}
-
-/* Mentioned cards are supporting context — rendered smaller than the card
-   actually being hovered. */
-.card-preview .card-preview-mention {
-  width: 190px;
 }
 
 /* Token card names in the table. Tokens are generated in play rather than

@@ -676,6 +676,7 @@ function renderMatchupModalContent(matchup, cmd1, cmd2) {
   const artPath1 = artLookup[cmd1];
   if (artPath1) { art1.src = artPath1; art1.style.display = ''; }
   else { art1.style.display = 'none'; }
+  art1.dataset.commanderCard = cmd1;
   document.getElementById('matchup-cmd1-name').textContent = cmd1;
   document.getElementById('matchup-cmd1-faction').innerHTML = factionBadge(factionLookup[cmd1] || '');
 
@@ -684,6 +685,7 @@ function renderMatchupModalContent(matchup, cmd1, cmd2) {
   const artPath2 = artLookup[cmd2];
   if (artPath2) { art2.src = artPath2; art2.style.display = ''; }
   else { art2.style.display = 'none'; }
+  art2.dataset.commanderCard = cmd2;
   document.getElementById('matchup-cmd2-name').textContent = cmd2;
   document.getElementById('matchup-cmd2-faction').innerHTML = factionBadge(factionLookup[cmd2] || '');
 

@@ -48,17 +48,17 @@ const FEEDBACK_MIN = 5;
 // is computed at render time from the 1M and 3M periods (row.trend).
 const CARD_COLUMNS = [
   {
-    key: 'name', label: 'Card', group: 'card', locked: true, string: true,
+    key: 'name', label: 'Card', group: 'card', locked: true, frozen: true, string: true,
     value: c => c.name,
     render: c => `<strong${c.token ? ' class="card-name-token" title="Token — generated in play, not deck-buildable"' : ''}>${c.name}</strong>`,
   },
   {
-    key: 'faction', label: 'Faction', group: 'card', string: true,
+    key: 'faction', label: 'Faction', group: 'card', frozen: true, string: true,
     value: c => c.faction,
     render: c => factionBadge(c.faction),
   },
   {
-    key: 'type', label: 'Type', group: 'card', string: true,
+    key: 'type', label: 'Type', group: 'card', frozen: true, string: true,
     value: c => c.type,
     render: c => c.type || '--',
   },
@@ -448,6 +448,7 @@ function renderCardHeader(columns) {
   row.innerHTML = columns.map(col => {
     const classes = ['sortable'];
     if (col.deemph) classes.push('col-deemph');
+    if (col.frozen) classes.push('col-frozen');
     if (col.group !== 'card') classes.push(`col-${col.group}`);
     if (col.key === cardSortKey) classes.push(cardSortDir === 'asc' ? 'sorted-asc' : 'sorted-desc');
     const tip = col.tooltip
@@ -548,12 +549,60 @@ function renderCardTable(stats) {
   const ctx = { totalGames, fbBaseline: fb ? fb.baseline : null };
   tbody.innerHTML = sorted.map(c => `
     <tr data-card-slug="${commanderSlug(c.name)}" class="card-row" style="--row-faction: ${FACTION_COLORS[c.faction] || 'transparent'}">
-      ${columns.map(col => `<td data-col="${col.key}"${col.deemph ? ' class="cell-muted"' : ''}>${col.render(c, ctx)}</td>`).join('')}
+      ${columns.map(col => `<td data-col="${col.key}"${cellClass(col)}>${col.render(c, ctx)}</td>`).join('')}
     </tr>`).join('');
 
   if (sorted.length === 0) {
     tbody.innerHTML = `<tr class="placeholder-row"><td colspan="${columns.length}">No cards match your filters.</td></tr>`;
   }
+  layoutFrozenColumns();
+}
+
+function cellClass(col) {
+  const classes = [];
+  if (col.deemph) classes.push('cell-muted');
+  if (col.frozen) classes.push('col-frozen');
+  return classes.length ? ` class="${classes.join(' ')}"` : '';
+}
+
+/**
+ * Card, Faction and Type stay pinned on the left while the stats scroll
+ * sideways (`position: sticky` in cards.css). Each frozen column's `left` is
+ * the summed width of the frozen columns before it — measured, since the table
+ * sizes columns to content — and published as --fz-<key> on the table. The
+ * last one still showing (phones hide Faction and Type) carries the edge
+ * shadow. Re-run after every render and whenever the table resizes.
+ */
+function layoutFrozenColumns() {
+  const table = document.getElementById('card-table');
+  const headRow = table && table.tHead && table.tHead.rows[0];
+  if (!headRow) return;
+  let left = 0;
+  let edge = null;
+  [...headRow.cells].filter(th => th.classList.contains('col-frozen')).forEach(th => {
+    table.style.setProperty(`--fz-${th.dataset.col}`, `${left}px`);
+    const width = th.getBoundingClientRect().width;
+    if (width > 0) edge = th.dataset.col;
+    left += width;
+  });
+  table.querySelectorAll('.col-frozen-edge').forEach(cell => {
+    if (cell.dataset.col !== edge) cell.classList.remove('col-frozen-edge');
+  });
+  if (edge) {
+    table.querySelectorAll(`.col-frozen[data-col="${edge}"]:not(.col-frozen-edge)`)
+      .forEach(cell => cell.classList.add('col-frozen-edge'));
+  }
+}
+
+function initFrozenColumns() {
+  const table = document.getElementById('card-table');
+  if (!table || typeof ResizeObserver === 'undefined') return;
+  let queued = false;
+  new ResizeObserver(() => {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(() => { queued = false; layoutFrozenColumns(); });
+  }).observe(table);
 }
 
 function initCardTableSorting() {
@@ -846,7 +895,9 @@ async function init() {
   initTokenToggle();
   initSearch();
   initCardPreview();
+  initFrozenColumns();
   initStickyTableHeader(document.getElementById('card-table'));
+  initFloatingScrollbar(document.querySelector('#card-table').closest('.table-wrapper'));
   initTimeFilters(renderAll);
   initMapFilters(renderAll);
   initNavActiveState();

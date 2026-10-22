@@ -517,6 +517,66 @@
   line-height: 1;
 }
 
+/* Card hover popup (#card-preview on Cards/Metagame, #commander-card-preview
+   for commander portraits on every analytics page — see analytics-ui.js). */
+.card-preview {
+  position: fixed;
+  z-index: 1100;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.6));
+  /* Row, because a card that creates a token previews next to it. */
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.card-preview.visible {
+  opacity: 1;
+}
+
+.card-preview img {
+  display: block;
+  width: 250px;
+  /* No background — the transparent render lets the drop-shadow follow the card. */
+}
+
+/* Mentioned cards are supporting context — smaller than the hovered card. */
+.card-preview .card-preview-mention {
+  width: 190px;
+}
+
+/* Touch: a tapped commander portrait shows its card centred over a dim
+   backdrop (initCommanderCardTap in analytics-ui.js). Mentioned tokens wrap
+   underneath on narrow screens. */
+.card-preview.card-preview--tap {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1101;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: max-content;
+  max-width: calc(100vw - 32px);
+}
+.card-preview--tap img { width: min(250px, 62vw); }
+.card-preview--tap .card-preview-mention { width: min(150px, 38vw); }
+
+.card-preview-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  background: rgba(6, 9, 14, 0.7);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.12s ease;
+}
+.card-preview-backdrop.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 /* ─── 5. Commander roster (Commanders page) ──────────────────────────── */
 
 .commander-grid.an-roster {
