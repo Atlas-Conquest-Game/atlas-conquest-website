@@ -2396,42 +2396,6 @@
         "30+"
       ],
       "commanders": {
-        "Lazim, Thief of Gods": [
-          {
-            "winrate": 0.32,
-            "games": 25
-          },
-          {
-            "winrate": 0.4118,
-            "games": 51
-          },
-          {
-            "winrate": 0.6667,
-            "games": 15
-          },
-          {
-            "winrate": 0.5,
-            "games": 2
-          }
-        ],
-        "Elyse of the Order": [
-          {
-            "winrate": 0.3846,
-            "games": 13
-          },
-          {
-            "winrate": 0.5652,
-            "games": 23
-          },
-          {
-            "winrate": 0.3333,
-            "games": 3
-          },
-          {
-            "winrate": 1.0,
-            "games": 1
-          }
-        ],
         "Newhaven Township": [
           {
             "winrate": 0.3333,
@@ -2506,20 +2470,38 @@
         ],
         "Captain Greenbeard": [
           {
-            "winrate": 0.9,
-            "games": 20
+            "winrate": 0.8947,
+            "games": 19
           },
           {
             "winrate": 0.7179,
             "games": 39
           },
           {
-            "winrate": 0.1667,
-            "games": 6
+            "winrate": 0.2,
+            "games": 5
           },
           {
             "winrate": 0.6667,
             "games": 3
+          }
+        ],
+        "Lazim, Thief of Gods": [
+          {
+            "winrate": 0.2609,
+            "games": 23
+          },
+          {
+            "winrate": 0.4082,
+            "games": 49
+          },
+          {
+            "winrate": 0.6667,
+            "games": 15
+          },
+          {
+            "winrate": 1.0,
+            "games": 1
           }
         ],
         "Soultaker Viessa": [
@@ -2532,8 +2514,8 @@
             "games": 20
           },
           {
-            "winrate": 0.5714,
-            "games": 7
+            "winrate": 0.5,
+            "games": 6
           },
           {
             "winrate": 0.25,
@@ -2560,8 +2542,8 @@
         ],
         "Macks Speed": [
           {
-            "winrate": 0.5,
-            "games": 22
+            "winrate": 0.5238,
+            "games": 21
           },
           {
             "winrate": 0.4865,
@@ -2666,6 +2648,24 @@
             "games": 0
           }
         ],
+        "Elyse of the Order": [
+          {
+            "winrate": 0.4545,
+            "games": 11
+          },
+          {
+            "winrate": 0.5714,
+            "games": 21
+          },
+          {
+            "winrate": 0.3333,
+            "games": 3
+          },
+          {
+            "winrate": null,
+            "games": 0
+          }
+        ],
         "Lubela, Tender of the Wilds": [
           {
             "winrate": 0.5,
@@ -2694,42 +2694,6 @@
         "30+"
       ],
       "commanders": {
-        "Lazim, Thief of Gods": [
-          {
-            "winrate": 0.3333,
-            "games": 9
-          },
-          {
-            "winrate": 0.625,
-            "games": 16
-          },
-          {
-            "winrate": 0.6,
-            "games": 5
-          },
-          {
-            "winrate": 0.0,
-            "games": 1
-          }
-        ],
-        "Elyse of the Order": [
-          {
-            "winrate": 0.4444,
-            "games": 9
-          },
-          {
-            "winrate": 0.7143,
-            "games": 7
-          },
-          {
-            "winrate": 1.0,
-            "games": 1
-          },
-          {
-            "winrate": 1.0,
-            "games": 1
-          }
-        ],
         "Jagris, the Huntsman": [
           {
             "winrate": 0.6,
@@ -2776,8 +2740,8 @@
             "games": 4
           },
           {
-            "winrate": 0.6667,
-            "games": 3
+            "winrate": 0.5,
+            "games": 2
           },
           {
             "winrate": null,
@@ -2804,8 +2768,8 @@
         ],
         "Macks Speed": [
           {
-            "winrate": 0.4,
-            "games": 10
+            "winrate": 0.4444,
+            "games": 9
           },
           {
             "winrate": 0.4,
@@ -2832,6 +2796,24 @@
           {
             "winrate": 1.0,
             "games": 2
+          },
+          {
+            "winrate": null,
+            "games": 0
+          }
+        ],
+        "Elyse of the Order": [
+          {
+            "winrate": 0.5714,
+            "games": 7
+          },
+          {
+            "winrate": 0.7143,
+            "games": 7
+          },
+          {
+            "winrate": 1.0,
+            "games": 1
           },
           {
             "winrate": null,
@@ -2912,20 +2894,38 @@
         ],
         "Captain Greenbeard": [
           {
-            "winrate": 0.8571,
-            "games": 7
+            "winrate": 0.8333,
+            "games": 6
           },
           {
             "winrate": 0.625,
             "games": 8
           },
           {
-            "winrate": 0.0,
-            "games": 1
+            "winrate": null,
+            "games": 0
           },
           {
             "winrate": 1.0,
             "games": 2
+          }
+        ],
+        "Lazim, Thief of Gods": [
+          {
+            "winrate": 0.1429,
+            "games": 7
+          },
+          {
+            "winrate": 0.625,
+            "games": 16
+          },
+          {
+            "winrate": 0.6,
+            "games": 5
+          },
+          {
+            "winrate": null,
+            "games": 0
           }
         ],
         "Kai, Longcount Shaman": [
@@ -3440,8 +3440,8 @@
             "games": 12
           },
           {
-            "winrate": 0.25,
-            "games": 20
+            "winrate": 0.2222,
+            "games": 18
           },
           {
             "winrate": 0.75,
@@ -3566,8 +3566,8 @@
             "games": 1
           },
           {
-            "winrate": 0.6667,
-            "games": 6
+            "winrate": 0.75,
+            "games": 4
           },
           {
             "winrate": 0.0,
