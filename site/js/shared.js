@@ -311,7 +311,7 @@ function buildFilterSelect(buttons, dataKey, insertAfterNode) {
 
 // ─── Time Filter ────────────────────────────────────────────
 
-// The sticky bar's own buttons only — meta.html's matchup modal reuses the
+// The sticky bar's own buttons only — metagame.html's matchup modal reuses the
 // .time-btn/.map-btn classes for its private filter row.
 function filterBarButtons(cls) {
   const scoped = document.querySelectorAll(`#time-filter-bar .${cls}`);

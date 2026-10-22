@@ -156,7 +156,7 @@ Dates use one format everywhere: `Oct 5, 2026` (`formatSiteDate()` in shared.js,
 - Header: round faction-ringed portrait, OptimusPrinceps name, faction pill, summary stats.
 - **Winrate vs other commanders**: every opponent, most-played first; each label carries its game count (`Elyse of the Order · 5`); bars are full colour from 20 games, faded below, and under 5 games there is no bar, just "too few games to call"; dashed 50% line.
 - Body: mana curve (all = gold, wins = green, losses = red), type donut (minions gold / spells steel), loyalty donut (patron gold / neutral beige / other slate), top cards table.
-- Focus: `acModalOpen()` / `acModalClose()` in shared.js (also used by the meta.html matchup modal) — remembers the opener, makes everything behind the dialog `inert`, focuses Close, traps Tab, and on close (X, backdrop, Esc) restores focus to the opener. `/commanders.html#<slug>` opens a commander directly (article links use it).
+- Focus: `acModalOpen()` / `acModalClose()` in shared.js (also used by the metagame.html matchup modal) — remembers the opener, makes everything behind the dialog `inert`, focuses Close, traps Tab, and on close (X, backdrop, Esc) restores focus to the opener. `/commanders.html#<slug>` opens a commander directly (article links use it).
 
 ### Navigation
 - The site nav and footer are the shared brand chrome — see **Brand layer** below.
@@ -184,7 +184,7 @@ Dates use one format everywhere: `Oct 5, 2026` (`formatSiteDate()` in shared.js,
 - Color coding: green (>55%), neutral (45-55%), orange-red (<45%), gray (<5 games).
 - Tooltip on hover: commander names, winrate, W-L record, game count. Click opens the matchup modal.
 
-### Collapsible sections (meta.html)
+### Collapsible sections (metagame.html)
 - The round gold chevron `<button>` in each `.section-title.collapsible` is the control: `aria-expanded` and `aria-controls` stay in sync, and a folded body is `inert` so Tab skips it. Sections with real content start open; no "coming soon" placeholders in public sections.
 
 ### Narrow tables (≤600px)

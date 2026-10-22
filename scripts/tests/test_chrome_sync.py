@@ -19,7 +19,7 @@ SITE = sc.SITE_DIR
 # separately-designed homepage, deck_tests.html is a dev-only test harness, and
 # press.html is Matan's own page (shipped as he builds it, so it may opt out).
 ROOT_PAGES = [
-    "analytics.html", "commanders.html", "cards.html", "meta.html", "metagame.html",
+    "analytics.html", "commanders.html", "cards.html", "metagame.html", "top-decks.html",
     "goals.html", "decks.html", "articles.html", "article.html",
     "privacy.html", "terms.html", "privacy-extension.html", "terms-extension.html",
     "404.html",
@@ -33,7 +33,7 @@ CHROME_PAGES = ROOT_PAGES + NESTED_PAGES
 
 EXPECTED_SECTION = {
     "analytics.html": "analytics", "commanders.html": "analytics", "cards.html": "analytics",
-    "meta.html": "analytics", "metagame.html": "analytics", "goals.html": "analytics",
+    "metagame.html": "analytics", "top-decks.html": "analytics", "goals.html": "analytics",
     "decks.html": "decks", "articles.html": "articles", "article.html": "articles",
     "press.html": "press", "privacy.html": None, "terms.html": None,
     "privacy-extension.html": None, "terms-extension.html": None, "404.html": None,
@@ -158,7 +158,7 @@ def test_root_prefix_and_sections():
     assert sc.root_prefix("articles/foo/index.html") == "/"
     # GitHub Pages serves 404.html at the depth of whatever URL was missed.
     assert sc.root_prefix("404.html") == "/"
-    assert sc.section_for("metagame.html") == "analytics"
+    assert sc.section_for("top-decks.html") == "analytics"
     assert sc.section_for("decks/milo-sunstone/index.html") == "decks"
     assert sc.section_for("articles/index.html") == "articles"
     assert sc.section_for("privacy.html") is None

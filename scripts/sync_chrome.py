@@ -58,8 +58,8 @@ ANALYTICS_PAGES = {
     "analytics.html",
     "commanders.html",
     "cards.html",
-    "meta.html",
     "metagame.html",
+    "top-decks.html",
     "goals.html",
 }
 

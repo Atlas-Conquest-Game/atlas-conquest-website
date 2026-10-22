@@ -1,7 +1,7 @@
 /**
  * Atlas Conquest — shared card preview plumbing.
  *
- * Every page that shows card art on hover (Cards, Decks, Metagame, articles)
+ * Every page that shows card art on hover (Cards, Decks, Top Decks, articles)
  * used to own its own popup code. The popup now has to show more than one card
  * — a card that creates a token renders side-by-side with that token — so the
  * rendering and positioning live here and each page just supplies the art URL

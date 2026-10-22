@@ -235,7 +235,7 @@ means "almost no games", not "no data".
 
 Frontend note: convert an ISO key to a date as "the Monday of the week that
 contains January 4 of that year, plus 7·(week − 1) days". The legacy
-`new Date(year, 0, 1 + 7·week)` approximation in `site/js/meta.js` happened to
+`new Date(year, 0, 1 + 7·week)` approximation in `site/js/metagame.js` happened to
 fit `%W` keys; with ISO keys it lands a week late in years like 2026, so month
 bins shift by a week. Update it before the 3.1.0 pipeline output ships (or
 check `metadata.json` `data_version`).

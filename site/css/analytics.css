@@ -517,7 +517,7 @@
   line-height: 1;
 }
 
-/* Card hover popup (#card-preview on Cards/Metagame, #commander-card-preview
+/* Card hover popup (#card-preview on Cards/Top Decks, #commander-card-preview
    for commander portraits on every analytics page — see analytics-ui.js). */
 .card-preview {
   position: fixed;
@@ -1234,7 +1234,7 @@
 
 /* ─── 7. Page refinements ────────────────────────────────────────────── */
 
-/* Commander dropdown (Cards filter bar, Metagame toolbar). */
+/* Commander dropdown (Cards filter bar, Top Decks toolbar). */
 .commander-select {
   min-height: 34px;
   padding: 0.375rem 2rem 0.375rem 0.875rem;
