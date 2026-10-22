@@ -71,7 +71,7 @@
 | Analytics Overview | `analytics.html` | `home.js` | Overview stats, distribution charts, first-turn summary, quick-link cards |
 | Commanders | `commanders.html` | `commanders.js` | Commander grid, winrate-by-turns/actions/duration tables, deck composition charts, detail modal |
 | Cards | `cards.html` | `cards.js` | Card table with viewer-selectable columns (incl. optional mulligan and post-match feedback columns), stacked sub-line counts, search, faction filter, commander dropdown, card hover preview |
-| Meta | `meta.html` | `meta.js` | Faction popularity trends, commander popularity/winrate trends (mirror toggle), matchup heatmap, first-turn chart |
+| Meta | `metagame.html` | `metagame.js` | Faction popularity trends, commander popularity/winrate trends (mirror toggle), matchup heatmap, first-turn chart |
 | Decks | `decks.html` | `decks.js` + `deckcode.js` | Import (decode) and build (encode) deck codes; card grid browser with faction rules; mana curve; shareable URL |
 
 #### JavaScript Structure
@@ -82,7 +82,7 @@
 | `js/home.js` | Analytics overview stats, distribution charts, first-turn summary |
 | `js/commanders.js` | Commander grid, winrate bucket tables (turns/actions/duration), deck composition rendering |
 | `js/cards.js` | Column-driven card table (`CARD_COLUMNS`, Columns menu, mulligan toggle), stacked sub-line counts, search, sorting, faction filter, commander dropdown, card hover preview |
-| `js/meta.js` | Faction + commander trends/winrate charts, matchup heatmap, first-turn commander chart |
+| `js/metagame.js` | Faction + commander trends/winrate charts, matchup heatmap, first-turn commander chart |
 | `js/deckcode.js` | Deck codec: encode/decode deck codes compatible with Unity game client (14-bit card ID + 6-bit count, 20-bit packed, LSB-first) |
 | `js/decks.js` | Deck tools page: card grid browser, mana curve, type breakdown, faction compatibility, hover preview, URL sharing |
 

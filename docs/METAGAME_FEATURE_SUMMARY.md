@@ -36,9 +36,9 @@ This means cards shown in an archetype must either appear in at least 25% of dec
 
 Added a new page:
 
-- `site/metagame.html`
-- `site/js/metagame.js`
-- `site/css/metagame.css`
+- `site/top-decks.html`
+- `site/js/top-decks.js`
+- `site/css/top-decks.css`
 
 The page supports:
 
@@ -105,7 +105,7 @@ The remaining warning is pre-existing/reference-data related: some generated or 
 
 Browser verification:
 
-- Previewed `http://127.0.0.1:8000/metagame.html`.
+- Previewed `http://127.0.0.1:8000/top-decks.html`.
 - Confirmed real archetype data renders.
 - Confirmed expandable rows work.
 - Confirmed commander filtering and sorting work.
@@ -134,7 +134,7 @@ Serve the site locally:
 Open:
 
 ```text
-http://127.0.0.1:8000/metagame.html
+http://127.0.0.1:8000/top-decks.html
 ```
 
 ## Likely Next Steps

@@ -200,7 +200,7 @@ Optional column group, off by default — shown with the **Feedback stats** togg
 
 ---
 
-## Meta Page (`meta.html`)
+## Meta Page (`metagame.html`)
 
 ### Faction Popularity Over Time
 

@@ -90,7 +90,7 @@
    * modal headers set it when they fill their art.
    *
    * Uses its own popup rather than #card-preview so it never fights the
-   * Cards/Metagame pages' row handlers over the same element. Contents and
+   * Cards/Top Decks pages' row handlers over the same element. Contents and
    * placement come from cardpreview.js (so a commander that creates a token
    * previews beside it).
    *
