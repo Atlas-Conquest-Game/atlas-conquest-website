@@ -6,7 +6,8 @@
  * the page scripts already render:
  *
  *   ACA.token(name, faction, opts)  → commander portrait token HTML (circular
- *                                     art + faction-coloured ring, as in game)
+ *                                     art + faction-coloured ring, as in game;
+ *                                     hovering it shows the commander's card)
  *   ACA.countUp(el)                 → animate the number already written into
  *                                     el (keeps its prefix/suffix/format)
  *   ACA.periodLabel()               → "Last 3 months · All maps"
@@ -15,7 +16,7 @@
  *
  * It also wires the suite chrome: the analytics tab bar (scroll fades, active
  * tab kept in view), aria-pressed on every toggle pill, a live "N matches"
- * summary in the sticky filter bar, and keyboard support for the Meta page's
+ * summary in the sticky filter bar, and keyboard support for the Metagame page's
  * collapsible sections.
  */
 (function () {
@@ -74,10 +75,104 @@
       ? `<span class="cmd-token__badge">${esc(opts.badge)}</span>` : '';
     const loading = opts.eager ? '' : ' loading="lazy"';
     const cls = opts.className ? ` ${opts.className}` : '';
-    return `<span class="cmd-token cmd-token--${size}${cls}" data-faction="${fac}" data-initial="${initial}">` +
+    return `<span class="cmd-token cmd-token--${size}${cls}" data-faction="${fac}" data-initial="${initial}" data-commander-card="${esc(name)}">` +
       `<img src="${esc(art)}"${srcset} alt="${esc(opts.alt || '')}"${loading} decoding="async" ` +
       `onerror="if(this.srcset){this.removeAttribute('srcset')}else{this.remove()}">` +
       `${badge}</span>`;
+  }
+
+  // ─── Commander card hover ──────────────────────────────────────────
+
+  /**
+   * Hovering any commander portrait shows that commander's full card, like
+   * card names elsewhere on the site. Portraits opt in with
+   * `data-commander-card="<name>"` — every ACA.token() carries it, and the
+   * modal headers set it when they fill their art.
+   *
+   * Uses its own popup rather than #card-preview so it never fights the
+   * Cards/Metagame pages' row handlers over the same element. Contents and
+   * placement come from cardpreview.js (so a commander that creates a token
+   * previews beside it).
+   *
+   * Touch screens have no hover, so there a tap on the portrait itself shows
+   * the card centred over a dimmed page, and the next tap anywhere closes it.
+   * Both taps are swallowed so they don't also open the row's modal or link —
+   * tapping the commander's name or the rest of the row still does that.
+   */
+  function initCommanderCardHover() {
+    if (typeof renderCardPreview !== 'function') return;
+
+    const preview = document.createElement('div');
+    preview.id = 'commander-card-preview';
+    preview.className = 'card-preview';
+    preview.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(preview);
+
+    // Transparent render, so the drop-shadow on .card-preview follows the card.
+    const srcFor = slug => `assets/media/cards/${slug}.webp`;
+    const portraitOf = target =>
+      target && target.nodeType === 1 ? target.closest('[data-commander-card]') : null;
+
+    if (window.matchMedia && !window.matchMedia('(hover: hover)').matches) {
+      initCommanderCardTap(preview, srcFor, portraitOf);
+      return;
+    }
+
+    document.addEventListener('mouseover', e => {
+      const el = portraitOf(e.target);
+      if (!el || !el.dataset.commanderCard) return;
+      renderCardPreview(preview, el.dataset.commanderCard, srcFor);
+      preview.classList.add('visible');
+      positionCardPreview(preview, e);
+    });
+
+    document.addEventListener('mousemove', e => {
+      if (preview.classList.contains('visible')) positionCardPreview(preview, e);
+    });
+
+    document.addEventListener('mouseout', e => {
+      const el = portraitOf(e.target);
+      if (!el || (e.relatedTarget && el.contains(e.relatedTarget))) return;
+      preview.classList.remove('visible');
+    });
+
+    // A click that opens a modal (or scrolls) shouldn't leave the card behind.
+    document.addEventListener('click', () => preview.classList.remove('visible'), true);
+  }
+
+  function initCommanderCardTap(preview, srcFor, portraitOf) {
+    preview.classList.add('card-preview--tap');
+    const backdrop = document.createElement('div');
+    backdrop.className = 'card-preview-backdrop';
+    document.body.appendChild(backdrop);
+
+    const close = () => {
+      preview.classList.remove('visible');
+      backdrop.classList.remove('visible');
+    };
+
+    // Capture phase, so the tap is claimed before row/modal handlers see it.
+    document.addEventListener('click', e => {
+      if (preview.classList.contains('visible')) {
+        e.preventDefault();
+        e.stopPropagation();
+        close();
+        return;
+      }
+      const el = portraitOf(e.target);
+      if (!el || !el.dataset.commanderCard) return;
+      e.preventDefault();
+      e.stopPropagation();
+      renderCardPreview(preview, el.dataset.commanderCard, srcFor);
+      // Centred by CSS; clear any cursor placement from a stale render.
+      preview.style.left = '';
+      preview.style.top = '';
+      preview.classList.add('visible');
+      backdrop.classList.add('visible');
+    }, true);
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    window.addEventListener('scroll', close, { passive: true });
   }
 
   // ─── Count-up ──────────────────────────────────────────────────────
@@ -305,6 +400,7 @@
     initFilterSummary();
     initHeroCount();
     initCollapsibles();
+    initCommanderCardHover();
   }
 
   window.ACA = { token, artFor, countUp, countUpAll, periodLabel, esc };

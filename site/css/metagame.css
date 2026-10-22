@@ -393,34 +393,6 @@
   cursor: help;
 }
 
-.card-preview {
-  position: fixed;
-  z-index: 1100;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.12s ease;
-  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.6));
-  /* Row, because a card that creates a token previews next to it. */
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-}
-
-.card-preview.visible {
-  opacity: 1;
-}
-
-.card-preview img {
-  display: block;
-  width: 250px;
-  /* No background — the transparent render lets the drop-shadow follow the card. */
-}
-
-/* Mentioned cards are supporting context — smaller than the hovered card. */
-.card-preview .card-preview-mention {
-  width: 190px;
-}
-
 .metagame-empty {
   padding: 2rem;
   border: 1px solid var(--border);

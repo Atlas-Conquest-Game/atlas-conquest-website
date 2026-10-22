@@ -379,7 +379,9 @@ function acModalOpen(modal, opener) {
     if (!parent) break;
     Array.from(parent.children).forEach(sib => {
       if (sib === node || sib.inert) return;
-      if (sib.tagName === 'SCRIPT' || sib.id === 'card-preview' || sib.classList.contains('info-tooltip')) return;
+      // Popups that float above the dialog (card previews, tooltips) stay live.
+      if (sib.tagName === 'SCRIPT' || sib.classList.contains('card-preview') ||
+          sib.classList.contains('card-preview-backdrop') || sib.classList.contains('info-tooltip')) return;
       sib.inert = true;
       inerted.push(sib);
     });
@@ -485,6 +487,7 @@ async function openCommanderModal(cmdName) {
   } else {
     artEl.style.display = 'none';
   }
+  artEl.dataset.commanderCard = cmdName;
 
   document.getElementById('modal-name').textContent = cmdName;
   document.getElementById('modal-faction').innerHTML = factionBadge(d.faction);
@@ -878,6 +881,9 @@ function initStickyTableHeader(table) {
   const clone = document.createElement('table');
   clone.className = table.className;
   holder.appendChild(clone);
+  // The holder clips the clone and is scrolled in step with the wrapper (rather
+  // than shifting the clone with a margin) so frozen `position: sticky; left`
+  // header cells stay pinned in the clone just as they do in the real table.
   document.body.appendChild(holder);
 
   // Content (column widths, sort arrows) only needs rebuilding when the table
@@ -901,6 +907,8 @@ function initStickyTableHeader(table) {
     for (let i = 0; i < copy.length && i < real.length; i++) {
       copy[i].style.width = `${real[i].getBoundingClientRect().width}px`;
     }
+    // Carries the table's inline custom properties (frozen-column offsets).
+    clone.style.cssText = table.style.cssText;
     clone.style.width = `${table.getBoundingClientRect().width}px`;
     dirty = false;
   }
@@ -921,7 +929,8 @@ function initStickyTableHeader(table) {
     holder.style.left = `${wrapRect.left}px`;
     holder.style.width = `${wrapper.clientWidth}px`;
     // Follow the wrapper's horizontal scroll so columns stay aligned.
-    clone.style.marginLeft = `${-wrapper.scrollLeft}px`;
+    holder.scrollLeft = wrapper.scrollLeft;
+    holder.classList.toggle('is-scrolled-x', wrapper.scrollLeft > 0);
   }
 
   function schedule() {
@@ -955,17 +964,80 @@ function initStickyTableHeader(table) {
   schedule();
 }
 
+// ─── Floating Horizontal Scrollbar ──────────────────────────
+
+/**
+ * A copy of a wide table's horizontal scrollbar, pinned to the bottom of the
+ * viewport while the table runs past it.
+ *
+ * The wrapper's own scrollbar sits under the table's last row — several
+ * hundred rows down on the Cards page — so with the Mulligan or Feedback
+ * columns on, the columns past the right edge were only reachable by scrolling
+ * to the bottom first (or knowing shift+wheel). This bar is a second scroll
+ * container whose content is as wide as the table; the two scroll positions
+ * are kept in step. Hidden on touch screens, where you just swipe the table.
+ */
+function initFloatingScrollbar(wrapper) {
+  if (!wrapper) return;
+  const bar = document.createElement('div');
+  bar.className = 'floating-scrollbar';
+  bar.setAttribute('aria-hidden', 'true');
+  const track = document.createElement('div');
+  bar.appendChild(track);
+  document.body.appendChild(bar);
+
+  let queued = false;
+
+  function update() {
+    const rect = wrapper.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const overflow = wrapper.scrollWidth - wrapper.clientWidth > 4;
+    // Only while the table is on screen and its real scrollbar is not.
+    const show = overflow && rect.top < vh - 80 && rect.bottom > vh;
+    bar.classList.toggle('visible', show);
+    if (!show) return;
+    bar.style.left = `${rect.left + wrapper.clientLeft}px`;
+    bar.style.width = `${wrapper.clientWidth}px`;
+    track.style.width = `${wrapper.scrollWidth}px`;
+    if (Math.abs(bar.scrollLeft - wrapper.scrollLeft) > 1) bar.scrollLeft = wrapper.scrollLeft;
+  }
+
+  function schedule() {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(() => { queued = false; update(); });
+  }
+
+  bar.addEventListener('scroll', () => {
+    if (Math.abs(wrapper.scrollLeft - bar.scrollLeft) > 1) wrapper.scrollLeft = bar.scrollLeft;
+  }, { passive: true });
+  wrapper.addEventListener('scroll', schedule, { passive: true });
+  window.addEventListener('scroll', schedule, { passive: true });
+  window.addEventListener('resize', schedule);
+  // Columns shown/hidden and rows filtered change the scroll width and height.
+  if (typeof ResizeObserver !== 'undefined') {
+    const ro = new ResizeObserver(schedule);
+    ro.observe(wrapper);
+    const table = wrapper.querySelector('table');
+    if (table) ro.observe(table);
+  }
+  schedule();
+}
+
 // ─── Table scroll cue ───────────────────────────────────────
 
 // Marks each .table-wrapper .is-scrollable while it has columns hidden past its
 // edge and .is-at-end once scrolled all the way across, so CSS can fade the
-// right edge as a "swipe for more" cue on phones (see analytics.css §7b).
+// right edge as a "swipe for more" cue on phones (see analytics.css §7b), plus
+// .is-scrolled-x once scrolled off the left edge (frozen-column shadow).
 function initTableScrollCues() {
   const wrappers = new Set();
   const check = w => {
     const scrollable = w.scrollWidth - w.clientWidth > 4;
     w.classList.toggle('is-scrollable', scrollable);
     w.classList.toggle('is-at-end', !scrollable || w.scrollLeft + w.clientWidth >= w.scrollWidth - 4);
+    // Frozen columns cast an edge shadow only once something is beneath them.
+    w.classList.toggle('is-scrolled-x', scrollable && w.scrollLeft > 0);
   };
   const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(entries => {
     entries.forEach(e => check(e.target.closest('.table-wrapper') || e.target));
