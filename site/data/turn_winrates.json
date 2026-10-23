@@ -4377,20 +4377,20 @@
             "games": 2
           },
           {
-            "winrate": 0.25,
-            "games": 12
+            "winrate": 0.2,
+            "games": 10
           },
           {
             "winrate": 0.6667,
             "games": 9
           },
           {
-            "winrate": 0.4,
-            "games": 5
+            "winrate": 0.25,
+            "games": 4
           },
           {
-            "winrate": 0.5,
-            "games": 2
+            "winrate": 1.0,
+            "games": 1
           }
         ],
         "It That Weaves": [
@@ -4399,38 +4399,38 @@
             "games": 0
           },
           {
-            "winrate": 0.4286,
-            "games": 7
+            "winrate": 0.3333,
+            "games": 6
           },
           {
-            "winrate": 0.6667,
-            "games": 12
+            "winrate": 0.6,
+            "games": 10
           },
           {
             "winrate": 0.6667,
             "games": 3
           },
           {
-            "winrate": 0.6667,
-            "games": 6
+            "winrate": 0.8,
+            "games": 5
           }
         ],
         "Rosirix the Witch": [
+          {
+            "winrate": 1.0,
+            "games": 1
+          },
+          {
+            "winrate": 0.625,
+            "games": 8
+          },
           {
             "winrate": 0.5,
             "games": 2
           },
           {
-            "winrate": 0.5556,
-            "games": 9
-          },
-          {
-            "winrate": 0.3333,
-            "games": 6
-          },
-          {
             "winrate": 0.0,
-            "games": 3
+            "games": 2
           },
           {
             "winrate": null,
@@ -4443,16 +4443,16 @@
             "games": 2
           },
           {
-            "winrate": 0.5676,
-            "games": 37
+            "winrate": 0.5833,
+            "games": 36
           },
           {
             "winrate": 0.4545,
             "games": 33
           },
           {
-            "winrate": 0.2857,
-            "games": 7
+            "winrate": 0.3333,
+            "games": 6
           },
           {
             "winrate": 0.1111,
@@ -4466,15 +4466,15 @@
           },
           {
             "winrate": 0.6667,
-            "games": 9
+            "games": 6
           },
           {
-            "winrate": 0.625,
-            "games": 8
+            "winrate": 0.6,
+            "games": 5
           },
           {
             "winrate": 0.0,
-            "games": 3
+            "games": 2
           },
           {
             "winrate": 1.0,
@@ -4495,8 +4495,8 @@
             "games": 17
           },
           {
-            "winrate": 0.75,
-            "games": 4
+            "winrate": 0.6667,
+            "games": 3
           },
           {
             "winrate": 0.6667,
@@ -4525,26 +4525,48 @@
             "games": 0
           }
         ],
-        "Starwise Luna": [
+        "Lazim, Thief of Gods": [
           {
             "winrate": 0.0,
             "games": 2
           },
           {
-            "winrate": 0.4839,
-            "games": 31
+            "winrate": 0.4615,
+            "games": 26
           },
           {
-            "winrate": 0.6667,
+            "winrate": 0.5833,
             "games": 24
           },
           {
-            "winrate": 0.375,
-            "games": 8
+            "winrate": 0.6364,
+            "games": 11
           },
           {
-            "winrate": 0.8,
-            "games": 5
+            "winrate": 0.4286,
+            "games": 7
+          }
+        ],
+        "Captain Greenbeard": [
+          {
+            "winrate": 0.5,
+            "games": 4
+          },
+          {
+            "winrate": 0.4,
+            "games": 15
+          },
+          {
+            "winrate": 0.5,
+            "games": 14
+          },
+          {
+            "winrate": 0.0,
+            "games": 3
+          },
+          {
+            "winrate": 0.0,
+            "games": 2
           }
         ],
         "Soultaker Viessa": [
@@ -4557,60 +4579,16 @@
             "games": 4
           },
           {
-            "winrate": 0.1429,
-            "games": 7
+            "winrate": 0.0,
+            "games": 5
           },
           {
-            "winrate": 0.7647,
-            "games": 17
+            "winrate": 0.8,
+            "games": 15
           },
           {
             "winrate": 0.7,
             "games": 10
-          }
-        ],
-        "Lazim, Thief of Gods": [
-          {
-            "winrate": 0.0,
-            "games": 2
-          },
-          {
-            "winrate": 0.4138,
-            "games": 29
-          },
-          {
-            "winrate": 0.5926,
-            "games": 27
-          },
-          {
-            "winrate": 0.6154,
-            "games": 13
-          },
-          {
-            "winrate": 0.5833,
-            "games": 12
-          }
-        ],
-        "Captain Greenbeard": [
-          {
-            "winrate": 0.5,
-            "games": 4
-          },
-          {
-            "winrate": 0.4211,
-            "games": 19
-          },
-          {
-            "winrate": 0.5,
-            "games": 14
-          },
-          {
-            "winrate": 0.0,
-            "games": 3
-          },
-          {
-            "winrate": 0.3333,
-            "games": 3
           }
         ],
         "Kai, Longcount Shaman": [
@@ -4619,8 +4597,8 @@
             "games": 0
           },
           {
-            "winrate": 0.5,
-            "games": 12
+            "winrate": 0.4545,
+            "games": 11
           },
           {
             "winrate": 0.5625,
@@ -4633,6 +4611,28 @@
           {
             "winrate": 1.0,
             "games": 1
+          }
+        ],
+        "Starwise Luna": [
+          {
+            "winrate": 0.0,
+            "games": 2
+          },
+          {
+            "winrate": 0.52,
+            "games": 25
+          },
+          {
+            "winrate": 0.65,
+            "games": 20
+          },
+          {
+            "winrate": 0.4286,
+            "games": 7
+          },
+          {
+            "winrate": 0.75,
+            "games": 4
           }
         ],
         "Newhaven Township": [
@@ -4681,8 +4681,8 @@
         ],
         "Elyse of the Order": [
           {
-            "winrate": 1.0,
-            "games": 1
+            "winrate": null,
+            "games": 0
           },
           {
             "winrate": 0.8333,
@@ -4697,8 +4697,8 @@
             "games": 4
           },
           {
-            "winrate": 0.0,
-            "games": 1
+            "winrate": null,
+            "games": 0
           }
         ],
         "Lubela, Tender of the Wilds": [
@@ -4734,58 +4734,14 @@
         "14+"
       ],
       "commanders": {
-        "Starwise Luna": [
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": 0.6,
-            "games": 5
-          },
-          {
-            "winrate": 0.8333,
-            "games": 6
-          },
-          {
-            "winrate": 0.4,
-            "games": 5
-          },
-          {
-            "winrate": 1.0,
-            "games": 3
-          }
-        ],
-        "Fael Spiritwalker": [
-          {
-            "winrate": 0.5,
-            "games": 2
-          },
-          {
-            "winrate": 0.75,
-            "games": 4
-          },
-          {
-            "winrate": 1.0,
-            "games": 1
-          },
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": 1.0,
-            "games": 1
-          }
-        ],
         "Captain Greenbeard": [
           {
             "winrate": null,
             "games": 0
           },
           {
-            "winrate": 0.4545,
-            "games": 11
+            "winrate": 0.4286,
+            "games": 7
           },
           {
             "winrate": 0.6,
@@ -4796,8 +4752,8 @@
             "games": 1
           },
           {
-            "winrate": 1.0,
-            "games": 1
+            "winrate": null,
+            "games": 0
           }
         ],
         "Milo Sunstone": [
@@ -4832,12 +4788,12 @@
             "games": 3
           },
           {
-            "winrate": 0.25,
-            "games": 4
+            "winrate": 0.0,
+            "games": 3
           },
           {
-            "winrate": 0.8333,
-            "games": 6
+            "winrate": 0.8,
+            "games": 5
           },
           {
             "winrate": 1.0,
@@ -4850,8 +4806,8 @@
             "games": 0
           },
           {
-            "winrate": 0.3333,
-            "games": 3
+            "winrate": 0.0,
+            "games": 2
           },
           {
             "winrate": 0.8,
@@ -4862,8 +4818,30 @@
             "games": 1
           },
           {
-            "winrate": 0.3333,
-            "games": 3
+            "winrate": 0.5,
+            "games": 2
+          }
+        ],
+        "Starwise Luna": [
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": 0.75,
+            "games": 4
+          },
+          {
+            "winrate": 0.8,
+            "games": 5
+          },
+          {
+            "winrate": 0.5,
+            "games": 4
+          },
+          {
+            "winrate": 1.0,
+            "games": 2
           }
         ],
         "Elber, Jungle Emissary": [
@@ -4916,20 +4894,20 @@
             "games": 0
           },
           {
-            "winrate": 0.5455,
-            "games": 11
+            "winrate": 0.6,
+            "games": 10
           },
           {
             "winrate": 0.625,
             "games": 8
           },
           {
-            "winrate": 0.5556,
-            "games": 9
+            "winrate": 0.625,
+            "games": 8
           },
           {
-            "winrate": 0.4286,
-            "games": 7
+            "winrate": 0.4,
+            "games": 5
           }
         ],
         "Jagris, the Huntsman": [
@@ -4976,22 +4954,44 @@
             "games": 1
           }
         ],
+        "Fael Spiritwalker": [
+          {
+            "winrate": 0.5,
+            "games": 2
+          },
+          {
+            "winrate": 1.0,
+            "games": 2
+          },
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": 1.0,
+            "games": 1
+          }
+        ],
         "Rosirix the Witch": [
           {
-            "winrate": 0.0,
-            "games": 1
+            "winrate": null,
+            "games": 0
           },
           {
             "winrate": 0.6667,
             "games": 3
           },
           {
-            "winrate": 0.3333,
-            "games": 3
+            "winrate": 1.0,
+            "games": 1
           },
           {
             "winrate": 0.0,
-            "games": 2
+            "games": 1
           },
           {
             "winrate": null,
@@ -5034,8 +5034,8 @@
             "games": 2
           },
           {
-            "winrate": 1.0,
-            "games": 1
+            "winrate": null,
+            "games": 0
           },
           {
             "winrate": 1.0,
@@ -5044,8 +5044,8 @@
         ],
         "Elyse of the Order": [
           {
-            "winrate": 1.0,
-            "games": 1
+            "winrate": null,
+            "games": 0
           },
           {
             "winrate": 0.6667,
@@ -5103,12 +5103,12 @@
             "games": 0
           },
           {
-            "winrate": 0.5,
-            "games": 4
+            "winrate": 0.6667,
+            "games": 3
           },
           {
-            "winrate": 0.5,
-            "games": 2
+            "winrate": 0.0,
+            "games": 1
           },
           {
             "winrate": 0.0,
@@ -5148,15 +5148,15 @@
           },
           {
             "winrate": 1.0,
-            "games": 2
-          },
-          {
-            "winrate": 0.25,
-            "games": 4
+            "games": 1
           },
           {
             "winrate": 0.0,
-            "games": 1
+            "games": 2
+          },
+          {
+            "winrate": null,
+            "games": 0
           },
           {
             "winrate": null,
@@ -5221,8 +5221,8 @@
             "games": 1
           },
           {
-            "winrate": 0.6667,
-            "games": 3
+            "winrate": 1.0,
+            "games": 2
           },
           {
             "winrate": 0.4,
@@ -5235,8 +5235,8 @@
             "games": 0
           },
           {
-            "winrate": 0.75,
-            "games": 4
+            "winrate": 0.6667,
+            "games": 3
           },
           {
             "winrate": 0.5714,
@@ -5279,12 +5279,12 @@
             "games": 1
           },
           {
-            "winrate": 0.3077,
-            "games": 13
+            "winrate": 0.3636,
+            "games": 11
           },
           {
-            "winrate": 0.5,
-            "games": 8
+            "winrate": 0.4286,
+            "games": 7
           },
           {
             "winrate": 0.0,
@@ -5310,11 +5310,11 @@
           },
           {
             "winrate": 1.0,
-            "games": 2
+            "games": 1
           },
           {
-            "winrate": 0.75,
-            "games": 4
+            "winrate": 0.0,
+            "games": 1
           }
         ],
         "Newhaven Township": [
@@ -5367,8 +5367,8 @@
             "games": 1
           },
           {
-            "winrate": 0.25,
-            "games": 4
+            "winrate": 0.3333,
+            "games": 3
           },
           {
             "winrate": 1.0,
@@ -5379,8 +5379,8 @@
             "games": 0
           },
           {
-            "winrate": 0.5,
-            "games": 2
+            "winrate": 1.0,
+            "games": 1
           }
         ],
         "Elyse of the Order": [
@@ -5401,8 +5401,8 @@
             "games": 1
           },
           {
-            "winrate": 0.0,
-            "games": 1
+            "winrate": null,
+            "games": 0
           }
         ],
         "Executor Ginn": [
@@ -5466,16 +5466,16 @@
             "games": 1
           },
           {
-            "winrate": 0.6667,
-            "games": 3
-          },
-          {
             "winrate": 0.5,
             "games": 2
           },
           {
             "winrate": 0.5,
             "games": 2
+          },
+          {
+            "winrate": 0.0,
+            "games": 1
           },
           {
             "winrate": null,
@@ -5492,8 +5492,8 @@
             "games": 2
           },
           {
-            "winrate": 0.5714,
-            "games": 7
+            "winrate": 0.4,
+            "games": 5
           },
           {
             "winrate": 0.5,
@@ -5526,40 +5526,18 @@
             "games": 0
           }
         ],
-        "Soultaker Viessa": [
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": 0.0,
-            "games": 1
-          },
-          {
-            "winrate": 0.0,
-            "games": 2
-          },
-          {
-            "winrate": 0.75,
-            "games": 8
-          },
-          {
-            "winrate": 1.0,
-            "games": 3
-          }
-        ],
         "Lazim, Thief of Gods": [
           {
             "winrate": 0.0,
             "games": 1
           },
           {
-            "winrate": 0.3333,
-            "games": 15
+            "winrate": 0.3846,
+            "games": 13
           },
           {
             "winrate": 0.6667,
-            "games": 12
+            "games": 9
           },
           {
             "winrate": 0.5,
@@ -5598,12 +5576,12 @@
             "games": 1
           },
           {
-            "winrate": 0.6154,
-            "games": 13
+            "winrate": 0.6,
+            "games": 10
           },
           {
-            "winrate": 0.7,
-            "games": 10
+            "winrate": 0.75,
+            "games": 8
           },
           {
             "winrate": 1.0,
@@ -5624,8 +5602,8 @@
             "games": 2
           },
           {
-            "winrate": 0.0,
-            "games": 1
+            "winrate": null,
+            "games": 0
           },
           {
             "winrate": null,
@@ -5686,19 +5664,41 @@
             "games": 1
           },
           {
-            "winrate": 0.6364,
-            "games": 11
+            "winrate": 0.7,
+            "games": 10
           },
           {
             "winrate": 0.5333,
             "games": 15
           },
           {
-            "winrate": 0.5,
-            "games": 2
+            "winrate": 1.0,
+            "games": 1
           },
           {
             "winrate": 0.0,
+            "games": 3
+          }
+        ],
+        "Soultaker Viessa": [
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": 0.0,
+            "games": 1
+          },
+          {
+            "winrate": 0.0,
+            "games": 1
+          },
+          {
+            "winrate": 0.75,
+            "games": 8
+          },
+          {
+            "winrate": 1.0,
             "games": 3
           }
         ],
