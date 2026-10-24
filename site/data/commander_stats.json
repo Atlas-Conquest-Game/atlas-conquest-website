@@ -558,9 +558,9 @@
       {
         "name": "Starwise Luna",
         "faction": "archaeon",
-        "matches": 265,
-        "wins": 123,
-        "winrate": 0.4642,
+        "matches": 264,
+        "wins": 122,
+        "winrate": 0.4621,
         "pilots": 28
       },
       {
@@ -582,25 +582,25 @@
       {
         "name": "Captain Greenbeard",
         "faction": "skaal",
-        "matches": 218,
-        "wins": 111,
-        "winrate": 0.5092,
+        "matches": 216,
+        "wins": 110,
+        "winrate": 0.5093,
         "pilots": 26
       },
       {
         "name": "Kai, Longcount Shaman",
         "faction": "skaal",
-        "matches": 191,
+        "matches": 189,
         "wins": 101,
-        "winrate": 0.5288,
+        "winrate": 0.5344,
         "pilots": 22
       },
       {
         "name": "Rosirix the Witch",
         "faction": "archaeon",
-        "matches": 188,
-        "wins": 85,
-        "winrate": 0.4521,
+        "matches": 187,
+        "wins": 84,
+        "winrate": 0.4492,
         "pilots": 14
       },
       {
@@ -694,14 +694,6 @@
         "pilots": 15
       },
       {
-        "name": "Starwise Luna",
-        "faction": "archaeon",
-        "matches": 87,
-        "wins": 41,
-        "winrate": 0.4713,
-        "pilots": 21
-      },
-      {
         "name": "Soultaker Viessa",
         "faction": "shadis",
         "matches": 87,
@@ -710,12 +702,12 @@
         "pilots": 14
       },
       {
-        "name": "Kai, Longcount Shaman",
-        "faction": "skaal",
-        "matches": 80,
-        "wins": 37,
-        "winrate": 0.4625,
-        "pilots": 17
+        "name": "Starwise Luna",
+        "faction": "archaeon",
+        "matches": 86,
+        "wins": 40,
+        "winrate": 0.4651,
+        "pilots": 21
       },
       {
         "name": "Captain Greenbeard",
@@ -724,6 +716,14 @@
         "wins": 41,
         "winrate": 0.519,
         "pilots": 20
+      },
+      {
+        "name": "Kai, Longcount Shaman",
+        "faction": "skaal",
+        "matches": 79,
+        "wins": 37,
+        "winrate": 0.4684,
+        "pilots": 17
       },
       {
         "name": "Rosirix the Witch",
@@ -842,18 +842,10 @@
       {
         "name": "Captain Greenbeard",
         "faction": "skaal",
-        "matches": 69,
-        "wins": 35,
-        "winrate": 0.5072,
+        "matches": 68,
+        "wins": 34,
+        "winrate": 0.5,
         "pilots": 15
-      },
-      {
-        "name": "Kai, Longcount Shaman",
-        "faction": "skaal",
-        "matches": 58,
-        "wins": 33,
-        "winrate": 0.569,
-        "pilots": 14
       },
       {
         "name": "Rosirix the Witch",
@@ -862,6 +854,14 @@
         "wins": 19,
         "winrate": 0.3333,
         "pilots": 12
+      },
+      {
+        "name": "Kai, Longcount Shaman",
+        "faction": "skaal",
+        "matches": 57,
+        "wins": 33,
+        "winrate": 0.5789,
+        "pilots": 14
       },
       {
         "name": "Milo Sunstone",
@@ -972,10 +972,10 @@
       {
         "name": "Captain Greenbeard",
         "faction": "skaal",
-        "matches": 70,
+        "matches": 69,
         "wins": 35,
-        "winrate": 0.5,
-        "pilots": 17
+        "winrate": 0.5072,
+        "pilots": 16
       },
       {
         "name": "Newhaven Township",
@@ -996,9 +996,9 @@
       {
         "name": "Rosirix the Witch",
         "faction": "archaeon",
-        "matches": 58,
-        "wins": 29,
-        "winrate": 0.5,
+        "matches": 57,
+        "wins": 28,
+        "winrate": 0.4912,
         "pilots": 12
       },
       {
@@ -1578,17 +1578,17 @@
       {
         "name": "Lazim, Thief of Gods",
         "faction": "neutral",
-        "matches": 70,
-        "wins": 36,
-        "winrate": 0.5143,
+        "matches": 67,
+        "wins": 35,
+        "winrate": 0.5224,
         "pilots": 6
       },
       {
         "name": "Starwise Luna",
         "faction": "archaeon",
-        "matches": 58,
-        "wins": 32,
-        "winrate": 0.5517,
+        "matches": 55,
+        "wins": 30,
+        "winrate": 0.5455,
         "pilots": 13
       },
       {
@@ -1698,14 +1698,6 @@
     ],
     "Dunes": [
       {
-        "name": "Lazim, Thief of Gods",
-        "faction": "neutral",
-        "matches": 31,
-        "wins": 18,
-        "winrate": 0.5806,
-        "pilots": 5
-      },
-      {
         "name": "Jagris, the Huntsman",
         "faction": "grenalia",
         "matches": 30,
@@ -1714,11 +1706,11 @@
         "pilots": 8
       },
       {
-        "name": "Starwise Luna",
-        "faction": "archaeon",
-        "matches": 15,
-        "wins": 11,
-        "winrate": 0.7333,
+        "name": "Lazim, Thief of Gods",
+        "faction": "neutral",
+        "matches": 28,
+        "wins": 17,
+        "winrate": 0.6071,
         "pilots": 5
       },
       {
@@ -1752,6 +1744,14 @@
         "wins": 3,
         "winrate": 0.25,
         "pilots": 8
+      },
+      {
+        "name": "Starwise Luna",
+        "faction": "archaeon",
+        "matches": 12,
+        "wins": 9,
+        "winrate": 0.75,
+        "pilots": 5
       },
       {
         "name": "Executor Ginn",
