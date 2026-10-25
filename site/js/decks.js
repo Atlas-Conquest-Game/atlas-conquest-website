@@ -310,7 +310,7 @@ function renderTypeBreakdown(deck) {
 
   if (!deck.cards.length) {
     document.getElementById('type-breakdown').innerHTML =
-      '<p class="deck-split-empty">Add cards to see the type and faction split.</p>';
+      '<p class="deck-split-empty">Add cards to see the type and patron split.</p>';
     return;
   }
   document.getElementById('type-breakdown').innerHTML =
@@ -318,7 +318,7 @@ function renderTypeBreakdown(deck) {
       { label: 'Minions', value: minions, color: MINION_COLOR },
       { label: 'Spells', value: spells, color: SPELL_COLOR },
     ]) +
-    (factions.length ? splitBarHtml('Faction', factions) : '');
+    (factions.length ? splitBarHtml('Patron', factions) : '');
 }
 
 // ─── Deck Size Meter ───────────────────────────────────────

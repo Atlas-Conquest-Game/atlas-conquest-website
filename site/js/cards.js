@@ -53,7 +53,7 @@ const CARD_COLUMNS = [
     render: c => `<strong${c.token ? ' class="card-name-token" title="Token — generated in play, not deck-buildable"' : ''}>${c.name}</strong>`,
   },
   {
-    key: 'faction', label: 'Faction', group: 'card', frozen: true, string: true,
+    key: 'faction', label: 'Patron', group: 'card', frozen: true, string: true,
     value: c => c.faction,
     render: c => factionBadge(c.faction),
   },

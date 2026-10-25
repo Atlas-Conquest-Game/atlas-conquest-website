@@ -716,7 +716,7 @@ async function openCommanderModal(cmdName) {
     modalCharts.loyalty = new Chart(loyaltyCanvas, {
       type: 'doughnut',
       data: {
-        labels: ['Patron', 'Neutral', 'Other Faction'],
+        labels: ['Patron', 'Neutral', 'Other Patron'],
         datasets: [{
           data: [d.avg_patron_cards, d.avg_neutral_cards, d.avg_other_cards],
           backgroundColor: [CHART_THEME.goldFill, 'rgba(168, 144, 120, 0.6)', CHART_THEME.slateFill],
