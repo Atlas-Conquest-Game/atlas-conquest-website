@@ -10,6 +10,7 @@ on:
 permissions:
   contents: write
   actions: write  # needed to dispatch the deploy-site workflow
+  id-token: write  # signs in to AWS as atlas-conquest-analytics-reader (no stored key)
 
 jobs:
   update-data:
@@ -27,11 +28,15 @@ jobs:
       - name: Install dependencies
         run: pip install -r scripts/requirements.txt
 
+      # Short-lived credentials for a role that can only read games and game_actions,
+      # issued to runs of this repo's main branch alone. The AWS trust policy is the gate.
+      - name: Sign in to AWS
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::426419564189:role/atlas-conquest-analytics-reader
+          aws-region: us-east-2
+
       - name: Fetch data from AWS
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
         run: python scripts/fetch_data.py
 
       # Derived analytics v2 layer (site/data/insights/) built from the JSON
