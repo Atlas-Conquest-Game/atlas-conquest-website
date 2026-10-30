@@ -2,7 +2,9 @@
 
 The press kit offers every card as the raw 800x1120 render in CardScreenshots/:
 the card alone on transparency, no drop shadow. Single cards download straight
-from this repo on GitHub; "Download all cards" is one ZIP attached to the
+from this repo on GitHub (CardScreenshots/ is in Git LFS, so they come from
+media.githubusercontent.com: raw.githubusercontent.com would serve the LFS
+pointer file); "Download all cards" is one ZIP attached to the
 `press-kit` GitHub release.
 
     python scripts/build_press_cards.py              # refresh site/data/press_cards.json
@@ -23,7 +25,7 @@ SHOTS_DIR = REPO_ROOT / "CardScreenshots"
 MANIFEST = DATA_DIR / "press_cards.json"
 
 REPO = "Atlas-Conquest-Game/atlas-conquest-website"
-RAW_BASE = f"https://raw.githubusercontent.com/{REPO}/main/CardScreenshots/"
+RAW_BASE = f"https://media.githubusercontent.com/media/{REPO}/main/CardScreenshots/"
 ZIP_NAME = "AtlasConquest-Cards.zip"
 ZIP_URL = f"https://github.com/{REPO}/releases/download/press-kit/{ZIP_NAME}"
 
@@ -39,7 +41,7 @@ def human_size(n):
 
 def collect():
     """Every commander, card and token that has a screenshot, in name order."""
-    # GitHub's raw URLs are case-sensitive and the folder carries legacy
+    # GitHub's file URLs are case-sensitive and the folder carries legacy
     # capitalised names, so each entry records its file exactly as stored.
     shots = {p.stem.lower(): p.name for p in SHOTS_DIR.glob("*.png")}
     commanders = json.loads((DATA_DIR / "commanders.json").read_text(encoding="utf-8"))

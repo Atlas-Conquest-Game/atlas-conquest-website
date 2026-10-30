@@ -20,6 +20,23 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
+      # Artwork/ and CardScreenshots/ live in Git LFS (~1.25 GB), which the
+      # thumbnail, OG-image and press-kit steps read. LFS downloads count
+      # against the free 10 GB/month bandwidth, so keep the objects in the
+      # Actions cache: a run only downloads art that changed since the last one.
+      - name: List LFS objects
+        run: git lfs ls-files --long | cut -d' ' -f1 | sort > .lfs-ids
+
+      - name: Restore LFS cache
+        uses: actions/cache@v4
+        with:
+          path: .git/lfs
+          key: lfs-${{ hashFiles('.lfs-ids') }}
+          restore-keys: lfs-
+
+      - name: Pull LFS objects
+        run: git lfs pull
+
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
