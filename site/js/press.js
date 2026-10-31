@@ -70,6 +70,13 @@ async function renderPressKit() {
     return;
   }
   if (kit.folder_url) document.getElementById('press-kit-folder').href = kit.folder_url;
+  // The trailer sits in Videos as a single cell, one download per size. Until
+  // both files have Drive ids the page keeps its "Coming soon" note.
+  const trailer = kit.trailer;
+  if (trailer && trailer.preview && (trailer.files || []).every(f => f.id)) {
+    document.getElementById('press-trailer').innerHTML =
+      `<div class="press-grid press-grid-trailer">${renderItem(trailer)}</div>`;
+  }
   // Only list assets that are actually downloadable and have a built preview;
   // anything else is still reachable through the full-kit folder link. A group
   // flagged `coming_soon` in the manifest shows a placeholder until it has
