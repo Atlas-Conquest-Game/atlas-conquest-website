@@ -637,6 +637,34 @@
           "large": "assets/press/large/logo-bw.webp"
         }
       ]
+    },
+    {
+      "title": "Fonts",
+      "note": "Fredoka One is the in-game interface font. Titles use OptimusPrinceps SemiBold by Manfred Klein, and card text uses Amelia by TipoType (a commercial font). Those two aren't included here: get them from their designers.",
+      "items": [
+        {
+          "slug": "font-fredoka-one",
+          "title": "Fredoka One",
+          "note": "SIL Open Font License",
+          "files": [
+            {
+              "format": "TTF",
+              "filename": "FredokaOne-Regular.ttf",
+              "url": "assets/press/fonts/FredokaOne-Regular.ttf",
+              "size": "41 KB"
+            },
+            {
+              "format": "License",
+              "filename": "FredokaOne-OFL.txt",
+              "url": "assets/press/fonts/FredokaOne-OFL.txt",
+              "size": "4 KB"
+            }
+          ],
+          "dimensions": "",
+          "preview": "assets/press/font-fredoka-one-small.webp",
+          "large": "assets/press/font-fredoka-one.webp"
+        }
+      ]
     }
   ]
 }

@@ -21,15 +21,16 @@ function escapeHTML(s) {
 }
 
 function renderItem(item) {
-  const files = (item.files || []).filter(f => f.id);
+  // A file is on Drive (`id`) or served from this site (`url`).
+  const files = (item.files || []).filter(f => f.id || f.url);
   // `label` names a variant when two files share a format (key art with and without the logo).
   const downloads = files.map(f => `
-    <a class="press-dl" href="${DRIVE_DOWNLOAD(f.id)}" download
+    <a class="press-dl" href="${f.url ? escapeHTML(f.url) : DRIVE_DOWNLOAD(f.id)}" download
        aria-label="Download ${escapeHTML(item.title)}${f.label ? `, ${escapeHTML(f.label.toLowerCase())},` : ''} as ${escapeHTML(f.format)}${f.size ? ` (${escapeHTML(f.size)})` : ''}">
       ${DOWNLOAD_ICON}${escapeHTML(f.label || f.format)}${f.size ? ` <span class="press-card-meta">${escapeHTML(f.size)}</span>` : ''}
     </a>`).join('');
   // "View" opens the first file in Drive's viewer — handy for checking before downloading.
-  const view = files.length
+  const view = files.length && files[0].id
     ? `<a class="press-dl press-dl-view" href="${DRIVE_VIEW(files[0].id)}" target="_blank" rel="noopener">View</a>`
     : '';
   const image = `<img src="${escapeHTML(item.preview)}" alt="${escapeHTML(item.title)} preview" loading="lazy">`;
@@ -48,7 +49,7 @@ function renderItem(item) {
       <div class="press-card-body">
         <div>
           <h4 class="press-card-title">${escapeHTML(item.title)}</h4>
-          <div class="press-card-meta">${escapeHTML(item.dimensions || '')}${item.note ? ` · ${escapeHTML(item.note)}` : ''}</div>
+          <div class="press-card-meta">${[item.dimensions, item.note].filter(Boolean).map(escapeHTML).join(' · ')}</div>
         </div>
         <div class="press-card-actions">${downloads}${view}</div>
       </div>
@@ -81,7 +82,7 @@ async function renderPressKit() {
   // anything else is still reachable through the full-kit folder link. A group
   // flagged `coming_soon` in the manifest shows a placeholder until it has
   // ready items of its own.
-  const ready = item => item.preview && (item.files || []).some(f => f.id);
+  const ready = item => item.preview && (item.files || []).some(f => f.id || f.url);
   const groups = (kit.groups || [])
     .map(g => ({ ...g, items: (g.items || []).filter(ready) }))
     .filter(g => g.items.length || g.coming_soon);
@@ -94,6 +95,7 @@ async function renderPressKit() {
     ? groups.map(g => `
       <section class="press-group" id="${groupId(g)}">
         <h3 class="press-group-title">${escapeHTML(g.title)}</h3>
+        ${g.note ? `<p class="press-group-note">${escapeHTML(g.note)}</p>` : ''}
         ${g.items.length ? `<div class="press-grid">${g.items.map(renderItem).join('')}</div>` : comingSoon(g.title)}
       </section>`).join('')
     : '<p class="press-kit-empty">Individual files are coming soon — the full press kit is available above.</p>';
@@ -175,7 +177,8 @@ function initCopyButtons() {
     btn.addEventListener('click', async () => {
       const original = btn.textContent;
       const source = btn.dataset.copyFrom && document.getElementById(btn.dataset.copyFrom);
-      const text = source ? source.textContent.trim() : btn.dataset.copy;
+      // innerText keeps the paragraph breaks of a multi-paragraph source.
+      const text = source ? source.innerText.trim() : btn.dataset.copy;
       try {
         await navigator.clipboard.writeText(text);
         btn.textContent = 'Copied!';

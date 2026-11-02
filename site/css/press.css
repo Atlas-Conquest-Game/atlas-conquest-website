@@ -238,6 +238,14 @@
   margin-top: 2rem;
 }
 
+.press-long-description h2 {
+  max-width: 44rem;
+  margin: 1.75rem 0 0.75rem;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
 .press-list {
   max-width: 44rem;
   padding-left: 1.125rem;
@@ -313,6 +321,12 @@
 
 .press-group + .press-group {
   margin-top: 2.5rem;
+}
+
+.press-group-note {
+  max-width: 44rem;
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
 }
 
 .press-group-title {
