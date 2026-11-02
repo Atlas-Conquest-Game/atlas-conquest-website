@@ -975,6 +975,7 @@ _COMMANDER_SHORT_NAMES = {
     "Rosirix the Witch": "Rosirix",
     "Newhaven Township": "Town",
     "Soultaker Viessa": "Viessa",
+    "Yarrow, Blood Banker": "Yarrow",
 }
 
 
