@@ -2890,7 +2890,7 @@
   {
     "name": "Iron Dagger",
     "type": "Spell",
-    "text": "Weapon Offensive.  (Only grants its bonuses during your own turn.)",
+    "text": "Weapon Offensive.  (Only grants its Power during your own turn.)",
     "subtype": "",
     "cost": 2,
     "attack": null,
@@ -3943,7 +3943,7 @@
   {
     "name": "Parrying Buckler",
     "type": "Spell",
-    "text": "Weapon Defensive.  (Only grants its bonuses during other players' turns.)",
+    "text": "Weapon Defensive.  (Only grants its Power during other players' turns.)",
     "subtype": "",
     "cost": 4,
     "attack": null,

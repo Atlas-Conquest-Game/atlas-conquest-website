@@ -4,8 +4,8 @@
  "zip": {
   "url": "https://github.com/Atlas-Conquest-Game/atlas-conquest-website/releases/download/press-kit/AtlasConquest-Cards.zip",
   "filename": "AtlasConquest-Cards.zip",
-  "size": "280 MB",
-  "count": 312
+  "size": "281 MB",
+  "count": 313
  },
  "cards": [
   {
@@ -2149,6 +2149,13 @@
    "kind": "Minion",
    "faction": "Neutral",
    "file": "Wise-Elder.png"
+  },
+  {
+   "name": "Yarrow, Blood Banker",
+   "slug": "yarrow-blood-banker",
+   "kind": "Commander",
+   "faction": "Shadis",
+   "file": "yarrow-blood-banker.png"
   },
   {
    "name": "Yorefell, Blade of Lusheim",

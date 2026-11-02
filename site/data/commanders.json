@@ -17,7 +17,7 @@
   },
   {
     "name": "Elber, Jungle Emissary",
-    "text": "When you play a card that costs 8 or more, Elber, Jungle Emissary heals <sprite name=\"health_4\">.",
+    "text": "When you play a card that costs 8 or more, Elber heals <sprite name=\"health_4\"> and you draw a card.",
     "subtype": "Beast",
     "dominion": 7,
     "intellect": 7,
@@ -258,5 +258,23 @@
     "human_art": true,
     "has_animation": true,
     "mentions": []
+  },
+  {
+    "name": "Yarrow, Blood Banker",
+    "text": "The first time the enemy commander takes damage on each of your turns, add a War Chest to your hand.",
+    "subtype": "Daemon",
+    "dominion": 6,
+    "intellect": 7,
+    "speed": 1,
+    "health": 33,
+    "patron": "Shadis",
+    "faction": "shadis",
+    "art": "assets/commanders/yarrow-blood-banker.jpg",
+    "art_type": "ARTIST_COMMISSIONED",
+    "human_art": true,
+    "has_animation": true,
+    "mentions": [
+      "War Chest"
+    ]
   }
 ]
