@@ -140,8 +140,13 @@ Bulk upload with rclone (one-time setup: `rclone config`, type `s3`, provider
 `https://<account id>.r2.cloudflarestorage.com`, and `no_check_bucket = true` because the
 token is scoped to the one bucket), then:
 
-    rclone copy "r2" r2:atlas-conquest-website-storage --progress --transfers 16 --exclude "zips/**"
-    rclone copy "r2/zips" r2:atlas-conquest-website-storage/zips --progress --header-upload "Content-Disposition: attachment"
+    rclone copy ./r2 r2:atlas-conquest-website-storage --progress --transfers 16 --exclude "zips/**" --exclude "*/png/**"
+    rclone copy ./r2 r2:atlas-conquest-website-storage --progress --transfers 16 --include "*/png/*.png" --header-upload "Content-Disposition: attachment"
+    rclone copy ./r2/zips r2:atlas-conquest-website-storage/zips --progress --header-upload "Content-Disposition: attachment"
+
+The PNGs and ZIPs must carry Content-Disposition: attachment: the press page's PNG button is a
+plain link (no CORS fetch, which Cloudflare's edge cache breaks), so the header is what saves
+the file instead of opening it. Re-uploading a changed card with --ignore-times keeps it.
 
 (The dashboard's drag-and-drop works too, one folder at a time, but caps how many files
 go per upload.)

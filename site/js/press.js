@@ -256,8 +256,13 @@ async function initCards() {
   const live = Boolean(I18N.slug && I18N.cards && I18N.cards.live);
   const host = live ? `${I18N.cards.base}/${I18N.slug}` : '';
   const nameOf = c => (local.cards && local.cards[c.name]) || c.name;
+  // The card host serves the PNGs with Content-Disposition: attachment, so a plain link saves
+  // the file. No fetch, so no CORS: Cloudflare's edge cache keeps whichever copy it saw first,
+  // and the lightbox's plain <img> request would cache one without CORS headers. `?download`
+  // gives the button its own cache entry.
   const art = c => (live
-    ? { preview: `${host}/webp/${c.slug}.webp`, large: `${host}/png/${c.slug}.png`, file: `${host}/png/${c.slug}.png` }
+    ? { preview: `${host}/webp/${c.slug}.webp`, large: `${host}/png/${c.slug}.png`,
+        file: `${host}/png/${c.slug}.png?download`, direct: true }
     : { preview: `${ROOT}assets/media/cards/${c.slug}.webp`, large: `${ROOT}assets/card-art-png/${c.slug}.png`,
         file: data.raw_base + encodeURIComponent(c.file) });
   // A localized render that fails to load falls back to the English one.
@@ -313,8 +318,8 @@ async function initCards() {
             <div class="press-card-meta">${escapeHTML(meta)}</div>
           </div>
           <div class="press-card-actions">
-            <a class="press-dl" href="${escapeHTML(a.file)}" data-save-as="${escapeHTML(c.slug)}.png"
-               target="_blank" rel="noopener" aria-label="${escapeHTML(t('Download {0} as PNG', name))}">${DOWNLOAD_ICON}PNG</a>
+            <a class="press-dl" href="${escapeHTML(a.file)}"${a.direct ? ' download' : ` data-save-as="${escapeHTML(c.slug)}.png"
+               target="_blank" rel="noopener"`} aria-label="${escapeHTML(t('Download {0} as PNG', name))}">${DOWNLOAD_ICON}PNG</a>
           </div>
         </div>
       </article>`;
