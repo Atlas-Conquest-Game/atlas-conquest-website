@@ -120,7 +120,7 @@ renders; it only rewrites files that changed.
 
 ## 0. One-time Cloudflare setup (dashboard, ~10 minutes)
 
-1. R2 > Create bucket, e.g. `atlas-conquest-cards` (location: automatic).
+1. R2 > Create bucket (ours is `atlas-conquest-website-storage`, location automatic).
 2. The bucket > Settings > Custom Domains > Connect domain: `cards.atlas-conquest.com`.
    atlas-conquest.com is already on Cloudflare, so the DNS record is added for you.
 3. The bucket > Settings > CORS policy, so the press page can save single cards:
@@ -137,10 +137,11 @@ Upload everything inside `r2/` to the bucket root, keeping the folders:
 
 Bulk upload with rclone (one-time setup: `rclone config`, type `s3`, provider
 `Cloudflare`, the R2 access key and secret, endpoint
-`https://<account id>.r2.cloudflarestorage.com`), then:
+`https://<account id>.r2.cloudflarestorage.com`, and `no_check_bucket = true` because the
+token is scoped to the one bucket), then:
 
-    rclone copy "r2" r2:<bucket> --progress --transfers 16 --exclude "zips/**"
-    rclone copy "r2/zips" r2:<bucket>/zips --progress --header-upload "Content-Disposition: attachment"
+    rclone copy "r2" r2:atlas-conquest-website-storage --progress --transfers 16 --exclude "zips/**"
+    rclone copy "r2/zips" r2:atlas-conquest-website-storage/zips --progress --header-upload "Content-Disposition: attachment"
 
 (The dashboard's drag-and-drop works too, one folder at a time, but caps how many files
 go per upload.)

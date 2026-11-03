@@ -1,7 +1,7 @@
 {
  "_doc": "Locales of the localized home and press pages (scripts/build_i18n.py). code = the game's locale and i18n/<code>.json; slug = URL folder and card folder on the card host; hreflang 'es' because Google takes only two-letter regions. cards_live: set true once the localized card images are on cards_base, then re-run build_i18n.py.",
  "cards_base": "https://cards.atlas-conquest.com",
- "cards_live": false,
+ "cards_live": true,
  "locales": [
   {
    "code": "de",
