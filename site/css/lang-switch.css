@@ -1,0 +1,81 @@
+/* Language menu on the pages that have translations (home, press). The markup is written by
+   scripts/build_i18n.py into each page's AC:LANG region. Standalone: the home page and the
+   press page have different stylesheets, so this sets its own colours. */
+
+.lang-switch {
+  position: relative;
+  flex: none;
+  font: 500 14px/1 system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+.lang-switch > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  list-style: none;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.lang-switch > summary::-webkit-details-marker { display: none; }
+.lang-switch > summary:hover,
+.lang-switch[open] > summary { border-color: rgba(232, 182, 48, 0.6); color: #fff; }
+.lang-switch > summary:focus-visible { outline: 2px solid #e8b630; outline-offset: 2px; }
+
+.lang-switch__icon { width: 16px; height: 16px; flex: none; }
+
+.lang-switch__menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 200;
+  min-width: 210px;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: #0e131d;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+}
+
+.lang-switch__menu a {
+  display: block;
+  padding: 9px 12px;
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+}
+
+.lang-switch__menu a:hover,
+.lang-switch__menu a:focus-visible { background: rgba(255, 255, 255, 0.08); color: #fff; }
+.lang-switch__menu a[aria-current] { color: #e8b630; font-weight: 600; }
+
+/* Home nav: the menu sits at the end of the links row; on phones it is inside the
+   burger panel, so the bar keeps just the logo, the call to action and the burger. */
+.nav__menu .lang-switch { margin-left: 4px; }
+@media (max-width: 960px) {
+  .nav__menu .lang-switch { margin: 12px 0 0; }
+  .nav__menu .lang-switch > summary { width: 100%; justify-content: flex-start; padding: 12px 14px; }
+  .nav__menu .lang-switch > summary span { display: inline; }
+  .nav__menu .lang-switch__menu { position: static; margin-top: 8px; box-shadow: none; }
+}
+
+/* Press nav (legacy layout): between the links and the edge. */
+.nav-inner .lang-switch { margin-left: 1rem; }
+
+@media (max-width: 560px) {
+  .lang-switch > summary span { display: none; }
+  .lang-switch > summary { padding: 7px; }
+}
+
+/* Narrowest phones: the nav's Wishlist button drops its Steam icon so the longer
+   translated labels (Liste de souhaits, Lista de deseados) still fit beside the burger. */
+@media (max-width: 380px) {
+  .nav__inner .nav__cta .icon { display: none; }
+}

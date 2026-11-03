@@ -1,0 +1,942 @@
+{
+ "001caeb1c71f": {
+  "src": "Fredoka One is the in-game interface font. Titles use OptimusPrinceps SemiBold by Manfred Klein, and card text uses Amelia by TipoType (a commercial font). Those two aren't included here: get them from their designers.",
+  "text": "Fredoka One 是游戏界面字体。标题使用 Manfred Klein 设计的 OptimusPrinceps SemiBold，卡牌文字使用 TipoType 设计的 Amelia（商业字体）。这两款字体未包含在内，请向其设计者获取。"
+ },
+ "00c985aa2948": {
+  "src": "Every card as a <span id=\"press-cards-dimensions\">800 × 1120</span> PNG on a transparent background, with no drop shadow, ready to drop into a video, thumbnail or article.",
+  "text": "每张卡牌均为<span id=\"press-cards-dimensions\">800 × 1120</span>的 PNG 图片，透明背景、无投影，可直接用于视频、缩略图或文章。"
+ },
+ "0161f6c62060": {
+  "src": "Blinkshot targets an enemy Runic Knight two tiles away and destroys it",
+  "text": "瞬射蛛瞄准两格外的敌方符文骑士并将其消灭"
+ },
+ "038e6f38d030": {
+  "src": "transparent",
+  "text": "透明背景"
+ },
+ "053cfd10c98a": {
+  "src": "Minion",
+  "text": "随从"
+ },
+ "05ef3c3e8f14": {
+  "src": "Pause background motion",
+  "text": "暂停背景动画"
+ },
+ "06d614fd2dba": {
+  "src": "A trailer will be added here shortly.",
+  "text": "预告片即将在此发布。"
+ },
+ "0846d5a4ce28": {
+  "src": "Pause cards",
+  "text": "暂停卡牌轮播"
+ },
+ "090a3c807816": {
+  "src": "Scroll",
+  "text": "向下滚动"
+ },
+ "0a4470d64e9d": {
+  "src": "Skip to content",
+  "text": "跳至正文"
+ },
+ "0bbdc85c0dcf": {
+  "src": "1:20 · 60 fps · MP4 with audio",
+  "text": "1:20 · 60 fps · MP4（含音频）"
+ },
+ "0c382e31b15b": {
+  "src": "0:Play · Play cards on the battlefield.|4:Claim · Claim tiles to grow your mana.|6.7:Attack · Strike the enemy commander.",
+  "text": "0:出牌 · 在战场上打出卡牌。|4:占领 · 占领地块，提升法力。|6.7:攻击 · 直击敌方指挥官。"
+ },
+ "0c683ed92456": {
+  "src": "Logo — wide",
+  "text": "标志 — 横版"
+ },
+ "0dc62798bc3d": {
+  "src": "Watch the Trailer",
+  "text": "观看预告片"
+ },
+ "0de20918c6ed": {
+  "src": "Based in",
+  "text": "所在地"
+ },
+ "0ed209cc10fb": {
+  "src": "Khazgar",
+  "text": "卡兹加"
+ },
+ "0f443e76af14": {
+  "src": "Press kit",
+  "text": "媒体资料包"
+ },
+ "1303dfd9e48e": {
+  "src": "Atlas Conquest is developed by Atlas Conquest LLC, based in Atlanta, Georgia.",
+  "text": "Atlas Conquest 由位于美国佐治亚州亚特兰大的 Atlas Conquest LLC 开发。"
+ },
+ "136598ce8941": {
+  "src": "Key art",
+  "text": "主视觉图"
+ },
+ "153c0f6b3198": {
+  "src": "Couldn't load the asset list — use \"Download full press kit\" above.",
+  "text": "无法加载素材列表，请使用上方的“下载完整媒体资料包”。"
+ },
+ "1692349de617": {
+  "src": "Play background motion",
+  "text": "播放背景动画"
+ },
+ "16a1ba5571f4": {
+  "src": "Steam page <span class=\"press-soon-tip\" id=\"steam-soon\" role=\"tooltip\">Coming soon</span>",
+  "text": "Steam 页面 <span class=\"press-soon-tip\" id=\"steam-soon\" role=\"tooltip\">即将推出</span>"
+ },
+ "181812031a4b": {
+  "src": "IMMERSIVE FANTASY",
+  "text": "沉浸式奇幻世界"
+ },
+ "197101e9db29": {
+  "src": "Open menu",
+  "text": "打开菜单"
+ },
+ "1a93540ec587": {
+  "src": "Command armies of fantasy creatures to crush your opponents with your own unique deck combinations.",
+  "text": "统率奇幻生物大军，用你独一无二的套牌组合击溃对手。"
+ },
+ "1b080a733275": {
+  "src": "TRULY FREE-TO-PLAY ONLINE MULTIPLAYER",
+  "text": "真正免费的在线多人对战"
+ },
+ "1b694920a04e": {
+  "src": "Khazgar, Flame Emperor, hits the enemy commander, taking him from 20 health to 8.",
+  "text": "“卡兹加，烈焰大帝”攻击敌方指挥官，使其生命值从20降至8。"
+ },
+ "1b81f28b5afb": {
+  "src": "Attack",
+  "text": "攻击"
+ },
+ "1be49dad27c9": {
+  "src": "Blinkshot picks off a Runic Knight",
+  "text": "瞬射蛛狙杀符文骑士"
+ },
+ "1ca45ba28eae": {
+  "src": "Deck Editor",
+  "text": "套牌编辑器"
+ },
+ "1d97f13fca2f": {
+  "src": "Download the Ranged ability clip as MP4 (563 KB)",
+  "text": "下载“远程能力”片段（MP4，563 KB）"
+ },
+ "1fac9949e7b9": {
+  "src": "Logo — black & white",
+  "text": "标志 — 黑白"
+ },
+ "2122747765b0": {
+  "src": "280+ cards",
+  "text": "280+张卡牌"
+ },
+ "218887269ad5": {
+  "src": "Team",
+  "text": "团队"
+ },
+ "22d611684df2": {
+  "src": "{0} will be added here shortly.",
+  "text": "“{0}”即将在此添加。"
+ },
+ "235e568958fe": {
+  "src": "Cards become units that move and fight on a hex-grid battlefield.",
+  "text": "卡牌化身为单位，在六角格战场上移动和战斗。"
+ },
+ "2370a8f843c8": {
+  "src": "Press contact, fact sheet and downloadable press kit for Atlas Conquest.",
+  "text": "Atlas Conquest 的媒体联系方式、游戏概况及可下载的媒体资料包。"
+ },
+ "24af66ee2081": {
+  "src": "Atlanta, Georgia",
+  "text": "美国佐治亚州亚特兰大"
+ },
+ "25bc96295797": {
+  "src": "Analytics",
+  "text": "数据分析"
+ },
+ "26013bccba39": {
+  "src": "Trailer",
+  "text": "预告片"
+ },
+ "2747aac69844": {
+  "src": "Spell",
+  "text": "法术"
+ },
+ "2aa31fca5e4f": {
+  "src": "Genre",
+  "text": "类型"
+ },
+ "2b770a17c655": {
+  "src": "© 2026 Atlas Conquest",
+  "text": "© 2026 Atlas Conquest"
+ },
+ "2bf04af9f14d": {
+  "src": "In-game footage",
+  "text": "实机画面"
+ },
+ "2f7531d3ec9f": {
+  "src": "Play: Claim. Claim tiles to grow your mana.",
+  "text": "播放：占领。占领地块，提升法力。"
+ },
+ "3089591a3cd9": {
+  "src": "Logos",
+  "text": "标志"
+ },
+ "30c54a96f801": {
+  "src": "Collection",
+  "text": "收藏"
+ },
+ "3299838369a8": {
+  "src": "Fact sheet and contact",
+  "text": "游戏概况与联系方式"
+ },
+ "32ccc66f72cb": {
+  "src": "Tropics — close",
+  "text": "热带 — 近景"
+ },
+ "334612062f8d": {
+  "src": "Wishlist on Steam Now",
+  "text": "立即在 Steam 上添加至愿望单"
+ },
+ "34a70e9be490": {
+  "src": "JOIN THE BATTLE",
+  "text": "加入战斗"
+ },
+ "353bd61aab0e": {
+  "src": "Download the Movement clip as MP4 (453 KB)",
+  "text": "下载“移动”片段（MP4，453 KB）"
+ },
+ "358f55a16a9a": {
+  "src": "Vertical capsule",
+  "text": "竖版胶囊图"
+ },
+ "35bcb61ac250": {
+  "src": "Matan Diamond on LinkedIn",
+  "text": "Matan Diamond 的 LinkedIn"
+ },
+ "35c76ef713d4": {
+  "src": "Announcement trailer",
+  "text": "公布预告片"
+ },
+ "379e0017a3ab": {
+  "src": "Heavy Cavalry attacks and destroys a Guerilla Gorilla, then moves into its tile",
+  "text": "重骑兵攻击并消灭游击猩猩，随后进入其所在地块"
+ },
+ "3875a8f553df": {
+  "src": "Fire Titan",
+  "text": "火焰泰坦"
+ },
+ "390a38c49460": {
+  "src": "Fact sheet",
+  "text": "游戏概况"
+ },
+ "392feef07c53": {
+  "src": "Players",
+  "text": "玩家"
+ },
+ "396c2137a0b5": {
+  "src": "Short description",
+  "text": "简短介绍"
+ },
+ "3a3b13435865": {
+  "src": "Dyana",
+  "text": "黛安娜"
+ },
+ "3b579e16ef7a": {
+  "src": "Contact and assets for coverage of Atlas Conquest, a competitive hex-grid deck builder.",
+  "text": "竞技向六角格套牌构筑游戏 Atlas Conquest 的媒体联系方式与报道素材。"
+ },
+ "3e8248e32edf": {
+  "src": "Price",
+  "text": "价格"
+ },
+ "4242e7c9a8b7": {
+  "src": "Ultimate Ability",
+  "text": "终极技能"
+ },
+ "42a1ac6d2543": {
+  "src": "MP4 <span class=\"press-card-meta\">1.3 MB</span>",
+  "text": "MP4 <span class=\"press-card-meta\">1.3 MB</span>"
+ },
+ "4581f358b99e": {
+  "src": "Snowmelt — close",
+  "text": "融雪 — 近景"
+ },
+ "45947cfa1954": {
+  "src": "Card images",
+  "text": "卡牌图片"
+ },
+ "45b8a63677aa": {
+  "src": "Atlas Conquest — back to top",
+  "text": "Atlas Conquest — 返回顶部"
+ },
+ "461b06ad3bfd": {
+  "src": "Toggle navigation menu",
+  "text": "切换导航菜单"
+ },
+ "46791373f8e3": {
+  "src": "Using these assets",
+  "text": "素材使用说明"
+ },
+ "475bc5ee20ec": {
+  "src": "Dunes — close",
+  "text": "沙丘 — 近景"
+ },
+ "482cba300e24": {
+  "src": "Logo — stacked",
+  "text": "标志 — 竖版"
+ },
+ "494f9ff93c81": {
+  "src": "EVERY CARD IS A TACTICAL DECISION",
+  "text": "每张卡牌都是战术抉择"
+ },
+ "498c78455ef3": {
+  "src": "Wishlist Atlas Conquest now and then join us on Discord to playtest the game before its release.",
+  "text": "立即将 Atlas Conquest 添加至愿望单，并加入我们的 Discord，在正式发售前抢先试玩。"
+ },
+ "4abce021391d": {
+  "src": "Download all cards",
+  "text": "下载全部卡牌"
+ },
+ "4aeb569c7931": {
+  "src": "One turn, in three beats",
+  "text": "一个回合，三个步骤"
+ },
+ "4bfad0dee99d": {
+  "src": "Fredoka One",
+  "text": "Fredoka One"
+ },
+ "4e5eb8a1a994": {
+  "src": "Darkwing is played and its arrival blast hits the characters around it",
+  "text": "暗翼被打出，其登场冲击波命中周围的角色"
+ },
+ "4eaae53e88ef": {
+  "src": "Copy address",
+  "text": "复制地址"
+ },
+ "4fd1f5a6444a": {
+  "src": "Wishlist on Steam",
+  "text": "在 Steam 上添加至愿望单"
+ },
+ "503102f2e425": {
+  "src": "Download the Battle clip as MP4 (507 KB)",
+  "text": "下载“战斗”片段（MP4，507 KB）"
+ },
+ "50f94286ba30": {
+  "src": "Previous",
+  "text": "上一个"
+ },
+ "512858525f4e": {
+  "src": "Atlas Conquest — Online Competitive Hex-Grid Card Battles",
+  "text": "Atlas Conquest — 在线竞技六角格卡牌对战"
+ },
+ "5184d6f20520": {
+  "src": "Online competitive matches against real players.",
+  "text": "与真人玩家进行在线竞技对局。"
+ },
+ "53b765b04002": {
+  "src": "HUMAN ART",
+  "text": "纯人工美术"
+ },
+ "5503d6dc4763": {
+  "src": "Cards become units on a physical battlefield",
+  "text": "卡牌化身战场上的实体单位"
+ },
+ "55f859b2ceb7": {
+  "src": "<span data-stat=\"cards\">287</span> cards across seven patron gods.",
+  "text": "<span data-stat=\"cards\">287</span>张卡牌，分属七位守护神。"
+ },
+ "55f8ebc805e6": {
+  "src": "Description",
+  "text": "介绍"
+ },
+ "56b71e89fb10": {
+  "src": "Videos",
+  "text": "视频"
+ },
+ "5763a451aea5": {
+  "src": "Cards: {0}",
+  "text": "卡牌：{0}"
+ },
+ "5886a8485df5": {
+  "src": "Close trailer",
+  "text": "关闭预告片"
+ },
+ "5905ca8f5db7": {
+  "src": "Elber walks onto a village and claims it.",
+  "text": "埃尔伯走上村庄并将其占领。"
+ },
+ "597b6356e6ce": {
+  "src": "Screenshots",
+  "text": "截图"
+ },
+ "5b6825d3c67a": {
+  "src": "Site",
+  "text": "网站"
+ },
+ "5d12bd53552c": {
+  "src": "Play",
+  "text": "出牌"
+ },
+ "6017679831a8": {
+  "src": "Nilo",
+  "text": "尼洛"
+ },
+ "601cb738ea12": {
+  "src": "Without logo",
+  "text": "无标志"
+ },
+ "622677cc865f": {
+  "src": "Everything on this page is free to use in coverage of Atlas Conquest.",
+  "text": "本页所有内容均可免费用于报道 Atlas Conquest。"
+ },
+ "630816e16ca5": {
+  "src": "Choose from 16+ commanders, each with a unique playstyle and signature abilities. Lead your forces across evolving battlefields: desert dunes, snowcapped mountains, and volcanic islands. Outmaneuver your rival, expand your territory, and conquer the map.",
+  "text": "从16+位指挥官中任选其一，每位都拥有独特的玩法风格与标志性能力。率领你的部队征战不断变化的战场：沙漠沙丘、雪顶山脉与火山群岛。智胜对手，扩张领地，征服地图。"
+ },
+ "6348258e5c9c": {
+  "src": "Gameplay clips",
+  "text": "游戏片段"
+ },
+ "64609d782873": {
+  "src": "Card or commander name",
+  "text": "卡牌或指挥官名称"
+ },
+ "6855981db4e1": {
+  "src": "Need something that isn't here, or a review key? Email <a href=\"mailto:press@atlas-conquest.com\">press@atlas-conquest.com</a>. The full wording is in the <a href=\"terms.html\">terms</a>.",
+  "text": "需要此处未提供的内容或评测激活码？请发送邮件至 <a href=\"mailto:press@atlas-conquest.com\">press@atlas-conquest.com</a>。完整条款请参阅<a href=\"terms.html\">使用条款</a>。"
+ },
+ "68c663a6b984": {
+  "src": "{0} preview",
+  "text": "{0}预览"
+ },
+ "69bd4ef9fbd0": {
+  "src": "View",
+  "text": "查看"
+ },
+ "6b930aadbdba": {
+  "src": "Darkwing Arrival",
+  "text": "暗翼·登场"
+ },
+ "6c8aba564544": {
+  "src": "Play cards on the battlefield.",
+  "text": "在战场上打出卡牌。"
+ },
+ "6c9fc9908984": {
+  "src": "Close menu",
+  "text": "关闭菜单"
+ },
+ "6deded17b8eb": {
+  "src": "Hex-grid deck builder",
+  "text": "六角格套牌构筑"
+ },
+ "6ff33102b1c6": {
+  "src": "Wishlist",
+  "text": "加入愿望单"
+ },
+ "70f8bb9a8a53": {
+  "src": "Home",
+  "text": "首页"
+ },
+ "74057eaf6aae": {
+  "src": "Join the Beta Now",
+  "text": "立即参与测试"
+ },
+ "766542437828": {
+  "src": "Strike the enemy commander.",
+  "text": "直击敌方指挥官。"
+ },
+ "76ce52e1c14b": {
+  "src": "Ranged Attack",
+  "text": "远程攻击"
+ },
+ "773d119f956e": {
+  "src": "Watch the whole turn full screen",
+  "text": "全屏观看完整回合"
+ },
+ "78efa2bf2b58": {
+  "src": "Copy short description",
+  "text": "复制简短介绍"
+ },
+ "79056c7ae5c3": {
+  "src": "Commander",
+  "text": "指挥官"
+ },
+ "79301fcf6367": {
+  "src": "No card matches \"{0}\".",
+  "text": "没有匹配“{0}”的卡牌。"
+ },
+ "795fb663872b": {
+  "src": "Dunes — full map",
+  "text": "沙丘 — 全图"
+ },
+ "7ac583aa3233": {
+  "src": "<strong>One card:</strong> type its name below, then press <em>PNG</em> on the card. Click the picture to see it larger first.",
+  "text": "<strong>单张卡牌：</strong>在下方输入卡牌名称，然后点击卡牌上的<em>PNG</em>。可先点击图片查看大图。"
+ },
+ "7c422841b7e3": {
+  "src": "Articles",
+  "text": "文章"
+ },
+ "7ce2bda52184": {
+  "src": "Showing {0} of {1}. Type more of the name to narrow it down.",
+  "text": "已显示{1}张中的{0}张。继续输入名称以缩小范围。"
+ },
+ "7cf47cd8a97f": {
+  "src": "Press contact, fact sheet and downloadable press kit for Atlas Conquest: description, gameplay clips, screenshots, map stills, key art, Steam capsules, logos, fonts and every card as a transparent PNG.",
+  "text": "Atlas Conquest 的媒体联系方式、游戏概况及可下载的媒体资料包：游戏介绍、游戏片段、截图、地图画面、主视觉图、Steam 胶囊图、标志、字体，以及所有卡牌的透明背景 PNG 图片。"
+ },
+ "7d6b23cade28": {
+  "src": "Click to expand",
+  "text": "点击放大"
+ },
+ "7e08ebec5e6f": {
+  "src": "Developer",
+  "text": "开发商"
+ },
+ "7e439c353ec8": {
+  "src": "On this page",
+  "text": "本页内容"
+ },
+ "7e448983134e": {
+  "src": "Commander With Weapon",
+  "text": "装备武器的指挥官"
+ },
+ "7e5c6e7f4538": {
+  "src": "MP4 2560 × 1440",
+  "text": "MP4 2560 × 1440"
+ },
+ "7fdb2d7cb45b": {
+  "src": "Game icon",
+  "text": "游戏图标"
+ },
+ "80071cd75107": {
+  "src": "Maps",
+  "text": "地图"
+ },
+ "814e3d70b7c3": {
+  "src": "Zoghn",
+  "text": "佐格恩"
+ },
+ "81f61e27898b": {
+  "src": "Tropics — full map",
+  "text": "热带 — 全图"
+ },
+ "860333eedec5": {
+  "src": "Free to play",
+  "text": "免费游玩"
+ },
+ "8bd28d90f59e": {
+  "src": "Atlas",
+  "text": "阿特拉斯"
+ },
+ "8dcb08d83e29": {
+  "src": "Assemble a deck of cards that become units on a physical battlefield. Duel other players in online competitive matches. Outmaneuver your rival, and conquer the map!",
+  "text": "组建一副套牌，让卡牌化身实体战场上的单位。在在线竞技对局中与其他玩家一决高下。智胜对手，征服地图！"
+ },
+ "8df938aca10b": {
+  "src": "Play: Attack. Strike the enemy commander.",
+  "text": "播放：攻击。直击敌方指挥官。"
+ },
+ "8f032ac5bcc9": {
+  "src": "Claim tiles to grow your mana.",
+  "text": "占领地块，提升法力。"
+ },
+ "909e306274d1": {
+  "src": "View {0} larger",
+  "text": "查看{0}大图"
+ },
+ "9123019816ac": {
+  "src": "Play your part in the war between the gods in Atlas Conquest's original fantasy universe. Seven patron gods each own a unique color of card. Your commander can include cards from their patron god to bring them glory in the war for divine supremacy.",
+  "text": "在 Atlas Conquest 原创的奇幻世界中，投身众神之战。七位守护神各自拥有独特颜色的卡牌。你的指挥官可将其守护神的卡牌纳入套牌，在争夺神界至高地位的战争中为神明赢得荣耀。"
+ },
+ "91315eed232f": {
+  "src": "Release date",
+  "text": "发售日期"
+ },
+ "92b52f6361d0": {
+  "src": "Download {0} as {1}",
+  "text": "以{1}格式下载{0}"
+ },
+ "9356d3ce4e10": {
+  "src": "Zurn",
+  "text": "祖恩"
+ },
+ "9491d0516fcd": {
+  "src": "Main capsule",
+  "text": "主胶囊图"
+ },
+ "94a75bc69451": {
+  "src": "Atlas Conquest — home",
+  "text": "Atlas Conquest — 首页"
+ },
+ "9668fac7ed49": {
+  "src": "Explosive Potion",
+  "text": "爆炸药水"
+ },
+ "967ee64c2e9a": {
+  "src": "Euron",
+  "text": "尤伦"
+ },
+ "96dcd1482322": {
+  "src": "Hone your skills in a single-player practice mode against any deck you imagine.",
+  "text": "在单人练习模式中对阵你能想到的任何套牌，磨练技巧。"
+ },
+ "97f57200b467": {
+  "src": "A minion is dragged along a three-tile route and walks it",
+  "text": "沿三格路线拖动一个随从，随从随之移动"
+ },
+ "98fffe36cc29": {
+  "src": "Join the Beta",
+  "text": "参与测试"
+ },
+ "9a3ab6e3d7a0": {
+  "src": "Download the Darkwing arrival clip as MP4 (1.3 MB)",
+  "text": "下载“暗翼登场”片段（MP4，1.3 MB）"
+ },
+ "9bad486d23b0": {
+  "src": "Loading assets…",
+  "text": "正在加载素材……"
+ },
+ "9bb3bc19e85f": {
+  "src": "Steam capsules",
+  "text": "Steam 胶囊图"
+ },
+ "9ef0a58e7ec0": {
+  "src": "carousel",
+  "text": "轮播"
+ },
+ "9fc538447526": {
+  "src": "MP4 <span class=\"press-card-meta\">563 KB</span>",
+  "text": "MP4 <span class=\"press-card-meta\">563 KB</span>"
+ },
+ "a020b3a60ec1": {
+  "src": "MP4 <span class=\"press-card-meta\">507 KB</span>",
+  "text": "MP4 <span class=\"press-card-meta\">507 KB</span>"
+ },
+ "a03244c8a50f": {
+  "src": "Play cards straight onto the hex grid. Positioning, range, and territory management decide the victor as much as the cards you draw.",
+  "text": "将卡牌直接打到六角格战场上。站位、射程与领地管理对胜负的影响，丝毫不亚于你抽到的卡牌。"
+ },
+ "a1141eb96836": {
+  "src": "Token",
+  "text": "衍生物"
+ },
+ "a1a46b69cabd": {
+  "src": "Snowmelt — full map",
+  "text": "融雪 — 全图"
+ },
+ "a22aee298933": {
+  "src": "Join our community",
+  "text": "加入我们的社区"
+ },
+ "a39b38e9f43e": {
+  "src": "We're committed to one simple promise: the only thing that should decide a game of Atlas Conquest is skill. In Atlas Conquest, every card is earnable through play: collect, craft, and experiment until your deck is tournament-ready. Anyone can take on anyone. Victory comes down to your decisions, not your wallet.",
+  "text": "我们始终坚守一个简单的承诺：决定 Atlas Conquest 胜负的唯一因素只能是技术。在 Atlas Conquest 中，每张卡牌都能通过游玩获得：收集、合成、不断尝试，直到你的套牌足以征战锦标赛。人人都能挑战任何对手。胜利取决于你的决策，而不是你的钱包。"
+ },
+ "a55a275aa676": {
+  "src": "Terms",
+  "text": "条款"
+ },
+ "a915ba8c32a6": {
+  "src": "100% Human-Made Assets",
+  "text": "100%人工创作素材"
+ },
+ "a9a96ec01949": {
+  "src": "Primary",
+  "text": "主导航"
+ },
+ "ab85a0127f20": {
+  "src": "<strong>All of them:</strong> press <em>Download all cards</em> for a single ZIP, one PNG per card, named after the card.",
+  "text": "<strong>全部卡牌：</strong>点击<em>下载全部卡牌</em>即可获取一个 ZIP 压缩包，每张卡牌一个 PNG 文件，以卡牌名称命名。"
+ },
+ "ac1a42f5ac9a": {
+  "src": "Platforms",
+  "text": "平台"
+ },
+ "ac1daa8c0abb": {
+  "src": "Compete against online players across the world to showcase your dominance and earn your title of Conqueror!",
+  "text": "与全球在线玩家同台竞技，彰显你的统治力，赢得“征服者”称号！"
+ },
+ "ad6786d43045": {
+  "src": "A competitive hex-grid deck builder.",
+  "text": "一款竞技向六角格套牌构筑游戏。"
+ },
+ "af1d24466a8e": {
+  "src": "Darkwing arrival",
+  "text": "暗翼登场"
+ },
+ "b1a5c8ef4d90": {
+  "src": "Decks",
+  "text": "套牌"
+ },
+ "b37456c4530b": {
+  "src": "Contact",
+  "text": "联系方式"
+ },
+ "b45923b75e84": {
+  "src": "Please don't alter the logo, or redistribute the artwork or game files wholesale.",
+  "text": "请勿修改标志，也请勿整批转发美术作品或游戏文件。"
+ },
+ "b5f307b3db18": {
+  "src": "Download {0} as PNG",
+  "text": "以 PNG 格式下载{0}"
+ },
+ "b7c3ca0ee379": {
+  "src": "Copied!",
+  "text": "已复制！"
+ },
+ "b85934a82b42": {
+  "src": "Online Competitive Hex-Grid Card Battles",
+  "text": "在线竞技六角格卡牌对战"
+ },
+ "b8da5a8df7bc": {
+  "src": "Copy long description",
+  "text": "复制完整介绍"
+ },
+ "b91901b13c34": {
+  "src": "Play as a commander leading an army for your patron god, battle real players online, outmaneuver your rival and conquer the map.",
+  "text": "化身指挥官，为你的守护神率军出征。与真人玩家在线对战，智胜对手，征服地图。"
+ },
+ "b965ae66fcc4": {
+  "src": "Explore",
+  "text": "探索"
+ },
+ "ba904dddbe22": {
+  "src": "Atlas Conquest is a free-to-play online card battler where your cards become units on a real battlefield. Lead a commander for your patron god, battle real players 1 vs 1 and conquer the map. Wishlist on Steam and join the beta on Discord.",
+  "text": "Atlas Conquest 是一款免费在线卡牌对战游戏，你的卡牌将化身真实战场上的单位。为你的守护神统领一位指挥官，与真人玩家1对1对战，征服地图。在 Steam 上添加至愿望单，并在 Discord 参与测试。"
+ },
+ "bacff3f4698a": {
+  "src": "Play: Play. Play cards on the battlefield.",
+  "text": "播放：出牌。在战场上打出卡牌。"
+ },
+ "baee61cecbba": {
+  "src": "A minion walks a three-tile route",
+  "text": "随从沿三格路线移动"
+ },
+ "bbfa773e5a63": {
+  "src": "Close",
+  "text": "关闭"
+ },
+ "bc981983e7f5": {
+  "src": "Next",
+  "text": "下一个"
+ },
+ "bd5acbff6370": {
+  "src": "Copy failed",
+  "text": "复制失败"
+ },
+ "bef71108fdc9": {
+  "src": "Media viewer",
+  "text": "媒体查看器"
+ },
+ "bfd58ee3a270": {
+  "src": "Community",
+  "text": "社区"
+ },
+ "c0a1cbecb114": {
+  "src": "Play cards",
+  "text": "播放卡牌轮播"
+ },
+ "c0f85d667973": {
+  "src": "Replay",
+  "text": "重播"
+ },
+ "c1f65ddb75ed": {
+  "src": "Engine",
+  "text": "引擎"
+ },
+ "c3c0c03cb1b2": {
+  "src": "Join the Discord to become a beta tester.",
+  "text": "加入 Discord，成为测试玩家。"
+ },
+ "c46f77739775": {
+  "src": "Gameplay clip",
+  "text": "游戏片段"
+ },
+ "c60de89b0c75": {
+  "src": "Free-to-play online card battler: your cards become units on a real battlefield. Battle real players 1 vs 1, claim the map and strike the enemy commander. Wishlist on Steam and join the beta on Discord.",
+  "text": "免费在线卡牌对战游戏：你的卡牌将化身真实战场上的单位。与真人玩家1对1对战，占领地图，直击敌方指挥官。在 Steam 上添加至愿望单，并在 Discord 参与测试。"
+ },
+ "c643ebd42c2c": {
+  "src": "17 commanders",
+  "text": "17位指挥官"
+ },
+ "c6cde3e0e2da": {
+  "src": "Every asset in Atlas Conquest is 100% human-made. Explore hand-painted maps and collect beautifully unique cards.",
+  "text": "Atlas Conquest 中的所有素材均100%由人工创作。探索手绘地图，收集精美独特的卡牌。"
+ },
+ "c6f3008a6f09": {
+  "src": "Games played online",
+  "text": "在线对局数"
+ },
+ "c7fb263ec136": {
+  "src": "A Runic Knight card is dragged from the hand and lands on the board as a unit.",
+  "text": "将符文骑士卡牌从手牌中拖出，它以单位形式落在战场上。"
+ },
+ "cb0a1646cffb": {
+  "src": "Find a card",
+  "text": "查找卡牌"
+ },
+ "cb3228ab5fb0": {
+  "src": "Atlas Conquest key art: a hammer-wielding Atlas charging out of a molten sun.",
+  "text": "Atlas Conquest 主视觉图：手持战锤的阿特拉斯从熔融的太阳中冲出。"
+ },
+ "cc9fdd57fa81": {
+  "src": "1 vs 1 online",
+  "text": "在线1对1"
+ },
+ "ce4e85a16c9b": {
+  "src": "Atlas Conquest <span>— Trailer</span>",
+  "text": "Atlas Conquest <span>— 预告片</span>"
+ },
+ "cf01481f626d": {
+  "src": "Privacy",
+  "text": "隐私"
+ },
+ "cf10dff622d1": {
+  "src": "SIL Open Font License",
+  "text": "SIL Open Font License"
+ },
+ "cf8824728d90": {
+  "src": "Join the Beta on Discord",
+  "text": "在 Discord 参与测试"
+ },
+ "d1afc2348ae2": {
+  "src": "Steam page coming soon. Join the beta on Discord meanwhile.",
+  "text": "Steam 页面即将上线。在此期间，欢迎在 Discord 参与测试。"
+ },
+ "d2da58ad3f95": {
+  "src": "MP4 1920 × 1080",
+  "text": "MP4 1920 × 1080"
+ },
+ "d3eca824debc": {
+  "src": "Email us",
+  "text": "给我们发邮件"
+ },
+ "d4760dfc2910": {
+  "src": "Cards from the game",
+  "text": "游戏中的卡牌"
+ },
+ "d4b55e8a8be6": {
+  "src": "Build decks in game or on the web, and share them as deck codes.",
+  "text": "在游戏内或网页上构筑套牌，并以套牌代码分享。"
+ },
+ "d562b4186bfc": {
+  "src": "Download full press kit",
+  "text": "下载完整媒体资料包"
+ },
+ "d894cdab4d95": {
+  "src": "Press — Atlas Conquest",
+  "text": "媒体 — Atlas Conquest"
+ },
+ "da8aee26dccf": {
+  "src": "MP4 <span class=\"press-card-meta\">453 KB</span>",
+  "text": "MP4 <span class=\"press-card-meta\">453 KB</span>"
+ },
+ "db2202c7315f": {
+  "src": "Releasing 2027",
+  "text": "2027年发售"
+ },
+ "dc4e08a408fa": {
+  "src": "Claim",
+  "text": "占领"
+ },
+ "dc812752b758": {
+  "src": "Movement",
+  "text": "移动"
+ },
+ "dc88b45f50f5": {
+  "src": "<span data-stat=\"commanders\">17</span> commanders to lead your army, each with their own abilities.",
+  "text": "<span data-stat=\"commanders\">17</span>位指挥官供你统率大军，每位都拥有专属能力。"
+ },
+ "df3e2ba91c90": {
+  "src": "An arrival blast hits the board",
+  "text": "登场冲击波席卷战场"
+ },
+ "dff9e1049a03": {
+  "src": "Atlas Conquest trailer, with sound",
+  "text": "Atlas Conquest 预告片（有声）"
+ },
+ "e1ed3cc8881e": {
+  "src": "Header capsule",
+  "text": "页眉胶囊图"
+ },
+ "e34eca48367b": {
+  "src": "Atlas Conquest is simple to learn and challenging to master. Are you ready for the next evolution of card game strategy?",
+  "text": "Atlas Conquest 易于上手，难于精通。你准备好迎接卡牌策略的下一次进化了吗？"
+ },
+ "e4115be258db": {
+  "src": "Coming soon",
+  "text": "即将推出"
+ },
+ "e8704e778ea3": {
+  "src": "Atlas Conquest is a competitive online card battle game. Duel other players on a hex-grid battlefield.",
+  "text": "Atlas Conquest 是一款竞技向在线卡牌对战游戏。在六角格战场上与其他玩家一决高下。"
+ },
+ "ea683ad61606": {
+  "src": "Press",
+  "text": "媒体"
+ },
+ "ea999d3a4016": {
+  "src": "Screenshots, map stills, key art, Steam capsules, logos and fonts, free to use in coverage of Atlas Conquest. Please don't alter the logo.",
+  "text": "截图、地图画面、主视觉图、Steam 胶囊图、标志和字体均可免费用于报道 Atlas Conquest。请勿修改标志。"
+ },
+ "eb1bf0526c59": {
+  "src": "Download all cards (ZIP, {0})",
+  "text": "下载全部卡牌（ZIP，{0}）"
+ },
+ "ec5edb4f43b0": {
+  "src": "Individual files are coming soon — the full press kit is available above.",
+  "text": "单独文件即将推出，完整媒体资料包可在上方下载。"
+ },
+ "ee19670617d5": {
+  "src": "Three maps to conquer: Dunes, Snowmelt and Tropics.",
+  "text": "三张地图等你征服：沙丘、融雪和热带。"
+ },
+ "eff289010e1f": {
+  "src": "Long description and features",
+  "text": "完整介绍与特色"
+ },
+ "f017a45a11f6": {
+  "src": "Atlas Conquest trailer",
+  "text": "Atlas Conquest 预告片"
+ },
+ "f4ee73539e6f": {
+  "src": "Streaming, recording and making videos of your own play is welcome and encouraged.",
+  "text": "欢迎并鼓励直播、录制你自己的游戏过程或制作相关视频。"
+ },
+ "f5552713f80f": {
+  "src": "Battle",
+  "text": "战斗"
+ },
+ "f947fdd837e1": {
+  "src": "Heavy Cavalry takes a tile by force",
+  "text": "重骑兵强占地块"
+ },
+ "f950ca3aa09c": {
+  "src": "Ranged ability",
+  "text": "远程能力"
+ },
+ "f9a6cf6b7647": {
+  "src": "Press, interviews, and review keys",
+  "text": "媒体报道、采访与评测激活码"
+ },
+ "fc338f87a058": {
+  "src": "Features",
+  "text": "游戏特色"
+ },
+ "fca77b7e3a12": {
+  "src": "At a glance",
+  "text": "概览"
+ },
+ "fcb915161490": {
+  "src": "Capsule — black & white",
+  "text": "胶囊图 — 黑白"
+ },
+ "ffe688a50143": {
+  "src": "Fonts",
+  "text": "字体"
+ }
+}

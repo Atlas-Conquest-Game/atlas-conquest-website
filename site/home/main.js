@@ -23,8 +23,15 @@ const CONFIG = {
 (() => {
   'use strict';
 
-  const TRAILER_SRC = 'assets/media/video/trailer.mp4';
-  const TRAILER_POSTER = 'assets/media/stills/t62_5.webp';
+  // Translations: localized copies of this page (site/<lang>/) carry window.AC_I18N, written by
+  // scripts/build_i18n.py. t() returns the English when there is no translation; ROOT makes
+  // asset paths work from /<lang>/. build_i18n.py collects the string literal of every t() call.
+  const I18N = window.AC_I18N || {};
+  const ROOT = I18N.root || '';
+  const t = (s, ...args) => ((I18N.strings || {})[s] || s).replace(/\{(\d+)\}/g, (_, i) => args[i]);
+
+  const TRAILER_SRC = ROOT + 'assets/media/video/trailer.mp4';
+  const TRAILER_POSTER = ROOT + 'assets/media/stills/t62_5.webp';
   const DISCORD_CACHE_KEY = 'ac:discord-counts';
   const DISCORD_CACHE_MS = 10 * 60 * 1000;
 
@@ -34,7 +41,7 @@ const CONFIG = {
   const $$ = (s, el = document) => Array.from(el.querySelectorAll(s));
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
   const safePlay = (v) => { try { const p = v.play(); if (p && p.catch) p.catch(() => {}); } catch (_) { /* ignore */ } };
-  const fmt = (n) => Math.round(n).toLocaleString('en-US');
+  const fmt = (n) => Math.round(n).toLocaleString(I18N.locale || 'en-US');
 
   let modalOpen = false;
   let clipPlaying = false;   // a section clip is playing: the hero loop waits (one video at a time)
@@ -49,7 +56,7 @@ const CONFIG = {
      Steam is the primary CTA by default. With a store URL, each Steam link is tagged with
      its placement (utm_source=atlas-website, utm_medium=nav|hero|finale). Without one yet,
      the buttons stay put and a click shows a short polite note beside the button. */
-  const SOON_MSG = 'Steam page coming soon. Join the beta on Discord meanwhile.';
+  const SOON_MSG = t('Steam page coming soon. Join the beta on Discord meanwhile.');
 
   function tagged(url, placement) {
     try {
@@ -134,7 +141,7 @@ const CONFIG = {
     const setOpen = (open) => {
       nav.classList.toggle('is-open', open);
       burger.setAttribute('aria-expanded', String(open));
-      burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      burger.setAttribute('aria-label', open ? t('Close menu') : t('Open menu'));
     };
     burger.addEventListener('click', () => setOpen(!nav.classList.contains('is-open')));
     menu.addEventListener('click', (e) => { if (e.target.closest('a, button')) setOpen(false); });
@@ -191,7 +198,7 @@ const CONFIG = {
     btn.addEventListener('click', () => {
       userPaused = !userPaused;
       btn.setAttribute('aria-pressed', String(userPaused));
-      label.textContent = userPaused ? 'Play background motion' : 'Pause background motion';
+      label.textContent = userPaused ? t('Play background motion') : t('Pause background motion');
       hero.classList.toggle('is-still', userPaused);
       update();
     });
@@ -506,7 +513,7 @@ const CONFIG = {
       toggle.addEventListener('click', () => {
         userPaused = !userPaused;
         toggle.setAttribute('aria-pressed', String(userPaused));
-        toggle.setAttribute('aria-label', userPaused ? 'Play cards' : 'Pause cards');
+        toggle.setAttribute('aria-label', userPaused ? t('Play cards') : t('Pause cards'));
       });
     } else if (toggle) toggle.hidden = true;
 
@@ -566,7 +573,7 @@ const CONFIG = {
       if (CONFIG.youtubeTrailerId) {
         const f = document.createElement('iframe');
         f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(CONFIG.youtubeTrailerId) + '?autoplay=1&rel=0&modestbranding=1';
-        f.title = 'Atlas Conquest trailer';
+        f.title = t('Atlas Conquest trailer');
         f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
         f.allowFullscreen = true;
         f.referrerPolicy = 'strict-origin-when-cross-origin';
@@ -577,7 +584,7 @@ const CONFIG = {
         v.playsInline = true;
         v.preload = 'auto';
         v.poster = TRAILER_POSTER;
-        v.setAttribute('aria-label', 'Atlas Conquest trailer, with sound');
+        v.setAttribute('aria-label', t('Atlas Conquest trailer, with sound'));
         v.src = TRAILER_SRC;
         frame.appendChild(v);
       }
@@ -649,7 +656,7 @@ const CONFIG = {
         v.loop = 'viewLoop' in d;
         if (d.viewPoster) v.poster = d.viewPoster;
         v.src = d.viewVideo;
-        v.setAttribute('aria-label', d.viewCaption || 'Gameplay clip');
+        v.setAttribute('aria-label', d.viewCaption || t('Gameplay clip'));
         const start = parseFloat(d.viewStart || '0');
         const at = parseFloat(d.viewAt || '0'); // seconds into the clip (data-view-at)
         const go = () => {
@@ -813,12 +820,17 @@ const CONFIG = {
     const img = $('[data-glance-art]');
     const pick = new URLSearchParams(location.search).get('art');
     if (!img || !pick) return;
-    const map = { grutali: 'home/media/glance-grutali', dyana: 'home/media/glance-dyana', pilot: 'assets/media/keyart/pilot' };
+    const map = { grutali: ROOT + 'home/media/glance-grutali', dyana: ROOT + 'home/media/glance-dyana', pilot: ROOT + 'assets/media/keyart/pilot' };
     if (!map[pick]) return;
     img.src = map[pick] + '-1200.webp';
     img.srcset = map[pick] + '-1200.webp 1200w, ' + map[pick] + '-2400.webp 2400w';
     img.style.objectPosition = { grutali: '60% 45%', dyana: '50% 0%', pilot: '50% 30%' }[pick];
   }
+
+  /* Language menu: a click anywhere else closes it. */
+  document.addEventListener('click', (e) => {
+    $$('.lang-switch[open]').forEach((d) => { if (!d.contains(e.target)) d.open = false; });
+  });
 
   /* ---------------- Boot ---------------- */
   applyLinks();

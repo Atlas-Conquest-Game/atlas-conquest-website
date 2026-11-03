@@ -8,6 +8,13 @@
  * preview is clicked. Standalone page: does not use shared.js.
  */
 
+// Translations: localized copies of this page (site/<lang>/) carry window.AC_I18N, written by
+// scripts/build_i18n.py. t() returns the English when there is no translation; ROOT makes
+// asset paths work from /<lang>/. build_i18n.py collects the string literal of every t() call.
+const I18N = window.AC_I18N || {};
+const ROOT = I18N.root || '';
+const t = (s, ...args) => ((I18N.strings || {})[s] || s).replace(/\{(\d+)\}/g, (_, i) => args[i]);
+
 const DRIVE_DOWNLOAD = id => `https://drive.google.com/uc?export=download&id=${encodeURIComponent(id)}`;
 const DRIVE_VIEW = id => `https://drive.google.com/file/d/${encodeURIComponent(id)}/view`;
 
@@ -24,23 +31,27 @@ function renderItem(item) {
   // A file is on Drive (`id`) or served from this site (`url`).
   const files = (item.files || []).filter(f => f.id || f.url);
   // `label` names a variant when two files share a format (key art with and without the logo).
-  const downloads = files.map(f => `
-    <a class="press-dl" href="${f.url ? escapeHTML(f.url) : DRIVE_DOWNLOAD(f.id)}" download
-       aria-label="Download ${escapeHTML(item.title)}${f.label ? `, ${escapeHTML(f.label.toLowerCase())},` : ''} as ${escapeHTML(f.format)}${f.size ? ` (${escapeHTML(f.size)})` : ''}">
-      ${DOWNLOAD_ICON}${escapeHTML(f.label || f.format)}${f.size ? ` <span class="press-card-meta">${escapeHTML(f.size)}</span>` : ''}
-    </a>`).join('');
+  const title = t(item.title);
+  const downloads = files.map(f => {
+    const what = f.label ? `${title}, ${t(f.label).toLowerCase()}` : title;
+    return `
+    <a class="press-dl" href="${f.url ? escapeHTML(ROOT + f.url) : DRIVE_DOWNLOAD(f.id)}" download
+       aria-label="${escapeHTML(t('Download {0} as {1}', what, f.format))}${f.size ? ` (${escapeHTML(f.size)})` : ''}">
+      ${DOWNLOAD_ICON}${escapeHTML(f.label ? t(f.label) : f.format)}${f.size ? ` <span class="press-card-meta">${escapeHTML(f.size)}</span>` : ''}
+    </a>`;
+  }).join('');
   // "View" opens the first file in Drive's viewer — handy for checking before downloading.
   const view = files.length && files[0].id
-    ? `<a class="press-dl press-dl-view" href="${DRIVE_VIEW(files[0].id)}" target="_blank" rel="noopener">View</a>`
+    ? `<a class="press-dl press-dl-view" href="${DRIVE_VIEW(files[0].id)}" target="_blank" rel="noopener">${escapeHTML(t('View'))}</a>`
     : '';
-  const image = `<img src="${escapeHTML(item.preview)}" alt="${escapeHTML(item.title)} preview" loading="lazy">`;
-  const caption = [item.title, item.dimensions].filter(Boolean).join(' · ');
+  const image = `<img src="${escapeHTML(ROOT + item.preview)}" alt="${escapeHTML(t('{0} preview', title))}" loading="lazy">`;
+  const caption = [title, item.dimensions && t(item.dimensions)].filter(Boolean).join(' · ');
   // With a larger copy built, the preview is a button that opens it in the lightbox.
   const preview = item.large
-    ? `<button type="button" class="press-preview press-preview-zoom" data-large="${escapeHTML(item.large)}"
-         data-caption="${escapeHTML(caption)}" aria-label="View ${escapeHTML(item.title)} larger">
+    ? `<button type="button" class="press-preview press-preview-zoom" data-large="${escapeHTML(ROOT + item.large)}"
+         data-caption="${escapeHTML(caption)}" aria-label="${escapeHTML(t('View {0} larger', title))}">
         ${image}
-        <span class="press-zoom-hint">${EXPAND_ICON}<span>Click to expand</span></span>
+        <span class="press-zoom-hint">${EXPAND_ICON}<span>${escapeHTML(t('Click to expand'))}</span></span>
       </button>`
     : `<div class="press-preview">${image}</div>`;
   return `
@@ -48,8 +59,8 @@ function renderItem(item) {
       ${preview}
       <div class="press-card-body">
         <div>
-          <h4 class="press-card-title">${escapeHTML(item.title)}</h4>
-          <div class="press-card-meta">${[item.dimensions, item.note].filter(Boolean).map(escapeHTML).join(' · ')}</div>
+          <h4 class="press-card-title">${escapeHTML(title)}</h4>
+          <div class="press-card-meta">${[item.dimensions, item.note].filter(Boolean).map(v => escapeHTML(t(v))).join(' · ')}</div>
         </div>
         <div class="press-card-actions">${downloads}${view}</div>
       </div>
@@ -63,11 +74,11 @@ async function renderPressKit() {
   const root = document.getElementById('press-kit-groups');
   let kit;
   try {
-    const res = await fetch('data/press_kit.json');
+    const res = await fetch(ROOT + 'data/press_kit.json');
     if (!res.ok) throw new Error(res.status);
     kit = await res.json();
   } catch {
-    root.innerHTML = '<p class="press-kit-empty">Couldn\'t load the asset list — use "Download full press kit" above.</p>';
+    root.innerHTML = `<p class="press-kit-empty">${escapeHTML(t('Couldn\'t load the asset list — use "Download full press kit" above.'))}</p>`;
     return;
   }
   if (kit.folder_url) document.getElementById('press-kit-folder').href = kit.folder_url;
@@ -88,21 +99,21 @@ async function renderPressKit() {
     .filter(g => g.items.length || g.coming_soon);
   const comingSoon = title => `
     <div class="press-coming-soon" role="note">
-      <span class="press-coming-soon-label">Coming soon</span>
-      <span class="press-coming-soon-text">${escapeHTML(title)} will be added here shortly.</span>
+      <span class="press-coming-soon-label">${escapeHTML(t('Coming soon'))}</span>
+      <span class="press-coming-soon-text">${escapeHTML(t('{0} will be added here shortly.', t(title)))}</span>
     </div>`;
   root.innerHTML = groups.length
     ? groups.map(g => `
       <section class="press-group" id="${groupId(g)}">
-        <h3 class="press-group-title">${escapeHTML(g.title)}</h3>
-        ${g.note ? `<p class="press-group-note">${escapeHTML(g.note)}</p>` : ''}
+        <h3 class="press-group-title">${escapeHTML(t(g.title))}</h3>
+        ${g.note ? `<p class="press-group-note">${escapeHTML(t(g.note))}</p>` : ''}
         ${g.items.length ? `<div class="press-grid">${g.items.map(renderItem).join('')}</div>` : comingSoon(g.title)}
       </section>`).join('')
-    : '<p class="press-kit-empty">Individual files are coming soon — the full press kit is available above.</p>';
+    : `<p class="press-kit-empty">${escapeHTML(t('Individual files are coming soon — the full press kit is available above.'))}</p>`;
   // The side panel's "Press kit" jump link becomes one link per group.
   const tocLink = document.querySelector('[data-toc-kit]');
   if (tocLink && groups.length) {
-    tocLink.outerHTML = groups.map(g => `<a href="#${groupId(g)}">${escapeHTML(g.title)}</a>`).join('');
+    tocLink.outerHTML = groups.map(g => `<a href="#${groupId(g)}">${escapeHTML(t(g.title))}</a>`).join('');
   }
 }
 
@@ -181,10 +192,10 @@ function initCopyButtons() {
       const text = source ? source.innerText.trim() : btn.dataset.copy;
       try {
         await navigator.clipboard.writeText(text);
-        btn.textContent = 'Copied!';
+        btn.textContent = t('Copied!');
       } catch {
         // No clipboard access: show a short value so it can be selected by hand.
-        btn.textContent = source ? 'Copy failed' : text;
+        btn.textContent = source ? t('Copy failed') : text;
       }
       setTimeout(() => { btn.textContent = original; }, 2000);
     });
@@ -199,14 +210,15 @@ async function renderStats() {
   const load = url => fetch(url).then(res => (res.ok ? res.json() : null)).catch(() => null);
   const set = (stat, value) => document.querySelectorAll(`[data-stat="${stat}"]`).forEach(el => { el.textContent = value; });
   const [metadata, commanders, cards] = await Promise.all([
-    load('data/metadata.json'), load('data/commanders.json'), load('data/cards.json'),
+    load(ROOT + 'data/metadata.json'), load(ROOT + 'data/commanders.json'), load(ROOT + 'data/cards.json'),
   ]);
   const all = metadata && metadata.all && metadata.all.all;
-  if (all && all.total_players) set('players', all.total_players.toLocaleString('en-US'));
+  const numbers = I18N.locale || 'en-US';
+  if (all && all.total_players) set('players', all.total_players.toLocaleString(numbers));
   if (all && all.total_matches) {
     // Round down to the nearest hundred so "+" stays truthful.
     const total = all.total_matches;
-    set('matches', total >= 1000 ? (Math.floor(total / 100) * 100).toLocaleString('en-US') + '+' : String(total));
+    set('matches', total >= 1000 ? (Math.floor(total / 100) * 100).toLocaleString(numbers) + '+' : String(total));
   }
   if (commanders) set('commanders', String(commanders.length));
   if (cards) set('cards', String(cards.filter(c => !c.token).length));
@@ -226,22 +238,43 @@ async function initCards() {
   if (!section || !grid) return;
   let data;
   try {
-    const res = await fetch('data/press_cards.json');
+    const res = await fetch(ROOT + 'data/press_cards.json');
     if (!res.ok) throw new Error(res.status);
     data = await res.json();
   } catch {
     return; // the section stays hidden
   }
+  // A localized page shows each card's name in its language, and its render once the renders
+  // are on the card host (AC_I18N.cards.live); until then the English renders stand in.
+  let local = { cards: {}, zip: null };
+  if (I18N.slug) {
+    try {
+      const res = await fetch(`${ROOT}data/i18n/${I18N.slug}.json`);
+      if (res.ok) local = await res.json();
+    } catch { /* English names */ }
+  }
+  const live = Boolean(I18N.slug && I18N.cards && I18N.cards.live);
+  const host = live ? `${I18N.cards.base}/${I18N.slug}` : '';
+  const nameOf = c => (local.cards && local.cards[c.name]) || c.name;
+  const art = c => (live
+    ? { preview: `${host}/webp/${c.slug}.webp`, large: `${host}/png/${c.slug}.png`, file: `${host}/png/${c.slug}.png` }
+    : { preview: `${ROOT}assets/media/cards/${c.slug}.webp`, large: `${ROOT}assets/card-art-png/${c.slug}.png`,
+        file: data.raw_base + encodeURIComponent(c.file) });
+  // A localized render that fails to load falls back to the English one.
+  grid.addEventListener('error', (e) => {
+    const img = e.target;
+    if (img.tagName === 'IMG' && img.dataset.fallback) { img.src = img.dataset.fallback; delete img.dataset.fallback; }
+  }, true);
   const cards = data.cards || [];
   if (!cards.length) return;
   section.hidden = false;
 
-  const zip = data.zip || {};
+  const zip = (live && local.zip) || data.zip || {};
   const zipLink = document.getElementById('press-cards-zip');
   if (zip.url) {
     zipLink.href = zip.url;
     document.getElementById('press-cards-zip-label').textContent =
-      `Download all cards${zip.size ? ` (ZIP, ${zip.size})` : ''}`;
+      zip.size ? t('Download all cards (ZIP, {0})', zip.size) : t('Download all cards');
   } else {
     zipLink.hidden = true;
   }
@@ -252,30 +285,36 @@ async function initCards() {
 
   function render() {
     const query = search.value.trim().toLowerCase();
-    const matches = query ? cards.filter(c => c.name.toLowerCase().includes(query)) : cards;
+    // Search also finds a card by its English name, which press often already has.
+    const matches = query
+      ? cards.filter(c => nameOf(c).toLowerCase().includes(query) || c.name.toLowerCase().includes(query))
+      : cards;
     const shown = matches.slice(0, CARDS_SHOWN);
     count.textContent = !matches.length
-      ? `No card matches "${search.value.trim()}".`
+      ? t('No card matches "{0}".', search.value.trim())
       : matches.length > shown.length
-        ? `Showing ${shown.length} of ${matches.length}${query ? ' matches' : ' cards'}. Type more of the name to narrow it down.`
-        : `${matches.length} ${matches.length === 1 ? 'card' : 'cards'}`;
+        ? t('Showing {0} of {1}. Type more of the name to narrow it down.', shown.length, matches.length)
+        : t('Cards: {0}', matches.length);
     grid.innerHTML = shown.map(c => {
-      const meta = [c.kind, c.faction].filter(Boolean).join(' · ');
+      const meta = [c.kind && t(c.kind), c.faction].filter(Boolean).join(' · ');
+      const name = nameOf(c);
+      const a = art(c);
+      const fallback = live ? ` data-fallback="${escapeHTML(`${ROOT}assets/media/cards/${c.slug}.webp`)}"` : '';
       return `
       <article class="press-card">
-        <button type="button" class="press-preview press-preview-zoom" data-large="assets/card-art-png/${escapeHTML(c.slug)}.png"
-           data-caption="${escapeHTML(c.name)}" aria-label="View ${escapeHTML(c.name)} larger">
-          <img src="assets/media/cards/${escapeHTML(c.slug)}.webp" alt="${escapeHTML(c.name)}" width="400" height="560" loading="lazy">
-          <span class="press-zoom-hint">${EXPAND_ICON}<span>Click to expand</span></span>
+        <button type="button" class="press-preview press-preview-zoom" data-large="${escapeHTML(a.large)}"
+           data-caption="${escapeHTML(name)}" aria-label="${escapeHTML(t('View {0} larger', name))}">
+          <img src="${escapeHTML(a.preview)}"${fallback} alt="${escapeHTML(name)}" width="400" height="560" loading="lazy">
+          <span class="press-zoom-hint">${EXPAND_ICON}<span>${escapeHTML(t('Click to expand'))}</span></span>
         </button>
         <div class="press-card-body">
           <div>
-            <h4 class="press-card-title">${escapeHTML(c.name)}</h4>
+            <h4 class="press-card-title">${escapeHTML(name)}</h4>
             <div class="press-card-meta">${escapeHTML(meta)}</div>
           </div>
           <div class="press-card-actions">
-            <a class="press-dl" href="${escapeHTML(data.raw_base + encodeURIComponent(c.file))}" data-save-as="${escapeHTML(c.slug)}.png"
-               target="_blank" rel="noopener" aria-label="Download ${escapeHTML(c.name)} as PNG">${DOWNLOAD_ICON}PNG</a>
+            <a class="press-dl" href="${escapeHTML(a.file)}" data-save-as="${escapeHTML(c.slug)}.png"
+               target="_blank" rel="noopener" aria-label="${escapeHTML(t('Download {0} as PNG', name))}">${DOWNLOAD_ICON}PNG</a>
           </div>
         </div>
       </article>`;
@@ -323,6 +362,11 @@ function initSoonTips() {
     });
   });
 }
+
+// Language menu: a click anywhere else closes it.
+document.addEventListener('click', (e) => {
+  document.querySelectorAll('.lang-switch[open]').forEach(d => { if (!d.contains(e.target)) d.open = false; });
+});
 
 document.addEventListener('DOMContentLoaded', () => {
   initCopyButtons();

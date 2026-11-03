@@ -227,6 +227,12 @@
 
 /* ─── Description, team, usage ────────────────────────── */
 
+/* Long German and French words break at syllables (uses the page's lang). */
+.press-main {
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
 .press-description {
   max-width: 44rem;
   font-size: 1.0625rem;
@@ -751,6 +757,9 @@
   .press-kit-all {
     flex: 1 1 auto;
     justify-content: center;
+    /* Translated labels ("Télécharger toutes les cartes (ZIP, 281 MB)") outgrow a phone. */
+    white-space: normal;
+    text-align: center;
   }
 
   /* Stills fill the card width; the fixed 200px stage letterboxed 16:9

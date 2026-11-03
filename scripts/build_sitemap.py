@@ -78,6 +78,16 @@ def collect_urls(site_dir: Path = SITE_DIR) -> list[tuple[str, str | None]]:
         path = "/" if page.name == "index.html" else f"/{page.name}"
         entries.append((SITE_URL + path, None))
 
+    # Localized home and press pages (scripts/build_i18n.py), in config order.
+    config = REPO_ROOT / "i18n" / "config.json"
+    if config.exists():
+        for loc in json.loads(config.read_text(encoding="utf-8"))["locales"]:
+            for name in ("index.html", "press.html"):
+                page = site_dir / loc["slug"] / name
+                if page.exists() and not _noindex(page):
+                    leaf = "" if name == "index.html" else name
+                    entries.append((f"{SITE_URL}/{loc['slug']}/{leaf}", None))
+
     # Generated deck pages.
     for page in sorted((site_dir / "decks").glob("*/index.html")):
         if not _noindex(page):
