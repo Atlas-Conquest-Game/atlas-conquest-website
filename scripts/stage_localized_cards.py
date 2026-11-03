@@ -87,8 +87,9 @@ def stage_cards(loc: dict, cards: list[dict], renders: Path, out: Path, base: st
             "size": human_size(zpath.stat().st_size), "count": len(staged)}
 
 
-def stage_descriptions(loc: dict, source: dict, out: Path) -> None:
-    """The press page's short and long description as plain text, for the Drive press kit."""
+def stage_descriptions(loc: dict, source: dict, out: Path, zip_url: str) -> None:
+    """The press page's short and long description as plain text, for the Drive press kit's
+    Descriptions folder, ending with links to that language's press page and card ZIP."""
     t = build_i18n.Translator(loc["code"], source)
     page = (SITE_DIR / "press.html").read_text(encoding="utf-8")
     import html as htmllib
@@ -104,12 +105,14 @@ def stage_descriptions(loc: dict, source: dict, out: Path) -> None:
             lines.append(build_i18n.norm(text))
         return "\n\n".join(lines)
 
-    folder = out / "drive" / loc["native"]
+    folder = out / "drive" / "Descriptions"
     folder.mkdir(parents=True, exist_ok=True)
     short = text_of("short-description")
     long_ = text_of("long-description")
-    (folder / f"AtlasConquest-Description-{loc['slug']}.txt").write_text(
-        f"Atlas Conquest\n\n{t('Short description')}\n\n{short}\n\n{t('Description')}\n\n{long_}\n",
+    press = "https://atlas-conquest.com/press.html" if loc["slug"] == "en" else f"https://atlas-conquest.com/{loc['slug']}/press.html"
+    (folder / f"AtlasConquest-Description-{loc['slug']} ({loc['native']}).txt").write_text(
+        f"Atlas Conquest\n\n{t('Short description')}\n\n{short}\n\n{t('Description')}\n\n{long_}\n\n"
+        f"{t('Press kit')}: {press}\n{t('Download all cards')}: {zip_url}\n",
         encoding="utf-8")
 
 
@@ -153,8 +156,9 @@ go per upload.)
 
 ## 2. Google Drive (press kit folder)
 
-Drag each language folder inside `drive/` into the public press-kit folder. Each holds
-the short and long description in that language as plain text.
+`drive/Descriptions/` holds the short and long description in English and each language as
+plain text, ending with links to that language's press page and card ZIP. They live in a
+`Descriptions` folder inside the public press-kit folder (replace the files there).
 
 ## 3. Tell the website
 
@@ -169,6 +173,7 @@ def main(argv=None) -> int:
     ap.add_argument("--only", default="", help="comma list of locale codes")
     ap.add_argument("--renders", type=Path, default=DEFAULT_RENDERS)
     ap.add_argument("--out", type=Path, default=DEFAULT_OUT)
+    ap.add_argument("--descriptions-only", action="store_true", help="only rewrite drive/Descriptions/")
     args = ap.parse_args(argv)
 
     config = build_i18n.load_config()
@@ -179,13 +184,19 @@ def main(argv=None) -> int:
     for loc in build_i18n.locales(config):
         if only and loc["code"] not in only:
             continue
-        zip_info = stage_cards(loc, cards, args.renders, args.out, config["cards_base"])
-        stage_descriptions(loc, source, args.out)
         path = build_i18n.DATA_I18N_DIR / f"{loc['slug']}.json"
         data = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {"cards": {}}
+        if args.descriptions_only:
+            stage_descriptions(loc, source, args.out, (data.get("zip") or {}).get("url", ""))
+            continue
+        zip_info = stage_cards(loc, cards, args.renders, args.out, config["cards_base"])
+        stage_descriptions(loc, source, args.out, zip_info["url"])
         data["zip"] = zip_info
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(data, indent=1, ensure_ascii=False, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
+    if not only:
+        english_zip = json.loads((SITE_DIR / "data" / "press_cards.json").read_text(encoding="utf-8"))["zip"]["url"]
+        stage_descriptions({"code": "en", "slug": "en", "native": "English"}, source, args.out, english_zip)
     (args.out / "README.md").write_text(README.format(base=config["cards_base"]), encoding="utf-8")
     print(f"Staged in {args.out}")
     return 0
