@@ -37,7 +37,7 @@ window.AC_CONFIG = {
     facebook: 'https://www.facebook.com/atlasconquest',
     tiktok: 'https://www.tiktok.com/@atlas.conquest',
     twitch: 'https://www.twitch.tv/atlas_conquest',
-    x: 'https://x.com/atlasconquest',
+    x: 'https://x.com/Atlas_Conquest',
     press: 'press@atlas-conquest.com',
     email: 'support@atlas-conquest.com',
   },
