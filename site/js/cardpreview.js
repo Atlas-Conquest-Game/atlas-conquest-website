@@ -176,13 +176,13 @@ function injectCardExtrasStyle() {
       margin: 0 0.1em; border-radius: 999px; font-size: 0.85em; font-weight: 800; line-height: 1;
       vertical-align: -0.2em; color: #fff; box-sizing: border-box; }
     .card-icon:empty::before { content: "\\25CF"; font-size: 0.7em; }
-    .card-icon[data-icon="mana"] { background: #2f6fd6; }
-    .card-icon[data-icon="power"] { background: #c2492f; }
-    .card-icon[data-icon="speed"] { background: #3f9b4f; }
+    .card-icon[data-icon="mana"] { background: #1f7a45; }
+    .card-icon[data-icon="power"] { background: #3b78c4; }
+    .card-icon[data-icon="speed"] { background: #5aa63a; }
     .card-icon[data-icon="health"] { background: #c23a4e; }
-    .card-icon[data-icon="durability"] { background: #8a8f98; }
-    .card-icon[data-icon="intellect"] { background: #7b4fc9; }
-    .card-icon[data-icon="dominion"] { background: #c99a2e; }
+    .card-icon[data-icon="durability"] { background: #5b5f66; }
+    .card-icon[data-icon="intellect"] { background: #2b4f86; }
+    .card-icon[data-icon="dominion"] { background: #6a3fc9; }
     .card-preview.card-preview--tap .card-preview-extras { width: min(320px, 90vw); }
   `;
   document.head.appendChild(style);
