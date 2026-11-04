@@ -93,6 +93,34 @@ window.AC_CONFIG = {
     return typeof links.steam === 'string' && /^https?:\/\//.test(links.steam);
   }
 
+  // Steam's UTM report attributes visits and wishlists to these tags:
+  // utm_content is "<page>-<nav|footer|page>", e.g. "decks-nav" or "articles-footer". A
+  // data-ac-utm-content attribute on the link or an ancestor names the placement instead.
+  const LOCALE_SLUGS = ['de', 'es-419', 'fr', 'it', 'ja', 'ko', 'pl', 'pt-br', 'ru', 'zh-cn'];
+
+  function pageKey() {
+    const path = new URL(location.href).pathname.replace(new URL(ROOT).pathname, '/');
+    const parts = path.split('/').filter(Boolean);
+    if (parts.length && LOCALE_SLUGS.includes(parts[0].toLowerCase())) parts.shift();
+    const first = (parts[0] || 'index.html').replace(/\.html$/, '');
+    return first === 'index' ? 'home' : first;
+  }
+
+  function steamHref(url, node) {
+    try {
+      const u = new URL(url);
+      const named = node && node.closest('[data-ac-utm-content]');
+      const area = named ? named.getAttribute('data-ac-utm-content')
+        : node && node.closest('nav, header') ? 'nav'
+        : node && node.closest('footer') ? 'footer' : 'page';
+      u.searchParams.set('utm_source', 'website');
+      u.searchParams.set('utm_medium', 'referral');
+      u.searchParams.set('utm_campaign', 'wishlist');
+      u.searchParams.set('utm_content', pageKey() + '-' + area);
+      return u.toString();
+    } catch (_) { return url; }
+  }
+
   function primaryPlatform() {
     // Steam leads unless the config explicitly hands the lead to Discord. It
     // does so even before the store page exists (the button is a no-op then).
@@ -159,7 +187,7 @@ window.AC_CONFIG = {
       node.href = '#';
       node.setAttribute('data-ac-pending', '');
     } else {
-      node.href = platform === 'discord' ? links.discord : links.steam;
+      node.href = platform === 'discord' ? links.discord : steamHref(links.steam, slot);
       node.target = '_blank';
       node.rel = 'noopener';
     }
@@ -188,9 +216,8 @@ window.AC_CONFIG = {
         value = 'mailto:' + address;
         if (node.textContent.includes('@')) node.textContent = address;
       }
-      node.setAttribute('href', value);
-    });
-    const trailerHref = links.youtubeTrailerId
+      node.setAttribute('href', key === 'steam' ? steamHref(value, node) : value);
+    });    const trailerHref = links.youtubeTrailerId
       ? 'https://www.youtube.com/watch?v=' + encodeURIComponent(links.youtubeTrailerId)
       : links.trailerWeb && links.trailerWeb + '1080.mp4';
     if (trailerHref) {

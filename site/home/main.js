@@ -10,8 +10,9 @@
 const CONFIG = {
   primaryCta: 'steam',       // 'steam' = Wishlist on Steam leads everywhere. 'discord' flips the roles (Join the Beta leads).
   steam: 'https://store.steampowered.com/app/5537460/Atlas_Conquest/', // Steam store URL. Empty = Steam buttons stay in place; a click shows a short "coming soon" note.
-                             // Once set, every Steam link gets ?utm_source=atlas-website&utm_medium=<nav|hero|finale>
-                             // (from its data-placement) so Steam's UTM report can attribute wishlists to the site.
+                             // Once set, every Steam link gets ?utm_source=website&utm_medium=referral&utm_campaign=wishlist
+                             // &utm_content=home-<nav|hero|finale|footer> (from its data-placement), so Steam's UTM
+                             // report can attribute wishlists to the site and to the button.
   discord: 'https://discord.gg/7QaEY4yJH5',
   youtubeTrailerId: '',                 // YouTube video id, English page only. Empty = play trailerWeb in the modal.
   trailerWeb: 'https://cards.atlas-conquest.com/trailer/web/AtlasConquest_Trailer_v49_',  // + <locale>_<1080|720>.mp4: v49 web encodes on the card host
@@ -71,8 +72,10 @@ const CONFIG = {
   function tagged(url, placement) {
     try {
       const u = new URL(url, location.href);
-      u.searchParams.set('utm_source', 'atlas-website');
-      if (placement) u.searchParams.set('utm_medium', placement);
+      u.searchParams.set('utm_source', 'website');
+      u.searchParams.set('utm_medium', 'referral');
+      u.searchParams.set('utm_campaign', 'wishlist');
+      u.searchParams.set('utm_content', 'home-' + (placement || 'page'));
       return u.toString();
     } catch (_) { return url; }
   }
