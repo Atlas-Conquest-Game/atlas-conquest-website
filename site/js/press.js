@@ -28,21 +28,23 @@ function escapeHTML(s) {
 }
 
 function renderItem(item) {
-  // A file is on Drive (`id`) or served from this site (`url`).
+  // A file is on Drive (`id`) or has a `url`: on this site (relative) or the card host (absolute).
   const files = (item.files || []).filter(f => f.id || f.url);
   // `label` names a variant when two files share a format (key art with and without the logo).
   const title = t(item.title);
   const downloads = files.map(f => {
     const what = f.label ? `${title}, ${t(f.label).toLowerCase()}` : title;
     return `
-    <a class="press-dl" href="${f.url ? escapeHTML(ROOT + f.url) : DRIVE_DOWNLOAD(f.id)}" download
+    <a class="press-dl" href="${f.url ? escapeHTML(/^https?:/.test(f.url) ? f.url : ROOT + f.url) : DRIVE_DOWNLOAD(f.id)}" download
        aria-label="${escapeHTML(t('Download {0} as {1}', what, f.format))}${f.size ? ` (${escapeHTML(f.size)})` : ''}">
       ${DOWNLOAD_ICON}${escapeHTML(f.label ? t(f.label) : f.format)}${f.size ? ` <span class="press-card-meta">${escapeHTML(f.size)}</span>` : ''}
     </a>`;
   }).join('');
-  // "View" opens the first file in Drive's viewer — handy for checking before downloading.
-  const view = files.length && files[0].id
-    ? `<a class="press-dl press-dl-view" href="${DRIVE_VIEW(files[0].id)}" target="_blank" rel="noopener">${escapeHTML(t('View'))}</a>`
+  // "View" opens the first file in Drive's viewer (or the item's `view_url`, the trailer's web
+  // encode) — handy for checking before downloading.
+  const viewUrl = item.view_url || (files.length && files[0].id ? DRIVE_VIEW(files[0].id) : '');
+  const view = viewUrl
+    ? `<a class="press-dl press-dl-view" href="${escapeHTML(viewUrl)}" target="_blank" rel="noopener">${escapeHTML(t('View'))}</a>`
     : '';
   const image = `<img src="${escapeHTML(ROOT + item.preview)}" alt="${escapeHTML(t('{0} preview', title))}" loading="lazy">`;
   const caption = [title, item.dimensions && t(item.dimensions)].filter(Boolean).join(' · ');
@@ -82,12 +84,38 @@ async function renderPressKit() {
     return;
   }
   if (kit.folder_url) document.getElementById('press-kit-folder').href = kit.folder_url;
-  // The trailer sits in Videos as a single cell, one download per size. Until
-  // both files have Drive ids the page keeps its "Coming soon" note.
+  // The trailer sits in Videos as a single cell with the page language's cut, one download per
+  // size, then every language's downloads in a collapsed list. The files are on the card host
+  // (scripts/stage_trailers.py); without them the page keeps its "Coming soon" note.
   const trailer = kit.trailer;
-  if (trailer && trailer.preview && (trailer.files || []).every(f => f.id)) {
+  if (trailer && trailer.preview && (trailer.languages || []).length) {
+    const title = t(trailer.title);
+    const fileFor = (lang, f) => ({
+      ...f, size: lang.sizes[f.res],
+      url: `${trailer.base}/${lang.code}/AtlasConquest_Announcement_Trailer_${trailer.version}_${lang.code}_${f.res}.mp4`,
+    });
+    const own = trailer.languages.find(l => l.code === (I18N.locale || 'en')) || trailer.languages[0];
+    const cell = renderItem({
+      ...trailer,
+      files: trailer.files.map(f => fileFor(own, f)),
+      view_url: `${trailer.base}/web/AtlasConquest_Trailer_${trailer.version}_${own.code}_1080.mp4`,
+    });
+    const rows = trailer.languages.map(lang => `
+      <li${lang === own ? ' class="is-current"' : ''}>
+        <span class="press-trailer-lang" lang="${escapeHTML(lang.code)}">${escapeHTML(lang.native)}</span>
+        <span class="press-trailer-dls">${trailer.files.map(f => {
+          const file = fileFor(lang, f);
+          return `<a class="press-dl" href="${escapeHTML(file.url)}" download
+            aria-label="${escapeHTML(t('Download {0} as {1}', `${title}, ${lang.native}, ${f.res}`, f.format))} (${escapeHTML(file.size)})">
+            ${DOWNLOAD_ICON}${escapeHTML(f.res)} <span class="press-card-meta">${escapeHTML(file.size)}</span></a>`;
+        }).join('')}</span>
+      </li>`).join('');
     document.getElementById('press-trailer').innerHTML =
-      `<div class="press-grid press-grid-trailer">${renderItem(trailer)}</div>`;
+      `<div class="press-grid press-grid-trailer">${cell}</div>
+      <details class="press-long-box press-trailer-langs">
+        <summary>${escapeHTML(t('All languages'))} (${trailer.languages.length})</summary>
+        <ul>${rows}</ul>
+      </details>`;
   }
   // Only list assets that are actually downloadable and have a built preview;
   // anything else is still reachable through the full-kit folder link. A group

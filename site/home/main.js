@@ -13,7 +13,8 @@ const CONFIG = {
                              // Once set, every Steam link gets ?utm_source=atlas-website&utm_medium=<nav|hero|finale>
                              // (from its data-placement) so Steam's UTM report can attribute wishlists to the site.
   discord: 'https://discord.gg/7QaEY4yJH5',
-  youtubeTrailerId: 'hPoGfdLZThA',      // YouTube video id. Empty = play the local trailer.mp4 in the modal.
+  youtubeTrailerId: '',                 // YouTube video id, English page only. Empty = play trailerWeb in the modal.
+  trailerWeb: 'https://cards.atlas-conquest.com/trailer/web/AtlasConquest_Trailer_v49_',  // + <locale>_<1080|720>.mp4: v49 web encodes on the card host
   youtube: 'https://www.youtube.com/@atlasconquest',
   instagram: 'https://www.instagram.com/atlasconquest/',
   facebook: 'https://www.facebook.com/atlasconquest',
@@ -33,7 +34,13 @@ const CONFIG = {
   const ROOT = I18N.root || '';
   const t = (s, ...args) => ((I18N.strings || {})[s] || s).replace(/\{(\d+)\}/g, (_, i) => args[i]);
 
-  const TRAILER_SRC = ROOT + 'assets/media/video/trailer.mp4';
+  // The trailer in this page's language (each localized page has its own cut). 720p unless the
+  // screen can really show 1080p. YouTube, when set, is the English cut, so only English uses it.
+  const TRAILER_LANG = I18N.locale || 'en';
+  const TRAILER_YT = TRAILER_LANG === 'en' ? CONFIG.youtubeTrailerId : '';
+  const TRAILER_SHARP = window.screen && (window.screen.width * (window.devicePixelRatio || 1)) >= 2200 &&
+    matchMedia('(min-width: 1200px)').matches;
+  const TRAILER_SRC = CONFIG.trailerWeb + TRAILER_LANG + (TRAILER_SHARP ? '_1080.mp4' : '_720.mp4');
   const TRAILER_POSTER = ROOT + 'assets/media/stills/t62_5.webp';
   const DISCORD_CACHE_KEY = 'ac:discord-counts';
   const DISCORD_CACHE_MS = 10 * 60 * 1000;
@@ -564,7 +571,7 @@ const CONFIG = {
     if (!dlg || typeof dlg.showModal !== 'function') {
       // Very old browsers: just open the file.
       $$('[data-trailer]').forEach((b) => b.addEventListener('click', () => {
-        window.open(CONFIG.youtubeTrailerId ? 'https://www.youtube.com/watch?v=' + CONFIG.youtubeTrailerId : TRAILER_SRC, '_blank', 'noopener');
+        window.open(TRAILER_YT ? 'https://www.youtube.com/watch?v=' + TRAILER_YT : TRAILER_SRC, '_blank', 'noopener');
       }));
       return;
     }
@@ -573,9 +580,9 @@ const CONFIG = {
     function open(e) {
       opener = e.currentTarget;
       frame.textContent = '';
-      if (CONFIG.youtubeTrailerId) {
+      if (TRAILER_YT) {
         const f = document.createElement('iframe');
-        f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(CONFIG.youtubeTrailerId) + '?autoplay=1&rel=0&modestbranding=1';
+        f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(TRAILER_YT) + '?autoplay=1&rel=0&modestbranding=1';
         f.title = t('Atlas Conquest trailer');
         f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
         f.allowFullscreen = true;

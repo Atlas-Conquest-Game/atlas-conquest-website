@@ -7,21 +7,109 @@
     "files": [
       {
         "format": "MP4",
-        "label": "MP4 1920 × 1080",
-        "filename": "AtlasConquest_Announcement_Trailer_1080p.mp4",
-        "id": "1k6Wg8zrm3KsQR0t0oz7Q3BOpkdsSFS5w",
-        "size": "481.3 MB"
+        "label": "MP4 2560 × 1440",
+        "res": "1440p"
       },
       {
         "format": "MP4",
-        "label": "MP4 2560 × 1440",
-        "filename": "AtlasConquest_Announcement_Trailer_1440p.mp4",
-        "id": "1NOL64x62dAklQ-vpZRtvU5y03NEHZ7wA",
-        "size": "746.3 MB"
+        "label": "MP4 1920 × 1080",
+        "res": "1080p"
       }
     ],
     "preview": "assets/press/trailer.webp",
-    "large": "assets/press/large/trailer.webp"
+    "large": "assets/press/large/trailer.webp",
+    "version": "v49",
+    "base": "https://cards.atlas-conquest.com/trailer",
+    "languages": [
+      {
+        "code": "en",
+        "native": "English",
+        "sizes": {
+          "1440p": "742 MB",
+          "1080p": "484 MB"
+        }
+      },
+      {
+        "code": "de",
+        "native": "Deutsch",
+        "sizes": {
+          "1440p": "757 MB",
+          "1080p": "491 MB"
+        }
+      },
+      {
+        "code": "es-419",
+        "native": "Español (Latinoamérica)",
+        "sizes": {
+          "1440p": "754 MB",
+          "1080p": "491 MB"
+        }
+      },
+      {
+        "code": "fr",
+        "native": "Français",
+        "sizes": {
+          "1440p": "756 MB",
+          "1080p": "491 MB"
+        }
+      },
+      {
+        "code": "it",
+        "native": "Italiano",
+        "sizes": {
+          "1440p": "756 MB",
+          "1080p": "491 MB"
+        }
+      },
+      {
+        "code": "ja",
+        "native": "日本語",
+        "sizes": {
+          "1440p": "748 MB",
+          "1080p": "485 MB"
+        }
+      },
+      {
+        "code": "ko",
+        "native": "한국어",
+        "sizes": {
+          "1440p": "745 MB",
+          "1080p": "484 MB"
+        }
+      },
+      {
+        "code": "pl",
+        "native": "Polski",
+        "sizes": {
+          "1440p": "751 MB",
+          "1080p": "489 MB"
+        }
+      },
+      {
+        "code": "pt-BR",
+        "native": "Português (Brasil)",
+        "sizes": {
+          "1440p": "748 MB",
+          "1080p": "489 MB"
+        }
+      },
+      {
+        "code": "ru",
+        "native": "Русский",
+        "sizes": {
+          "1440p": "746 MB",
+          "1080p": "487 MB"
+        }
+      },
+      {
+        "code": "zh-CN",
+        "native": "简体中文",
+        "sizes": {
+          "1440p": "743 MB",
+          "1080p": "483 MB"
+        }
+      }
+    ]
   },
   "groups": [
     {

@@ -31,7 +31,10 @@ window.AC_CONFIG = {
   links: {
     discord: 'https://discord.gg/7QaEY4yJH5',
     steam: 'https://store.steampowered.com/app/5537460/Atlas_Conquest/', // Steam store URL; empty keeps "Wishlist on Steam" in place as a no-op '#' link
-    youtubeTrailerId: 'hPoGfdLZThA', // e.g. 'dQw4w9WgXcQ'; empty plays assets/media/video/trailer.mp4
+    // Empty: the trailer modal plays trailerWeb + '1080.mp4' or '720.mp4' (the v49 web encodes on
+    // the card host). A YouTube id here plays that upload instead.
+    youtubeTrailerId: '',
+    trailerWeb: 'https://cards.atlas-conquest.com/trailer/web/AtlasConquest_Trailer_v49_en_',
     youtube: 'https://www.youtube.com/@atlasconquest',
     instagram: 'https://www.instagram.com/atlasconquest/',
     facebook: 'https://www.facebook.com/atlasconquest',
@@ -187,9 +190,12 @@ window.AC_CONFIG = {
       }
       node.setAttribute('href', value);
     });
-    if (links.youtubeTrailerId) {
+    const trailerHref = links.youtubeTrailerId
+      ? 'https://www.youtube.com/watch?v=' + encodeURIComponent(links.youtubeTrailerId)
+      : links.trailerWeb && links.trailerWeb + '1080.mp4';
+    if (trailerHref) {
       scope.querySelectorAll('a[data-ac-trailer]').forEach(node => {
-        node.setAttribute('href', 'https://www.youtube.com/watch?v=' + encodeURIComponent(links.youtubeTrailerId));
+        node.setAttribute('href', trailerHref);
       });
     }
   }
@@ -412,11 +418,11 @@ window.AC_CONFIG = {
       frame.replaceChildren(iframe);
     } else {
       const video = document.createElement('video');
-      // 720p (~12 MB) unless the screen can really show 1080p (~42 MB, also
-      // the Press-kit download): phones no longer stream the master.
+      // 720p unless the screen can really show 1080p: phones don't stream the big file.
+      // These are web encodes; the press kit offers the masters.
       const sharp = window.screen && (window.screen.width * (window.devicePixelRatio || 1)) >= 2200 &&
         window.matchMedia('(min-width: 1200px)').matches;
-      video.src = ROOT + 'assets/media/video/' + (sharp ? 'trailer.mp4' : 'trailer-720.mp4');
+      video.src = links.trailerWeb + (sharp ? '1080.mp4' : '720.mp4');
       video.poster = ROOT + 'assets/media/video/hero-poster.webp';
       video.controls = true;
       video.playsInline = true;

@@ -562,6 +562,37 @@
   border-radius: 0;
 }
 
+/* Every language's trailer, under the page language's cell. */
+.press-trailer-langs {
+  max-width: 640px;
+  margin-top: 1rem;
+}
+
+.press-trailer-langs ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.press-trailer-langs li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  padding: 0.5rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.press-trailer-langs li:first-child { border-top: 0; }
+.press-trailer-langs li.is-current .press-trailer-lang { color: var(--lucia); font-weight: 600; }
+
+.press-trailer-dls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
 /* ─── Card images ─────────────────────────────────────── */
 
 .press-steps {
