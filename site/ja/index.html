@@ -80,6 +80,8 @@
     <symbol id="i-expand" viewBox="0 0 24 24"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-replay" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-sound-on" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-sound-off" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M15.5 9.5l5 5M20.5 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
     <symbol id="i-hex" viewBox="0 0 24 24"><path d="M12 2.6l8.2 4.7v9.4L12 21.4l-8.2-4.7V7.3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
   </svg>
 
@@ -222,34 +224,38 @@
       </div>
       <div class="pitch__body">
         <ol class="story" data-story aria-label="3つの流れで見る1ターン">
-          <li class="beat" data-beat data-src="/assets/media/clips/story-1-play-1280.mp4">
+          <li class="beat" data-beat data-src="/assets/media/clips/ja/story-1-play-1280.mp4">
             <div class="beat__media">
-              <img class="beat__still" src="/assets/media/clips/story-1-play-poster.webp" width="1280" height="720" alt="ルーンの騎士のカードが手札からドラッグされ、ユニットとして盤面に降り立ちます。" loading="lazy" decoding="async">
+              <img class="beat__still" src="/assets/media/clips/ja/story-1-play-poster.webp" width="1280" height="720" alt="ルーンの騎士のカードが手札からドラッグされ、ユニットとして盤面に降り立ちます。" loading="lazy" decoding="async">
               <button type="button" class="beat__play" data-beat-play aria-label="再生：プレイ。戦場にカードをプレイします。"><span class="clip__icon" aria-hidden="true"><svg class="icon icon--play"><use href="#i-play"/></svg><svg class="icon icon--pause"><use href="#i-pause"/></svg></span></button>
               <span class="beat__bar" aria-hidden="true"><i></i></span>
-              <button type="button" class="clip__expand" data-view data-view-at="0" data-view-video="/assets/media/clips/story-full-1920.mp4" data-view-poster="/assets/media/clips/story-1-play-poster.webp" data-view-caption="プレイ" data-view-chapters="0:プレイ · 戦場にカードをプレイします。|4:領有 · タイルを領有してマナを増やします。|6.7:攻撃 · 敵の指揮官を攻撃します。" aria-label="1ターン全体をフルスクリーンで見る"><svg class="icon" aria-hidden="true"><use href="#i-expand"/></svg></button>
+              <button type="button" class="clip__expand" data-view data-view-at="0" data-view-video="/assets/media/clips/ja/story-full-1920.mp4" data-view-sound data-view-poster="/assets/media/clips/ja/story-1-play-poster.webp" data-view-caption="プレイ" data-view-chapters="0:プレイ · 戦場にカードをプレイします。|4.07:領有 · タイルを領有してマナを増やします。|6.7:攻撃 · 敵の指揮官を攻撃します。" aria-label="1ターン全体をフルスクリーンで見る"><svg class="icon" aria-hidden="true"><use href="#i-expand"/></svg></button>
             </div>
             <h3 class="beat__cap"><span class="beat__word gold">プレイ</span><span class="beat__line">戦場にカードをプレイします。</span></h3>
           </li>
-          <li class="beat" data-beat data-src="/assets/media/clips/story-2-claim-1280.mp4">
+          <li class="beat" data-beat data-src="/assets/media/clips/ja/story-2-claim-1280.mp4">
             <div class="beat__media">
-              <img class="beat__still" src="/assets/media/clips/story-2-claim-poster.webp" width="1280" height="720" alt="エルバーが村に入り、そこを領有します。" loading="lazy" decoding="async">
+              <img class="beat__still" src="/assets/media/clips/ja/story-2-claim-poster.webp" width="1280" height="720" alt="エルバーが村に入り、そこを領有します。" loading="lazy" decoding="async">
               <button type="button" class="beat__play" data-beat-play aria-label="再生：領有。タイルを領有してマナを増やします。"><span class="clip__icon" aria-hidden="true"><svg class="icon icon--play"><use href="#i-play"/></svg><svg class="icon icon--pause"><use href="#i-pause"/></svg></span></button>
               <span class="beat__bar" aria-hidden="true"><i></i></span>
-              <button type="button" class="clip__expand" data-view data-view-at="4" data-view-video="/assets/media/clips/story-full-1920.mp4" data-view-poster="/assets/media/clips/story-2-claim-poster.webp" data-view-caption="プレイ" data-view-chapters="0:プレイ · 戦場にカードをプレイします。|4:領有 · タイルを領有してマナを増やします。|6.7:攻撃 · 敵の指揮官を攻撃します。" aria-label="1ターン全体をフルスクリーンで見る"><svg class="icon" aria-hidden="true"><use href="#i-expand"/></svg></button>
+              <button type="button" class="clip__expand" data-view data-view-at="4.1" data-view-video="/assets/media/clips/ja/story-full-1920.mp4" data-view-sound data-view-poster="/assets/media/clips/ja/story-2-claim-poster.webp" data-view-caption="プレイ" data-view-chapters="0:プレイ · 戦場にカードをプレイします。|4.07:領有 · タイルを領有してマナを増やします。|6.7:攻撃 · 敵の指揮官を攻撃します。" aria-label="1ターン全体をフルスクリーンで見る"><svg class="icon" aria-hidden="true"><use href="#i-expand"/></svg></button>
             </div>
             <h3 class="beat__cap"><span class="beat__word gold">領有</span><span class="beat__line">タイルを領有してマナを増やします。</span></h3>
           </li>
-          <li class="beat" data-beat data-src="/assets/media/clips/story-3-strike-1280.mp4">
+          <li class="beat" data-beat data-src="/assets/media/clips/ja/story-3-strike-1280.mp4">
             <div class="beat__media">
-              <img class="beat__still" src="/assets/media/clips/story-3-strike-poster.webp" width="1280" height="720" alt="カズガー、炎の皇帝が敵の指揮官を攻撃し、その体力を20から8まで削ります。" loading="lazy" decoding="async">
+              <img class="beat__still" src="/assets/media/clips/ja/story-3-strike-poster.webp" width="1280" height="720" alt="カズガー、炎の皇帝が敵の指揮官を攻撃し、その体力を20から8まで削ります。" loading="lazy" decoding="async">
               <button type="button" class="beat__play" data-beat-play aria-label="再生：攻撃。敵の指揮官を攻撃します。"><span class="clip__icon" aria-hidden="true"><svg class="icon icon--play"><use href="#i-play"/></svg><svg class="icon icon--pause"><use href="#i-pause"/></svg></span></button>
               <span class="beat__bar" aria-hidden="true"><i></i></span>
-              <button type="button" class="clip__expand" data-view data-view-at="6.7" data-view-video="/assets/media/clips/story-full-1920.mp4" data-view-poster="/assets/media/clips/story-3-strike-poster.webp" data-view-caption="プレイ" data-view-chapters="0:プレイ · 戦場にカードをプレイします。|4:領有 · タイルを領有してマナを増やします。|6.7:攻撃 · 敵の指揮官を攻撃します。" aria-label="1ターン全体をフルスクリーンで見る"><svg class="icon" aria-hidden="true"><use href="#i-expand"/></svg></button>
+              <button type="button" class="clip__expand" data-view data-view-at="6.7" data-view-video="/assets/media/clips/ja/story-full-1920.mp4" data-view-sound data-view-poster="/assets/media/clips/ja/story-3-strike-poster.webp" data-view-caption="プレイ" data-view-chapters="0:プレイ · 戦場にカードをプレイします。|4.07:領有 · タイルを領有してマナを増やします。|6.7:攻撃 · 敵の指揮官を攻撃します。" aria-label="1ターン全体をフルスクリーンで見る"><svg class="icon" aria-hidden="true"><use href="#i-expand"/></svg></button>
             </div>
             <h3 class="beat__cap"><span class="beat__word gold">攻撃</span><span class="beat__line">敵の指揮官を攻撃します。</span></h3>
           </li>
         </ol>
+        <!-- Sound for the three beats: off until pressed, then remembered (setupStory). -->
+        <div class="story__sound-row">
+          <button type="button" class="story__sound" data-story-sound aria-pressed="false" hidden><svg class="icon icon--sound-off" aria-hidden="true"><use href="#i-sound-off"/></svg><svg class="icon icon--sound-on" aria-hidden="true"><use href="#i-sound-on"/></svg><span>サウンド</span></button>
+        </div>
       </div>
     </section>
 
@@ -283,17 +289,17 @@
            Click a card, drag/swipe or use the arrow keys to move it yourself. -->
       <div class="flow" data-flow tabindex="0" role="group" aria-roledescription="カルーセル" aria-label="ゲームのカード">
         <ul class="flow__track" data-flow-track>
-          <li class="flow__card"><img src="https://cards.atlas-conquest.com/ja/webp/asera.webp" width="400" height="560" alt="Asera" loading="lazy" decoding="async" draggable="false"></li>
-          <li class="flow__card"><img src="https://cards.atlas-conquest.com/ja/webp/giant-river-snapper.webp" width="400" height="560" alt="Giant River Snapper" loading="lazy" decoding="async" draggable="false"></li>
-          <li class="flow__card"><img src="https://cards.atlas-conquest.com/ja/webp/lightning-bolt.webp" width="400" height="560" alt="Lightning Bolt" loading="lazy" decoding="async" draggable="false"></li>
-          <li class="flow__card"><img src="https://cards.atlas-conquest.com/ja/webp/blue-dragon.webp" width="400" height="560" alt="Blue Dragon" loading="lazy" decoding="async" draggable="false"></li>
-          <li class="flow__card"><img src="https://cards.atlas-conquest.com/ja/webp/dreadlord-cyrion.webp" width="400" height="560" alt="Dreadlord Cyrion" loading="lazy" decoding="async" draggable="false"></li>
-          <li class="flow__card"><img src="https://cards.atlas-conquest.com/ja/webp/daemonic-summoning.webp" width="400" height="560" alt="Daemonic Summoning" loading="lazy" decoding="async" draggable="false"></li>
-          <li class="flow__card"><img src="https://cards.atlas-conquest.com/ja/webp/slay-the-mighty.webp" width="400" height="560" alt="Slay the Mighty" loading="lazy" decoding="async" draggable="false"></li>
-          <li class="flow__card"><img src="https://cards.atlas-conquest.com/ja/webp/grutali.webp" width="400" height="560" alt="Grutali" loading="lazy" decoding="async" draggable="false"></li>
-          <li class="flow__card"><img src="https://cards.atlas-conquest.com/ja/webp/drakemire-shaman.webp" width="400" height="560" alt="Drakemire Shaman" loading="lazy" decoding="async" draggable="false"></li>
-          <li class="flow__card"><img src="https://cards.atlas-conquest.com/ja/webp/firebolt.webp" width="400" height="560" alt="Firebolt" loading="lazy" decoding="async" draggable="false"></li>
-          <li class="flow__card"><img src="https://cards.atlas-conquest.com/ja/webp/cone-of-cold.webp" width="400" height="560" alt="Cone of Cold" loading="lazy" decoding="async" draggable="false"></li>
+          <li class="flow__card"><img src="https://cards.atlas-conquest.com/ja/webp/asera.webp" width="400" height="560" alt="アセラ" loading="lazy" decoding="async" draggable="false"></li>
+          <li class="flow__card"><img src="https://cards.atlas-conquest.com/ja/webp/giant-river-snapper.webp" width="400" height="560" alt="巨大カミツキガメ" loading="lazy" decoding="async" draggable="false"></li>
+          <li class="flow__card"><img src="https://cards.atlas-conquest.com/ja/webp/lightning-bolt.webp" width="400" height="560" alt="稲妻" loading="lazy" decoding="async" draggable="false"></li>
+          <li class="flow__card"><img src="https://cards.atlas-conquest.com/ja/webp/blue-dragon.webp" width="400" height="560" alt="青竜" loading="lazy" decoding="async" draggable="false"></li>
+          <li class="flow__card"><img src="https://cards.atlas-conquest.com/ja/webp/dreadlord-cyrion.webp" width="400" height="560" alt="恐怖公サイリオン" loading="lazy" decoding="async" draggable="false"></li>
+          <li class="flow__card"><img src="https://cards.atlas-conquest.com/ja/webp/daemonic-summoning.webp" width="400" height="560" alt="デーモン召喚" loading="lazy" decoding="async" draggable="false"></li>
+          <li class="flow__card"><img src="https://cards.atlas-conquest.com/ja/webp/slay-the-mighty.webp" width="400" height="560" alt="強者討ち" loading="lazy" decoding="async" draggable="false"></li>
+          <li class="flow__card"><img src="https://cards.atlas-conquest.com/ja/webp/grutali.webp" width="400" height="560" alt="グルタリ" loading="lazy" decoding="async" draggable="false"></li>
+          <li class="flow__card"><img src="https://cards.atlas-conquest.com/ja/webp/drakemire-shaman.webp" width="400" height="560" alt="竜沼のシャーマン" loading="lazy" decoding="async" draggable="false"></li>
+          <li class="flow__card"><img src="https://cards.atlas-conquest.com/ja/webp/firebolt.webp" width="400" height="560" alt="炎の矢" loading="lazy" decoding="async" draggable="false"></li>
+          <li class="flow__card"><img src="https://cards.atlas-conquest.com/ja/webp/cone-of-cold.webp" width="400" height="560" alt="冷気の円錐" loading="lazy" decoding="async" draggable="false"></li>
         </ul>
         <button type="button" class="flow__pause" data-flow-toggle aria-pressed="false" aria-label="カードを一時停止" hidden>
           <svg class="icon icon--pause" aria-hidden="true"><use href="#i-pause"/></svg>
@@ -407,6 +413,7 @@
           <span class="viewer__count" data-viewer-count></span>
           <button type="button" class="round-btn viewer__prev" data-viewer-prev aria-label="前へ"><svg class="icon" aria-hidden="true"><use href="#i-chev"/></svg></button>
           <button type="button" class="round-btn" data-viewer-next aria-label="次へ"><svg class="icon" aria-hidden="true"><use href="#i-chev"/></svg></button>
+          <button type="button" class="round-btn viewer__sound" data-viewer-sound aria-pressed="true" aria-label="サウンド" hidden><svg class="icon icon--sound-off" aria-hidden="true"><use href="#i-sound-off"/></svg><svg class="icon icon--sound-on" aria-hidden="true"><use href="#i-sound-on"/></svg></button>
           <button type="button" class="round-btn" data-viewer-close aria-label="閉じる"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
         </div>
       </div>

@@ -43,10 +43,6 @@
   "src": "1:20 · 60 fps · MP4 with audio",
   "text": "1:20 · 60 fps · 音声付きMP4"
  },
- "0c382e31b15b": {
-  "src": "0:Play · Play cards on the battlefield.|4:Claim · Claim tiles to grow your mana.|6.7:Attack · Strike the enemy commander.",
-  "text": "0:プレイ · 戦場にカードをプレイします。|4:領有 · タイルを領有してマナを増やします。|6.7:攻撃 · 敵の指揮官を攻撃します。"
- },
  "0c683ed92456": {
   "src": "Logo — wide",
   "text": "ロゴ — 横長"
@@ -431,6 +427,10 @@
   "src": "Hex-grid deck builder",
   "text": "ヘックスグリッドのデッキ構築ゲーム"
  },
+ "6dee7feb3608": {
+  "src": "0:Play · Play cards on the battlefield.|4.07:Claim · Claim tiles to grow your mana.|6.7:Attack · Strike the enemy commander.",
+  "text": "0:プレイ · 戦場にカードをプレイします。|4.07:領有 · タイルを領有してマナを増やします。|6.7:攻撃 · 敵の指揮官を攻撃します。"
+ },
  "6ff33102b1c6": {
   "src": "Wishlist",
   "text": "ウィッシュリスト"
@@ -678,6 +678,10 @@
  "b45923b75e84": {
   "src": "Please don't alter the logo, or redistribute the artwork or game files wholesale.",
   "text": "ロゴの改変、およびアートワークやゲームファイルの丸ごとの再配布はご遠慮ください。"
+ },
+ "b4e3efeba10e": {
+  "src": "Sound",
+  "text": "サウンド"
  },
  "b5f307b3db18": {
   "src": "Download {0} as PNG",

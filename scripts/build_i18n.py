@@ -48,6 +48,7 @@ SOURCE_PATH = I18N_DIR / "source.en.json"
 DATA_I18N_DIR = SITE_DIR / "data" / "i18n"
 GAME_TABLES = REPO_ROOT.parent.parent / "atlas-conquest" / "atlas-conquest" / "Assets" / "Resources" / "Localization"
 SITE_URL = "https://atlas-conquest.com"
+STORY_CLIPS = "assets/media/clips/story-"   # see localized_clip()
 
 PAGES = ["index.html", "press.html"]
 SCRIPTS = ["home/main.js", "js/press.js"]
@@ -469,6 +470,17 @@ def card_image(slug_card: str, loc: dict, config: dict) -> str | None:
     return f'{config["cards_base"]}/{loc["slug"]}/webp/{slug_card}.webp'
 
 
+def localized_clip(value: str, loc: dict) -> str | None:
+    """The homepage story clips are filmed in each language (the cards in hand show the game's own
+    text): assets/media/clips/<slug>/story-*.mp4/webp. A language without its own file keeps English."""
+    if not value.startswith(STORY_CLIPS):
+        return None
+    name = PurePosixPath(value).name
+    if not (SITE_DIR / "assets" / "media" / "clips" / loc["slug"] / name).exists():
+        return None
+    return f'/assets/media/clips/{loc["slug"]}/{name}'
+
+
 def localize(page: str, loc: dict, config: dict, source_strings: dict) -> tuple[str, set[str]]:
     source, sc = scan(page)
     t = Translator(loc["code"], source_strings)
@@ -497,6 +509,7 @@ def localize(page: str, loc: dict, config: dict, source_strings: dict) -> tuple[
                 new = absolute(value, loc["slug"])
                 if name == "src" and value.startswith("assets/media/cards/"):
                     new = card_image(PurePosixPath(value).stem, loc, config) or new
+                new = localized_clip(value, loc) or new
             elif name in ("srcset", "imagesrcset"):
                 new = rewrite_srcset(value, loc["slug"])
             if new == value:

@@ -1,6 +1,6 @@
 {
- "0c382e31b15b": {
-  "src": "0:Play · Play cards on the battlefield.|4:Claim · Claim tiles to grow your mana.|6.7:Attack · Strike the enemy commander.",
+ "6dee7feb3608": {
+  "src": "0:Play · Play cards on the battlefield.|4.07:Claim · Claim tiles to grow your mana.|6.7:Attack · Strike the enemy commander.",
   "kind": "attr",
   "where": [
    "index.html"
@@ -1463,6 +1463,13 @@
  },
  "0a4470d64e9d": {
   "src": "Skip to content",
+  "kind": "html",
+  "where": [
+   "index.html"
+  ]
+ },
+ "b4e3efeba10e": {
+  "src": "Sound",
   "kind": "html",
   "where": [
    "index.html"

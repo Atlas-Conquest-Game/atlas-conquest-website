@@ -76,6 +76,8 @@
     <symbol id="i-expand" viewBox="0 0 24 24"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-replay" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-sound-on" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-sound-off" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M15.5 9.5l5 5M20.5 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
     <symbol id="i-hex" viewBox="0 0 24 24"><path d="M12 2.6l8.2 4.7v9.4L12 21.4l-8.2-4.7V7.3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
   </svg>
 
@@ -225,7 +227,7 @@
               <img class="beat__still" src="assets/media/clips/story-1-play-poster.webp" width="1280" height="720" alt="A Runic Knight card is dragged from the hand and lands on the board as a unit." loading="lazy" decoding="async">
               <button type="button" class="beat__play" data-beat-play aria-label="Play: Play. Play cards on the battlefield."><span class="clip__icon" aria-hidden="true"><svg class="icon icon--play"><use href="#i-play"/></svg><svg class="icon icon--pause"><use href="#i-pause"/></svg></span></button>
               <span class="beat__bar" aria-hidden="true"><i></i></span>
-              <button type="button" class="clip__expand" data-view data-view-at="0" data-view-video="assets/media/clips/story-full-1920.mp4" data-view-poster="assets/media/clips/story-1-play-poster.webp" data-view-caption="Play" data-view-chapters="0:Play · Play cards on the battlefield.|4:Claim · Claim tiles to grow your mana.|6.7:Attack · Strike the enemy commander." aria-label="Watch the whole turn full screen"><svg class="icon" aria-hidden="true"><use href="#i-expand"/></svg></button>
+              <button type="button" class="clip__expand" data-view data-view-at="0" data-view-video="assets/media/clips/story-full-1920.mp4" data-view-sound data-view-poster="assets/media/clips/story-1-play-poster.webp" data-view-caption="Play" data-view-chapters="0:Play · Play cards on the battlefield.|4.07:Claim · Claim tiles to grow your mana.|6.7:Attack · Strike the enemy commander." aria-label="Watch the whole turn full screen"><svg class="icon" aria-hidden="true"><use href="#i-expand"/></svg></button>
             </div>
             <h3 class="beat__cap"><span class="beat__word gold">Play</span><span class="beat__line">Play cards on the battlefield.</span></h3>
           </li>
@@ -234,7 +236,7 @@
               <img class="beat__still" src="assets/media/clips/story-2-claim-poster.webp" width="1280" height="720" alt="Elber walks onto a village and claims it." loading="lazy" decoding="async">
               <button type="button" class="beat__play" data-beat-play aria-label="Play: Claim. Claim tiles to grow your mana."><span class="clip__icon" aria-hidden="true"><svg class="icon icon--play"><use href="#i-play"/></svg><svg class="icon icon--pause"><use href="#i-pause"/></svg></span></button>
               <span class="beat__bar" aria-hidden="true"><i></i></span>
-              <button type="button" class="clip__expand" data-view data-view-at="4" data-view-video="assets/media/clips/story-full-1920.mp4" data-view-poster="assets/media/clips/story-2-claim-poster.webp" data-view-caption="Play" data-view-chapters="0:Play · Play cards on the battlefield.|4:Claim · Claim tiles to grow your mana.|6.7:Attack · Strike the enemy commander." aria-label="Watch the whole turn full screen"><svg class="icon" aria-hidden="true"><use href="#i-expand"/></svg></button>
+              <button type="button" class="clip__expand" data-view data-view-at="4.1" data-view-video="assets/media/clips/story-full-1920.mp4" data-view-sound data-view-poster="assets/media/clips/story-2-claim-poster.webp" data-view-caption="Play" data-view-chapters="0:Play · Play cards on the battlefield.|4.07:Claim · Claim tiles to grow your mana.|6.7:Attack · Strike the enemy commander." aria-label="Watch the whole turn full screen"><svg class="icon" aria-hidden="true"><use href="#i-expand"/></svg></button>
             </div>
             <h3 class="beat__cap"><span class="beat__word gold">Claim</span><span class="beat__line">Claim tiles to grow your mana.</span></h3>
           </li>
@@ -243,11 +245,15 @@
               <img class="beat__still" src="assets/media/clips/story-3-strike-poster.webp" width="1280" height="720" alt="Khazgar, Flame Emperor, hits the enemy commander, taking him from 20 health to 8." loading="lazy" decoding="async">
               <button type="button" class="beat__play" data-beat-play aria-label="Play: Attack. Strike the enemy commander."><span class="clip__icon" aria-hidden="true"><svg class="icon icon--play"><use href="#i-play"/></svg><svg class="icon icon--pause"><use href="#i-pause"/></svg></span></button>
               <span class="beat__bar" aria-hidden="true"><i></i></span>
-              <button type="button" class="clip__expand" data-view data-view-at="6.7" data-view-video="assets/media/clips/story-full-1920.mp4" data-view-poster="assets/media/clips/story-3-strike-poster.webp" data-view-caption="Play" data-view-chapters="0:Play · Play cards on the battlefield.|4:Claim · Claim tiles to grow your mana.|6.7:Attack · Strike the enemy commander." aria-label="Watch the whole turn full screen"><svg class="icon" aria-hidden="true"><use href="#i-expand"/></svg></button>
+              <button type="button" class="clip__expand" data-view data-view-at="6.7" data-view-video="assets/media/clips/story-full-1920.mp4" data-view-sound data-view-poster="assets/media/clips/story-3-strike-poster.webp" data-view-caption="Play" data-view-chapters="0:Play · Play cards on the battlefield.|4.07:Claim · Claim tiles to grow your mana.|6.7:Attack · Strike the enemy commander." aria-label="Watch the whole turn full screen"><svg class="icon" aria-hidden="true"><use href="#i-expand"/></svg></button>
             </div>
             <h3 class="beat__cap"><span class="beat__word gold">Attack</span><span class="beat__line">Strike the enemy commander.</span></h3>
           </li>
         </ol>
+        <!-- Sound for the three beats: off until pressed, then remembered (setupStory). -->
+        <div class="story__sound-row">
+          <button type="button" class="story__sound" data-story-sound aria-pressed="false" hidden><svg class="icon icon--sound-off" aria-hidden="true"><use href="#i-sound-off"/></svg><svg class="icon icon--sound-on" aria-hidden="true"><use href="#i-sound-on"/></svg><span>Sound</span></button>
+        </div>
       </div>
     </section>
 
@@ -405,6 +411,7 @@
           <span class="viewer__count" data-viewer-count></span>
           <button type="button" class="round-btn viewer__prev" data-viewer-prev aria-label="Previous"><svg class="icon" aria-hidden="true"><use href="#i-chev"/></svg></button>
           <button type="button" class="round-btn" data-viewer-next aria-label="Next"><svg class="icon" aria-hidden="true"><use href="#i-chev"/></svg></button>
+          <button type="button" class="round-btn viewer__sound" data-viewer-sound aria-pressed="true" aria-label="Sound" hidden><svg class="icon icon--sound-off" aria-hidden="true"><use href="#i-sound-off"/></svg><svg class="icon icon--sound-on" aria-hidden="true"><use href="#i-sound-on"/></svg></button>
           <button type="button" class="round-btn" data-viewer-close aria-label="Close"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
         </div>
       </div>

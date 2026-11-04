@@ -43,10 +43,6 @@
   "src": "1:20 · 60 fps · MP4 with audio",
   "text": "1:20 · 60 fps · MP4 со звуком"
  },
- "0c382e31b15b": {
-  "src": "0:Play · Play cards on the battlefield.|4:Claim · Claim tiles to grow your mana.|6.7:Attack · Strike the enemy commander.",
-  "text": "0:Розыгрыш · Разыгрывайте карты на поле боя.|4:Захват · Захватывайте гексы, чтобы увеличить запас маны.|6.7:Атака · Нанесите удар по вражескому командиру."
- },
  "0c683ed92456": {
   "src": "Logo — wide",
   "text": "Логотип — широкий"
@@ -431,6 +427,10 @@
   "src": "Hex-grid deck builder",
   "text": "Колодостроительная игра на гексах"
  },
+ "6dee7feb3608": {
+  "src": "0:Play · Play cards on the battlefield.|4.07:Claim · Claim tiles to grow your mana.|6.7:Attack · Strike the enemy commander.",
+  "text": "0:Розыгрыш · Разыгрывайте карты на поле боя.|4.07:Захват · Захватывайте гексы, чтобы увеличить запас маны.|6.7:Атака · Нанесите удар по вражескому командиру."
+ },
  "6ff33102b1c6": {
   "src": "Wishlist",
   "text": "В желаемое"
@@ -678,6 +678,10 @@
  "b45923b75e84": {
   "src": "Please don't alter the logo, or redistribute the artwork or game files wholesale.",
   "text": "Пожалуйста, не изменяйте логотип и не распространяйте арт или файлы игры целиком."
+ },
+ "b4e3efeba10e": {
+  "src": "Sound",
+  "text": "Звук"
  },
  "b5f307b3db18": {
   "src": "Download {0} as PNG",
