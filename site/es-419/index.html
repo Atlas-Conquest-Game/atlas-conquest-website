@@ -210,8 +210,8 @@
 
     <!-- ============ 1 · THE PITCH ============
          For someone new: the pitch beside the Atlas card art, then one turn of play told in three
-         beats, all cut from a single take with the same camera. Play any beat and it rolls into the
-         next (play, claim, strike), then stops. The expand button plays the whole take big. -->
+         beats, all cut from a single take with the same camera. It rolls through once, muted, as it scrolls into view; pressing a beat plays it with sound
+         and rolls into the next (play, claim, strike), then stops. The expand button plays the whole take big. -->
     <section class="sec pitch" id="how" aria-labelledby="pitch-title">
       <div class="pitch__band">
         <div class="pitch__art" aria-hidden="true">
@@ -229,6 +229,7 @@
               <button type="button" class="beat__play" data-beat-play aria-label="Jugada: Jugar. Juega cartas en el campo de batalla."><span class="clip__icon" aria-hidden="true"><svg class="icon icon--play"><use href="#i-play"/></svg><svg class="icon icon--pause"><use href="#i-pause"/></svg></span></button>
               <span class="beat__bar" aria-hidden="true"><i></i></span>
               <button type="button" class="clip__expand" data-view data-view-at="0" data-view-video="/assets/media/clips/es-419/story-full-1920.mp4" data-view-sound data-view-poster="/assets/media/clips/es-419/story-1-play-poster.webp" data-view-caption="Jugar" data-view-chapters="0:Jugar · Juega cartas en el campo de batalla.|4.07:Reclamar · Reclama casillas para aumentar tu maná.|6.7:Atacar · Ataca al comandante enemigo." aria-label="Ver el turno completo en pantalla completa"><svg class="icon" aria-hidden="true"><use href="#i-expand"/></svg></button>
+              <button type="button" class="beat__sound" data-beat-sound aria-pressed="false" aria-label="Sonido" hidden><svg class="icon icon--sound-off" aria-hidden="true"><use href="#i-sound-off"/></svg><svg class="icon icon--sound-on" aria-hidden="true"><use href="#i-sound-on"/></svg></button>
             </div>
             <h3 class="beat__cap"><span class="beat__word gold">Jugar</span><span class="beat__line">Juega cartas en el campo de batalla.</span></h3>
           </li>
@@ -238,6 +239,7 @@
               <button type="button" class="beat__play" data-beat-play aria-label="Jugada: Reclamar. Reclama casillas para aumentar tu maná."><span class="clip__icon" aria-hidden="true"><svg class="icon icon--play"><use href="#i-play"/></svg><svg class="icon icon--pause"><use href="#i-pause"/></svg></span></button>
               <span class="beat__bar" aria-hidden="true"><i></i></span>
               <button type="button" class="clip__expand" data-view data-view-at="4.1" data-view-video="/assets/media/clips/es-419/story-full-1920.mp4" data-view-sound data-view-poster="/assets/media/clips/es-419/story-2-claim-poster.webp" data-view-caption="Jugar" data-view-chapters="0:Jugar · Juega cartas en el campo de batalla.|4.07:Reclamar · Reclama casillas para aumentar tu maná.|6.7:Atacar · Ataca al comandante enemigo." aria-label="Ver el turno completo en pantalla completa"><svg class="icon" aria-hidden="true"><use href="#i-expand"/></svg></button>
+              <button type="button" class="beat__sound" data-beat-sound aria-pressed="false" aria-label="Sonido" hidden><svg class="icon icon--sound-off" aria-hidden="true"><use href="#i-sound-off"/></svg><svg class="icon icon--sound-on" aria-hidden="true"><use href="#i-sound-on"/></svg></button>
             </div>
             <h3 class="beat__cap"><span class="beat__word gold">Reclamar</span><span class="beat__line">Reclama casillas para aumentar tu maná.</span></h3>
           </li>
@@ -247,14 +249,11 @@
               <button type="button" class="beat__play" data-beat-play aria-label="Jugada: Atacar. Ataca al comandante enemigo."><span class="clip__icon" aria-hidden="true"><svg class="icon icon--play"><use href="#i-play"/></svg><svg class="icon icon--pause"><use href="#i-pause"/></svg></span></button>
               <span class="beat__bar" aria-hidden="true"><i></i></span>
               <button type="button" class="clip__expand" data-view data-view-at="6.7" data-view-video="/assets/media/clips/es-419/story-full-1920.mp4" data-view-sound data-view-poster="/assets/media/clips/es-419/story-3-strike-poster.webp" data-view-caption="Jugar" data-view-chapters="0:Jugar · Juega cartas en el campo de batalla.|4.07:Reclamar · Reclama casillas para aumentar tu maná.|6.7:Atacar · Ataca al comandante enemigo." aria-label="Ver el turno completo en pantalla completa"><svg class="icon" aria-hidden="true"><use href="#i-expand"/></svg></button>
+              <button type="button" class="beat__sound" data-beat-sound aria-pressed="false" aria-label="Sonido" hidden><svg class="icon icon--sound-off" aria-hidden="true"><use href="#i-sound-off"/></svg><svg class="icon icon--sound-on" aria-hidden="true"><use href="#i-sound-on"/></svg></button>
             </div>
             <h3 class="beat__cap"><span class="beat__word gold">Atacar</span><span class="beat__line">Ataca al comandante enemigo.</span></h3>
           </li>
         </ol>
-        <!-- Sound for the three beats: off until pressed, then remembered (setupStory). -->
-        <div class="story__sound-row">
-          <button type="button" class="story__sound" data-story-sound aria-pressed="false" hidden><svg class="icon icon--sound-off" aria-hidden="true"><use href="#i-sound-off"/></svg><svg class="icon icon--sound-on" aria-hidden="true"><use href="#i-sound-on"/></svg><span>Sonido</span></button>
-        </div>
       </div>
     </section>
 
