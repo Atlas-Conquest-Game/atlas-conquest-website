@@ -113,7 +113,7 @@
             <a href="privacy.html">Atlas Conquest game</a>
             <a href="privacy-extension.html" aria-current="page">Twitch extension</a>
           </nav>
-          <p class="legal-updated">Last updated <time datetime="2026-09-02">Sep 2, 2026</time></p>
+          <p class="legal-updated">Last updated <time datetime="2026-11-04">Nov 4, 2026</time></p>
         </div>
       </div>
     </header>
@@ -151,15 +151,25 @@
         <p>
           What it does is receive a description of the streamer's game board so it
           can show you the cards. That description contains only what is already
-          visible on the stream: which cards are on the board, where they are, and
-          their current health. It is sent by the streamer's own game.
+          visible on the stream: which cards are on the board and in the streamer's
+          hand, where they are, their current health, the action history, and the
+          streamer's deck name and deck link. It is sent by the streamer's own game.
         </p>
 
         <p>
-          Card images and card text are downloaded from
-          <code>cdn.atlas-conquest.com</code>, which is static file hosting. Those
-          requests carry the same information any web request does, such as your IP
-          address, and are not used to build a profile of you.
+          Card images, card names and card data are downloaded from
+          <code>cards.atlas-conquest.com</code>, which is static file hosting. To show
+          cards in your language, the extension uses the language Twitch reports for
+          you to choose which files to download; the language itself is not sent
+          anywhere. Those requests carry the same information any web request does,
+          such as your IP address, and are not used to build a profile of you.
+        </p>
+
+        <p>
+          The copy button writes the streamer's deck link to your clipboard only when
+          you press it, and the extension never reads your clipboard. Opening the deck
+          takes you to <code>atlas-conquest.com</code>, which has its own
+          <a href="privacy.html">privacy policy</a>.
         </p>
 
         <h2 id="if-you-are-a-streamer">If you are a streamer</h2>
@@ -168,37 +178,43 @@
           channel name and numeric channel id, and store a token that lets the game
           publish to that one channel. We do not receive your Twitch password, your
           email address, or access to your account beyond identifying which channel
-          authorised the link.
+          authorised the link. The token is stored on your computer by the game; our
+          service keeps no copy and no list of linked channels, and recognises a
+          token by its signature.
         </p>
 
         <p>
           While you play, the game sends your board state so viewers can hover it.
           This happens only while your channel is live and only while the feature is
-          switched on. Your opponent's hidden information is never included, because
+          switched on. To know whether you are live, our service asks Twitch for your
+          channel's stream status, using your channel id. Your opponent's hidden information is never included, because
           the game itself never receives it.
         </p>
 
         <p>
           Board state is <strong>relayed, not stored</strong>. It passes through our
-          service to Twitch and is not written to a database or retained afterwards.
+          service to Twitch PubSub, which delivers it to your viewers, and is not
+          written to a database or retained afterwards. It includes your deck name
+          and deck link unless you turn off <em>Show a link to your deck</em> in the
+          extension's settings.
         </p>
 
         <p>
           You can stop publishing at any time in <em>Settings &rarr; Twitch</em>.
-          Unlinking removes the stored token.
+          Unlinking deletes the token from your computer. Tokens also expire on their
+          own after 90 days.
         </p>
 
         <h2 id="settings-you-change-on-twitch">Settings you change on Twitch</h2>
         <p>
-          Your extension settings, such as the stream delay, are stored by Twitch in
-          their own configuration service. They never reach our servers.
+          Your extension settings, such as the stream delay and card language, are
+          stored by Twitch in their own configuration service. They never reach our servers.
         </p>
 
         <h2 id="who-else-is-involved">Who else is involved</h2>
         <ul>
           <li><strong>Twitch</strong> &mdash; delivers extension messages to viewers and stores your settings.</li>
-          <li><strong>Cloudflare</strong> &mdash; runs the service that relays board state to Twitch.</li>
-          <li><strong>GitHub Pages</strong> &mdash; serves the card images.</li>
+          <li><strong>Cloudflare</strong> &mdash; runs the service that relays board state to Twitch, and hosts the card images and card data (<code>cards.atlas-conquest.com</code>).</li>
         </ul>
 
         <h2 id="children">Children</h2>
