@@ -64,7 +64,7 @@ URL_ATTRS = {"src", "href", "poster", "data-src", "data-src-xl", "data-src-lg", 
              "data-view-video", "data-view-poster", "data-view-image", "data-large"}
 EXTERNAL = ("http:", "https:", "//", "mailto:", "tel:", "data:", "javascript:", "#")
 # Proper nouns and handles that read the same in every language.
-KEEP = {"Atlas Conquest", "Discord", "Steam", "X", "Instagram", "TikTok", "Unity", "LinkedIn", "Matan Diamond",
+KEEP = {"Atlas Conquest", "Discord", "Steam", "X", "Instagram", "TikTok", "Unity", "LinkedIn", "Matan Diamond", "YouTube", "Facebook", "Twitch",
         "press@atlas-conquest.com", "PC, Mac, Linux", "2027", "Atlas Conquest LLC"}
 
 HAS_LETTER = re.compile(r"[^\W\d_]")

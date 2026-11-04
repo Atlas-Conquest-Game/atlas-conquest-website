@@ -1275,7 +1275,7 @@ def build_meta_block(article: Article) -> str:
         f'  <meta property="article:author" content="{author}">\n'
         f'{tag_tags}'
         f'  <meta name="twitter:card" content="summary_large_image">\n'
-        f'  <meta name="twitter:site" content="@Atlas_Conquest">\n'
+        f'  <meta name="twitter:site" content="@atlasconquest">\n'
         f'  <meta name="twitter:title" content="{t}">\n'
         f'  <meta name="twitter:description" content="{d}">\n'
         f'  <meta name="twitter:image" content="{og}">\n'

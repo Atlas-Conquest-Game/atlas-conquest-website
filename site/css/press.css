@@ -798,3 +798,56 @@
     padding: 0.75rem;
   }
 }
+
+/* Socials: "Follow us" under the side panel's buttons, and an icon row in the footer. */
+.press-follow-label {
+  margin: 1rem 0 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.press-social,
+.landing-footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.landing-footer-social {
+  justify-content: center;
+  margin: 0.25rem 0 1rem;
+}
+
+.press-social-link,
+.landing-footer-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-secondary);
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.press-social-link:hover,
+.press-social-link:focus-visible,
+.landing-footer-social-link:hover,
+.landing-footer-social-link:focus-visible {
+  color: var(--text);
+  border-color: var(--text-secondary);
+}
+
+.press-social-link svg,
+.landing-footer-social-link svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Six icons fit the side panel's width on one row. */
+.press-social { gap: 6px; }
+.press-social .press-social-link { width: 34px; height: 34px; }

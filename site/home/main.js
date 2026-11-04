@@ -14,9 +14,12 @@ const CONFIG = {
                              // (from its data-placement) so Steam's UTM report can attribute wishlists to the site.
   discord: 'https://discord.gg/7QaEY4yJH5',
   youtubeTrailerId: 'hPoGfdLZThA',      // YouTube video id. Empty = play the local trailer.mp4 in the modal.
-  x: 'https://x.com/Atlas_Conquest',
+  youtube: 'https://www.youtube.com/@atlasconquest',
   instagram: 'https://www.instagram.com/atlasconquest/',
+  facebook: 'https://www.facebook.com/atlasconquest',
   tiktok: 'https://www.tiktok.com/@atlas.conquest',
+  twitch: 'https://www.twitch.tv/atlas_conquest',
+  x: 'https://x.com/atlasconquest',
   press: 'press.html',
 };
 

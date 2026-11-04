@@ -114,7 +114,7 @@ def meta_block(commander: dict) -> str:
         f"  <meta property=\"og:image:alt\" content=\"{t}\">\n"
         f"  <meta property=\"og:url\" content=\"{u}\">\n"
         f"  <meta name=\"twitter:card\" content=\"summary_large_image\">\n"
-        f"  <meta name=\"twitter:site\" content=\"@Atlas_Conquest\">\n"
+        f"  <meta name=\"twitter:site\" content=\"@atlasconquest\">\n"
         f"  <meta name=\"twitter:title\" content=\"{t}\">\n"
         f"  <meta name=\"twitter:description\" content=\"{d}\">\n"
         f"  <meta name=\"twitter:image\" content=\"{og}\">\n"

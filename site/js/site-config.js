@@ -21,7 +21,7 @@
  *   [data-ac-discord-members] / [data-ac-discord-online]  filled with live counts.
  *   [data-ac-discord-live]  container shown (hidden attr removed) once counts load.
  *   [data-ac-trailer]  any button/link; opens the trailer modal.
- *   [data-ac-text="tagline|release"], [data-ac-href="discord|steam|x|instagram|tiktok|press|email"]
+ *   [data-ac-text="tagline|release"], [data-ac-href="discord|steam|youtube|instagram|facebook|tiktok|twitch|x|press|email"]
  *   .ac-page-hero[data-ac-hero-art="assets/media/keyart/….webp"]  page-relative hero art.
  * API: window.AC.{config, renderCtas(root), applyConfig(root), applyHeroArt(root), openTrailer(opener),
  *      closeTrailer(), discordCounts()} and a document 'ac:discord' event.
@@ -32,9 +32,12 @@ window.AC_CONFIG = {
     discord: 'https://discord.gg/7QaEY4yJH5',
     steam: '', // Steam store URL; empty keeps "Wishlist on Steam" in place as a no-op '#' link
     youtubeTrailerId: 'hPoGfdLZThA', // e.g. 'dQw4w9WgXcQ'; empty plays assets/media/video/trailer.mp4
-    x: 'https://x.com/Atlas_Conquest',
+    youtube: 'https://www.youtube.com/@atlasconquest',
     instagram: 'https://www.instagram.com/atlasconquest/',
+    facebook: 'https://www.facebook.com/atlasconquest',
     tiktok: 'https://www.tiktok.com/@atlas.conquest',
+    twitch: 'https://www.twitch.tv/atlas_conquest',
+    x: 'https://x.com/atlasconquest',
     press: 'press@atlas-conquest.com',
     email: 'support@atlas-conquest.com',
   },
