@@ -52,6 +52,20 @@ const CONFIG = {
   const $$ = (s, el = document) => Array.from(el.querySelectorAll(s));
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
   const safePlay = (v) => { try { const p = v.play(); if (p && p.catch) p.catch(() => {}); } catch (_) { /* ignore */ } };
+  // With sound if the browser allows it here (it may refuse a play that no click started, like the
+  // next story beat on iOS); otherwise muted, and onMuted lets the caller show that sound is off.
+  const playWithSound = (v, onMuted) => {
+    try {
+      const p = v.play();
+      if (!p || !p.catch) return;
+      p.catch(() => {
+        if (v.muted) return;
+        v.muted = true;
+        if (onMuted) onMuted();
+        safePlay(v);
+      });
+    } catch (_) { /* ignore */ }
+  };
   const fmt = (n) => Math.round(n).toLocaleString(I18N.locale || 'en-US');
 
   let modalOpen = false;
@@ -641,6 +655,8 @@ const CONFIG = {
     const cap = $('[data-viewer-cap]', dlg);
     const count = $('[data-viewer-count]', dlg);
     const replay = $('[data-viewer-replay]', dlg);
+    const soundBtn = $('[data-viewer-sound]', dlg);
+    let sound = true; // a clip opened full screen plays with sound (data-view-sound) until muted here
     let items = [];
     let i = 0;
     let opener = null;
@@ -652,7 +668,9 @@ const CONFIG = {
       if (m) m.remove();
       const chap = $('.viewer__chapter', stage); if (chap) chap.remove();
       replay.hidden = true;
+      if (soundBtn) soundBtn.hidden = true;
     }
+    const setSoundBtn = () => { if (soundBtn) soundBtn.setAttribute('aria-pressed', String(sound)); };
     function show(k) {
       i = (k + items.length) % items.length;
       const el = items[i];
@@ -670,12 +688,15 @@ const CONFIG = {
         if (d.viewPoster) v.poster = d.viewPoster;
         v.src = d.viewVideo;
         v.setAttribute('aria-label', d.viewCaption || t('Gameplay clip'));
+        const audible = 'viewSound' in d && sound;
+        if (audible) { v.muted = false; v.defaultMuted = false; v.removeAttribute('muted'); }
+        if (soundBtn) { soundBtn.hidden = !('viewSound' in d); setSoundBtn(); }
         const start = parseFloat(d.viewStart || '0');
         const at = parseFloat(d.viewAt || '0'); // seconds into the clip (data-view-at)
         const go = () => {
           if (start > 0) { try { v.currentTime = (v.duration || 0) * start; } catch (_) { /* ignore */ } }
           else if (at > 0) { try { v.currentTime = at; } catch (_) { /* ignore */ } }
-          safePlay(v);
+          if (audible) playWithSound(v, () => { sound = false; setSoundBtn(); }); else safePlay(v);
         };
         if (v.readyState >= 1) go(); else v.addEventListener('loadedmetadata', go, { once: true });
         v.addEventListener('ended', () => { replay.hidden = false; });
@@ -741,6 +762,12 @@ const CONFIG = {
       try { v.currentTime = (v.duration || 0) * start; } catch (_) { /* ignore */ }
       safePlay(v);
     });
+    if (soundBtn) soundBtn.addEventListener('click', () => {
+      sound = !sound;
+      setSoundBtn();
+      const v = media();
+      if (v && v.tagName === 'VIDEO') v.muted = !sound;
+    });
     $('[data-viewer-prev]', dlg).addEventListener('click', () => show(i - 1));
     $('[data-viewer-next]', dlg).addEventListener('click', () => show(i + 1));
     $('[data-viewer-close]', dlg).addEventListener('click', () => dlg.close());
@@ -775,6 +802,23 @@ const CONFIG = {
     if (!beats.length) return;
     let cur = -1;
     let raf = 0;
+    // Sound is off until the visitor turns it on; the choice is remembered on this device.
+    const soundBtn = $('[data-story-sound]');
+    const SOUND_KEY = 'ac:story-sound';
+    let sound = false;
+    try { sound = localStorage.getItem(SOUND_KEY) === '1'; } catch (_) { /* ignore */ }
+    const setSound = (on, remember) => {
+      sound = on;
+      if (soundBtn) soundBtn.setAttribute('aria-pressed', String(on));
+      if (remember) { try { localStorage.setItem(SOUND_KEY, on ? '1' : '0'); } catch (_) { /* ignore */ } }
+      const v = cur >= 0 ? $('video', beats[cur]) : null;
+      if (v) v.muted = !on;
+    };
+    if (soundBtn) {
+      soundBtn.hidden = false;
+      setSound(sound, false);
+      soundBtn.addEventListener('click', () => setSound(!sound, true));
+    }
     const vid = (b) => {
       let v = $('video', b);
       if (v) return v;
@@ -816,7 +860,8 @@ const CONFIG = {
       $('[data-beat-play]', b).setAttribute('aria-pressed', 'true');
       clipPlaying = true; if (heroCtl) heroCtl.update();
       try { v.currentTime = 0; } catch (_) { /* ignore */ }
-      safePlay(v);
+      v.muted = !sound;
+      if (sound) playWithSound(v, () => setSound(false, false)); else safePlay(v);
       cancelAnimationFrame(raf); raf = requestAnimationFrame(tick);
     }
     beats.forEach((b, i) => {

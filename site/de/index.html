@@ -79,6 +79,8 @@
     <symbol id="i-expand" viewBox="0 0 24 24"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-replay" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-sound-on" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-sound-off" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M15.5 9.5l5 5M20.5 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
     <symbol id="i-hex" viewBox="0 0 24 24"><path d="M12 2.6l8.2 4.7v9.4L12 21.4l-8.2-4.7V7.3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
   </svg>
 
@@ -221,34 +223,38 @@
       </div>
       <div class="pitch__body">
         <ol class="story" data-story aria-label="Ein Zug in drei Schritten">
-          <li class="beat" data-beat data-src="/assets/media/clips/story-1-play-1280.mp4">
+          <li class="beat" data-beat data-src="/assets/media/clips/de/story-1-play-1280.mp4">
             <div class="beat__media">
-              <img class="beat__still" src="/assets/media/clips/story-1-play-poster.webp" width="1280" height="720" alt="Eine Runenritter-Karte wird aus der Hand gezogen und landet als Einheit auf dem Spielfeld." loading="lazy" decoding="async">
+              <img class="beat__still" src="/assets/media/clips/de/story-1-play-poster.webp" width="1280" height="720" alt="Eine Runenritter-Karte wird aus der Hand gezogen und landet als Einheit auf dem Spielfeld." loading="lazy" decoding="async">
               <button type="button" class="beat__play" data-beat-play aria-label="Abspielen: Spielen. Spiele Karten aufs Schlachtfeld."><span class="clip__icon" aria-hidden="true"><svg class="icon icon--play"><use href="#i-play"/></svg><svg class="icon icon--pause"><use href="#i-pause"/></svg></span></button>
               <span class="beat__bar" aria-hidden="true"><i></i></span>
-              <button type="button" class="clip__expand" data-view data-view-at="0" data-view-video="/assets/media/clips/story-full-1920.mp4" data-view-poster="/assets/media/clips/story-1-play-poster.webp" data-view-caption="Spielen" data-view-chapters="0:Spielen · Spiele Karten aufs Schlachtfeld.|4:Beanspruchen · Beanspruche Felder für mehr Mana.|6.7:Angriff · Triff den feindlichen Kommandanten." aria-label="Den ganzen Zug im Vollbild ansehen"><svg class="icon" aria-hidden="true"><use href="#i-expand"/></svg></button>
+              <button type="button" class="clip__expand" data-view data-view-at="0" data-view-video="/assets/media/clips/de/story-full-1920.mp4" data-view-sound data-view-poster="/assets/media/clips/de/story-1-play-poster.webp" data-view-caption="Spielen" data-view-chapters="0:Spielen · Spiele Karten aufs Schlachtfeld.|4.07:Beanspruchen · Beanspruche Felder für mehr Mana.|6.7:Angriff · Triff den feindlichen Kommandanten." aria-label="Den ganzen Zug im Vollbild ansehen"><svg class="icon" aria-hidden="true"><use href="#i-expand"/></svg></button>
             </div>
             <h3 class="beat__cap"><span class="beat__word gold">Spielen</span><span class="beat__line">Spiele Karten aufs Schlachtfeld.</span></h3>
           </li>
-          <li class="beat" data-beat data-src="/assets/media/clips/story-2-claim-1280.mp4">
+          <li class="beat" data-beat data-src="/assets/media/clips/de/story-2-claim-1280.mp4">
             <div class="beat__media">
-              <img class="beat__still" src="/assets/media/clips/story-2-claim-poster.webp" width="1280" height="720" alt="Elber betritt ein Dorf und beansprucht es." loading="lazy" decoding="async">
+              <img class="beat__still" src="/assets/media/clips/de/story-2-claim-poster.webp" width="1280" height="720" alt="Elber betritt ein Dorf und beansprucht es." loading="lazy" decoding="async">
               <button type="button" class="beat__play" data-beat-play aria-label="Abspielen: Beanspruchen. Beanspruche Felder für mehr Mana."><span class="clip__icon" aria-hidden="true"><svg class="icon icon--play"><use href="#i-play"/></svg><svg class="icon icon--pause"><use href="#i-pause"/></svg></span></button>
               <span class="beat__bar" aria-hidden="true"><i></i></span>
-              <button type="button" class="clip__expand" data-view data-view-at="4" data-view-video="/assets/media/clips/story-full-1920.mp4" data-view-poster="/assets/media/clips/story-2-claim-poster.webp" data-view-caption="Spielen" data-view-chapters="0:Spielen · Spiele Karten aufs Schlachtfeld.|4:Beanspruchen · Beanspruche Felder für mehr Mana.|6.7:Angriff · Triff den feindlichen Kommandanten." aria-label="Den ganzen Zug im Vollbild ansehen"><svg class="icon" aria-hidden="true"><use href="#i-expand"/></svg></button>
+              <button type="button" class="clip__expand" data-view data-view-at="4.1" data-view-video="/assets/media/clips/de/story-full-1920.mp4" data-view-sound data-view-poster="/assets/media/clips/de/story-2-claim-poster.webp" data-view-caption="Spielen" data-view-chapters="0:Spielen · Spiele Karten aufs Schlachtfeld.|4.07:Beanspruchen · Beanspruche Felder für mehr Mana.|6.7:Angriff · Triff den feindlichen Kommandanten." aria-label="Den ganzen Zug im Vollbild ansehen"><svg class="icon" aria-hidden="true"><use href="#i-expand"/></svg></button>
             </div>
             <h3 class="beat__cap"><span class="beat__word gold">Beanspruchen</span><span class="beat__line">Beanspruche Felder für mehr Mana.</span></h3>
           </li>
-          <li class="beat" data-beat data-src="/assets/media/clips/story-3-strike-1280.mp4">
+          <li class="beat" data-beat data-src="/assets/media/clips/de/story-3-strike-1280.mp4">
             <div class="beat__media">
-              <img class="beat__still" src="/assets/media/clips/story-3-strike-poster.webp" width="1280" height="720" alt="Khazgar, Flammenkaiser, trifft den feindlichen Kommandanten und senkt sein Leben von 20 auf 8." loading="lazy" decoding="async">
+              <img class="beat__still" src="/assets/media/clips/de/story-3-strike-poster.webp" width="1280" height="720" alt="Khazgar, Flammenkaiser, trifft den feindlichen Kommandanten und senkt sein Leben von 20 auf 8." loading="lazy" decoding="async">
               <button type="button" class="beat__play" data-beat-play aria-label="Abspielen: Angriff. Triff den feindlichen Kommandanten."><span class="clip__icon" aria-hidden="true"><svg class="icon icon--play"><use href="#i-play"/></svg><svg class="icon icon--pause"><use href="#i-pause"/></svg></span></button>
               <span class="beat__bar" aria-hidden="true"><i></i></span>
-              <button type="button" class="clip__expand" data-view data-view-at="6.7" data-view-video="/assets/media/clips/story-full-1920.mp4" data-view-poster="/assets/media/clips/story-3-strike-poster.webp" data-view-caption="Spielen" data-view-chapters="0:Spielen · Spiele Karten aufs Schlachtfeld.|4:Beanspruchen · Beanspruche Felder für mehr Mana.|6.7:Angriff · Triff den feindlichen Kommandanten." aria-label="Den ganzen Zug im Vollbild ansehen"><svg class="icon" aria-hidden="true"><use href="#i-expand"/></svg></button>
+              <button type="button" class="clip__expand" data-view data-view-at="6.7" data-view-video="/assets/media/clips/de/story-full-1920.mp4" data-view-sound data-view-poster="/assets/media/clips/de/story-3-strike-poster.webp" data-view-caption="Spielen" data-view-chapters="0:Spielen · Spiele Karten aufs Schlachtfeld.|4.07:Beanspruchen · Beanspruche Felder für mehr Mana.|6.7:Angriff · Triff den feindlichen Kommandanten." aria-label="Den ganzen Zug im Vollbild ansehen"><svg class="icon" aria-hidden="true"><use href="#i-expand"/></svg></button>
             </div>
             <h3 class="beat__cap"><span class="beat__word gold">Angriff</span><span class="beat__line">Triff den feindlichen Kommandanten.</span></h3>
           </li>
         </ol>
+        <!-- Sound for the three beats: off until pressed, then remembered (setupStory). -->
+        <div class="story__sound-row">
+          <button type="button" class="story__sound" data-story-sound aria-pressed="false" hidden><svg class="icon icon--sound-off" aria-hidden="true"><use href="#i-sound-off"/></svg><svg class="icon icon--sound-on" aria-hidden="true"><use href="#i-sound-on"/></svg><span>Ton</span></button>
+        </div>
       </div>
     </section>
 
@@ -283,16 +289,16 @@
       <div class="flow" data-flow tabindex="0" role="group" aria-roledescription="Karussell" aria-label="Karten aus dem Spiel">
         <ul class="flow__track" data-flow-track>
           <li class="flow__card"><img src="https://cards.atlas-conquest.com/de/webp/asera.webp" width="400" height="560" alt="Asera" loading="lazy" decoding="async" draggable="false"></li>
-          <li class="flow__card"><img src="https://cards.atlas-conquest.com/de/webp/giant-river-snapper.webp" width="400" height="560" alt="Giant River Snapper" loading="lazy" decoding="async" draggable="false"></li>
-          <li class="flow__card"><img src="https://cards.atlas-conquest.com/de/webp/lightning-bolt.webp" width="400" height="560" alt="Lightning Bolt" loading="lazy" decoding="async" draggable="false"></li>
-          <li class="flow__card"><img src="https://cards.atlas-conquest.com/de/webp/blue-dragon.webp" width="400" height="560" alt="Blue Dragon" loading="lazy" decoding="async" draggable="false"></li>
-          <li class="flow__card"><img src="https://cards.atlas-conquest.com/de/webp/dreadlord-cyrion.webp" width="400" height="560" alt="Dreadlord Cyrion" loading="lazy" decoding="async" draggable="false"></li>
-          <li class="flow__card"><img src="https://cards.atlas-conquest.com/de/webp/daemonic-summoning.webp" width="400" height="560" alt="Daemonic Summoning" loading="lazy" decoding="async" draggable="false"></li>
-          <li class="flow__card"><img src="https://cards.atlas-conquest.com/de/webp/slay-the-mighty.webp" width="400" height="560" alt="Slay the Mighty" loading="lazy" decoding="async" draggable="false"></li>
+          <li class="flow__card"><img src="https://cards.atlas-conquest.com/de/webp/giant-river-snapper.webp" width="400" height="560" alt="Riesenflussschnapper" loading="lazy" decoding="async" draggable="false"></li>
+          <li class="flow__card"><img src="https://cards.atlas-conquest.com/de/webp/lightning-bolt.webp" width="400" height="560" alt="Blitzschlag" loading="lazy" decoding="async" draggable="false"></li>
+          <li class="flow__card"><img src="https://cards.atlas-conquest.com/de/webp/blue-dragon.webp" width="400" height="560" alt="Blauer Drache" loading="lazy" decoding="async" draggable="false"></li>
+          <li class="flow__card"><img src="https://cards.atlas-conquest.com/de/webp/dreadlord-cyrion.webp" width="400" height="560" alt="Schreckensfürst Cyrion" loading="lazy" decoding="async" draggable="false"></li>
+          <li class="flow__card"><img src="https://cards.atlas-conquest.com/de/webp/daemonic-summoning.webp" width="400" height="560" alt="Dämonische Beschwörung" loading="lazy" decoding="async" draggable="false"></li>
+          <li class="flow__card"><img src="https://cards.atlas-conquest.com/de/webp/slay-the-mighty.webp" width="400" height="560" alt="Mächtige erschlagen" loading="lazy" decoding="async" draggable="false"></li>
           <li class="flow__card"><img src="https://cards.atlas-conquest.com/de/webp/grutali.webp" width="400" height="560" alt="Grutali" loading="lazy" decoding="async" draggable="false"></li>
-          <li class="flow__card"><img src="https://cards.atlas-conquest.com/de/webp/drakemire-shaman.webp" width="400" height="560" alt="Drakemire Shaman" loading="lazy" decoding="async" draggable="false"></li>
-          <li class="flow__card"><img src="https://cards.atlas-conquest.com/de/webp/firebolt.webp" width="400" height="560" alt="Firebolt" loading="lazy" decoding="async" draggable="false"></li>
-          <li class="flow__card"><img src="https://cards.atlas-conquest.com/de/webp/cone-of-cold.webp" width="400" height="560" alt="Cone of Cold" loading="lazy" decoding="async" draggable="false"></li>
+          <li class="flow__card"><img src="https://cards.atlas-conquest.com/de/webp/drakemire-shaman.webp" width="400" height="560" alt="Drachenmoor-Schamane" loading="lazy" decoding="async" draggable="false"></li>
+          <li class="flow__card"><img src="https://cards.atlas-conquest.com/de/webp/firebolt.webp" width="400" height="560" alt="Feuerpfeil" loading="lazy" decoding="async" draggable="false"></li>
+          <li class="flow__card"><img src="https://cards.atlas-conquest.com/de/webp/cone-of-cold.webp" width="400" height="560" alt="Kältekegel" loading="lazy" decoding="async" draggable="false"></li>
         </ul>
         <button type="button" class="flow__pause" data-flow-toggle aria-pressed="false" aria-label="Karten anhalten" hidden>
           <svg class="icon icon--pause" aria-hidden="true"><use href="#i-pause"/></svg>
@@ -406,6 +412,7 @@
           <span class="viewer__count" data-viewer-count></span>
           <button type="button" class="round-btn viewer__prev" data-viewer-prev aria-label="Zurück"><svg class="icon" aria-hidden="true"><use href="#i-chev"/></svg></button>
           <button type="button" class="round-btn" data-viewer-next aria-label="Weiter"><svg class="icon" aria-hidden="true"><use href="#i-chev"/></svg></button>
+          <button type="button" class="round-btn viewer__sound" data-viewer-sound aria-pressed="true" aria-label="Ton" hidden><svg class="icon icon--sound-off" aria-hidden="true"><use href="#i-sound-off"/></svg><svg class="icon icon--sound-on" aria-hidden="true"><use href="#i-sound-on"/></svg></button>
           <button type="button" class="round-btn" data-viewer-close aria-label="Schließen"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
         </div>
       </div>

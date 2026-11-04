@@ -43,10 +43,6 @@
   "src": "1:20 · 60 fps · MP4 with audio",
   "text": "1:20 · 60 fps · MP4 z dźwiękiem"
  },
- "0c382e31b15b": {
-  "src": "0:Play · Play cards on the battlefield.|4:Claim · Claim tiles to grow your mana.|6.7:Attack · Strike the enemy commander.",
-  "text": "0:Graj · Zagrywaj karty na pole bitwy.|4:Zajęcie · Zajmuj pola, by zwiększać swoją manę.|6.7:Atak · Uderz we wrogiego dowódcę."
- },
  "0c683ed92456": {
   "src": "Logo — wide",
   "text": "Logo — poziome"
@@ -431,6 +427,10 @@
   "src": "Hex-grid deck builder",
   "text": "Deckbuilder na heksagonalnej planszy"
  },
+ "6dee7feb3608": {
+  "src": "0:Play · Play cards on the battlefield.|4.07:Claim · Claim tiles to grow your mana.|6.7:Attack · Strike the enemy commander.",
+  "text": "0:Graj · Zagrywaj karty na pole bitwy.|4.07:Zajęcie · Zajmuj pola, by zwiększać swoją manę.|6.7:Atak · Uderz we wrogiego dowódcę."
+ },
  "6ff33102b1c6": {
   "src": "Wishlist",
   "text": "Lista życzeń"
@@ -678,6 +678,10 @@
  "b45923b75e84": {
   "src": "Please don't alter the logo, or redistribute the artwork or game files wholesale.",
   "text": "Nie modyfikuj logo ani nie rozpowszechniaj w całości grafik czy plików gry."
+ },
+ "b4e3efeba10e": {
+  "src": "Sound",
+  "text": "Dźwięk"
  },
  "b5f307b3db18": {
   "src": "Download {0} as PNG",
