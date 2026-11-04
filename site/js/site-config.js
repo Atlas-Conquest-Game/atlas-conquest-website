@@ -30,7 +30,7 @@ window.AC_CONFIG = {
   primaryCta: 'steam', // 'steam' (default: Wishlist on Steam leads) | 'discord' (Join the Beta leads)
   links: {
     discord: 'https://discord.gg/7QaEY4yJH5',
-    steam: '', // Steam store URL; empty keeps "Wishlist on Steam" in place as a no-op '#' link
+    steam: 'https://store.steampowered.com/app/5537460/Atlas_Conquest/', // Steam store URL; empty keeps "Wishlist on Steam" in place as a no-op '#' link
     youtubeTrailerId: 'hPoGfdLZThA', // e.g. 'dQw4w9WgXcQ'; empty plays assets/media/video/trailer.mp4
     youtube: 'https://www.youtube.com/@atlasconquest',
     instagram: 'https://www.instagram.com/atlasconquest/',

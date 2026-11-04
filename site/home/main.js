@@ -9,7 +9,7 @@
    ========================================================================= */
 const CONFIG = {
   primaryCta: 'steam',       // 'steam' = Wishlist on Steam leads everywhere. 'discord' flips the roles (Join the Beta leads).
-  steam: '',                 // Steam store URL. Empty = Steam buttons stay in place; a click shows a short "coming soon" note.
+  steam: 'https://store.steampowered.com/app/5537460/Atlas_Conquest/', // Steam store URL. Empty = Steam buttons stay in place; a click shows a short "coming soon" note.
                              // Once set, every Steam link gets ?utm_source=atlas-website&utm_medium=<nav|hero|finale>
                              // (from its data-placement) so Steam's UTM report can attribute wishlists to the site.
   discord: 'https://discord.gg/7QaEY4yJH5',
