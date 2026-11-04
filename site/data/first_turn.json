@@ -1,9 +1,9 @@
 {
   "all": {
     "all": {
-      "total_games": 4218,
-      "first_player_wins": 2188,
-      "first_player_winrate": 0.5187,
+      "total_games": 4221,
+      "first_player_wins": 2189,
+      "first_player_winrate": 0.5186,
       "per_commander": {
         "Milo Sunstone": {
           "first_games": 225,
@@ -25,9 +25,9 @@
           "first_games": 219,
           "first_wins": 118,
           "first_winrate": 0.5388,
-          "second_games": 231,
-          "second_wins": 110,
-          "second_winrate": 0.4762
+          "second_games": 232,
+          "second_wins": 111,
+          "second_winrate": 0.4784
         },
         "Lazim, Thief of Gods": {
           "first_games": 537,
@@ -134,19 +134,19 @@
           "second_winrate": 0.4638
         },
         "Yarrow, Blood Banker": {
-          "first_games": 7,
-          "first_wins": 5,
-          "first_winrate": 0.7143,
-          "second_games": 8,
-          "second_wins": 3,
-          "second_winrate": 0.375
+          "first_games": 10,
+          "first_wins": 6,
+          "first_winrate": 0.6,
+          "second_games": 10,
+          "second_wins": 4,
+          "second_winrate": 0.4
         }
       }
     },
     "Dunes": {
-      "total_games": 2690,
+      "total_games": 2691,
       "first_player_wins": 1399,
-      "first_player_winrate": 0.5201,
+      "first_player_winrate": 0.5199,
       "per_commander": {
         "Elber, Jungle Emissary": {
           "first_games": 195,
@@ -277,19 +277,19 @@
           "second_winrate": 0.5833
         },
         "Yarrow, Blood Banker": {
-          "first_games": 1,
+          "first_games": 2,
           "first_wins": 0,
           "first_winrate": 0.0,
-          "second_games": 3,
-          "second_wins": 2,
-          "second_winrate": 0.6667
+          "second_games": 4,
+          "second_wins": 3,
+          "second_winrate": 0.75
         }
       }
     },
     "Snowmelt": {
-      "total_games": 765,
+      "total_games": 766,
       "first_player_wins": 376,
-      "first_player_winrate": 0.4915,
+      "first_player_winrate": 0.4909,
       "per_commander": {
         "Jagris, the Huntsman": {
           "first_games": 75,
@@ -343,9 +343,9 @@
           "first_games": 13,
           "first_wins": 5,
           "first_winrate": 0.3846,
-          "second_games": 21,
-          "second_wins": 8,
-          "second_winrate": 0.381
+          "second_games": 22,
+          "second_wins": 9,
+          "second_winrate": 0.4091
         },
         "Macks Speed": {
           "first_games": 71,
@@ -420,9 +420,9 @@
           "second_winrate": 0.3611
         },
         "Yarrow, Blood Banker": {
-          "first_games": 4,
+          "first_games": 5,
           "first_wins": 3,
-          "first_winrate": 0.75,
+          "first_winrate": 0.6,
           "second_games": 4,
           "second_wins": 1,
           "second_winrate": 0.25
@@ -430,9 +430,9 @@
       }
     },
     "Tropics": {
-      "total_games": 763,
-      "first_player_wins": 413,
-      "first_player_winrate": 0.5413,
+      "total_games": 764,
+      "first_player_wins": 414,
+      "first_player_winrate": 0.5419,
       "per_commander": {
         "Milo Sunstone": {
           "first_games": 37,
@@ -563,10 +563,10 @@
           "second_winrate": 0.4
         },
         "Yarrow, Blood Banker": {
-          "first_games": 2,
-          "first_wins": 2,
+          "first_games": 3,
+          "first_wins": 3,
           "first_winrate": 1.0,
-          "second_games": 1,
+          "second_games": 2,
           "second_wins": 0,
           "second_winrate": 0.0
         }
@@ -575,8 +575,8 @@
   },
   "6m": {
     "all": {
-      "total_games": 1921,
-      "first_player_wins": 969,
+      "total_games": 1919,
+      "first_player_wins": 968,
       "first_player_winrate": 0.5044,
       "per_commander": {
         "Milo Sunstone": {
@@ -588,12 +588,12 @@
           "second_winrate": 0.4773
         },
         "It That Weaves": {
-          "first_games": 84,
-          "first_wins": 52,
-          "first_winrate": 0.619,
-          "second_games": 78,
-          "second_wins": 41,
-          "second_winrate": 0.5256
+          "first_games": 81,
+          "first_wins": 51,
+          "first_winrate": 0.6296,
+          "second_games": 76,
+          "second_wins": 40,
+          "second_winrate": 0.5263
         },
         "Captain Greenbeard": {
           "first_games": 113,
@@ -652,20 +652,20 @@
           "second_winrate": 0.6105
         },
         "Macks Speed": {
-          "first_games": 167,
+          "first_games": 166,
           "first_wins": 98,
-          "first_winrate": 0.5868,
+          "first_winrate": 0.5904,
           "second_games": 177,
           "second_wins": 113,
           "second_winrate": 0.6384
         },
         "Starwise Luna": {
-          "first_games": 135,
-          "first_wins": 65,
-          "first_winrate": 0.4815,
-          "second_games": 136,
-          "second_wins": 59,
-          "second_winrate": 0.4338
+          "first_games": 134,
+          "first_wins": 64,
+          "first_winrate": 0.4776,
+          "second_games": 133,
+          "second_wins": 57,
+          "second_winrate": 0.4286
         },
         "Fael Spiritwalker": {
           "first_games": 54,
@@ -687,9 +687,9 @@
           "first_games": 45,
           "first_wins": 20,
           "first_winrate": 0.4444,
-          "second_games": 44,
-          "second_wins": 18,
-          "second_winrate": 0.4091
+          "second_games": 45,
+          "second_wins": 19,
+          "second_winrate": 0.4222
         },
         "Lubela, Tender of the Wilds": {
           "first_games": 45,
@@ -708,19 +708,19 @@
           "second_winrate": 0.5357
         },
         "Yarrow, Blood Banker": {
-          "first_games": 7,
-          "first_wins": 5,
-          "first_winrate": 0.7143,
-          "second_games": 8,
-          "second_wins": 3,
-          "second_winrate": 0.375
+          "first_games": 10,
+          "first_wins": 6,
+          "first_winrate": 0.6,
+          "second_games": 10,
+          "second_wins": 4,
+          "second_winrate": 0.4
         }
       }
     },
     "Dunes": {
-      "total_games": 723,
-      "first_player_wins": 374,
-      "first_player_winrate": 0.5173,
+      "total_games": 722,
+      "first_player_wins": 373,
+      "first_player_winrate": 0.5166,
       "per_commander": {
         "Rosirix the Witch": {
           "first_games": 36,
@@ -758,8 +758,8 @@
           "first_games": 54,
           "first_wins": 23,
           "first_winrate": 0.4259,
-          "second_games": 38,
-          "second_wins": 19,
+          "second_games": 36,
+          "second_wins": 18,
           "second_winrate": 0.5
         },
         "Jagris, the Huntsman": {
@@ -827,9 +827,9 @@
           "second_winrate": 0.3871
         },
         "It That Weaves": {
-          "first_games": 31,
-          "first_wins": 23,
-          "first_winrate": 0.7419,
+          "first_games": 29,
+          "first_wins": 22,
+          "first_winrate": 0.7586,
           "second_games": 32,
           "second_wins": 17,
           "second_winrate": 0.5312
@@ -851,19 +851,19 @@
           "second_winrate": 0.5429
         },
         "Yarrow, Blood Banker": {
-          "first_games": 1,
+          "first_games": 2,
           "first_wins": 0,
           "first_winrate": 0.0,
-          "second_games": 3,
-          "second_wins": 2,
-          "second_winrate": 0.6667
+          "second_games": 4,
+          "second_wins": 3,
+          "second_winrate": 0.75
         }
       }
     },
     "Snowmelt": {
-      "total_games": 608,
-      "first_player_wins": 297,
-      "first_player_winrate": 0.4885,
+      "total_games": 606,
+      "first_player_wins": 296,
+      "first_player_winrate": 0.4884,
       "per_commander": {
         "Jagris, the Huntsman": {
           "first_games": 69,
@@ -917,14 +917,14 @@
           "first_games": 11,
           "first_wins": 5,
           "first_winrate": 0.4545,
-          "second_games": 18,
-          "second_wins": 6,
-          "second_winrate": 0.3333
+          "second_games": 19,
+          "second_wins": 7,
+          "second_winrate": 0.3684
         },
         "Macks Speed": {
-          "first_games": 59,
+          "first_games": 58,
           "first_wins": 36,
-          "first_winrate": 0.6102,
+          "first_winrate": 0.6207,
           "second_games": 59,
           "second_wins": 39,
           "second_winrate": 0.661
@@ -938,12 +938,12 @@
           "second_winrate": 0.48
         },
         "It That Weaves": {
-          "first_games": 27,
+          "first_games": 26,
           "first_wins": 13,
-          "first_winrate": 0.4815,
-          "second_games": 24,
-          "second_wins": 15,
-          "second_winrate": 0.625
+          "first_winrate": 0.5,
+          "second_games": 22,
+          "second_wins": 14,
+          "second_winrate": 0.6364
         },
         "Lubela, Tender of the Wilds": {
           "first_games": 20,
@@ -978,12 +978,12 @@
           "second_winrate": 0.6
         },
         "Starwise Luna": {
-          "first_games": 45,
-          "first_wins": 24,
-          "first_winrate": 0.5333,
-          "second_games": 52,
-          "second_wins": 18,
-          "second_winrate": 0.3462
+          "first_games": 44,
+          "first_wins": 23,
+          "first_winrate": 0.5227,
+          "second_games": 51,
+          "second_wins": 17,
+          "second_winrate": 0.3333
         },
         "Newhaven Township": {
           "first_games": 29,
@@ -994,9 +994,9 @@
           "second_winrate": 0.3043
         },
         "Yarrow, Blood Banker": {
-          "first_games": 4,
+          "first_games": 5,
           "first_wins": 3,
-          "first_winrate": 0.75,
+          "first_winrate": 0.6,
           "second_games": 4,
           "second_wins": 1,
           "second_winrate": 0.25
@@ -1004,9 +1004,9 @@
       }
     },
     "Tropics": {
-      "total_games": 590,
-      "first_player_wins": 298,
-      "first_player_winrate": 0.5051,
+      "total_games": 591,
+      "first_player_wins": 299,
+      "first_player_winrate": 0.5059,
       "per_commander": {
         "Milo Sunstone": {
           "first_games": 31,
@@ -1137,10 +1137,10 @@
           "second_winrate": 0.4444
         },
         "Yarrow, Blood Banker": {
-          "first_games": 2,
-          "first_wins": 2,
+          "first_games": 3,
+          "first_wins": 3,
           "first_winrate": 1.0,
-          "second_games": 1,
+          "second_games": 2,
           "second_wins": 0,
           "second_winrate": 0.0
         }
@@ -1149,9 +1149,9 @@
   },
   "3m": {
     "all": {
-      "total_games": 715,
-      "first_player_wins": 367,
-      "first_player_winrate": 0.5133,
+      "total_games": 704,
+      "first_player_wins": 360,
+      "first_player_winrate": 0.5114,
       "per_commander": {
         "Milo Sunstone": {
           "first_games": 31,
@@ -1194,28 +1194,28 @@
           "second_winrate": 0.4444
         },
         "Elber, Jungle Emissary": {
-          "first_games": 23,
+          "first_games": 22,
           "first_wins": 11,
-          "first_winrate": 0.4783,
-          "second_games": 22,
-          "second_wins": 9,
-          "second_winrate": 0.4091
+          "first_winrate": 0.5,
+          "second_games": 23,
+          "second_wins": 10,
+          "second_winrate": 0.4348
         },
         "Lazim, Thief of Gods": {
-          "first_games": 96,
-          "first_wins": 44,
-          "first_winrate": 0.4583,
-          "second_games": 110,
-          "second_wins": 44,
-          "second_winrate": 0.4
+          "first_games": 89,
+          "first_wins": 40,
+          "first_winrate": 0.4494,
+          "second_games": 105,
+          "second_wins": 41,
+          "second_winrate": 0.3905
         },
         "Macks Speed": {
           "first_games": 46,
           "first_wins": 23,
           "first_winrate": 0.5,
-          "second_games": 68,
-          "second_wins": 40,
-          "second_winrate": 0.5882
+          "second_games": 66,
+          "second_wins": 39,
+          "second_winrate": 0.5909
         },
         "Starwise Luna": {
           "first_games": 70,
@@ -1245,17 +1245,17 @@
           "first_games": 33,
           "first_wins": 17,
           "first_winrate": 0.5152,
-          "second_games": 43,
+          "second_games": 40,
           "second_wins": 20,
-          "second_winrate": 0.4651
+          "second_winrate": 0.5
         },
         "Captain Greenbeard": {
-          "first_games": 59,
-          "first_wins": 33,
-          "first_winrate": 0.5593,
-          "second_games": 49,
-          "second_wins": 32,
-          "second_winrate": 0.6531
+          "first_games": 54,
+          "first_wins": 29,
+          "first_winrate": 0.537,
+          "second_games": 46,
+          "second_wins": 30,
+          "second_winrate": 0.6522
         },
         "Executor Ginn": {
           "first_games": 20,
@@ -1266,9 +1266,9 @@
           "second_winrate": 0.375
         },
         "Elyse of the Order": {
-          "first_games": 23,
+          "first_games": 22,
           "first_wins": 15,
-          "first_winrate": 0.6522,
+          "first_winrate": 0.6818,
           "second_games": 43,
           "second_wins": 24,
           "second_winrate": 0.5581
@@ -1277,40 +1277,40 @@
           "first_games": 9,
           "first_wins": 5,
           "first_winrate": 0.5556,
-          "second_games": 13,
+          "second_games": 12,
           "second_wins": 8,
-          "second_winrate": 0.6154
+          "second_winrate": 0.6667
         },
         "Yarrow, Blood Banker": {
-          "first_games": 7,
-          "first_wins": 5,
-          "first_winrate": 0.7143,
-          "second_games": 8,
-          "second_wins": 3,
-          "second_winrate": 0.375
+          "first_games": 10,
+          "first_wins": 6,
+          "first_winrate": 0.6,
+          "second_games": 10,
+          "second_wins": 4,
+          "second_winrate": 0.4
         }
       }
     },
     "Dunes": {
-      "total_games": 298,
-      "first_player_wins": 162,
-      "first_player_winrate": 0.5436,
+      "total_games": 297,
+      "first_player_wins": 161,
+      "first_player_winrate": 0.5421,
       "per_commander": {
         "Elber, Jungle Emissary": {
-          "first_games": 14,
+          "first_games": 13,
           "first_wins": 7,
-          "first_winrate": 0.5,
+          "first_winrate": 0.5385,
           "second_games": 16,
           "second_wins": 7,
           "second_winrate": 0.4375
         },
         "Lazim, Thief of Gods": {
-          "first_games": 38,
-          "first_wins": 17,
-          "first_winrate": 0.4474,
-          "second_games": 57,
-          "second_wins": 23,
-          "second_winrate": 0.4035
+          "first_games": 37,
+          "first_wins": 16,
+          "first_winrate": 0.4324,
+          "second_games": 56,
+          "second_wins": 22,
+          "second_winrate": 0.3929
         },
         "Starwise Luna": {
           "first_games": 31,
@@ -1364,9 +1364,9 @@
           "first_games": 10,
           "first_wins": 4,
           "first_winrate": 0.4,
-          "second_games": 15,
+          "second_games": 14,
           "second_wins": 8,
-          "second_winrate": 0.5333
+          "second_winrate": 0.5714
         },
         "Executor Ginn": {
           "first_games": 9,
@@ -1425,19 +1425,19 @@
           "second_winrate": 0.45
         },
         "Yarrow, Blood Banker": {
-          "first_games": 1,
+          "first_games": 2,
           "first_wins": 0,
           "first_winrate": 0.0,
-          "second_games": 3,
-          "second_wins": 2,
-          "second_winrate": 0.6667
+          "second_games": 4,
+          "second_wins": 3,
+          "second_winrate": 0.75
         }
       }
     },
     "Snowmelt": {
-      "total_games": 204,
-      "first_player_wins": 101,
-      "first_player_winrate": 0.4951,
+      "total_games": 200,
+      "first_player_wins": 97,
+      "first_player_winrate": 0.485,
       "per_commander": {
         "Jagris, the Huntsman": {
           "first_games": 23,
@@ -1467,41 +1467,41 @@
           "first_games": 4,
           "first_wins": 2,
           "first_winrate": 0.5,
-          "second_games": 4,
-          "second_wins": 1,
-          "second_winrate": 0.25
+          "second_games": 5,
+          "second_wins": 2,
+          "second_winrate": 0.4
         },
         "Macks Speed": {
           "first_games": 16,
           "first_wins": 8,
           "first_winrate": 0.5,
-          "second_games": 27,
+          "second_games": 26,
           "second_wins": 16,
-          "second_winrate": 0.5926
+          "second_winrate": 0.6154
         },
         "Captain Greenbeard": {
-          "first_games": 21,
-          "first_wins": 10,
-          "first_winrate": 0.4762,
-          "second_games": 13,
+          "first_games": 18,
+          "first_wins": 8,
+          "first_winrate": 0.4444,
+          "second_games": 12,
           "second_wins": 12,
-          "second_winrate": 0.9231
+          "second_winrate": 1.0
         },
         "Lazim, Thief of Gods": {
-          "first_games": 23,
-          "first_wins": 13,
-          "first_winrate": 0.5652,
-          "second_games": 22,
-          "second_wins": 8,
-          "second_winrate": 0.3636
+          "first_games": 21,
+          "first_wins": 11,
+          "first_winrate": 0.5238,
+          "second_games": 20,
+          "second_wins": 7,
+          "second_winrate": 0.35
         },
         "Soultaker Viessa": {
           "first_games": 8,
           "first_wins": 2,
           "first_winrate": 0.25,
-          "second_games": 15,
+          "second_games": 14,
           "second_wins": 5,
-          "second_winrate": 0.3333
+          "second_winrate": 0.3571
         },
         "Kai, Longcount Shaman": {
           "first_games": 12,
@@ -1560,9 +1560,9 @@
           "second_winrate": 0.5
         },
         "Yarrow, Blood Banker": {
-          "first_games": 4,
+          "first_games": 5,
           "first_wins": 3,
-          "first_winrate": 0.75,
+          "first_winrate": 0.6,
           "second_games": 4,
           "second_wins": 1,
           "second_winrate": 0.25
@@ -1578,9 +1578,9 @@
       }
     },
     "Tropics": {
-      "total_games": 213,
-      "first_player_wins": 104,
-      "first_player_winrate": 0.4883,
+      "total_games": 207,
+      "first_player_wins": 102,
+      "first_player_winrate": 0.4928,
       "per_commander": {
         "Milo Sunstone": {
           "first_games": 11,
@@ -1626,30 +1626,30 @@
           "first_games": 15,
           "first_wins": 11,
           "first_winrate": 0.7333,
-          "second_games": 13,
+          "second_games": 12,
           "second_wins": 7,
-          "second_winrate": 0.5385
+          "second_winrate": 0.5833
         },
         "Lazim, Thief of Gods": {
-          "first_games": 35,
-          "first_wins": 14,
-          "first_winrate": 0.4,
-          "second_games": 31,
-          "second_wins": 13,
-          "second_winrate": 0.4194
+          "first_games": 31,
+          "first_wins": 13,
+          "first_winrate": 0.4194,
+          "second_games": 29,
+          "second_wins": 12,
+          "second_winrate": 0.4138
         },
         "Captain Greenbeard": {
-          "first_games": 16,
-          "first_wins": 10,
-          "first_winrate": 0.625,
-          "second_games": 20,
-          "second_wins": 10,
-          "second_winrate": 0.5
+          "first_games": 14,
+          "first_wins": 8,
+          "first_winrate": 0.5714,
+          "second_games": 18,
+          "second_wins": 8,
+          "second_winrate": 0.4444
         },
         "Elyse of the Order": {
-          "first_games": 7,
+          "first_games": 6,
           "first_wins": 4,
-          "first_winrate": 0.5714,
+          "first_winrate": 0.6667,
           "second_games": 13,
           "second_wins": 6,
           "second_winrate": 0.4615
@@ -1674,9 +1674,9 @@
           "first_games": 19,
           "first_wins": 7,
           "first_winrate": 0.3684,
-          "second_games": 22,
-          "second_wins": 15,
-          "second_winrate": 0.6818
+          "second_games": 21,
+          "second_wins": 14,
+          "second_winrate": 0.6667
         },
         "Jagris, the Huntsman": {
           "first_games": 26,
@@ -1706,15 +1706,15 @@
           "first_games": 4,
           "first_wins": 3,
           "first_winrate": 0.75,
-          "second_games": 5,
+          "second_games": 4,
           "second_wins": 4,
-          "second_winrate": 0.8
+          "second_winrate": 1.0
         },
         "Yarrow, Blood Banker": {
-          "first_games": 2,
-          "first_wins": 2,
+          "first_games": 3,
+          "first_wins": 3,
           "first_winrate": 1.0,
-          "second_games": 1,
+          "second_games": 2,
           "second_wins": 0,
           "second_winrate": 0.0
         }
@@ -1723,9 +1723,9 @@
   },
   "1m": {
     "all": {
-      "total_games": 227,
-      "first_player_wins": 123,
-      "first_player_winrate": 0.5419,
+      "total_games": 230,
+      "first_player_wins": 124,
+      "first_player_winrate": 0.5391,
       "per_commander": {
         "Milo Sunstone": {
           "first_games": 10,
@@ -1763,9 +1763,9 @@
           "first_games": 8,
           "first_wins": 6,
           "first_winrate": 0.75,
-          "second_games": 15,
-          "second_wins": 9,
-          "second_winrate": 0.6
+          "second_games": 16,
+          "second_wins": 10,
+          "second_winrate": 0.625
         },
         "Lazim, Thief of Gods": {
           "first_games": 34,
@@ -1848,12 +1848,12 @@
           "second_winrate": 0.5
         },
         "Yarrow, Blood Banker": {
-          "first_games": 7,
-          "first_wins": 5,
-          "first_winrate": 0.7143,
-          "second_games": 8,
-          "second_wins": 3,
-          "second_winrate": 0.375
+          "first_games": 10,
+          "first_wins": 6,
+          "first_winrate": 0.6,
+          "second_games": 10,
+          "second_wins": 4,
+          "second_winrate": 0.4
         },
         "Lubela, Tender of the Wilds": {
           "first_games": 1,
@@ -1866,9 +1866,9 @@
       }
     },
     "Dunes": {
-      "total_games": 104,
+      "total_games": 105,
       "first_player_wins": 59,
-      "first_player_winrate": 0.5673,
+      "first_player_winrate": 0.5619,
       "per_commander": {
         "Elber, Jungle Emissary": {
           "first_games": 7,
@@ -1991,12 +1991,12 @@
           "second_winrate": 0.5
         },
         "Yarrow, Blood Banker": {
-          "first_games": 1,
+          "first_games": 2,
           "first_wins": 0,
           "first_winrate": 0.0,
-          "second_games": 3,
-          "second_wins": 2,
-          "second_winrate": 0.6667
+          "second_games": 4,
+          "second_wins": 3,
+          "second_winrate": 0.75
         },
         "Lubela, Tender of the Wilds": {
           "first_games": 1,
@@ -2009,9 +2009,9 @@
       }
     },
     "Snowmelt": {
-      "total_games": 61,
+      "total_games": 62,
       "first_player_wins": 32,
-      "first_player_winrate": 0.5246,
+      "first_player_winrate": 0.5161,
       "per_commander": {
         "Jagris, the Huntsman": {
           "first_games": 14,
@@ -2105,9 +2105,9 @@
           "first_games": 0,
           "first_wins": 0,
           "first_winrate": null,
-          "second_games": 3,
-          "second_wins": 1,
-          "second_winrate": 0.3333
+          "second_games": 4,
+          "second_wins": 2,
+          "second_winrate": 0.5
         },
         "Elyse of the Order": {
           "first_games": 2,
@@ -2118,9 +2118,9 @@
           "second_winrate": 1.0
         },
         "Yarrow, Blood Banker": {
-          "first_games": 4,
+          "first_games": 5,
           "first_wins": 3,
-          "first_winrate": 0.75,
+          "first_winrate": 0.6,
           "second_games": 4,
           "second_wins": 1,
           "second_winrate": 0.25
@@ -2144,9 +2144,9 @@
       }
     },
     "Tropics": {
-      "total_games": 62,
-      "first_player_wins": 32,
-      "first_player_winrate": 0.5161,
+      "total_games": 63,
+      "first_player_wins": 33,
+      "first_player_winrate": 0.5238,
       "per_commander": {
         "Milo Sunstone": {
           "first_games": 3,
@@ -2261,10 +2261,10 @@
           "second_winrate": 0.0
         },
         "Yarrow, Blood Banker": {
-          "first_games": 2,
-          "first_wins": 2,
+          "first_games": 3,
+          "first_wins": 3,
           "first_winrate": 1.0,
-          "second_games": 1,
+          "second_games": 2,
           "second_wins": 0,
           "second_winrate": 0.0
         },
