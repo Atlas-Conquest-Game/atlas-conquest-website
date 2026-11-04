@@ -209,8 +209,8 @@
 
     <!-- ============ 1 · THE PITCH ============
          For someone new: the pitch beside the Atlas card art, then one turn of play told in three
-         beats, all cut from a single take with the same camera. Play any beat and it rolls into the
-         next (play, claim, strike), then stops. The expand button plays the whole take big. -->
+         beats, all cut from a single take with the same camera. It rolls through once, muted, as it scrolls into view; pressing a beat plays it with sound
+         and rolls into the next (play, claim, strike), then stops. The expand button plays the whole take big. -->
     <section class="sec pitch" id="how" aria-labelledby="pitch-title">
       <div class="pitch__band">
         <div class="pitch__art" aria-hidden="true">
@@ -250,10 +250,6 @@
             <h3 class="beat__cap"><span class="beat__word gold">Attack</span><span class="beat__line">Strike the enemy commander.</span></h3>
           </li>
         </ol>
-        <!-- Sound for the three beats: off until pressed, then remembered (setupStory). -->
-        <div class="story__sound-row">
-          <button type="button" class="story__sound" data-story-sound aria-pressed="false" hidden><svg class="icon icon--sound-off" aria-hidden="true"><use href="#i-sound-off"/></svg><svg class="icon icon--sound-on" aria-hidden="true"><use href="#i-sound-on"/></svg><span>Sound</span></button>
-        </div>
       </div>
     </section>
 

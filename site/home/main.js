@@ -794,31 +794,17 @@ const CONFIG = {
   }
 
   /* ---------------- The story beats (play, claim, strike) ----------------
-     Three clips cut from one take. Pressing a beat plays it once at normal speed; when it
-     ends, the next beat starts, so watching one rolls through the turn and then stops.
-     Hover never starts anything. Only one video on the page plays at a time. */
+     Three clips cut from one take. The first time the story is mostly on screen it rolls
+     through once on its own, muted (browsers only autoplay muted video). Pressing a beat plays
+     it with sound, and each beat rolls into the next, so one press watches the rest of the
+     turn. Hover never starts anything. Only one video on the page plays at a time.
+     Reduced motion: no autoplay. */
   function setupStory() {
     const beats = $$('[data-beat]');
     if (!beats.length) return;
     let cur = -1;
     let raf = 0;
-    // Sound is off until the visitor turns it on; the choice is remembered on this device.
-    const soundBtn = $('[data-story-sound]');
-    const SOUND_KEY = 'ac:story-sound';
-    let sound = false;
-    try { sound = localStorage.getItem(SOUND_KEY) === '1'; } catch (_) { /* ignore */ }
-    const setSound = (on, remember) => {
-      sound = on;
-      if (soundBtn) soundBtn.setAttribute('aria-pressed', String(on));
-      if (remember) { try { localStorage.setItem(SOUND_KEY, on ? '1' : '0'); } catch (_) { /* ignore */ } }
-      const v = cur >= 0 ? $('video', beats[cur]) : null;
-      if (v) v.muted = !on;
-    };
-    if (soundBtn) {
-      soundBtn.hidden = false;
-      setSound(sound, false);
-      soundBtn.addEventListener('click', () => setSound(!sound, true));
-    }
+    let withSound = false; // the beat playing now (and the ones it rolls into) has sound
     const vid = (b) => {
       let v = $('video', b);
       if (v) return v;
@@ -848,10 +834,13 @@ const CONFIG = {
       if (v && !v.paused) v.pause();
       if (beats[cur] === b) { cur = -1; cancelAnimationFrame(raf); clipPlaying = false; if (heroCtl) heroCtl.update(); }
     }
-    function start(i) {
+    // pressed: a click started it, so it plays with sound. Otherwise it keeps the sound of the
+    // beat before it (rolling on), or is muted (autoplay).
+    function start(i, pressed) {
       if (modalOpen) return;
       if (clipsCtl) clipsCtl.stopAll();
       if (cur >= 0 && cur !== i) stop(beats[cur]);
+      if (pressed) withSound = true;
       beats.forEach((b, k) => { if (k >= i) bar(b).style.width = '0%'; });
       cur = i;
       const b = beats[i];
@@ -860,15 +849,22 @@ const CONFIG = {
       $('[data-beat-play]', b).setAttribute('aria-pressed', 'true');
       clipPlaying = true; if (heroCtl) heroCtl.update();
       try { v.currentTime = 0; } catch (_) { /* ignore */ }
-      v.muted = !sound;
-      if (sound) playWithSound(v, () => setSound(false, false)); else safePlay(v);
+      v.muted = !withSound;
+      if (withSound) playWithSound(v, () => { withSound = false; }); else safePlay(v);
       cancelAnimationFrame(raf); raf = requestAnimationFrame(tick);
     }
     beats.forEach((b, i) => {
-      $('[data-beat-play]', b).addEventListener('click', () => (cur === i ? stop(b) : start(i)));
+      $('[data-beat-play]', b).addEventListener('click', () => (cur === i ? stop(b) : start(i, true)));
     });
-    new IntersectionObserver((es) => es.forEach((e) => { if (!e.isIntersecting && cur >= 0) stop(beats[cur]); }), { threshold: 0 })
-      .observe($('[data-story]'));
+    let autoplayed = reduced;
+    new IntersectionObserver((es) => es.forEach((e) => {
+      if (!e.isIntersecting && cur >= 0) stop(beats[cur]);
+      if (e.isIntersecting && e.intersectionRatio >= 0.6 && !autoplayed && cur < 0 && !modalOpen && !document.hidden) {
+        autoplayed = true;
+        withSound = false;
+        start(0, false);
+      }
+    }), { threshold: [0, 0.6] }).observe($('[data-story]'));
     document.addEventListener('visibilitychange', () => { if (document.hidden && cur >= 0) stop(beats[cur]); });
     storyCtl = { stopAll() { if (cur >= 0) stop(beats[cur]); } };
   }
