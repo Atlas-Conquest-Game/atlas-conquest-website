@@ -747,18 +747,6 @@ h2.pitch__lead { font-weight: 400; }
 .beat__word { font-family: var(--display); font-size: clamp(26px, 2.1vw, 36px); line-height: 1.05; letter-spacing: .03em; }
 .beat__line { font-size: clamp(16px, 1.2vw, 18px); line-height: 1.4; color: var(--text-2); text-wrap: balance; }
 .story__more { margin-top: clamp(20px, 2vw, 30px); display: flex; justify-content: center; }
-.beat__sound {
-  position: absolute; z-index: 4; left: 10px; top: 10px;
-  display: grid; place-items: center; width: 36px; height: 36px; padding: 0;
-  border: 1px solid rgba(247, 220, 154, .4); border-radius: 50%;
-  background: rgba(6, 8, 13, .62); color: var(--gold-hi); cursor: pointer;
-  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
-  opacity: 0; pointer-events: none; transition: opacity .25s ease, background .25s ease;
-}
-.beat__sound .icon { width: 18px; height: 18px; }
-.beat.is-on .beat__sound, .beat__sound:focus-visible { opacity: .85; pointer-events: auto; }
-.beat__sound:hover { opacity: 1; background: rgba(232, 162, 69, .22); }
-.beat__sound[aria-pressed="true"] .icon--sound-off, .beat__sound:not([aria-pressed="true"]) .icon--sound-on,
 .viewer__sound[aria-pressed="true"] .icon--sound-off, .viewer__sound:not([aria-pressed="true"]) .icon--sound-on { display: none; }
 
 /* At a glance: one quiet art band between the clips and the battlefields */

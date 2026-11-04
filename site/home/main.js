@@ -797,37 +797,14 @@ const CONFIG = {
      Three clips cut from one take. The first time the story is mostly on screen it rolls
      through once on its own, muted (browsers only autoplay muted video). Pressing a beat plays
      it with sound, and each beat rolls into the next, so one press watches the rest of the
-     turn. The speaker on each clip mutes or unmutes, and a mute is remembered on this device,
-     so that visitor's presses stay quiet. Hover never starts anything. Only one video on the
-     page plays at a time. Reduced motion: no autoplay. */
+     turn. Hover never starts anything. Only one video on the page plays at a time.
+     Reduced motion: no autoplay. */
   function setupStory() {
     const beats = $$('[data-beat]');
     if (!beats.length) return;
     let cur = -1;
     let raf = 0;
     let withSound = false; // the beat playing now (and the ones it rolls into) has sound
-    const MUTE_KEY = 'ac:story-muted';
-    let muted = false;     // the visitor muted the story with the speaker
-    try { muted = localStorage.getItem(MUTE_KEY) === '1'; } catch (_) { /* ignore */ }
-    const speakers = $$('[data-beat-sound]');
-    const paintSpeakers = () => speakers.forEach((s) => s.setAttribute('aria-pressed', String(withSound)));
-    const setSound = (on) => {
-      withSound = on;
-      paintSpeakers();
-      const v = cur >= 0 ? $('video', beats[cur]) : null;
-      if (v) v.muted = !on;
-    };
-    speakers.forEach((s) => {
-      s.hidden = false;
-      s.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const on = !withSound;
-        muted = !on;
-        try { localStorage.setItem(MUTE_KEY, muted ? '1' : '0'); } catch (_) { /* ignore */ }
-        setSound(on);
-      });
-    });
-    paintSpeakers();
     const vid = (b) => {
       let v = $('video', b);
       if (v) return v;
@@ -857,13 +834,13 @@ const CONFIG = {
       if (v && !v.paused) v.pause();
       if (beats[cur] === b) { cur = -1; cancelAnimationFrame(raf); clipPlaying = false; if (heroCtl) heroCtl.update(); }
     }
-    // pressed: a click started it, so it may have sound. Otherwise it keeps the sound of the
+    // pressed: a click started it, so it plays with sound. Otherwise it keeps the sound of the
     // beat before it (rolling on), or is muted (autoplay).
     function start(i, pressed) {
       if (modalOpen) return;
       if (clipsCtl) clipsCtl.stopAll();
       if (cur >= 0 && cur !== i) stop(beats[cur]);
-      if (pressed) setSound(!muted);
+      if (pressed) withSound = true;
       beats.forEach((b, k) => { if (k >= i) bar(b).style.width = '0%'; });
       cur = i;
       const b = beats[i];
@@ -873,7 +850,7 @@ const CONFIG = {
       clipPlaying = true; if (heroCtl) heroCtl.update();
       try { v.currentTime = 0; } catch (_) { /* ignore */ }
       v.muted = !withSound;
-      if (withSound) playWithSound(v, () => setSound(false)); else safePlay(v);
+      if (withSound) playWithSound(v, () => { withSound = false; }); else safePlay(v);
       cancelAnimationFrame(raf); raf = requestAnimationFrame(tick);
     }
     beats.forEach((b, i) => {
@@ -884,7 +861,7 @@ const CONFIG = {
       if (!e.isIntersecting && cur >= 0) stop(beats[cur]);
       if (e.isIntersecting && e.intersectionRatio >= 0.6 && !autoplayed && cur < 0 && !modalOpen && !document.hidden) {
         autoplayed = true;
-        setSound(false);
+        withSound = false;
         start(0, false);
       }
     }), { threshold: [0, 0.6] }).observe($('[data-story]'));
