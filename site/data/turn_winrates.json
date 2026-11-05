@@ -371,16 +371,16 @@
             "games": 6
           },
           {
-            "winrate": 0.5455,
-            "games": 11
+            "winrate": 0.5385,
+            "games": 13
           },
           {
             "winrate": 0.6667,
             "games": 3
           },
           {
-            "winrate": null,
-            "games": 0
+            "winrate": 0.5,
+            "games": 2
           }
         ]
       }
@@ -724,6 +724,28 @@
             "games": 54
           }
         ],
+        "Yarrow, Blood Banker": [
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": 0.5,
+            "games": 2
+          },
+          {
+            "winrate": 0.5,
+            "games": 6
+          },
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": null,
+            "games": 0
+          }
+        ],
         "Soultaker Viessa": [
           {
             "winrate": 0.6364,
@@ -744,28 +766,6 @@
           {
             "winrate": 0.6408,
             "games": 103
-          }
-        ],
-        "Yarrow, Blood Banker": [
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": 0.5,
-            "games": 2
-          },
-          {
-            "winrate": 0.5,
-            "games": 4
-          },
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": null,
-            "games": 0
           }
         ]
       }
@@ -1149,8 +1149,8 @@
             "games": 2
           },
           {
-            "winrate": null,
-            "games": 0
+            "winrate": 0.5,
+            "games": 2
           }
         ]
       }
@@ -1579,20 +1579,20 @@
             "games": 5
           },
           {
-            "winrate": 0.5429,
-            "games": 35
+            "winrate": 0.5294,
+            "games": 34
           },
           {
-            "winrate": 0.6406,
-            "games": 64
+            "winrate": 0.6452,
+            "games": 62
           },
           {
             "winrate": 0.5862,
             "games": 29
           },
           {
-            "winrate": 0.5,
-            "games": 24
+            "winrate": 0.4783,
+            "games": 23
           }
         ],
         "Lazim, Thief of Gods": [
@@ -1601,8 +1601,8 @@
             "games": 20
           },
           {
-            "winrate": 0.3033,
-            "games": 244
+            "winrate": 0.3058,
+            "games": 242
           },
           {
             "winrate": 0.5051,
@@ -1645,8 +1645,8 @@
             "games": 7
           },
           {
-            "winrate": 0.5,
-            "games": 64
+            "winrate": 0.5079,
+            "games": 63
           },
           {
             "winrate": 0.4727,
@@ -1675,8 +1675,8 @@
             "games": 79
           },
           {
-            "winrate": 0.6935,
-            "games": 62
+            "winrate": 0.7049,
+            "games": 61
           },
           {
             "winrate": 0.7097,
@@ -1711,20 +1711,20 @@
             "games": 4
           },
           {
-            "winrate": 0.1515,
-            "games": 66
+            "winrate": 0.1562,
+            "games": 64
           },
           {
-            "winrate": 0.5152,
-            "games": 66
+            "winrate": 0.5231,
+            "games": 65
           },
           {
-            "winrate": 0.7255,
+            "winrate": 0.72,
+            "games": 50
+          },
+          {
+            "winrate": 0.6078,
             "games": 51
-          },
-          {
-            "winrate": 0.5962,
-            "games": 52
           }
         ],
         "Elyse of the Order": [
@@ -1751,16 +1751,16 @@
         ],
         "Macks Speed": [
           {
-            "winrate": 0.5,
-            "games": 8
+            "winrate": 0.4286,
+            "games": 7
           },
           {
-            "winrate": 0.7121,
-            "games": 132
+            "winrate": 0.7109,
+            "games": 128
           },
           {
-            "winrate": 0.6639,
-            "games": 119
+            "winrate": 0.6522,
+            "games": 115
           },
           {
             "winrate": 0.4717,
@@ -1777,8 +1777,8 @@
             "games": 11
           },
           {
-            "winrate": 0.4495,
-            "games": 109
+            "winrate": 0.4486,
+            "games": 107
           },
           {
             "winrate": 0.4368,
@@ -1799,8 +1799,8 @@
             "games": 7
           },
           {
-            "winrate": 0.5641,
-            "games": 39
+            "winrate": 0.5789,
+            "games": 38
           },
           {
             "winrate": 0.5676,
@@ -1859,14 +1859,36 @@
             "games": 7
           }
         ],
+        "Yarrow, Blood Banker": [
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": 0.3333,
+            "games": 6
+          },
+          {
+            "winrate": 0.5385,
+            "games": 13
+          },
+          {
+            "winrate": 0.6667,
+            "games": 3
+          },
+          {
+            "winrate": 0.5,
+            "games": 2
+          }
+        ],
         "Lubela, Tender of the Wilds": [
           {
             "winrate": 0.0,
-            "games": 2
+            "games": 1
           },
           {
-            "winrate": 0.2963,
-            "games": 27
+            "winrate": 0.3077,
+            "games": 26
           },
           {
             "winrate": 0.4773,
@@ -1887,8 +1909,8 @@
             "games": 4
           },
           {
-            "winrate": 0.5211,
-            "games": 71
+            "winrate": 0.5143,
+            "games": 70
           },
           {
             "winrate": 0.5395,
@@ -1901,28 +1923,6 @@
           {
             "winrate": 1.0,
             "games": 7
-          }
-        ],
-        "Yarrow, Blood Banker": [
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": 0.3333,
-            "games": 6
-          },
-          {
-            "winrate": 0.5455,
-            "games": 11
-          },
-          {
-            "winrate": 0.6667,
-            "games": 3
-          },
-          {
-            "winrate": null,
-            "games": 0
           }
         ]
       }
@@ -1964,8 +1964,8 @@
             "games": 7
           },
           {
-            "winrate": 0.3137,
-            "games": 102
+            "winrate": 0.3168,
+            "games": 101
           },
           {
             "winrate": 0.5556,
@@ -2008,12 +2008,12 @@
             "games": 2
           },
           {
-            "winrate": 0.6744,
-            "games": 43
+            "winrate": 0.6905,
+            "games": 42
           },
           {
-            "winrate": 0.75,
-            "games": 36
+            "winrate": 0.7353,
+            "games": 34
           },
           {
             "winrate": 0.4091,
@@ -2112,6 +2112,28 @@
             "games": 4
           }
         ],
+        "Yarrow, Blood Banker": [
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": 0.5,
+            "games": 2
+          },
+          {
+            "winrate": 0.5,
+            "games": 6
+          },
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": null,
+            "games": 0
+          }
+        ],
         "Captain Greenbeard": [
           {
             "winrate": 0.5,
@@ -2148,8 +2170,8 @@
             "games": 29
           },
           {
-            "winrate": 0.6818,
-            "games": 22
+            "winrate": 0.7143,
+            "games": 21
           },
           {
             "winrate": 0.8125,
@@ -2162,8 +2184,8 @@
             "games": 1
           },
           {
-            "winrate": 0.1034,
-            "games": 29
+            "winrate": 0.1071,
+            "games": 28
           },
           {
             "winrate": 0.3333,
@@ -2228,12 +2250,12 @@
             "games": 1
           },
           {
-            "winrate": 0.5455,
-            "games": 11
+            "winrate": 0.5,
+            "games": 10
           },
           {
-            "winrate": 0.7917,
-            "games": 24
+            "winrate": 0.7826,
+            "games": 23
           },
           {
             "winrate": 0.7333,
@@ -2286,28 +2308,6 @@
           {
             "winrate": 1.0,
             "games": 3
-          }
-        ],
-        "Yarrow, Blood Banker": [
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": 0.5,
-            "games": 2
-          },
-          {
-            "winrate": 0.5,
-            "games": 4
-          },
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": null,
-            "games": 0
           }
         ]
       }
@@ -2371,20 +2371,20 @@
             "games": 2
           },
           {
-            "winrate": 0.0909,
-            "games": 22
+            "winrate": 0.0952,
+            "games": 21
           },
           {
-            "winrate": 0.5,
-            "games": 22
+            "winrate": 0.5238,
+            "games": 21
           },
           {
             "winrate": 0.9167,
             "games": 12
           },
           {
-            "winrate": 0.5263,
-            "games": 19
+            "winrate": 0.5556,
+            "games": 18
           }
         ],
         "Elyse of the Order": [
@@ -2437,8 +2437,8 @@
             "games": 8
           },
           {
-            "winrate": 0.3818,
-            "games": 55
+            "winrate": 0.3889,
+            "games": 54
           },
           {
             "winrate": 0.4262,
@@ -2455,16 +2455,16 @@
         ],
         "Macks Speed": [
           {
-            "winrate": 0.4,
-            "games": 5
+            "winrate": 0.25,
+            "games": 4
           },
           {
             "winrate": 0.7447,
             "games": 47
           },
           {
-            "winrate": 0.65,
-            "games": 40
+            "winrate": 0.6316,
+            "games": 38
           },
           {
             "winrate": 0.5385,
@@ -2522,7 +2522,7 @@
         "Lubela, Tender of the Wilds": [
           {
             "winrate": 0.0,
-            "games": 2
+            "games": 1
           },
           {
             "winrate": 0.125,
@@ -2559,8 +2559,8 @@
             "games": 8
           },
           {
-            "winrate": 0.7,
-            "games": 10
+            "winrate": 0.6667,
+            "games": 9
           }
         ],
         "Captain Greenbeard": [
@@ -2635,8 +2635,8 @@
             "games": 4
           },
           {
-            "winrate": 0.3684,
-            "games": 38
+            "winrate": 0.3514,
+            "games": 37
           },
           {
             "winrate": 0.3704,
@@ -2691,8 +2691,8 @@
             "games": 2
           },
           {
-            "winrate": null,
-            "games": 0
+            "winrate": 0.5,
+            "games": 2
           }
         ]
       }
@@ -2738,8 +2738,8 @@
             "games": 10
           },
           {
-            "winrate": 0.5185,
-            "games": 27
+            "winrate": 0.5385,
+            "games": 26
           },
           {
             "winrate": 0.5,
@@ -2822,8 +2822,8 @@
             "games": 1
           },
           {
-            "winrate": 0.1818,
-            "games": 11
+            "winrate": 0.2,
+            "games": 10
           },
           {
             "winrate": 0.5714,
@@ -2852,8 +2852,8 @@
             "games": 26
           },
           {
-            "winrate": 0.6471,
-            "games": 17
+            "winrate": 0.625,
+            "games": 16
           },
           {
             "winrate": 0.6923,
@@ -2866,8 +2866,8 @@
             "games": 1
           },
           {
-            "winrate": 0.7143,
-            "games": 42
+            "winrate": 0.6923,
+            "games": 39
           },
           {
             "winrate": 0.6047,
@@ -2932,8 +2932,8 @@
             "games": 2
           },
           {
-            "winrate": 0.6,
-            "games": 20
+            "winrate": 0.5789,
+            "games": 19
           },
           {
             "winrate": 0.5652,
@@ -2954,8 +2954,8 @@
             "games": 3
           },
           {
-            "winrate": 0.4706,
-            "games": 34
+            "winrate": 0.4848,
+            "games": 33
           },
           {
             "winrate": 0.5161,
@@ -2976,8 +2976,8 @@
             "games": 2
           },
           {
-            "winrate": 0.4348,
-            "games": 23
+            "winrate": 0.4545,
+            "games": 22
           },
           {
             "winrate": 0.6667,
@@ -3042,8 +3042,8 @@
             "games": 0
           },
           {
-            "winrate": 0.25,
-            "games": 8
+            "winrate": 0.2857,
+            "games": 7
           },
           {
             "winrate": 0.5,
@@ -3143,8 +3143,8 @@
             "games": 5
           },
           {
-            "winrate": 0.4839,
-            "games": 31
+            "winrate": 0.4667,
+            "games": 30
           },
           {
             "winrate": 0.3448,
@@ -3165,12 +3165,12 @@
             "games": 8
           },
           {
-            "winrate": 0.6393,
-            "games": 61
+            "winrate": 0.6271,
+            "games": 59
           },
           {
-            "winrate": 0.4643,
-            "games": 56
+            "winrate": 0.4727,
+            "games": 55
           },
           {
             "winrate": 0.375,
@@ -3209,8 +3209,8 @@
             "games": 2
           },
           {
-            "winrate": 0.3529,
-            "games": 17
+            "winrate": 0.4,
+            "games": 15
           },
           {
             "winrate": 0.375,
@@ -3245,6 +3245,28 @@
           {
             "winrate": 0.5556,
             "games": 18
+          }
+        ],
+        "Yarrow, Blood Banker": [
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": 0.3333,
+            "games": 6
+          },
+          {
+            "winrate": 0.5385,
+            "games": 13
+          },
+          {
+            "winrate": 0.6667,
+            "games": 3
+          },
+          {
+            "winrate": 0.5,
+            "games": 2
           }
         ],
         "Macks Speed": [
@@ -3407,8 +3429,8 @@
             "games": 3
           },
           {
-            "winrate": 0.75,
-            "games": 32
+            "winrate": 0.7667,
+            "games": 30
           },
           {
             "winrate": 0.55,
@@ -3430,7 +3452,7 @@
           },
           {
             "winrate": 0.5,
-            "games": 6
+            "games": 4
           },
           {
             "winrate": 0.5714,
@@ -3443,28 +3465,6 @@
           {
             "winrate": 0.75,
             "games": 4
-          }
-        ],
-        "Yarrow, Blood Banker": [
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": 0.3333,
-            "games": 6
-          },
-          {
-            "winrate": 0.5455,
-            "games": 11
-          },
-          {
-            "winrate": 0.6667,
-            "games": 3
-          },
-          {
-            "winrate": null,
-            "games": 0
           }
         ]
       }
@@ -3484,8 +3484,8 @@
             "games": 0
           },
           {
-            "winrate": 0.4545,
-            "games": 11
+            "winrate": 0.5,
+            "games": 10
           },
           {
             "winrate": 0.3,
@@ -3520,6 +3520,28 @@
           {
             "winrate": 0.3636,
             "games": 11
+          }
+        ],
+        "Yarrow, Blood Banker": [
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": 0.5,
+            "games": 2
+          },
+          {
+            "winrate": 0.5,
+            "games": 6
+          },
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": null,
+            "games": 0
           }
         ],
         "Starwise Luna": [
@@ -3572,12 +3594,12 @@
             "games": 4
           },
           {
-            "winrate": 0.6452,
-            "games": 31
+            "winrate": 0.6333,
+            "games": 30
           },
           {
-            "winrate": 0.4167,
-            "games": 24
+            "winrate": 0.4348,
+            "games": 23
           },
           {
             "winrate": 0.3333,
@@ -3720,28 +3742,6 @@
             "games": 4
           }
         ],
-        "Elyse of the Order": [
-          {
-            "winrate": 0.5,
-            "games": 2
-          },
-          {
-            "winrate": 0.75,
-            "games": 12
-          },
-          {
-            "winrate": 0.75,
-            "games": 8
-          },
-          {
-            "winrate": 0.25,
-            "games": 4
-          },
-          {
-            "winrate": null,
-            "games": 0
-          }
-        ],
         "Lubela, Tender of the Wilds": [
           {
             "winrate": null,
@@ -3808,6 +3808,28 @@
             "games": 1
           }
         ],
+        "Elyse of the Order": [
+          {
+            "winrate": 0.5,
+            "games": 2
+          },
+          {
+            "winrate": 0.7273,
+            "games": 11
+          },
+          {
+            "winrate": 0.75,
+            "games": 8
+          },
+          {
+            "winrate": 0.25,
+            "games": 4
+          },
+          {
+            "winrate": null,
+            "games": 0
+          }
+        ],
         "Kai, Longcount Shaman": [
           {
             "winrate": null,
@@ -3828,28 +3850,6 @@
           {
             "winrate": 1.0,
             "games": 1
-          }
-        ],
-        "Yarrow, Blood Banker": [
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": 0.5,
-            "games": 2
-          },
-          {
-            "winrate": 0.5,
-            "games": 4
-          },
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": null,
-            "games": 0
           }
         ]
       }
@@ -3891,8 +3891,8 @@
             "games": 3
           },
           {
-            "winrate": 0.6471,
-            "games": 17
+            "winrate": 0.625,
+            "games": 16
           },
           {
             "winrate": 0.5833,
@@ -4211,8 +4211,8 @@
             "games": 2
           },
           {
-            "winrate": null,
-            "games": 0
+            "winrate": 0.5,
+            "games": 2
           }
         ],
         "Lubela, Tender of the Wilds": [
@@ -4221,8 +4221,8 @@
             "games": 0
           },
           {
-            "winrate": 0.0,
-            "games": 1
+            "winrate": null,
+            "games": 0
           },
           {
             "winrate": null,
@@ -4430,8 +4430,8 @@
             "games": 0
           },
           {
-            "winrate": 0.8,
-            "games": 10
+            "winrate": 0.8889,
+            "games": 9
           },
           {
             "winrate": 0.0,
@@ -4474,8 +4474,8 @@
             "games": 2
           },
           {
-            "winrate": 0.5556,
-            "games": 9
+            "winrate": 0.5,
+            "games": 8
           },
           {
             "winrate": 0.3333,
@@ -4562,8 +4562,8 @@
             "games": 1
           },
           {
-            "winrate": 0.25,
-            "games": 4
+            "winrate": 0.3333,
+            "games": 3
           },
           {
             "winrate": 0.0,
@@ -4584,8 +4584,8 @@
             "games": 0
           },
           {
-            "winrate": 0.5,
-            "games": 2
+            "winrate": 0.0,
+            "games": 1
           },
           {
             "winrate": 1.0,
@@ -4707,16 +4707,16 @@
             "games": 2
           },
           {
-            "winrate": 0.7297,
-            "games": 37
+            "winrate": 0.7429,
+            "games": 35
           },
           {
-            "winrate": 0.5484,
-            "games": 31
+            "winrate": 0.5517,
+            "games": 29
           },
           {
-            "winrate": 0.375,
-            "games": 8
+            "winrate": 0.4286,
+            "games": 7
           },
           {
             "winrate": 0.0,
@@ -4748,23 +4748,23 @@
         "Lazim, Thief of Gods": [
           {
             "winrate": 0.0,
-            "games": 3
+            "games": 2
           },
           {
-            "winrate": 0.2143,
-            "games": 28
+            "winrate": 0.1667,
+            "games": 24
           },
           {
             "winrate": 0.5238,
             "games": 21
           },
           {
-            "winrate": 0.625,
-            "games": 8
+            "winrate": 0.5714,
+            "games": 7
           },
           {
-            "winrate": 0.2,
-            "games": 5
+            "winrate": 0.0,
+            "games": 4
           }
         ],
         "Fael Spiritwalker": [
@@ -4787,6 +4787,28 @@
           {
             "winrate": 0.3333,
             "games": 3
+          }
+        ],
+        "Yarrow, Blood Banker": [
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": 0.3333,
+            "games": 6
+          },
+          {
+            "winrate": 0.5385,
+            "games": 13
+          },
+          {
+            "winrate": 0.6667,
+            "games": 3
+          },
+          {
+            "winrate": 0.5,
+            "games": 2
           }
         ],
         "Soultaker Viessa": [
@@ -4817,8 +4839,8 @@
             "games": 0
           },
           {
-            "winrate": 0.25,
-            "games": 4
+            "winrate": 0.3333,
+            "games": 3
           },
           {
             "winrate": 0.5,
@@ -4905,8 +4927,8 @@
             "games": 0
           },
           {
-            "winrate": 0.6364,
-            "games": 11
+            "winrate": 0.5556,
+            "games": 9
           },
           {
             "winrate": 0.6429,
@@ -4917,8 +4939,8 @@
             "games": 5
           },
           {
-            "winrate": 0.6667,
-            "games": 3
+            "winrate": 1.0,
+            "games": 2
           }
         ],
         "Executor Ginn": [
@@ -4963,28 +4985,6 @@
           {
             "winrate": 0.0,
             "games": 1
-          }
-        ],
-        "Yarrow, Blood Banker": [
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": 0.3333,
-            "games": 6
-          },
-          {
-            "winrate": 0.5455,
-            "games": 11
-          },
-          {
-            "winrate": 0.6667,
-            "games": 3
-          },
-          {
-            "winrate": null,
-            "games": 0
           }
         ],
         "Lubela, Tender of the Wilds": [
@@ -5048,20 +5048,42 @@
             "games": 1
           },
           {
-            "winrate": 0.2222,
-            "games": 18
+            "winrate": 0.1765,
+            "games": 17
           },
           {
             "winrate": 0.4,
             "games": 10
           },
           {
-            "winrate": 0.6,
-            "games": 5
+            "winrate": 0.5,
+            "games": 4
           },
           {
             "winrate": 0.0,
             "games": 3
+          }
+        ],
+        "Yarrow, Blood Banker": [
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": 0.5,
+            "games": 2
+          },
+          {
+            "winrate": 0.5,
+            "games": 6
+          },
+          {
+            "winrate": null,
+            "games": 0
+          },
+          {
+            "winrate": null,
+            "games": 0
           }
         ],
         "Jagris, the Huntsman": [
@@ -5078,8 +5100,8 @@
             "games": 11
           },
           {
-            "winrate": 0.2,
-            "games": 5
+            "winrate": 0.25,
+            "games": 4
           },
           {
             "winrate": 0.0,
@@ -5268,8 +5290,8 @@
             "games": 0
           },
           {
-            "winrate": 0.0,
-            "games": 1
+            "winrate": null,
+            "games": 0
           },
           {
             "winrate": null,
@@ -5350,28 +5372,6 @@
             "games": 0
           }
         ],
-        "Yarrow, Blood Banker": [
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": 0.5,
-            "games": 2
-          },
-          {
-            "winrate": 0.5,
-            "games": 4
-          },
-          {
-            "winrate": null,
-            "games": 0
-          },
-          {
-            "winrate": null,
-            "games": 0
-          }
-        ],
         "Lubela, Tender of the Wilds": [
           {
             "winrate": null,
@@ -5433,12 +5433,12 @@
             "games": 0
           },
           {
-            "winrate": 0.5833,
-            "games": 12
+            "winrate": 0.6,
+            "games": 10
           },
           {
-            "winrate": 0.5714,
-            "games": 7
+            "winrate": 0.6,
+            "games": 5
           },
           {
             "winrate": 0.5,
@@ -5561,8 +5561,8 @@
         ],
         "Lazim, Thief of Gods": [
           {
-            "winrate": 0.0,
-            "games": 1
+            "winrate": null,
+            "games": 0
           },
           {
             "winrate": 0.0,
@@ -5631,8 +5631,8 @@
             "games": 0
           },
           {
-            "winrate": 0.75,
-            "games": 4
+            "winrate": 0.6667,
+            "games": 3
           },
           {
             "winrate": 0.5,
@@ -5709,8 +5709,8 @@
             "games": 2
           },
           {
-            "winrate": null,
-            "games": 0
+            "winrate": 0.5,
+            "games": 2
           }
         ],
         "Milo Sunstone": [
@@ -5818,8 +5818,8 @@
             "games": 1
           },
           {
-            "winrate": 0.25,
-            "games": 8
+            "winrate": 0.2,
+            "games": 5
           },
           {
             "winrate": 0.6,
@@ -5830,8 +5830,8 @@
             "games": 2
           },
           {
-            "winrate": 1.0,
-            "games": 1
+            "winrate": null,
+            "games": 0
           }
         ],
         "Kai, Longcount Shaman": [
@@ -5928,8 +5928,8 @@
             "games": 0
           },
           {
-            "winrate": 0.6667,
-            "games": 3
+            "winrate": 0.5,
+            "games": 2
           },
           {
             "winrate": 0.625,
@@ -5940,8 +5940,8 @@
             "games": 3
           },
           {
-            "winrate": 0.0,
-            "games": 1
+            "winrate": null,
+            "games": 0
           }
         ],
         "Captain Greenbeard": [
