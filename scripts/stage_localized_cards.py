@@ -13,7 +13,11 @@ Drive press kit. This script lays both out exactly as they should land:
 and records each ZIP's size in site/data/i18n/<slug>.json, which the press page shows.
 Only cards in site/data/press_cards.json are staged, named by their slug as on the
 English press page. Files whose bytes haven't changed since the last run are left
-alone, so a re-run after a card update only touches what changed.
+alone, so a re-run after a card update only touches what changed. A card the local
+folder is stale on (a fresh machine, or uploads made elsewhere) is checked against the
+card host first: if the live PNG already matches the render, its WebP isn't re-encoded
+(and a stale local WebP is removed so a bulk upload can't overwrite the live one).
+--no-live-check turns that off.
 
     python scripts/stage_localized_cards.py                 # every locale
     python scripts/stage_localized_cards.py --only ja,ko    # some
@@ -26,7 +30,11 @@ import argparse
 import hashlib
 import json
 import sys
+import time
+import urllib.error
+import urllib.request
 import zipfile
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 from PIL import Image
@@ -51,13 +59,29 @@ def same_bytes(a: Path, b: Path) -> bool:
     return hashlib.sha1(a.read_bytes()).digest() == hashlib.sha1(b.read_bytes()).digest()
 
 
-def stage_cards(loc: dict, cards: list[dict], renders: Path, out: Path, base: str) -> dict:
+def live_matches(url: str, src: Path) -> bool:
+    """True if the card host's copy has the same bytes (R2's ETag is the MD5 for a single-part upload)."""
+    for attempt in range(6):
+        try:
+            req = urllib.request.Request(url, method="HEAD", headers={"User-Agent": "atlas-stage-cards"})
+            with urllib.request.urlopen(req, timeout=30) as r:
+                return (r.headers.get("ETag") or "").strip('"') == hashlib.md5(src.read_bytes()).hexdigest()
+        except urllib.error.HTTPError as e:
+            if e.code == 404:
+                return False
+        except Exception:
+            pass
+        time.sleep(2 ** attempt)  # the host rate-limits bursts (429)
+    return False
+
+
+def stage_cards(loc: dict, cards: list[dict], renders: Path, out: Path, base: str, live_check: bool = True) -> dict:
     src_dir = renders / loc["code"]
     png_dir = out / "r2" / loc["slug"] / "png"
     webp_dir = out / "r2" / loc["slug"] / "webp"
     png_dir.mkdir(parents=True, exist_ok=True)
     webp_dir.mkdir(parents=True, exist_ok=True)
-    staged, missing, changed = [], [], 0
+    staged, missing, todo = [], [], []
     for card in cards:
         src = src_dir / f"{card['slug']}.png"
         if not src.exists():
@@ -66,12 +90,26 @@ def stage_cards(loc: dict, cards: list[dict], renders: Path, out: Path, base: st
         png = png_dir / src.name
         webp = webp_dir / f"{card['slug']}.webp"
         if not same_bytes(src, png) or not webp.exists():
-            png.write_bytes(src.read_bytes())
-            img = Image.open(src).convert("RGBA")
-            img = img.resize((WEBP_WIDTH, round(img.height * WEBP_WIDTH / img.width)), Image.LANCZOS)
-            img.save(webp, "WEBP", quality=85, method=6)
-            changed += 1
+            todo.append((src, png, webp))
         staged.append(png)
+
+    def is_live(job) -> bool:
+        return live_check and live_matches(f"{base}/{loc['slug']}/png/{job[0].name}", job[0])
+
+    with ThreadPoolExecutor(4) as ex:
+        live = list(ex.map(is_live, todo))
+    changed = encoded = 0
+    for (src, png, webp), on_host in zip(todo, live):
+        if not same_bytes(src, png):
+            png.write_bytes(src.read_bytes())
+            changed += 1
+        if on_host:
+            webp.unlink(missing_ok=True)
+            continue
+        img = Image.open(src).convert("RGBA")
+        img = img.resize((WEBP_WIDTH, round(img.height * WEBP_WIDTH / img.width)), Image.LANCZOS)
+        img.save(webp, "WEBP", quality=85, method=6)
+        encoded += 1
 
     zip_dir = out / "r2" / "zips"
     zip_dir.mkdir(parents=True, exist_ok=True)
@@ -81,7 +119,7 @@ def stage_cards(loc: dict, cards: list[dict], renders: Path, out: Path, base: st
         with zipfile.ZipFile(zpath, "w", zipfile.ZIP_STORED) as zf:  # PNGs are already compressed
             for png in staged:
                 zf.write(png, png.name)
-    print(f"  {loc['code']}: {len(staged)} cards ({changed} new or changed), ZIP {human_size(zpath.stat().st_size)}"
+    print(f"  {loc['code']}: {len(staged)} cards ({changed} new or changed, {encoded} to upload), ZIP {human_size(zpath.stat().st_size)}"
           + (f"; no render for {len(missing)}: {', '.join(missing[:5])}" if missing else ""))
     return {"url": f"{base}/zips/{name}", "filename": name,
             "size": human_size(zpath.stat().st_size), "count": len(staged)}
@@ -173,6 +211,8 @@ def main(argv=None) -> int:
     ap.add_argument("--only", default="", help="comma list of locale codes")
     ap.add_argument("--renders", type=Path, default=DEFAULT_RENDERS)
     ap.add_argument("--out", type=Path, default=DEFAULT_OUT)
+    ap.add_argument("--no-live-check", action="store_true",
+                    help="re-encode every changed card even if the card host already has it")
     ap.add_argument("--descriptions-only", action="store_true", help="only rewrite drive/Descriptions/")
     args = ap.parse_args(argv)
 
@@ -189,7 +229,7 @@ def main(argv=None) -> int:
         if args.descriptions_only:
             stage_descriptions(loc, source, args.out, (data.get("zip") or {}).get("url", ""))
             continue
-        zip_info = stage_cards(loc, cards, args.renders, args.out, config["cards_base"])
+        zip_info = stage_cards(loc, cards, args.renders, args.out, config["cards_base"], not args.no_live_check)
         stage_descriptions(loc, source, args.out, zip_info["url"])
         data["zip"] = zip_info
         path.parent.mkdir(parents=True, exist_ok=True)
