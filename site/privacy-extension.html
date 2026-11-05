@@ -160,10 +160,11 @@
 
         <p>
           Card images, card names and card data are downloaded from
-          <code>cards.atlas-conquest.com</code>, which is static file hosting. To show
-          cards in your language, the extension uses the language Twitch reports for
-          you to choose which files to download; the language itself is not sent
-          anywhere. Those requests carry the same information any web request does,
+          <code>cards.atlas-conquest.com</code>, which is static file hosting. Cards are
+          shown in the language you pick, otherwise the streamer's game language (or,
+          until that is known, the language Twitch reports for you). The extension
+          downloads that language's card text, so the request names the language and
+          nothing else about you. Those requests carry the same information any web request does,
           such as your IP address, and are not used to build a profile of you.
         </p>
 
