@@ -31,10 +31,10 @@ window.AC_CONFIG = {
   links: {
     discord: 'https://discord.gg/7QaEY4yJH5',
     steam: 'https://store.steampowered.com/app/5537460/Atlas_Conquest/', // Steam store URL; empty keeps "Wishlist on Steam" in place as a no-op '#' link
-    // Empty: the trailer modal plays trailerWeb + '1080.mp4' or '720.mp4' (the v49 web encodes on
+    // Empty: the trailer modal plays trailerWeb + '1080.mp4' or '720.mp4' (the v50 web encodes on
     // the card host). A YouTube id here plays that upload instead.
     youtubeTrailerId: '',
-    trailerWeb: 'https://cards.atlas-conquest.com/trailer/web/AtlasConquest_Trailer_v49_en_',
+    trailerWeb: 'https://cards.atlas-conquest.com/trailer/web/AtlasConquest_Trailer_v50_en_',
     youtube: 'https://www.youtube.com/@atlasconquest',
     instagram: 'https://www.instagram.com/atlasconquest/',
     facebook: 'https://www.facebook.com/atlasconquest',

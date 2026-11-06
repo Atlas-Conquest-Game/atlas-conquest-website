@@ -15,7 +15,7 @@ const CONFIG = {
                              // report can attribute wishlists to the site and to the button.
   discord: 'https://discord.gg/7QaEY4yJH5',
   youtubeTrailerId: '',                 // YouTube video id, English page only. Empty = play trailerWeb in the modal.
-  trailerWeb: 'https://cards.atlas-conquest.com/trailer/web/AtlasConquest_Trailer_v49_',  // + <locale>_<1080|720>.mp4: v49 web encodes on the card host
+  trailerWeb: 'https://cards.atlas-conquest.com/trailer/web/AtlasConquest_Trailer_v50_',  // + <locale>_<1080|720>.mp4: v50 web encodes on the card host
   youtube: 'https://www.youtube.com/@atlasconquest',
   instagram: 'https://www.instagram.com/atlasconquest/',
   facebook: 'https://www.facebook.com/atlasconquest',
