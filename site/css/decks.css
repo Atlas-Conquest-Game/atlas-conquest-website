@@ -20,15 +20,15 @@
 
 .deck-hero.ac-page-hero--compact:has(.ac-page-hero__art) { --ac-hero-min: clamp(220px, 19vw, 276px); }
 
-/* The compact band is too short for a full-bleed crop to keep the pyrotechnic's
-   face, so on wide screens the painting sits in the right-hand ~60% (taller
-   crop, face in frame) and feathers into the navy behind the copy. */
-.deck-hero .ac-page-hero__art { object-position: 46% 40%; }
+/* The compact band is too short for a full-bleed crop to keep Euron in frame,
+   so on wide screens the painting sits in the right-hand ~60% (taller crop,
+   figure in frame) and feathers into the navy behind the copy. */
+.deck-hero .ac-page-hero__art { object-position: 30% 30%; }
 @media (min-width: 901px) {
   .deck-hero .ac-page-hero__art {
     left: auto;
     width: 62%;
-    object-position: 50% 42%;
+    object-position: 22% 28%;
     -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 34%);
             mask-image: linear-gradient(90deg, transparent 0%, #000 34%);
   }

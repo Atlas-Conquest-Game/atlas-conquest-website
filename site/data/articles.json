@@ -1,6 +1,20 @@
 {
   "articles": [
     {
+      "slug": "built-for-creators",
+      "title": "Five Things We Built for Streamers and Creators",
+      "author": "Atlas Conquest Team",
+      "date": "2026-11-09",
+      "summary": "A Twitch extension that makes every card readable on stream, public stats, chess-style arrows on the board, every card as a PNG, and the tool we film our own trailer with. All live now.",
+      "hero_image": "/assets/articles/built-for-creators/hero.jpg",
+      "tags": [
+        "creators",
+        "streaming",
+        "features"
+      ],
+      "url": "/articles/built-for-creators/"
+    },
+    {
       "slug": "patch-notes-2026-10-21",
       "title": "Patch Notes - October 21, 2026",
       "author": "Atlas Conquest Team",
