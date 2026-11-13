@@ -21,7 +21,7 @@
 // wordmark and footer key art join the shell, and the shell is now actually
 // served from cache when offline (see isShellRequest below).
 const CACHE_NAME = 'ac-decks-v10';
-const DATA_CACHE = 'ac-decks-data-v2';
+const DATA_CACHE = 'ac-decks-data-v3';
 // v2 flushed art pinned by the old cache-first strategy; v3 flushes art left
 // stale by stale-while-revalidate, which kept showing pre-update renders.
 const ART_CACHE = 'ac-decks-art-v3';
@@ -101,7 +101,7 @@ self.addEventListener('install', event => {
   event.waitUntil(
     Promise.all([
       caches.open(CACHE_NAME).then(cache => cache.addAll(SHELL_URLS)),
-      caches.open(DATA_CACHE).then(cache => cache.addAll(DATA_URLS)),
+      caches.open(DATA_CACHE).then(cache => cache.addAll(DATA_URLS.map(url => new Request(url, { cache: 'no-cache' })))),
       caches.open(ART_CACHE).then(precacheCommanderArt),
     ]).then(() => self.skipWaiting())
   );
@@ -118,6 +118,35 @@ self.addEventListener('activate', event => {
 
 function isDataRequest(url) {
   return DATA_URLS.some(p => url.pathname === p);
+}
+
+// The importer needs a current ID catalog before it can decode card names.
+const DECK_CATALOG_PATHS = new Set([
+  '/data/cardlist.json',
+  '/data/cards.json',
+  '/data/commanders.json',
+]);
+
+async function deckCatalogNetworkFirst(request) {
+  const cache = await caches.open(DATA_CACHE);
+  const cached = await cache.match(request);
+  const controller = new AbortController();
+  // Don't hold up an offline launch on a stalled connection when a copy exists.
+  const timer = cached ? setTimeout(() => controller.abort(), 3000) : null;
+  try {
+    const response = await fetch(request, { cache: 'no-cache', signal: controller.signal });
+    if (!response.ok) return cached || response;
+    try {
+      await cache.put(request, response.clone());
+    } catch {
+      // A storage failure must not discard a successful network response.
+    }
+    return response;
+  } catch {
+    return cached || Response.error();
+  } finally {
+    clearTimeout(timer);
+  }
 }
 
 function isArtRequest(url) {
@@ -188,6 +217,10 @@ self.addEventListener('fetch', event => {
 
   if (request.mode === 'navigate' && isDeckToolsNavigation(url)) {
     event.respondWith(navigationWithFallback(request));
+    return;
+  }
+  if (DECK_CATALOG_PATHS.has(url.pathname)) {
+    event.respondWith(deckCatalogNetworkFirst(request));
     return;
   }
   if (isDataRequest(url)) {

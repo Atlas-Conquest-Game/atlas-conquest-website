@@ -97,12 +97,12 @@ async function loadCardlist() {
   // Root-absolute paths: decks.js now runs from both /decks.html and from the
   // per-commander unfurl pages at /decks/<slug>/index.html. A relative 'data/...'
   // would resolve against the current directory and 404 on the nested pages.
-  const resp = await fetch('/data/cardlist.json');
+  const resp = await fetch('/data/cardlist.json', { cache: 'no-cache' });
   cardlistData = await resp.json();
   initDeckCodec(cardlistData);
 
   const knownCommanders = new Set();
-  const resp2 = await fetch('/data/commanders.json');
+  const resp2 = await fetch('/data/commanders.json', { cache: 'no-cache' });
   const commanders = await resp2.json();
   commanders.forEach(c => {
     knownCommanders.add(c.name);
@@ -110,7 +110,7 @@ async function loadCardlist() {
   });
   commanderList = [...knownCommanders].sort();
 
-  const resp3 = await fetch('/data/cards.json');
+  const resp3 = await fetch('/data/cards.json', { cache: 'no-cache' });
   const cards = await resp3.json();
   cards.forEach(c => {
     cardInfoMap[c.name] = {
@@ -195,7 +195,9 @@ function isCardCompatible(cardName, commanderName) {
   const cmdData = commanderMap[commanderName];
   if (!cmdData) return true;
   const cmdFaction = (cmdData.faction || '').toLowerCase();
-  const cardFaction = (cardInfoMap[cardName]?.faction || '').toLowerCase();
+  const cardInfo = cardInfoMap[cardName];
+  if (!cardInfo) return true; // Report unresolved cards separately, not as illegal.
+  const cardFaction = (cardInfo.faction || '').toLowerCase();
 
   if (commanderName === LAZIM_NAME) {
     // Lazim: "cards from any god, but not neutral cards"
@@ -916,17 +918,23 @@ function renderDeck(deck) {
   renderManaCurve(deck);
   renderTypeBreakdown(deck);
 
-  // Incompatible card warning
-  const incompatibleCards = deck.cards.filter(c => !isCardCompatible(c.name, deck.commander));
+  // Unrecognized catalog entries don't establish that a deck is illegal.
   const warningEl = document.getElementById('deck-warning');
   if (warningEl) {
-    if (incompatibleCards.length > 0 && deck.commander) {
-      const n = incompatibleCards.length;
-      warningEl.textContent = `⚠ ${n} card${n > 1 ? 's' : ''} in your deck ${n > 1 ? 'are' : 'is'} incompatible with this commander and will be illegal in-game. Remove or replace ${n > 1 ? 'them' : 'it'}.`;
-      warningEl.classList.remove('hidden');
-    } else {
-      warningEl.classList.add('hidden');
+    const messages = [];
+    if (deck.commander && !commanderMap[deck.commander]) {
+      messages.push('This commander could not be identified. Reopen the deck while online to check legality.');
     }
+    const unresolved = deck.cards.filter(c => !cardInfoMap[c.name]).length;
+    if (unresolved) {
+      messages.push(`${unresolved} card type${unresolved === 1 ? '' : 's'} could not be identified. Reopen the deck while online to check ${unresolved === 1 ? 'it' : 'them'}.`);
+    }
+    const incompatible = deck.cards.filter(c => !isCardCompatible(c.name, deck.commander)).length;
+    if (incompatible) {
+      messages.push(`${incompatible} card type${incompatible === 1 ? ' is' : 's are'} incompatible with this commander and will be illegal in-game.`);
+    }
+    warningEl.textContent = messages.length ? `⚠ ${messages.join(' ')}` : '';
+    warningEl.classList.toggle('hidden', !messages.length);
   }
 
   // Card list. Grid view groups by cost and renders the same art-forward
