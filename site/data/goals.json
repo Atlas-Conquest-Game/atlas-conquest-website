@@ -4,7 +4,7 @@
       "id": "art_count",
       "label": "100 Cards with Human Art",
       "kind": "count",
-      "current": 287,
+      "current": 292,
       "target": 100,
       "met": true
     },
@@ -81,9 +81,9 @@
       "id": "anim_all",
       "label": "20% of all Cards have an animation",
       "kind": "percent",
-      "numerator": 286,
-      "denominator": 287,
-      "current": 0.9965,
+      "numerator": 291,
+      "denominator": 292,
+      "current": 0.9966,
       "target": 0.2,
       "met": true
     },
@@ -157,23 +157,23 @@
   ],
   "overall": {
     "cards": {
-      "total": 287,
-      "human": 287,
+      "total": 292,
+      "human": 292,
       "human_rate": 1.0,
-      "animated": 286,
-      "animated_rate": 0.9965,
+      "animated": 291,
+      "animated_rate": 0.9966,
       "art_types": {
         "commissioned": {
-          "count": 99,
-          "rate": 0.3449
+          "count": 105,
+          "rate": 0.3596
         },
         "purchased": {
           "count": 2,
-          "rate": 0.007
+          "rate": 0.0068
         },
         "placeholder": {
-          "count": 186,
-          "rate": 0.6481
+          "count": 185,
+          "rate": 0.6336
         },
         "ai": {
           "count": 0,
@@ -244,23 +244,23 @@
       }
     },
     "all": {
-      "total": 313,
-      "human": 313,
+      "total": 318,
+      "human": 318,
       "human_rate": 1.0,
-      "animated": 312,
-      "animated_rate": 0.9968,
+      "animated": 317,
+      "animated_rate": 0.9969,
       "art_types": {
         "commissioned": {
-          "count": 119,
-          "rate": 0.3802
+          "count": 125,
+          "rate": 0.3931
         },
         "purchased": {
           "count": 2,
-          "rate": 0.0064
+          "rate": 0.0063
         },
         "placeholder": {
-          "count": 192,
-          "rate": 0.6134
+          "count": 191,
+          "rate": 0.6006
         },
         "ai": {
           "count": 0,
@@ -340,15 +340,15 @@
       "patron": "Archaeon",
       "faction": "archaeon",
       "cards": {
-        "total": 27,
-        "human": 27,
+        "total": 28,
+        "human": 28,
         "human_rate": 1.0,
-        "animated": 26,
-        "animated_rate": 0.963,
+        "animated": 27,
+        "animated_rate": 0.9643,
         "art_types": {
           "commissioned": {
-            "count": 16,
-            "rate": 0.5926
+            "count": 17,
+            "rate": 0.6071
           },
           "purchased": {
             "count": 0,
@@ -356,7 +356,7 @@
           },
           "placeholder": {
             "count": 11,
-            "rate": 0.4074
+            "rate": 0.3929
           },
           "ai": {
             "count": 0,
@@ -588,23 +588,23 @@
       "patron": "Neutral",
       "faction": "neutral",
       "cards": {
-        "total": 127,
-        "human": 127,
+        "total": 129,
+        "human": 129,
         "human_rate": 1.0,
-        "animated": 127,
+        "animated": 129,
         "animated_rate": 1.0,
         "art_types": {
           "commissioned": {
-            "count": 41,
-            "rate": 0.3228
+            "count": 44,
+            "rate": 0.3411
           },
           "purchased": {
             "count": 2,
-            "rate": 0.0157
+            "rate": 0.0155
           },
           "placeholder": {
-            "count": 84,
-            "rate": 0.6614
+            "count": 83,
+            "rate": 0.6434
           },
           "ai": {
             "count": 0,
@@ -650,15 +650,15 @@
       "patron": "Shadis",
       "faction": "shadis",
       "cards": {
-        "total": 24,
-        "human": 24,
+        "total": 25,
+        "human": 25,
         "human_rate": 1.0,
-        "animated": 24,
+        "animated": 25,
         "animated_rate": 1.0,
         "art_types": {
           "commissioned": {
-            "count": 8,
-            "rate": 0.3333
+            "count": 9,
+            "rate": 0.36
           },
           "purchased": {
             "count": 0,
@@ -666,7 +666,7 @@
           },
           "placeholder": {
             "count": 16,
-            "rate": 0.6667
+            "rate": 0.64
           },
           "ai": {
             "count": 0,
@@ -712,15 +712,15 @@
       "patron": "Skaal",
       "faction": "skaal",
       "cards": {
-        "total": 36,
-        "human": 36,
+        "total": 37,
+        "human": 37,
         "human_rate": 1.0,
-        "animated": 36,
+        "animated": 37,
         "animated_rate": 1.0,
         "art_types": {
           "commissioned": {
-            "count": 12,
-            "rate": 0.3333
+            "count": 13,
+            "rate": 0.3514
           },
           "purchased": {
             "count": 0,
@@ -728,7 +728,7 @@
           },
           "placeholder": {
             "count": 24,
-            "rate": 0.6667
+            "rate": 0.6486
           },
           "ai": {
             "count": 0,

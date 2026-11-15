@@ -4,8 +4,8 @@
  "zip": {
   "url": "https://github.com/Atlas-Conquest-Game/atlas-conquest-website/releases/download/press-kit/AtlasConquest-Cards.zip",
   "filename": "AtlasConquest-Cards.zip",
-  "size": "281 MB",
-  "count": 313
+  "size": "286 MB",
+  "count": 318
  },
  "cards": [
   {
@@ -273,6 +273,13 @@
    "kind": "Spell",
    "faction": "Archaeon",
    "file": "Cloning-Magic.png"
+  },
+  {
+   "name": "Cogitate",
+   "slug": "cogitate",
+   "kind": "Spell",
+   "faction": "Archaeon",
+   "file": "cogitate.png"
   },
   {
    "name": "Combust",
@@ -1353,6 +1360,13 @@
    "file": "Minor-Priest.png"
   },
   {
+   "name": "Modest Falconer",
+   "slug": "modest-falconer",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "modest-falconer.png"
+  },
+  {
    "name": "Moonlight Seraph",
    "slug": "moonlight-seraph",
    "kind": "Minion",
@@ -1407,6 +1421,13 @@
    "kind": "Minion",
    "faction": "Shadis",
    "file": "Nilo-of-One-Thousand-Cuts.png"
+  },
+  {
+   "name": "Nimble Hawk",
+   "slug": "nimble-hawk",
+   "kind": "Minion",
+   "faction": "Neutral",
+   "file": "nimble-hawk.png"
   },
   {
    "name": "Nobleman of the Order",
@@ -2095,6 +2116,13 @@
    "file": "Vyre-Aristocrat.png"
   },
   {
+   "name": "Wall of Fire",
+   "slug": "wall-of-fire",
+   "kind": "Spell",
+   "faction": "Skaal",
+   "file": "wall-of-fire.png"
+  },
+  {
    "name": "Wandering Ancient",
    "slug": "wandering-ancient",
    "kind": "Minion",
@@ -2149,6 +2177,13 @@
    "kind": "Minion",
    "faction": "Neutral",
    "file": "Wise-Elder.png"
+  },
+  {
+   "name": "Witchbolt",
+   "slug": "witchbolt",
+   "kind": "Spell",
+   "faction": "Shadis",
+   "file": "witchbolt.png"
   },
   {
    "name": "Yarrow, Blood Banker",
