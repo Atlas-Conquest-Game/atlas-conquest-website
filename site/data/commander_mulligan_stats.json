@@ -68191,26 +68191,26 @@
         {
           "name": "Throne Guardian",
           "kept_count": 26,
-          "returned_count": 45,
-          "total_seen": 71,
-          "keep_rate": 0.3662,
-          "norm_keep_delta": -0.1388,
+          "returned_count": 44,
+          "total_seen": 70,
+          "keep_rate": 0.3714,
+          "norm_keep_delta": -0.1327,
           "keep_winrate": 0.4615,
-          "return_winrate": 0.5111,
-          "winrate_delta": -0.0496,
-          "games": 181
+          "return_winrate": 0.5,
+          "winrate_delta": -0.0385,
+          "games": 180
         },
         {
           "name": "Paladin Proselyte",
-          "kept_count": 43,
+          "kept_count": 42,
           "returned_count": 20,
-          "total_seen": 63,
-          "keep_rate": 0.6825,
-          "norm_keep_delta": 0.1836,
-          "keep_winrate": 0.3721,
+          "total_seen": 62,
+          "keep_rate": 0.6774,
+          "norm_keep_delta": 0.1797,
+          "keep_winrate": 0.3571,
           "return_winrate": 0.5,
-          "winrate_delta": -0.1279,
-          "games": 181
+          "winrate_delta": -0.1429,
+          "games": 180
         },
         {
           "name": "Nobleman of the Order",
@@ -68222,7 +68222,7 @@
           "keep_winrate": 0.56,
           "return_winrate": 0.3636,
           "winrate_delta": 0.1964,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Sentinel of Light",
@@ -68234,7 +68234,7 @@
           "keep_winrate": 0.4634,
           "return_winrate": 0.7333,
           "winrate_delta": -0.2699,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Big Game Hunter",
@@ -68246,19 +68246,19 @@
           "keep_winrate": 0.6364,
           "return_winrate": 0.4884,
           "winrate_delta": 0.148,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Nevisha Ascendant",
           "kept_count": 4,
-          "returned_count": 48,
-          "total_seen": 52,
-          "keep_rate": 0.0769,
-          "norm_keep_delta": -0.4341,
+          "returned_count": 47,
+          "total_seen": 51,
+          "keep_rate": 0.0784,
+          "norm_keep_delta": -0.4314,
           "keep_winrate": 1.0,
-          "return_winrate": 0.4583,
-          "winrate_delta": 0.5417,
-          "games": 181
+          "return_winrate": 0.4468,
+          "winrate_delta": 0.5532,
+          "games": 180
         },
         {
           "name": "Dwarven Battlepriest",
@@ -68270,31 +68270,31 @@
           "keep_winrate": 0.5333,
           "return_winrate": 0.6667,
           "winrate_delta": -0.1334,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Dread Knight",
           "kept_count": 1,
-          "returned_count": 43,
-          "total_seen": 44,
-          "keep_rate": 0.0227,
-          "norm_keep_delta": -0.5033,
+          "returned_count": 42,
+          "total_seen": 43,
+          "keep_rate": 0.0233,
+          "norm_keep_delta": -0.5016,
           "keep_winrate": 0.0,
-          "return_winrate": 0.6279,
-          "winrate_delta": -0.6279,
-          "games": 181
+          "return_winrate": 0.619,
+          "winrate_delta": -0.619,
+          "games": 180
         },
         {
           "name": "Rhea, Morning Saint",
-          "kept_count": 7,
+          "kept_count": 6,
           "returned_count": 35,
-          "total_seen": 42,
-          "keep_rate": 0.1667,
-          "norm_keep_delta": -0.3197,
-          "keep_winrate": 0.5714,
+          "total_seen": 41,
+          "keep_rate": 0.1463,
+          "norm_keep_delta": -0.338,
+          "keep_winrate": 0.5,
           "return_winrate": 0.4286,
-          "winrate_delta": 0.1428,
-          "games": 181
+          "winrate_delta": 0.0714,
+          "games": 180
         },
         {
           "name": "Zealous Captain",
@@ -68306,7 +68306,7 @@
           "keep_winrate": 0.5,
           "return_winrate": 0.3611,
           "winrate_delta": 0.1389,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Warscarred Soldier",
@@ -68318,31 +68318,31 @@
           "keep_winrate": 0.4667,
           "return_winrate": 0.4,
           "winrate_delta": 0.0667,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Lightbound Martyr",
           "kept_count": 25,
-          "returned_count": 12,
-          "total_seen": 37,
-          "keep_rate": 0.6757,
-          "norm_keep_delta": 0.1583,
+          "returned_count": 11,
+          "total_seen": 36,
+          "keep_rate": 0.6944,
+          "norm_keep_delta": 0.1785,
           "keep_winrate": 0.52,
-          "return_winrate": 0.6667,
-          "winrate_delta": -0.1467,
-          "games": 181
+          "return_winrate": 0.6364,
+          "winrate_delta": -0.1164,
+          "games": 180
         },
         {
           "name": "Charger",
-          "kept_count": 19,
+          "kept_count": 18,
           "returned_count": 17,
-          "total_seen": 36,
-          "keep_rate": 0.5278,
-          "norm_keep_delta": 0.004,
-          "keep_winrate": 0.6842,
+          "total_seen": 35,
+          "keep_rate": 0.5143,
+          "norm_keep_delta": -0.0081,
+          "keep_winrate": 0.6667,
           "return_winrate": 0.7059,
-          "winrate_delta": -0.0217,
-          "games": 181
+          "winrate_delta": -0.0392,
+          "games": 180
         },
         {
           "name": "Warlord's Mace",
@@ -68354,7 +68354,7 @@
           "keep_winrate": 0.7059,
           "return_winrate": 0.5625,
           "winrate_delta": 0.1434,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Holy Fervor",
@@ -68366,7 +68366,7 @@
           "keep_winrate": 0.5556,
           "return_winrate": 0.6667,
           "winrate_delta": -0.1111,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Knife Sharpener",
@@ -68378,7 +68378,7 @@
           "keep_winrate": 0.5455,
           "return_winrate": 0.4444,
           "winrate_delta": 0.1011,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Warscarred Rhino",
@@ -68390,19 +68390,19 @@
           "keep_winrate": 0.3846,
           "return_winrate": 0.2353,
           "winrate_delta": 0.1493,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Badland Mercenary",
-          "kept_count": 18,
+          "kept_count": 17,
           "returned_count": 9,
-          "total_seen": 27,
-          "keep_rate": 0.6667,
-          "norm_keep_delta": 0.1429,
-          "keep_winrate": 0.5556,
+          "total_seen": 26,
+          "keep_rate": 0.6538,
+          "norm_keep_delta": 0.1318,
+          "keep_winrate": 0.5294,
           "return_winrate": 0.3333,
-          "winrate_delta": 0.2223,
-          "games": 181
+          "winrate_delta": 0.1961,
+          "games": 180
         },
         {
           "name": "Lord of Heavenspire",
@@ -68414,7 +68414,7 @@
           "keep_winrate": 0.3846,
           "return_winrate": 0.3846,
           "winrate_delta": 0.0,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Zealous Strength",
@@ -68426,19 +68426,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 0.4783,
           "winrate_delta": 0.5217,
-          "games": 181
-        },
-        {
-          "name": "Stalking Hippo",
-          "kept_count": 4,
-          "returned_count": 20,
-          "total_seen": 24,
-          "keep_rate": 0.1667,
-          "norm_keep_delta": -0.3571,
-          "keep_winrate": 0.25,
-          "return_winrate": 0.6,
-          "winrate_delta": -0.35,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Battlefield Savior",
@@ -68450,7 +68438,19 @@
           "keep_winrate": 0.6667,
           "return_winrate": 0.6,
           "winrate_delta": 0.0667,
-          "games": 181
+          "games": 180
+        },
+        {
+          "name": "Stalking Hippo",
+          "kept_count": 4,
+          "returned_count": 19,
+          "total_seen": 23,
+          "keep_rate": 0.1739,
+          "norm_keep_delta": -0.3478,
+          "keep_winrate": 0.25,
+          "return_winrate": 0.5789,
+          "winrate_delta": -0.3289,
+          "games": 180
         },
         {
           "name": "Quell the Weak",
@@ -68462,7 +68462,7 @@
           "keep_winrate": 0.5294,
           "return_winrate": 0.3333,
           "winrate_delta": 0.1961,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Mage Slayer",
@@ -68474,7 +68474,7 @@
           "keep_winrate": 0.2,
           "return_winrate": 0.6,
           "winrate_delta": -0.4,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Paladin Initiate",
@@ -68486,7 +68486,7 @@
           "keep_winrate": 0.6154,
           "return_winrate": 0.2857,
           "winrate_delta": 0.3297,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Found City",
@@ -68498,7 +68498,7 @@
           "keep_winrate": 0.6667,
           "return_winrate": 0.4375,
           "winrate_delta": 0.2292,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Outland Berserker",
@@ -68510,7 +68510,7 @@
           "keep_winrate": 0.25,
           "return_winrate": 0.3571,
           "winrate_delta": -0.1071,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Mindstone Servant",
@@ -68522,7 +68522,7 @@
           "keep_winrate": null,
           "return_winrate": 0.4444,
           "winrate_delta": null,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Royal Commandant",
@@ -68534,7 +68534,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.5,
           "winrate_delta": -0.5,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Paladin of Eos",
@@ -68546,7 +68546,7 @@
           "keep_winrate": 0.25,
           "return_winrate": 0.5556,
           "winrate_delta": -0.3056,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Power Potion",
@@ -68558,7 +68558,7 @@
           "keep_winrate": 0.3333,
           "return_winrate": 0.5,
           "winrate_delta": -0.1667,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Oathsworn Champion",
@@ -68570,7 +68570,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.4286,
           "winrate_delta": -0.4286,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Slay the Mighty",
@@ -68582,7 +68582,7 @@
           "keep_winrate": 0.3333,
           "return_winrate": 0.5833,
           "winrate_delta": -0.25,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Heavy Cavalry",
@@ -68594,7 +68594,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.4615,
           "winrate_delta": -0.4615,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Crippling Tax",
@@ -68606,7 +68606,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.2727,
           "winrate_delta": -0.2727,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Settle Village",
@@ -68618,7 +68618,7 @@
           "keep_winrate": 0.25,
           "return_winrate": 0.3333,
           "winrate_delta": -0.0833,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Angelic Captain",
@@ -68630,7 +68630,7 @@
           "keep_winrate": 0.6,
           "return_winrate": 0.6667,
           "winrate_delta": -0.0667,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Dwarven Stout",
@@ -68642,7 +68642,7 @@
           "keep_winrate": 0.4444,
           "return_winrate": 0.75,
           "winrate_delta": -0.3056,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Light Elemental",
@@ -68654,7 +68654,7 @@
           "keep_winrate": 0.8,
           "return_winrate": 0.625,
           "winrate_delta": 0.175,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Silver Dragon",
@@ -68666,7 +68666,7 @@
           "keep_winrate": 0.6667,
           "return_winrate": 0.3,
           "winrate_delta": 0.3667,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Elf Ranger",
@@ -68678,7 +68678,7 @@
           "keep_winrate": 0.625,
           "return_winrate": 0.5,
           "winrate_delta": 0.125,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Prideplain Enforcer",
@@ -68690,7 +68690,7 @@
           "keep_winrate": 0.3333,
           "return_winrate": 0.3333,
           "winrate_delta": 0.0,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Lucian Squire",
@@ -68702,7 +68702,7 @@
           "keep_winrate": 0.3333,
           "return_winrate": 0.6667,
           "winrate_delta": -0.3334,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Great Weapon Conjuring",
@@ -68714,7 +68714,7 @@
           "keep_winrate": 0.2857,
           "return_winrate": 0.25,
           "winrate_delta": 0.0357,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Vergis, Doomed Archaeologist",
@@ -68726,7 +68726,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.7778,
           "winrate_delta": -0.7778,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Steel Lancer",
@@ -68738,7 +68738,7 @@
           "keep_winrate": 0.6667,
           "return_winrate": 0.75,
           "winrate_delta": -0.0833,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Dragon Tamer",
@@ -68750,7 +68750,7 @@
           "keep_winrate": 0.5,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Energy Potion",
@@ -68762,7 +68762,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.0,
           "winrate_delta": 0.0,
-          "games": 181
+          "games": 180
         },
         {
           "name": "City Planning",
@@ -68774,7 +68774,7 @@
           "keep_winrate": 0.5,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Stout Knight",
@@ -68786,7 +68786,7 @@
           "keep_winrate": 0.625,
           "return_winrate": 0.5,
           "winrate_delta": 0.125,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Grey Wastes Shade",
@@ -68798,7 +68798,7 @@
           "keep_winrate": 0.5714,
           "return_winrate": 1.0,
           "winrate_delta": -0.4286,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Guiding Light",
@@ -68810,7 +68810,7 @@
           "keep_winrate": 0.6667,
           "return_winrate": 0.5,
           "winrate_delta": 0.1667,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Yorefell, Blade of Lusheim",
@@ -68822,7 +68822,7 @@
           "keep_winrate": null,
           "return_winrate": 0.5556,
           "winrate_delta": null,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Gold Dragon",
@@ -68834,7 +68834,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.4286,
           "winrate_delta": -0.4286,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Elixirist",
@@ -68846,7 +68846,7 @@
           "keep_winrate": 0.3333,
           "return_winrate": 0.2,
           "winrate_delta": 0.1333,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Silence",
@@ -68858,7 +68858,7 @@
           "keep_winrate": 0.6667,
           "return_winrate": 0.6,
           "winrate_delta": 0.0667,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Drowsy Lizard",
@@ -68870,7 +68870,7 @@
           "keep_winrate": 0.8,
           "return_winrate": 0.6667,
           "winrate_delta": 0.1333,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Minor Priest",
@@ -68882,7 +68882,7 @@
           "keep_winrate": 0.4286,
           "return_winrate": 1.0,
           "winrate_delta": -0.5714,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Guide to Heavens",
@@ -68894,7 +68894,7 @@
           "keep_winrate": 0.3333,
           "return_winrate": 0.2,
           "winrate_delta": 0.1333,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Blessed Force",
@@ -68906,7 +68906,7 @@
           "keep_winrate": 0.1667,
           "return_winrate": 0.5,
           "winrate_delta": -0.3333,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Moonlight Seraph",
@@ -68918,7 +68918,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.7143,
           "winrate_delta": -0.7143,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Shield Potion",
@@ -68930,7 +68930,7 @@
           "keep_winrate": 0.5,
           "return_winrate": 0.1667,
           "winrate_delta": 0.3333,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Grand Swordsmith",
@@ -68942,7 +68942,7 @@
           "keep_winrate": 0.6667,
           "return_winrate": 0.5,
           "winrate_delta": 0.1667,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Granite Guard",
@@ -68954,7 +68954,7 @@
           "keep_winrate": 0.5,
           "return_winrate": 0.3333,
           "winrate_delta": 0.1667,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Lord of Casterhorn",
@@ -68966,7 +68966,7 @@
           "keep_winrate": 0.25,
           "return_winrate": 0.0,
           "winrate_delta": 0.25,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Goblin Firebow",
@@ -68978,7 +68978,7 @@
           "keep_winrate": 0.3333,
           "return_winrate": 0.0,
           "winrate_delta": 0.3333,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Gilded Defender",
@@ -68990,7 +68990,7 @@
           "keep_winrate": 0.1667,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Wandering Ancient",
@@ -69002,7 +69002,7 @@
           "keep_winrate": null,
           "return_winrate": 0.6667,
           "winrate_delta": null,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Purifier Euron",
@@ -69014,7 +69014,7 @@
           "keep_winrate": null,
           "return_winrate": 0.6667,
           "winrate_delta": null,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Parrying Buckler",
@@ -69026,7 +69026,7 @@
           "keep_winrate": 0.5,
           "return_winrate": 1.0,
           "winrate_delta": -0.5,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Explosive Potion",
@@ -69038,7 +69038,7 @@
           "keep_winrate": null,
           "return_winrate": 0.4,
           "winrate_delta": null,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Tadpole",
@@ -69050,7 +69050,7 @@
           "keep_winrate": 0.5,
           "return_winrate": 0.0,
           "winrate_delta": 0.5,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Greater Healing Potion",
@@ -69062,7 +69062,7 @@
           "keep_winrate": null,
           "return_winrate": 0.0,
           "winrate_delta": null,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Eagle King",
@@ -69074,7 +69074,7 @@
           "keep_winrate": null,
           "return_winrate": 0.2,
           "winrate_delta": null,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Mummified Warrior",
@@ -69086,7 +69086,7 @@
           "keep_winrate": 0.25,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Goblin Infiltrator",
@@ -69098,7 +69098,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.0,
           "winrate_delta": 0.0,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Skerr'drix",
@@ -69110,7 +69110,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 0.0,
           "winrate_delta": 1.0,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Ursine Blade Trio",
@@ -69122,7 +69122,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.0,
           "winrate_delta": 0.0,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Dreadlord Cyrion",
@@ -69134,7 +69134,7 @@
           "keep_winrate": null,
           "return_winrate": 0.75,
           "winrate_delta": null,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Outland Village",
@@ -69146,7 +69146,7 @@
           "keep_winrate": 0.5,
           "return_winrate": 0.5,
           "winrate_delta": 0.0,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Mad Warlock",
@@ -69158,7 +69158,7 @@
           "keep_winrate": 0.5,
           "return_winrate": 0.5,
           "winrate_delta": 0.0,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Archpaladin Erix",
@@ -69170,7 +69170,7 @@
           "keep_winrate": null,
           "return_winrate": 0.0,
           "winrate_delta": null,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Assistant Chemist",
@@ -69182,7 +69182,7 @@
           "keep_winrate": 0.6667,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Alchemist",
@@ -69194,7 +69194,7 @@
           "keep_winrate": 0.5,
           "return_winrate": 1.0,
           "winrate_delta": -0.5,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Local Trader",
@@ -69206,7 +69206,7 @@
           "keep_winrate": 0.3333,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Lucian Zealot",
@@ -69218,7 +69218,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 0.5,
           "winrate_delta": 0.5,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Black Scorpion",
@@ -69230,7 +69230,7 @@
           "keep_winrate": 0.5,
           "return_winrate": 1.0,
           "winrate_delta": -0.5,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Devout Caretaker",
@@ -69242,7 +69242,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 0.5,
           "winrate_delta": 0.5,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Elite Mercenary",
@@ -69254,7 +69254,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 1.0,
           "winrate_delta": -1.0,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Dragonkin Evoker",
@@ -69266,7 +69266,7 @@
           "keep_winrate": 0.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Enigmatic Golem",
@@ -69278,7 +69278,7 @@
           "keep_winrate": null,
           "return_winrate": 0.0,
           "winrate_delta": null,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Citadel Lord",
@@ -69290,7 +69290,7 @@
           "keep_winrate": null,
           "return_winrate": 0.5,
           "winrate_delta": null,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Deathquill",
@@ -69302,7 +69302,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.0,
           "winrate_delta": 0.0,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Apothecary",
@@ -69314,7 +69314,7 @@
           "keep_winrate": 0.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Asera",
@@ -69326,7 +69326,7 @@
           "keep_winrate": null,
           "return_winrate": 0.0,
           "winrate_delta": null,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Reileigh, Brewpatron",
@@ -69338,7 +69338,7 @@
           "keep_winrate": null,
           "return_winrate": 0.0,
           "winrate_delta": null,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Homesong Minstrel",
@@ -69350,7 +69350,7 @@
           "keep_winrate": null,
           "return_winrate": 0.5,
           "winrate_delta": null,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Prince Xerxes",
@@ -69362,7 +69362,7 @@
           "keep_winrate": null,
           "return_winrate": 0.5,
           "winrate_delta": null,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Pyr, Mortal Shepherd",
@@ -69374,7 +69374,7 @@
           "keep_winrate": null,
           "return_winrate": 0.5,
           "winrate_delta": null,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Angel's Grace",
@@ -69386,7 +69386,7 @@
           "keep_winrate": null,
           "return_winrate": 0.0,
           "winrate_delta": null,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Fourth Experiment",
@@ -69398,7 +69398,7 @@
           "keep_winrate": null,
           "return_winrate": 0.0,
           "winrate_delta": null,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Supercharger",
@@ -69410,7 +69410,7 @@
           "keep_winrate": null,
           "return_winrate": 0.0,
           "winrate_delta": null,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Master Craftsman",
@@ -69422,7 +69422,7 @@
           "keep_winrate": 0.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Potion of Healing",
@@ -69434,7 +69434,7 @@
           "keep_winrate": 0.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Gravehand",
@@ -69446,7 +69446,7 @@
           "keep_winrate": 0.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 181
+          "games": 180
         },
         {
           "name": "Guerilla Gorilla",
@@ -69458,7 +69458,7 @@
           "keep_winrate": null,
           "return_winrate": 1.0,
           "winrate_delta": null,
-          "games": 181
+          "games": 180
         }
       ],
       "It That Weaves": [
@@ -73973,26 +73973,26 @@
         {
           "name": "Goblin King",
           "kept_count": 48,
-          "returned_count": 46,
-          "total_seen": 94,
-          "keep_rate": 0.5106,
-          "norm_keep_delta": 0.0167,
+          "returned_count": 45,
+          "total_seen": 93,
+          "keep_rate": 0.5161,
+          "norm_keep_delta": 0.0215,
           "keep_winrate": 0.5833,
-          "return_winrate": 0.4783,
-          "winrate_delta": 0.105,
-          "games": 221
+          "return_winrate": 0.4889,
+          "winrate_delta": 0.0944,
+          "games": 219
         },
         {
           "name": "Goblin Recruitment",
-          "kept_count": 62,
-          "returned_count": 30,
-          "total_seen": 92,
-          "keep_rate": 0.6739,
-          "norm_keep_delta": 0.1755,
-          "keep_winrate": 0.629,
-          "return_winrate": 0.4333,
-          "winrate_delta": 0.1957,
-          "games": 221
+          "kept_count": 61,
+          "returned_count": 29,
+          "total_seen": 90,
+          "keep_rate": 0.6778,
+          "norm_keep_delta": 0.1778,
+          "keep_winrate": 0.6393,
+          "return_winrate": 0.4483,
+          "winrate_delta": 0.191,
+          "games": 219
         },
         {
           "name": "Goblin Lorespeaker",
@@ -74004,7 +74004,7 @@
           "keep_winrate": 0.5862,
           "return_winrate": 0.72,
           "winrate_delta": -0.1338,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Goblin Duo",
@@ -74016,19 +74016,19 @@
           "keep_winrate": 0.5873,
           "return_winrate": 0.7647,
           "winrate_delta": -0.1774,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Goblin Scout",
           "kept_count": 52,
-          "returned_count": 23,
-          "total_seen": 75,
-          "keep_rate": 0.6933,
-          "norm_keep_delta": 0.1943,
+          "returned_count": 22,
+          "total_seen": 74,
+          "keep_rate": 0.7027,
+          "norm_keep_delta": 0.2027,
           "keep_winrate": 0.5385,
-          "return_winrate": 0.3913,
-          "winrate_delta": 0.1472,
-          "games": 221
+          "return_winrate": 0.4091,
+          "winrate_delta": 0.1294,
+          "games": 219
         },
         {
           "name": "Warcry",
@@ -74040,7 +74040,7 @@
           "keep_winrate": 0.7714,
           "return_winrate": 0.5789,
           "winrate_delta": 0.1925,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Lightning Bolt",
@@ -74052,19 +74052,19 @@
           "keep_winrate": 0.3333,
           "return_winrate": 0.5179,
           "winrate_delta": -0.1846,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Goblin Infantry",
-          "kept_count": 59,
+          "kept_count": 58,
           "returned_count": 7,
-          "total_seen": 66,
-          "keep_rate": 0.8939,
-          "norm_keep_delta": 0.4026,
-          "keep_winrate": 0.661,
+          "total_seen": 65,
+          "keep_rate": 0.8923,
+          "norm_keep_delta": 0.4,
+          "keep_winrate": 0.6724,
           "return_winrate": 0.5714,
-          "winrate_delta": 0.0896,
-          "games": 221
+          "winrate_delta": 0.101,
+          "games": 219
         },
         {
           "name": "Spoils of War",
@@ -74076,19 +74076,19 @@
           "keep_winrate": 0.6,
           "return_winrate": 0.4561,
           "winrate_delta": 0.1439,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Action Surge",
-          "kept_count": 18,
+          "kept_count": 17,
           "returned_count": 43,
-          "total_seen": 61,
-          "keep_rate": 0.2951,
-          "norm_keep_delta": -0.2178,
-          "keep_winrate": 0.5,
+          "total_seen": 60,
+          "keep_rate": 0.2833,
+          "norm_keep_delta": -0.231,
+          "keep_winrate": 0.5294,
           "return_winrate": 0.5814,
-          "winrate_delta": -0.0814,
-          "games": 221
+          "winrate_delta": -0.052,
+          "games": 219
         },
         {
           "name": "Goblin Infiltrator",
@@ -74100,19 +74100,19 @@
           "keep_winrate": 0.6667,
           "return_winrate": 0.4906,
           "winrate_delta": 0.1761,
-          "games": 221
+          "games": 219
         },
         {
           "name": "War Banner",
-          "kept_count": 30,
-          "returned_count": 19,
-          "total_seen": 49,
-          "keep_rate": 0.6122,
-          "norm_keep_delta": 0.1166,
-          "keep_winrate": 0.5333,
-          "return_winrate": 0.7895,
-          "winrate_delta": -0.2562,
-          "games": 221
+          "kept_count": 29,
+          "returned_count": 18,
+          "total_seen": 47,
+          "keep_rate": 0.617,
+          "norm_keep_delta": 0.1185,
+          "keep_winrate": 0.5517,
+          "return_winrate": 0.8333,
+          "winrate_delta": -0.2816,
+          "games": 219
         },
         {
           "name": "Stormrider Zurn",
@@ -74124,7 +74124,7 @@
           "keep_winrate": 0.6923,
           "return_winrate": 0.6562,
           "winrate_delta": 0.0361,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Thunderous Warbeast",
@@ -74136,7 +74136,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.6452,
           "winrate_delta": -0.6452,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Master Craftsman",
@@ -74148,7 +74148,7 @@
           "keep_winrate": 0.2812,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Swiftfoot Goblin",
@@ -74160,7 +74160,7 @@
           "keep_winrate": 0.2,
           "return_winrate": 0.1111,
           "winrate_delta": 0.0889,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Finishing Strike",
@@ -74172,7 +74172,7 @@
           "keep_winrate": 0.75,
           "return_winrate": 0.84,
           "winrate_delta": -0.09,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Goblin Paratrooper",
@@ -74184,7 +74184,7 @@
           "keep_winrate": 0.4667,
           "return_winrate": 0.5,
           "winrate_delta": -0.0333,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Shock Nova",
@@ -74196,7 +74196,7 @@
           "keep_winrate": 0.7692,
           "return_winrate": 0.7692,
           "winrate_delta": 0.0,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Knife Sharpener",
@@ -74208,7 +74208,7 @@
           "keep_winrate": 0.5238,
           "return_winrate": 0.5,
           "winrate_delta": 0.0238,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Limmick, Goblin Hedonist",
@@ -74220,7 +74220,7 @@
           "keep_winrate": 0.3333,
           "return_winrate": 0.6667,
           "winrate_delta": -0.3334,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Firebolt",
@@ -74232,19 +74232,7 @@
           "keep_winrate": 0.2,
           "return_winrate": 0.4286,
           "winrate_delta": -0.2286,
-          "games": 221
-        },
-        {
-          "name": "Goblin Musclejuice",
-          "kept_count": 4,
-          "returned_count": 18,
-          "total_seen": 22,
-          "keep_rate": 0.1818,
-          "norm_keep_delta": -0.2987,
-          "keep_winrate": 0.25,
-          "return_winrate": 0.2778,
-          "winrate_delta": -0.0278,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Lord of Casterhorn",
@@ -74256,7 +74244,7 @@
           "keep_winrate": 0.4286,
           "return_winrate": 0.25,
           "winrate_delta": 0.1786,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Primordial Storm",
@@ -74268,7 +74256,19 @@
           "keep_winrate": null,
           "return_winrate": 0.5238,
           "winrate_delta": null,
-          "games": 221
+          "games": 219
+        },
+        {
+          "name": "Goblin Musclejuice",
+          "kept_count": 4,
+          "returned_count": 17,
+          "total_seen": 21,
+          "keep_rate": 0.1905,
+          "norm_keep_delta": -0.2925,
+          "keep_winrate": 0.25,
+          "return_winrate": 0.2941,
+          "winrate_delta": -0.0441,
+          "games": 219
         },
         {
           "name": "Power Potion",
@@ -74280,7 +74280,7 @@
           "keep_winrate": 0.4286,
           "return_winrate": 0.5385,
           "winrate_delta": -0.1099,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Goblin Firebow",
@@ -74292,7 +74292,7 @@
           "keep_winrate": 0.7857,
           "return_winrate": 0.6667,
           "winrate_delta": 0.119,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Skerr'drix",
@@ -74304,19 +74304,7 @@
           "keep_winrate": null,
           "return_winrate": 0.4737,
           "winrate_delta": null,
-          "games": 221
-        },
-        {
-          "name": "Champion of the Wilds",
-          "kept_count": 7,
-          "returned_count": 10,
-          "total_seen": 17,
-          "keep_rate": 0.4118,
-          "norm_keep_delta": -0.084,
-          "keep_winrate": 0.1429,
-          "return_winrate": 0.1,
-          "winrate_delta": 0.0429,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Dread Knight",
@@ -74328,7 +74316,7 @@
           "keep_winrate": 0.5,
           "return_winrate": 0.6154,
           "winrate_delta": -0.1154,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Stagasus",
@@ -74340,7 +74328,7 @@
           "keep_winrate": 0.3333,
           "return_winrate": 1.0,
           "winrate_delta": -0.6667,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Heavy Cavalry",
@@ -74352,7 +74340,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.5,
           "winrate_delta": -0.5,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Brash Outfitter",
@@ -74364,7 +74352,19 @@
           "keep_winrate": 0.5833,
           "return_winrate": 1.0,
           "winrate_delta": -0.4167,
-          "games": 221
+          "games": 219
+        },
+        {
+          "name": "Champion of the Wilds",
+          "kept_count": 6,
+          "returned_count": 8,
+          "total_seen": 14,
+          "keep_rate": 0.4286,
+          "norm_keep_delta": -0.0816,
+          "keep_winrate": 0.1667,
+          "return_winrate": 0.125,
+          "winrate_delta": 0.0417,
+          "games": 219
         },
         {
           "name": "Trinket Trasher",
@@ -74376,7 +74376,7 @@
           "keep_winrate": 0.6667,
           "return_winrate": 0.4,
           "winrate_delta": 0.2667,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Hoplite Vanguard",
@@ -74388,7 +74388,7 @@
           "keep_winrate": 0.4286,
           "return_winrate": 0.6667,
           "winrate_delta": -0.2381,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Strategic Reserves",
@@ -74400,7 +74400,7 @@
           "keep_winrate": 0.375,
           "return_winrate": 0.2,
           "winrate_delta": 0.175,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Goblin Shaman",
@@ -74412,7 +74412,7 @@
           "keep_winrate": 0.25,
           "return_winrate": 0.2857,
           "winrate_delta": -0.0357,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Throne Guardian",
@@ -74424,7 +74424,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.4286,
           "winrate_delta": -0.4286,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Prideplain Enforcer",
@@ -74436,7 +74436,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.5,
           "winrate_delta": -0.5,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Crimson Flameblade",
@@ -74448,7 +74448,7 @@
           "keep_winrate": 0.5,
           "return_winrate": 0.0,
           "winrate_delta": 0.5,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Elven Spellblade",
@@ -74460,19 +74460,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.3333,
           "winrate_delta": -0.3333,
-          "games": 221
-        },
-        {
-          "name": "Lay Claim",
-          "kept_count": 4,
-          "returned_count": 4,
-          "total_seen": 8,
-          "keep_rate": 0.5,
-          "norm_keep_delta": -0.0179,
-          "keep_winrate": 0.25,
-          "return_winrate": 0.0,
-          "winrate_delta": 0.25,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Ursine Blade Trio",
@@ -74484,7 +74472,7 @@
           "keep_winrate": 0.6667,
           "return_winrate": 0.4,
           "winrate_delta": 0.2667,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Warlord's Mace",
@@ -74496,7 +74484,7 @@
           "keep_winrate": 0.5,
           "return_winrate": 1.0,
           "winrate_delta": -0.5,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Explosive Potion",
@@ -74508,7 +74496,19 @@
           "keep_winrate": 0.5,
           "return_winrate": 0.2,
           "winrate_delta": 0.3,
-          "games": 221
+          "games": 219
+        },
+        {
+          "name": "Lay Claim",
+          "kept_count": 4,
+          "returned_count": 3,
+          "total_seen": 7,
+          "keep_rate": 0.5714,
+          "norm_keep_delta": 0.0408,
+          "keep_winrate": 0.25,
+          "return_winrate": 0.0,
+          "winrate_delta": 0.25,
+          "games": 219
         },
         {
           "name": "Charger",
@@ -74520,7 +74520,7 @@
           "keep_winrate": 0.4,
           "return_winrate": 0.0,
           "winrate_delta": 0.4,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Charge Up",
@@ -74532,7 +74532,7 @@
           "keep_winrate": null,
           "return_winrate": 0.3333,
           "winrate_delta": null,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Outland Village",
@@ -74544,7 +74544,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 0.0,
           "winrate_delta": 1.0,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Outland Berserker",
@@ -74556,7 +74556,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 0.3333,
           "winrate_delta": 0.6667,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Gravehand",
@@ -74568,7 +74568,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.0,
           "winrate_delta": 0.0,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Skaali Blessing",
@@ -74580,7 +74580,7 @@
           "keep_winrate": 0.6667,
           "return_winrate": 1.0,
           "winrate_delta": -0.3333,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Gruth, Ogre Champion",
@@ -74592,7 +74592,7 @@
           "keep_winrate": null,
           "return_winrate": 0.5,
           "winrate_delta": null,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Owl Familiar",
@@ -74604,7 +74604,7 @@
           "keep_winrate": 0.25,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Pyromaniac",
@@ -74616,7 +74616,7 @@
           "keep_winrate": 0.3333,
           "return_winrate": 1.0,
           "winrate_delta": -0.6667,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Red Dragon",
@@ -74628,7 +74628,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.3333,
           "winrate_delta": -0.3333,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Titan Herald",
@@ -74640,19 +74640,7 @@
           "keep_winrate": null,
           "return_winrate": 0.0,
           "winrate_delta": null,
-          "games": 221
-        },
-        {
-          "name": "Kindle",
-          "kept_count": 3,
-          "returned_count": 0,
-          "total_seen": 3,
-          "keep_rate": 1.0,
-          "norm_keep_delta": 0.5238,
-          "keep_winrate": 0.0,
-          "return_winrate": null,
-          "winrate_delta": null,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Slash and Burn",
@@ -74664,7 +74652,7 @@
           "keep_winrate": 0.5,
           "return_winrate": 0.0,
           "winrate_delta": 0.5,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Big Game Hunter",
@@ -74676,7 +74664,19 @@
           "keep_winrate": null,
           "return_winrate": 0.3333,
           "winrate_delta": null,
-          "games": 221
+          "games": 219
+        },
+        {
+          "name": "Kindle",
+          "kept_count": 2,
+          "returned_count": 0,
+          "total_seen": 2,
+          "keep_rate": 1.0,
+          "norm_keep_delta": 0.5,
+          "keep_winrate": 0.0,
+          "return_winrate": null,
+          "winrate_delta": null,
+          "games": 219
         },
         {
           "name": "Khazgar, Flame Emperor",
@@ -74688,7 +74688,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 1.0,
           "winrate_delta": -1.0,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Dragon Tamer",
@@ -74700,7 +74700,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 1.0,
           "winrate_delta": -1.0,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Stalking Hippo",
@@ -74712,7 +74712,7 @@
           "keep_winrate": 0.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Eagle King",
@@ -74724,7 +74724,7 @@
           "keep_winrate": null,
           "return_winrate": 0.0,
           "winrate_delta": null,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Feral Vampire",
@@ -74736,7 +74736,7 @@
           "keep_winrate": 0.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Greater Healing Potion",
@@ -74748,7 +74748,7 @@
           "keep_winrate": null,
           "return_winrate": 1.0,
           "winrate_delta": null,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Energy Potion",
@@ -74760,7 +74760,7 @@
           "keep_winrate": null,
           "return_winrate": 1.0,
           "winrate_delta": null,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Lifeweaver",
@@ -74772,7 +74772,7 @@
           "keep_winrate": 1.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Homesong Minstrel",
@@ -74784,7 +74784,7 @@
           "keep_winrate": 1.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Prince Xerxes",
@@ -74796,7 +74796,7 @@
           "keep_winrate": 1.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Wise Elder",
@@ -74808,7 +74808,7 @@
           "keep_winrate": null,
           "return_winrate": 1.0,
           "winrate_delta": null,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Silver Dragon",
@@ -74820,7 +74820,7 @@
           "keep_winrate": 0.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Flamelash",
@@ -74832,7 +74832,7 @@
           "keep_winrate": 0.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Goblin Scamp",
@@ -74844,7 +74844,7 @@
           "keep_winrate": 1.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Stout Knight",
@@ -74856,7 +74856,7 @@
           "keep_winrate": 0.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 221
+          "games": 219
         },
         {
           "name": "Citadel Lord",
@@ -74868,7 +74868,7 @@
           "keep_winrate": null,
           "return_winrate": 0.0,
           "winrate_delta": null,
-          "games": 221
+          "games": 219
         }
       ],
       "Rosirix the Witch": [
@@ -84241,26 +84241,26 @@
         {
           "name": "Firebolt",
           "kept_count": 64,
-          "returned_count": 49,
-          "total_seen": 113,
-          "keep_rate": 0.5664,
-          "norm_keep_delta": 0.2204,
+          "returned_count": 48,
+          "total_seen": 112,
+          "keep_rate": 0.5714,
+          "norm_keep_delta": 0.2259,
           "keep_winrate": 0.4375,
-          "return_winrate": 0.5306,
-          "winrate_delta": -0.0931,
-          "games": 191
+          "return_winrate": 0.5208,
+          "winrate_delta": -0.0833,
+          "games": 190
         },
         {
           "name": "Lightning Bolt",
           "kept_count": 15,
-          "returned_count": 72,
-          "total_seen": 87,
-          "keep_rate": 0.1724,
-          "norm_keep_delta": -0.1839,
+          "returned_count": 71,
+          "total_seen": 86,
+          "keep_rate": 0.1744,
+          "norm_keep_delta": -0.1814,
           "keep_winrate": 0.5333,
-          "return_winrate": 0.6528,
-          "winrate_delta": -0.1195,
-          "games": 191
+          "return_winrate": 0.6479,
+          "winrate_delta": -0.1146,
+          "games": 190
         },
         {
           "name": "Shock Nova",
@@ -84272,19 +84272,19 @@
           "keep_winrate": 0.5,
           "return_winrate": 0.5217,
           "winrate_delta": -0.0217,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Throne Guardian",
-          "kept_count": 49,
+          "kept_count": 48,
           "returned_count": 33,
-          "total_seen": 82,
-          "keep_rate": 0.5976,
-          "norm_keep_delta": 0.2488,
-          "keep_winrate": 0.5918,
+          "total_seen": 81,
+          "keep_rate": 0.5926,
+          "norm_keep_delta": 0.2445,
+          "keep_winrate": 0.5833,
           "return_winrate": 0.5152,
-          "winrate_delta": 0.0766,
-          "games": 191
+          "winrate_delta": 0.0681,
+          "games": 190
         },
         {
           "name": "Dragonkin Evoker",
@@ -84296,7 +84296,7 @@
           "keep_winrate": 0.5946,
           "return_winrate": 0.6389,
           "winrate_delta": -0.0443,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Red Dragon",
@@ -84308,7 +84308,7 @@
           "keep_winrate": 0.7222,
           "return_winrate": 0.6,
           "winrate_delta": 0.1222,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Silver Dragon",
@@ -84320,7 +84320,7 @@
           "keep_winrate": 0.7692,
           "return_winrate": 0.6111,
           "winrate_delta": 0.1581,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Flame Acolyte",
@@ -84332,7 +84332,7 @@
           "keep_winrate": 0.3333,
           "return_winrate": 0.4348,
           "winrate_delta": -0.1015,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Dragon Tamer",
@@ -84344,19 +84344,7 @@
           "keep_winrate": 0.7021,
           "return_winrate": 0.7,
           "winrate_delta": 0.0021,
-          "games": 191
-        },
-        {
-          "name": "Pyromancer Apprentice",
-          "kept_count": 35,
-          "returned_count": 22,
-          "total_seen": 57,
-          "keep_rate": 0.614,
-          "norm_keep_delta": 0.2596,
-          "keep_winrate": 0.5429,
-          "return_winrate": 0.7727,
-          "winrate_delta": -0.2298,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Action Surge",
@@ -84368,19 +84356,31 @@
           "keep_winrate": 0.7273,
           "return_winrate": 0.5111,
           "winrate_delta": 0.2162,
-          "games": 191
+          "games": 190
+        },
+        {
+          "name": "Pyromancer Apprentice",
+          "kept_count": 34,
+          "returned_count": 22,
+          "total_seen": 56,
+          "keep_rate": 0.6071,
+          "norm_keep_delta": 0.2535,
+          "keep_winrate": 0.5294,
+          "return_winrate": 0.7727,
+          "winrate_delta": -0.2433,
+          "games": 190
         },
         {
           "name": "Spoils of War",
           "kept_count": 5,
-          "returned_count": 47,
-          "total_seen": 52,
-          "keep_rate": 0.0962,
-          "norm_keep_delta": -0.25,
+          "returned_count": 46,
+          "total_seen": 51,
+          "keep_rate": 0.098,
+          "norm_keep_delta": -0.2471,
           "keep_winrate": 0.6,
-          "return_winrate": 0.617,
-          "winrate_delta": -0.017,
-          "games": 191
+          "return_winrate": 0.6087,
+          "winrate_delta": -0.0087,
+          "games": 190
         },
         {
           "name": "Thunderous Warbeast",
@@ -84392,7 +84392,7 @@
           "keep_winrate": 0.4545,
           "return_winrate": 0.525,
           "winrate_delta": -0.0705,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Fireball",
@@ -84404,7 +84404,7 @@
           "keep_winrate": 0.375,
           "return_winrate": 0.5641,
           "winrate_delta": -0.1891,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Primordial Storm",
@@ -84416,7 +84416,7 @@
           "keep_winrate": null,
           "return_winrate": 0.5532,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Flamelash",
@@ -84428,7 +84428,7 @@
           "keep_winrate": 0.2857,
           "return_winrate": 0.4333,
           "winrate_delta": -0.1476,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Skerr'drix",
@@ -84440,7 +84440,7 @@
           "keep_winrate": null,
           "return_winrate": 0.5476,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Goblin Recruitment",
@@ -84452,43 +84452,43 @@
           "keep_winrate": 0.375,
           "return_winrate": 0.2917,
           "winrate_delta": 0.0833,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Draconic Mage",
           "kept_count": 0,
-          "returned_count": 39,
-          "total_seen": 39,
+          "returned_count": 38,
+          "total_seen": 38,
           "keep_rate": 0.0,
-          "norm_keep_delta": -0.3462,
+          "norm_keep_delta": -0.3447,
           "keep_winrate": null,
-          "return_winrate": 0.6667,
+          "return_winrate": 0.6579,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Tadpole",
           "kept_count": 28,
-          "returned_count": 9,
-          "total_seen": 37,
-          "keep_rate": 0.7568,
-          "norm_keep_delta": 0.4,
+          "returned_count": 8,
+          "total_seen": 36,
+          "keep_rate": 0.7778,
+          "norm_keep_delta": 0.4222,
           "keep_winrate": 0.5357,
-          "return_winrate": 0.7778,
-          "winrate_delta": -0.2421,
-          "games": 191
+          "return_winrate": 0.75,
+          "winrate_delta": -0.2143,
+          "games": 190
         },
         {
           "name": "Pyromaniac",
-          "kept_count": 19,
-          "returned_count": 17,
-          "total_seen": 36,
-          "keep_rate": 0.5278,
-          "norm_keep_delta": 0.1917,
-          "keep_winrate": 0.5263,
-          "return_winrate": 0.4118,
-          "winrate_delta": 0.1145,
-          "games": 191
+          "kept_count": 18,
+          "returned_count": 16,
+          "total_seen": 34,
+          "keep_rate": 0.5294,
+          "norm_keep_delta": 0.197,
+          "keep_winrate": 0.5,
+          "return_winrate": 0.375,
+          "winrate_delta": 0.125,
+          "games": 190
         },
         {
           "name": "Lay Claim",
@@ -84500,7 +84500,7 @@
           "keep_winrate": 0.6667,
           "return_winrate": 0.5,
           "winrate_delta": 0.1667,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Dragon's Breath",
@@ -84512,7 +84512,7 @@
           "keep_winrate": 0.6667,
           "return_winrate": 0.6,
           "winrate_delta": 0.0667,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Charge Up",
@@ -84524,7 +84524,7 @@
           "keep_winrate": 0.5,
           "return_winrate": 0.4444,
           "winrate_delta": 0.0556,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Kindle",
@@ -84536,7 +84536,7 @@
           "keep_winrate": 0.35,
           "return_winrate": 0.4286,
           "winrate_delta": -0.0786,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Settle Village",
@@ -84548,7 +84548,7 @@
           "keep_winrate": 0.2857,
           "return_winrate": 0.6667,
           "winrate_delta": -0.381,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Finishing Strike",
@@ -84560,7 +84560,7 @@
           "keep_winrate": null,
           "return_winrate": 0.4583,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Outland Village",
@@ -84572,7 +84572,7 @@
           "keep_winrate": 0.5714,
           "return_winrate": 0.6667,
           "winrate_delta": -0.0953,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Thunder Jolt",
@@ -84584,7 +84584,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.3684,
           "winrate_delta": -0.3684,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Warcry",
@@ -84596,7 +84596,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.5,
           "winrate_delta": -0.5,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Explosive Potion",
@@ -84608,7 +84608,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 0.6875,
           "winrate_delta": 0.3125,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Strategic Reserves",
@@ -84620,7 +84620,7 @@
           "keep_winrate": 0.3,
           "return_winrate": 0.1429,
           "winrate_delta": 0.1571,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Goblin Scout",
@@ -84632,7 +84632,7 @@
           "keep_winrate": 0.5,
           "return_winrate": 0.6,
           "winrate_delta": -0.1,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Stormrider Zurn",
@@ -84644,7 +84644,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 0.7143,
           "winrate_delta": 0.2857,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Slash and Burn",
@@ -84656,7 +84656,7 @@
           "keep_winrate": null,
           "return_winrate": 0.4667,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Goblin Lorespeaker",
@@ -84668,7 +84668,7 @@
           "keep_winrate": 0.6,
           "return_winrate": 0.4,
           "winrate_delta": 0.2,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Runic Knight",
@@ -84680,7 +84680,7 @@
           "keep_winrate": 0.5,
           "return_winrate": 0.5714,
           "winrate_delta": -0.0714,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Gilded Defender",
@@ -84692,7 +84692,7 @@
           "keep_winrate": 0.7778,
           "return_winrate": 0.8333,
           "winrate_delta": -0.0555,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Brash Outfitter",
@@ -84704,7 +84704,7 @@
           "keep_winrate": 0.75,
           "return_winrate": 0.5,
           "winrate_delta": 0.25,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Thunder Step",
@@ -84716,7 +84716,7 @@
           "keep_winrate": null,
           "return_winrate": 0.7143,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Mummified Warrior",
@@ -84728,7 +84728,7 @@
           "keep_winrate": 0.2222,
           "return_winrate": 0.3333,
           "winrate_delta": -0.1111,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Goblin Duo",
@@ -84740,7 +84740,7 @@
           "keep_winrate": 0.6667,
           "return_winrate": 0.3333,
           "winrate_delta": 0.3334,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Energy Potion",
@@ -84752,7 +84752,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 0.3,
           "winrate_delta": 0.7,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Khazgar, Flame Emperor",
@@ -84764,19 +84764,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.2222,
           "winrate_delta": -0.2222,
-          "games": 191
-        },
-        {
-          "name": "Master Craftsman",
-          "kept_count": 8,
-          "returned_count": 3,
-          "total_seen": 11,
-          "keep_rate": 0.7273,
-          "norm_keep_delta": 0.4,
-          "keep_winrate": 0.625,
-          "return_winrate": 1.0,
-          "winrate_delta": -0.375,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Vergis, Doomed Archaeologist",
@@ -84788,7 +84776,7 @@
           "keep_winrate": 0.4,
           "return_winrate": 0.3333,
           "winrate_delta": 0.0667,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Gravehand",
@@ -84800,7 +84788,19 @@
           "keep_winrate": 0.3333,
           "return_winrate": 0.6,
           "winrate_delta": -0.2667,
-          "games": 191
+          "games": 190
+        },
+        {
+          "name": "Master Craftsman",
+          "kept_count": 7,
+          "returned_count": 3,
+          "total_seen": 10,
+          "keep_rate": 0.7,
+          "norm_keep_delta": 0.38,
+          "keep_winrate": 0.5714,
+          "return_winrate": 1.0,
+          "winrate_delta": -0.4286,
+          "games": 190
         },
         {
           "name": "Steel Lancer",
@@ -84812,7 +84812,7 @@
           "keep_winrate": null,
           "return_winrate": 0.5,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Warlord's Mace",
@@ -84824,7 +84824,7 @@
           "keep_winrate": 0.7143,
           "return_winrate": 0.3333,
           "winrate_delta": 0.381,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Elite Mercenary",
@@ -84836,7 +84836,7 @@
           "keep_winrate": null,
           "return_winrate": 0.2222,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Bloodrush",
@@ -84848,7 +84848,7 @@
           "keep_winrate": null,
           "return_winrate": 0.4444,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Mad Warlock",
@@ -84860,7 +84860,7 @@
           "keep_winrate": 0.75,
           "return_winrate": 0.8,
           "winrate_delta": -0.05,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Ember",
@@ -84872,7 +84872,7 @@
           "keep_winrate": 0.2,
           "return_winrate": 0.25,
           "winrate_delta": -0.05,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Prideplain Enforcer",
@@ -84884,7 +84884,7 @@
           "keep_winrate": 0.3333,
           "return_winrate": 0.6667,
           "winrate_delta": -0.3334,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Wise Elder",
@@ -84896,7 +84896,7 @@
           "keep_winrate": 0.5,
           "return_winrate": 0.3333,
           "winrate_delta": 0.1667,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Found City",
@@ -84908,7 +84908,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.4,
           "winrate_delta": -0.4,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Skaali Blessing",
@@ -84920,7 +84920,7 @@
           "keep_winrate": 0.25,
           "return_winrate": 0.0,
           "winrate_delta": 0.25,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Gruth, Ogre Champion",
@@ -84932,7 +84932,7 @@
           "keep_winrate": null,
           "return_winrate": 0.7143,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Goblin Firebow",
@@ -84944,7 +84944,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 0.8,
           "winrate_delta": 0.2,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Drowsy Lizard",
@@ -84956,7 +84956,7 @@
           "keep_winrate": 0.5,
           "return_winrate": 0.5,
           "winrate_delta": 0.0,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Ancient Golem",
@@ -84968,7 +84968,7 @@
           "keep_winrate": null,
           "return_winrate": 0.0,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Crimson Flameblade",
@@ -84980,7 +84980,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.0,
           "winrate_delta": 0.0,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Combust",
@@ -84992,7 +84992,7 @@
           "keep_winrate": null,
           "return_winrate": 0.3333,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Growth Potion",
@@ -85004,7 +85004,7 @@
           "keep_winrate": 0.5,
           "return_winrate": 0.5,
           "winrate_delta": 0.0,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Big Game Hunter",
@@ -85016,7 +85016,7 @@
           "keep_winrate": null,
           "return_winrate": 0.6,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Demilich",
@@ -85028,7 +85028,7 @@
           "keep_winrate": null,
           "return_winrate": 0.2,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Grutali",
@@ -85040,7 +85040,7 @@
           "keep_winrate": null,
           "return_winrate": 0.6,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Badland Mercenary",
@@ -85052,7 +85052,7 @@
           "keep_winrate": null,
           "return_winrate": 0.2,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Power Potion",
@@ -85064,7 +85064,7 @@
           "keep_winrate": null,
           "return_winrate": 0.2,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Battlefield Savior",
@@ -85076,7 +85076,7 @@
           "keep_winrate": 0.5,
           "return_winrate": 0.0,
           "winrate_delta": 0.5,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Local Trader",
@@ -85088,7 +85088,7 @@
           "keep_winrate": 0.5,
           "return_winrate": 0.5,
           "winrate_delta": 0.0,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Lifeweaver",
@@ -85100,7 +85100,7 @@
           "keep_winrate": 0.5,
           "return_winrate": 0.0,
           "winrate_delta": 0.5,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Greater Healing Potion",
@@ -85112,7 +85112,7 @@
           "keep_winrate": null,
           "return_winrate": 0.25,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Feral Vampire",
@@ -85124,7 +85124,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.0,
           "winrate_delta": 0.0,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Mindstone Servant",
@@ -85136,7 +85136,7 @@
           "keep_winrate": 0.5,
           "return_winrate": 1.0,
           "winrate_delta": -0.5,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Goblin Skirmisher",
@@ -85148,7 +85148,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.0,
           "winrate_delta": 0.0,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Goblin King",
@@ -85160,7 +85160,7 @@
           "keep_winrate": null,
           "return_winrate": 0.0,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Swiftfoot Goblin",
@@ -85172,7 +85172,7 @@
           "keep_winrate": 0.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Elven Spellblade",
@@ -85184,7 +85184,7 @@
           "keep_winrate": null,
           "return_winrate": 1.0,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Limmick, Goblin Hedonist",
@@ -85196,7 +85196,7 @@
           "keep_winrate": 0.5,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Ursine Blade Trio",
@@ -85208,7 +85208,7 @@
           "keep_winrate": null,
           "return_winrate": 0.0,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Tax Collector",
@@ -85220,7 +85220,7 @@
           "keep_winrate": null,
           "return_winrate": 1.0,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Titan Herald",
@@ -85232,7 +85232,7 @@
           "keep_winrate": null,
           "return_winrate": 0.0,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "First Experiment",
@@ -85244,7 +85244,7 @@
           "keep_winrate": null,
           "return_winrate": 1.0,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Swiftness Potion",
@@ -85256,7 +85256,7 @@
           "keep_winrate": null,
           "return_winrate": 0.0,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Trinket Trasher",
@@ -85268,7 +85268,7 @@
           "keep_winrate": 1.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Fourth Experiment",
@@ -85280,7 +85280,7 @@
           "keep_winrate": 1.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Potion of Healing",
@@ -85292,7 +85292,7 @@
           "keep_winrate": null,
           "return_winrate": 1.0,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Apothecary",
@@ -85304,7 +85304,7 @@
           "keep_winrate": null,
           "return_winrate": 1.0,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Prince Xerxes",
@@ -85316,7 +85316,7 @@
           "keep_winrate": null,
           "return_winrate": 0.0,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Black Scorpion",
@@ -85328,7 +85328,7 @@
           "keep_winrate": 0.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "Infected Dreg",
@@ -85340,7 +85340,7 @@
           "keep_winrate": 0.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         },
         {
           "name": "War Banner",
@@ -85352,7 +85352,7 @@
           "keep_winrate": null,
           "return_winrate": 0.0,
           "winrate_delta": null,
-          "games": 191
+          "games": 190
         }
       ],
       "Lubela, Tender of the Wilds": [
@@ -110017,18 +110017,6 @@
       ],
       "Captain Greenbeard": [
         {
-          "name": "Goblin King",
-          "kept_count": 15,
-          "returned_count": 15,
-          "total_seen": 30,
-          "keep_rate": 0.5,
-          "norm_keep_delta": 0.0048,
-          "keep_winrate": 0.5333,
-          "return_winrate": 0.3333,
-          "winrate_delta": 0.2,
-          "games": 69
-        },
-        {
           "name": "Goblin Lorespeaker",
           "kept_count": 19,
           "returned_count": 11,
@@ -110038,7 +110026,7 @@
           "keep_winrate": 0.6316,
           "return_winrate": 0.6364,
           "winrate_delta": -0.0048,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Goblin Duo",
@@ -110050,31 +110038,31 @@
           "keep_winrate": 0.7,
           "return_winrate": 0.6,
           "winrate_delta": 0.1,
-          "games": 69
+          "games": 67
+        },
+        {
+          "name": "Goblin King",
+          "kept_count": 15,
+          "returned_count": 14,
+          "total_seen": 29,
+          "keep_rate": 0.5172,
+          "norm_keep_delta": 0.0197,
+          "keep_winrate": 0.5333,
+          "return_winrate": 0.3571,
+          "winrate_delta": 0.1762,
+          "games": 67
         },
         {
           "name": "Goblin Scout",
           "kept_count": 20,
-          "returned_count": 8,
-          "total_seen": 28,
-          "keep_rate": 0.7143,
-          "norm_keep_delta": 0.2194,
-          "keep_winrate": 0.55,
-          "return_winrate": 0.625,
-          "winrate_delta": -0.075,
-          "games": 69
-        },
-        {
-          "name": "Goblin Recruitment",
-          "kept_count": 17,
-          "returned_count": 10,
+          "returned_count": 7,
           "total_seen": 27,
-          "keep_rate": 0.6296,
-          "norm_keep_delta": 0.1375,
-          "keep_winrate": 0.5882,
-          "return_winrate": 0.5,
-          "winrate_delta": 0.0882,
-          "games": 69
+          "keep_rate": 0.7407,
+          "norm_keep_delta": 0.2433,
+          "keep_winrate": 0.55,
+          "return_winrate": 0.7143,
+          "winrate_delta": -0.1643,
+          "games": 67
         },
         {
           "name": "Warcry",
@@ -110086,19 +110074,31 @@
           "keep_winrate": 0.7692,
           "return_winrate": 0.4615,
           "winrate_delta": 0.3077,
-          "games": 69
+          "games": 67
+        },
+        {
+          "name": "Goblin Recruitment",
+          "kept_count": 16,
+          "returned_count": 9,
+          "total_seen": 25,
+          "keep_rate": 0.64,
+          "norm_keep_delta": 0.1429,
+          "keep_winrate": 0.625,
+          "return_winrate": 0.5556,
+          "winrate_delta": 0.0694,
+          "games": 67
         },
         {
           "name": "Goblin Infantry",
-          "kept_count": 22,
+          "kept_count": 21,
           "returned_count": 1,
-          "total_seen": 23,
-          "keep_rate": 0.9565,
-          "norm_keep_delta": 0.4782,
-          "keep_winrate": 0.5909,
+          "total_seen": 22,
+          "keep_rate": 0.9545,
+          "norm_keep_delta": 0.474,
+          "keep_winrate": 0.619,
           "return_winrate": 1.0,
-          "winrate_delta": -0.4091,
-          "games": 69
+          "winrate_delta": -0.381,
+          "games": 67
         },
         {
           "name": "Lightning Bolt",
@@ -110110,7 +110110,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 0.4706,
           "winrate_delta": 0.5294,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Goblin Infiltrator",
@@ -110122,7 +110122,7 @@
           "keep_winrate": null,
           "return_winrate": 0.5,
           "winrate_delta": null,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Spoils of War",
@@ -110134,31 +110134,31 @@
           "keep_winrate": 1.0,
           "return_winrate": 0.4706,
           "winrate_delta": 0.5294,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Action Surge",
-          "kept_count": 6,
+          "kept_count": 5,
           "returned_count": 10,
-          "total_seen": 16,
-          "keep_rate": 0.375,
-          "norm_keep_delta": -0.1339,
-          "keep_winrate": 0.5,
+          "total_seen": 15,
+          "keep_rate": 0.3333,
+          "norm_keep_delta": -0.181,
+          "keep_winrate": 0.6,
           "return_winrate": 0.5,
-          "winrate_delta": 0.0,
-          "games": 69
+          "winrate_delta": 0.1,
+          "games": 67
         },
         {
           "name": "War Banner",
-          "kept_count": 9,
-          "returned_count": 6,
-          "total_seen": 15,
-          "keep_rate": 0.6,
-          "norm_keep_delta": 0.1048,
-          "keep_winrate": 0.5556,
-          "return_winrate": 0.5,
-          "winrate_delta": 0.0556,
-          "games": 69
+          "kept_count": 8,
+          "returned_count": 5,
+          "total_seen": 13,
+          "keep_rate": 0.6154,
+          "norm_keep_delta": 0.1099,
+          "keep_winrate": 0.625,
+          "return_winrate": 0.6,
+          "winrate_delta": 0.025,
+          "games": 67
         },
         {
           "name": "Thunderous Warbeast",
@@ -110170,7 +110170,7 @@
           "keep_winrate": null,
           "return_winrate": 0.75,
           "winrate_delta": null,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Swiftfoot Goblin",
@@ -110182,7 +110182,7 @@
           "keep_winrate": 0.1667,
           "return_winrate": 0.0,
           "winrate_delta": 0.1667,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Master Craftsman",
@@ -110194,7 +110194,7 @@
           "keep_winrate": 0.2,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Shock Nova",
@@ -110206,7 +110206,7 @@
           "keep_winrate": 0.75,
           "return_winrate": 1.0,
           "winrate_delta": -0.25,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Goblin Firebow",
@@ -110218,7 +110218,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 0.6667,
           "winrate_delta": 0.3333,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Finishing Strike",
@@ -110230,7 +110230,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 0.625,
           "winrate_delta": 0.375,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Knife Sharpener",
@@ -110242,7 +110242,7 @@
           "keep_winrate": 0.6667,
           "return_winrate": 0.5,
           "winrate_delta": 0.1667,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Primordial Storm",
@@ -110254,31 +110254,7 @@
           "keep_winrate": null,
           "return_winrate": 0.375,
           "winrate_delta": null,
-          "games": 69
-        },
-        {
-          "name": "Champion of the Wilds",
-          "kept_count": 3,
-          "returned_count": 4,
-          "total_seen": 7,
-          "keep_rate": 0.4286,
-          "norm_keep_delta": -0.0204,
-          "keep_winrate": 0.0,
-          "return_winrate": 0.0,
-          "winrate_delta": 0.0,
-          "games": 69
-        },
-        {
-          "name": "Goblin Musclejuice",
-          "kept_count": 1,
-          "returned_count": 6,
-          "total_seen": 7,
-          "keep_rate": 0.1429,
-          "norm_keep_delta": -0.2857,
-          "keep_winrate": 0.0,
-          "return_winrate": 0.5,
-          "winrate_delta": -0.5,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Firebolt",
@@ -110290,7 +110266,7 @@
           "keep_winrate": 0.2,
           "return_winrate": 0.0,
           "winrate_delta": 0.2,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Stormrider Zurn",
@@ -110302,7 +110278,7 @@
           "keep_winrate": 0.6667,
           "return_winrate": 1.0,
           "winrate_delta": -0.3333,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Goblin Paratrooper",
@@ -110314,7 +110290,19 @@
           "keep_winrate": 0.6,
           "return_winrate": 1.0,
           "winrate_delta": -0.4,
-          "games": 69
+          "games": 67
+        },
+        {
+          "name": "Goblin Musclejuice",
+          "kept_count": 1,
+          "returned_count": 5,
+          "total_seen": 6,
+          "keep_rate": 0.1667,
+          "norm_keep_delta": -0.2619,
+          "keep_winrate": 0.0,
+          "return_winrate": 0.6,
+          "winrate_delta": -0.6,
+          "games": 67
         },
         {
           "name": "Lord of Casterhorn",
@@ -110326,7 +110314,7 @@
           "keep_winrate": 0.75,
           "return_winrate": 0.0,
           "winrate_delta": 0.75,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Dread Knight",
@@ -110338,7 +110326,7 @@
           "keep_winrate": null,
           "return_winrate": 0.5,
           "winrate_delta": null,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Limmick, Goblin Hedonist",
@@ -110350,7 +110338,7 @@
           "keep_winrate": 0.3333,
           "return_winrate": 1.0,
           "winrate_delta": -0.6667,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Brash Outfitter",
@@ -110362,7 +110350,7 @@
           "keep_winrate": 0.4,
           "return_winrate": 1.0,
           "winrate_delta": -0.6,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Power Potion",
@@ -110374,7 +110362,19 @@
           "keep_winrate": 1.0,
           "return_winrate": 1.0,
           "winrate_delta": 0.0,
-          "games": 69
+          "games": 67
+        },
+        {
+          "name": "Champion of the Wilds",
+          "kept_count": 2,
+          "returned_count": 2,
+          "total_seen": 4,
+          "keep_rate": 0.5,
+          "norm_keep_delta": 0.0357,
+          "keep_winrate": 0.0,
+          "return_winrate": 0.0,
+          "winrate_delta": 0.0,
+          "games": 67
         },
         {
           "name": "Strategic Reserves",
@@ -110386,7 +110386,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.5,
           "winrate_delta": -0.5,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Skerr'drix",
@@ -110398,7 +110398,7 @@
           "keep_winrate": null,
           "return_winrate": 0.25,
           "winrate_delta": null,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Trinket Trasher",
@@ -110410,7 +110410,7 @@
           "keep_winrate": 0.5,
           "return_winrate": 0.5,
           "winrate_delta": 0.0,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Ursine Blade Trio",
@@ -110422,19 +110422,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 0.3333,
           "winrate_delta": 0.6667,
-          "games": 69
-        },
-        {
-          "name": "Kindle",
-          "kept_count": 3,
-          "returned_count": 0,
-          "total_seen": 3,
-          "keep_rate": 1.0,
-          "norm_keep_delta": 0.5238,
-          "keep_winrate": 0.0,
-          "return_winrate": null,
-          "winrate_delta": null,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Warlord's Mace",
@@ -110446,7 +110434,7 @@
           "keep_winrate": 0.6667,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Charger",
@@ -110458,7 +110446,7 @@
           "keep_winrate": 0.6667,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Goblin Shaman",
@@ -110470,7 +110458,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.0,
           "winrate_delta": 0.0,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Heavy Cavalry",
@@ -110482,7 +110470,7 @@
           "keep_winrate": null,
           "return_winrate": 0.6667,
           "winrate_delta": null,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Crimson Flameblade",
@@ -110494,7 +110482,7 @@
           "keep_winrate": 0.6667,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Skaali Blessing",
@@ -110506,19 +110494,19 @@
           "keep_winrate": 1.0,
           "return_winrate": 1.0,
           "winrate_delta": 0.0,
-          "games": 69
+          "games": 67
         },
         {
-          "name": "Lay Claim",
-          "kept_count": 0,
-          "returned_count": 2,
+          "name": "Kindle",
+          "kept_count": 2,
+          "returned_count": 0,
           "total_seen": 2,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.4286,
-          "keep_winrate": null,
-          "return_winrate": 0.0,
+          "keep_rate": 1.0,
+          "norm_keep_delta": 0.5,
+          "keep_winrate": 0.0,
+          "return_winrate": null,
           "winrate_delta": null,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Explosive Potion",
@@ -110530,7 +110518,7 @@
           "keep_winrate": 0.5,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Hoplite Vanguard",
@@ -110542,7 +110530,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 0.0,
           "winrate_delta": 1.0,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Throne Guardian",
@@ -110554,7 +110542,7 @@
           "keep_winrate": null,
           "return_winrate": 0.5,
           "winrate_delta": null,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Outland Village",
@@ -110566,7 +110554,7 @@
           "keep_winrate": null,
           "return_winrate": 0.0,
           "winrate_delta": null,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Stagasus",
@@ -110578,7 +110566,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 1.0,
           "winrate_delta": -1.0,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Dragon Tamer",
@@ -110590,7 +110578,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 1.0,
           "winrate_delta": -1.0,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Prideplain Enforcer",
@@ -110602,7 +110590,19 @@
           "keep_winrate": 0.0,
           "return_winrate": 1.0,
           "winrate_delta": -1.0,
-          "games": 69
+          "games": 67
+        },
+        {
+          "name": "Lay Claim",
+          "kept_count": 0,
+          "returned_count": 1,
+          "total_seen": 1,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.4286,
+          "keep_winrate": null,
+          "return_winrate": 0.0,
+          "winrate_delta": null,
+          "games": 67
         },
         {
           "name": "Elven Spellblade",
@@ -110614,7 +110614,7 @@
           "keep_winrate": 0.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Big Game Hunter",
@@ -110626,7 +110626,7 @@
           "keep_winrate": null,
           "return_winrate": 1.0,
           "winrate_delta": null,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Outland Berserker",
@@ -110638,7 +110638,7 @@
           "keep_winrate": null,
           "return_winrate": 1.0,
           "winrate_delta": null,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Owl Familiar",
@@ -110650,7 +110650,7 @@
           "keep_winrate": 0.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Red Dragon",
@@ -110662,7 +110662,7 @@
           "keep_winrate": null,
           "return_winrate": 0.0,
           "winrate_delta": null,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Charge Up",
@@ -110674,7 +110674,7 @@
           "keep_winrate": null,
           "return_winrate": 0.0,
           "winrate_delta": null,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Silver Dragon",
@@ -110686,7 +110686,7 @@
           "keep_winrate": 0.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 69
+          "games": 67
         },
         {
           "name": "Goblin Scamp",
@@ -110698,921 +110698,7 @@
           "keep_winrate": 1.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 69
-        }
-      ],
-      "Kai, Longcount Shaman": [
-        {
-          "name": "Firebolt",
-          "kept_count": 17,
-          "returned_count": 16,
-          "total_seen": 33,
-          "keep_rate": 0.5152,
-          "norm_keep_delta": 0.1849,
-          "keep_winrate": 0.4118,
-          "return_winrate": 0.5,
-          "winrate_delta": -0.0882,
-          "games": 55
-        },
-        {
-          "name": "Shock Nova",
-          "kept_count": 2,
-          "returned_count": 24,
-          "total_seen": 26,
-          "keep_rate": 0.0769,
-          "norm_keep_delta": -0.2616,
-          "keep_winrate": 0.5,
-          "return_winrate": 0.5417,
-          "winrate_delta": -0.0417,
-          "games": 55
-        },
-        {
-          "name": "Red Dragon",
-          "kept_count": 6,
-          "returned_count": 19,
-          "total_seen": 25,
-          "keep_rate": 0.24,
-          "norm_keep_delta": -0.108,
-          "keep_winrate": 0.8333,
-          "return_winrate": 0.6316,
-          "winrate_delta": 0.2017,
-          "games": 55
-        },
-        {
-          "name": "Lightning Bolt",
-          "kept_count": 4,
-          "returned_count": 18,
-          "total_seen": 22,
-          "keep_rate": 0.1818,
-          "norm_keep_delta": -0.1727,
-          "keep_winrate": 1.0,
-          "return_winrate": 0.6111,
-          "winrate_delta": 0.3889,
-          "games": 55
-        },
-        {
-          "name": "Primordial Storm",
-          "kept_count": 0,
-          "returned_count": 22,
-          "total_seen": 22,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.3364,
-          "keep_winrate": null,
-          "return_winrate": 0.7273,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "Throne Guardian",
-          "kept_count": 13,
-          "returned_count": 8,
-          "total_seen": 21,
-          "keep_rate": 0.619,
-          "norm_keep_delta": 0.2809,
-          "keep_winrate": 0.5385,
-          "return_winrate": 0.5,
-          "winrate_delta": 0.0385,
-          "games": 55
-        },
-        {
-          "name": "Dragonkin Evoker",
-          "kept_count": 9,
-          "returned_count": 11,
-          "total_seen": 20,
-          "keep_rate": 0.45,
-          "norm_keep_delta": 0.115,
-          "keep_winrate": 0.7778,
-          "return_winrate": 0.7273,
-          "winrate_delta": 0.0505,
-          "games": 55
-        },
-        {
-          "name": "Pyromancer Apprentice",
-          "kept_count": 12,
-          "returned_count": 7,
-          "total_seen": 19,
-          "keep_rate": 0.6316,
-          "norm_keep_delta": 0.2895,
-          "keep_winrate": 0.5,
-          "return_winrate": 0.8571,
-          "winrate_delta": -0.3571,
-          "games": 55
-        },
-        {
-          "name": "Silver Dragon",
-          "kept_count": 6,
-          "returned_count": 12,
-          "total_seen": 18,
-          "keep_rate": 0.3333,
-          "norm_keep_delta": -0.0,
-          "keep_winrate": 0.8333,
-          "return_winrate": 0.5,
-          "winrate_delta": 0.3333,
-          "games": 55
-        },
-        {
-          "name": "Action Surge",
-          "kept_count": 5,
-          "returned_count": 12,
-          "total_seen": 17,
-          "keep_rate": 0.2941,
-          "norm_keep_delta": -0.0588,
-          "keep_winrate": 0.6,
-          "return_winrate": 0.3333,
-          "winrate_delta": 0.2667,
-          "games": 55
-        },
-        {
-          "name": "Dragon Tamer",
-          "kept_count": 13,
-          "returned_count": 4,
-          "total_seen": 17,
-          "keep_rate": 0.7647,
-          "norm_keep_delta": 0.4353,
-          "keep_winrate": 0.6154,
-          "return_winrate": 0.5,
-          "winrate_delta": 0.1154,
-          "games": 55
-        },
-        {
-          "name": "Flame Acolyte",
-          "kept_count": 3,
-          "returned_count": 14,
-          "total_seen": 17,
-          "keep_rate": 0.1765,
-          "norm_keep_delta": -0.1647,
-          "keep_winrate": 0.6667,
-          "return_winrate": 0.5,
-          "winrate_delta": 0.1667,
-          "games": 55
-        },
-        {
-          "name": "Spoils of War",
-          "kept_count": 1,
-          "returned_count": 14,
-          "total_seen": 15,
-          "keep_rate": 0.0667,
-          "norm_keep_delta": -0.2533,
-          "keep_winrate": 1.0,
-          "return_winrate": 0.7857,
-          "winrate_delta": 0.2143,
-          "games": 55
-        },
-        {
-          "name": "Draconic Mage",
-          "kept_count": 0,
-          "returned_count": 13,
-          "total_seen": 13,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.3538,
-          "keep_winrate": null,
-          "return_winrate": 0.7692,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "Flamelash",
-          "kept_count": 5,
-          "returned_count": 8,
-          "total_seen": 13,
-          "keep_rate": 0.3846,
-          "norm_keep_delta": 0.0538,
-          "keep_winrate": 0.6,
-          "return_winrate": 0.125,
-          "winrate_delta": 0.475,
-          "games": 55
-        },
-        {
-          "name": "Fireball",
-          "kept_count": 1,
-          "returned_count": 12,
-          "total_seen": 13,
-          "keep_rate": 0.0769,
-          "norm_keep_delta": -0.2308,
-          "keep_winrate": 1.0,
-          "return_winrate": 0.75,
-          "winrate_delta": 0.25,
-          "games": 55
-        },
-        {
-          "name": "Pyromaniac",
-          "kept_count": 5,
-          "returned_count": 6,
-          "total_seen": 11,
-          "keep_rate": 0.4545,
-          "norm_keep_delta": 0.1181,
-          "keep_winrate": 0.6,
-          "return_winrate": 0.5,
-          "winrate_delta": 0.1,
-          "games": 55
-        },
-        {
-          "name": "Thunderous Warbeast",
-          "kept_count": 4,
-          "returned_count": 7,
-          "total_seen": 11,
-          "keep_rate": 0.3636,
-          "norm_keep_delta": 0.0181,
-          "keep_winrate": 0.5,
-          "return_winrate": 0.7143,
-          "winrate_delta": -0.2143,
-          "games": 55
-        },
-        {
-          "name": "Skerr'drix",
-          "kept_count": 0,
-          "returned_count": 10,
-          "total_seen": 10,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.33,
-          "keep_winrate": null,
-          "return_winrate": 0.4,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "Lay Claim",
-          "kept_count": 5,
-          "returned_count": 5,
-          "total_seen": 10,
-          "keep_rate": 0.5,
-          "norm_keep_delta": 0.12,
-          "keep_winrate": 0.6,
-          "return_winrate": 0.4,
-          "winrate_delta": 0.2,
-          "games": 55
-        },
-        {
-          "name": "Tadpole",
-          "kept_count": 5,
-          "returned_count": 4,
-          "total_seen": 9,
-          "keep_rate": 0.5556,
-          "norm_keep_delta": 0.2112,
-          "keep_winrate": 0.2,
-          "return_winrate": 0.75,
-          "winrate_delta": -0.55,
-          "games": 55
-        },
-        {
-          "name": "Runic Knight",
-          "kept_count": 3,
-          "returned_count": 5,
-          "total_seen": 8,
-          "keep_rate": 0.375,
-          "norm_keep_delta": 0.0625,
-          "keep_winrate": 1.0,
-          "return_winrate": 0.6,
-          "winrate_delta": 0.4,
-          "games": 55
-        },
-        {
-          "name": "Dragon's Breath",
-          "kept_count": 4,
-          "returned_count": 4,
-          "total_seen": 8,
-          "keep_rate": 0.5,
-          "norm_keep_delta": 0.175,
-          "keep_winrate": 0.75,
-          "return_winrate": 0.25,
-          "winrate_delta": 0.5,
-          "games": 55
-        },
-        {
-          "name": "Charge Up",
-          "kept_count": 3,
-          "returned_count": 5,
-          "total_seen": 8,
-          "keep_rate": 0.375,
-          "norm_keep_delta": 0.0375,
-          "keep_winrate": 0.6667,
-          "return_winrate": 0.4,
-          "winrate_delta": 0.2667,
-          "games": 55
-        },
-        {
-          "name": "Kindle",
-          "kept_count": 5,
-          "returned_count": 3,
-          "total_seen": 8,
-          "keep_rate": 0.625,
-          "norm_keep_delta": 0.3,
-          "keep_winrate": 0.2,
-          "return_winrate": 0.3333,
-          "winrate_delta": -0.1333,
-          "games": 55
-        },
-        {
-          "name": "Stormrider Zurn",
-          "kept_count": 1,
-          "returned_count": 7,
-          "total_seen": 8,
-          "keep_rate": 0.125,
-          "norm_keep_delta": -0.2,
-          "keep_winrate": 1.0,
-          "return_winrate": 0.7143,
-          "winrate_delta": 0.2857,
-          "games": 55
-        },
-        {
-          "name": "Strategic Reserves",
-          "kept_count": 5,
-          "returned_count": 3,
-          "total_seen": 8,
-          "keep_rate": 0.625,
-          "norm_keep_delta": 0.25,
-          "keep_winrate": 0.0,
-          "return_winrate": 0.0,
-          "winrate_delta": 0.0,
-          "games": 55
-        },
-        {
-          "name": "Settle Village",
-          "kept_count": 5,
-          "returned_count": 3,
-          "total_seen": 8,
-          "keep_rate": 0.625,
-          "norm_keep_delta": 0.3,
-          "keep_winrate": 0.4,
-          "return_winrate": 1.0,
-          "winrate_delta": -0.6,
-          "games": 55
-        },
-        {
-          "name": "Thunder Jolt",
-          "kept_count": 0,
-          "returned_count": 7,
-          "total_seen": 7,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.3286,
-          "keep_winrate": null,
-          "return_winrate": 0.4286,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "Goblin Recruitment",
-          "kept_count": 3,
-          "returned_count": 4,
-          "total_seen": 7,
-          "keep_rate": 0.4286,
-          "norm_keep_delta": 0.1,
-          "keep_winrate": 0.3333,
-          "return_winrate": 0.25,
-          "winrate_delta": 0.0833,
-          "games": 55
-        },
-        {
-          "name": "Warcry",
-          "kept_count": 1,
-          "returned_count": 6,
-          "total_seen": 7,
-          "keep_rate": 0.1429,
-          "norm_keep_delta": -0.2,
-          "keep_winrate": 0.0,
-          "return_winrate": 0.5,
-          "winrate_delta": -0.5,
-          "games": 55
-        },
-        {
-          "name": "Thunder Step",
-          "kept_count": 0,
-          "returned_count": 7,
-          "total_seen": 7,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.3143,
-          "keep_winrate": null,
-          "return_winrate": 0.8571,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "Goblin Scout",
-          "kept_count": 3,
-          "returned_count": 3,
-          "total_seen": 6,
-          "keep_rate": 0.5,
-          "norm_keep_delta": 0.1833,
-          "keep_winrate": 0.6667,
-          "return_winrate": 1.0,
-          "winrate_delta": -0.3333,
-          "games": 55
-        },
-        {
-          "name": "Explosive Potion",
-          "kept_count": 0,
-          "returned_count": 5,
-          "total_seen": 5,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.32,
-          "keep_winrate": null,
-          "return_winrate": 0.4,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "Finishing Strike",
-          "kept_count": 0,
-          "returned_count": 5,
-          "total_seen": 5,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.32,
-          "keep_winrate": null,
-          "return_winrate": 0.8,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "Ember",
-          "kept_count": 4,
-          "returned_count": 1,
-          "total_seen": 5,
-          "keep_rate": 0.8,
-          "norm_keep_delta": 0.44,
-          "keep_winrate": 0.0,
-          "return_winrate": 0.0,
-          "winrate_delta": 0.0,
-          "games": 55
-        },
-        {
-          "name": "Master Craftsman",
-          "kept_count": 2,
-          "returned_count": 2,
-          "total_seen": 4,
-          "keep_rate": 0.5,
-          "norm_keep_delta": 0.175,
-          "keep_winrate": 1.0,
-          "return_winrate": 1.0,
-          "winrate_delta": 0.0,
-          "games": 55
-        },
-        {
-          "name": "Khazgar, Flame Emperor",
-          "kept_count": 1,
-          "returned_count": 3,
-          "total_seen": 4,
-          "keep_rate": 0.25,
-          "norm_keep_delta": -0.075,
-          "keep_winrate": 0.0,
-          "return_winrate": 0.3333,
-          "winrate_delta": -0.3333,
-          "games": 55
-        },
-        {
-          "name": "Mad Warlock",
-          "kept_count": 3,
-          "returned_count": 1,
-          "total_seen": 4,
-          "keep_rate": 0.75,
-          "norm_keep_delta": 0.425,
-          "keep_winrate": 0.6667,
-          "return_winrate": 1.0,
-          "winrate_delta": -0.3333,
-          "games": 55
-        },
-        {
-          "name": "Warlord's Mace",
-          "kept_count": 4,
-          "returned_count": 0,
-          "total_seen": 4,
-          "keep_rate": 1.0,
-          "norm_keep_delta": 0.65,
-          "keep_winrate": 0.75,
-          "return_winrate": null,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "Goblin Lorespeaker",
-          "kept_count": 4,
-          "returned_count": 0,
-          "total_seen": 4,
-          "keep_rate": 1.0,
-          "norm_keep_delta": 0.625,
-          "keep_winrate": 0.75,
-          "return_winrate": null,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "Badland Mercenary",
-          "kept_count": 0,
-          "returned_count": 4,
-          "total_seen": 4,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.375,
-          "keep_winrate": null,
-          "return_winrate": 0.0,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "Crimson Flameblade",
-          "kept_count": 0,
-          "returned_count": 3,
-          "total_seen": 3,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.3333,
-          "keep_winrate": null,
-          "return_winrate": 0.0,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "Goblin Duo",
-          "kept_count": 2,
-          "returned_count": 1,
-          "total_seen": 3,
-          "keep_rate": 0.6667,
-          "norm_keep_delta": 0.3334,
-          "keep_winrate": 0.5,
-          "return_winrate": 1.0,
-          "winrate_delta": -0.5,
-          "games": 55
-        },
-        {
-          "name": "Energy Potion",
-          "kept_count": 1,
-          "returned_count": 2,
-          "total_seen": 3,
-          "keep_rate": 0.3333,
-          "norm_keep_delta": 0.0333,
-          "keep_winrate": 1.0,
-          "return_winrate": 0.0,
-          "winrate_delta": 1.0,
-          "games": 55
-        },
-        {
-          "name": "Outland Village",
-          "kept_count": 1,
-          "returned_count": 2,
-          "total_seen": 3,
-          "keep_rate": 0.3333,
-          "norm_keep_delta": -0.0,
-          "keep_winrate": 1.0,
-          "return_winrate": 1.0,
-          "winrate_delta": 0.0,
-          "games": 55
-        },
-        {
-          "name": "Mummified Warrior",
-          "kept_count": 2,
-          "returned_count": 1,
-          "total_seen": 3,
-          "keep_rate": 0.6667,
-          "norm_keep_delta": 0.3334,
-          "keep_winrate": 0.5,
-          "return_winrate": 1.0,
-          "winrate_delta": -0.5,
-          "games": 55
-        },
-        {
-          "name": "Gilded Defender",
-          "kept_count": 2,
-          "returned_count": 1,
-          "total_seen": 3,
-          "keep_rate": 0.6667,
-          "norm_keep_delta": 0.3,
-          "keep_winrate": 1.0,
-          "return_winrate": 1.0,
-          "winrate_delta": 0.0,
-          "games": 55
-        },
-        {
-          "name": "Grutali",
-          "kept_count": 0,
-          "returned_count": 3,
-          "total_seen": 3,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.4,
-          "keep_winrate": null,
-          "return_winrate": 0.6667,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "Drowsy Lizard",
-          "kept_count": 0,
-          "returned_count": 2,
-          "total_seen": 2,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.35,
-          "keep_winrate": null,
-          "return_winrate": 1.0,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "Vergis, Doomed Archaeologist",
-          "kept_count": 2,
-          "returned_count": 0,
-          "total_seen": 2,
-          "keep_rate": 1.0,
-          "norm_keep_delta": 0.7,
-          "keep_winrate": 0.0,
-          "return_winrate": null,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "Goblin King",
-          "kept_count": 0,
-          "returned_count": 2,
-          "total_seen": 2,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.4,
-          "keep_winrate": null,
-          "return_winrate": 0.0,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "Gravehand",
-          "kept_count": 0,
-          "returned_count": 2,
-          "total_seen": 2,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.3,
-          "keep_winrate": null,
-          "return_winrate": 0.0,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "Lifeweaver",
-          "kept_count": 2,
-          "returned_count": 0,
-          "total_seen": 2,
-          "keep_rate": 1.0,
-          "norm_keep_delta": 0.65,
-          "keep_winrate": 0.5,
-          "return_winrate": null,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "Found City",
-          "kept_count": 1,
-          "returned_count": 1,
-          "total_seen": 2,
-          "keep_rate": 0.5,
-          "norm_keep_delta": 0.15,
-          "keep_winrate": 0.0,
-          "return_winrate": 1.0,
-          "winrate_delta": -1.0,
-          "games": 55
-        },
-        {
-          "name": "Gruth, Ogre Champion",
-          "kept_count": 0,
-          "returned_count": 2,
-          "total_seen": 2,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.35,
-          "keep_winrate": null,
-          "return_winrate": 0.5,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "Skaali Blessing",
-          "kept_count": 1,
-          "returned_count": 1,
-          "total_seen": 2,
-          "keep_rate": 0.5,
-          "norm_keep_delta": 0.15,
-          "keep_winrate": 0.0,
-          "return_winrate": 0.0,
-          "winrate_delta": 0.0,
-          "games": 55
-        },
-        {
-          "name": "Steel Lancer",
-          "kept_count": 0,
-          "returned_count": 2,
-          "total_seen": 2,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.3,
-          "keep_winrate": null,
-          "return_winrate": 1.0,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "Ursine Blade Trio",
-          "kept_count": 0,
-          "returned_count": 2,
-          "total_seen": 2,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.4,
-          "keep_winrate": null,
-          "return_winrate": 0.0,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "Brash Outfitter",
-          "kept_count": 1,
-          "returned_count": 1,
-          "total_seen": 2,
-          "keep_rate": 0.5,
-          "norm_keep_delta": 0.15,
-          "keep_winrate": 1.0,
-          "return_winrate": 1.0,
-          "winrate_delta": 0.0,
-          "games": 55
-        },
-        {
-          "name": "Big Game Hunter",
-          "kept_count": 0,
-          "returned_count": 1,
-          "total_seen": 1,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.4,
-          "keep_winrate": null,
-          "return_winrate": 1.0,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "Wise Elder",
-          "kept_count": 1,
-          "returned_count": 0,
-          "total_seen": 1,
-          "keep_rate": 1.0,
-          "norm_keep_delta": 0.7,
-          "keep_winrate": 1.0,
-          "return_winrate": null,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "Battlefield Savior",
-          "kept_count": 1,
-          "returned_count": 0,
-          "total_seen": 1,
-          "keep_rate": 1.0,
-          "norm_keep_delta": 0.7,
-          "keep_winrate": 1.0,
-          "return_winrate": null,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "Greater Healing Potion",
-          "kept_count": 0,
-          "returned_count": 1,
-          "total_seen": 1,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.3,
-          "keep_winrate": null,
-          "return_winrate": 0.0,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "Feral Vampire",
-          "kept_count": 1,
-          "returned_count": 0,
-          "total_seen": 1,
-          "keep_rate": 1.0,
-          "norm_keep_delta": 0.6,
-          "keep_winrate": 0.0,
-          "return_winrate": null,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "Bloodrush",
-          "kept_count": 0,
-          "returned_count": 1,
-          "total_seen": 1,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.4,
-          "keep_winrate": null,
-          "return_winrate": 0.0,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "First Experiment",
-          "kept_count": 0,
-          "returned_count": 1,
-          "total_seen": 1,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.3,
-          "keep_winrate": null,
-          "return_winrate": 1.0,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "Elite Mercenary",
-          "kept_count": 0,
-          "returned_count": 1,
-          "total_seen": 1,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.3,
-          "keep_winrate": null,
-          "return_winrate": 1.0,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "Prideplain Enforcer",
-          "kept_count": 0,
-          "returned_count": 1,
-          "total_seen": 1,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.4,
-          "keep_winrate": null,
-          "return_winrate": 1.0,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "Growth Potion",
-          "kept_count": 0,
-          "returned_count": 1,
-          "total_seen": 1,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.4,
-          "keep_winrate": null,
-          "return_winrate": 0.0,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "Power Potion",
-          "kept_count": 0,
-          "returned_count": 1,
-          "total_seen": 1,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.4,
-          "keep_winrate": null,
-          "return_winrate": 0.0,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "Prince Xerxes",
-          "kept_count": 0,
-          "returned_count": 1,
-          "total_seen": 1,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.4,
-          "keep_winrate": null,
-          "return_winrate": 0.0,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "War Banner",
-          "kept_count": 0,
-          "returned_count": 1,
-          "total_seen": 1,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.3,
-          "keep_winrate": null,
-          "return_winrate": 0.0,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "Slash and Burn",
-          "kept_count": 0,
-          "returned_count": 1,
-          "total_seen": 1,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.3,
-          "keep_winrate": null,
-          "return_winrate": 0.0,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "Demilich",
-          "kept_count": 0,
-          "returned_count": 1,
-          "total_seen": 1,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.3,
-          "keep_winrate": null,
-          "return_winrate": 1.0,
-          "winrate_delta": null,
-          "games": 55
-        },
-        {
-          "name": "Goblin Firebow",
-          "kept_count": 1,
-          "returned_count": 0,
-          "total_seen": 1,
-          "keep_rate": 1.0,
-          "norm_keep_delta": 0.7,
-          "keep_winrate": 1.0,
-          "return_winrate": null,
-          "winrate_delta": null,
-          "games": 55
+          "games": 67
         }
       ],
       "Milo Sunstone": [
@@ -111626,19 +110712,7 @@
           "keep_winrate": 0.7,
           "return_winrate": 0.3636,
           "winrate_delta": 0.3364,
-          "games": 56
-        },
-        {
-          "name": "Throne Guardian",
-          "kept_count": 6,
-          "returned_count": 14,
-          "total_seen": 20,
-          "keep_rate": 0.3,
-          "norm_keep_delta": -0.2071,
-          "keep_winrate": 0.1667,
-          "return_winrate": 0.5,
-          "winrate_delta": -0.3333,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Sentinel of Light",
@@ -111650,31 +110724,43 @@
           "keep_winrate": 0.4375,
           "return_winrate": 0.6667,
           "winrate_delta": -0.2292,
-          "games": 56
+          "games": 55
+        },
+        {
+          "name": "Throne Guardian",
+          "kept_count": 6,
+          "returned_count": 13,
+          "total_seen": 19,
+          "keep_rate": 0.3158,
+          "norm_keep_delta": -0.188,
+          "keep_winrate": 0.1667,
+          "return_winrate": 0.4615,
+          "winrate_delta": -0.2948,
+          "games": 55
         },
         {
           "name": "Paladin Proselyte",
-          "kept_count": 15,
+          "kept_count": 14,
           "returned_count": 4,
-          "total_seen": 19,
-          "keep_rate": 0.7895,
-          "norm_keep_delta": 0.3384,
-          "keep_winrate": 0.4,
+          "total_seen": 18,
+          "keep_rate": 0.7778,
+          "norm_keep_delta": 0.3334,
+          "keep_winrate": 0.3571,
           "return_winrate": 0.75,
-          "winrate_delta": -0.35,
-          "games": 56
+          "winrate_delta": -0.3929,
+          "games": 55
         },
         {
           "name": "Nevisha Ascendant",
           "kept_count": 0,
-          "returned_count": 16,
-          "total_seen": 16,
+          "returned_count": 15,
+          "total_seen": 15,
           "keep_rate": 0.0,
-          "norm_keep_delta": -0.4911,
+          "norm_keep_delta": -0.4857,
           "keep_winrate": null,
-          "return_winrate": 0.375,
+          "return_winrate": 0.3333,
           "winrate_delta": null,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Dwarven Battlepriest",
@@ -111686,7 +110772,7 @@
           "keep_winrate": 0.2857,
           "return_winrate": 1.0,
           "winrate_delta": -0.7143,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Big Game Hunter",
@@ -111698,19 +110784,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 0.5833,
           "winrate_delta": 0.4167,
-          "games": 56
-        },
-        {
-          "name": "Rhea, Morning Saint",
-          "kept_count": 2,
-          "returned_count": 11,
-          "total_seen": 13,
-          "keep_rate": 0.1538,
-          "norm_keep_delta": -0.3297,
-          "keep_winrate": 1.0,
-          "return_winrate": 0.4545,
-          "winrate_delta": 0.5455,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Warscarred Soldier",
@@ -111722,7 +110796,7 @@
           "keep_winrate": 0.5714,
           "return_winrate": 0.6,
           "winrate_delta": -0.0286,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Zealous Captain",
@@ -111734,19 +110808,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 0.3636,
           "winrate_delta": 0.6364,
-          "games": 56
-        },
-        {
-          "name": "Charger",
-          "kept_count": 6,
-          "returned_count": 6,
-          "total_seen": 12,
-          "keep_rate": 0.5,
-          "norm_keep_delta": -0.0238,
-          "keep_winrate": 0.5,
-          "return_winrate": 0.5,
-          "winrate_delta": 0.0,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Warlord's Mace",
@@ -111758,19 +110820,19 @@
           "keep_winrate": 0.6,
           "return_winrate": 0.5714,
           "winrate_delta": 0.0286,
-          "games": 56
+          "games": 55
         },
         {
-          "name": "Dread Knight",
-          "kept_count": 0,
-          "returned_count": 12,
+          "name": "Rhea, Morning Saint",
+          "kept_count": 1,
+          "returned_count": 11,
           "total_seen": 12,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.5119,
-          "keep_winrate": null,
-          "return_winrate": 0.6667,
-          "winrate_delta": null,
-          "games": 56
+          "keep_rate": 0.0833,
+          "norm_keep_delta": -0.3929,
+          "keep_winrate": 1.0,
+          "return_winrate": 0.4545,
+          "winrate_delta": 0.5455,
+          "games": 55
         },
         {
           "name": "Outland Berserker",
@@ -111782,19 +110844,31 @@
           "keep_winrate": 0.5,
           "return_winrate": 0.4444,
           "winrate_delta": 0.0556,
-          "games": 56
+          "games": 55
         },
         {
-          "name": "Lightbound Martyr",
-          "kept_count": 9,
-          "returned_count": 2,
+          "name": "Charger",
+          "kept_count": 5,
+          "returned_count": 6,
           "total_seen": 11,
-          "keep_rate": 0.8182,
-          "norm_keep_delta": 0.2987,
-          "keep_winrate": 0.4444,
+          "keep_rate": 0.4545,
+          "norm_keep_delta": -0.065,
+          "keep_winrate": 0.4,
           "return_winrate": 0.5,
-          "winrate_delta": -0.0556,
-          "games": 56
+          "winrate_delta": -0.1,
+          "games": 55
+        },
+        {
+          "name": "Dread Knight",
+          "kept_count": 0,
+          "returned_count": 11,
+          "total_seen": 11,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.5065,
+          "keep_winrate": null,
+          "return_winrate": 0.6364,
+          "winrate_delta": null,
+          "games": 55
         },
         {
           "name": "Zealous Strength",
@@ -111806,7 +110880,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 0.3333,
           "winrate_delta": 0.6667,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Warscarred Rhino",
@@ -111818,7 +110892,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.1429,
           "winrate_delta": -0.1429,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Royal Commandant",
@@ -111830,19 +110904,19 @@
           "keep_winrate": null,
           "return_winrate": 0.7,
           "winrate_delta": null,
-          "games": 56
+          "games": 55
         },
         {
-          "name": "Badland Mercenary",
-          "kept_count": 7,
-          "returned_count": 2,
-          "total_seen": 9,
-          "keep_rate": 0.7778,
-          "norm_keep_delta": 0.2857,
-          "keep_winrate": 0.5714,
-          "return_winrate": 0.5,
-          "winrate_delta": 0.0714,
-          "games": 56
+          "name": "Lightbound Martyr",
+          "kept_count": 9,
+          "returned_count": 1,
+          "total_seen": 10,
+          "keep_rate": 0.9,
+          "norm_keep_delta": 0.3857,
+          "keep_winrate": 0.4444,
+          "return_winrate": 0.0,
+          "winrate_delta": 0.4444,
+          "games": 55
         },
         {
           "name": "Heavy Cavalry",
@@ -111854,7 +110928,19 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.5714,
           "winrate_delta": -0.5714,
-          "games": 56
+          "games": 55
+        },
+        {
+          "name": "Badland Mercenary",
+          "kept_count": 6,
+          "returned_count": 2,
+          "total_seen": 8,
+          "keep_rate": 0.75,
+          "norm_keep_delta": 0.2679,
+          "keep_winrate": 0.5,
+          "return_winrate": 0.5,
+          "winrate_delta": 0.0,
+          "games": 55
         },
         {
           "name": "Paladin Initiate",
@@ -111866,7 +110952,7 @@
           "keep_winrate": 0.8,
           "return_winrate": 0.6667,
           "winrate_delta": 0.1333,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Holy Fervor",
@@ -111878,7 +110964,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 0.6667,
           "winrate_delta": 0.3333,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Elf Ranger",
@@ -111890,19 +110976,7 @@
           "keep_winrate": 0.8,
           "return_winrate": 1.0,
           "winrate_delta": -0.2,
-          "games": 56
-        },
-        {
-          "name": "Stalking Hippo",
-          "kept_count": 0,
-          "returned_count": 7,
-          "total_seen": 7,
-          "keep_rate": 0.0,
-          "norm_keep_delta": -0.4898,
-          "keep_winrate": null,
-          "return_winrate": 0.7143,
-          "winrate_delta": null,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Quell the Weak",
@@ -111914,7 +110988,7 @@
           "keep_winrate": 0.75,
           "return_winrate": 0.0,
           "winrate_delta": 0.75,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Stout Knight",
@@ -111926,7 +111000,7 @@
           "keep_winrate": 0.6,
           "return_winrate": 0.5,
           "winrate_delta": 0.1,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Battlefield Savior",
@@ -111938,7 +111012,7 @@
           "keep_winrate": 0.6667,
           "return_winrate": 0.0,
           "winrate_delta": 0.6667,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Oathsworn Champion",
@@ -111950,7 +111024,7 @@
           "keep_winrate": null,
           "return_winrate": 0.5,
           "winrate_delta": null,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Knife Sharpener",
@@ -111962,7 +111036,19 @@
           "keep_winrate": 0.5,
           "return_winrate": 0.5,
           "winrate_delta": 0.0,
-          "games": 56
+          "games": 55
+        },
+        {
+          "name": "Stalking Hippo",
+          "kept_count": 0,
+          "returned_count": 6,
+          "total_seen": 6,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.4762,
+          "keep_winrate": null,
+          "return_winrate": 0.6667,
+          "winrate_delta": null,
+          "games": 55
         },
         {
           "name": "Slay the Mighty",
@@ -111974,7 +111060,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.5,
           "winrate_delta": -0.5,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Paladin of Eos",
@@ -111986,7 +111072,7 @@
           "keep_winrate": 0.3333,
           "return_winrate": 0.6667,
           "winrate_delta": -0.3334,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Energy Potion",
@@ -111998,7 +111084,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.0,
           "winrate_delta": 0.0,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Dwarven Stout",
@@ -112010,7 +111096,7 @@
           "keep_winrate": 0.75,
           "return_winrate": 1.0,
           "winrate_delta": -0.25,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Settle Village",
@@ -112022,7 +111108,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.3333,
           "winrate_delta": -0.3333,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Drowsy Lizard",
@@ -112034,7 +111120,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 1.0,
           "winrate_delta": 0.0,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Angelic Captain",
@@ -112046,7 +111132,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 1.0,
           "winrate_delta": 0.0,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Silence",
@@ -112058,7 +111144,7 @@
           "keep_winrate": 0.5,
           "return_winrate": 0.6667,
           "winrate_delta": -0.1667,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Lord of Heavenspire",
@@ -112070,7 +111156,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 0.5,
           "winrate_delta": 0.5,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Power Potion",
@@ -112082,7 +111168,7 @@
           "keep_winrate": null,
           "return_winrate": 0.5,
           "winrate_delta": null,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Found City",
@@ -112094,7 +111180,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 0.3333,
           "winrate_delta": 0.6667,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Lord of Casterhorn",
@@ -112106,7 +111192,7 @@
           "keep_winrate": 0.3333,
           "return_winrate": 0.0,
           "winrate_delta": 0.3333,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Crippling Tax",
@@ -112118,7 +111204,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.5,
           "winrate_delta": -0.5,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Prideplain Enforcer",
@@ -112130,7 +111216,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 1.0,
           "winrate_delta": 0.0,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Lucian Squire",
@@ -112142,7 +111228,7 @@
           "keep_winrate": 0.5,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Mindstone Servant",
@@ -112154,7 +111240,7 @@
           "keep_winrate": null,
           "return_winrate": 0.5,
           "winrate_delta": null,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Grey Wastes Shade",
@@ -112166,7 +111252,7 @@
           "keep_winrate": 0.6667,
           "return_winrate": 1.0,
           "winrate_delta": -0.3333,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Mage Slayer",
@@ -112178,7 +111264,7 @@
           "keep_winrate": 0.5,
           "return_winrate": 0.5,
           "winrate_delta": 0.0,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Silver Dragon",
@@ -112190,7 +111276,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 1.0,
           "winrate_delta": -1.0,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Steel Lancer",
@@ -112202,7 +111288,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 0.5,
           "winrate_delta": 0.5,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Shield Potion",
@@ -112214,7 +111300,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 0.0,
           "winrate_delta": 1.0,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Moonlight Seraph",
@@ -112226,7 +111312,7 @@
           "keep_winrate": null,
           "return_winrate": 1.0,
           "winrate_delta": null,
-          "games": 56
+          "games": 55
         },
         {
           "name": "City Planning",
@@ -112238,7 +111324,7 @@
           "keep_winrate": 1.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Gold Dragon",
@@ -112250,7 +111336,7 @@
           "keep_winrate": null,
           "return_winrate": 0.0,
           "winrate_delta": null,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Grand Swordsmith",
@@ -112262,7 +111348,7 @@
           "keep_winrate": 0.5,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Parrying Buckler",
@@ -112274,7 +111360,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 1.0,
           "winrate_delta": 0.0,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Granite Guard",
@@ -112286,7 +111372,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 1.0,
           "winrate_delta": 0.0,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Tadpole",
@@ -112298,7 +111384,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 0.0,
           "winrate_delta": 1.0,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Greater Healing Potion",
@@ -112310,7 +111396,7 @@
           "keep_winrate": null,
           "return_winrate": 0.0,
           "winrate_delta": null,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Goblin Firebow",
@@ -112322,7 +111408,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 0.0,
           "winrate_delta": 1.0,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Minor Priest",
@@ -112334,7 +111420,7 @@
           "keep_winrate": 0.5,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Local Trader",
@@ -112346,7 +111432,7 @@
           "keep_winrate": 0.5,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Black Scorpion",
@@ -112358,7 +111444,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 1.0,
           "winrate_delta": 0.0,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Guide to Heavens",
@@ -112370,7 +111456,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 1.0,
           "winrate_delta": 0.0,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Mad Warlock",
@@ -112382,7 +111468,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 1.0,
           "winrate_delta": 0.0,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Outland Village",
@@ -112394,7 +111480,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 1.0,
           "winrate_delta": -1.0,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Elite Mercenary",
@@ -112406,7 +111492,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 1.0,
           "winrate_delta": -1.0,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Wandering Ancient",
@@ -112418,7 +111504,7 @@
           "keep_winrate": null,
           "return_winrate": 0.5,
           "winrate_delta": null,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Purifier Euron",
@@ -112430,7 +111516,7 @@
           "keep_winrate": null,
           "return_winrate": 0.5,
           "winrate_delta": null,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Great Weapon Conjuring",
@@ -112442,7 +111528,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 0.0,
           "winrate_delta": 0.0,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Elixirist",
@@ -112454,7 +111540,7 @@
           "keep_winrate": 0.0,
           "return_winrate": 1.0,
           "winrate_delta": -1.0,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Alchemist",
@@ -112466,7 +111552,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 1.0,
           "winrate_delta": 0.0,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Light Elemental",
@@ -112478,7 +111564,7 @@
           "keep_winrate": 1.0,
           "return_winrate": 1.0,
           "winrate_delta": 0.0,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Yorefell, Blade of Lusheim",
@@ -112490,7 +111576,7 @@
           "keep_winrate": null,
           "return_winrate": 1.0,
           "winrate_delta": null,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Dragon Tamer",
@@ -112502,7 +111588,7 @@
           "keep_winrate": 0.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Mummified Warrior",
@@ -112514,7 +111600,7 @@
           "keep_winrate": 0.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Skerr'drix",
@@ -112526,7 +111612,7 @@
           "keep_winrate": null,
           "return_winrate": 0.0,
           "winrate_delta": null,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Explosive Potion",
@@ -112538,7 +111624,7 @@
           "keep_winrate": null,
           "return_winrate": 0.0,
           "winrate_delta": null,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Asera",
@@ -112550,7 +111636,7 @@
           "keep_winrate": null,
           "return_winrate": 0.0,
           "winrate_delta": null,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Reileigh, Brewpatron",
@@ -112562,7 +111648,7 @@
           "keep_winrate": null,
           "return_winrate": 0.0,
           "winrate_delta": null,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Homesong Minstrel",
@@ -112574,7 +111660,7 @@
           "keep_winrate": null,
           "return_winrate": 1.0,
           "winrate_delta": null,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Guiding Light",
@@ -112586,7 +111672,7 @@
           "keep_winrate": null,
           "return_winrate": 1.0,
           "winrate_delta": null,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Devout Caretaker",
@@ -112598,7 +111684,7 @@
           "keep_winrate": null,
           "return_winrate": 0.0,
           "winrate_delta": null,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Pyr, Mortal Shepherd",
@@ -112610,7 +111696,7 @@
           "keep_winrate": null,
           "return_winrate": 1.0,
           "winrate_delta": null,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Master Craftsman",
@@ -112622,7 +111708,7 @@
           "keep_winrate": 0.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Lucian Zealot",
@@ -112634,7 +111720,7 @@
           "keep_winrate": 1.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Blessed Force",
@@ -112646,7 +111732,7 @@
           "keep_winrate": 1.0,
           "return_winrate": null,
           "winrate_delta": null,
-          "games": 56
+          "games": 55
         },
         {
           "name": "Vergis, Doomed Archaeologist",
@@ -112658,7 +111744,921 @@
           "keep_winrate": null,
           "return_winrate": 1.0,
           "winrate_delta": null,
-          "games": 56
+          "games": 55
+        }
+      ],
+      "Kai, Longcount Shaman": [
+        {
+          "name": "Firebolt",
+          "kept_count": 17,
+          "returned_count": 15,
+          "total_seen": 32,
+          "keep_rate": 0.5312,
+          "norm_keep_delta": 0.2031,
+          "keep_winrate": 0.4118,
+          "return_winrate": 0.4667,
+          "winrate_delta": -0.0549,
+          "games": 54
+        },
+        {
+          "name": "Shock Nova",
+          "kept_count": 2,
+          "returned_count": 24,
+          "total_seen": 26,
+          "keep_rate": 0.0769,
+          "norm_keep_delta": -0.2616,
+          "keep_winrate": 0.5,
+          "return_winrate": 0.5417,
+          "winrate_delta": -0.0417,
+          "games": 54
+        },
+        {
+          "name": "Red Dragon",
+          "kept_count": 6,
+          "returned_count": 19,
+          "total_seen": 25,
+          "keep_rate": 0.24,
+          "norm_keep_delta": -0.108,
+          "keep_winrate": 0.8333,
+          "return_winrate": 0.6316,
+          "winrate_delta": 0.2017,
+          "games": 54
+        },
+        {
+          "name": "Primordial Storm",
+          "kept_count": 0,
+          "returned_count": 22,
+          "total_seen": 22,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.3364,
+          "keep_winrate": null,
+          "return_winrate": 0.7273,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "Lightning Bolt",
+          "kept_count": 4,
+          "returned_count": 17,
+          "total_seen": 21,
+          "keep_rate": 0.1905,
+          "norm_keep_delta": -0.1619,
+          "keep_winrate": 1.0,
+          "return_winrate": 0.5882,
+          "winrate_delta": 0.4118,
+          "games": 54
+        },
+        {
+          "name": "Throne Guardian",
+          "kept_count": 12,
+          "returned_count": 8,
+          "total_seen": 20,
+          "keep_rate": 0.6,
+          "norm_keep_delta": 0.265,
+          "keep_winrate": 0.5,
+          "return_winrate": 0.5,
+          "winrate_delta": 0.0,
+          "games": 54
+        },
+        {
+          "name": "Dragonkin Evoker",
+          "kept_count": 9,
+          "returned_count": 11,
+          "total_seen": 20,
+          "keep_rate": 0.45,
+          "norm_keep_delta": 0.115,
+          "keep_winrate": 0.7778,
+          "return_winrate": 0.7273,
+          "winrate_delta": 0.0505,
+          "games": 54
+        },
+        {
+          "name": "Pyromancer Apprentice",
+          "kept_count": 11,
+          "returned_count": 7,
+          "total_seen": 18,
+          "keep_rate": 0.6111,
+          "norm_keep_delta": 0.2722,
+          "keep_winrate": 0.4545,
+          "return_winrate": 0.8571,
+          "winrate_delta": -0.4026,
+          "games": 54
+        },
+        {
+          "name": "Silver Dragon",
+          "kept_count": 6,
+          "returned_count": 12,
+          "total_seen": 18,
+          "keep_rate": 0.3333,
+          "norm_keep_delta": -0.0,
+          "keep_winrate": 0.8333,
+          "return_winrate": 0.5,
+          "winrate_delta": 0.3333,
+          "games": 54
+        },
+        {
+          "name": "Action Surge",
+          "kept_count": 5,
+          "returned_count": 12,
+          "total_seen": 17,
+          "keep_rate": 0.2941,
+          "norm_keep_delta": -0.0588,
+          "keep_winrate": 0.6,
+          "return_winrate": 0.3333,
+          "winrate_delta": 0.2667,
+          "games": 54
+        },
+        {
+          "name": "Dragon Tamer",
+          "kept_count": 13,
+          "returned_count": 4,
+          "total_seen": 17,
+          "keep_rate": 0.7647,
+          "norm_keep_delta": 0.4353,
+          "keep_winrate": 0.6154,
+          "return_winrate": 0.5,
+          "winrate_delta": 0.1154,
+          "games": 54
+        },
+        {
+          "name": "Flame Acolyte",
+          "kept_count": 3,
+          "returned_count": 14,
+          "total_seen": 17,
+          "keep_rate": 0.1765,
+          "norm_keep_delta": -0.1647,
+          "keep_winrate": 0.6667,
+          "return_winrate": 0.5,
+          "winrate_delta": 0.1667,
+          "games": 54
+        },
+        {
+          "name": "Spoils of War",
+          "kept_count": 1,
+          "returned_count": 13,
+          "total_seen": 14,
+          "keep_rate": 0.0714,
+          "norm_keep_delta": -0.2429,
+          "keep_winrate": 1.0,
+          "return_winrate": 0.7692,
+          "winrate_delta": 0.2308,
+          "games": 54
+        },
+        {
+          "name": "Flamelash",
+          "kept_count": 5,
+          "returned_count": 8,
+          "total_seen": 13,
+          "keep_rate": 0.3846,
+          "norm_keep_delta": 0.0538,
+          "keep_winrate": 0.6,
+          "return_winrate": 0.125,
+          "winrate_delta": 0.475,
+          "games": 54
+        },
+        {
+          "name": "Fireball",
+          "kept_count": 1,
+          "returned_count": 12,
+          "total_seen": 13,
+          "keep_rate": 0.0769,
+          "norm_keep_delta": -0.2308,
+          "keep_winrate": 1.0,
+          "return_winrate": 0.75,
+          "winrate_delta": 0.25,
+          "games": 54
+        },
+        {
+          "name": "Draconic Mage",
+          "kept_count": 0,
+          "returned_count": 12,
+          "total_seen": 12,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.35,
+          "keep_winrate": null,
+          "return_winrate": 0.75,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "Thunderous Warbeast",
+          "kept_count": 4,
+          "returned_count": 7,
+          "total_seen": 11,
+          "keep_rate": 0.3636,
+          "norm_keep_delta": 0.0181,
+          "keep_winrate": 0.5,
+          "return_winrate": 0.7143,
+          "winrate_delta": -0.2143,
+          "games": 54
+        },
+        {
+          "name": "Skerr'drix",
+          "kept_count": 0,
+          "returned_count": 10,
+          "total_seen": 10,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.33,
+          "keep_winrate": null,
+          "return_winrate": 0.4,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "Lay Claim",
+          "kept_count": 5,
+          "returned_count": 5,
+          "total_seen": 10,
+          "keep_rate": 0.5,
+          "norm_keep_delta": 0.12,
+          "keep_winrate": 0.6,
+          "return_winrate": 0.4,
+          "winrate_delta": 0.2,
+          "games": 54
+        },
+        {
+          "name": "Pyromaniac",
+          "kept_count": 4,
+          "returned_count": 5,
+          "total_seen": 9,
+          "keep_rate": 0.4444,
+          "norm_keep_delta": 0.1222,
+          "keep_winrate": 0.5,
+          "return_winrate": 0.4,
+          "winrate_delta": 0.1,
+          "games": 54
+        },
+        {
+          "name": "Runic Knight",
+          "kept_count": 3,
+          "returned_count": 5,
+          "total_seen": 8,
+          "keep_rate": 0.375,
+          "norm_keep_delta": 0.0625,
+          "keep_winrate": 1.0,
+          "return_winrate": 0.6,
+          "winrate_delta": 0.4,
+          "games": 54
+        },
+        {
+          "name": "Dragon's Breath",
+          "kept_count": 4,
+          "returned_count": 4,
+          "total_seen": 8,
+          "keep_rate": 0.5,
+          "norm_keep_delta": 0.175,
+          "keep_winrate": 0.75,
+          "return_winrate": 0.25,
+          "winrate_delta": 0.5,
+          "games": 54
+        },
+        {
+          "name": "Charge Up",
+          "kept_count": 3,
+          "returned_count": 5,
+          "total_seen": 8,
+          "keep_rate": 0.375,
+          "norm_keep_delta": 0.0375,
+          "keep_winrate": 0.6667,
+          "return_winrate": 0.4,
+          "winrate_delta": 0.2667,
+          "games": 54
+        },
+        {
+          "name": "Kindle",
+          "kept_count": 5,
+          "returned_count": 3,
+          "total_seen": 8,
+          "keep_rate": 0.625,
+          "norm_keep_delta": 0.3,
+          "keep_winrate": 0.2,
+          "return_winrate": 0.3333,
+          "winrate_delta": -0.1333,
+          "games": 54
+        },
+        {
+          "name": "Stormrider Zurn",
+          "kept_count": 1,
+          "returned_count": 7,
+          "total_seen": 8,
+          "keep_rate": 0.125,
+          "norm_keep_delta": -0.2,
+          "keep_winrate": 1.0,
+          "return_winrate": 0.7143,
+          "winrate_delta": 0.2857,
+          "games": 54
+        },
+        {
+          "name": "Strategic Reserves",
+          "kept_count": 5,
+          "returned_count": 3,
+          "total_seen": 8,
+          "keep_rate": 0.625,
+          "norm_keep_delta": 0.25,
+          "keep_winrate": 0.0,
+          "return_winrate": 0.0,
+          "winrate_delta": 0.0,
+          "games": 54
+        },
+        {
+          "name": "Tadpole",
+          "kept_count": 5,
+          "returned_count": 3,
+          "total_seen": 8,
+          "keep_rate": 0.625,
+          "norm_keep_delta": 0.2875,
+          "keep_winrate": 0.2,
+          "return_winrate": 0.6667,
+          "winrate_delta": -0.4667,
+          "games": 54
+        },
+        {
+          "name": "Settle Village",
+          "kept_count": 5,
+          "returned_count": 3,
+          "total_seen": 8,
+          "keep_rate": 0.625,
+          "norm_keep_delta": 0.3,
+          "keep_winrate": 0.4,
+          "return_winrate": 1.0,
+          "winrate_delta": -0.6,
+          "games": 54
+        },
+        {
+          "name": "Thunder Jolt",
+          "kept_count": 0,
+          "returned_count": 7,
+          "total_seen": 7,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.3286,
+          "keep_winrate": null,
+          "return_winrate": 0.4286,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "Goblin Recruitment",
+          "kept_count": 3,
+          "returned_count": 4,
+          "total_seen": 7,
+          "keep_rate": 0.4286,
+          "norm_keep_delta": 0.1,
+          "keep_winrate": 0.3333,
+          "return_winrate": 0.25,
+          "winrate_delta": 0.0833,
+          "games": 54
+        },
+        {
+          "name": "Warcry",
+          "kept_count": 1,
+          "returned_count": 6,
+          "total_seen": 7,
+          "keep_rate": 0.1429,
+          "norm_keep_delta": -0.2,
+          "keep_winrate": 0.0,
+          "return_winrate": 0.5,
+          "winrate_delta": -0.5,
+          "games": 54
+        },
+        {
+          "name": "Thunder Step",
+          "kept_count": 0,
+          "returned_count": 7,
+          "total_seen": 7,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.3143,
+          "keep_winrate": null,
+          "return_winrate": 0.8571,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "Goblin Scout",
+          "kept_count": 3,
+          "returned_count": 3,
+          "total_seen": 6,
+          "keep_rate": 0.5,
+          "norm_keep_delta": 0.1833,
+          "keep_winrate": 0.6667,
+          "return_winrate": 1.0,
+          "winrate_delta": -0.3333,
+          "games": 54
+        },
+        {
+          "name": "Explosive Potion",
+          "kept_count": 0,
+          "returned_count": 5,
+          "total_seen": 5,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.32,
+          "keep_winrate": null,
+          "return_winrate": 0.4,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "Finishing Strike",
+          "kept_count": 0,
+          "returned_count": 5,
+          "total_seen": 5,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.32,
+          "keep_winrate": null,
+          "return_winrate": 0.8,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "Ember",
+          "kept_count": 4,
+          "returned_count": 1,
+          "total_seen": 5,
+          "keep_rate": 0.8,
+          "norm_keep_delta": 0.44,
+          "keep_winrate": 0.0,
+          "return_winrate": 0.0,
+          "winrate_delta": 0.0,
+          "games": 54
+        },
+        {
+          "name": "Khazgar, Flame Emperor",
+          "kept_count": 1,
+          "returned_count": 3,
+          "total_seen": 4,
+          "keep_rate": 0.25,
+          "norm_keep_delta": -0.075,
+          "keep_winrate": 0.0,
+          "return_winrate": 0.3333,
+          "winrate_delta": -0.3333,
+          "games": 54
+        },
+        {
+          "name": "Mad Warlock",
+          "kept_count": 3,
+          "returned_count": 1,
+          "total_seen": 4,
+          "keep_rate": 0.75,
+          "norm_keep_delta": 0.425,
+          "keep_winrate": 0.6667,
+          "return_winrate": 1.0,
+          "winrate_delta": -0.3333,
+          "games": 54
+        },
+        {
+          "name": "Warlord's Mace",
+          "kept_count": 4,
+          "returned_count": 0,
+          "total_seen": 4,
+          "keep_rate": 1.0,
+          "norm_keep_delta": 0.65,
+          "keep_winrate": 0.75,
+          "return_winrate": null,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "Goblin Lorespeaker",
+          "kept_count": 4,
+          "returned_count": 0,
+          "total_seen": 4,
+          "keep_rate": 1.0,
+          "norm_keep_delta": 0.625,
+          "keep_winrate": 0.75,
+          "return_winrate": null,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "Badland Mercenary",
+          "kept_count": 0,
+          "returned_count": 4,
+          "total_seen": 4,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.375,
+          "keep_winrate": null,
+          "return_winrate": 0.0,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "Crimson Flameblade",
+          "kept_count": 0,
+          "returned_count": 3,
+          "total_seen": 3,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.3333,
+          "keep_winrate": null,
+          "return_winrate": 0.0,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "Goblin Duo",
+          "kept_count": 2,
+          "returned_count": 1,
+          "total_seen": 3,
+          "keep_rate": 0.6667,
+          "norm_keep_delta": 0.3334,
+          "keep_winrate": 0.5,
+          "return_winrate": 1.0,
+          "winrate_delta": -0.5,
+          "games": 54
+        },
+        {
+          "name": "Energy Potion",
+          "kept_count": 1,
+          "returned_count": 2,
+          "total_seen": 3,
+          "keep_rate": 0.3333,
+          "norm_keep_delta": 0.0333,
+          "keep_winrate": 1.0,
+          "return_winrate": 0.0,
+          "winrate_delta": 1.0,
+          "games": 54
+        },
+        {
+          "name": "Outland Village",
+          "kept_count": 1,
+          "returned_count": 2,
+          "total_seen": 3,
+          "keep_rate": 0.3333,
+          "norm_keep_delta": -0.0,
+          "keep_winrate": 1.0,
+          "return_winrate": 1.0,
+          "winrate_delta": 0.0,
+          "games": 54
+        },
+        {
+          "name": "Mummified Warrior",
+          "kept_count": 2,
+          "returned_count": 1,
+          "total_seen": 3,
+          "keep_rate": 0.6667,
+          "norm_keep_delta": 0.3334,
+          "keep_winrate": 0.5,
+          "return_winrate": 1.0,
+          "winrate_delta": -0.5,
+          "games": 54
+        },
+        {
+          "name": "Gilded Defender",
+          "kept_count": 2,
+          "returned_count": 1,
+          "total_seen": 3,
+          "keep_rate": 0.6667,
+          "norm_keep_delta": 0.3,
+          "keep_winrate": 1.0,
+          "return_winrate": 1.0,
+          "winrate_delta": 0.0,
+          "games": 54
+        },
+        {
+          "name": "Grutali",
+          "kept_count": 0,
+          "returned_count": 3,
+          "total_seen": 3,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.4,
+          "keep_winrate": null,
+          "return_winrate": 0.6667,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "Master Craftsman",
+          "kept_count": 1,
+          "returned_count": 2,
+          "total_seen": 3,
+          "keep_rate": 0.3333,
+          "norm_keep_delta": 0.0333,
+          "keep_winrate": 1.0,
+          "return_winrate": 1.0,
+          "winrate_delta": 0.0,
+          "games": 54
+        },
+        {
+          "name": "Drowsy Lizard",
+          "kept_count": 0,
+          "returned_count": 2,
+          "total_seen": 2,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.35,
+          "keep_winrate": null,
+          "return_winrate": 1.0,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "Vergis, Doomed Archaeologist",
+          "kept_count": 2,
+          "returned_count": 0,
+          "total_seen": 2,
+          "keep_rate": 1.0,
+          "norm_keep_delta": 0.7,
+          "keep_winrate": 0.0,
+          "return_winrate": null,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "Goblin King",
+          "kept_count": 0,
+          "returned_count": 2,
+          "total_seen": 2,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.4,
+          "keep_winrate": null,
+          "return_winrate": 0.0,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "Gravehand",
+          "kept_count": 0,
+          "returned_count": 2,
+          "total_seen": 2,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.3,
+          "keep_winrate": null,
+          "return_winrate": 0.0,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "Lifeweaver",
+          "kept_count": 2,
+          "returned_count": 0,
+          "total_seen": 2,
+          "keep_rate": 1.0,
+          "norm_keep_delta": 0.65,
+          "keep_winrate": 0.5,
+          "return_winrate": null,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "Found City",
+          "kept_count": 1,
+          "returned_count": 1,
+          "total_seen": 2,
+          "keep_rate": 0.5,
+          "norm_keep_delta": 0.15,
+          "keep_winrate": 0.0,
+          "return_winrate": 1.0,
+          "winrate_delta": -1.0,
+          "games": 54
+        },
+        {
+          "name": "Gruth, Ogre Champion",
+          "kept_count": 0,
+          "returned_count": 2,
+          "total_seen": 2,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.35,
+          "keep_winrate": null,
+          "return_winrate": 0.5,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "Skaali Blessing",
+          "kept_count": 1,
+          "returned_count": 1,
+          "total_seen": 2,
+          "keep_rate": 0.5,
+          "norm_keep_delta": 0.15,
+          "keep_winrate": 0.0,
+          "return_winrate": 0.0,
+          "winrate_delta": 0.0,
+          "games": 54
+        },
+        {
+          "name": "Steel Lancer",
+          "kept_count": 0,
+          "returned_count": 2,
+          "total_seen": 2,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.3,
+          "keep_winrate": null,
+          "return_winrate": 1.0,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "Ursine Blade Trio",
+          "kept_count": 0,
+          "returned_count": 2,
+          "total_seen": 2,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.4,
+          "keep_winrate": null,
+          "return_winrate": 0.0,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "Brash Outfitter",
+          "kept_count": 1,
+          "returned_count": 1,
+          "total_seen": 2,
+          "keep_rate": 0.5,
+          "norm_keep_delta": 0.15,
+          "keep_winrate": 1.0,
+          "return_winrate": 1.0,
+          "winrate_delta": 0.0,
+          "games": 54
+        },
+        {
+          "name": "Big Game Hunter",
+          "kept_count": 0,
+          "returned_count": 1,
+          "total_seen": 1,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.4,
+          "keep_winrate": null,
+          "return_winrate": 1.0,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "Wise Elder",
+          "kept_count": 1,
+          "returned_count": 0,
+          "total_seen": 1,
+          "keep_rate": 1.0,
+          "norm_keep_delta": 0.7,
+          "keep_winrate": 1.0,
+          "return_winrate": null,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "Battlefield Savior",
+          "kept_count": 1,
+          "returned_count": 0,
+          "total_seen": 1,
+          "keep_rate": 1.0,
+          "norm_keep_delta": 0.7,
+          "keep_winrate": 1.0,
+          "return_winrate": null,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "Greater Healing Potion",
+          "kept_count": 0,
+          "returned_count": 1,
+          "total_seen": 1,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.3,
+          "keep_winrate": null,
+          "return_winrate": 0.0,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "Feral Vampire",
+          "kept_count": 1,
+          "returned_count": 0,
+          "total_seen": 1,
+          "keep_rate": 1.0,
+          "norm_keep_delta": 0.6,
+          "keep_winrate": 0.0,
+          "return_winrate": null,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "Bloodrush",
+          "kept_count": 0,
+          "returned_count": 1,
+          "total_seen": 1,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.4,
+          "keep_winrate": null,
+          "return_winrate": 0.0,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "First Experiment",
+          "kept_count": 0,
+          "returned_count": 1,
+          "total_seen": 1,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.3,
+          "keep_winrate": null,
+          "return_winrate": 1.0,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "Elite Mercenary",
+          "kept_count": 0,
+          "returned_count": 1,
+          "total_seen": 1,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.3,
+          "keep_winrate": null,
+          "return_winrate": 1.0,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "Prideplain Enforcer",
+          "kept_count": 0,
+          "returned_count": 1,
+          "total_seen": 1,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.4,
+          "keep_winrate": null,
+          "return_winrate": 1.0,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "Growth Potion",
+          "kept_count": 0,
+          "returned_count": 1,
+          "total_seen": 1,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.4,
+          "keep_winrate": null,
+          "return_winrate": 0.0,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "Power Potion",
+          "kept_count": 0,
+          "returned_count": 1,
+          "total_seen": 1,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.4,
+          "keep_winrate": null,
+          "return_winrate": 0.0,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "Prince Xerxes",
+          "kept_count": 0,
+          "returned_count": 1,
+          "total_seen": 1,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.4,
+          "keep_winrate": null,
+          "return_winrate": 0.0,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "War Banner",
+          "kept_count": 0,
+          "returned_count": 1,
+          "total_seen": 1,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.3,
+          "keep_winrate": null,
+          "return_winrate": 0.0,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "Slash and Burn",
+          "kept_count": 0,
+          "returned_count": 1,
+          "total_seen": 1,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.3,
+          "keep_winrate": null,
+          "return_winrate": 0.0,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "Demilich",
+          "kept_count": 0,
+          "returned_count": 1,
+          "total_seen": 1,
+          "keep_rate": 0.0,
+          "norm_keep_delta": -0.3,
+          "keep_winrate": null,
+          "return_winrate": 1.0,
+          "winrate_delta": null,
+          "games": 54
+        },
+        {
+          "name": "Goblin Firebow",
+          "kept_count": 1,
+          "returned_count": 0,
+          "total_seen": 1,
+          "keep_rate": 1.0,
+          "norm_keep_delta": 0.7,
+          "keep_winrate": 1.0,
+          "return_winrate": null,
+          "winrate_delta": null,
+          "games": 54
         }
       ],
       "Starwise Luna": [

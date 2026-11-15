@@ -575,17 +575,17 @@
   },
   "6m": {
     "all": {
-      "total_games": 1996,
+      "total_games": 1994,
       "first_player_wins": 990,
-      "first_player_winrate": 0.496,
+      "first_player_winrate": 0.4965,
       "per_commander": {
         "Milo Sunstone": {
           "first_games": 92,
           "first_wins": 44,
           "first_winrate": 0.4783,
-          "second_games": 89,
-          "second_wins": 42,
-          "second_winrate": 0.4719
+          "second_games": 88,
+          "second_wins": 41,
+          "second_winrate": 0.4659
         },
         "It That Weaves": {
           "first_games": 78,
@@ -612,9 +612,9 @@
           "second_winrate": 0.5429
         },
         "Captain Greenbeard": {
-          "first_games": 116,
+          "first_games": 114,
           "first_wins": 60,
-          "first_winrate": 0.5172,
+          "first_winrate": 0.5263,
           "second_games": 105,
           "second_wins": 55,
           "second_winrate": 0.5238
@@ -703,9 +703,9 @@
           "first_games": 103,
           "first_wins": 55,
           "first_winrate": 0.534,
-          "second_games": 88,
-          "second_wins": 46,
-          "second_winrate": 0.5227
+          "second_games": 87,
+          "second_wins": 45,
+          "second_winrate": 0.5172
         },
         "Lubela, Tender of the Wilds": {
           "first_games": 44,
@@ -861,9 +861,9 @@
       }
     },
     "Snowmelt": {
-      "total_games": 608,
+      "total_games": 606,
       "first_player_wins": 296,
-      "first_player_winrate": 0.4868,
+      "first_player_winrate": 0.4884,
       "per_commander": {
         "Jagris, the Huntsman": {
           "first_games": 64,
@@ -946,28 +946,28 @@
           "second_winrate": 0.3684
         },
         "Captain Greenbeard": {
-          "first_games": 38,
+          "first_games": 36,
           "first_wins": 17,
-          "first_winrate": 0.4474,
+          "first_winrate": 0.4722,
           "second_games": 31,
           "second_wins": 20,
           "second_winrate": 0.6452
-        },
-        "Kai, Longcount Shaman": {
-          "first_games": 31,
-          "first_wins": 21,
-          "first_winrate": 0.6774,
-          "second_games": 24,
-          "second_wins": 10,
-          "second_winrate": 0.4167
         },
         "Milo Sunstone": {
           "first_games": 26,
           "first_wins": 12,
           "first_winrate": 0.4615,
-          "second_games": 30,
-          "second_wins": 18,
-          "second_winrate": 0.6
+          "second_games": 29,
+          "second_wins": 17,
+          "second_winrate": 0.5862
+        },
+        "Kai, Longcount Shaman": {
+          "first_games": 31,
+          "first_wins": 21,
+          "first_winrate": 0.6774,
+          "second_games": 23,
+          "second_wins": 9,
+          "second_winrate": 0.3913
         },
         "Starwise Luna": {
           "first_games": 44,

@@ -1230,12 +1230,12 @@
             "games": 77
           },
           {
-            "winrate": 0.24,
-            "games": 25
+            "winrate": 0.25,
+            "games": 24
           },
           {
-            "winrate": 0.3,
-            "games": 10
+            "winrate": 0.3333,
+            "games": 9
           }
         ],
         "Rosirix the Witch": [
@@ -1288,8 +1288,8 @@
             "games": 19
           },
           {
-            "winrate": 0.5,
-            "games": 10
+            "winrate": 0.4444,
+            "games": 9
           }
         ],
         "Executor Ginn": [
@@ -1410,8 +1410,8 @@
             "games": 70
           },
           {
-            "winrate": 0.6875,
-            "games": 16
+            "winrate": 0.6667,
+            "games": 15
           },
           {
             "winrate": 0.5,
@@ -1899,29 +1899,11 @@
           },
           {
             "winrate": 0.0,
-            "games": 6
+            "games": 5
           },
           {
             "winrate": 0.0,
-            "games": 3
-          }
-        ],
-        "Kai, Longcount Shaman": [
-          {
-            "winrate": 0.6154,
-            "games": 13
-          },
-          {
-            "winrate": 0.55,
-            "games": 20
-          },
-          {
-            "winrate": 0.5,
-            "games": 6
-          },
-          {
-            "winrate": 0.0,
-            "games": 1
+            "games": 2
           }
         ],
         "Jagris, the Huntsman": [
@@ -1957,7 +1939,7 @@
           },
           {
             "winrate": 1.0,
-            "games": 2
+            "games": 1
           }
         ],
         "Starwise Luna": [
@@ -2066,6 +2048,24 @@
           {
             "winrate": 0.3333,
             "games": 3
+          }
+        ],
+        "Kai, Longcount Shaman": [
+          {
+            "winrate": 0.6154,
+            "games": 13
+          },
+          {
+            "winrate": 0.55,
+            "games": 20
+          },
+          {
+            "winrate": 0.4,
+            "games": 5
+          },
+          {
+            "winrate": 0.0,
+            "games": 1
           }
         ],
         "Lubela, Tender of the Wilds": [
