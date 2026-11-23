@@ -300,7 +300,7 @@ These are valid games that pass cleaning but behave differently in specific stat
 |---------|---------------|-----------------|
 | `firstPlayer = "99"` | First-turn stats | Means "random" or "unknown" — the game client didn't record who went first (explicit tracking stopped August 2025). Turn order is recovered from the mulligan kept count (3 kept = went first, 4 = went second). If that's also ambiguous (both players kept the same number, or mulligan data is missing), the game is **included** in overall win/loss counts but **excluded** from Going First / Going Second breakdowns. This is why total wins + losses in a matchup may not equal going-first-games + going-second-games. |
 | `firstPlayer = "abc"` or other non-numeric | First-turn stats | Same handling as "99" — falls back to mulligan-based inference, and is excluded from first-turn analysis only if that also can't resolve turn order. |
-| Missing `datetime` or `datetimeStarted` | Duration, time filters | Game is still counted in stats but `duration_minutes` is `None`. If `datetimeStarted` is missing, the game won't appear in time-filtered views (1M, 3M, 6M) but will appear in "All". |
+| Missing `datetime` or `datetimeStarted` | Duration, time filters | Game is still counted in stats but `duration_minutes` is `None`. If `datetimeStarted` is missing, the game won't appear in time-filtered views (1M, 3M, 6M, 1Y) but will appear in "All". |
 | `winner` field missing | Win/loss attribution | Defaults to `false` — the player is counted as a loser. |
 
 ### Commander & Card Name Normalization

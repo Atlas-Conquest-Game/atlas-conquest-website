@@ -51,6 +51,30 @@ class TestE1_PeriodFilterBoundary:
         result = filter_games_by_period(games, 30)
         assert len(result) == 0
 
+    def test_one_year_window_is_365_days(self):
+        from pipeline.constants import PERIODS
+        assert PERIODS["1y"] == 365
+
+    def test_one_year_window_includes_game_just_inside(self):
+        now = datetime.now(timezone.utc)
+        inside = (now - timedelta(days=364, hours=23)).isoformat()
+        games = [make_clean_game(datetime=inside)]
+        assert len(filter_games_by_period(games, 365)) == 1
+
+    def test_one_year_window_excludes_game_just_outside(self):
+        now = datetime.now(timezone.utc)
+        outside = (now - timedelta(days=365, hours=1)).isoformat()
+        games = [make_clean_game(datetime=outside)]
+        assert filter_games_by_period(games, 365) == []
+
+    def test_one_year_window_sits_between_six_months_and_all(self):
+        now = datetime.now(timezone.utc)
+        games = [make_clean_game(datetime=(now - timedelta(days=d)).isoformat())
+                 for d in (10, 200, 400)]
+        assert len(filter_games_by_period(games, 180)) == 1
+        assert len(filter_games_by_period(games, 365)) == 2
+        assert len(filter_games_by_period(games, None)) == 3
+
 
 # ─── E2: Period None returns all ──────────────────────────────────
 

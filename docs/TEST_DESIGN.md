@@ -52,7 +52,7 @@ Tests run AFTER the pipeline writes JSON. They validate the contract between pip
 
 | # | Question the test answers | Risk it prevents |
 |---|---------------------------|------------------|
-| C1 | Does every JSON file have all 4 periods x 4 maps = 16 combinations? | Frontend `getPeriodData()` crashing on missing key |
+| C1 | Does every JSON file have all 5 periods x 4 maps = 20 combinations? | Frontend `getPeriodData()` crashing on missing key |
 | C2 | Are all winrates between 0.0 and 1.0 (inclusive)? | Display showing "234%" or negative winrates |
 | C3 | Are all counts non-negative integers? | Negative game counts, fractional matches |
 | C4 | Do commander names in `commander_stats.json` match those in `matchups.json`? | Heatmap showing commanders that don't exist in the stats table |
@@ -90,7 +90,7 @@ Gaps identified after initial test suite shipped. These cover the untested glue 
 
 | # | Question the test answers | Risk it prevents |
 |---|---------------------------|------------------|
-| E1 | Does `filter_games_by_period()` correctly include/exclude games at the boundary date? | 1M/3M/6M views showing wrong data if date math is off |
+| E1 | Does `filter_games_by_period()` correctly include/exclude games at the boundary date? | 1M/3M/6M/1Y views showing wrong data if date math is off |
 | E2 | Does `filter_games_by_period(games, None)` return all games unchanged? | "All time" view accidentally filtering |
 | E3 | Does `filter_games_by_map()` correctly filter by map name, and return all for "all"? | Map-specific stats including games from other maps |
 | E4 | Do bucket boundaries assign edge values correctly? (exactly 10 min, exactly 30 actions, etc.) | Off-by-one putting games in wrong bucket |

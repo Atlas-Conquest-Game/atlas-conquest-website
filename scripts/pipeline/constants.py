@@ -90,7 +90,7 @@ DATA_VERSION = "3.1.0"
 MIN_PILOTS_PUBLISHED = 5
 
 # Time periods for aggregation: key → days (None = all time)
-PERIODS = {"all": None, "6m": 180, "3m": 90, "1m": 30}
+PERIODS = {"all": None, "1y": 365, "6m": 180, "3m": 90, "1m": 30}
 
 # Maps for aggregation: "all" includes every game
 MAPS = ["all", "Dunes", "Snowmelt", "Tropics"]

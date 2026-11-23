@@ -15,7 +15,7 @@ from pathlib import Path
 import pytest
 from helpers import load_real_json, DATA_DIR
 
-PERIODS = ["all", "6m", "3m", "1m"]
+PERIODS = ["all", "1y", "6m", "3m", "1m"]
 MAPS = ["all", "Dunes", "Snowmelt", "Tropics"]
 
 # Files that use the period x map nesting structure
@@ -48,7 +48,7 @@ def skip_if_no_data():
 # ─── C1: All period x map combinations present ───────────────────
 
 class TestC1_PeriodMapCombinations:
-    """Every nested JSON file must have all 4 periods x 4 maps = 16 combinations."""
+    """Every nested JSON file must have all 5 periods x 4 maps = 20 combinations."""
 
     @pytest.fixture(autouse=True)
     def check_data(self):
@@ -328,7 +328,7 @@ class TestC9_FileSizes:
         ("commander_stats.json", 1, 500),
         ("matchups.json", 1, 2000),
         ("matchup_details.json", 10, 10000),
-        ("card_stats.json", 5, 5000),
+        ("card_stats.json", 5, 7000),
         ("commanders.json", 0.5, 100),
         ("cards.json", 1, 500),
         ("trends.json", 1, 1000),

@@ -145,7 +145,20 @@ async function loadData(keys) {
   const results = await Promise.all(keys.map(k => loadJSON(DATA_FILES[k])));
   const data = {};
   keys.forEach((k, i) => { data[k] = results[i]; });
+  if (data.metadata) dropMissingPeriods(data.metadata);
   return data;
+}
+
+// A period button whose window isn't in the published data (a new period
+// deployed before the next data refresh) would render nothing: remove it,
+// and its option in the mobile select if that was already built.
+function dropMissingPeriods(metadata) {
+  document.querySelectorAll('button.time-btn[data-period]').forEach(btn => {
+    if (metadata[btn.dataset.period] === undefined) btn.remove();
+  });
+  document.querySelectorAll('select.filter-select[aria-label="Time period"] option').forEach(opt => {
+    if (metadata[opt.value] === undefined) opt.remove();
+  });
 }
 
 async function loadCommanderCardStats() {

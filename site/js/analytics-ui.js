@@ -274,7 +274,7 @@
 
   // ─── Period label ──────────────────────────────────────────────────
 
-  const PERIOD_LABELS = { '1m': 'Last month', '3m': 'Last 3 months', '6m': 'Last 6 months', all: 'All time' };
+  const PERIOD_LABELS = { '1m': 'Last month', '3m': 'Last 3 months', '6m': 'Last 6 months', '1y': 'Last year', all: 'All time' };
 
   function periodLabel(opts = {}) {
     const p = typeof currentPeriod !== 'undefined' ? currentPeriod : '3m';

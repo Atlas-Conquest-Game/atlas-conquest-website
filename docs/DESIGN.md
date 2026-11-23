@@ -164,7 +164,7 @@ Dates use one format everywhere: `Oct 5, 2026` (`formatSiteDate()` in shared.js,
 
 ### Time Filter Bar
 - Sticky under the brand nav + analytics tab bar. Frosted navy.
-- `.an-seg` segmented controls for period (`1M`, `3M`, `6M`, `All`) and map; active = gold fill + gold border. Below 768px each becomes a native `<select>` (built by shared.js from the bar's own buttons only — `#time-filter-bar .time-btn`, never a modal's).
+- `.an-seg` segmented controls for period (`1M`, `3M`, `6M`, `1Y`, `All`) and map; active = gold fill + gold border. Below 768px each becomes a native `<select>` (built by shared.js from the bar's own buttons only — `#time-filter-bar .time-btn`, never a modal's).
 - Changing period re-renders all sections.
 
 ### Faction Filter

@@ -170,7 +170,7 @@ class TestD6_MissingPeriod:
 
     def test_all_periods_defined(self):
         from pipeline.constants import PERIODS
-        expected = {"all", "6m", "3m", "1m"}
+        expected = {"all", "1y", "6m", "3m", "1m"}
         assert set(PERIODS.keys()) == expected
 
     def test_all_maps_defined(self):

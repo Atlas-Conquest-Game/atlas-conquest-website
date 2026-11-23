@@ -94,7 +94,7 @@ Each page loads `shared.js` first (globals, not ES modules), then its page-speci
 - Matchup heatmap with hover tooltips (including mirror matches on diagonal)
 - Clickable deck composition charts opening commander detail modal
 - Info tooltips (`?` icons) explaining stats, columns, and chart meanings
-- Global time period filter (1M / 3M / 6M / All) re-renders all sections
+- Global time period filter (1M / 3M / 6M / 1Y / All) re-renders all sections
 - Global map filter (All Maps / Dunes / Snowmelt / Tropics) re-renders all sections
 - First-turn advantage summary (Overview) and per-commander chart (Meta)
 - Graceful empty-state handling when map/period combos have insufficient data
