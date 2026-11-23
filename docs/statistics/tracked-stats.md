@@ -115,8 +115,8 @@ Optional card columns — part of the Card stats group but **off by default**; t
 | Stat | Calculation | Min Sample | Caveats |
 |------|-------------|-----------|---------|
 | Included | `deck_count / total_player_games` | 1 | Global: total_player_games = total_matches × 2. Commander: total = commander's games. |
-| Drawn WR | `wins_when_drawn / games_where_drawn` | 5 (shown as "--" below) | Correlation, not causation |
-| Played WR | `wins_when_played / games_where_played` | 5 (shown as "--" below) | Stronger signal than drawn WR for card impact |
+| Drawn WR | `wins_when_drawn / games_where_drawn` | 5 (shown as "--" below) | The primary balance signal. Correlation, not causation; long games draw more cards. |
+| Played WR | `wins_when_played / games_where_played` | 5 (shown as "--" below) | Biased toward games already being won: a card is only played once it's affordable and useful. Drawn WR is the primary balance signal. |
 | Drawn Rate | `games_where_drawn / total_games` | 1 | De-emphasized. |
 | Played Rate | `games_where_played / total_games` | 1 | De-emphasized. A card can be drawn but not played. |
 | Avg Copies | `total_copies / deck_count` | 1 | Average copies per deck that includes this card. Max 3. |
