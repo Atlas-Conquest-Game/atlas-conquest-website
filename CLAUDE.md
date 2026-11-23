@@ -88,7 +88,8 @@ See [ARCHITECTURE.md](docs/ARCHITECTURE.md) for the full system design.
 
 - **Commanders** have an **intellect** stat (6-10) that determines how many cards they see in their opening hand mulligan.
 - **Mulligan**: players see `intellect` cards, keep exactly 3 (going first) or 4 (going second), return the rest to their deck.
-- **Turn order**: first player (`first_player` field) — historical data has `"99"` for corrupt entries. Mulligan data can infer turn order from kept count.
+- **Turn order**: `first_player` is the starting player's **seat id**, matched against each player's `playerid` (kept as `seat` in clean games), never a position in the players list: the list follows the order players' details reached the server. Aug 2025 to Jun 2026 rows have `"99"` (a recording bug); then turn order is inferred from the mulligan kept count (3 = first, 4 = second).
+- **Game times**: rows since 2026-09-18 hold the end time in `datetimeEnded` and the start time in `datetime`; older rows have the end time in `datetime`.
 - **6 factions**: Skaal, Grenalia, Lucia, Neutral, Shadis, Archaeon. Plus 3 **minor patrons** with a card or two each — Adora, Mechanus, Treasure. They are not Neutral; only Lazim can build Adora/Mechanus cards and Treasure belongs to no commander.
 - **3 maps**: Dunes, Snowmelt, Tropics.
 - **Tokens**: generated cards (Zombie, Lucian Soldier, …) from `StandardFormatTokens.csv`. They appear in match data but no deck can contain one — published in `cards.json`/`card_stats.json` with `token: true`, hidden by default on the Cards page, and excluded from the deck builder pool. On the Goals page they have no goal of their own but count toward the combined totals and get their own row in the art-source breakdown.

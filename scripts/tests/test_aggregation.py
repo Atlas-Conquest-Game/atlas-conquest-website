@@ -211,14 +211,17 @@ class TestB5b_FirstTurnMulliganInference:
         ft = aggregate_first_turn(games)
         assert ft["total_games"] == 0
 
-    def test_explicit_field_takes_precedence(self):
-        # Explicit "1" should win even if mulligan would suggest otherwise.
+    def test_mulligan_beats_the_position_reading(self):
+        # Without seat ids, "1" was read as list position 0. That reading was
+        # wrong in about half the games of Jun-Oct 2026 (the list follows arrival
+        # order), while the mulligan matched the real starter in all 1,389
+        # checked games, so the mulligan wins when the two disagree.
         games = make_games(2, first_player="1", p1_wins=2)
         for g in games:
-            _set_mulligan(g, 4, 3)  # mulligan would say p2 first
+            _set_mulligan(g, 4, 3)  # p2 kept 3: p2 went first
         ft = aggregate_first_turn(games)
         assert ft["total_games"] == 2
-        assert ft["first_player_wins"] == 2  # p1 (explicit first) won both
+        assert ft["first_player_wins"] == 0  # p2 went first and lost both
 
 
 # ─── B6: First-turn game counts add up ───────────────────────────
@@ -1138,3 +1141,60 @@ class TestB16_Pilots:
         assert elber["pilots"] is None and elber["faction"] == "neutral"
         assert [r["name"] for r in rows] == sorted([r["name"] for r in rows],
                                                    key=lambda n: -raw[n]["matches"])
+
+
+# ─── first_player is a seat id, not a list position ──────────────
+
+class TestFirstPlayerBySeat:
+    """`first_player` names the starting player's seat. The players list is in
+    the order their details reached the server, so seat "1" can be listed
+    second (about half of all games from Jun to Oct 2026)."""
+
+    @staticmethod
+    def _game(first, seats, kept=None):
+        from pipeline.aggregation import first_player_index  # noqa: F401
+        players = [{"seat": s} for s in seats]
+        if kept:
+            for p, k in zip(players, kept):
+                p["mulligan_kept"] = [{"name": "X", "count": k}]
+        return {"first_player": first, "players": players}
+
+    def test_seat_listed_second(self):
+        from pipeline.aggregation import first_player_index
+        assert first_player_index(self._game("1", ["2", "1"])) == 1
+        assert first_player_index(self._game("2", ["2", "1"])) == 0
+
+    def test_seat_listed_first(self):
+        from pipeline.aggregation import first_player_index
+        assert first_player_index(self._game("1", ["1", "2"])) == 0
+
+    def test_seat_beats_a_disagreeing_position(self):
+        """The old reading (position fp-1) would say index 0 here."""
+        from pipeline.aggregation import first_player_index
+        assert first_player_index(self._game("1", ["2", "1"], kept=[4, 3])) == 1
+
+    def test_reconnect_seat_three(self):
+        """A player who reconnected gets seat 3; first_player=3 matches it."""
+        from pipeline.aggregation import first_player_index
+        assert first_player_index(self._game("3", ["1", "3"])) == 1
+
+    def test_no_seat_match_uses_mulligan(self):
+        from pipeline.aggregation import first_player_index
+        assert first_player_index(self._game("99", ["1", "2"], kept=[4, 3])) == 1
+        assert first_player_index(self._game("2", ["1", "3"], kept=[3, 4])) == 0
+
+    def test_no_seat_match_no_mulligan_is_unknown(self):
+        """Seats are known but none started: don't guess from the position."""
+        from pipeline.aggregation import first_player_index
+        assert first_player_index(self._game("2", ["1", "3"])) is None
+
+    def test_games_without_seats_keep_the_old_reading(self):
+        from pipeline.aggregation import first_player_index
+        assert first_player_index(self._game("2", [None, None])) == 1
+
+    def test_first_turn_winrate_counts_the_seat(self):
+        """End to end: seat 1 started and won every game but is listed second."""
+        g = make_clean_game(first_player="1", players_overrides=[
+            {"seat": "2", "winner": False}, {"seat": "1", "winner": True}])
+        ft = aggregate_first_turn([g] * 4)
+        assert ft["first_player_wins"] == 4

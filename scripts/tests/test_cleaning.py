@@ -319,7 +319,7 @@ class TestA10_OutputShape:
         item = make_raw_item()
         result = clean_game(item)
 
-        player_keys = {"name", "winner", "commander", "deck_name", "turns", "actions",
+        player_keys = {"seat", "name", "winner", "commander", "deck_name", "turns", "actions",
                        "cards_in_deck", "cards_drawn", "cards_played",
                        "mulligan_kept", "mulligan_returned", "feedback"}
         for p in result["players"]:
@@ -486,3 +486,37 @@ class TestA12_Feedback:
         # Older rows have no playerid on the player blob.
         result = clean_game(make_raw_item(feedback=_feedback_blob((0, "fun"))))
         assert [p["feedback"] for p in result["players"]] == [None, None]
+
+
+# ─── Rows since 2026-09-18: end time in datetimeEnded ────────────
+
+class TestDurationFromDatetimeEnded:
+    """Since 2026-09-18 the game writes the START time to `datetime` (the range
+    key, set when the match begins) and the end to `datetimeEnded`."""
+
+    def test_new_row_uses_datetime_ended(self):
+        item = make_raw_item(datetimeStarted="10/14/2026 06:02:48", datetime="10/14/2026 06:02:48",
+                             datetimeEnded="10/14/2026 06:20:12")
+        result = clean_game(item)
+        assert result["duration_minutes"] == 17.4
+        assert result["datetime"] == "2026-10-14T06:20:12"
+
+    def test_old_row_still_uses_datetime(self):
+        item = make_raw_item(datetimeStarted="01/15/2025 14:00:00", datetime="01/15/2025 14:20:00")
+        assert clean_game(item)["duration_minutes"] == 20.0
+
+    def test_empty_datetime_ended_falls_back(self):
+        item = make_raw_item(datetimeStarted="01/15/2025 14:00:00", datetime="01/15/2025 14:20:00", datetimeEnded="")
+        assert clean_game(item)["duration_minutes"] == 20.0
+
+
+class TestSeat:
+    """Each clean player keeps its per-match seat id (`playerid`)."""
+
+    def test_seat_kept_as_string(self):
+        item = make_raw_item(player1_overrides={"playerid": 2}, player2_overrides={"playerid": 1})
+        result = clean_game(item)
+        assert [p["seat"] for p in result["players"]] == ["2", "1"]
+
+    def test_missing_seat_is_none(self):
+        assert [p["seat"] for p in clean_game(make_raw_item())["players"]] == [None, None]

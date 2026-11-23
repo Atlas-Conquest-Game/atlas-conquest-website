@@ -61,18 +61,28 @@ def _infer_first_index_from_mulligan(players):
 def first_player_index(game):
     """Determine the index (0 or 1) of the player who went first.
 
-    Prefers the explicit ``first_player`` field ("1"/"2"). For games recorded
-    after first-player tracking stopped (August 2025), falls back to inferring
-    turn order from mulligan kept counts (3 kept = went first, 4 = went second).
-    Returns 0, 1, or None when turn order cannot be determined.
+    ``first_player`` is the starting player's per-match seat id, not a position
+    in the players list: the game lists players in the order their details
+    reached the server, which is often not seat order. So the starter is the
+    player whose ``seat`` equals ``first_player``. When no player has that seat
+    (the "99" sentinel of Aug 2025 to Jun 2026, or a seat id above 2 after a
+    reconnect), turn order is inferred from the mulligan (3 kept = went first,
+    4 = went second). Games cached before seats were recorded fall back to the
+    old position reading. Returns 0, 1, or None when it can't be determined.
     """
     players = game.get("players", [])
     if len(players) != 2:
         return None
     fp = game.get("first_player")
-    if fp in ("1", "2"):
+    seats = [p.get("seat") for p in players]
+    if fp in seats:
+        return seats.index(fp)
+    inferred = _infer_first_index_from_mulligan(players)
+    if inferred is not None:
+        return inferred
+    if fp in ("1", "2") and all(s is None for s in seats):
         return int(fp) - 1
-    return _infer_first_index_from_mulligan(players)
+    return None
 
 
 def aggregate_commander_stats(games):

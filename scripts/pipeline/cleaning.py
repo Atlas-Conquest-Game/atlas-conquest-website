@@ -114,9 +114,11 @@ def clean_game(raw_item, skip_log=None):
             skip_log.append("first_player=0")
         return None
 
-    # Parse datetimes
-    dt_end = parse_datetime(raw_item.get("datetime", ""))
+    # Parse datetimes. Rows written since 2026-09-18 carry the end time in
+    # `datetimeEnded` and the START time in `datetime` (the table's range key,
+    # now set when the match begins); older rows have the end time in `datetime`.
     dt_start = parse_datetime(raw_item.get("datetimeStarted", ""))
+    dt_end = parse_datetime(raw_item.get("datetimeEnded", "")) or parse_datetime(raw_item.get("datetime", ""))
 
     # Parse players
     players_data = parse_players_json(raw_item.get("players", ""))
@@ -216,7 +218,10 @@ def clean_game(raw_item, skip_log=None):
             if name:
                 mulligan_returned.append({"name": name, "count": count})
 
+        seat = p.get("playerid")
         clean_players.append({
+            # Per-match network seat id; `first_player` names the starting seat.
+            "seat": str(seat) if seat is not None else None,
             "name": p.get("name", "Unknown"),
             "winner": winner,
             "commander": commander,
