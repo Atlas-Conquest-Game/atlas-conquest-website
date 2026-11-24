@@ -84,9 +84,9 @@
       {
         "name": "Milo Sunstone",
         "faction": "lucia",
-        "matches": 549,
+        "matches": 550,
         "wins": 276,
-        "winrate": 0.5027,
+        "winrate": 0.5018,
         "pilots": 85
       },
       {
@@ -124,17 +124,17 @@
       {
         "name": "Rosirix the Witch",
         "faction": "archaeon",
-        "matches": 364,
-        "wins": 167,
-        "winrate": 0.4588,
+        "matches": 366,
+        "wins": 169,
+        "winrate": 0.4617,
         "pilots": 19
       },
       {
         "name": "Yarrow, Blood Banker",
         "faction": "shadis",
-        "matches": 132,
+        "matches": 133,
         "wins": 70,
-        "winrate": 0.5303,
+        "winrate": 0.5263,
         "pilots": 11
       }
     ],
@@ -262,17 +262,17 @@
       {
         "name": "Rosirix the Witch",
         "faction": "archaeon",
-        "matches": 147,
-        "wins": 67,
-        "winrate": 0.4558,
+        "matches": 148,
+        "wins": 68,
+        "winrate": 0.4595,
         "pilots": 18
       },
       {
         "name": "Yarrow, Blood Banker",
         "faction": "shadis",
-        "matches": 67,
+        "matches": 68,
         "wins": 37,
-        "winrate": 0.5522,
+        "winrate": 0.5441,
         "pilots": 11
       }
     ],
@@ -458,10 +458,10 @@
       {
         "name": "Rosirix the Witch",
         "faction": "archaeon",
-        "matches": 111,
-        "wins": 57,
-        "winrate": 0.5135,
-        "pilots": 14
+        "matches": 112,
+        "wins": 58,
+        "winrate": 0.5179,
+        "pilots": 15
       },
       {
         "name": "Kai, Longcount Shaman",
@@ -506,9 +506,563 @@
       {
         "name": "Milo Sunstone",
         "faction": "lucia",
-        "matches": 72,
+        "matches": 73,
         "wins": 32,
+        "winrate": 0.4384,
+        "pilots": 15
+      },
+      {
+        "name": "It That Weaves",
+        "faction": "archaeon",
+        "matches": 67,
+        "wins": 34,
+        "winrate": 0.5075,
+        "pilots": 14
+      },
+      {
+        "name": "Fael Spiritwalker",
+        "faction": "shadis",
+        "matches": 60,
+        "wins": 29,
+        "winrate": 0.4833,
+        "pilots": 16
+      },
+      {
+        "name": "Lubela, Tender of the Wilds",
+        "faction": "grenalia",
+        "matches": 34,
+        "wins": 13,
+        "winrate": 0.3824,
+        "pilots": 16
+      },
+      {
+        "name": "Elber, Jungle Emissary",
+        "faction": "grenalia",
+        "matches": 28,
+        "wins": 14,
+        "winrate": 0.5,
+        "pilots": 14
+      },
+      {
+        "name": "Yarrow, Blood Banker",
+        "faction": "shadis",
+        "matches": 26,
+        "wins": 15,
+        "winrate": 0.5769,
+        "pilots": 8
+      }
+    ]
+  },
+  "1y": {
+    "all": [
+      {
+        "name": "Lazim, Thief of Gods",
+        "faction": "neutral",
+        "matches": 944,
+        "wins": 378,
+        "winrate": 0.4004,
+        "pilots": 47
+      },
+      {
+        "name": "Jagris, the Huntsman",
+        "faction": "grenalia",
+        "matches": 674,
+        "wins": 379,
+        "winrate": 0.5623,
+        "pilots": 67
+      },
+      {
+        "name": "Macks Speed",
+        "faction": "skaal",
+        "matches": 509,
+        "wins": 306,
+        "winrate": 0.6012,
+        "pilots": 37
+      },
+      {
+        "name": "Starwise Luna",
+        "faction": "archaeon",
+        "matches": 467,
+        "wins": 221,
+        "winrate": 0.4732,
+        "pilots": 54
+      },
+      {
+        "name": "Soultaker Viessa",
+        "faction": "shadis",
+        "matches": 449,
+        "wins": 239,
+        "winrate": 0.5323,
+        "pilots": 45
+      },
+      {
+        "name": "Elyse of the Order",
+        "faction": "lucia",
+        "matches": 444,
+        "wins": 256,
+        "winrate": 0.5766,
+        "pilots": 42
+      },
+      {
+        "name": "Kai, Longcount Shaman",
+        "faction": "skaal",
+        "matches": 406,
+        "wins": 201,
+        "winrate": 0.4951,
+        "pilots": 43
+      },
+      {
+        "name": "Executor Ginn",
+        "faction": "lucia",
+        "matches": 375,
+        "wins": 160,
+        "winrate": 0.4267,
+        "pilots": 41
+      },
+      {
+        "name": "Rosirix the Witch",
+        "faction": "archaeon",
+        "matches": 366,
+        "wins": 169,
+        "winrate": 0.4617,
+        "pilots": 19
+      },
+      {
+        "name": "Captain Greenbeard",
+        "faction": "skaal",
+        "matches": 335,
+        "wins": 164,
+        "winrate": 0.4896,
+        "pilots": 47
+      },
+      {
+        "name": "Newhaven Township",
+        "faction": "neutral",
+        "matches": 326,
+        "wins": 153,
+        "winrate": 0.4693,
+        "pilots": 36
+      },
+      {
+        "name": "It That Weaves",
+        "faction": "archaeon",
+        "matches": 289,
+        "wins": 160,
+        "winrate": 0.5536,
+        "pilots": 23
+      },
+      {
+        "name": "Milo Sunstone",
+        "faction": "lucia",
+        "matches": 275,
+        "wins": 137,
+        "winrate": 0.4982,
+        "pilots": 37
+      },
+      {
+        "name": "Fael Spiritwalker",
+        "faction": "shadis",
+        "matches": 242,
+        "wins": 132,
+        "winrate": 0.5455,
+        "pilots": 35
+      },
+      {
+        "name": "Lubela, Tender of the Wilds",
+        "faction": "grenalia",
+        "matches": 158,
+        "wins": 76,
+        "winrate": 0.481,
+        "pilots": 30
+      },
+      {
+        "name": "Elber, Jungle Emissary",
+        "faction": "grenalia",
+        "matches": 156,
+        "wins": 74,
+        "winrate": 0.4744,
+        "pilots": 27
+      },
+      {
+        "name": "Yarrow, Blood Banker",
+        "faction": "shadis",
+        "matches": 133,
+        "wins": 70,
+        "winrate": 0.5263,
+        "pilots": 11
+      }
+    ],
+    "Dunes": [
+      {
+        "name": "Lazim, Thief of Gods",
+        "faction": "neutral",
+        "matches": 440,
+        "wins": 174,
+        "winrate": 0.3955,
+        "pilots": 43
+      },
+      {
+        "name": "Jagris, the Huntsman",
+        "faction": "grenalia",
+        "matches": 367,
+        "wins": 205,
+        "winrate": 0.5586,
+        "pilots": 54
+      },
+      {
+        "name": "Soultaker Viessa",
+        "faction": "shadis",
+        "matches": 240,
+        "wins": 132,
+        "winrate": 0.55,
+        "pilots": 32
+      },
+      {
+        "name": "Starwise Luna",
+        "faction": "archaeon",
+        "matches": 224,
+        "wins": 106,
+        "winrate": 0.4732,
+        "pilots": 43
+      },
+      {
+        "name": "Elyse of the Order",
+        "faction": "lucia",
+        "matches": 201,
+        "wins": 119,
+        "winrate": 0.592,
+        "pilots": 33
+      },
+      {
+        "name": "Macks Speed",
+        "faction": "skaal",
+        "matches": 198,
+        "wins": 114,
+        "winrate": 0.5758,
+        "pilots": 30
+      },
+      {
+        "name": "Kai, Longcount Shaman",
+        "faction": "skaal",
+        "matches": 198,
+        "wins": 89,
+        "winrate": 0.4495,
+        "pilots": 38
+      },
+      {
+        "name": "Executor Ginn",
+        "faction": "lucia",
+        "matches": 196,
+        "wins": 74,
+        "winrate": 0.3776,
+        "pilots": 37
+      },
+      {
+        "name": "Captain Greenbeard",
+        "faction": "skaal",
+        "matches": 165,
+        "wins": 79,
+        "winrate": 0.4788,
+        "pilots": 38
+      },
+      {
+        "name": "Rosirix the Witch",
+        "faction": "archaeon",
+        "matches": 148,
+        "wins": 68,
+        "winrate": 0.4595,
+        "pilots": 18
+      },
+      {
+        "name": "It That Weaves",
+        "faction": "archaeon",
+        "matches": 148,
+        "wins": 86,
+        "winrate": 0.5811,
+        "pilots": 20
+      },
+      {
+        "name": "Newhaven Township",
+        "faction": "neutral",
+        "matches": 148,
+        "wins": 81,
+        "winrate": 0.5473,
+        "pilots": 27
+      },
+      {
+        "name": "Milo Sunstone",
+        "faction": "lucia",
+        "matches": 131,
+        "wins": 67,
+        "winrate": 0.5115,
+        "pilots": 29
+      },
+      {
+        "name": "Fael Spiritwalker",
+        "faction": "shadis",
+        "matches": 129,
+        "wins": 71,
+        "winrate": 0.5504,
+        "pilots": 30
+      },
+      {
+        "name": "Elber, Jungle Emissary",
+        "faction": "grenalia",
+        "matches": 83,
+        "wins": 40,
+        "winrate": 0.4819,
+        "pilots": 24
+      },
+      {
+        "name": "Lubela, Tender of the Wilds",
+        "faction": "grenalia",
+        "matches": 76,
+        "wins": 39,
+        "winrate": 0.5132,
+        "pilots": 26
+      },
+      {
+        "name": "Yarrow, Blood Banker",
+        "faction": "shadis",
+        "matches": 68,
+        "wins": 37,
+        "winrate": 0.5441,
+        "pilots": 11
+      }
+    ],
+    "Snowmelt": [
+      {
+        "name": "Lazim, Thief of Gods",
+        "faction": "neutral",
+        "matches": 243,
+        "wins": 103,
+        "winrate": 0.4239,
+        "pilots": 27
+      },
+      {
+        "name": "Jagris, the Huntsman",
+        "faction": "grenalia",
+        "matches": 158,
+        "wins": 91,
+        "winrate": 0.5759,
+        "pilots": 35
+      },
+      {
+        "name": "Macks Speed",
+        "faction": "skaal",
+        "matches": 158,
+        "wins": 99,
+        "winrate": 0.6266,
+        "pilots": 22
+      },
+      {
+        "name": "Elyse of the Order",
+        "faction": "lucia",
+        "matches": 125,
+        "wins": 72,
+        "winrate": 0.576,
+        "pilots": 19
+      },
+      {
+        "name": "Starwise Luna",
+        "faction": "archaeon",
+        "matches": 124,
+        "wins": 56,
+        "winrate": 0.4516,
+        "pilots": 29
+      },
+      {
+        "name": "Soultaker Viessa",
+        "faction": "shadis",
+        "matches": 111,
+        "wins": 55,
+        "winrate": 0.4955,
+        "pilots": 25
+      },
+      {
+        "name": "Rosirix the Witch",
+        "faction": "archaeon",
+        "matches": 106,
+        "wins": 43,
+        "winrate": 0.4057,
+        "pilots": 17
+      },
+      {
+        "name": "Kai, Longcount Shaman",
+        "faction": "skaal",
+        "matches": 105,
+        "wins": 55,
+        "winrate": 0.5238,
+        "pilots": 17
+      },
+      {
+        "name": "Executor Ginn",
+        "faction": "lucia",
+        "matches": 92,
+        "wins": 38,
+        "winrate": 0.413,
+        "pilots": 16
+      },
+      {
+        "name": "Newhaven Township",
+        "faction": "neutral",
+        "matches": 83,
+        "wins": 32,
+        "winrate": 0.3855,
+        "pilots": 21
+      },
+      {
+        "name": "Captain Greenbeard",
+        "faction": "skaal",
+        "matches": 79,
+        "wins": 41,
+        "winrate": 0.519,
+        "pilots": 19
+      },
+      {
+        "name": "It That Weaves",
+        "faction": "archaeon",
+        "matches": 74,
+        "wins": 40,
+        "winrate": 0.5405,
+        "pilots": 10
+      },
+      {
+        "name": "Milo Sunstone",
+        "faction": "lucia",
+        "matches": 71,
+        "wins": 38,
+        "winrate": 0.5352,
+        "pilots": 18
+      },
+      {
+        "name": "Fael Spiritwalker",
+        "faction": "shadis",
+        "matches": 53,
+        "wins": 32,
+        "winrate": 0.6038,
+        "pilots": 13
+      },
+      {
+        "name": "Lubela, Tender of the Wilds",
+        "faction": "grenalia",
+        "matches": 48,
+        "wins": 24,
+        "winrate": 0.5,
+        "pilots": 15
+      },
+      {
+        "name": "Elber, Jungle Emissary",
+        "faction": "grenalia",
+        "matches": 45,
+        "wins": 20,
         "winrate": 0.4444,
+        "pilots": 15
+      },
+      {
+        "name": "Yarrow, Blood Banker",
+        "faction": "shadis",
+        "matches": 39,
+        "wins": 18,
+        "winrate": 0.4615,
+        "pilots": 8
+      }
+    ],
+    "Tropics": [
+      {
+        "name": "Lazim, Thief of Gods",
+        "faction": "neutral",
+        "matches": 261,
+        "wins": 101,
+        "winrate": 0.387,
+        "pilots": 23
+      },
+      {
+        "name": "Macks Speed",
+        "faction": "skaal",
+        "matches": 153,
+        "wins": 93,
+        "winrate": 0.6078,
+        "pilots": 21
+      },
+      {
+        "name": "Jagris, the Huntsman",
+        "faction": "grenalia",
+        "matches": 149,
+        "wins": 83,
+        "winrate": 0.557,
+        "pilots": 29
+      },
+      {
+        "name": "Starwise Luna",
+        "faction": "archaeon",
+        "matches": 119,
+        "wins": 59,
+        "winrate": 0.4958,
+        "pilots": 31
+      },
+      {
+        "name": "Elyse of the Order",
+        "faction": "lucia",
+        "matches": 118,
+        "wins": 65,
+        "winrate": 0.5508,
+        "pilots": 24
+      },
+      {
+        "name": "Rosirix the Witch",
+        "faction": "archaeon",
+        "matches": 112,
+        "wins": 58,
+        "winrate": 0.5179,
+        "pilots": 15
+      },
+      {
+        "name": "Kai, Longcount Shaman",
+        "faction": "skaal",
+        "matches": 103,
+        "wins": 57,
+        "winrate": 0.5534,
+        "pilots": 20
+      },
+      {
+        "name": "Soultaker Viessa",
+        "faction": "shadis",
+        "matches": 98,
+        "wins": 52,
+        "winrate": 0.5306,
+        "pilots": 20
+      },
+      {
+        "name": "Newhaven Township",
+        "faction": "neutral",
+        "matches": 95,
+        "wins": 40,
+        "winrate": 0.4211,
+        "pilots": 18
+      },
+      {
+        "name": "Captain Greenbeard",
+        "faction": "skaal",
+        "matches": 91,
+        "wins": 44,
+        "winrate": 0.4835,
+        "pilots": 24
+      },
+      {
+        "name": "Executor Ginn",
+        "faction": "lucia",
+        "matches": 87,
+        "wins": 48,
+        "winrate": 0.5517,
+        "pilots": 15
+      },
+      {
+        "name": "Milo Sunstone",
+        "faction": "lucia",
+        "matches": 73,
+        "wins": 32,
+        "winrate": 0.4384,
         "pilots": 15
       },
       {
@@ -558,33 +1112,33 @@
       {
         "name": "Lazim, Thief of Gods",
         "faction": "neutral",
-        "matches": 645,
-        "wins": 263,
-        "winrate": 0.4078,
+        "matches": 616,
+        "wins": 256,
+        "winrate": 0.4156,
         "pilots": 29
       },
       {
         "name": "Jagris, the Huntsman",
         "faction": "grenalia",
-        "matches": 380,
-        "wins": 195,
-        "winrate": 0.5132,
+        "matches": 368,
+        "wins": 184,
+        "winrate": 0.5,
         "pilots": 38
       },
       {
         "name": "Macks Speed",
         "faction": "skaal",
-        "matches": 323,
-        "wins": 195,
-        "winrate": 0.6037,
+        "matches": 322,
+        "wins": 194,
+        "winrate": 0.6025,
         "pilots": 26
       },
       {
         "name": "Elyse of the Order",
         "faction": "lucia",
-        "matches": 278,
-        "wins": 161,
-        "winrate": 0.5791,
+        "matches": 269,
+        "wins": 154,
+        "winrate": 0.5725,
         "pilots": 30
       },
       {
@@ -598,9 +1152,9 @@
       {
         "name": "Soultaker Viessa",
         "faction": "shadis",
-        "matches": 240,
+        "matches": 238,
         "wins": 114,
-        "winrate": 0.475,
+        "winrate": 0.479,
         "pilots": 26
       },
       {
@@ -622,10 +1176,10 @@
       {
         "name": "Kai, Longcount Shaman",
         "faction": "skaal",
-        "matches": 183,
-        "wins": 96,
-        "winrate": 0.5246,
-        "pilots": 21
+        "matches": 179,
+        "wins": 94,
+        "winrate": 0.5251,
+        "pilots": 20
       },
       {
         "name": "Newhaven Township",
@@ -638,49 +1192,49 @@
       {
         "name": "Rosirix the Witch",
         "faction": "archaeon",
-        "matches": 160,
-        "wins": 74,
-        "winrate": 0.4625,
+        "matches": 162,
+        "wins": 76,
+        "winrate": 0.4691,
         "pilots": 14
       },
       {
         "name": "It That Weaves",
         "faction": "archaeon",
-        "matches": 159,
-        "wins": 91,
-        "winrate": 0.5723,
+        "matches": 157,
+        "wins": 90,
+        "winrate": 0.5732,
         "pilots": 13
       },
       {
         "name": "Milo Sunstone",
         "faction": "lucia",
         "matches": 146,
-        "wins": 67,
-        "winrate": 0.4589,
+        "wins": 66,
+        "winrate": 0.4521,
         "pilots": 23
       },
       {
         "name": "Yarrow, Blood Banker",
         "faction": "shadis",
-        "matches": 132,
+        "matches": 133,
         "wins": 70,
-        "winrate": 0.5303,
+        "winrate": 0.5263,
         "pilots": 11
       },
       {
         "name": "Elber, Jungle Emissary",
         "faction": "grenalia",
-        "matches": 103,
-        "wins": 51,
-        "winrate": 0.4951,
+        "matches": 100,
+        "wins": 50,
+        "winrate": 0.5,
         "pilots": 17
       },
       {
         "name": "Fael Spiritwalker",
         "faction": "shadis",
-        "matches": 102,
-        "wins": 58,
-        "winrate": 0.5686,
+        "matches": 99,
+        "wins": 56,
+        "winrate": 0.5657,
         "pilots": 12
       },
       {
@@ -696,25 +1250,25 @@
       {
         "name": "Lazim, Thief of Gods",
         "faction": "neutral",
-        "matches": 265,
-        "wins": 114,
-        "winrate": 0.4302,
-        "pilots": 26
+        "matches": 254,
+        "wins": 110,
+        "winrate": 0.4331,
+        "pilots": 25
       },
       {
         "name": "Jagris, the Huntsman",
         "faction": "grenalia",
-        "matches": 153,
-        "wins": 73,
-        "winrate": 0.4771,
+        "matches": 149,
+        "wins": 69,
+        "winrate": 0.4631,
         "pilots": 28
       },
       {
         "name": "Elyse of the Order",
         "faction": "lucia",
-        "matches": 120,
-        "wins": 71,
-        "winrate": 0.5917,
+        "matches": 118,
+        "wins": 69,
+        "winrate": 0.5847,
         "pilots": 21
       },
       {
@@ -760,25 +1314,25 @@
       {
         "name": "Kai, Longcount Shaman",
         "faction": "skaal",
-        "matches": 80,
+        "matches": 78,
         "wins": 37,
-        "winrate": 0.4625,
+        "winrate": 0.4744,
         "pilots": 16
       },
       {
         "name": "Rosirix the Witch",
         "faction": "archaeon",
-        "matches": 71,
-        "wins": 35,
-        "winrate": 0.493,
+        "matches": 72,
+        "wins": 36,
+        "winrate": 0.5,
         "pilots": 11
       },
       {
         "name": "Yarrow, Blood Banker",
         "faction": "shadis",
-        "matches": 67,
+        "matches": 68,
         "wins": 37,
-        "winrate": 0.5522,
+        "winrate": 0.5441,
         "pilots": 11
       },
       {
@@ -808,17 +1362,17 @@
       {
         "name": "Elber, Jungle Emissary",
         "faction": "grenalia",
-        "matches": 53,
-        "wins": 25,
-        "winrate": 0.4717,
+        "matches": 51,
+        "wins": 24,
+        "winrate": 0.4706,
         "pilots": 15
       },
       {
         "name": "Fael Spiritwalker",
         "faction": "shadis",
-        "matches": 46,
+        "matches": 45,
         "wins": 29,
-        "winrate": 0.6304,
+        "winrate": 0.6444,
         "pilots": 9
       },
       {
@@ -834,33 +1388,25 @@
       {
         "name": "Lazim, Thief of Gods",
         "faction": "neutral",
-        "matches": 183,
-        "wins": 75,
-        "winrate": 0.4098,
+        "matches": 173,
+        "wins": 73,
+        "winrate": 0.422,
         "pilots": 22
       },
       {
         "name": "Jagris, the Huntsman",
         "faction": "grenalia",
-        "matches": 116,
-        "wins": 63,
-        "winrate": 0.5431,
-        "pilots": 28
+        "matches": 111,
+        "wins": 59,
+        "winrate": 0.5315,
+        "pilots": 27
       },
       {
         "name": "Macks Speed",
         "faction": "skaal",
-        "matches": 108,
-        "wins": 70,
-        "winrate": 0.6481,
-        "pilots": 17
-      },
-      {
-        "name": "Elyse of the Order",
-        "faction": "lucia",
-        "matches": 80,
-        "wins": 47,
-        "winrate": 0.5875,
+        "matches": 107,
+        "wins": 69,
+        "winrate": 0.6449,
         "pilots": 17
       },
       {
@@ -872,11 +1418,19 @@
         "pilots": 18
       },
       {
+        "name": "Elyse of the Order",
+        "faction": "lucia",
+        "matches": 76,
+        "wins": 44,
+        "winrate": 0.5789,
+        "pilots": 16
+      },
+      {
         "name": "Soultaker Viessa",
         "faction": "shadis",
-        "matches": 73,
+        "matches": 72,
         "wins": 30,
-        "winrate": 0.411,
+        "winrate": 0.4167,
         "pilots": 17
       },
       {
@@ -898,9 +1452,9 @@
       {
         "name": "Kai, Longcount Shaman",
         "faction": "skaal",
-        "matches": 53,
-        "wins": 29,
-        "winrate": 0.5472,
+        "matches": 52,
+        "wins": 28,
+        "winrate": 0.5385,
         "pilots": 12
       },
       {
@@ -930,9 +1484,9 @@
       {
         "name": "It That Weaves",
         "faction": "archaeon",
-        "matches": 42,
-        "wins": 25,
-        "winrate": 0.5952,
+        "matches": 40,
+        "wins": 24,
+        "winrate": 0.6,
         "pilots": 8
       },
       {
@@ -944,14 +1498,6 @@
         "pilots": 8
       },
       {
-        "name": "Elber, Jungle Emissary",
-        "faction": "grenalia",
-        "matches": 32,
-        "wins": 17,
-        "winrate": 0.5312,
-        "pilots": 11
-      },
-      {
         "name": "Lubela, Tender of the Wilds",
         "faction": "grenalia",
         "matches": 32,
@@ -960,11 +1506,19 @@
         "pilots": 10
       },
       {
+        "name": "Elber, Jungle Emissary",
+        "faction": "grenalia",
+        "matches": 31,
+        "wins": 17,
+        "winrate": 0.5484,
+        "pilots": 11
+      },
+      {
         "name": "Fael Spiritwalker",
         "faction": "shadis",
-        "matches": 28,
-        "wins": 16,
-        "winrate": 0.5714,
+        "matches": 27,
+        "wins": 15,
+        "winrate": 0.5556,
         "pilots": 9
       }
     ],
@@ -972,17 +1526,17 @@
       {
         "name": "Lazim, Thief of Gods",
         "faction": "neutral",
-        "matches": 197,
-        "wins": 74,
-        "winrate": 0.3756,
+        "matches": 189,
+        "wins": 73,
+        "winrate": 0.3862,
         "pilots": 22
       },
       {
         "name": "Jagris, the Huntsman",
         "faction": "grenalia",
-        "matches": 111,
-        "wins": 59,
-        "winrate": 0.5315,
+        "matches": 108,
+        "wins": 56,
+        "winrate": 0.5185,
         "pilots": 25
       },
       {
@@ -996,18 +1550,10 @@
       {
         "name": "Elyse of the Order",
         "faction": "lucia",
-        "matches": 78,
-        "wins": 43,
-        "winrate": 0.5513,
+        "matches": 75,
+        "wins": 41,
+        "winrate": 0.5467,
         "pilots": 22
-      },
-      {
-        "name": "Soultaker Viessa",
-        "faction": "shadis",
-        "matches": 72,
-        "wins": 39,
-        "winrate": 0.5417,
-        "pilots": 16
       },
       {
         "name": "Starwise Luna",
@@ -1016,6 +1562,14 @@
         "wins": 38,
         "winrate": 0.5278,
         "pilots": 17
+      },
+      {
+        "name": "Soultaker Viessa",
+        "faction": "shadis",
+        "matches": 71,
+        "wins": 39,
+        "winrate": 0.5493,
+        "pilots": 16
       },
       {
         "name": "Captain Greenbeard",
@@ -1052,33 +1606,33 @@
       {
         "name": "Kai, Longcount Shaman",
         "faction": "skaal",
-        "matches": 50,
-        "wins": 30,
-        "winrate": 0.6,
-        "pilots": 14
+        "matches": 49,
+        "wins": 29,
+        "winrate": 0.5918,
+        "pilots": 13
       },
       {
         "name": "Rosirix the Witch",
         "faction": "archaeon",
-        "matches": 44,
-        "wins": 24,
-        "winrate": 0.5455,
-        "pilots": 10
+        "matches": 45,
+        "wins": 25,
+        "winrate": 0.5556,
+        "pilots": 11
       },
       {
         "name": "Milo Sunstone",
         "faction": "lucia",
         "matches": 41,
-        "wins": 17,
-        "winrate": 0.4146,
+        "wins": 16,
+        "winrate": 0.3902,
         "pilots": 13
       },
       {
         "name": "Fael Spiritwalker",
         "faction": "shadis",
-        "matches": 28,
-        "wins": 13,
-        "winrate": 0.4643,
+        "matches": 27,
+        "wins": 12,
+        "winrate": 0.4444,
         "pilots": 9
       },
       {
@@ -1112,10 +1666,10 @@
       {
         "name": "Lazim, Thief of Gods",
         "faction": "neutral",
-        "matches": 204,
-        "wins": 89,
-        "winrate": 0.4363,
-        "pilots": 9
+        "matches": 194,
+        "wins": 86,
+        "winrate": 0.4433,
+        "pilots": 8
       },
       {
         "name": "Jagris, the Huntsman",
@@ -1128,50 +1682,42 @@
       {
         "name": "Starwise Luna",
         "faction": "archaeon",
-        "matches": 146,
+        "matches": 141,
         "wins": 72,
-        "winrate": 0.4932,
+        "winrate": 0.5106,
         "pilots": 19
       },
       {
         "name": "Yarrow, Blood Banker",
         "faction": "shadis",
-        "matches": 132,
+        "matches": 133,
         "wins": 70,
-        "winrate": 0.5303,
+        "winrate": 0.5263,
         "pilots": 11
       },
       {
         "name": "Macks Speed",
         "faction": "skaal",
-        "matches": 110,
-        "wins": 64,
-        "winrate": 0.5818,
+        "matches": 103,
+        "wins": 61,
+        "winrate": 0.5922,
         "pilots": 9
       },
       {
         "name": "It That Weaves",
         "faction": "archaeon",
-        "matches": 99,
-        "wins": 59,
-        "winrate": 0.596,
+        "matches": 97,
+        "wins": 58,
+        "winrate": 0.5979,
         "pilots": 9
       },
       {
         "name": "Soultaker Viessa",
         "faction": "shadis",
-        "matches": 83,
-        "wins": 41,
-        "winrate": 0.494,
-        "pilots": 18
-      },
-      {
-        "name": "Captain Greenbeard",
-        "faction": "skaal",
         "matches": 82,
         "wins": 41,
         "winrate": 0.5,
-        "pilots": 20
+        "pilots": 17
       },
       {
         "name": "Kai, Longcount Shaman",
@@ -1180,6 +1726,14 @@
         "wins": 40,
         "winrate": 0.5,
         "pilots": 11
+      },
+      {
+        "name": "Captain Greenbeard",
+        "faction": "skaal",
+        "matches": 78,
+        "wins": 37,
+        "winrate": 0.4744,
+        "pilots": 20
       },
       {
         "name": "Newhaven Township",
@@ -1200,42 +1754,42 @@
       {
         "name": "Rosirix the Witch",
         "faction": "archaeon",
-        "matches": 70,
-        "wins": 28,
-        "winrate": 0.4,
+        "matches": 72,
+        "wins": 30,
+        "winrate": 0.4167,
         "pilots": 7
       },
       {
         "name": "Elber, Jungle Emissary",
         "faction": "grenalia",
-        "matches": 66,
-        "wins": 35,
-        "winrate": 0.5303,
+        "matches": 64,
+        "wins": 34,
+        "winrate": 0.5312,
         "pilots": 10
       },
       {
         "name": "Milo Sunstone",
         "faction": "lucia",
-        "matches": 62,
-        "wins": 30,
-        "winrate": 0.4839,
-        "pilots": 16
+        "matches": 56,
+        "wins": 26,
+        "winrate": 0.4643,
+        "pilots": 15
       },
       {
         "name": "Fael Spiritwalker",
         "faction": "shadis",
-        "matches": 59,
-        "wins": 29,
-        "winrate": 0.4915,
+        "matches": 56,
+        "wins": 26,
+        "winrate": 0.4643,
         "pilots": 9
       },
       {
         "name": "Executor Ginn",
         "faction": "lucia",
-        "matches": 50,
-        "wins": 23,
-        "winrate": 0.46,
-        "pilots": 13
+        "matches": 45,
+        "wins": 19,
+        "winrate": 0.4222,
+        "pilots": 12
       },
       {
         "name": "Lubela, Tender of the Wilds",
@@ -1250,10 +1804,10 @@
       {
         "name": "Lazim, Thief of Gods",
         "faction": "neutral",
-        "matches": 102,
-        "wins": 43,
-        "winrate": 0.4216,
-        "pilots": 9
+        "matches": 98,
+        "wins": 41,
+        "winrate": 0.4184,
+        "pilots": 8
       },
       {
         "name": "Jagris, the Huntsman",
@@ -1266,17 +1820,17 @@
       {
         "name": "Yarrow, Blood Banker",
         "faction": "shadis",
-        "matches": 67,
+        "matches": 68,
         "wins": 37,
-        "winrate": 0.5522,
+        "winrate": 0.5441,
         "pilots": 11
       },
       {
         "name": "Starwise Luna",
         "faction": "archaeon",
-        "matches": 61,
+        "matches": 60,
         "wins": 31,
-        "winrate": 0.5082,
+        "winrate": 0.5167,
         "pilots": 15
       },
       {
@@ -1288,11 +1842,11 @@
         "pilots": 8
       },
       {
-        "name": "Macks Speed",
-        "faction": "skaal",
-        "matches": 41,
-        "wins": 23,
-        "winrate": 0.561,
+        "name": "Rosirix the Witch",
+        "faction": "archaeon",
+        "matches": 40,
+        "wins": 16,
+        "winrate": 0.4,
         "pilots": 7
       },
       {
@@ -1304,20 +1858,20 @@
         "pilots": 11
       },
       {
-        "name": "Rosirix the Witch",
-        "faction": "archaeon",
-        "matches": 39,
-        "wins": 15,
-        "winrate": 0.3846,
-        "pilots": 7
-      },
-      {
         "name": "Elyse of the Order",
         "faction": "lucia",
         "matches": 39,
         "wins": 20,
         "winrate": 0.5128,
         "pilots": 10
+      },
+      {
+        "name": "Macks Speed",
+        "faction": "skaal",
+        "matches": 38,
+        "wins": 22,
+        "winrate": 0.5789,
+        "pilots": 7
       },
       {
         "name": "Elber, Jungle Emissary",
@@ -1328,20 +1882,20 @@
         "pilots": 9
       },
       {
-        "name": "Captain Greenbeard",
-        "faction": "skaal",
-        "matches": 35,
-        "wins": 19,
-        "winrate": 0.5429,
-        "pilots": 13
-      },
-      {
         "name": "Newhaven Township",
         "faction": "neutral",
         "matches": 35,
         "wins": 17,
         "winrate": 0.4857,
         "pilots": 6
+      },
+      {
+        "name": "Captain Greenbeard",
+        "faction": "skaal",
+        "matches": 34,
+        "wins": 18,
+        "winrate": 0.5294,
+        "pilots": 13
       },
       {
         "name": "Kai, Longcount Shaman",
@@ -1352,14 +1906,6 @@
         "pilots": 9
       },
       {
-        "name": "Executor Ginn",
-        "faction": "lucia",
-        "matches": 27,
-        "wins": 12,
-        "winrate": 0.4444,
-        "pilots": 11
-      },
-      {
         "name": "Fael Spiritwalker",
         "faction": "shadis",
         "matches": 26,
@@ -1368,12 +1914,20 @@
         "pilots": 7
       },
       {
-        "name": "Milo Sunstone",
+        "name": "Executor Ginn",
         "faction": "lucia",
         "matches": 25,
-        "wins": 12,
-        "winrate": 0.48,
-        "pilots": 12
+        "wins": 11,
+        "winrate": 0.44,
+        "pilots": 10
+      },
+      {
+        "name": "Milo Sunstone",
+        "faction": "lucia",
+        "matches": 24,
+        "wins": 11,
+        "winrate": 0.4583,
+        "pilots": 11
       },
       {
         "name": "Lubela, Tender of the Wilds",
@@ -1388,18 +1942,10 @@
       {
         "name": "Lazim, Thief of Gods",
         "faction": "neutral",
-        "matches": 48,
-        "wins": 22,
-        "winrate": 0.4583,
-        "pilots": 7
-      },
-      {
-        "name": "Starwise Luna",
-        "faction": "archaeon",
-        "matches": 46,
-        "wins": 19,
-        "winrate": 0.413,
-        "pilots": 12
+        "matches": 45,
+        "wins": 21,
+        "winrate": 0.4667,
+        "pilots": 6
       },
       {
         "name": "Jagris, the Huntsman",
@@ -1408,6 +1954,14 @@
         "wins": 21,
         "winrate": 0.4884,
         "pilots": 6
+      },
+      {
+        "name": "Starwise Luna",
+        "faction": "archaeon",
+        "matches": 43,
+        "wins": 19,
+        "winrate": 0.4419,
+        "pilots": 12
       },
       {
         "name": "Yarrow, Blood Banker",
@@ -1420,18 +1974,10 @@
       {
         "name": "Macks Speed",
         "faction": "skaal",
-        "matches": 35,
-        "wins": 23,
-        "winrate": 0.6571,
+        "matches": 33,
+        "wins": 22,
+        "winrate": 0.6667,
         "pilots": 6
-      },
-      {
-        "name": "Captain Greenbeard",
-        "faction": "skaal",
-        "matches": 27,
-        "wins": 16,
-        "winrate": 0.5926,
-        "pilots": 11
       },
       {
         "name": "Kai, Longcount Shaman",
@@ -1442,12 +1988,12 @@
         "pilots": 6
       },
       {
-        "name": "It That Weaves",
-        "faction": "archaeon",
-        "matches": 22,
+        "name": "Captain Greenbeard",
+        "faction": "skaal",
+        "matches": 26,
         "wins": 15,
-        "winrate": 0.6818,
-        "pilots": 5
+        "winrate": 0.5769,
+        "pilots": 11
       },
       {
         "name": "Newhaven Township",
@@ -1458,28 +2004,20 @@
         "pilots": 8
       },
       {
+        "name": "It That Weaves",
+        "faction": "archaeon",
+        "matches": 21,
+        "wins": 15,
+        "winrate": 0.7143,
+        "pilots": 5
+      },
+      {
         "name": "Soultaker Viessa",
         "faction": "shadis",
-        "matches": 20,
-        "wins": 6,
-        "winrate": 0.3,
-        "pilots": 9
-      },
-      {
-        "name": "Milo Sunstone",
-        "faction": "lucia",
         "matches": 19,
-        "wins": 11,
-        "winrate": 0.5789,
-        "pilots": 9
-      },
-      {
-        "name": "Elber, Jungle Emissary",
-        "faction": "grenalia",
-        "matches": 18,
-        "wins": 10,
-        "winrate": 0.5556,
-        "pilots": 7
+        "wins": 6,
+        "winrate": 0.3158,
+        "pilots": 8
       },
       {
         "name": "Elyse of the Order",
@@ -1498,20 +2036,36 @@
         "pilots": null
       },
       {
-        "name": "Fael Spiritwalker",
-        "faction": "shadis",
+        "name": "Elber, Jungle Emissary",
+        "faction": "grenalia",
+        "matches": 17,
+        "wins": 10,
+        "winrate": 0.5882,
+        "pilots": 7
+      },
+      {
+        "name": "Milo Sunstone",
+        "faction": "lucia",
         "matches": 17,
         "wins": 9,
         "winrate": 0.5294,
+        "pilots": 8
+      },
+      {
+        "name": "Fael Spiritwalker",
+        "faction": "shadis",
+        "matches": 14,
+        "wins": 6,
+        "winrate": 0.4286,
         "pilots": 6
       },
       {
         "name": "Executor Ginn",
         "faction": "lucia",
-        "matches": 11,
-        "wins": 4,
-        "winrate": 0.3636,
-        "pilots": 8
+        "matches": 10,
+        "wins": 3,
+        "winrate": 0.3,
+        "pilots": 7
       },
       {
         "name": "Lubela, Tender of the Wilds",
@@ -1526,10 +2080,10 @@
       {
         "name": "Lazim, Thief of Gods",
         "faction": "neutral",
-        "matches": 54,
+        "matches": 51,
         "wins": 24,
-        "winrate": 0.4444,
-        "pilots": 6
+        "winrate": 0.4706,
+        "pilots": 5
       },
       {
         "name": "Jagris, the Huntsman",
@@ -1542,25 +2096,25 @@
       {
         "name": "Starwise Luna",
         "faction": "archaeon",
-        "matches": 39,
+        "matches": 38,
         "wins": 22,
-        "winrate": 0.5641,
+        "winrate": 0.5789,
         "pilots": 10
       },
       {
         "name": "Macks Speed",
         "faction": "skaal",
-        "matches": 34,
-        "wins": 18,
-        "winrate": 0.5294,
+        "matches": 32,
+        "wins": 17,
+        "winrate": 0.5312,
         "pilots": 6
       },
       {
         "name": "It That Weaves",
         "faction": "archaeon",
-        "matches": 32,
-        "wins": 15,
-        "winrate": 0.4688,
+        "matches": 31,
+        "wins": 14,
+        "winrate": 0.4516,
         "pilots": 8
       },
       {
@@ -1588,14 +2142,6 @@
         "pilots": 9
       },
       {
-        "name": "Captain Greenbeard",
-        "faction": "skaal",
-        "matches": 20,
-        "wins": 6,
-        "winrate": 0.3,
-        "pilots": 10
-      },
-      {
         "name": "Newhaven Township",
         "faction": "neutral",
         "matches": 19,
@@ -1604,12 +2150,12 @@
         "pilots": 5
       },
       {
-        "name": "Milo Sunstone",
-        "faction": "lucia",
+        "name": "Captain Greenbeard",
+        "faction": "skaal",
         "matches": 18,
-        "wins": 7,
-        "winrate": 0.3889,
-        "pilots": 7
+        "wins": 4,
+        "winrate": 0.2222,
+        "pilots": 9
       },
       {
         "name": "Elyse of the Order",
@@ -1628,27 +2174,35 @@
         "pilots": 7
       },
       {
+        "name": "Milo Sunstone",
+        "faction": "lucia",
+        "matches": 15,
+        "wins": 6,
+        "winrate": 0.4,
+        "pilots": 6
+      },
+      {
         "name": "Rosirix the Witch",
         "faction": "archaeon",
-        "matches": 14,
-        "wins": 7,
-        "winrate": 0.5,
+        "matches": 15,
+        "wins": 8,
+        "winrate": 0.5333,
         "pilots": null
       },
       {
         "name": "Elber, Jungle Emissary",
         "faction": "grenalia",
-        "matches": 12,
-        "wins": 6,
-        "winrate": 0.5,
+        "matches": 11,
+        "wins": 5,
+        "winrate": 0.4545,
         "pilots": 7
       },
       {
         "name": "Executor Ginn",
         "faction": "lucia",
-        "matches": 12,
-        "wins": 7,
-        "winrate": 0.5833,
+        "matches": 10,
+        "wins": 5,
+        "winrate": 0.5,
         "pilots": null
       },
       {
@@ -1666,9 +2220,9 @@
       {
         "name": "Yarrow, Blood Banker",
         "faction": "shadis",
-        "matches": 132,
+        "matches": 133,
         "wins": 70,
-        "winrate": 0.5303,
+        "winrate": 0.5263,
         "pilots": 11
       },
       {
@@ -1706,9 +2260,9 @@
       {
         "name": "Rosirix the Witch",
         "faction": "archaeon",
-        "matches": 40,
-        "wins": 18,
-        "winrate": 0.45,
+        "matches": 42,
+        "wins": 20,
+        "winrate": 0.4762,
         "pilots": 6
       },
       {
@@ -1770,9 +2324,9 @@
       {
         "name": "Milo Sunstone",
         "faction": "lucia",
-        "matches": 17,
+        "matches": 18,
         "wins": 9,
-        "winrate": 0.5294,
+        "winrate": 0.5,
         "pilots": 7
       },
       {
@@ -1804,9 +2358,9 @@
       {
         "name": "Yarrow, Blood Banker",
         "faction": "shadis",
-        "matches": 67,
+        "matches": 68,
         "wins": 37,
-        "winrate": 0.5522,
+        "winrate": 0.5441,
         "pilots": 11
       },
       {
@@ -1834,20 +2388,20 @@
         "pilots": 8
       },
       {
+        "name": "Rosirix the Witch",
+        "faction": "archaeon",
+        "matches": 29,
+        "wins": 12,
+        "winrate": 0.4138,
+        "pilots": 6
+      },
+      {
         "name": "Starwise Luna",
         "faction": "archaeon",
         "matches": 29,
         "wins": 13,
         "winrate": 0.4483,
         "pilots": 10
-      },
-      {
-        "name": "Rosirix the Witch",
-        "faction": "archaeon",
-        "matches": 28,
-        "wins": 11,
-        "winrate": 0.3929,
-        "pilots": 6
       },
       {
         "name": "Elyse of the Order",
@@ -2086,6 +2640,14 @@
         "pilots": 8
       },
       {
+        "name": "Rosirix the Witch",
+        "faction": "archaeon",
+        "matches": 9,
+        "wins": 6,
+        "winrate": 0.6667,
+        "pilots": null
+      },
+      {
         "name": "Macks Speed",
         "faction": "skaal",
         "matches": 8,
@@ -2099,14 +2661,6 @@
         "matches": 8,
         "wins": 3,
         "winrate": 0.375,
-        "pilots": null
-      },
-      {
-        "name": "Rosirix the Witch",
-        "faction": "archaeon",
-        "matches": 8,
-        "wins": 5,
-        "winrate": 0.625,
         "pilots": null
       },
       {
@@ -2174,6 +2728,14 @@
         "pilots": null
       },
       {
+        "name": "Milo Sunstone",
+        "faction": "lucia",
+        "matches": 3,
+        "wins": 1,
+        "winrate": 0.3333,
+        "pilots": null
+      },
+      {
         "name": "Executor Ginn",
         "faction": "lucia",
         "matches": 3,
@@ -2187,14 +2749,6 @@
         "matches": 3,
         "wins": 1,
         "winrate": 0.3333,
-        "pilots": null
-      },
-      {
-        "name": "Milo Sunstone",
-        "faction": "lucia",
-        "matches": 2,
-        "wins": 1,
-        "winrate": 0.5,
         "pilots": null
       }
     ]
