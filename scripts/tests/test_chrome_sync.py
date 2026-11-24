@@ -187,3 +187,22 @@ def test_service_worker_precaches_the_chrome():
     chrome = "".join(_region(decks, n) for n in sc.REGIONS)
     local = {u for u in re.findall(r'\s(?:href|src)="(/[^"]+\.(?:css|js|webp|woff))"', chrome)}
     assert local <= set(urls), f"not precached: {sorted(local - set(urls))}"
+
+
+# Calls to action a page can carry: the Steam wishlist and Discord join buttons
+# (every size and style) and the "Take Up the Hammer" footer band.
+CTA_MARKERS = ("data-ac-cta=", "ac-footer__cta", "ac-nav__ctas", "AC:CTA")
+
+
+@pytest.mark.parametrize("rel", CHROME_PAGES)
+def test_deck_pages_carry_no_calls_to_action(rel):
+    """The Twitch extension opens deck pages, and Twitch bars calls to action there."""
+    html = _read(rel)
+    chrome = "".join(_region(html, name) for name in ("NAV", "FOOTER"))
+    found = [m for m in CTA_MARKERS if m in chrome]
+    if sc.section_for(rel) == "decks":
+        assert not found, f"{rel}: calls to action on a deck page: {found}"
+        assert 'class="ac-social"' in chrome, f"{rel}: the nav lost its social links"
+    else:
+        assert "data-ac-cta=" in chrome and "ac-footer__cta" in chrome, f"{rel}: lost its calls to action"
+        assert "AC:CTA" not in chrome, f"{rel}: AC:CTA marker leaked into the page"

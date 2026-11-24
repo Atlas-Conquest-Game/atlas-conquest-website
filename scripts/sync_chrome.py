@@ -18,6 +18,11 @@ them replaced with the rendered partial. Rendering does two per-page things:
 * The nav link whose ``data-nav`` matches the page's section gets
   ``aria-current="page"`` (analytics sub-pages → Analytics, decks/<slug>/ → Decks,
   articles/** → Articles).
+* Calls to action (Steam wishlist, Discord join, the "Take Up the Hammer" band) sit
+  between ``<!-- AC:CTA -->`` and ``<!-- /AC:CTA -->`` lines in the partials. Deck
+  pages (decks.html and decks/<slug>/) drop those blocks: the Twitch extension links
+  viewers there, and Twitch doesn't allow calls to action on pages an extension opens.
+  Every other page keeps them, without the marker lines.
 
 Pages without markers are left alone (site/index.html opts in when the homepage
 adopts the shared chrome). The generators (generate_deck_pages.py,
@@ -62,6 +67,23 @@ ANALYTICS_PAGES = {
     "top-decks.html",
     "goals.html",
 }
+
+# Pages the Twitch extension opens (the deck view): Twitch's extension guidelines bar
+# calls to action there, so the AC:CTA blocks are dropped. See strip_ctas().
+NO_CTA_SECTIONS = {"decks"}
+
+_CTA_RE = re.compile(
+    r"^[ \t]*<!-- AC:CTA -->\n(?P<body>.*?)^[ \t]*<!-- /AC:CTA -->\n",
+    flags=re.DOTALL | re.MULTILINE,
+)
+
+
+def strip_ctas(body: str, page: Path | PurePosixPath | str) -> str:
+    """Drop AC:CTA blocks on pages in NO_CTA_SECTIONS; elsewhere keep them, minus markers."""
+    if section_for(page) in NO_CTA_SECTIONS:
+        return _CTA_RE.sub("", body)
+    return _CTA_RE.sub(lambda m: m.group("body"), body)
+
 
 # A partial's leading <!-- PARTIAL … --> comment documents the partial itself and
 # is not copied into pages.
@@ -125,6 +147,7 @@ def render_region(name: str, page: Path | PurePosixPath | str, indent: str = "  
                   partial: str | None = None) -> str:
     """Render one region (markers included) for ``page``."""
     body = load_partial(name) if partial is None else partial
+    body = strip_ctas(body + "\n", page).rstrip("\n")
     body = body.replace("{{ROOT}}", root_prefix(page))
     if name == "NAV":
         section = section_for(page)
